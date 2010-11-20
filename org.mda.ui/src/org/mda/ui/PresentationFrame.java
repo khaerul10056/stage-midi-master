@@ -34,7 +34,7 @@ public class PresentationFrame extends JFrame implements MidiPlayerListener {
 
     super(gc);
     this.player = player;
-    getContentPane().setBackground(Color.BLACK);
+    setBackground(Color.BLACK);
     addKeyListener(player);
     //setAlwaysOnTop(true);
     setUndecorated(true);
@@ -53,16 +53,7 @@ public class PresentationFrame extends JFrame implements MidiPlayerListener {
   @Override
   public void started() {
     contentEditor.setCurrentBar(0);
-    for (AbstractSessionItem nextItem: player.getCurrentSession().getItems()) {
-      if (nextItem instanceof MidiFile) {
-        MidiFile player = (MidiFile) nextItem;
-        String pic = player.getPic();
-        if (pic != null) {
-          Image createImage = Toolkit.getDefaultToolkit().createImage(pic).getScaledInstance(getWidth(), getHeight(), Image.SCALE_FAST);
-          getImages().put(pic, createImage);
-        }
-      }
-    }
+
   }
 
   @Override
@@ -86,6 +77,17 @@ public class PresentationFrame extends JFrame implements MidiPlayerListener {
 
   @Override
   public void sessionChanged(Session newSession) {
+	  for (AbstractSessionItem nextItem: player.getCurrentSession().getItems()) {
+	      if (nextItem instanceof MidiFile) {
+	        MidiFile player = (MidiFile) nextItem;
+	        String pic = player.getPic();
+	        if (pic != null) {
+	          Image createImage = Toolkit.getDefaultToolkit().createImage(pic);
+	          createImage.flush();
+	          getImages().put(pic, createImage);
+	        }
+	      }
+	    }
   }
 
   public HashMap <String, Image> getImages() {

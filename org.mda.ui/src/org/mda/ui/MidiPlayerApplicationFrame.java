@@ -1,9 +1,11 @@
 package org.mda.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GraphicsDevice;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -73,10 +75,7 @@ public class MidiPlayerApplicationFrame extends JFrame implements ActionListener
     this.root = root;
     setLayout(new BorderLayout());
 
-
-
     UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-
     setSize(Toolkit.getDefaultToolkit().getScreenSize());
     setTitle("MDA - Midi Driven Application (" + root.eResource().getURI().toString() + ")");
     setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -85,11 +84,9 @@ public class MidiPlayerApplicationFrame extends JFrame implements ActionListener
 
     player.addMidiPlayerListener(this);
 
-    performanceFrame = new PerformanceFrame(gd.getDefaultConfiguration(), getPlayer());
-
     GraphicsDevice grahpicsDevicePresentation = GuiHelper.findGraphicsDevice(root.getConfig().getScreenIDPresentation());
-
     presentationFrame = new PresentationFrame(grahpicsDevicePresentation.getDefaultConfiguration(), player);
+    performanceFrame = new PerformanceFrame(gd.getDefaultConfiguration(), getPlayer());
 
     detailcontrols = new ItemDetailsPanel(this);
     sessionTable = new SessionTable(this);
@@ -109,14 +106,15 @@ public class MidiPlayerApplicationFrame extends JFrame implements ActionListener
     });
 
     JPanel panNavigation = new JPanel();
-    panNavigation.setLayout(new GridBagLayout());
-    panNavigation.add(getSessionTable(), new GridBagConstraints(0, 0, 1, 1, 0, 1, GridBagConstraints.WEST, GridBagConstraints.CENTER, new Insets (0,0, 0, 0), 100, 100));
-    panNavigation.add(outline, new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.CENTER, new Insets (0,0, 0, 0), 100, 100));
+    panNavigation.setLayout(new BorderLayout(5, 5));
+    panNavigation.add(getSessionTable(), BorderLayout.CENTER);
+    panNavigation.add(outline, BorderLayout.SOUTH);
 
     addKeyListener(getPlayer());
     add(panNavigation, BorderLayout.WEST);
     add(getDetailcontrols(), BorderLayout.CENTER);
 
+    getPlayer().setCurrentSession(getPlayer().getCurrentSession()); // to trigger session changed event
     getPlayer().setCurrentSong(0);
     getPlayer().open();
     setVisible(true);
