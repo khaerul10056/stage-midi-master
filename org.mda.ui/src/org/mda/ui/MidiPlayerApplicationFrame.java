@@ -1,0 +1,309 @@
+package org.mda.ui;
+
+import java.awt.BorderLayout;
+import java.awt.GraphicsDevice;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import mda.AbstractSessionItem;
+import mda.MidiPlayerRoot;
+import mda.Session;
+
+import org.mda.MidiPlayer;
+import org.mda.MidiPlayerListener;
+import org.mda.MidiPlayerService;
+import org.mda.PlayerMode;
+import org.mda.ui.util.NavigatorPanel;
+
+public class MidiPlayerApplicationFrame extends JFrame implements ActionListener, MidiPlayerListener {
+
+  /**
+   *
+   */
+  private static final long serialVersionUID = -1129981358463133943L;
+
+  private final SessionTable sessionTable;
+  private final ItemDetailsPanel   detailcontrols;
+  private final PerformanceFrame   performanceFrame;
+  private final PresentationFrame presentationFrame;
+
+
+  private final MidiPlayer         player;
+
+  private JMenuItem          menuItemExit;
+
+  private JMenuItem          menuItemImportText;
+
+  private JMenuItem          menuItemRemoveText;
+
+  private MidiPlayerRoot     root;
+  private JMenuItem menuItemSave;
+  private JMenuBar menuBar;
+  private JMenuItem menuItemAddSong;
+  private Object menuItemRemoveSong;
+  private JMenuItem menuItemConfig;
+
+  private JMenuItem menuItemGallery;
+
+  private JMenuItem menuItemChooseSession;
+
+  private JMenuItem menuItemSessionDetails;
+
+  private JMenuItem menuItemSongDetails;
+
+  private NavigatorPanel outline;
+
+  public MidiPlayerApplicationFrame(MidiPlayerRoot root, GraphicsDevice gd) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+    super (gd.getDefaultConfiguration());
+    this.root = root;
+    setLayout(new BorderLayout());
+
+
+
+    UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+
+    setSize(Toolkit.getDefaultToolkit().getScreenSize());
+    setTitle("MDA - Midi Driven Application (" + root.eResource().getURI().toString() + ")");
+    setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+    player = new MidiPlayer(root);
+
+    player.addMidiPlayerListener(this);
+
+    performanceFrame = new PerformanceFrame(gd.getDefaultConfiguration(), getPlayer());
+
+    GraphicsDevice grahpicsDevicePresentation = GuiHelper.findGraphicsDevice(root.getConfig().getScreenIDPresentation());
+
+    presentationFrame = new PresentationFrame(grahpicsDevicePresentation.getDefaultConfiguration(), player);
+
+    detailcontrols = new ItemDetailsPanel(this);
+    sessionTable = new SessionTable(this);
+    outline = new NavigatorPanel(this);
+
+    setJMenuBar(createMainMenu());
+
+    GuiHelper.layout(this, false);
+
+    addWindowListener(new WindowAdapter() {
+      public void windowClosing(WindowEvent e) {
+        System.exit(0);
+      }
+
+      public void windowIconified(WindowEvent e) {
+      }
+    });
+
+    JPanel panNavigation = new JPanel();
+    panNavigation.setLayout(new GridBagLayout());
+    panNavigation.add(getSessionTable(), new GridBagConstraints(0, 0, 1, 1, 0, 1, GridBagConstraints.WEST, GridBagConstraints.CENTER, new Insets (0,0, 0, 0), 100, 100));
+    panNavigation.add(outline, new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.CENTER, new Insets (0,0, 0, 0), 100, 100));
+
+    addKeyListener(getPlayer());
+    add(panNavigation, BorderLayout.WEST);
+    add(getDetailcontrols(), BorderLayout.CENTER);
+
+    getPlayer().setCurrentSong(0);
+    getPlayer().open();
+    setVisible(true);
+  }
+
+  private JMenuItem createMenuItem(JMenu menu, String text, int mnemonic) {
+    JMenuItem item = new JMenuItem(text);
+    if (mnemonic >= 0) item.setMnemonic(mnemonic);
+    item.addActionListener(this);
+
+    GuiHelper.layout(item, false);
+    menu.add(item);
+    return item;
+
+  }
+
+  private JMenu createMenu (String text, int mnemonic) {
+    JMenu menuSession = new JMenu(text);
+    if (mnemonic >= 0) menuSession.setMnemonic(mnemonic);
+
+    GuiHelper.layout(menuSession, false);
+    menuBar.add(menuSession);
+
+    return menuSession;
+
+  }
+
+  private JMenuBar createMainMenu() {
+
+    menuBar = new JMenuBar();
+    GuiHelper.layout(menuBar, false);
+
+    //Menu Application
+    JMenu menuApplication = createMenu("Application", 0);
+    menuItemGallery = createMenuItem (menuApplication, "Gallery", 0);// Program->Gallery
+    menuItemSave = createMenuItem (menuApplication, "Save", 0);// Program->Save
+    menuItemConfig = createMenuItem (menuApplication, "Configuration", 0);// Program->Save
+    menuApplication.addSeparator();
+    menuItemExit = createMenuItem(menuApplication, "Exit", 0);// Program->Exit
+
+    //Menu Session
+    JMenu menuSession = createMenu ("Session", -1);
+    menuItemChooseSession = createMenuItem(menuSession, "Choose session", 0);
+    menuSession.addSeparator();
+    menuItemAddSong = createMenuItem (menuSession, "Add song", 0);
+    menuItemRemoveSong = createMenuItem(menuSession, "Remove song", 0);
+    menuItemSessionDetails = createMenuItem(menuSession, "Session details", 0);
+
+
+    //Menu song
+    JMenu menuSong = createMenu("Song", -1);
+    menuItemImportText = createMenuItem(menuSong, "Import text...", 0);    // Song->Import Text
+    menuItemRemoveText = createMenuItem(menuSong, "Remove text", 0);    // Song->Import Text
+    menuItemSongDetails = createMenuItem(menuSong, "Song details", 0);
+
+    return menuBar;
+  }
+
+  public MidiPlayerRoot getRoot() {
+    return root;
+  }
+
+  public static void main(String args[]) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+    File conffileAsFile = null;
+    if (args.length == 1)
+      conffileAsFile = new File (args [0]);
+
+    if (conffileAsFile == null) {
+      System.out.println ("Aufruf: mda [FILENAME]");
+      System.exit(1);
+    }
+
+    MidiPlayerRoot root = MidiPlayerService.loadRootObject(conffileAsFile);
+    new MidiPlayerApplicationFrame(root, GuiHelper.findGraphicsDevice(root.getConfig().getScreenIDAdmin()));
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+
+    if (e.getSource() == null) return;
+
+    if (e.getSource().equals(menuItemExit)) {
+      setVisible(false);
+      System.exit(0);
+    }
+
+    if (e.getSource().equals(menuItemGallery)) {
+      new GalleryChooser(getRoot().getGallery());
+    }
+
+    if (e.getSource().equals(menuItemConfig)) {
+      new ConfigurationDialog(this);
+    }
+
+    if (e.getSource().equals(menuItemImportText)) {
+      new TextImportFrame(this, getPlayer().getCurrentMidifile());
+      getDetailcontrols().renderContent();
+    }
+
+    if (e.getSource().equals(menuItemChooseSession)) {
+      SessionChooser chooser = new SessionChooser(this, getPlayer().getRoot());
+    }
+
+    if (e.getSource().equals(menuItemSessionDetails)) {
+      SessionDetailDialog dialog = new SessionDetailDialog(this);
+    }
+
+    if (e.getSource().equals(menuItemRemoveText)) {
+      MidiPlayerService.removeText(getPlayer().getCurrentMidifile());
+      getDetailcontrols().renderContent();
+    }
+
+    if (e.getSource().equals(menuItemSave)) {
+      MidiPlayerService.saveRootObject(getRoot());
+    }
+
+    if (e.getSource().equals(menuItemAddSong)) {
+      GalleryChooser chooser = new GalleryChooser(getRoot().getGallery());
+
+      if (chooser.getSelectedItems().size() > 0);
+        getPlayer().getCurrentSession().getItems().addAll(getPlayer().isSessionListEmpty() ? 0: getPlayer().getCurrentSongIndex() + 1, chooser.getSelectedItems());
+
+      getSessionTable().update();
+    }
+
+    if (e.getSource().equals(menuItemRemoveSong)) {
+      getPlayer().getCurrentSession().getItems().remove(getPlayer().getCurrentSongIndex());
+      getSessionTable().update();
+    }
+
+    if (e.getSource().equals(menuItemSongDetails)) {
+      SongDetailDialog dialog = new SongDetailDialog(this);
+
+    }
+  }
+
+  public ItemDetailsPanel getDetailcontrols() {
+    return detailcontrols;
+  }
+
+  public SessionTable getSessionTable() {
+    return sessionTable;
+  }
+
+  public PerformanceFrame getPerformanceFrame() {
+    return performanceFrame;
+  }
+
+  public MidiPlayer getPlayer() {
+    return player;
+  }
+
+  @Override
+  public void sessionChanged(Session newSession) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void sessionItemChanged(AbstractSessionItem abstractSessionItem) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void started() {
+    performanceFrame.setVisible(true);
+    presentationFrame.setVisible(true);
+
+  }
+
+  @Override
+  public void stopped() {
+    performanceFrame.setVisible(false);
+    presentationFrame.setVisible(false);
+  }
+
+  @Override
+  public void modeToggled(PlayerMode chosePlayerMode) {
+
+
+  }
+
+  @Override
+  public void barChanged(int currentBar) {
+    // TODO Auto-generated method stub
+
+  }
+
+}
