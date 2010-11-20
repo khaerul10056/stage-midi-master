@@ -7,9 +7,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
-import java.awt.Toolkit;
-import java.awt.font.LineMetrics;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +41,7 @@ public class MidiFileContentShower extends JPanel {
     this.presentationFrame = presentationFrame;
     this.midiplayer = midiplayer;
     this.config = config;
+    setBackground(Color.BLACK);
 
     config.getFont();
 
@@ -50,8 +50,9 @@ public class MidiFileContentShower extends JPanel {
 
   private Graphics2D createGraphics(final Font font, final Graphics g) {
     Graphics2D g3 = (Graphics2D) g;
-    g3.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    g3.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
     g3.setColor(Color.WHITE);
+    g3.setBackground(Color.BLACK);
     g3.setFont(font);
     return g3;
   }
@@ -120,35 +121,37 @@ public class MidiFileContentShower extends JPanel {
     return lineMetrics.getWidth();
   }
 
-
-
-
   public void paint(Graphics g) {
-      // Draws the img to the BackgroundPanel.
-    if (img != null) g.drawImage(img, 0, 0, null);
+	  super.paint(g);
+	  Font font = config.getFont();
+	  graphics2d = createGraphics(font, g);
 
-    Font font = config.getFont();
-    FontMetrics fm = getFontMetrics(font);
-
-    graphics2d = createGraphics(font, g);
-
-    y = fm.getHeight() + getIndention();
-
-    for (MidiFilePart nextPart : partsShown) {
-      List<String> text = MidiPlayerService.getRawText(nextPart);
-
-      for (String nextLine : text) {
-
-        List<String> wrappedLines = getWrapped(nextLine);
-        for (String nextWrapped : wrappedLines) {
-          drawNextLine(nextWrapped, fm, graphics2d);
-        }
-      }
+	  // Draws the img to the BackgroundPanel.
+    if (img != null) {
+    	graphics2d.drawImage(img, 0, 0, this);
     }
+
+		FontMetrics fm = getFontMetrics(graphics2d.getFont());
+		y = fm.getHeight() + getIndention();
+
+		for (MidiFilePart nextPart : partsShown) {
+			List<String> text = MidiPlayerService.getRawText(nextPart);
+
+			for (String nextLine : text) {
+
+				List<String> wrappedLines = getWrapped(nextLine);
+				for (String nextWrapped : wrappedLines) {
+					drawNextLine(nextWrapped, fm, graphics2d);
+				}
+			}
+		}
   }
 
-  private void drawNextLine (final String nextString, FontMetrics fm, Graphics2D createGraphics) {
-    createGraphics.drawString(nextString, getIndention(), y);
+
+
+
+private void drawNextLine (final String nextString, FontMetrics fm, Graphics2D createGraphics) {
+	createGraphics.drawString(nextString, getIndention(), y);
     double width = getWidth(nextString, fm.getFont());
     if (width > (getWidth() - ( 2 * getIndention()))) {
       System.out.println ("Error: Text <" + nextString + "> braucht " + width + " Pixel");
@@ -176,32 +179,6 @@ public class MidiFileContentShower extends JPanel {
       invalidate();
       validate();
     }
-  }
-
-  public final static void main (String [] args) throws Exception {
-    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("/home/oleym/privat/soundOfFaith/midi/mda.conf"));
-    MidiPlayer player = new MidiPlayer(loadRootObject);
-    int anzSongs = player.getCurrentSession().getItems().size();
-    player.open();
-
-    for (int i = 0; i < anzSongs; i++) {
-      player.setCurrentSong(i);
-
-      player.assignCurrentSong();
-
-      MidiFileContentShower shower = new MidiFileContentShower(null, null, player, new PresentationEditorConfig());
-      shower.setVisible(true);
-
-      int maxBar = player.getMaxBar();
-
-      for (int y = 0; y < maxBar; y++) {
-        System.out.println (player.getCurrentMidifile().getName() + "-> " + y);
-        shower.setCurrentBar(y);
-      }
-
-
-    }
-
   }
 
 
