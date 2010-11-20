@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mda"
+    nsURI="org.mda.model" nsPrefix="org.mda.model">
+  <eClassifiers xsi:type="ecore:EClass" name="Session">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
+        eType="#//AbstractSessionItem"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultpath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractSessionItem" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MidiFile" eSuperTypes="#//AbstractSessionItem">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
+        eType="#//MidiFilePart" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontsize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractEvent" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="atBar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextPresentationEvent" eSuperTypes="#//AbstractEvent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
+        eType="#//MidiFilePart"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MidiFilePart">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textlines" upperBound="-1"
+        eType="#//MidiFileTextLine" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parttype" eType="#//MidiFilePartType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refPart" eType="#//MidiFilePart"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MidiFilePartType">
+    <eLiterals name="REFRAIN"/>
+    <eLiterals name="BRIDGE" value="1"/>
+    <eLiterals name="VERS" value="2" literal="VERS"/>
+    <eLiterals name="SOLO" value="3"/>
+    <eLiterals name="ZWISCHENSPIEL" value="4" literal="ZWISCHENSPIEL"/>
+    <eLiterals name="INTRO" value="5" literal="INTRO"/>
+    <eLiterals name="EXTRO" value="6" literal="EXTRO"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MidiFileTextLine">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="chordParts" upperBound="-1"
+        eType="#//MidiFileChordPart" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Gallery">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="galleryItems" upperBound="-1"
+        eType="#//AbstractSessionItem" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MidiPlayerRoot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gallery" eType="#//Gallery"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sessions" upperBound="-1"
+        eType="#//Session" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="config" eType="#//Configuration"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MidiFileChordPart">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="chord" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Configuration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="screenIDPresentation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="screenIDAdmin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lastSession" eType="#//Session"/>
+  </eClassifiers>
+</ecore:EPackage>
