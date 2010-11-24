@@ -34,8 +34,10 @@ public class PerformanceFrame extends JFrame implements MidiPlayerListener {
 		DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
 		config.setEditable(false);
 		config.setShowOnlyCurrentPart(true);
+		PlaybackMonitor playbackMonitor = new PlaybackMonitor(player);
 		contentEditor = new MidiFileContentEditor(null, player, config);
-    add(contentEditor);
+		add(playbackMonitor);
+        add(contentEditor);
 	}
 
 	@Override
