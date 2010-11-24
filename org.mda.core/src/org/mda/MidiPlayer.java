@@ -39,6 +39,8 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener, Ke
   private int loopFrom =0;
   private int loopTo = -1;
 
+private boolean shouldStepToNext;
+
   public MidiPlayer(MidiPlayerRoot root) {
     setRoot(root);
   }
@@ -70,7 +72,12 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener, Ke
     if (e.getKeyCode() == KeyEvent.VK_DOWN && e.isShiftDown()) {
       moveSongDown();
       e.consume();
-    } else if (e.getKeyChar() == ' ') {
+
+
+    } else if (e.getKeyChar() == '1') {
+    	 togglePlayingCurrentSong();
+         e.consume();
+    }else if (e.getKeyChar() == ' ') {
       togglePlayingCurrentSong();
       e.consume();
     } else if (e.getKeyCode() == KeyEvent.VK_UP && e.isShiftDown()) {
@@ -113,24 +120,24 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener, Ke
     currentSequence = MidiSystem.getSequence(new File(completeFile));
 
     System.out.println("Setze Sequence " + currentSequence + "(" + completeFile + ")");
-    getSequencer().open();
-
-    getSequencer().setSequence(currentSequence);
+		if (getSequencer() != null) {
+			getSequencer().open();
+			getSequencer().setSequence(currentSequence);
+		}
 
   }
 
   public void run() {
-
-
-    while (currentSongIndex < getCurrentSession().getItems().size() && thread != null) {
-
-      songEndedWithoutStopping = true;
-
-
-
       if (isSessionListEmpty()) return;
 
       try {
+
+    	  if (shouldStepToNext == true) {
+    		  shouldStepToNext = false;
+    		  currentSongIndex ++;
+    		  for (MidiPlayerListener listener : listeners)
+    		        listener.sessionItemChanged(getCurrentMidifile());
+    	  }
 
         assignCurrentSong();
 
@@ -145,22 +152,20 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener, Ke
       int currentBar = -1;
       int newBar = 0;
 
-      System.out.println ("Current position initialized pre start to bar " + sequencer.getTickPosition() + "(" + getSequencer().getTickLength() + ")");
-      getSequencer().start();
-      System.out.println ("Current position initialized after start to bar " + sequencer.getTickPosition());
+      if (getSequencer() != null) {
+        System.out.println ("Current position initialized pre start to bar " + sequencer.getTickPosition() + "(" + getSequencer().getTickLength() + ")");
+        getSequencer().start();
+        System.out.println ("Current position initialized after start to bar " + sequencer.getTickPosition());
+      }
 
       //Jump to a several tick
       if (getLoopFrom() >= 0) {
 
-        getSequencer().setTickPosition(berechnePosition(getLoopFrom()));
-        System.out.println ("Current position initialized to bar " + sequencer.getTickPosition() + "(" + getSequencer().getTickLength() + ")");
+    	  if (getSequencer() != null)
+            getSequencer().setTickPosition(berechnePosition(getLoopFrom()));
 
         for (MidiPlayerListener listener : listeners)
           listener.barChanged(getCurrentBar());
-
-        System.out.println ("Current position initialized to bar after changed " + sequencer.getTickPosition() + "(" + getSequencer().getTickLength() + ")");
-
-
       }
 
 
@@ -168,16 +173,8 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener, Ke
       for (MidiPlayerListener listener : listeners)
         listener.started();
 
-      System.out.println ("Current position initialized after listeners to bar " + sequencer.getTickPosition());
-
-
-
-
-
-
       while (isRunning()) {
         try {
-          System.out.println ("Current position set to bar " + sequencer.getTickPosition() + "(" + getSequencer().getTickLength() + ")");
           Thread.sleep(100);
         } catch (InterruptedException e) {
           break;
@@ -192,28 +189,15 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener, Ke
 
       }
 
+      stop();
       for (MidiPlayerListener listener : listeners)
         listener.stopped();
 
-      if (songEndedWithoutStopping) {
-        currentSongIndex++;
+      shouldStepToNext = true;
 
-        for (MidiPlayerListener listener : listeners)
-          listener.sessionItemChanged(getCurrentMidifile());
 
-        setLoopFrom(-1); // Next time we don't want to jump
 
-      }
 
-      // take a little break between sounds
-      try {
-        Thread.sleep(1000);
-      } catch (Exception e) {
-        break;
-      }
-    }
-
-    stop();
   }
 
   public void setSequencer(Sequencer sequencer) {
