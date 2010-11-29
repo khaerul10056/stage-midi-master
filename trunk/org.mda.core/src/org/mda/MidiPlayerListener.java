@@ -18,4 +18,6 @@ public interface MidiPlayerListener {
 
 	public void barChanged (int currentBar);
 
+	public void tickChanged(int currentTick);
+
 }

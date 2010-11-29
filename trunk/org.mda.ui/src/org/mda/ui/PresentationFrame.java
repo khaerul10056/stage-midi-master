@@ -94,4 +94,10 @@ public class PresentationFrame extends JFrame implements MidiPlayerListener {
     return images;
   }
 
+@Override
+public void tickChanged(int currentTick) {
+	// TODO Auto-generated method stub
+
+}
+
 }

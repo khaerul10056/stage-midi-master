@@ -27,8 +27,6 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener, Ke
 
   private MidiPlayerRoot           root       = null;
 
-  private boolean                  songEndedWithoutStopping;
-
   private List<MidiPlayerListener> listeners  = new ArrayList<MidiPlayerListener>();
 
   private Thread                   thread;
@@ -40,6 +38,12 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener, Ke
   private int loopTo = -1;
 
 private boolean shouldStepToNext;
+
+private boolean stoppedByEvent;
+
+private int newTick;
+
+private int currentTick;
 
   public MidiPlayer(MidiPlayerRoot root) {
     setRoot(root);
@@ -179,6 +183,13 @@ private boolean shouldStepToNext;
         } catch (InterruptedException e) {
           break;
         }
+        
+        newTick = getCurrentTick();
+        if (newTick != currentTick) {
+        	currentTick = newTick; 
+        	for (MidiPlayerListener listener : listeners)
+        		listener.tickChanged (currentTick);
+        }
 
         newBar = getCurrentBar();
         if (newBar != currentBar) {
@@ -190,10 +201,9 @@ private boolean shouldStepToNext;
       }
 
       stop();
-      for (MidiPlayerListener listener : listeners)
-        listener.stopped();
 
-      shouldStepToNext = true;
+      shouldStepToNext = ! stoppedByEvent;
+      stoppedByEvent = false;
 
 
 
@@ -260,7 +270,10 @@ private boolean shouldStepToNext;
     /**for (MidiPlayerListener listener : listeners)
       listener.sessionItemChanged(getCurrentMidifile());**/
 
+	  stoppedByEvent = false;
+
     if (isRunning()) {
+      stoppedByEvent = true;
       stop();
     } else {
       start();
@@ -405,7 +418,6 @@ private boolean shouldStepToNext;
   }
 
   public void stop() {
-    songEndedWithoutStopping = false;
     if (isRunning()) {
       getSequencer().stop();
 

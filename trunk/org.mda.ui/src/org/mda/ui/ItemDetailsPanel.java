@@ -29,7 +29,7 @@ public class ItemDetailsPanel extends JPanel implements MidiPlayerListener {
   private final MidiFileContentEditor contenteditor;
 
   private final PlaybackMonitor       playbackMonitor;
-  
+
 
 
   public ItemDetailsPanel(MidiPlayerApplicationFrame application) {
@@ -42,8 +42,6 @@ public class ItemDetailsPanel extends JPanel implements MidiPlayerListener {
     setBackground(Color.BLACK);
     setLayout(new GridBagLayout());
     midiPlayer.addMidiPlayerListener(this);
-
-
 
     add(getContenteditor(), new GridBagConstraints(0, 1, 1, 1, 1d, 1d, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     add(getPlaybackMonitor(), new GridBagConstraints(0, 0, 1, 1, 1d, 0d, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0,100));
@@ -98,5 +96,11 @@ public class ItemDetailsPanel extends JPanel implements MidiPlayerListener {
   public void sessionChanged(Session newSession) {
     renderContent();
   }
+
+@Override
+public void tickChanged(int currentTick) {
+	// TODO Auto-generated method stub
+
+}
 
 }

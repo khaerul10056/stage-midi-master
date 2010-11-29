@@ -304,4 +304,10 @@ public class MidiPlayerApplicationFrame extends JFrame implements ActionListener
 
   }
 
+@Override
+public void tickChanged(int currentTick) {
+	// TODO Auto-generated method stub
+
+}
+
 }

@@ -233,6 +233,12 @@ public class MidiFileContentEditor extends JPanel implements MidiPlayerListener 
       setCurrentMidiFile(null);
   }
 
+@Override
+public void tickChanged(int currentTick) {
+	// TODO Auto-generated method stub
+
+}
+
 
 
 

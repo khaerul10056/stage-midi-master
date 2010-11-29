@@ -95,4 +95,10 @@ public class NavigatorPanel extends JPanel implements MidiPlayerListener {
 
   }
 
+@Override
+public void tickChanged(int currentTick) {
+	// TODO Auto-generated method stub
+
+}
+
 }
