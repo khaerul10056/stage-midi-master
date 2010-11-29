@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mda.MidiFile;
+import mda.MidiFilePartType;
 import mda.MidiplayerFactory;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
 import org.mda.importer.DefaultTextImporterConfig;
@@ -33,7 +35,34 @@ public class TextImporterTest {
 
 		service.importText(midifile);
 
+		Assert.assertEquals (MidiFilePartType.INTRO, midifile.getParts().get(0).getParttype());
+		Assert.assertEquals (MidiFilePartType.REFRAIN, midifile.getParts().get(1).getParttype());
+		Assert.assertEquals (MidiFilePartType.VERS, midifile.getParts().get(2).getParttype());
+
 		System.out.println (MidiPlayerService.getMidiFileAsString(midifile));
+
+	}
+
+	@Test
+	public void importTest2 () throws Exception {
+		List<String> loadFile = loadFile ("testdata/importer/TestSong2.txt");
+
+		for (String nextLine: loadFile) {
+			System.out.println ("- " + nextLine);
+		}
+
+		DefaultTextImporterConfig config = new DefaultTextImporterConfig();
+		TextImporterService service = new TextImporterService (loadFile, config);
+
+		MidiFile midifile = MidiplayerFactory.eINSTANCE.createMidiFile();
+		service.importText(midifile);
+
+		Assert.assertEquals (MidiFilePartType.INTRO, midifile.getParts().get(0).getParttype());
+		Assert.assertEquals (MidiFilePartType.VERS, midifile.getParts().get(1).getParttype());
+		Assert.assertEquals (MidiFilePartType.REFRAIN, midifile.getParts().get(2).getParttype());
+
+		System.out.println (MidiPlayerService.getMidiFileAsString(midifile));
+
 
 	}
 

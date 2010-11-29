@@ -89,7 +89,8 @@ public class TextImporterLine {
       parts.add(singleChorPart);
     }
     else {
-      parts.addAll(Utils.getChordPartsFromText(getContent(), previousLine.getContent()));
+    	String previousLineContent = previousLine != null ? previousLine.getContent(): null;
+      parts.addAll(Utils.getChordPartsFromText(getContent(), previousLineContent));
     }
 
     return parts;

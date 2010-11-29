@@ -191,6 +191,12 @@ public class SessionTable extends JPanel implements MidiPlayerListener, ListSele
 
   }
 
+@Override
+public void tickChanged(int currentTick) {
+	// TODO Auto-generated method stub
+
+}
+
 
 
 }

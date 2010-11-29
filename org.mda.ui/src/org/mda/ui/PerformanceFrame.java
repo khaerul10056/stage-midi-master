@@ -3,6 +3,9 @@ package org.mda.ui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JFrame;
 
@@ -30,14 +33,15 @@ public class PerformanceFrame extends JFrame implements MidiPlayerListener {
 		setUndecorated(true);
 		setBounds(gc.getBounds());
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setLayout(new GridBagLayout());
 		player.addMidiPlayerListener(this);
 		DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
 		config.setEditable(false);
 		config.setShowOnlyCurrentPart(true);
 		PlaybackMonitor playbackMonitor = new PlaybackMonitor(player);
 		contentEditor = new MidiFileContentEditor(null, player, config);
-		add(playbackMonitor);
-        add(contentEditor);
+		add(playbackMonitor, new GridBagConstraints(0, 0, 1, 1, 1d, 0d, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0,0));
+	    add(contentEditor, new GridBagConstraints(0, 1, 1, 1, 1d, 1d, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 	}
 
 	@Override
@@ -73,6 +77,12 @@ public class PerformanceFrame extends JFrame implements MidiPlayerListener {
 
 
   }
+
+@Override
+public void tickChanged(int currentTick) {
+	// TODO Auto-generated method stub
+
+}
 
 
 

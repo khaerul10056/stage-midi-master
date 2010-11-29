@@ -28,7 +28,7 @@ public class PlaybackMonitor extends JPanel implements Runnable, MidiPlayerListe
    */
   private static final long serialVersionUID = 8132172147066530595L;
 
-  private int height = 500;
+  private int height = 250;
 
 	Thread pbThread;
 	Color jfcBlue = new Color(102, 102, 122);
@@ -143,7 +143,7 @@ public class PlaybackMonitor extends JPanel implements Runnable, MidiPlayerListe
 
   @Override
   public void barChanged(int currentBar) {
-    // TODO Auto-generated method stub
+	  repaint();
 
   }
 
@@ -152,4 +152,10 @@ public class PlaybackMonitor extends JPanel implements Runnable, MidiPlayerListe
     // TODO Auto-generated method stub
 
   }
+
+@Override
+public void tickChanged(int currentTick) {
+	repaint();
+
+}
 }

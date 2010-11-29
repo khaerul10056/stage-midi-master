@@ -32,4 +32,10 @@ public class MidiPlayerAdapter implements MidiPlayerListener {
   public void sessionChanged(Session newSession) {
   }
 
+@Override
+public void tickChanged(int currentTick) {
+	// TODO Auto-generated method stub
+
+}
+
 }
