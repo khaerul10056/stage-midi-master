@@ -1,12 +1,7 @@
 package org.mda.ui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GraphicsDevice;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 
+import javax.sound.midi.MidiUnavailableException;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -26,10 +22,12 @@ import mda.AbstractSessionItem;
 import mda.MidiPlayerRoot;
 import mda.Session;
 
-import org.mda.MidiPlayer;
 import org.mda.MidiPlayerListener;
 import org.mda.MidiPlayerService;
 import org.mda.PlayerMode;
+import org.mda.player.IPlayer;
+import org.mda.player.ManualPlayer;
+import org.mda.player.MidiPlayer;
 import org.mda.ui.util.NavigatorPanel;
 
 public class MidiPlayerApplicationFrame extends JFrame implements ActionListener, MidiPlayerListener {
@@ -45,7 +43,7 @@ public class MidiPlayerApplicationFrame extends JFrame implements ActionListener
   private final PresentationFrame presentationFrame;
 
 
-  private final MidiPlayer         player;
+  private IPlayer         player;
 
   private JMenuItem          menuItemExit;
 
@@ -80,7 +78,11 @@ public class MidiPlayerApplicationFrame extends JFrame implements ActionListener
     setTitle("MDA - Midi Driven Application (" + root.eResource().getURI().toString() + ")");
     setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-    player = new MidiPlayer(root);
+    try {
+		player = new MidiPlayer(root);
+	} catch (MidiUnavailableException e1) {
+		player = new ManualPlayer(root);
+	}
 
     player.addMidiPlayerListener(this);
 
@@ -215,11 +217,11 @@ public class MidiPlayerApplicationFrame extends JFrame implements ActionListener
     }
 
     if (e.getSource().equals(menuItemChooseSession)) {
-      SessionChooser chooser = new SessionChooser(this, getPlayer().getRoot());
+      new SessionChooser(this, root);
     }
 
     if (e.getSource().equals(menuItemSessionDetails)) {
-      SessionDetailDialog dialog = new SessionDetailDialog(this);
+      new SessionDetailDialog(this);
     }
 
     if (e.getSource().equals(menuItemRemoveText)) {
@@ -246,7 +248,7 @@ public class MidiPlayerApplicationFrame extends JFrame implements ActionListener
     }
 
     if (e.getSource().equals(menuItemSongDetails)) {
-      SongDetailDialog dialog = new SongDetailDialog(this);
+      new SongDetailDialog(this);
 
     }
   }
@@ -263,7 +265,7 @@ public class MidiPlayerApplicationFrame extends JFrame implements ActionListener
     return performanceFrame;
   }
 
-  public MidiPlayer getPlayer() {
+  public IPlayer getPlayer() {
     return player;
   }
 

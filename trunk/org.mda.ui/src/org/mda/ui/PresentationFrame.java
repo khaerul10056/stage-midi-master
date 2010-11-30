@@ -1,7 +1,6 @@
 package org.mda.ui;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.GraphicsConfiguration;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -11,12 +10,11 @@ import javax.swing.JFrame;
 
 import mda.AbstractSessionItem;
 import mda.MidiFile;
-import mda.MidiFilePartType;
 import mda.Session;
 
-import org.mda.MidiPlayer;
 import org.mda.MidiPlayerListener;
 import org.mda.PlayerMode;
+import org.mda.player.IPlayer;
 
 public class PresentationFrame extends JFrame implements MidiPlayerListener {
 
@@ -26,11 +24,11 @@ public class PresentationFrame extends JFrame implements MidiPlayerListener {
   private static final long serialVersionUID = 8919514758061566112L;
 
   private MidiFileContentShower contentEditor;
-  private MidiPlayer player;
+  private IPlayer player;
 
   private final HashMap <String, Image> images = new HashMap<String, Image>();
 
-  public PresentationFrame(final GraphicsConfiguration gc, MidiPlayer player) {
+  public PresentationFrame(final GraphicsConfiguration gc, IPlayer player) {
 
     super(gc);
     this.player = player;

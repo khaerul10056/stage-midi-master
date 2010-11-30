@@ -16,10 +16,11 @@ import mda.MidiFilePart;
 import mda.Session;
 
 import org.mda.MidiFileContentEditorConfigIF;
-import org.mda.MidiPlayer;
 import org.mda.MidiPlayerListener;
 import org.mda.MidiPlayerService;
 import org.mda.PlayerMode;
+import org.mda.player.IPlayer;
+import org.mda.player.MidiPlayer;
 
 public class MidiFileContentEditor extends JPanel implements MidiPlayerListener {
 
@@ -41,7 +42,7 @@ public class MidiFileContentEditor extends JPanel implements MidiPlayerListener 
   private List<MidiFilePart> partsShown = new ArrayList<MidiFilePart>();
 
 
-  public MidiFileContentEditor(final MidiPlayerApplicationFrame application, final MidiPlayer midiplayer, MidiFileContentEditorConfigIF config) {
+  public MidiFileContentEditor(final MidiPlayerApplicationFrame application, final IPlayer midiplayer, MidiFileContentEditorConfigIF config) {
     this.application = application;
     this.setConfig(config);
     JScrollPane spContent = new JScrollPane(contentPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

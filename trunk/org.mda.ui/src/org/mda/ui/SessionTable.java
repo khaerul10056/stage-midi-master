@@ -10,7 +10,6 @@ import javax.swing.AbstractListModel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -19,9 +18,9 @@ import javax.swing.event.ListSelectionListener;
 import mda.AbstractSessionItem;
 import mda.Session;
 
-import org.mda.MidiPlayer;
 import org.mda.MidiPlayerListener;
 import org.mda.PlayerMode;
+import org.mda.player.IPlayer;
 
 /**
  * Table to display the name of the sound.
@@ -35,7 +34,7 @@ public class SessionTable extends JPanel implements MidiPlayerListener, ListSele
 
   private ListModel dataModel;
 
-	private final MidiPlayer player;
+	private final IPlayer player;
 	private final MidiPlayerApplicationFrame application;
 
 	private JList table;
@@ -100,7 +99,7 @@ public class SessionTable extends JPanel implements MidiPlayerListener, ListSele
 	}
 
 
-	public MidiPlayer getPlayer() {
+	public IPlayer getPlayer() {
 		return player;
 	}
 

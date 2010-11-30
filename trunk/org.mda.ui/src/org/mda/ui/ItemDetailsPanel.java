@@ -10,9 +10,10 @@ import javax.swing.JPanel;
 import mda.AbstractSessionItem;
 import mda.Session;
 
-import org.mda.MidiPlayer;
 import org.mda.MidiPlayerListener;
 import org.mda.PlayerMode;
+import org.mda.player.IPlayer;
+import org.mda.player.MidiPlayer;
 
 /**
  * GUI controls for start, stop, previous, next, pan and gain.
@@ -24,7 +25,7 @@ public class ItemDetailsPanel extends JPanel implements MidiPlayerListener {
    */
   private static final long serialVersionUID = -6030576004343098408L;
 
-  private MidiPlayer                  midiPlayer;
+  private IPlayer                  midiPlayer;
 
   private final MidiFileContentEditor contenteditor;
 

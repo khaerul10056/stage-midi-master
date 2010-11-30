@@ -1,7 +1,6 @@
 package org.mda.ui;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,9 +11,9 @@ import javax.swing.JFrame;
 import mda.AbstractSessionItem;
 import mda.Session;
 
-import org.mda.MidiPlayer;
 import org.mda.MidiPlayerListener;
 import org.mda.PlayerMode;
+import org.mda.player.IPlayer;
 
 public class PerformanceFrame extends JFrame implements MidiPlayerListener {
 
@@ -25,7 +24,7 @@ public class PerformanceFrame extends JFrame implements MidiPlayerListener {
 
   private MidiFileContentEditor contentEditor;
 
-  public PerformanceFrame (final GraphicsConfiguration gc, MidiPlayer player) {
+  public PerformanceFrame (final GraphicsConfiguration gc, IPlayer player) {
 		super (gc);
 		addKeyListener(player);
 		getContentPane().setBackground(Color.WHITE);
