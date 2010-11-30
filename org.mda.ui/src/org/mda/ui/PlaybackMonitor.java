@@ -14,9 +14,9 @@ import javax.swing.JPanel;
 import mda.AbstractSessionItem;
 import mda.Session;
 
-import org.mda.MidiPlayer;
 import org.mda.MidiPlayerListener;
 import org.mda.PlayerMode;
+import org.mda.player.IPlayer;
 
 /**
  * Displays current sound and time elapsed.
@@ -38,9 +38,9 @@ public class PlaybackMonitor extends JPanel implements Runnable, MidiPlayerListe
 	Font font42 = new Font(Font.DIALOG, Font.BOLD, 42);
 	Font font60 = new Font(Font.DIALOG, Font.BOLD, 60);
 	FontMetrics fm28, fm42, fm10, fm60;
-	private MidiPlayer player;
+	private IPlayer player;
 
-	public PlaybackMonitor(final MidiPlayer player) {
+	public PlaybackMonitor(final IPlayer player) {
 		player.addMidiPlayerListener(this);
 		fm28 = getFontMetrics(font28);
 		fm42 = getFontMetrics(font42);
@@ -69,7 +69,7 @@ public class PlaybackMonitor extends JPanel implements Runnable, MidiPlayerListe
 			createGraphics(font28, g2d);
 			g2d.drawString(player.getCurrentName(), 5, fm28.getHeight() + fm10.getHeight() + 5);
 
-			if (player.getSequencer() != null && player.getSequencer().isRunning()) {
+			if (player.isRunning()) {
 				g2d.setFont(font60);
 				String s = player.getCurrentPositionInSong();
 				int strW = (int) fm60.getStringBounds(s, g2d).getWidth();

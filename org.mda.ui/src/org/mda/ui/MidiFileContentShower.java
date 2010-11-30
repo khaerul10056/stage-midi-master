@@ -8,25 +8,22 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.ImageObserver;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
 
 import mda.MidiFilePart;
-import mda.MidiPlayerRoot;
 
 import org.mda.MidiFileContentEditorConfigIF;
-import org.mda.MidiPlayer;
 import org.mda.MidiPlayerService;
+import org.mda.player.IPlayer;
 
 public class MidiFileContentShower extends JPanel {
 
   private MidiPlayerApplicationFrame application;
   private MidiFileContentEditorConfigIF config;
-  private MidiPlayer midiplayer;
+  private IPlayer midiplayer;
   private Image img;
 
   private String [] trenner = new String [] {",", ";", "\\.", "!", " "};
@@ -36,7 +33,7 @@ public class MidiFileContentShower extends JPanel {
   private Graphics2D graphics2d;
   private PresentationFrame presentationFrame;
 
-  public MidiFileContentShower (final MidiPlayerApplicationFrame application, PresentationFrame presentationFrame, final MidiPlayer midiplayer, MidiFileContentEditorConfigIF config) {
+  public MidiFileContentShower (final MidiPlayerApplicationFrame application, PresentationFrame presentationFrame, final IPlayer midiplayer, MidiFileContentEditorConfigIF config) {
     this.application = application;
     this.presentationFrame = presentationFrame;
     this.midiplayer = midiplayer;

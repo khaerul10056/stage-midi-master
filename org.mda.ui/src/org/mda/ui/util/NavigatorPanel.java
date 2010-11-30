@@ -16,17 +16,18 @@ import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.Session;
 
-import org.mda.MidiPlayer;
 import org.mda.MidiPlayerListener;
 import org.mda.MidiPlayerService;
 import org.mda.PlayerMode;
+import org.mda.player.IPlayer;
+import org.mda.player.MidiPlayer;
 import org.mda.ui.MidiPlayerApplicationFrame;
 
 public class NavigatorPanel extends JPanel implements MidiPlayerListener {
 
   private MidiFile midifile;
   private JList    lstParts;
-  private MidiPlayer player;
+  private IPlayer player;
 
   public NavigatorPanel(MidiPlayerApplicationFrame application) {
     player = application.getPlayer();
