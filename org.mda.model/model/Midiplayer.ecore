@@ -66,5 +66,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="screenIDPresentation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="screenIDAdmin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lastSession" eType="#//Session"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pdfExportPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

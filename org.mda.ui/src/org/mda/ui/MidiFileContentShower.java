@@ -21,17 +21,21 @@ import org.mda.player.IPlayer;
 
 public class MidiFileContentShower extends JPanel {
 
+	private String [] trenner = new String [] {",", ";", "\\.", "!", " "};
+
+
   private MidiPlayerApplicationFrame application;
   private MidiFileContentEditorConfigIF config;
   private IPlayer midiplayer;
   private Image img;
 
-  private String [] trenner = new String [] {",", ";", "\\.", "!", " "};
+
 
   private List<MidiFilePart> partsShown = new ArrayList<MidiFilePart>();
   private int y;
   private Graphics2D graphics2d;
   private PresentationFrame presentationFrame;
+private Font font;
 
   public MidiFileContentShower (final MidiPlayerApplicationFrame application, PresentationFrame presentationFrame, final IPlayer midiplayer, MidiFileContentEditorConfigIF config) {
     this.application = application;
@@ -54,73 +58,80 @@ public class MidiFileContentShower extends JPanel {
     return g3;
   }
 
-  private List <String> getWrappedWithTrenner (final String text, final String trenner) {
-    ArrayList <String> wrapped = new ArrayList<String>();
-    String [] tokens = text.split(trenner);
-    String nextLine = "";
-    for (int i = 0; i < tokens.length; i++) {
-      String nextToken = tokens [i];
 
-      if (nextToken.trim().length() == 0)
-        continue;
 
-      String tmpLine = nextLine;
 
-      tmpLine += nextToken;
-      String completeTmpLen = tmpLine; //Line + Trenner getrimmt
-      if (i < tokens.length - 1)
-        completeTmpLen += trenner;
 
-      double width = getWidth(completeTmpLen, config.getFont());
-      System.out.println ("Text <" + completeTmpLen + "> braucht " + width + " Pixel");
-      if (width > getWidth() - (2 * getIndention())) {
-        if (nextLine.length() == 0) //first token is wide
-          return null;
-        else {
-          wrapped.add(nextLine);
-          nextLine = nextToken;
-          if (i < tokens.length - 1)
-            nextLine += trenner;
-        }
-      }
-      else
-        nextLine = completeTmpLen ;
-
-    }
-
-    if (nextLine.length() > 0)
-      wrapped.add(nextLine.trim());
-
-    System.out.println ("- " + text);
-    for (String wraps: wrapped) {
-      System.out.println ("+                        " + wraps + "\n");
-    }
-
-    return wrapped;
-
-  }
-
-  private List <String> getWrapped (final String text) {
-    for (String nextTrenner: trenner) {
-
-      List <String> wrapped = getWrappedWithTrenner(text, nextTrenner);
-      if (wrapped != null) {
-        return wrapped;
-      }
-    }
-
-    throw new IllegalStateException("Error wraping text " + text);
-  }
-
-  private double getWidth (final String text, Font font) {
+  private double getWidth (final String text) {
     FontMetrics fm = getFontMetrics(font);
     Rectangle2D lineMetrics = fm.getStringBounds(text, graphics2d);
     return lineMetrics.getWidth();
   }
 
+
+  private List <String> getWrappedWithTrenner (final String text, final String trenner) {
+	    ArrayList <String> wrapped = new ArrayList<String>();
+	    String [] tokens = text.split(trenner);
+	    String nextLine = "";
+	    for (int i = 0; i < tokens.length; i++) {
+	      String nextToken = tokens [i];
+
+	      if (nextToken.trim().length() == 0)
+	        continue;
+
+	      String tmpLine = nextLine;
+
+	      tmpLine += nextToken;
+	      String completeTmpLen = tmpLine; //Line + Trenner getrimmt
+	      if (i < tokens.length - 1)
+	        completeTmpLen += trenner;
+
+	      double width = getWidth(completeTmpLen);
+	      System.out.println ("Text <" + completeTmpLen + "> braucht " + width + " Pixel");
+	      if (width > getWidth() - (2 * getIndention())) {
+	        if (nextLine.length() == 0) //first token is wide
+	          return null;
+	        else {
+	          wrapped.add(nextLine);
+	          nextLine = nextToken;
+	          if (i < tokens.length - 1)
+	            nextLine += trenner;
+	        }
+	      }
+	      else
+	        nextLine = completeTmpLen ;
+
+	    }
+
+	    if (nextLine.length() > 0)
+	      wrapped.add(nextLine.trim());
+
+	    System.out.println ("- " + text);
+	    for (String wraps: wrapped) {
+	      System.out.println ("+                        " + wraps + "\n");
+	    }
+
+	    return wrapped;
+
+	  }
+
+
+  private List <String> getWrapped (final String text) {
+	    for (String nextTrenner: trenner) {
+
+	      List <String> wrapped = getWrappedWithTrenner(text, nextTrenner);
+	      if (wrapped != null) {
+	        return wrapped;
+	      }
+	    }
+
+	    throw new IllegalStateException("Error wraping text " + text);
+	  }
+
+
   public void paint(Graphics g) {
 	  super.paint(g);
-	  Font font = config.getFont();
+	  font = config.getFont();
 	  graphics2d = createGraphics(font, g);
 
 	  // Draws the img to the BackgroundPanel.
@@ -149,7 +160,7 @@ public class MidiFileContentShower extends JPanel {
 
 private void drawNextLine (final String nextString, FontMetrics fm, Graphics2D createGraphics) {
 	createGraphics.drawString(nextString, getIndention(), y);
-    double width = getWidth(nextString, fm.getFont());
+    double width = getWidth(nextString);
     if (width > (getWidth() - ( 2 * getIndention()))) {
       System.out.println ("Error: Text <" + nextString + "> braucht " + width + " Pixel");
     }

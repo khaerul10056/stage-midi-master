@@ -35,118 +35,118 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class MidiFileTextLineImpl extends EObjectImpl implements MidiFileTextLine {
 	/**
-   * The cached value of the '{@link #getChordParts() <em>Chord Parts</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getChordParts() <em>Chord Parts</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see #getChordParts()
-   * @generated
-   * @ordered
-   */
+	 * @see #getChordParts()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList<MidiFileChordPart> chordParts;
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	protected MidiFileTextLineImpl() {
-    super();
-  }
+		super();
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-    return MidiplayerPackage.Literals.MIDI_FILE_TEXT_LINE;
-  }
+		return MidiplayerPackage.Literals.MIDI_FILE_TEXT_LINE;
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	public EList<MidiFileChordPart> getChordParts() {
-    if (chordParts == null) {
-      chordParts = new EObjectContainmentEList<MidiFileChordPart>(MidiFileChordPart.class, this, MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS);
-    }
-    return chordParts;
-  }
+		if (chordParts == null) {
+			chordParts = new EObjectContainmentEList<MidiFileChordPart>(MidiFileChordPart.class, this, MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS);
+		}
+		return chordParts;
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-      case MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS:
-        return ((InternalEList<?>)getChordParts()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS:
+				return ((InternalEList<?>)getChordParts()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-      case MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS:
-        return getChordParts();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+		switch (featureID) {
+			case MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS:
+				return getChordParts();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-      case MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS:
-        getChordParts().clear();
-        getChordParts().addAll((Collection<? extends MidiFileChordPart>)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+		switch (featureID) {
+			case MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS:
+				getChordParts().clear();
+				getChordParts().addAll((Collection<? extends MidiFileChordPart>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-    switch (featureID) {
-      case MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS:
-        getChordParts().clear();
-        return;
-    }
-    super.eUnset(featureID);
-  }
+		switch (featureID) {
+			case MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS:
+				getChordParts().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-    switch (featureID) {
-      case MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS:
-        return chordParts != null && !chordParts.isEmpty();
-    }
-    return super.eIsSet(featureID);
-  }
+		switch (featureID) {
+			case MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS:
+				return chordParts != null && !chordParts.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //MidiFileTextLineImpl
