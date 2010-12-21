@@ -31,100 +31,100 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface MidiFilePart extends EObject {
 	/**
-   * Returns the value of the '<em><b>Textlines</b></em>' containment reference list.
-   * The list contents are of type {@link mda.MidiFileTextLine}.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Textlines</b></em>' containment reference list.
+	 * The list contents are of type {@link mda.MidiFileTextLine}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Textlines</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Textlines</em>' containment reference list.
-   * @see mda.MidiplayerPackage#getMidiFilePart_Textlines()
-   * @model containment="true"
-   * @generated
-   */
+	 * @return the value of the '<em>Textlines</em>' containment reference list.
+	 * @see mda.MidiplayerPackage#getMidiFilePart_Textlines()
+	 * @model containment="true"
+	 * @generated
+	 */
 	EList<MidiFileTextLine> getTextlines();
 
 	/**
-   * Returns the value of the '<em><b>Parttype</b></em>' attribute.
-   * The literals are from the enumeration {@link mda.MidiFilePartType}.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Parttype</b></em>' attribute.
+	 * The literals are from the enumeration {@link mda.MidiFilePartType}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parttype</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Parttype</em>' attribute.
-   * @see mda.MidiFilePartType
-   * @see #setParttype(MidiFilePartType)
-   * @see mda.MidiplayerPackage#getMidiFilePart_Parttype()
-   * @model
-   * @generated
-   */
+	 * @return the value of the '<em>Parttype</em>' attribute.
+	 * @see mda.MidiFilePartType
+	 * @see #setParttype(MidiFilePartType)
+	 * @see mda.MidiplayerPackage#getMidiFilePart_Parttype()
+	 * @model
+	 * @generated
+	 */
 	MidiFilePartType getParttype();
 
 	/**
-   * Sets the value of the '{@link mda.MidiFilePart#getParttype <em>Parttype</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link mda.MidiFilePart#getParttype <em>Parttype</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Parttype</em>' attribute.
-   * @see mda.MidiFilePartType
-   * @see #getParttype()
-   * @generated
-   */
+	 * @param value the new value of the '<em>Parttype</em>' attribute.
+	 * @see mda.MidiFilePartType
+	 * @see #getParttype()
+	 * @generated
+	 */
 	void setParttype(MidiFilePartType value);
 
   /**
-   * Returns the value of the '<em><b>Bar</b></em>' attribute.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Bar</b></em>' attribute.
+	 * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Bar</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Bar</em>' attribute.
-   * @see #setBar(int)
-   * @see mda.MidiplayerPackage#getMidiFilePart_Bar()
-   * @model
-   * @generated
-   */
+	 * @return the value of the '<em>Bar</em>' attribute.
+	 * @see #setBar(int)
+	 * @see mda.MidiplayerPackage#getMidiFilePart_Bar()
+	 * @model
+	 * @generated
+	 */
   int getBar();
 
   /**
-   * Sets the value of the '{@link mda.MidiFilePart#getBar <em>Bar</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link mda.MidiFilePart#getBar <em>Bar</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Bar</em>' attribute.
-   * @see #getBar()
-   * @generated
-   */
+	 * @param value the new value of the '<em>Bar</em>' attribute.
+	 * @see #getBar()
+	 * @generated
+	 */
   void setBar(int value);
 
   /**
-   * Returns the value of the '<em><b>Ref Part</b></em>' reference.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Ref Part</b></em>' reference.
+	 * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Ref Part</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Ref Part</em>' reference.
-   * @see #setRefPart(MidiFilePart)
-   * @see mda.MidiplayerPackage#getMidiFilePart_RefPart()
-   * @model
-   * @generated
-   */
+	 * @return the value of the '<em>Ref Part</em>' reference.
+	 * @see #setRefPart(MidiFilePart)
+	 * @see mda.MidiplayerPackage#getMidiFilePart_RefPart()
+	 * @model
+	 * @generated
+	 */
   MidiFilePart getRefPart();
 
   /**
-   * Sets the value of the '{@link mda.MidiFilePart#getRefPart <em>Ref Part</em>}' reference.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link mda.MidiFilePart#getRefPart <em>Ref Part</em>}' reference.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ref Part</em>' reference.
-   * @see #getRefPart()
-   * @generated
-   */
+	 * @param value the new value of the '<em>Ref Part</em>' reference.
+	 * @see #getRefPart()
+	 * @generated
+	 */
   void setRefPart(MidiFilePart value);
 
 } // MidiFilePart

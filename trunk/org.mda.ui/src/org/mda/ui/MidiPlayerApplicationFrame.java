@@ -19,12 +19,14 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import mda.AbstractSessionItem;
+import mda.MidiFile;
 import mda.MidiPlayerRoot;
 import mda.Session;
 
 import org.mda.MidiPlayerListener;
 import org.mda.MidiPlayerService;
 import org.mda.PlayerMode;
+import org.mda.export.PDFExporter;
 import org.mda.player.IPlayer;
 import org.mda.player.ManualPlayer;
 import org.mda.player.MidiPlayer;
@@ -66,7 +68,13 @@ public class MidiPlayerApplicationFrame extends JFrame implements ActionListener
 
   private JMenuItem menuItemSongDetails;
 
+  private JMenuItem menuItemExport;
+
   private NavigatorPanel outline;
+
+private JMenuItem menuItemSongExport;
+
+
 
   public MidiPlayerApplicationFrame(MidiPlayerRoot root, GraphicsDevice gd) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
     super (gd.getDefaultConfiguration());
@@ -154,6 +162,7 @@ public class MidiPlayerApplicationFrame extends JFrame implements ActionListener
     menuItemGallery = createMenuItem (menuApplication, "Gallery", 0);// Program->Gallery
     menuItemSave = createMenuItem (menuApplication, "Save", 0);// Program->Save
     menuItemConfig = createMenuItem (menuApplication, "Configuration", 0);// Program->Save
+    menuItemExport = createMenuItem (menuApplication, "Export all..", 0);
     menuApplication.addSeparator();
     menuItemExit = createMenuItem(menuApplication, "Exit", 0);// Program->Exit
 
@@ -166,11 +175,13 @@ public class MidiPlayerApplicationFrame extends JFrame implements ActionListener
     menuItemSessionDetails = createMenuItem(menuSession, "Session details", 0);
 
 
+
     //Menu song
     JMenu menuSong = createMenu("Song", -1);
     menuItemImportText = createMenuItem(menuSong, "Import text...", 0);    // Song->Import Text
     menuItemRemoveText = createMenuItem(menuSong, "Remove text", 0);    // Song->Import Text
     menuItemSongDetails = createMenuItem(menuSong, "Song details", 0);
+    menuItemSongExport = createMenuItem(menuSong, "Export to PDF", 0);
 
     return menuBar;
   }
@@ -201,6 +212,20 @@ public class MidiPlayerApplicationFrame extends JFrame implements ActionListener
     if (e.getSource().equals(menuItemExit)) {
       setVisible(false);
       System.exit(0);
+    }
+
+    if (e.getSource().equals(menuItemExport)) {
+    	if (root.getConfig().getPdfExportPath() == null || root.getConfig().getPdfExportPath().trim().length() == 0) {
+
+    	}
+    	else {
+    		PDFExporter exporter = new PDFExporter();
+    		exporter.setExportPath(new File (root.getConfig().getPdfExportPath()));
+    		for (AbstractSessionItem nextItem: root.getGallery().getGalleryItems()) {
+    			if (nextItem instanceof MidiFile)
+    			exporter.exportMidifile((MidiFile) nextItem);
+    		}
+    	}
     }
 
     if (e.getSource().equals(menuItemGallery)) {
@@ -249,6 +274,15 @@ public class MidiPlayerApplicationFrame extends JFrame implements ActionListener
 
     if (e.getSource().equals(menuItemSongDetails)) {
       new SongDetailDialog(this);
+    }
+    if (e.getSource().equals(menuItemSongExport)) {
+			if (root.getConfig().getPdfExportPath() == null || root.getConfig().getPdfExportPath().trim().length() == 0) {
+
+			} else {
+				PDFExporter exporter = new PDFExporter();
+				exporter.setExportPath(new File (root.getConfig().getPdfExportPath()));
+				exporter.exportMidifile(getPlayer().getCurrentMidifile());
+			}
 
     }
   }

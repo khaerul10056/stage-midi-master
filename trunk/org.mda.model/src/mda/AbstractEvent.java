@@ -26,29 +26,29 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface AbstractEvent extends EObject {
 	/**
-   * Returns the value of the '<em><b>At Bar</b></em>' attribute.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>At Bar</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>At Bar</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>At Bar</em>' attribute.
-   * @see #setAtBar(int)
-   * @see mda.MidiplayerPackage#getAbstractEvent_AtBar()
-   * @model
-   * @generated
-   */
+	 * @return the value of the '<em>At Bar</em>' attribute.
+	 * @see #setAtBar(int)
+	 * @see mda.MidiplayerPackage#getAbstractEvent_AtBar()
+	 * @model
+	 * @generated
+	 */
 	int getAtBar();
 
 	/**
-   * Sets the value of the '{@link mda.AbstractEvent#getAtBar <em>At Bar</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link mda.AbstractEvent#getAtBar <em>At Bar</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @param value the new value of the '<em>At Bar</em>' attribute.
-   * @see #getAtBar()
-   * @generated
-   */
+	 * @param value the new value of the '<em>At Bar</em>' attribute.
+	 * @see #getAtBar()
+	 * @generated
+	 */
 	void setAtBar(int value);
 
 } // AbstractEvent

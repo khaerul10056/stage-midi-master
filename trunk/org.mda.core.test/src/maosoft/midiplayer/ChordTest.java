@@ -17,4 +17,5 @@ public class ChordTest {
     Assert.assertNull ("Bassnote invalid", chord.getBass());
   }
 
+
 }
