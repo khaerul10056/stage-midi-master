@@ -284,6 +284,15 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMidiFile_Key() {
+		return (EAttribute)midiFileEClass.getEStructuralFeatures().get(3);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAbstractEvent() {
 		return abstractEventEClass;
 	}
@@ -554,6 +563,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 		createEReference(midiFileEClass, MIDI_FILE__PARTS);
 		createEAttribute(midiFileEClass, MIDI_FILE__FONTSIZE);
 		createEAttribute(midiFileEClass, MIDI_FILE__PIC);
+		createEAttribute(midiFileEClass, MIDI_FILE__KEY);
 
 		abstractEventEClass = createEClass(ABSTRACT_EVENT);
 		createEAttribute(abstractEventEClass, ABSTRACT_EVENT__AT_BAR);
@@ -637,6 +647,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 		initEReference(getMidiFile_Parts(), this.getMidiFilePart(), null, "parts", null, 0, -1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMidiFile_Fontsize(), ecorePackage.getEString(), "fontsize", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMidiFile_Pic(), ecorePackage.getEString(), "pic", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMidiFile_Key(), ecorePackage.getEString(), "key", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractEventEClass, AbstractEvent.class, "AbstractEvent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractEvent_AtBar(), ecorePackage.getEInt(), "atBar", null, 0, 1, AbstractEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

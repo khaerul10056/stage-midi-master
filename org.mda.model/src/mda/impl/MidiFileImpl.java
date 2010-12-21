@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link mda.impl.MidiFileImpl#getParts <em>Parts</em>}</li>
  *   <li>{@link mda.impl.MidiFileImpl#getFontsize <em>Fontsize</em>}</li>
  *   <li>{@link mda.impl.MidiFileImpl#getPic <em>Pic</em>}</li>
+ *   <li>{@link mda.impl.MidiFileImpl#getKey <em>Key</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,6 +84,24 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
 	 */
   protected String pic = PIC_EDEFAULT;
   /**
+	 * The default value of the '{@link #getKey() <em>Key</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getKey()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String KEY_EDEFAULT = null;
+		/**
+	 * The cached value of the '{@link #getKey() <em>Key</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getKey()
+	 * @generated
+	 * @ordered
+	 */
+	protected String key = KEY_EDEFAULT;
+		/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -160,6 +179,27 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getKey() {
+		return key;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setKey(String newKey) {
+		String oldKey = key;
+		key = newKey;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE__KEY, oldKey, key));
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -183,6 +223,8 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
 				return getFontsize();
 			case MidiplayerPackage.MIDI_FILE__PIC:
 				return getPic();
+			case MidiplayerPackage.MIDI_FILE__KEY:
+				return getKey();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -206,6 +248,9 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
 			case MidiplayerPackage.MIDI_FILE__PIC:
 				setPic((String)newValue);
 				return;
+			case MidiplayerPackage.MIDI_FILE__KEY:
+				setKey((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -227,6 +272,9 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
 			case MidiplayerPackage.MIDI_FILE__PIC:
 				setPic(PIC_EDEFAULT);
 				return;
+			case MidiplayerPackage.MIDI_FILE__KEY:
+				setKey(KEY_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -245,6 +293,8 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
 				return FONTSIZE_EDEFAULT == null ? fontsize != null : !FONTSIZE_EDEFAULT.equals(fontsize);
 			case MidiplayerPackage.MIDI_FILE__PIC:
 				return PIC_EDEFAULT == null ? pic != null : !PIC_EDEFAULT.equals(pic);
+			case MidiplayerPackage.MIDI_FILE__KEY:
+				return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -263,6 +313,8 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
 		result.append(fontsize);
 		result.append(", pic: ");
 		result.append(pic);
+		result.append(", key: ");
+		result.append(key);
 		result.append(')');
 		return result.toString();
 	}

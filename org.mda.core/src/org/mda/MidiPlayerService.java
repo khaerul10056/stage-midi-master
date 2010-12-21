@@ -55,7 +55,26 @@ public class MidiPlayerService {
       }
       return (MidiPlayerRoot) poResource.getContents().get(0);
     } else return mf.createMidiPlayerRoot();
+  }
 
+  /**
+   * find sessionitems by searchconf
+   * @param root root
+   * @param searchconf configuration
+   * @return list of items
+   */
+  public final static List <AbstractSessionItem> find (MidiPlayerRoot root, MidiFileSearchConf searchconf) {
+
+	  List <AbstractSessionItem> found = new ArrayList<AbstractSessionItem>();
+
+	  for (AbstractSessionItem nextItem: root.getGallery().getGalleryItems()) {
+		  if (nextItem instanceof MidiFile) {
+			  if (nextItem.getName().indexOf(searchconf.getTitle()) >= 0)
+				  found.add(nextItem);
+		  }
+	  }
+
+	  return found;
   }
 
   /**

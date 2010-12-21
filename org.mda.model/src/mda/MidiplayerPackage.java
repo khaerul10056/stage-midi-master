@@ -199,13 +199,22 @@ public interface MidiplayerPackage extends EPackage {
   int MIDI_FILE__PIC = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 2;
 
   /**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MIDI_FILE__KEY = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 3;
+
+		/**
 	 * The number of structural features of the '<em>Midi File</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE_FEATURE_COUNT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 3;
+	int MIDI_FILE_FEATURE_COUNT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link mda.impl.AbstractEventImpl <em>Abstract Event</em>}' class.
@@ -651,6 +660,17 @@ public interface MidiplayerPackage extends EPackage {
   EAttribute getMidiFile_Pic();
 
   /**
+	 * Returns the meta object for the attribute '{@link mda.MidiFile#getKey <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key</em>'.
+	 * @see mda.MidiFile#getKey()
+	 * @see #getMidiFile()
+	 * @generated
+	 */
+	EAttribute getMidiFile_Key();
+
+		/**
 	 * Returns the meta object for class '{@link mda.AbstractEvent <em>Abstract Event</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1044,6 +1064,14 @@ public interface MidiplayerPackage extends EPackage {
     EAttribute MIDI_FILE__PIC = eINSTANCE.getMidiFile_Pic();
 
     /**
+		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MIDI_FILE__KEY = eINSTANCE.getMidiFile_Key();
+
+				/**
 		 * The meta object literal for the '{@link mda.impl.AbstractEventImpl <em>Abstract Event</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
