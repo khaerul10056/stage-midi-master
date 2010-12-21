@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link mda.MidiFile#getParts <em>Parts</em>}</li>
  *   <li>{@link mda.MidiFile#getFontsize <em>Fontsize</em>}</li>
  *   <li>{@link mda.MidiFile#getPic <em>Pic</em>}</li>
+ *   <li>{@link mda.MidiFile#getKey <em>Key</em>}</li>
  * </ul>
  * </p>
  *
@@ -94,5 +95,31 @@ public interface MidiFile extends AbstractSessionItem {
 	 * @generated
 	 */
   void setPic(String value);
+
+		/**
+	 * Returns the value of the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Key</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Key</em>' attribute.
+	 * @see #setKey(String)
+	 * @see mda.MidiplayerPackage#getMidiFile_Key()
+	 * @model
+	 * @generated
+	 */
+	String getKey();
+
+		/**
+	 * Sets the value of the '{@link mda.MidiFile#getKey <em>Key</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Key</em>' attribute.
+	 * @see #getKey()
+	 * @generated
+	 */
+	void setKey(String value);
 
 } // MidiFile
