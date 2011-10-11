@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+   <extension point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.mda.editor.xtext.ui.OpenEditorHandler"
+            id="org.mda.commons.ui.navigator.openeditorhandler"
+            name="Open editor">
+      </command>
+   </extension>
+
+
+    <extension point="org.eclipse.ui.menus">
+
+     <menuContribution
+           allPopups="false"
+           locationURI="popup:org.mda.views.modelnavigator">
+        <command
+              commandId="org.mda.commons.ui.navigator.openeditorhandler"
+              label="Open editor"
+              style="push">
+        </command>
+     </menuContribution>
+   </extension>
+
+    <extension
+            point="org.eclipse.ui.editors">
+        <editor
+            class="org.mda.editor.xtext.ui.MidiPlayerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+            default="true"
+            extensions="mdi"
+            id="org.mda.editor.xtext.MidiPlayer"
+            name="MidiPlayer Editor">
+        </editor>
+    </extension>
+    <extension
+        point="org.eclipse.ui.handlers">
+        <handler
+            class="org.mda.editor.xtext.ui.MidiPlayerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+            commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
+            <activeWhen>
+                <reference
+                    definitionId="org.mda.editor.xtext.MidiPlayer.Editor.opened">
+                </reference>
+            </activeWhen>
+        </handler>
+        <handler
+            class="org.mda.editor.xtext.ui.MidiPlayerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+            commandId="org.mda.editor.xtext.MidiPlayer.validate">
+         <activeWhen>
+            <reference
+                    definitionId="org.mda.editor.xtext.MidiPlayer.Editor.opened">
+            </reference>
+         </activeWhen>
+      </handler>
+    </extension>
+    <extension point="org.eclipse.core.expressions.definitions">
+        <definition id="org.mda.editor.xtext.MidiPlayer.Editor.opened">
+            <and>
+                <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
+                <with variable="activeEditor">
+                    <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName"
+                        value="org.mda.editor.xtext.MidiPlayer"
+                        forcePluginActivation="true"/>
+                </with>
+            </and>
+        </definition>
+    </extension>
+    <extension
+            point="org.eclipse.ui.preferencePages">
+        <page
+            class="org.mda.editor.xtext.ui.MidiPlayerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.mda.editor.xtext.MidiPlayer"
+            name="MidiPlayer">
+            <keywordReference id="org.mda.editor.xtext.ui.keyword_MidiPlayer"/>
+        </page>
+        <page
+            category="org.mda.editor.xtext.MidiPlayer"
+            class="org.mda.editor.xtext.ui.MidiPlayerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+            id="org.mda.editor.xtext.MidiPlayer.coloring"
+            name="Syntax Coloring">
+            <keywordReference id="org.mda.editor.xtext.ui.keyword_MidiPlayer"/>
+        </page>
+        <page
+            category="org.mda.editor.xtext.MidiPlayer"
+            class="org.mda.editor.xtext.ui.MidiPlayerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+            id="org.mda.editor.xtext.MidiPlayer.templates"
+            name="Templates">
+            <keywordReference id="org.mda.editor.xtext.ui.keyword_MidiPlayer"/>
+        </page>
+    </extension>
+    <extension
+        point="org.eclipse.ui.keywords">
+        <keyword
+            id="org.mda.editor.xtext.ui.keyword_MidiPlayer"
+            label="MidiPlayer"/>
+    </extension>
+    <extension
+         point="org.eclipse.ui.commands">
+      <command
+            description="Trigger expensive validation"
+            id="org.mda.editor.xtext.MidiPlayer.validate"
+            name="Validate">
+      </command>
+    </extension>
+    <extension point="org.eclipse.ui.menus">
+        <menuContribution
+            locationURI="popup:#TextEditorContext?after=group.edit">
+             <command
+                 commandId="org.mda.editor.xtext.MidiPlayer.validate"
+                 style="push"
+                 tooltip="Trigger expensive validation">
+            <visibleWhen checkEnabled="false">
+                <reference
+                    definitionId="org.mda.editor.xtext.MidiPlayer.Editor.opened">
+                </reference>
+            </visibleWhen>
+         </command>
+         </menuContribution>
+    </extension>
+    <extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
+			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
+				<visibleWhen checkEnabled="false">
+                	<reference definitionId="org.mda.editor.xtext.MidiPlayer.Editor.opened">
+                	</reference>
+            	</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+	    <handler
+            class="org.mda.editor.xtext.ui.MidiPlayerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+            commandId="org.eclipse.xtext.ui.editor.FindReferences">
+            <activeWhen>
+                <reference
+                    definitionId="org.mda.editor.xtext.MidiPlayer.Editor.opened">
+                </reference>
+            </activeWhen>
+        </handler>
+    </extension>
+
+<!-- adding resource factories -->
+
+	<extension
+		point="org.eclipse.emf.ecore.extension_parser">
+		<parser
+			class="org.mda.editor.xtext.ui.MidiPlayerExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			type="mdi">
+		</parser>
+	</extension>
+	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
+        <resourceServiceProvider
+            class="org.mda.editor.xtext.ui.MidiPlayerExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+            uriExtension="mdi">
+        </resourceServiceProvider>
+    </extension>
+
+
+
+   <!-- quickfix marker resolution generator -->
+   <extension
+         point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+            class="org.mda.editor.xtext.ui.MidiPlayerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
+      </markerResolutionGenerator>
+   </extension>
+
+</plugin>
