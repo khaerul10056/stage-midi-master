@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.mda.editor.preview.ui.PreviewEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            extensions="mdi"
+            icon="icons/sample.gif"
+            id="org.mda.editor.preview.ui.editors.previeweditor"
+            name="PreviewEditor">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.mda.editor.preview.ui.OpenPreviewEditorHandler"
+            id="org.mda.commons.ui.navigator.openprevieweditorhandler"
+            name="Open preview editor">
+      </command>
+   </extension>
+
+
+    <extension point="org.eclipse.ui.menus">
+
+     <menuContribution
+           allPopups="false"
+           locationURI="popup:org.mda.views.modelnavigator">
+        <command
+              commandId="org.mda.commons.ui.navigator.openprevieweditorhandler"
+              label="Open preview editor"
+              style="push">
+        </command>
+     </menuContribution>
+   </extension>
+
+</plugin>

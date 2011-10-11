@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui
+Bundle-SymbolicName: org.mda.editor.preview.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.mda.editor.preview.ui.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors,
+ org.mda.core;bundle-version="1.0.0",
+ org.mda.presenter.ui;bundle-version="1.0.0",
+ org.mda.commons.ui;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
