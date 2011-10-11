@@ -1,11 +1,9 @@
 package org.mda;
 
-import java.awt.Color;
-import java.awt.Font;
-
 import mda.MidiFilePartType;
 
-public interface MidiFileContentEditorConfigIF {
+
+public interface IMidiFileEditorConfig {
 
   /**
    * getter
@@ -18,18 +16,6 @@ public interface MidiFileContentEditorConfigIF {
    * @return true: content is editable, false, it's just shown
    */
   boolean isEditable ();
-
-  /**
-   * getter
-   * @return true: only the current part is shown (presentationview), false: all parts are shown (editor)
-   */
-  boolean isShowOnlyCurrentPart ();
-
-  Color getBackgroundColor ();
-
-  Color getForegroundColor ();
-
-  Font getFont ();
 
   /**
    * some parts can be ignored

@@ -5,25 +5,25 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MetaEventListener;
 import javax.sound.midi.MetaMessage;
 import javax.sound.midi.MidiDevice;
 import javax.sound.midi.MidiDevice.Info;
+import javax.sound.midi.MidiEvent;
+import javax.sound.midi.MidiMessage;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Sequence;
 import javax.sound.midi.Sequencer;
+import javax.sound.midi.Track;
 import javax.sound.midi.Transmitter;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
-
 import mda.AbstractSessionItem;
 import mda.MidiFile;
 import mda.MidiPlayerRoot;
 import mda.Session;
-
 import org.mda.MidiPlayerListener;
 import org.mda.MidiPlayerService;
 import org.mda.PlayerMode;
@@ -43,32 +43,17 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 	private int loopFrom = 0;
 	private int loopTo = -1;
 
-	private boolean running = false;
+	protected boolean running = false;
 
-	private boolean shouldStepToNext;
+	protected boolean shouldStepToNext;
 
-	private boolean stoppedByEvent;
+	protected boolean stoppedByEvent;
 
-	private int newTick;
+	protected int newTick;
 
-	private int currentTick;
+	protected int currentTick;
 
 	private MidiDevice midiDevice;
-
-	protected MidiPlayer () {
-	}
-
-	public MidiPlayer(MidiPlayerRoot root) throws MidiUnavailableException {
-		setRoot(root);
-		Info[] midiDeviceInfo = MidiSystem.getMidiDeviceInfo();
-		for (int i = 0; i < midiDeviceInfo.length; i++) {
-			System.out.println("Device:" + midiDeviceInfo[i].getName() + " + "
-					+ midiDeviceInfo[i].getDescription() + "\n");
-		}
-
-		midiDevice = MidiSystem.getMidiDevice(midiDeviceInfo[1]);
-		midiDevice.open();
-	}
 
 	public void update(LineEvent event) {
 		if (event.getType() == LineEvent.Type.STOP) {
@@ -95,6 +80,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+	  System.out.println ("midiplayer recieved keyPressed");
 		if (e.getKeyCode() == KeyEvent.VK_DOWN && e.isShiftDown()) {
 			moveSongDown();
 			e.consume();
@@ -102,6 +88,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 			togglePlayingCurrentSong();
 			e.consume();
 		} else if (e.getKeyChar() == ' ') {
+		  System.out.println ("midiplayer recieved start/stop");
 			togglePlayingCurrentSong();
 			e.consume();
 		} else if (e.getKeyCode() == KeyEvent.VK_UP && e.isShiftDown()) {
@@ -145,6 +132,28 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 				+ getCurrentMidifile().getName();
 		currentSequence = MidiSystem.getSequence(new File(completeFile));
 
+		for (int i = 0; i < currentSequence.getTracks().length; i++) {
+
+		  Track track = currentSequence.getTracks() [i];
+		  MetaMessage message2 = new MetaMessage();
+		  message2.setMessage(0, new byte [] {00, 02, 99}, 0);
+
+
+		  track.add(new MidiEvent(message2, 0));
+
+		  System.out.println ("Track " + i + " : " + track );
+		  for (int j = 0; j < track.size(); j++) {
+		    MidiMessage message = track.get(j).getMessage();
+		    String bytesAsString = "";
+		    for (int byteIndex = 0; byteIndex < message.getMessage().length; byteIndex ++)
+		      bytesAsString += message.getMessage() [byteIndex] + " ";
+
+		    System.out.println ("  - " + track.get(j).getTick() + "-" + track.get(j).getMessage().getStatus() + bytesAsString + "-" + track.get(j).getMessage().getLength());
+		  }
+
+		}
+
+
 		System.out.println("Setze Sequence " + currentSequence + "("
 				+ completeFile + ")");
 		if (getSequencer() != null) {
@@ -185,8 +194,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 					+ sequencer.getTickPosition() + "("
 					+ getSequencer().getTickLength() + ")");
 			getSequencer().start();
-			System.out
-					.println("Current position initialized after start to bar "
+			System.out.println("Current position initialized after start to bar "
 							+ sequencer.getTickPosition());
 		}
 
@@ -196,25 +204,23 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 			if (getSequencer() != null)
 				getSequencer().setTickPosition(berechnePosition(getLoopFrom()));
 
-			for (MidiPlayerListener listener : listeners)
+			for (MidiPlayerListener listener : listeners) {
+			  //System.out.println ("BarChanged to " + getCurrentBar());
 				listener.barChanged(getCurrentBar());
+			}
 		}
 
 		for (MidiPlayerListener listener : listeners)
 			listener.started();
 
 		while (isRunning()) {
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				break;
-			}
-
 			newTick = getCurrentTick();
 			if (newTick != currentTick) {
 				currentTick = newTick;
-				for (MidiPlayerListener listener : listeners)
+				for (MidiPlayerListener listener : listeners) {
+				  //System.out.println ("sending tick changed to " + currentTick + " to " + listener.getClass().getName());
 					listener.tickChanged(currentTick);
+				}
 			}
 
 			newBar = getCurrentBar();
@@ -267,18 +273,26 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 
 	public Session getCurrentSession() {
 
-		if (root.getConfig() != null
-				&& root.getConfig().getLastSession() != null)
-			return root.getConfig().getLastSession();
+		if (getRoot().getConfig() != null
+				&& getRoot().getConfig().getLastSession() != null)
+			return getRoot().getConfig().getLastSession();
 
-		if (root.getSessions().size() == 0)
+		if (getRoot().getSessions().size() == 0)
 			return null;
 
-		return root.getSessions().get(0);
+		return getRoot().getSessions().get(0);
 	}
 
-	public void setRoot(MidiPlayerRoot root) {
-		this.root = root;
+	public void init(MidiPlayerRoot root) throws MidiUnavailableException {
+		this.setRoot(root);
+		Info[] midiDeviceInfo = MidiSystem.getMidiDeviceInfo();
+    for (int i = 0; i < midiDeviceInfo.length; i++) {
+      System.out.println("Device:" + midiDeviceInfo[i].getName() + " + "
+          + midiDeviceInfo[i].getDescription() + "\n");
+    }
+
+    midiDevice = MidiSystem.getMidiDevice(midiDeviceInfo[1]);
+    midiDevice.open();
 	}
 
 	public MidiPlayerRoot getRoot() {
@@ -346,9 +360,12 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 
 	public String getCurrentPositionInSong() {
 		if (getSequencer() != null && getSequencer().getSequence() != null) {
-			return "" + getCurrentBar();
+		  String currentPosition = "" + getCurrentBar() + "/" + currentTick;
+		  //System.out.println ("CurrentPosition = " + currentPosition);
+		  return currentPosition;
 		}
 
+		//System.out.println ("CurrentPosition = <null>");
 		return "";
 
 	}
@@ -358,6 +375,10 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 			if (getSequencer().getSequence().getDivisionType() == Sequence.PPQ) {
 				int resolution = getSequencer().getSequence().getResolution();
 				int bar = ((int) (getSequencer().getTickPosition() / resolution) % 4);
+
+				//System.out.println (getSequencer().getTickPosition() / resolution);
+				//System.out.println (bar);
+
 				return bar;
 
 			} else
@@ -409,7 +430,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 			for (MidiPlayerListener listener : listeners)
 				listener.sessionItemChanged(getCurrentMidifile());
 
-			MidiPlayerService.saveRootObject(root);
+			MidiPlayerService.saveRootObject(getRoot());
 		}
 	}
 
@@ -426,7 +447,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 			for (MidiPlayerListener listener : listeners)
 				listener.sessionItemChanged(getCurrentMidifile());
 
-			MidiPlayerService.saveRootObject(root);
+			MidiPlayerService.saveRootObject(getRoot());
 		}
 	}
 
@@ -441,7 +462,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 
 	public void setCurrentSession(final Session session) {
 
-		root.getConfig().setLastSession(session);
+		getRoot().getConfig().setLastSession(session);
 
 		for (MidiPlayerListener listener : listeners)
 			listener.sessionChanged(session);
@@ -520,5 +541,9 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 	public int getLoopFrom() {
 		return loopFrom;
 	}
+
+  public void setRoot (MidiPlayerRoot root) {
+    this.root = root;
+  }
 
 }

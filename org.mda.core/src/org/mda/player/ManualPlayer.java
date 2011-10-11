@@ -1,23 +1,23 @@
 package org.mda.player;
 
 import java.awt.event.KeyEvent;
-
-import org.mda.MidiPlayerListener;
-
+import javax.sound.midi.MidiUnavailableException;
 import mda.MidiFilePart;
 import mda.MidiPlayerRoot;
+import org.mda.MidiPlayerListener;
 
 public class ManualPlayer extends MidiPlayer implements IPlayer {
 
 	private int currentPage = 0;
 
-	public ManualPlayer(MidiPlayerRoot root) {
-		setRoot(root);
+	@Override
+	public void init(MidiPlayerRoot root) throws MidiUnavailableException {
+	  setRoot(root);
+
 	}
 
 	@Override
 	public int getCurrentBar() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
