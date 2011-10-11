@@ -28,10 +28,13 @@ public class SlideItemPanel extends Composite  {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        content.getController().showPart(part);
+        showPartOnContentScreen();
       }
-
     });
+  }
+  
+  public void showPartOnContentScreen () {
+    content.getController().showPart(part);
   }
 
   public void setModelPart (final MidiFilePart part) {

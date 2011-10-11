@@ -26,20 +26,48 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'REFRAIN'", "'BRIDGE'", "'VERS'", "'SOLO'", "'ZWISCHENSPIEL'", "'INTRO'", "'EXTRO'", "'name'", "'path'", "'fontsize'", "'pic'", "'key'", "'{'", "'}'", "'bar'", "'refPart'", "','", "'-'", "'('", "')'"
     };
     public static final int RULE_ID=5;
-    public static final int RULE_STRING=4;
+    public static final int T__29=29;
+    public static final int T__28=28;
+    public static final int T__27=27;
+    public static final int T__26=26;
+    public static final int T__25=25;
+    public static final int T__24=24;
+    public static final int T__23=23;
+    public static final int T__22=22;
     public static final int RULE_ANY_OTHER=10;
-    public static final int RULE_INT=6;
-    public static final int RULE_WS=9;
+    public static final int T__21=21;
+    public static final int T__20=20;
     public static final int RULE_SL_COMMENT=8;
     public static final int EOF=-1;
     public static final int RULE_ML_COMMENT=7;
+    public static final int T__30=30;
+    public static final int T__19=19;
+    public static final int RULE_STRING=4;
+    public static final int T__16=16;
+    public static final int T__15=15;
+    public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int T__12=12;
+    public static final int T__11=11;
+    public static final int T__14=14;
+    public static final int T__13=13;
+    public static final int RULE_INT=6;
+    public static final int RULE_WS=9;
+
+    // delegates
+    // delegators
+
 
         public InternalMidiPlayerParser(TokenStream input) {
-            super(input);
+            this(input, new RecognizerSharedState());
+        }
+        public InternalMidiPlayerParser(TokenStream input, RecognizerSharedState state) {
+            super(input, state);
+             
         }
         
 
-    public String[] getTokenNames() { return tokenNames; }
+    public String[] getTokenNames() { return InternalMidiPlayerParser.tokenNames; }
     public String getGrammarFileName() { return "../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g"; }
 
 
@@ -63,7 +91,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
 
 
 
-    // $ANTLR start entryRuleMidiFile
+    // $ANTLR start "entryRuleMidiFile"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:61:1: entryRuleMidiFile : ruleMidiFile EOF ;
     public final void entryRuleMidiFile() throws RecognitionException {
         try {
@@ -71,12 +99,13 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:63:1: ruleMidiFile EOF
             {
              before(grammarAccess.getMidiFileRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMidiFile_in_entryRuleMidiFile61);
+            pushFollow(FOLLOW_ruleMidiFile_in_entryRuleMidiFile61);
             ruleMidiFile();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFileRule()); 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMidiFile68); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMidiFile68); 
 
             }
 
@@ -89,10 +118,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end entryRuleMidiFile
+    // $ANTLR end "entryRuleMidiFile"
 
 
-    // $ANTLR start ruleMidiFile
+    // $ANTLR start "ruleMidiFile"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:70:1: ruleMidiFile : ( ( rule__MidiFile__Group__0 ) ) ;
     public final void ruleMidiFile() throws RecognitionException {
 
@@ -109,9 +138,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:77:1: ( rule__MidiFile__Group__0 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:77:2: rule__MidiFile__Group__0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group__0_in_ruleMidiFile94);
+            pushFollow(FOLLOW_rule__MidiFile__Group__0_in_ruleMidiFile94);
             rule__MidiFile__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -135,10 +165,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end ruleMidiFile
+    // $ANTLR end "ruleMidiFile"
 
 
-    // $ANTLR start entryRuleEString
+    // $ANTLR start "entryRuleEString"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:89:1: entryRuleEString : ruleEString EOF ;
     public final void entryRuleEString() throws RecognitionException {
         try {
@@ -146,12 +176,13 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:91:1: ruleEString EOF
             {
              before(grammarAccess.getEStringRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_entryRuleEString121);
+            pushFollow(FOLLOW_ruleEString_in_entryRuleEString121);
             ruleEString();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getEStringRule()); 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleEString128); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleEString128); 
 
             }
 
@@ -164,10 +195,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end entryRuleEString
+    // $ANTLR end "entryRuleEString"
 
 
-    // $ANTLR start ruleEString
+    // $ANTLR start "ruleEString"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:98:1: ruleEString : ( ( rule__EString__Alternatives ) ) ;
     public final void ruleEString() throws RecognitionException {
 
@@ -184,9 +215,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:105:1: ( rule__EString__Alternatives )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:105:2: rule__EString__Alternatives
             {
-            pushFollow(FollowSets000.FOLLOW_rule__EString__Alternatives_in_ruleEString154);
+            pushFollow(FOLLOW_rule__EString__Alternatives_in_ruleEString154);
             rule__EString__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -210,10 +242,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end ruleEString
+    // $ANTLR end "ruleEString"
 
 
-    // $ANTLR start entryRuleMidiFilePart
+    // $ANTLR start "entryRuleMidiFilePart"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:117:1: entryRuleMidiFilePart : ruleMidiFilePart EOF ;
     public final void entryRuleMidiFilePart() throws RecognitionException {
         try {
@@ -221,12 +253,13 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:119:1: ruleMidiFilePart EOF
             {
              before(grammarAccess.getMidiFilePartRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMidiFilePart_in_entryRuleMidiFilePart181);
+            pushFollow(FOLLOW_ruleMidiFilePart_in_entryRuleMidiFilePart181);
             ruleMidiFilePart();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFilePartRule()); 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMidiFilePart188); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMidiFilePart188); 
 
             }
 
@@ -239,10 +272,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end entryRuleMidiFilePart
+    // $ANTLR end "entryRuleMidiFilePart"
 
 
-    // $ANTLR start ruleMidiFilePart
+    // $ANTLR start "ruleMidiFilePart"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:126:1: ruleMidiFilePart : ( ( rule__MidiFilePart__Group__0 ) ) ;
     public final void ruleMidiFilePart() throws RecognitionException {
 
@@ -259,9 +292,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:133:1: ( rule__MidiFilePart__Group__0 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:133:2: rule__MidiFilePart__Group__0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group__0_in_ruleMidiFilePart214);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group__0_in_ruleMidiFilePart214);
             rule__MidiFilePart__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -285,10 +319,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end ruleMidiFilePart
+    // $ANTLR end "ruleMidiFilePart"
 
 
-    // $ANTLR start entryRuleMidiFileTextLine
+    // $ANTLR start "entryRuleMidiFileTextLine"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:145:1: entryRuleMidiFileTextLine : ruleMidiFileTextLine EOF ;
     public final void entryRuleMidiFileTextLine() throws RecognitionException {
         try {
@@ -296,12 +330,13 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:147:1: ruleMidiFileTextLine EOF
             {
              before(grammarAccess.getMidiFileTextLineRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMidiFileTextLine_in_entryRuleMidiFileTextLine241);
+            pushFollow(FOLLOW_ruleMidiFileTextLine_in_entryRuleMidiFileTextLine241);
             ruleMidiFileTextLine();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFileTextLineRule()); 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMidiFileTextLine248); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMidiFileTextLine248); 
 
             }
 
@@ -314,10 +349,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end entryRuleMidiFileTextLine
+    // $ANTLR end "entryRuleMidiFileTextLine"
 
 
-    // $ANTLR start ruleMidiFileTextLine
+    // $ANTLR start "ruleMidiFileTextLine"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:154:1: ruleMidiFileTextLine : ( ( rule__MidiFileTextLine__Group__0 ) ) ;
     public final void ruleMidiFileTextLine() throws RecognitionException {
 
@@ -334,9 +369,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:161:1: ( rule__MidiFileTextLine__Group__0 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:161:2: rule__MidiFileTextLine__Group__0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileTextLine__Group__0_in_ruleMidiFileTextLine274);
+            pushFollow(FOLLOW_rule__MidiFileTextLine__Group__0_in_ruleMidiFileTextLine274);
             rule__MidiFileTextLine__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -360,10 +396,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end ruleMidiFileTextLine
+    // $ANTLR end "ruleMidiFileTextLine"
 
 
-    // $ANTLR start entryRuleEInt
+    // $ANTLR start "entryRuleEInt"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:173:1: entryRuleEInt : ruleEInt EOF ;
     public final void entryRuleEInt() throws RecognitionException {
         try {
@@ -371,12 +407,13 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:175:1: ruleEInt EOF
             {
              before(grammarAccess.getEIntRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleEInt_in_entryRuleEInt301);
+            pushFollow(FOLLOW_ruleEInt_in_entryRuleEInt301);
             ruleEInt();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getEIntRule()); 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleEInt308); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleEInt308); 
 
             }
 
@@ -389,10 +426,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end entryRuleEInt
+    // $ANTLR end "entryRuleEInt"
 
 
-    // $ANTLR start ruleEInt
+    // $ANTLR start "ruleEInt"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:182:1: ruleEInt : ( ( rule__EInt__Group__0 ) ) ;
     public final void ruleEInt() throws RecognitionException {
 
@@ -409,9 +446,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:189:1: ( rule__EInt__Group__0 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:189:2: rule__EInt__Group__0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__EInt__Group__0_in_ruleEInt334);
+            pushFollow(FOLLOW_rule__EInt__Group__0_in_ruleEInt334);
             rule__EInt__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -435,10 +473,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end ruleEInt
+    // $ANTLR end "ruleEInt"
 
 
-    // $ANTLR start entryRuleMidiFileChordPart
+    // $ANTLR start "entryRuleMidiFileChordPart"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:201:1: entryRuleMidiFileChordPart : ruleMidiFileChordPart EOF ;
     public final void entryRuleMidiFileChordPart() throws RecognitionException {
         try {
@@ -446,12 +484,13 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:203:1: ruleMidiFileChordPart EOF
             {
              before(grammarAccess.getMidiFileChordPartRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMidiFileChordPart_in_entryRuleMidiFileChordPart361);
+            pushFollow(FOLLOW_ruleMidiFileChordPart_in_entryRuleMidiFileChordPart361);
             ruleMidiFileChordPart();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFileChordPartRule()); 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMidiFileChordPart368); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMidiFileChordPart368); 
 
             }
 
@@ -464,10 +503,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end entryRuleMidiFileChordPart
+    // $ANTLR end "entryRuleMidiFileChordPart"
 
 
-    // $ANTLR start ruleMidiFileChordPart
+    // $ANTLR start "ruleMidiFileChordPart"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:210:1: ruleMidiFileChordPart : ( ( rule__MidiFileChordPart__Group__0 ) ) ;
     public final void ruleMidiFileChordPart() throws RecognitionException {
 
@@ -484,9 +523,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:217:1: ( rule__MidiFileChordPart__Group__0 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:217:2: rule__MidiFileChordPart__Group__0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileChordPart__Group__0_in_ruleMidiFileChordPart394);
+            pushFollow(FOLLOW_rule__MidiFileChordPart__Group__0_in_ruleMidiFileChordPart394);
             rule__MidiFileChordPart__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -510,10 +550,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end ruleMidiFileChordPart
+    // $ANTLR end "ruleMidiFileChordPart"
 
 
-    // $ANTLR start ruleMidiFilePartType
+    // $ANTLR start "ruleMidiFilePartType"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:230:1: ruleMidiFilePartType : ( ( rule__MidiFilePartType__Alternatives ) ) ;
     public final void ruleMidiFilePartType() throws RecognitionException {
 
@@ -530,9 +570,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:237:1: ( rule__MidiFilePartType__Alternatives )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:237:2: rule__MidiFilePartType__Alternatives
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePartType__Alternatives_in_ruleMidiFilePartType431);
+            pushFollow(FOLLOW_rule__MidiFilePartType__Alternatives_in_ruleMidiFilePartType431);
             rule__MidiFilePartType__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -556,10 +597,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end ruleMidiFilePartType
+    // $ANTLR end "ruleMidiFilePartType"
 
 
-    // $ANTLR start rule__EString__Alternatives
+    // $ANTLR start "rule__EString__Alternatives"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:248:1: rule__EString__Alternatives : ( ( RULE_STRING ) | ( RULE_ID ) );
     public final void rule__EString__Alternatives() throws RecognitionException {
 
@@ -578,7 +619,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("248:1: rule__EString__Alternatives : ( ( RULE_STRING ) | ( RULE_ID ) );", 1, 0, input);
+                    new NoViableAltException("", 1, 0, input);
 
                 throw nvae;
             }
@@ -590,7 +631,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:254:1: RULE_STRING
                     {
                      before(grammarAccess.getEStringAccess().getSTRINGTerminalRuleCall_0()); 
-                    match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__EString__Alternatives466); 
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__EString__Alternatives466); 
                      after(grammarAccess.getEStringAccess().getSTRINGTerminalRuleCall_0()); 
 
                     }
@@ -605,7 +646,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:260:1: RULE_ID
                     {
                      before(grammarAccess.getEStringAccess().getIDTerminalRuleCall_1()); 
-                    match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__EString__Alternatives483); 
+                    match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__EString__Alternatives483); 
                      after(grammarAccess.getEStringAccess().getIDTerminalRuleCall_1()); 
 
                     }
@@ -627,10 +668,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__EString__Alternatives
+    // $ANTLR end "rule__EString__Alternatives"
 
 
-    // $ANTLR start rule__MidiFilePartType__Alternatives
+    // $ANTLR start "rule__MidiFilePartType__Alternatives"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:270:1: rule__MidiFilePartType__Alternatives : ( ( ( 'REFRAIN' ) ) | ( ( 'BRIDGE' ) ) | ( ( 'VERS' ) ) | ( ( 'SOLO' ) ) | ( ( 'ZWISCHENSPIEL' ) ) | ( ( 'INTRO' ) ) | ( ( 'EXTRO' ) ) );
     public final void rule__MidiFilePartType__Alternatives() throws RecognitionException {
 
@@ -677,7 +718,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("270:1: rule__MidiFilePartType__Alternatives : ( ( ( 'REFRAIN' ) ) | ( ( 'BRIDGE' ) ) | ( ( 'VERS' ) ) | ( ( 'SOLO' ) ) | ( ( 'ZWISCHENSPIEL' ) ) | ( ( 'INTRO' ) ) | ( ( 'EXTRO' ) ) );", 2, 0, input);
+                    new NoViableAltException("", 2, 0, input);
 
                 throw nvae;
             }
@@ -693,7 +734,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:277:1: ( 'REFRAIN' )
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:277:3: 'REFRAIN'
                     {
-                    match(input,11,FollowSets000.FOLLOW_11_in_rule__MidiFilePartType__Alternatives516); 
+                    match(input,11,FOLLOW_11_in_rule__MidiFilePartType__Alternatives516); 
 
                     }
 
@@ -714,7 +755,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:284:1: ( 'BRIDGE' )
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:284:3: 'BRIDGE'
                     {
-                    match(input,12,FollowSets000.FOLLOW_12_in_rule__MidiFilePartType__Alternatives537); 
+                    match(input,12,FOLLOW_12_in_rule__MidiFilePartType__Alternatives537); 
 
                     }
 
@@ -735,7 +776,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:291:1: ( 'VERS' )
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:291:3: 'VERS'
                     {
-                    match(input,13,FollowSets000.FOLLOW_13_in_rule__MidiFilePartType__Alternatives558); 
+                    match(input,13,FOLLOW_13_in_rule__MidiFilePartType__Alternatives558); 
 
                     }
 
@@ -756,7 +797,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:298:1: ( 'SOLO' )
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:298:3: 'SOLO'
                     {
-                    match(input,14,FollowSets000.FOLLOW_14_in_rule__MidiFilePartType__Alternatives579); 
+                    match(input,14,FOLLOW_14_in_rule__MidiFilePartType__Alternatives579); 
 
                     }
 
@@ -777,7 +818,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:305:1: ( 'ZWISCHENSPIEL' )
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:305:3: 'ZWISCHENSPIEL'
                     {
-                    match(input,15,FollowSets000.FOLLOW_15_in_rule__MidiFilePartType__Alternatives600); 
+                    match(input,15,FOLLOW_15_in_rule__MidiFilePartType__Alternatives600); 
 
                     }
 
@@ -798,7 +839,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:312:1: ( 'INTRO' )
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:312:3: 'INTRO'
                     {
-                    match(input,16,FollowSets000.FOLLOW_16_in_rule__MidiFilePartType__Alternatives621); 
+                    match(input,16,FOLLOW_16_in_rule__MidiFilePartType__Alternatives621); 
 
                     }
 
@@ -819,7 +860,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:319:1: ( 'EXTRO' )
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:319:3: 'EXTRO'
                     {
-                    match(input,17,FollowSets000.FOLLOW_17_in_rule__MidiFilePartType__Alternatives642); 
+                    match(input,17,FOLLOW_17_in_rule__MidiFilePartType__Alternatives642); 
 
                     }
 
@@ -844,10 +885,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePartType__Alternatives
+    // $ANTLR end "rule__MidiFilePartType__Alternatives"
 
 
-    // $ANTLR start rule__MidiFile__Group__0
+    // $ANTLR start "rule__MidiFile__Group__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:331:1: rule__MidiFile__Group__0 : rule__MidiFile__Group__0__Impl rule__MidiFile__Group__1 ;
     public final void rule__MidiFile__Group__0() throws RecognitionException {
 
@@ -857,13 +898,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:335:1: ( rule__MidiFile__Group__0__Impl rule__MidiFile__Group__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:336:2: rule__MidiFile__Group__0__Impl rule__MidiFile__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group__0__Impl_in_rule__MidiFile__Group__0675);
+            pushFollow(FOLLOW_rule__MidiFile__Group__0__Impl_in_rule__MidiFile__Group__0675);
             rule__MidiFile__Group__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group__1_in_rule__MidiFile__Group__0678);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFile__Group__1_in_rule__MidiFile__Group__0678);
             rule__MidiFile__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -880,10 +923,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group__0
+    // $ANTLR end "rule__MidiFile__Group__0"
 
 
-    // $ANTLR start rule__MidiFile__Group__0__Impl
+    // $ANTLR start "rule__MidiFile__Group__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:343:1: rule__MidiFile__Group__0__Impl : ( () ) ;
     public final void rule__MidiFile__Group__0__Impl() throws RecognitionException {
 
@@ -917,10 +960,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group__0__Impl
+    // $ANTLR end "rule__MidiFile__Group__0__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group__1
+    // $ANTLR start "rule__MidiFile__Group__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:362:1: rule__MidiFile__Group__1 : rule__MidiFile__Group__1__Impl rule__MidiFile__Group__2 ;
     public final void rule__MidiFile__Group__1() throws RecognitionException {
 
@@ -930,13 +973,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:366:1: ( rule__MidiFile__Group__1__Impl rule__MidiFile__Group__2 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:367:2: rule__MidiFile__Group__1__Impl rule__MidiFile__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group__1__Impl_in_rule__MidiFile__Group__1736);
+            pushFollow(FOLLOW_rule__MidiFile__Group__1__Impl_in_rule__MidiFile__Group__1736);
             rule__MidiFile__Group__1__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group__2_in_rule__MidiFile__Group__1739);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFile__Group__2_in_rule__MidiFile__Group__1739);
             rule__MidiFile__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -953,10 +998,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group__1
+    // $ANTLR end "rule__MidiFile__Group__1"
 
 
-    // $ANTLR start rule__MidiFile__Group__1__Impl
+    // $ANTLR start "rule__MidiFile__Group__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:374:1: rule__MidiFile__Group__1__Impl : ( ( rule__MidiFile__Group_1__0 ) ) ;
     public final void rule__MidiFile__Group__1__Impl() throws RecognitionException {
 
@@ -973,9 +1018,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:381:1: ( rule__MidiFile__Group_1__0 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:381:2: rule__MidiFile__Group_1__0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_1__0_in_rule__MidiFile__Group__1__Impl766);
+            pushFollow(FOLLOW_rule__MidiFile__Group_1__0_in_rule__MidiFile__Group__1__Impl766);
             rule__MidiFile__Group_1__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -999,10 +1045,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group__1__Impl
+    // $ANTLR end "rule__MidiFile__Group__1__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group__2
+    // $ANTLR start "rule__MidiFile__Group__2"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:391:1: rule__MidiFile__Group__2 : rule__MidiFile__Group__2__Impl rule__MidiFile__Group__3 ;
     public final void rule__MidiFile__Group__2() throws RecognitionException {
 
@@ -1012,13 +1058,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:395:1: ( rule__MidiFile__Group__2__Impl rule__MidiFile__Group__3 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:396:2: rule__MidiFile__Group__2__Impl rule__MidiFile__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group__2__Impl_in_rule__MidiFile__Group__2796);
+            pushFollow(FOLLOW_rule__MidiFile__Group__2__Impl_in_rule__MidiFile__Group__2796);
             rule__MidiFile__Group__2__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group__3_in_rule__MidiFile__Group__2799);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFile__Group__3_in_rule__MidiFile__Group__2799);
             rule__MidiFile__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1035,10 +1083,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group__2
+    // $ANTLR end "rule__MidiFile__Group__2"
 
 
-    // $ANTLR start rule__MidiFile__Group__2__Impl
+    // $ANTLR start "rule__MidiFile__Group__2__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:403:1: rule__MidiFile__Group__2__Impl : ( ( rule__MidiFile__Group_2__0 )? ) ;
     public final void rule__MidiFile__Group__2__Impl() throws RecognitionException {
 
@@ -1063,9 +1111,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                 case 1 :
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:410:2: rule__MidiFile__Group_2__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_2__0_in_rule__MidiFile__Group__2__Impl826);
+                    pushFollow(FOLLOW_rule__MidiFile__Group_2__0_in_rule__MidiFile__Group__2__Impl826);
                     rule__MidiFile__Group_2__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1092,10 +1141,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group__2__Impl
+    // $ANTLR end "rule__MidiFile__Group__2__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group__3
+    // $ANTLR start "rule__MidiFile__Group__3"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:420:1: rule__MidiFile__Group__3 : rule__MidiFile__Group__3__Impl rule__MidiFile__Group__4 ;
     public final void rule__MidiFile__Group__3() throws RecognitionException {
 
@@ -1105,13 +1154,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:424:1: ( rule__MidiFile__Group__3__Impl rule__MidiFile__Group__4 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:425:2: rule__MidiFile__Group__3__Impl rule__MidiFile__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group__3__Impl_in_rule__MidiFile__Group__3857);
+            pushFollow(FOLLOW_rule__MidiFile__Group__3__Impl_in_rule__MidiFile__Group__3857);
             rule__MidiFile__Group__3__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group__4_in_rule__MidiFile__Group__3860);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFile__Group__4_in_rule__MidiFile__Group__3860);
             rule__MidiFile__Group__4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1128,10 +1179,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group__3
+    // $ANTLR end "rule__MidiFile__Group__3"
 
 
-    // $ANTLR start rule__MidiFile__Group__3__Impl
+    // $ANTLR start "rule__MidiFile__Group__3__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:432:1: rule__MidiFile__Group__3__Impl : ( ( rule__MidiFile__Group_3__0 )? ) ;
     public final void rule__MidiFile__Group__3__Impl() throws RecognitionException {
 
@@ -1156,9 +1207,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                 case 1 :
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:439:2: rule__MidiFile__Group_3__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_3__0_in_rule__MidiFile__Group__3__Impl887);
+                    pushFollow(FOLLOW_rule__MidiFile__Group_3__0_in_rule__MidiFile__Group__3__Impl887);
                     rule__MidiFile__Group_3__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1185,10 +1237,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group__3__Impl
+    // $ANTLR end "rule__MidiFile__Group__3__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group__4
+    // $ANTLR start "rule__MidiFile__Group__4"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:449:1: rule__MidiFile__Group__4 : rule__MidiFile__Group__4__Impl rule__MidiFile__Group__5 ;
     public final void rule__MidiFile__Group__4() throws RecognitionException {
 
@@ -1198,13 +1250,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:453:1: ( rule__MidiFile__Group__4__Impl rule__MidiFile__Group__5 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:454:2: rule__MidiFile__Group__4__Impl rule__MidiFile__Group__5
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group__4__Impl_in_rule__MidiFile__Group__4918);
+            pushFollow(FOLLOW_rule__MidiFile__Group__4__Impl_in_rule__MidiFile__Group__4918);
             rule__MidiFile__Group__4__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group__5_in_rule__MidiFile__Group__4921);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFile__Group__5_in_rule__MidiFile__Group__4921);
             rule__MidiFile__Group__5();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1221,10 +1275,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group__4
+    // $ANTLR end "rule__MidiFile__Group__4"
 
 
-    // $ANTLR start rule__MidiFile__Group__4__Impl
+    // $ANTLR start "rule__MidiFile__Group__4__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:461:1: rule__MidiFile__Group__4__Impl : ( ( rule__MidiFile__Group_4__0 )? ) ;
     public final void rule__MidiFile__Group__4__Impl() throws RecognitionException {
 
@@ -1249,9 +1303,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                 case 1 :
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:468:2: rule__MidiFile__Group_4__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_4__0_in_rule__MidiFile__Group__4__Impl948);
+                    pushFollow(FOLLOW_rule__MidiFile__Group_4__0_in_rule__MidiFile__Group__4__Impl948);
                     rule__MidiFile__Group_4__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1278,10 +1333,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group__4__Impl
+    // $ANTLR end "rule__MidiFile__Group__4__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group__5
+    // $ANTLR start "rule__MidiFile__Group__5"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:478:1: rule__MidiFile__Group__5 : rule__MidiFile__Group__5__Impl rule__MidiFile__Group__6 ;
     public final void rule__MidiFile__Group__5() throws RecognitionException {
 
@@ -1291,13 +1346,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:482:1: ( rule__MidiFile__Group__5__Impl rule__MidiFile__Group__6 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:483:2: rule__MidiFile__Group__5__Impl rule__MidiFile__Group__6
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group__5__Impl_in_rule__MidiFile__Group__5979);
+            pushFollow(FOLLOW_rule__MidiFile__Group__5__Impl_in_rule__MidiFile__Group__5979);
             rule__MidiFile__Group__5__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group__6_in_rule__MidiFile__Group__5982);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFile__Group__6_in_rule__MidiFile__Group__5982);
             rule__MidiFile__Group__6();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1314,10 +1371,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group__5
+    // $ANTLR end "rule__MidiFile__Group__5"
 
 
-    // $ANTLR start rule__MidiFile__Group__5__Impl
+    // $ANTLR start "rule__MidiFile__Group__5__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:490:1: rule__MidiFile__Group__5__Impl : ( ( rule__MidiFile__Group_5__0 )? ) ;
     public final void rule__MidiFile__Group__5__Impl() throws RecognitionException {
 
@@ -1342,9 +1399,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                 case 1 :
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:497:2: rule__MidiFile__Group_5__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_5__0_in_rule__MidiFile__Group__5__Impl1009);
+                    pushFollow(FOLLOW_rule__MidiFile__Group_5__0_in_rule__MidiFile__Group__5__Impl1009);
                     rule__MidiFile__Group_5__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1371,10 +1429,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group__5__Impl
+    // $ANTLR end "rule__MidiFile__Group__5__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group__6
+    // $ANTLR start "rule__MidiFile__Group__6"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:507:1: rule__MidiFile__Group__6 : rule__MidiFile__Group__6__Impl ;
     public final void rule__MidiFile__Group__6() throws RecognitionException {
 
@@ -1384,9 +1442,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:511:1: ( rule__MidiFile__Group__6__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:512:2: rule__MidiFile__Group__6__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group__6__Impl_in_rule__MidiFile__Group__61040);
+            pushFollow(FOLLOW_rule__MidiFile__Group__6__Impl_in_rule__MidiFile__Group__61040);
             rule__MidiFile__Group__6__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1403,10 +1462,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group__6
+    // $ANTLR end "rule__MidiFile__Group__6"
 
 
-    // $ANTLR start rule__MidiFile__Group__6__Impl
+    // $ANTLR start "rule__MidiFile__Group__6__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:518:1: rule__MidiFile__Group__6__Impl : ( ( rule__MidiFile__Group_6__0 )? ) ;
     public final void rule__MidiFile__Group__6__Impl() throws RecognitionException {
 
@@ -1431,9 +1490,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                 case 1 :
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:525:2: rule__MidiFile__Group_6__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_6__0_in_rule__MidiFile__Group__6__Impl1067);
+                    pushFollow(FOLLOW_rule__MidiFile__Group_6__0_in_rule__MidiFile__Group__6__Impl1067);
                     rule__MidiFile__Group_6__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1460,10 +1520,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group__6__Impl
+    // $ANTLR end "rule__MidiFile__Group__6__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group_1__0
+    // $ANTLR start "rule__MidiFile__Group_1__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:549:1: rule__MidiFile__Group_1__0 : rule__MidiFile__Group_1__0__Impl rule__MidiFile__Group_1__1 ;
     public final void rule__MidiFile__Group_1__0() throws RecognitionException {
 
@@ -1473,13 +1533,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:553:1: ( rule__MidiFile__Group_1__0__Impl rule__MidiFile__Group_1__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:554:2: rule__MidiFile__Group_1__0__Impl rule__MidiFile__Group_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_1__0__Impl_in_rule__MidiFile__Group_1__01112);
+            pushFollow(FOLLOW_rule__MidiFile__Group_1__0__Impl_in_rule__MidiFile__Group_1__01112);
             rule__MidiFile__Group_1__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_1__1_in_rule__MidiFile__Group_1__01115);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFile__Group_1__1_in_rule__MidiFile__Group_1__01115);
             rule__MidiFile__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1496,10 +1558,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_1__0
+    // $ANTLR end "rule__MidiFile__Group_1__0"
 
 
-    // $ANTLR start rule__MidiFile__Group_1__0__Impl
+    // $ANTLR start "rule__MidiFile__Group_1__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:561:1: rule__MidiFile__Group_1__0__Impl : ( 'name' ) ;
     public final void rule__MidiFile__Group_1__0__Impl() throws RecognitionException {
 
@@ -1513,7 +1575,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:567:1: 'name'
             {
              before(grammarAccess.getMidiFileAccess().getNameKeyword_1_0()); 
-            match(input,18,FollowSets000.FOLLOW_18_in_rule__MidiFile__Group_1__0__Impl1143); 
+            match(input,18,FOLLOW_18_in_rule__MidiFile__Group_1__0__Impl1143); 
              after(grammarAccess.getMidiFileAccess().getNameKeyword_1_0()); 
 
             }
@@ -1533,10 +1595,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_1__0__Impl
+    // $ANTLR end "rule__MidiFile__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group_1__1
+    // $ANTLR start "rule__MidiFile__Group_1__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:580:1: rule__MidiFile__Group_1__1 : rule__MidiFile__Group_1__1__Impl ;
     public final void rule__MidiFile__Group_1__1() throws RecognitionException {
 
@@ -1546,9 +1608,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:584:1: ( rule__MidiFile__Group_1__1__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:585:2: rule__MidiFile__Group_1__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_1__1__Impl_in_rule__MidiFile__Group_1__11174);
+            pushFollow(FOLLOW_rule__MidiFile__Group_1__1__Impl_in_rule__MidiFile__Group_1__11174);
             rule__MidiFile__Group_1__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1565,10 +1628,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_1__1
+    // $ANTLR end "rule__MidiFile__Group_1__1"
 
 
-    // $ANTLR start rule__MidiFile__Group_1__1__Impl
+    // $ANTLR start "rule__MidiFile__Group_1__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:591:1: rule__MidiFile__Group_1__1__Impl : ( ( rule__MidiFile__NameAssignment_1_1 ) ) ;
     public final void rule__MidiFile__Group_1__1__Impl() throws RecognitionException {
 
@@ -1585,9 +1648,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:598:1: ( rule__MidiFile__NameAssignment_1_1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:598:2: rule__MidiFile__NameAssignment_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__NameAssignment_1_1_in_rule__MidiFile__Group_1__1__Impl1201);
+            pushFollow(FOLLOW_rule__MidiFile__NameAssignment_1_1_in_rule__MidiFile__Group_1__1__Impl1201);
             rule__MidiFile__NameAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1611,10 +1675,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_1__1__Impl
+    // $ANTLR end "rule__MidiFile__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group_2__0
+    // $ANTLR start "rule__MidiFile__Group_2__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:612:1: rule__MidiFile__Group_2__0 : rule__MidiFile__Group_2__0__Impl rule__MidiFile__Group_2__1 ;
     public final void rule__MidiFile__Group_2__0() throws RecognitionException {
 
@@ -1624,13 +1688,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:616:1: ( rule__MidiFile__Group_2__0__Impl rule__MidiFile__Group_2__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:617:2: rule__MidiFile__Group_2__0__Impl rule__MidiFile__Group_2__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_2__0__Impl_in_rule__MidiFile__Group_2__01235);
+            pushFollow(FOLLOW_rule__MidiFile__Group_2__0__Impl_in_rule__MidiFile__Group_2__01235);
             rule__MidiFile__Group_2__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_2__1_in_rule__MidiFile__Group_2__01238);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFile__Group_2__1_in_rule__MidiFile__Group_2__01238);
             rule__MidiFile__Group_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1647,10 +1713,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_2__0
+    // $ANTLR end "rule__MidiFile__Group_2__0"
 
 
-    // $ANTLR start rule__MidiFile__Group_2__0__Impl
+    // $ANTLR start "rule__MidiFile__Group_2__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:624:1: rule__MidiFile__Group_2__0__Impl : ( 'path' ) ;
     public final void rule__MidiFile__Group_2__0__Impl() throws RecognitionException {
 
@@ -1664,7 +1730,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:630:1: 'path'
             {
              before(grammarAccess.getMidiFileAccess().getPathKeyword_2_0()); 
-            match(input,19,FollowSets000.FOLLOW_19_in_rule__MidiFile__Group_2__0__Impl1266); 
+            match(input,19,FOLLOW_19_in_rule__MidiFile__Group_2__0__Impl1266); 
              after(grammarAccess.getMidiFileAccess().getPathKeyword_2_0()); 
 
             }
@@ -1684,10 +1750,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_2__0__Impl
+    // $ANTLR end "rule__MidiFile__Group_2__0__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group_2__1
+    // $ANTLR start "rule__MidiFile__Group_2__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:643:1: rule__MidiFile__Group_2__1 : rule__MidiFile__Group_2__1__Impl ;
     public final void rule__MidiFile__Group_2__1() throws RecognitionException {
 
@@ -1697,9 +1763,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:647:1: ( rule__MidiFile__Group_2__1__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:648:2: rule__MidiFile__Group_2__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_2__1__Impl_in_rule__MidiFile__Group_2__11297);
+            pushFollow(FOLLOW_rule__MidiFile__Group_2__1__Impl_in_rule__MidiFile__Group_2__11297);
             rule__MidiFile__Group_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1716,10 +1783,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_2__1
+    // $ANTLR end "rule__MidiFile__Group_2__1"
 
 
-    // $ANTLR start rule__MidiFile__Group_2__1__Impl
+    // $ANTLR start "rule__MidiFile__Group_2__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:654:1: rule__MidiFile__Group_2__1__Impl : ( ( rule__MidiFile__PathAssignment_2_1 ) ) ;
     public final void rule__MidiFile__Group_2__1__Impl() throws RecognitionException {
 
@@ -1736,9 +1803,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:661:1: ( rule__MidiFile__PathAssignment_2_1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:661:2: rule__MidiFile__PathAssignment_2_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__PathAssignment_2_1_in_rule__MidiFile__Group_2__1__Impl1324);
+            pushFollow(FOLLOW_rule__MidiFile__PathAssignment_2_1_in_rule__MidiFile__Group_2__1__Impl1324);
             rule__MidiFile__PathAssignment_2_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1762,10 +1830,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_2__1__Impl
+    // $ANTLR end "rule__MidiFile__Group_2__1__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group_3__0
+    // $ANTLR start "rule__MidiFile__Group_3__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:675:1: rule__MidiFile__Group_3__0 : rule__MidiFile__Group_3__0__Impl rule__MidiFile__Group_3__1 ;
     public final void rule__MidiFile__Group_3__0() throws RecognitionException {
 
@@ -1775,13 +1843,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:679:1: ( rule__MidiFile__Group_3__0__Impl rule__MidiFile__Group_3__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:680:2: rule__MidiFile__Group_3__0__Impl rule__MidiFile__Group_3__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_3__0__Impl_in_rule__MidiFile__Group_3__01358);
+            pushFollow(FOLLOW_rule__MidiFile__Group_3__0__Impl_in_rule__MidiFile__Group_3__01358);
             rule__MidiFile__Group_3__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_3__1_in_rule__MidiFile__Group_3__01361);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFile__Group_3__1_in_rule__MidiFile__Group_3__01361);
             rule__MidiFile__Group_3__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1798,10 +1868,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_3__0
+    // $ANTLR end "rule__MidiFile__Group_3__0"
 
 
-    // $ANTLR start rule__MidiFile__Group_3__0__Impl
+    // $ANTLR start "rule__MidiFile__Group_3__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:687:1: rule__MidiFile__Group_3__0__Impl : ( 'fontsize' ) ;
     public final void rule__MidiFile__Group_3__0__Impl() throws RecognitionException {
 
@@ -1815,7 +1885,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:693:1: 'fontsize'
             {
              before(grammarAccess.getMidiFileAccess().getFontsizeKeyword_3_0()); 
-            match(input,20,FollowSets000.FOLLOW_20_in_rule__MidiFile__Group_3__0__Impl1389); 
+            match(input,20,FOLLOW_20_in_rule__MidiFile__Group_3__0__Impl1389); 
              after(grammarAccess.getMidiFileAccess().getFontsizeKeyword_3_0()); 
 
             }
@@ -1835,10 +1905,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_3__0__Impl
+    // $ANTLR end "rule__MidiFile__Group_3__0__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group_3__1
+    // $ANTLR start "rule__MidiFile__Group_3__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:706:1: rule__MidiFile__Group_3__1 : rule__MidiFile__Group_3__1__Impl ;
     public final void rule__MidiFile__Group_3__1() throws RecognitionException {
 
@@ -1848,9 +1918,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:710:1: ( rule__MidiFile__Group_3__1__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:711:2: rule__MidiFile__Group_3__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_3__1__Impl_in_rule__MidiFile__Group_3__11420);
+            pushFollow(FOLLOW_rule__MidiFile__Group_3__1__Impl_in_rule__MidiFile__Group_3__11420);
             rule__MidiFile__Group_3__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1867,10 +1938,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_3__1
+    // $ANTLR end "rule__MidiFile__Group_3__1"
 
 
-    // $ANTLR start rule__MidiFile__Group_3__1__Impl
+    // $ANTLR start "rule__MidiFile__Group_3__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:717:1: rule__MidiFile__Group_3__1__Impl : ( ( rule__MidiFile__FontsizeAssignment_3_1 ) ) ;
     public final void rule__MidiFile__Group_3__1__Impl() throws RecognitionException {
 
@@ -1887,9 +1958,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:724:1: ( rule__MidiFile__FontsizeAssignment_3_1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:724:2: rule__MidiFile__FontsizeAssignment_3_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__FontsizeAssignment_3_1_in_rule__MidiFile__Group_3__1__Impl1447);
+            pushFollow(FOLLOW_rule__MidiFile__FontsizeAssignment_3_1_in_rule__MidiFile__Group_3__1__Impl1447);
             rule__MidiFile__FontsizeAssignment_3_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1913,10 +1985,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_3__1__Impl
+    // $ANTLR end "rule__MidiFile__Group_3__1__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group_4__0
+    // $ANTLR start "rule__MidiFile__Group_4__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:738:1: rule__MidiFile__Group_4__0 : rule__MidiFile__Group_4__0__Impl rule__MidiFile__Group_4__1 ;
     public final void rule__MidiFile__Group_4__0() throws RecognitionException {
 
@@ -1926,13 +1998,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:742:1: ( rule__MidiFile__Group_4__0__Impl rule__MidiFile__Group_4__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:743:2: rule__MidiFile__Group_4__0__Impl rule__MidiFile__Group_4__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_4__0__Impl_in_rule__MidiFile__Group_4__01481);
+            pushFollow(FOLLOW_rule__MidiFile__Group_4__0__Impl_in_rule__MidiFile__Group_4__01481);
             rule__MidiFile__Group_4__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_4__1_in_rule__MidiFile__Group_4__01484);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFile__Group_4__1_in_rule__MidiFile__Group_4__01484);
             rule__MidiFile__Group_4__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1949,10 +2023,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_4__0
+    // $ANTLR end "rule__MidiFile__Group_4__0"
 
 
-    // $ANTLR start rule__MidiFile__Group_4__0__Impl
+    // $ANTLR start "rule__MidiFile__Group_4__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:750:1: rule__MidiFile__Group_4__0__Impl : ( 'pic' ) ;
     public final void rule__MidiFile__Group_4__0__Impl() throws RecognitionException {
 
@@ -1966,7 +2040,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:756:1: 'pic'
             {
              before(grammarAccess.getMidiFileAccess().getPicKeyword_4_0()); 
-            match(input,21,FollowSets000.FOLLOW_21_in_rule__MidiFile__Group_4__0__Impl1512); 
+            match(input,21,FOLLOW_21_in_rule__MidiFile__Group_4__0__Impl1512); 
              after(grammarAccess.getMidiFileAccess().getPicKeyword_4_0()); 
 
             }
@@ -1986,10 +2060,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_4__0__Impl
+    // $ANTLR end "rule__MidiFile__Group_4__0__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group_4__1
+    // $ANTLR start "rule__MidiFile__Group_4__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:769:1: rule__MidiFile__Group_4__1 : rule__MidiFile__Group_4__1__Impl ;
     public final void rule__MidiFile__Group_4__1() throws RecognitionException {
 
@@ -1999,9 +2073,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:773:1: ( rule__MidiFile__Group_4__1__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:774:2: rule__MidiFile__Group_4__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_4__1__Impl_in_rule__MidiFile__Group_4__11543);
+            pushFollow(FOLLOW_rule__MidiFile__Group_4__1__Impl_in_rule__MidiFile__Group_4__11543);
             rule__MidiFile__Group_4__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2018,10 +2093,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_4__1
+    // $ANTLR end "rule__MidiFile__Group_4__1"
 
 
-    // $ANTLR start rule__MidiFile__Group_4__1__Impl
+    // $ANTLR start "rule__MidiFile__Group_4__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:780:1: rule__MidiFile__Group_4__1__Impl : ( ( rule__MidiFile__PicAssignment_4_1 ) ) ;
     public final void rule__MidiFile__Group_4__1__Impl() throws RecognitionException {
 
@@ -2038,9 +2113,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:787:1: ( rule__MidiFile__PicAssignment_4_1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:787:2: rule__MidiFile__PicAssignment_4_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__PicAssignment_4_1_in_rule__MidiFile__Group_4__1__Impl1570);
+            pushFollow(FOLLOW_rule__MidiFile__PicAssignment_4_1_in_rule__MidiFile__Group_4__1__Impl1570);
             rule__MidiFile__PicAssignment_4_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2064,10 +2140,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_4__1__Impl
+    // $ANTLR end "rule__MidiFile__Group_4__1__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group_5__0
+    // $ANTLR start "rule__MidiFile__Group_5__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:801:1: rule__MidiFile__Group_5__0 : rule__MidiFile__Group_5__0__Impl rule__MidiFile__Group_5__1 ;
     public final void rule__MidiFile__Group_5__0() throws RecognitionException {
 
@@ -2077,13 +2153,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:805:1: ( rule__MidiFile__Group_5__0__Impl rule__MidiFile__Group_5__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:806:2: rule__MidiFile__Group_5__0__Impl rule__MidiFile__Group_5__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_5__0__Impl_in_rule__MidiFile__Group_5__01604);
+            pushFollow(FOLLOW_rule__MidiFile__Group_5__0__Impl_in_rule__MidiFile__Group_5__01604);
             rule__MidiFile__Group_5__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_5__1_in_rule__MidiFile__Group_5__01607);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFile__Group_5__1_in_rule__MidiFile__Group_5__01607);
             rule__MidiFile__Group_5__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2100,10 +2178,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_5__0
+    // $ANTLR end "rule__MidiFile__Group_5__0"
 
 
-    // $ANTLR start rule__MidiFile__Group_5__0__Impl
+    // $ANTLR start "rule__MidiFile__Group_5__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:813:1: rule__MidiFile__Group_5__0__Impl : ( 'key' ) ;
     public final void rule__MidiFile__Group_5__0__Impl() throws RecognitionException {
 
@@ -2117,7 +2195,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:819:1: 'key'
             {
              before(grammarAccess.getMidiFileAccess().getKeyKeyword_5_0()); 
-            match(input,22,FollowSets000.FOLLOW_22_in_rule__MidiFile__Group_5__0__Impl1635); 
+            match(input,22,FOLLOW_22_in_rule__MidiFile__Group_5__0__Impl1635); 
              after(grammarAccess.getMidiFileAccess().getKeyKeyword_5_0()); 
 
             }
@@ -2137,10 +2215,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_5__0__Impl
+    // $ANTLR end "rule__MidiFile__Group_5__0__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group_5__1
+    // $ANTLR start "rule__MidiFile__Group_5__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:832:1: rule__MidiFile__Group_5__1 : rule__MidiFile__Group_5__1__Impl ;
     public final void rule__MidiFile__Group_5__1() throws RecognitionException {
 
@@ -2150,9 +2228,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:836:1: ( rule__MidiFile__Group_5__1__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:837:2: rule__MidiFile__Group_5__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_5__1__Impl_in_rule__MidiFile__Group_5__11666);
+            pushFollow(FOLLOW_rule__MidiFile__Group_5__1__Impl_in_rule__MidiFile__Group_5__11666);
             rule__MidiFile__Group_5__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2169,10 +2248,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_5__1
+    // $ANTLR end "rule__MidiFile__Group_5__1"
 
 
-    // $ANTLR start rule__MidiFile__Group_5__1__Impl
+    // $ANTLR start "rule__MidiFile__Group_5__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:843:1: rule__MidiFile__Group_5__1__Impl : ( ( rule__MidiFile__KeyAssignment_5_1 ) ) ;
     public final void rule__MidiFile__Group_5__1__Impl() throws RecognitionException {
 
@@ -2189,9 +2268,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:850:1: ( rule__MidiFile__KeyAssignment_5_1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:850:2: rule__MidiFile__KeyAssignment_5_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__KeyAssignment_5_1_in_rule__MidiFile__Group_5__1__Impl1693);
+            pushFollow(FOLLOW_rule__MidiFile__KeyAssignment_5_1_in_rule__MidiFile__Group_5__1__Impl1693);
             rule__MidiFile__KeyAssignment_5_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2215,10 +2295,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_5__1__Impl
+    // $ANTLR end "rule__MidiFile__Group_5__1__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group_6__0
+    // $ANTLR start "rule__MidiFile__Group_6__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:864:1: rule__MidiFile__Group_6__0 : rule__MidiFile__Group_6__0__Impl rule__MidiFile__Group_6__1 ;
     public final void rule__MidiFile__Group_6__0() throws RecognitionException {
 
@@ -2228,13 +2308,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:868:1: ( rule__MidiFile__Group_6__0__Impl rule__MidiFile__Group_6__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:869:2: rule__MidiFile__Group_6__0__Impl rule__MidiFile__Group_6__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_6__0__Impl_in_rule__MidiFile__Group_6__01727);
+            pushFollow(FOLLOW_rule__MidiFile__Group_6__0__Impl_in_rule__MidiFile__Group_6__01727);
             rule__MidiFile__Group_6__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_6__1_in_rule__MidiFile__Group_6__01730);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFile__Group_6__1_in_rule__MidiFile__Group_6__01730);
             rule__MidiFile__Group_6__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2251,10 +2333,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_6__0
+    // $ANTLR end "rule__MidiFile__Group_6__0"
 
 
-    // $ANTLR start rule__MidiFile__Group_6__0__Impl
+    // $ANTLR start "rule__MidiFile__Group_6__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:876:1: rule__MidiFile__Group_6__0__Impl : ( '{' ) ;
     public final void rule__MidiFile__Group_6__0__Impl() throws RecognitionException {
 
@@ -2268,7 +2350,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:882:1: '{'
             {
              before(grammarAccess.getMidiFileAccess().getLeftCurlyBracketKeyword_6_0()); 
-            match(input,23,FollowSets000.FOLLOW_23_in_rule__MidiFile__Group_6__0__Impl1758); 
+            match(input,23,FOLLOW_23_in_rule__MidiFile__Group_6__0__Impl1758); 
              after(grammarAccess.getMidiFileAccess().getLeftCurlyBracketKeyword_6_0()); 
 
             }
@@ -2288,10 +2370,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_6__0__Impl
+    // $ANTLR end "rule__MidiFile__Group_6__0__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group_6__1
+    // $ANTLR start "rule__MidiFile__Group_6__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:895:1: rule__MidiFile__Group_6__1 : rule__MidiFile__Group_6__1__Impl rule__MidiFile__Group_6__2 ;
     public final void rule__MidiFile__Group_6__1() throws RecognitionException {
 
@@ -2301,13 +2383,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:899:1: ( rule__MidiFile__Group_6__1__Impl rule__MidiFile__Group_6__2 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:900:2: rule__MidiFile__Group_6__1__Impl rule__MidiFile__Group_6__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_6__1__Impl_in_rule__MidiFile__Group_6__11789);
+            pushFollow(FOLLOW_rule__MidiFile__Group_6__1__Impl_in_rule__MidiFile__Group_6__11789);
             rule__MidiFile__Group_6__1__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_6__2_in_rule__MidiFile__Group_6__11792);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFile__Group_6__2_in_rule__MidiFile__Group_6__11792);
             rule__MidiFile__Group_6__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2324,10 +2408,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_6__1
+    // $ANTLR end "rule__MidiFile__Group_6__1"
 
 
-    // $ANTLR start rule__MidiFile__Group_6__1__Impl
+    // $ANTLR start "rule__MidiFile__Group_6__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:907:1: rule__MidiFile__Group_6__1__Impl : ( ( rule__MidiFile__PartsAssignment_6_1 )* ) ;
     public final void rule__MidiFile__Group_6__1__Impl() throws RecognitionException {
 
@@ -2356,9 +2440,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             	case 1 :
             	    // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:914:2: rule__MidiFile__PartsAssignment_6_1
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__MidiFile__PartsAssignment_6_1_in_rule__MidiFile__Group_6__1__Impl1819);
+            	    pushFollow(FOLLOW_rule__MidiFile__PartsAssignment_6_1_in_rule__MidiFile__Group_6__1__Impl1819);
             	    rule__MidiFile__PartsAssignment_6_1();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -2388,10 +2473,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_6__1__Impl
+    // $ANTLR end "rule__MidiFile__Group_6__1__Impl"
 
 
-    // $ANTLR start rule__MidiFile__Group_6__2
+    // $ANTLR start "rule__MidiFile__Group_6__2"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:924:1: rule__MidiFile__Group_6__2 : rule__MidiFile__Group_6__2__Impl ;
     public final void rule__MidiFile__Group_6__2() throws RecognitionException {
 
@@ -2401,9 +2486,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:928:1: ( rule__MidiFile__Group_6__2__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:929:2: rule__MidiFile__Group_6__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFile__Group_6__2__Impl_in_rule__MidiFile__Group_6__21850);
+            pushFollow(FOLLOW_rule__MidiFile__Group_6__2__Impl_in_rule__MidiFile__Group_6__21850);
             rule__MidiFile__Group_6__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2420,10 +2506,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_6__2
+    // $ANTLR end "rule__MidiFile__Group_6__2"
 
 
-    // $ANTLR start rule__MidiFile__Group_6__2__Impl
+    // $ANTLR start "rule__MidiFile__Group_6__2__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:935:1: rule__MidiFile__Group_6__2__Impl : ( '}' ) ;
     public final void rule__MidiFile__Group_6__2__Impl() throws RecognitionException {
 
@@ -2437,7 +2523,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:941:1: '}'
             {
              before(grammarAccess.getMidiFileAccess().getRightCurlyBracketKeyword_6_2()); 
-            match(input,24,FollowSets000.FOLLOW_24_in_rule__MidiFile__Group_6__2__Impl1878); 
+            match(input,24,FOLLOW_24_in_rule__MidiFile__Group_6__2__Impl1878); 
              after(grammarAccess.getMidiFileAccess().getRightCurlyBracketKeyword_6_2()); 
 
             }
@@ -2457,10 +2543,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__Group_6__2__Impl
+    // $ANTLR end "rule__MidiFile__Group_6__2__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group__0
+    // $ANTLR start "rule__MidiFilePart__Group__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:960:1: rule__MidiFilePart__Group__0 : rule__MidiFilePart__Group__0__Impl rule__MidiFilePart__Group__1 ;
     public final void rule__MidiFilePart__Group__0() throws RecognitionException {
 
@@ -2470,13 +2556,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:964:1: ( rule__MidiFilePart__Group__0__Impl rule__MidiFilePart__Group__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:965:2: rule__MidiFilePart__Group__0__Impl rule__MidiFilePart__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group__0__Impl_in_rule__MidiFilePart__Group__01915);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group__0__Impl_in_rule__MidiFilePart__Group__01915);
             rule__MidiFilePart__Group__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group__1_in_rule__MidiFilePart__Group__01918);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFilePart__Group__1_in_rule__MidiFilePart__Group__01918);
             rule__MidiFilePart__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2493,10 +2581,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group__0
+    // $ANTLR end "rule__MidiFilePart__Group__0"
 
 
-    // $ANTLR start rule__MidiFilePart__Group__0__Impl
+    // $ANTLR start "rule__MidiFilePart__Group__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:972:1: rule__MidiFilePart__Group__0__Impl : ( () ) ;
     public final void rule__MidiFilePart__Group__0__Impl() throws RecognitionException {
 
@@ -2530,10 +2618,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group__0__Impl
+    // $ANTLR end "rule__MidiFilePart__Group__0__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group__1
+    // $ANTLR start "rule__MidiFilePart__Group__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:991:1: rule__MidiFilePart__Group__1 : rule__MidiFilePart__Group__1__Impl rule__MidiFilePart__Group__2 ;
     public final void rule__MidiFilePart__Group__1() throws RecognitionException {
 
@@ -2543,13 +2631,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:995:1: ( rule__MidiFilePart__Group__1__Impl rule__MidiFilePart__Group__2 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:996:2: rule__MidiFilePart__Group__1__Impl rule__MidiFilePart__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group__1__Impl_in_rule__MidiFilePart__Group__11976);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group__1__Impl_in_rule__MidiFilePart__Group__11976);
             rule__MidiFilePart__Group__1__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group__2_in_rule__MidiFilePart__Group__11979);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFilePart__Group__2_in_rule__MidiFilePart__Group__11979);
             rule__MidiFilePart__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2566,10 +2656,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group__1
+    // $ANTLR end "rule__MidiFilePart__Group__1"
 
 
-    // $ANTLR start rule__MidiFilePart__Group__1__Impl
+    // $ANTLR start "rule__MidiFilePart__Group__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1003:1: rule__MidiFilePart__Group__1__Impl : ( ( rule__MidiFilePart__ParttypeAssignment_1 ) ) ;
     public final void rule__MidiFilePart__Group__1__Impl() throws RecognitionException {
 
@@ -2586,9 +2676,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1010:1: ( rule__MidiFilePart__ParttypeAssignment_1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1010:2: rule__MidiFilePart__ParttypeAssignment_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__ParttypeAssignment_1_in_rule__MidiFilePart__Group__1__Impl2006);
+            pushFollow(FOLLOW_rule__MidiFilePart__ParttypeAssignment_1_in_rule__MidiFilePart__Group__1__Impl2006);
             rule__MidiFilePart__ParttypeAssignment_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2612,10 +2703,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group__1__Impl
+    // $ANTLR end "rule__MidiFilePart__Group__1__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group__2
+    // $ANTLR start "rule__MidiFilePart__Group__2"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1020:1: rule__MidiFilePart__Group__2 : rule__MidiFilePart__Group__2__Impl rule__MidiFilePart__Group__3 ;
     public final void rule__MidiFilePart__Group__2() throws RecognitionException {
 
@@ -2625,13 +2716,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1024:1: ( rule__MidiFilePart__Group__2__Impl rule__MidiFilePart__Group__3 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1025:2: rule__MidiFilePart__Group__2__Impl rule__MidiFilePart__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group__2__Impl_in_rule__MidiFilePart__Group__22036);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group__2__Impl_in_rule__MidiFilePart__Group__22036);
             rule__MidiFilePart__Group__2__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group__3_in_rule__MidiFilePart__Group__22039);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFilePart__Group__3_in_rule__MidiFilePart__Group__22039);
             rule__MidiFilePart__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2648,10 +2741,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group__2
+    // $ANTLR end "rule__MidiFilePart__Group__2"
 
 
-    // $ANTLR start rule__MidiFilePart__Group__2__Impl
+    // $ANTLR start "rule__MidiFilePart__Group__2__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1032:1: rule__MidiFilePart__Group__2__Impl : ( ( rule__MidiFilePart__Group_2__0 )? ) ;
     public final void rule__MidiFilePart__Group__2__Impl() throws RecognitionException {
 
@@ -2676,9 +2769,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                 case 1 :
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1039:2: rule__MidiFilePart__Group_2__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_2__0_in_rule__MidiFilePart__Group__2__Impl2066);
+                    pushFollow(FOLLOW_rule__MidiFilePart__Group_2__0_in_rule__MidiFilePart__Group__2__Impl2066);
                     rule__MidiFilePart__Group_2__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -2705,10 +2799,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group__2__Impl
+    // $ANTLR end "rule__MidiFilePart__Group__2__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group__3
+    // $ANTLR start "rule__MidiFilePart__Group__3"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1049:1: rule__MidiFilePart__Group__3 : rule__MidiFilePart__Group__3__Impl rule__MidiFilePart__Group__4 ;
     public final void rule__MidiFilePart__Group__3() throws RecognitionException {
 
@@ -2718,13 +2812,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1053:1: ( rule__MidiFilePart__Group__3__Impl rule__MidiFilePart__Group__4 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1054:2: rule__MidiFilePart__Group__3__Impl rule__MidiFilePart__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group__3__Impl_in_rule__MidiFilePart__Group__32097);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group__3__Impl_in_rule__MidiFilePart__Group__32097);
             rule__MidiFilePart__Group__3__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group__4_in_rule__MidiFilePart__Group__32100);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFilePart__Group__4_in_rule__MidiFilePart__Group__32100);
             rule__MidiFilePart__Group__4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2741,10 +2837,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group__3
+    // $ANTLR end "rule__MidiFilePart__Group__3"
 
 
-    // $ANTLR start rule__MidiFilePart__Group__3__Impl
+    // $ANTLR start "rule__MidiFilePart__Group__3__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1061:1: rule__MidiFilePart__Group__3__Impl : ( ( rule__MidiFilePart__Group_3__0 )? ) ;
     public final void rule__MidiFilePart__Group__3__Impl() throws RecognitionException {
 
@@ -2769,9 +2865,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                 case 1 :
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1068:2: rule__MidiFilePart__Group_3__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_3__0_in_rule__MidiFilePart__Group__3__Impl2127);
+                    pushFollow(FOLLOW_rule__MidiFilePart__Group_3__0_in_rule__MidiFilePart__Group__3__Impl2127);
                     rule__MidiFilePart__Group_3__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -2798,10 +2895,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group__3__Impl
+    // $ANTLR end "rule__MidiFilePart__Group__3__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group__4
+    // $ANTLR start "rule__MidiFilePart__Group__4"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1078:1: rule__MidiFilePart__Group__4 : rule__MidiFilePart__Group__4__Impl ;
     public final void rule__MidiFilePart__Group__4() throws RecognitionException {
 
@@ -2811,9 +2908,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1082:1: ( rule__MidiFilePart__Group__4__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1083:2: rule__MidiFilePart__Group__4__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group__4__Impl_in_rule__MidiFilePart__Group__42158);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group__4__Impl_in_rule__MidiFilePart__Group__42158);
             rule__MidiFilePart__Group__4__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2830,10 +2928,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group__4
+    // $ANTLR end "rule__MidiFilePart__Group__4"
 
 
-    // $ANTLR start rule__MidiFilePart__Group__4__Impl
+    // $ANTLR start "rule__MidiFilePart__Group__4__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1089:1: rule__MidiFilePart__Group__4__Impl : ( ( rule__MidiFilePart__Group_4__0 )? ) ;
     public final void rule__MidiFilePart__Group__4__Impl() throws RecognitionException {
 
@@ -2858,9 +2956,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                 case 1 :
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1096:2: rule__MidiFilePart__Group_4__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_4__0_in_rule__MidiFilePart__Group__4__Impl2185);
+                    pushFollow(FOLLOW_rule__MidiFilePart__Group_4__0_in_rule__MidiFilePart__Group__4__Impl2185);
                     rule__MidiFilePart__Group_4__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -2887,10 +2986,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group__4__Impl
+    // $ANTLR end "rule__MidiFilePart__Group__4__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_2__0
+    // $ANTLR start "rule__MidiFilePart__Group_2__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1116:1: rule__MidiFilePart__Group_2__0 : rule__MidiFilePart__Group_2__0__Impl rule__MidiFilePart__Group_2__1 ;
     public final void rule__MidiFilePart__Group_2__0() throws RecognitionException {
 
@@ -2900,13 +2999,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1120:1: ( rule__MidiFilePart__Group_2__0__Impl rule__MidiFilePart__Group_2__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1121:2: rule__MidiFilePart__Group_2__0__Impl rule__MidiFilePart__Group_2__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_2__0__Impl_in_rule__MidiFilePart__Group_2__02226);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_2__0__Impl_in_rule__MidiFilePart__Group_2__02226);
             rule__MidiFilePart__Group_2__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_2__1_in_rule__MidiFilePart__Group_2__02229);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_2__1_in_rule__MidiFilePart__Group_2__02229);
             rule__MidiFilePart__Group_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2923,10 +3024,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_2__0
+    // $ANTLR end "rule__MidiFilePart__Group_2__0"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_2__0__Impl
+    // $ANTLR start "rule__MidiFilePart__Group_2__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1128:1: rule__MidiFilePart__Group_2__0__Impl : ( 'bar' ) ;
     public final void rule__MidiFilePart__Group_2__0__Impl() throws RecognitionException {
 
@@ -2940,7 +3041,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1134:1: 'bar'
             {
              before(grammarAccess.getMidiFilePartAccess().getBarKeyword_2_0()); 
-            match(input,25,FollowSets000.FOLLOW_25_in_rule__MidiFilePart__Group_2__0__Impl2257); 
+            match(input,25,FOLLOW_25_in_rule__MidiFilePart__Group_2__0__Impl2257); 
              after(grammarAccess.getMidiFilePartAccess().getBarKeyword_2_0()); 
 
             }
@@ -2960,10 +3061,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_2__0__Impl
+    // $ANTLR end "rule__MidiFilePart__Group_2__0__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_2__1
+    // $ANTLR start "rule__MidiFilePart__Group_2__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1147:1: rule__MidiFilePart__Group_2__1 : rule__MidiFilePart__Group_2__1__Impl ;
     public final void rule__MidiFilePart__Group_2__1() throws RecognitionException {
 
@@ -2973,9 +3074,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1151:1: ( rule__MidiFilePart__Group_2__1__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1152:2: rule__MidiFilePart__Group_2__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_2__1__Impl_in_rule__MidiFilePart__Group_2__12288);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_2__1__Impl_in_rule__MidiFilePart__Group_2__12288);
             rule__MidiFilePart__Group_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2992,10 +3094,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_2__1
+    // $ANTLR end "rule__MidiFilePart__Group_2__1"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_2__1__Impl
+    // $ANTLR start "rule__MidiFilePart__Group_2__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1158:1: rule__MidiFilePart__Group_2__1__Impl : ( ( rule__MidiFilePart__BarAssignment_2_1 ) ) ;
     public final void rule__MidiFilePart__Group_2__1__Impl() throws RecognitionException {
 
@@ -3012,9 +3114,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1165:1: ( rule__MidiFilePart__BarAssignment_2_1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1165:2: rule__MidiFilePart__BarAssignment_2_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__BarAssignment_2_1_in_rule__MidiFilePart__Group_2__1__Impl2315);
+            pushFollow(FOLLOW_rule__MidiFilePart__BarAssignment_2_1_in_rule__MidiFilePart__Group_2__1__Impl2315);
             rule__MidiFilePart__BarAssignment_2_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3038,10 +3141,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_2__1__Impl
+    // $ANTLR end "rule__MidiFilePart__Group_2__1__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_3__0
+    // $ANTLR start "rule__MidiFilePart__Group_3__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1179:1: rule__MidiFilePart__Group_3__0 : rule__MidiFilePart__Group_3__0__Impl rule__MidiFilePart__Group_3__1 ;
     public final void rule__MidiFilePart__Group_3__0() throws RecognitionException {
 
@@ -3051,13 +3154,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1183:1: ( rule__MidiFilePart__Group_3__0__Impl rule__MidiFilePart__Group_3__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1184:2: rule__MidiFilePart__Group_3__0__Impl rule__MidiFilePart__Group_3__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_3__0__Impl_in_rule__MidiFilePart__Group_3__02349);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_3__0__Impl_in_rule__MidiFilePart__Group_3__02349);
             rule__MidiFilePart__Group_3__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_3__1_in_rule__MidiFilePart__Group_3__02352);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_3__1_in_rule__MidiFilePart__Group_3__02352);
             rule__MidiFilePart__Group_3__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3074,10 +3179,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_3__0
+    // $ANTLR end "rule__MidiFilePart__Group_3__0"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_3__0__Impl
+    // $ANTLR start "rule__MidiFilePart__Group_3__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1191:1: rule__MidiFilePart__Group_3__0__Impl : ( 'refPart' ) ;
     public final void rule__MidiFilePart__Group_3__0__Impl() throws RecognitionException {
 
@@ -3091,7 +3196,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1197:1: 'refPart'
             {
              before(grammarAccess.getMidiFilePartAccess().getRefPartKeyword_3_0()); 
-            match(input,26,FollowSets000.FOLLOW_26_in_rule__MidiFilePart__Group_3__0__Impl2380); 
+            match(input,26,FOLLOW_26_in_rule__MidiFilePart__Group_3__0__Impl2380); 
              after(grammarAccess.getMidiFilePartAccess().getRefPartKeyword_3_0()); 
 
             }
@@ -3111,10 +3216,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_3__0__Impl
+    // $ANTLR end "rule__MidiFilePart__Group_3__0__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_3__1
+    // $ANTLR start "rule__MidiFilePart__Group_3__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1210:1: rule__MidiFilePart__Group_3__1 : rule__MidiFilePart__Group_3__1__Impl ;
     public final void rule__MidiFilePart__Group_3__1() throws RecognitionException {
 
@@ -3124,9 +3229,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1214:1: ( rule__MidiFilePart__Group_3__1__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1215:2: rule__MidiFilePart__Group_3__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_3__1__Impl_in_rule__MidiFilePart__Group_3__12411);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_3__1__Impl_in_rule__MidiFilePart__Group_3__12411);
             rule__MidiFilePart__Group_3__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3143,10 +3249,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_3__1
+    // $ANTLR end "rule__MidiFilePart__Group_3__1"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_3__1__Impl
+    // $ANTLR start "rule__MidiFilePart__Group_3__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1221:1: rule__MidiFilePart__Group_3__1__Impl : ( ( rule__MidiFilePart__RefPartAssignment_3_1 ) ) ;
     public final void rule__MidiFilePart__Group_3__1__Impl() throws RecognitionException {
 
@@ -3163,9 +3269,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1228:1: ( rule__MidiFilePart__RefPartAssignment_3_1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1228:2: rule__MidiFilePart__RefPartAssignment_3_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__RefPartAssignment_3_1_in_rule__MidiFilePart__Group_3__1__Impl2438);
+            pushFollow(FOLLOW_rule__MidiFilePart__RefPartAssignment_3_1_in_rule__MidiFilePart__Group_3__1__Impl2438);
             rule__MidiFilePart__RefPartAssignment_3_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3189,10 +3296,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_3__1__Impl
+    // $ANTLR end "rule__MidiFilePart__Group_3__1__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_4__0
+    // $ANTLR start "rule__MidiFilePart__Group_4__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1242:1: rule__MidiFilePart__Group_4__0 : rule__MidiFilePart__Group_4__0__Impl rule__MidiFilePart__Group_4__1 ;
     public final void rule__MidiFilePart__Group_4__0() throws RecognitionException {
 
@@ -3202,13 +3309,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1246:1: ( rule__MidiFilePart__Group_4__0__Impl rule__MidiFilePart__Group_4__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1247:2: rule__MidiFilePart__Group_4__0__Impl rule__MidiFilePart__Group_4__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_4__0__Impl_in_rule__MidiFilePart__Group_4__02472);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_4__0__Impl_in_rule__MidiFilePart__Group_4__02472);
             rule__MidiFilePart__Group_4__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_4__1_in_rule__MidiFilePart__Group_4__02475);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_4__1_in_rule__MidiFilePart__Group_4__02475);
             rule__MidiFilePart__Group_4__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3225,10 +3334,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_4__0
+    // $ANTLR end "rule__MidiFilePart__Group_4__0"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_4__0__Impl
+    // $ANTLR start "rule__MidiFilePart__Group_4__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1254:1: rule__MidiFilePart__Group_4__0__Impl : ( '{' ) ;
     public final void rule__MidiFilePart__Group_4__0__Impl() throws RecognitionException {
 
@@ -3242,7 +3351,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1260:1: '{'
             {
              before(grammarAccess.getMidiFilePartAccess().getLeftCurlyBracketKeyword_4_0()); 
-            match(input,23,FollowSets000.FOLLOW_23_in_rule__MidiFilePart__Group_4__0__Impl2503); 
+            match(input,23,FOLLOW_23_in_rule__MidiFilePart__Group_4__0__Impl2503); 
              after(grammarAccess.getMidiFilePartAccess().getLeftCurlyBracketKeyword_4_0()); 
 
             }
@@ -3262,10 +3371,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_4__0__Impl
+    // $ANTLR end "rule__MidiFilePart__Group_4__0__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_4__1
+    // $ANTLR start "rule__MidiFilePart__Group_4__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1273:1: rule__MidiFilePart__Group_4__1 : rule__MidiFilePart__Group_4__1__Impl rule__MidiFilePart__Group_4__2 ;
     public final void rule__MidiFilePart__Group_4__1() throws RecognitionException {
 
@@ -3275,13 +3384,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1277:1: ( rule__MidiFilePart__Group_4__1__Impl rule__MidiFilePart__Group_4__2 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1278:2: rule__MidiFilePart__Group_4__1__Impl rule__MidiFilePart__Group_4__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_4__1__Impl_in_rule__MidiFilePart__Group_4__12534);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_4__1__Impl_in_rule__MidiFilePart__Group_4__12534);
             rule__MidiFilePart__Group_4__1__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_4__2_in_rule__MidiFilePart__Group_4__12537);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_4__2_in_rule__MidiFilePart__Group_4__12537);
             rule__MidiFilePart__Group_4__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3298,10 +3409,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_4__1
+    // $ANTLR end "rule__MidiFilePart__Group_4__1"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_4__1__Impl
+    // $ANTLR start "rule__MidiFilePart__Group_4__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1285:1: rule__MidiFilePart__Group_4__1__Impl : ( ( rule__MidiFilePart__TextlinesAssignment_4_1 ) ) ;
     public final void rule__MidiFilePart__Group_4__1__Impl() throws RecognitionException {
 
@@ -3318,9 +3429,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1292:1: ( rule__MidiFilePart__TextlinesAssignment_4_1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1292:2: rule__MidiFilePart__TextlinesAssignment_4_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__TextlinesAssignment_4_1_in_rule__MidiFilePart__Group_4__1__Impl2564);
+            pushFollow(FOLLOW_rule__MidiFilePart__TextlinesAssignment_4_1_in_rule__MidiFilePart__Group_4__1__Impl2564);
             rule__MidiFilePart__TextlinesAssignment_4_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3344,10 +3456,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_4__1__Impl
+    // $ANTLR end "rule__MidiFilePart__Group_4__1__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_4__2
+    // $ANTLR start "rule__MidiFilePart__Group_4__2"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1302:1: rule__MidiFilePart__Group_4__2 : rule__MidiFilePart__Group_4__2__Impl rule__MidiFilePart__Group_4__3 ;
     public final void rule__MidiFilePart__Group_4__2() throws RecognitionException {
 
@@ -3357,13 +3469,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1306:1: ( rule__MidiFilePart__Group_4__2__Impl rule__MidiFilePart__Group_4__3 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1307:2: rule__MidiFilePart__Group_4__2__Impl rule__MidiFilePart__Group_4__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_4__2__Impl_in_rule__MidiFilePart__Group_4__22594);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_4__2__Impl_in_rule__MidiFilePart__Group_4__22594);
             rule__MidiFilePart__Group_4__2__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_4__3_in_rule__MidiFilePart__Group_4__22597);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_4__3_in_rule__MidiFilePart__Group_4__22597);
             rule__MidiFilePart__Group_4__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3380,10 +3494,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_4__2
+    // $ANTLR end "rule__MidiFilePart__Group_4__2"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_4__2__Impl
+    // $ANTLR start "rule__MidiFilePart__Group_4__2__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1314:1: rule__MidiFilePart__Group_4__2__Impl : ( ( rule__MidiFilePart__Group_4_2__0 )* ) ;
     public final void rule__MidiFilePart__Group_4__2__Impl() throws RecognitionException {
 
@@ -3412,9 +3526,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             	case 1 :
             	    // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1321:2: rule__MidiFilePart__Group_4_2__0
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_4_2__0_in_rule__MidiFilePart__Group_4__2__Impl2624);
+            	    pushFollow(FOLLOW_rule__MidiFilePart__Group_4_2__0_in_rule__MidiFilePart__Group_4__2__Impl2624);
             	    rule__MidiFilePart__Group_4_2__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -3444,10 +3559,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_4__2__Impl
+    // $ANTLR end "rule__MidiFilePart__Group_4__2__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_4__3
+    // $ANTLR start "rule__MidiFilePart__Group_4__3"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1331:1: rule__MidiFilePart__Group_4__3 : rule__MidiFilePart__Group_4__3__Impl ;
     public final void rule__MidiFilePart__Group_4__3() throws RecognitionException {
 
@@ -3457,9 +3572,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1335:1: ( rule__MidiFilePart__Group_4__3__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1336:2: rule__MidiFilePart__Group_4__3__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_4__3__Impl_in_rule__MidiFilePart__Group_4__32655);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_4__3__Impl_in_rule__MidiFilePart__Group_4__32655);
             rule__MidiFilePart__Group_4__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3476,10 +3592,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_4__3
+    // $ANTLR end "rule__MidiFilePart__Group_4__3"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_4__3__Impl
+    // $ANTLR start "rule__MidiFilePart__Group_4__3__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1342:1: rule__MidiFilePart__Group_4__3__Impl : ( '}' ) ;
     public final void rule__MidiFilePart__Group_4__3__Impl() throws RecognitionException {
 
@@ -3493,7 +3609,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1348:1: '}'
             {
              before(grammarAccess.getMidiFilePartAccess().getRightCurlyBracketKeyword_4_3()); 
-            match(input,24,FollowSets000.FOLLOW_24_in_rule__MidiFilePart__Group_4__3__Impl2683); 
+            match(input,24,FOLLOW_24_in_rule__MidiFilePart__Group_4__3__Impl2683); 
              after(grammarAccess.getMidiFilePartAccess().getRightCurlyBracketKeyword_4_3()); 
 
             }
@@ -3513,10 +3629,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_4__3__Impl
+    // $ANTLR end "rule__MidiFilePart__Group_4__3__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_4_2__0
+    // $ANTLR start "rule__MidiFilePart__Group_4_2__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1369:1: rule__MidiFilePart__Group_4_2__0 : rule__MidiFilePart__Group_4_2__0__Impl rule__MidiFilePart__Group_4_2__1 ;
     public final void rule__MidiFilePart__Group_4_2__0() throws RecognitionException {
 
@@ -3526,13 +3642,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1373:1: ( rule__MidiFilePart__Group_4_2__0__Impl rule__MidiFilePart__Group_4_2__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1374:2: rule__MidiFilePart__Group_4_2__0__Impl rule__MidiFilePart__Group_4_2__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_4_2__0__Impl_in_rule__MidiFilePart__Group_4_2__02722);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_4_2__0__Impl_in_rule__MidiFilePart__Group_4_2__02722);
             rule__MidiFilePart__Group_4_2__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_4_2__1_in_rule__MidiFilePart__Group_4_2__02725);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_4_2__1_in_rule__MidiFilePart__Group_4_2__02725);
             rule__MidiFilePart__Group_4_2__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3549,10 +3667,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_4_2__0
+    // $ANTLR end "rule__MidiFilePart__Group_4_2__0"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_4_2__0__Impl
+    // $ANTLR start "rule__MidiFilePart__Group_4_2__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1381:1: rule__MidiFilePart__Group_4_2__0__Impl : ( ',' ) ;
     public final void rule__MidiFilePart__Group_4_2__0__Impl() throws RecognitionException {
 
@@ -3566,7 +3684,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1387:1: ','
             {
              before(grammarAccess.getMidiFilePartAccess().getCommaKeyword_4_2_0()); 
-            match(input,27,FollowSets000.FOLLOW_27_in_rule__MidiFilePart__Group_4_2__0__Impl2753); 
+            match(input,27,FOLLOW_27_in_rule__MidiFilePart__Group_4_2__0__Impl2753); 
              after(grammarAccess.getMidiFilePartAccess().getCommaKeyword_4_2_0()); 
 
             }
@@ -3586,10 +3704,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_4_2__0__Impl
+    // $ANTLR end "rule__MidiFilePart__Group_4_2__0__Impl"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_4_2__1
+    // $ANTLR start "rule__MidiFilePart__Group_4_2__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1400:1: rule__MidiFilePart__Group_4_2__1 : rule__MidiFilePart__Group_4_2__1__Impl ;
     public final void rule__MidiFilePart__Group_4_2__1() throws RecognitionException {
 
@@ -3599,9 +3717,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1404:1: ( rule__MidiFilePart__Group_4_2__1__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1405:2: rule__MidiFilePart__Group_4_2__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__Group_4_2__1__Impl_in_rule__MidiFilePart__Group_4_2__12784);
+            pushFollow(FOLLOW_rule__MidiFilePart__Group_4_2__1__Impl_in_rule__MidiFilePart__Group_4_2__12784);
             rule__MidiFilePart__Group_4_2__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3618,10 +3737,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_4_2__1
+    // $ANTLR end "rule__MidiFilePart__Group_4_2__1"
 
 
-    // $ANTLR start rule__MidiFilePart__Group_4_2__1__Impl
+    // $ANTLR start "rule__MidiFilePart__Group_4_2__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1411:1: rule__MidiFilePart__Group_4_2__1__Impl : ( ( rule__MidiFilePart__TextlinesAssignment_4_2_1 ) ) ;
     public final void rule__MidiFilePart__Group_4_2__1__Impl() throws RecognitionException {
 
@@ -3638,9 +3757,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1418:1: ( rule__MidiFilePart__TextlinesAssignment_4_2_1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1418:2: rule__MidiFilePart__TextlinesAssignment_4_2_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFilePart__TextlinesAssignment_4_2_1_in_rule__MidiFilePart__Group_4_2__1__Impl2811);
+            pushFollow(FOLLOW_rule__MidiFilePart__TextlinesAssignment_4_2_1_in_rule__MidiFilePart__Group_4_2__1__Impl2811);
             rule__MidiFilePart__TextlinesAssignment_4_2_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3664,10 +3784,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__Group_4_2__1__Impl
+    // $ANTLR end "rule__MidiFilePart__Group_4_2__1__Impl"
 
 
-    // $ANTLR start rule__MidiFileTextLine__Group__0
+    // $ANTLR start "rule__MidiFileTextLine__Group__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1432:1: rule__MidiFileTextLine__Group__0 : rule__MidiFileTextLine__Group__0__Impl rule__MidiFileTextLine__Group__1 ;
     public final void rule__MidiFileTextLine__Group__0() throws RecognitionException {
 
@@ -3677,13 +3797,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1436:1: ( rule__MidiFileTextLine__Group__0__Impl rule__MidiFileTextLine__Group__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1437:2: rule__MidiFileTextLine__Group__0__Impl rule__MidiFileTextLine__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileTextLine__Group__0__Impl_in_rule__MidiFileTextLine__Group__02845);
+            pushFollow(FOLLOW_rule__MidiFileTextLine__Group__0__Impl_in_rule__MidiFileTextLine__Group__02845);
             rule__MidiFileTextLine__Group__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileTextLine__Group__1_in_rule__MidiFileTextLine__Group__02848);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFileTextLine__Group__1_in_rule__MidiFileTextLine__Group__02848);
             rule__MidiFileTextLine__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3700,10 +3822,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileTextLine__Group__0
+    // $ANTLR end "rule__MidiFileTextLine__Group__0"
 
 
-    // $ANTLR start rule__MidiFileTextLine__Group__0__Impl
+    // $ANTLR start "rule__MidiFileTextLine__Group__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1444:1: rule__MidiFileTextLine__Group__0__Impl : ( () ) ;
     public final void rule__MidiFileTextLine__Group__0__Impl() throws RecognitionException {
 
@@ -3737,10 +3859,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileTextLine__Group__0__Impl
+    // $ANTLR end "rule__MidiFileTextLine__Group__0__Impl"
 
 
-    // $ANTLR start rule__MidiFileTextLine__Group__1
+    // $ANTLR start "rule__MidiFileTextLine__Group__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1463:1: rule__MidiFileTextLine__Group__1 : rule__MidiFileTextLine__Group__1__Impl ;
     public final void rule__MidiFileTextLine__Group__1() throws RecognitionException {
 
@@ -3750,9 +3872,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1467:1: ( rule__MidiFileTextLine__Group__1__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1468:2: rule__MidiFileTextLine__Group__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileTextLine__Group__1__Impl_in_rule__MidiFileTextLine__Group__12906);
+            pushFollow(FOLLOW_rule__MidiFileTextLine__Group__1__Impl_in_rule__MidiFileTextLine__Group__12906);
             rule__MidiFileTextLine__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3769,10 +3892,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileTextLine__Group__1
+    // $ANTLR end "rule__MidiFileTextLine__Group__1"
 
 
-    // $ANTLR start rule__MidiFileTextLine__Group__1__Impl
+    // $ANTLR start "rule__MidiFileTextLine__Group__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1474:1: rule__MidiFileTextLine__Group__1__Impl : ( ( rule__MidiFileTextLine__Group_1__0 )? ) ;
     public final void rule__MidiFileTextLine__Group__1__Impl() throws RecognitionException {
 
@@ -3797,9 +3920,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                 case 1 :
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1481:2: rule__MidiFileTextLine__Group_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__MidiFileTextLine__Group_1__0_in_rule__MidiFileTextLine__Group__1__Impl2933);
+                    pushFollow(FOLLOW_rule__MidiFileTextLine__Group_1__0_in_rule__MidiFileTextLine__Group__1__Impl2933);
                     rule__MidiFileTextLine__Group_1__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -3826,10 +3950,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileTextLine__Group__1__Impl
+    // $ANTLR end "rule__MidiFileTextLine__Group__1__Impl"
 
 
-    // $ANTLR start rule__MidiFileTextLine__Group_1__0
+    // $ANTLR start "rule__MidiFileTextLine__Group_1__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1495:1: rule__MidiFileTextLine__Group_1__0 : rule__MidiFileTextLine__Group_1__0__Impl rule__MidiFileTextLine__Group_1__1 ;
     public final void rule__MidiFileTextLine__Group_1__0() throws RecognitionException {
 
@@ -3839,13 +3963,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1499:1: ( rule__MidiFileTextLine__Group_1__0__Impl rule__MidiFileTextLine__Group_1__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1500:2: rule__MidiFileTextLine__Group_1__0__Impl rule__MidiFileTextLine__Group_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileTextLine__Group_1__0__Impl_in_rule__MidiFileTextLine__Group_1__02968);
+            pushFollow(FOLLOW_rule__MidiFileTextLine__Group_1__0__Impl_in_rule__MidiFileTextLine__Group_1__02968);
             rule__MidiFileTextLine__Group_1__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileTextLine__Group_1__1_in_rule__MidiFileTextLine__Group_1__02971);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFileTextLine__Group_1__1_in_rule__MidiFileTextLine__Group_1__02971);
             rule__MidiFileTextLine__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3862,10 +3988,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileTextLine__Group_1__0
+    // $ANTLR end "rule__MidiFileTextLine__Group_1__0"
 
 
-    // $ANTLR start rule__MidiFileTextLine__Group_1__0__Impl
+    // $ANTLR start "rule__MidiFileTextLine__Group_1__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1507:1: rule__MidiFileTextLine__Group_1__0__Impl : ( '{' ) ;
     public final void rule__MidiFileTextLine__Group_1__0__Impl() throws RecognitionException {
 
@@ -3879,7 +4005,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1513:1: '{'
             {
              before(grammarAccess.getMidiFileTextLineAccess().getLeftCurlyBracketKeyword_1_0()); 
-            match(input,23,FollowSets000.FOLLOW_23_in_rule__MidiFileTextLine__Group_1__0__Impl2999); 
+            match(input,23,FOLLOW_23_in_rule__MidiFileTextLine__Group_1__0__Impl2999); 
              after(grammarAccess.getMidiFileTextLineAccess().getLeftCurlyBracketKeyword_1_0()); 
 
             }
@@ -3899,10 +4025,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileTextLine__Group_1__0__Impl
+    // $ANTLR end "rule__MidiFileTextLine__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__MidiFileTextLine__Group_1__1
+    // $ANTLR start "rule__MidiFileTextLine__Group_1__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1526:1: rule__MidiFileTextLine__Group_1__1 : rule__MidiFileTextLine__Group_1__1__Impl rule__MidiFileTextLine__Group_1__2 ;
     public final void rule__MidiFileTextLine__Group_1__1() throws RecognitionException {
 
@@ -3912,13 +4038,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1530:1: ( rule__MidiFileTextLine__Group_1__1__Impl rule__MidiFileTextLine__Group_1__2 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1531:2: rule__MidiFileTextLine__Group_1__1__Impl rule__MidiFileTextLine__Group_1__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileTextLine__Group_1__1__Impl_in_rule__MidiFileTextLine__Group_1__13030);
+            pushFollow(FOLLOW_rule__MidiFileTextLine__Group_1__1__Impl_in_rule__MidiFileTextLine__Group_1__13030);
             rule__MidiFileTextLine__Group_1__1__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileTextLine__Group_1__2_in_rule__MidiFileTextLine__Group_1__13033);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFileTextLine__Group_1__2_in_rule__MidiFileTextLine__Group_1__13033);
             rule__MidiFileTextLine__Group_1__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3935,10 +4063,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileTextLine__Group_1__1
+    // $ANTLR end "rule__MidiFileTextLine__Group_1__1"
 
 
-    // $ANTLR start rule__MidiFileTextLine__Group_1__1__Impl
+    // $ANTLR start "rule__MidiFileTextLine__Group_1__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1538:1: rule__MidiFileTextLine__Group_1__1__Impl : ( ( rule__MidiFileTextLine__ChordPartsAssignment_1_1 )* ) ;
     public final void rule__MidiFileTextLine__Group_1__1__Impl() throws RecognitionException {
 
@@ -3967,9 +4095,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             	case 1 :
             	    // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1545:2: rule__MidiFileTextLine__ChordPartsAssignment_1_1
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__MidiFileTextLine__ChordPartsAssignment_1_1_in_rule__MidiFileTextLine__Group_1__1__Impl3060);
+            	    pushFollow(FOLLOW_rule__MidiFileTextLine__ChordPartsAssignment_1_1_in_rule__MidiFileTextLine__Group_1__1__Impl3060);
             	    rule__MidiFileTextLine__ChordPartsAssignment_1_1();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -3999,10 +4128,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileTextLine__Group_1__1__Impl
+    // $ANTLR end "rule__MidiFileTextLine__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__MidiFileTextLine__Group_1__2
+    // $ANTLR start "rule__MidiFileTextLine__Group_1__2"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1555:1: rule__MidiFileTextLine__Group_1__2 : rule__MidiFileTextLine__Group_1__2__Impl ;
     public final void rule__MidiFileTextLine__Group_1__2() throws RecognitionException {
 
@@ -4012,9 +4141,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1559:1: ( rule__MidiFileTextLine__Group_1__2__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1560:2: rule__MidiFileTextLine__Group_1__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileTextLine__Group_1__2__Impl_in_rule__MidiFileTextLine__Group_1__23091);
+            pushFollow(FOLLOW_rule__MidiFileTextLine__Group_1__2__Impl_in_rule__MidiFileTextLine__Group_1__23091);
             rule__MidiFileTextLine__Group_1__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4031,10 +4161,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileTextLine__Group_1__2
+    // $ANTLR end "rule__MidiFileTextLine__Group_1__2"
 
 
-    // $ANTLR start rule__MidiFileTextLine__Group_1__2__Impl
+    // $ANTLR start "rule__MidiFileTextLine__Group_1__2__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1566:1: rule__MidiFileTextLine__Group_1__2__Impl : ( '}' ) ;
     public final void rule__MidiFileTextLine__Group_1__2__Impl() throws RecognitionException {
 
@@ -4048,7 +4178,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1572:1: '}'
             {
              before(grammarAccess.getMidiFileTextLineAccess().getRightCurlyBracketKeyword_1_2()); 
-            match(input,24,FollowSets000.FOLLOW_24_in_rule__MidiFileTextLine__Group_1__2__Impl3119); 
+            match(input,24,FOLLOW_24_in_rule__MidiFileTextLine__Group_1__2__Impl3119); 
              after(grammarAccess.getMidiFileTextLineAccess().getRightCurlyBracketKeyword_1_2()); 
 
             }
@@ -4068,10 +4198,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileTextLine__Group_1__2__Impl
+    // $ANTLR end "rule__MidiFileTextLine__Group_1__2__Impl"
 
 
-    // $ANTLR start rule__EInt__Group__0
+    // $ANTLR start "rule__EInt__Group__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1591:1: rule__EInt__Group__0 : rule__EInt__Group__0__Impl rule__EInt__Group__1 ;
     public final void rule__EInt__Group__0() throws RecognitionException {
 
@@ -4081,13 +4211,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1595:1: ( rule__EInt__Group__0__Impl rule__EInt__Group__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1596:2: rule__EInt__Group__0__Impl rule__EInt__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__EInt__Group__0__Impl_in_rule__EInt__Group__03156);
+            pushFollow(FOLLOW_rule__EInt__Group__0__Impl_in_rule__EInt__Group__03156);
             rule__EInt__Group__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__EInt__Group__1_in_rule__EInt__Group__03159);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__EInt__Group__1_in_rule__EInt__Group__03159);
             rule__EInt__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4104,10 +4236,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__EInt__Group__0
+    // $ANTLR end "rule__EInt__Group__0"
 
 
-    // $ANTLR start rule__EInt__Group__0__Impl
+    // $ANTLR start "rule__EInt__Group__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1603:1: rule__EInt__Group__0__Impl : ( ( '-' )? ) ;
     public final void rule__EInt__Group__0__Impl() throws RecognitionException {
 
@@ -4132,7 +4264,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                 case 1 :
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1611:2: '-'
                     {
-                    match(input,28,FollowSets000.FOLLOW_28_in_rule__EInt__Group__0__Impl3188); 
+                    match(input,28,FOLLOW_28_in_rule__EInt__Group__0__Impl3188); 
 
                     }
                     break;
@@ -4158,10 +4290,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__EInt__Group__0__Impl
+    // $ANTLR end "rule__EInt__Group__0__Impl"
 
 
-    // $ANTLR start rule__EInt__Group__1
+    // $ANTLR start "rule__EInt__Group__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1622:1: rule__EInt__Group__1 : rule__EInt__Group__1__Impl ;
     public final void rule__EInt__Group__1() throws RecognitionException {
 
@@ -4171,9 +4303,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1626:1: ( rule__EInt__Group__1__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1627:2: rule__EInt__Group__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__EInt__Group__1__Impl_in_rule__EInt__Group__13221);
+            pushFollow(FOLLOW_rule__EInt__Group__1__Impl_in_rule__EInt__Group__13221);
             rule__EInt__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4190,10 +4323,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__EInt__Group__1
+    // $ANTLR end "rule__EInt__Group__1"
 
 
-    // $ANTLR start rule__EInt__Group__1__Impl
+    // $ANTLR start "rule__EInt__Group__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1633:1: rule__EInt__Group__1__Impl : ( RULE_INT ) ;
     public final void rule__EInt__Group__1__Impl() throws RecognitionException {
 
@@ -4207,7 +4340,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1639:1: RULE_INT
             {
              before(grammarAccess.getEIntAccess().getINTTerminalRuleCall_1()); 
-            match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_rule__EInt__Group__1__Impl3248); 
+            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__EInt__Group__1__Impl3248); 
              after(grammarAccess.getEIntAccess().getINTTerminalRuleCall_1()); 
 
             }
@@ -4227,10 +4360,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__EInt__Group__1__Impl
+    // $ANTLR end "rule__EInt__Group__1__Impl"
 
 
-    // $ANTLR start rule__MidiFileChordPart__Group__0
+    // $ANTLR start "rule__MidiFileChordPart__Group__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1654:1: rule__MidiFileChordPart__Group__0 : rule__MidiFileChordPart__Group__0__Impl rule__MidiFileChordPart__Group__1 ;
     public final void rule__MidiFileChordPart__Group__0() throws RecognitionException {
 
@@ -4240,13 +4373,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1658:1: ( rule__MidiFileChordPart__Group__0__Impl rule__MidiFileChordPart__Group__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1659:2: rule__MidiFileChordPart__Group__0__Impl rule__MidiFileChordPart__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileChordPart__Group__0__Impl_in_rule__MidiFileChordPart__Group__03281);
+            pushFollow(FOLLOW_rule__MidiFileChordPart__Group__0__Impl_in_rule__MidiFileChordPart__Group__03281);
             rule__MidiFileChordPart__Group__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileChordPart__Group__1_in_rule__MidiFileChordPart__Group__03284);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFileChordPart__Group__1_in_rule__MidiFileChordPart__Group__03284);
             rule__MidiFileChordPart__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4263,10 +4398,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileChordPart__Group__0
+    // $ANTLR end "rule__MidiFileChordPart__Group__0"
 
 
-    // $ANTLR start rule__MidiFileChordPart__Group__0__Impl
+    // $ANTLR start "rule__MidiFileChordPart__Group__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1666:1: rule__MidiFileChordPart__Group__0__Impl : ( () ) ;
     public final void rule__MidiFileChordPart__Group__0__Impl() throws RecognitionException {
 
@@ -4300,10 +4435,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileChordPart__Group__0__Impl
+    // $ANTLR end "rule__MidiFileChordPart__Group__0__Impl"
 
 
-    // $ANTLR start rule__MidiFileChordPart__Group__1
+    // $ANTLR start "rule__MidiFileChordPart__Group__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1685:1: rule__MidiFileChordPart__Group__1 : rule__MidiFileChordPart__Group__1__Impl rule__MidiFileChordPart__Group__2 ;
     public final void rule__MidiFileChordPart__Group__1() throws RecognitionException {
 
@@ -4313,13 +4448,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1689:1: ( rule__MidiFileChordPart__Group__1__Impl rule__MidiFileChordPart__Group__2 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1690:2: rule__MidiFileChordPart__Group__1__Impl rule__MidiFileChordPart__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileChordPart__Group__1__Impl_in_rule__MidiFileChordPart__Group__13342);
+            pushFollow(FOLLOW_rule__MidiFileChordPart__Group__1__Impl_in_rule__MidiFileChordPart__Group__13342);
             rule__MidiFileChordPart__Group__1__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileChordPart__Group__2_in_rule__MidiFileChordPart__Group__13345);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFileChordPart__Group__2_in_rule__MidiFileChordPart__Group__13345);
             rule__MidiFileChordPart__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4336,10 +4473,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileChordPart__Group__1
+    // $ANTLR end "rule__MidiFileChordPart__Group__1"
 
 
-    // $ANTLR start rule__MidiFileChordPart__Group__1__Impl
+    // $ANTLR start "rule__MidiFileChordPart__Group__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1697:1: rule__MidiFileChordPart__Group__1__Impl : ( ( rule__MidiFileChordPart__Group_1__0 )? ) ;
     public final void rule__MidiFileChordPart__Group__1__Impl() throws RecognitionException {
 
@@ -4364,9 +4501,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
                 case 1 :
                     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1704:2: rule__MidiFileChordPart__Group_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__MidiFileChordPart__Group_1__0_in_rule__MidiFileChordPart__Group__1__Impl3372);
+                    pushFollow(FOLLOW_rule__MidiFileChordPart__Group_1__0_in_rule__MidiFileChordPart__Group__1__Impl3372);
                     rule__MidiFileChordPart__Group_1__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -4393,10 +4531,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileChordPart__Group__1__Impl
+    // $ANTLR end "rule__MidiFileChordPart__Group__1__Impl"
 
 
-    // $ANTLR start rule__MidiFileChordPart__Group__2
+    // $ANTLR start "rule__MidiFileChordPart__Group__2"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1714:1: rule__MidiFileChordPart__Group__2 : rule__MidiFileChordPart__Group__2__Impl ;
     public final void rule__MidiFileChordPart__Group__2() throws RecognitionException {
 
@@ -4406,9 +4544,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1718:1: ( rule__MidiFileChordPart__Group__2__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1719:2: rule__MidiFileChordPart__Group__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileChordPart__Group__2__Impl_in_rule__MidiFileChordPart__Group__23403);
+            pushFollow(FOLLOW_rule__MidiFileChordPart__Group__2__Impl_in_rule__MidiFileChordPart__Group__23403);
             rule__MidiFileChordPart__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4425,10 +4564,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileChordPart__Group__2
+    // $ANTLR end "rule__MidiFileChordPart__Group__2"
 
 
-    // $ANTLR start rule__MidiFileChordPart__Group__2__Impl
+    // $ANTLR start "rule__MidiFileChordPart__Group__2__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1725:1: rule__MidiFileChordPart__Group__2__Impl : ( ( rule__MidiFileChordPart__TextAssignment_2 ) ) ;
     public final void rule__MidiFileChordPart__Group__2__Impl() throws RecognitionException {
 
@@ -4445,9 +4584,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1732:1: ( rule__MidiFileChordPart__TextAssignment_2 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1732:2: rule__MidiFileChordPart__TextAssignment_2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileChordPart__TextAssignment_2_in_rule__MidiFileChordPart__Group__2__Impl3430);
+            pushFollow(FOLLOW_rule__MidiFileChordPart__TextAssignment_2_in_rule__MidiFileChordPart__Group__2__Impl3430);
             rule__MidiFileChordPart__TextAssignment_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4471,10 +4611,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileChordPart__Group__2__Impl
+    // $ANTLR end "rule__MidiFileChordPart__Group__2__Impl"
 
 
-    // $ANTLR start rule__MidiFileChordPart__Group_1__0
+    // $ANTLR start "rule__MidiFileChordPart__Group_1__0"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1748:1: rule__MidiFileChordPart__Group_1__0 : rule__MidiFileChordPart__Group_1__0__Impl rule__MidiFileChordPart__Group_1__1 ;
     public final void rule__MidiFileChordPart__Group_1__0() throws RecognitionException {
 
@@ -4484,13 +4624,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1752:1: ( rule__MidiFileChordPart__Group_1__0__Impl rule__MidiFileChordPart__Group_1__1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1753:2: rule__MidiFileChordPart__Group_1__0__Impl rule__MidiFileChordPart__Group_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileChordPart__Group_1__0__Impl_in_rule__MidiFileChordPart__Group_1__03466);
+            pushFollow(FOLLOW_rule__MidiFileChordPart__Group_1__0__Impl_in_rule__MidiFileChordPart__Group_1__03466);
             rule__MidiFileChordPart__Group_1__0__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileChordPart__Group_1__1_in_rule__MidiFileChordPart__Group_1__03469);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFileChordPart__Group_1__1_in_rule__MidiFileChordPart__Group_1__03469);
             rule__MidiFileChordPart__Group_1__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4507,10 +4649,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileChordPart__Group_1__0
+    // $ANTLR end "rule__MidiFileChordPart__Group_1__0"
 
 
-    // $ANTLR start rule__MidiFileChordPart__Group_1__0__Impl
+    // $ANTLR start "rule__MidiFileChordPart__Group_1__0__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1760:1: rule__MidiFileChordPart__Group_1__0__Impl : ( '(' ) ;
     public final void rule__MidiFileChordPart__Group_1__0__Impl() throws RecognitionException {
 
@@ -4524,7 +4666,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1766:1: '('
             {
              before(grammarAccess.getMidiFileChordPartAccess().getLeftParenthesisKeyword_1_0()); 
-            match(input,29,FollowSets000.FOLLOW_29_in_rule__MidiFileChordPart__Group_1__0__Impl3497); 
+            match(input,29,FOLLOW_29_in_rule__MidiFileChordPart__Group_1__0__Impl3497); 
              after(grammarAccess.getMidiFileChordPartAccess().getLeftParenthesisKeyword_1_0()); 
 
             }
@@ -4544,10 +4686,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileChordPart__Group_1__0__Impl
+    // $ANTLR end "rule__MidiFileChordPart__Group_1__0__Impl"
 
 
-    // $ANTLR start rule__MidiFileChordPart__Group_1__1
+    // $ANTLR start "rule__MidiFileChordPart__Group_1__1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1779:1: rule__MidiFileChordPart__Group_1__1 : rule__MidiFileChordPart__Group_1__1__Impl rule__MidiFileChordPart__Group_1__2 ;
     public final void rule__MidiFileChordPart__Group_1__1() throws RecognitionException {
 
@@ -4557,13 +4699,15 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1783:1: ( rule__MidiFileChordPart__Group_1__1__Impl rule__MidiFileChordPart__Group_1__2 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1784:2: rule__MidiFileChordPart__Group_1__1__Impl rule__MidiFileChordPart__Group_1__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileChordPart__Group_1__1__Impl_in_rule__MidiFileChordPart__Group_1__13528);
+            pushFollow(FOLLOW_rule__MidiFileChordPart__Group_1__1__Impl_in_rule__MidiFileChordPart__Group_1__13528);
             rule__MidiFileChordPart__Group_1__1__Impl();
-            _fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileChordPart__Group_1__2_in_rule__MidiFileChordPart__Group_1__13531);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__MidiFileChordPart__Group_1__2_in_rule__MidiFileChordPart__Group_1__13531);
             rule__MidiFileChordPart__Group_1__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4580,10 +4724,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileChordPart__Group_1__1
+    // $ANTLR end "rule__MidiFileChordPart__Group_1__1"
 
 
-    // $ANTLR start rule__MidiFileChordPart__Group_1__1__Impl
+    // $ANTLR start "rule__MidiFileChordPart__Group_1__1__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1791:1: rule__MidiFileChordPart__Group_1__1__Impl : ( ( rule__MidiFileChordPart__ChordAssignment_1_1 ) ) ;
     public final void rule__MidiFileChordPart__Group_1__1__Impl() throws RecognitionException {
 
@@ -4600,9 +4744,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1798:1: ( rule__MidiFileChordPart__ChordAssignment_1_1 )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1798:2: rule__MidiFileChordPart__ChordAssignment_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileChordPart__ChordAssignment_1_1_in_rule__MidiFileChordPart__Group_1__1__Impl3558);
+            pushFollow(FOLLOW_rule__MidiFileChordPart__ChordAssignment_1_1_in_rule__MidiFileChordPart__Group_1__1__Impl3558);
             rule__MidiFileChordPart__ChordAssignment_1_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4626,10 +4771,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileChordPart__Group_1__1__Impl
+    // $ANTLR end "rule__MidiFileChordPart__Group_1__1__Impl"
 
 
-    // $ANTLR start rule__MidiFileChordPart__Group_1__2
+    // $ANTLR start "rule__MidiFileChordPart__Group_1__2"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1808:1: rule__MidiFileChordPart__Group_1__2 : rule__MidiFileChordPart__Group_1__2__Impl ;
     public final void rule__MidiFileChordPart__Group_1__2() throws RecognitionException {
 
@@ -4639,9 +4784,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1812:1: ( rule__MidiFileChordPart__Group_1__2__Impl )
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1813:2: rule__MidiFileChordPart__Group_1__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MidiFileChordPart__Group_1__2__Impl_in_rule__MidiFileChordPart__Group_1__23588);
+            pushFollow(FOLLOW_rule__MidiFileChordPart__Group_1__2__Impl_in_rule__MidiFileChordPart__Group_1__23588);
             rule__MidiFileChordPart__Group_1__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -4658,10 +4804,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileChordPart__Group_1__2
+    // $ANTLR end "rule__MidiFileChordPart__Group_1__2"
 
 
-    // $ANTLR start rule__MidiFileChordPart__Group_1__2__Impl
+    // $ANTLR start "rule__MidiFileChordPart__Group_1__2__Impl"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1819:1: rule__MidiFileChordPart__Group_1__2__Impl : ( ')' ) ;
     public final void rule__MidiFileChordPart__Group_1__2__Impl() throws RecognitionException {
 
@@ -4675,7 +4821,7 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1825:1: ')'
             {
              before(grammarAccess.getMidiFileChordPartAccess().getRightParenthesisKeyword_1_2()); 
-            match(input,30,FollowSets000.FOLLOW_30_in_rule__MidiFileChordPart__Group_1__2__Impl3616); 
+            match(input,30,FOLLOW_30_in_rule__MidiFileChordPart__Group_1__2__Impl3616); 
              after(grammarAccess.getMidiFileChordPartAccess().getRightParenthesisKeyword_1_2()); 
 
             }
@@ -4695,10 +4841,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileChordPart__Group_1__2__Impl
+    // $ANTLR end "rule__MidiFileChordPart__Group_1__2__Impl"
 
 
-    // $ANTLR start rule__MidiFile__NameAssignment_1_1
+    // $ANTLR start "rule__MidiFile__NameAssignment_1_1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1845:1: rule__MidiFile__NameAssignment_1_1 : ( ruleEString ) ;
     public final void rule__MidiFile__NameAssignment_1_1() throws RecognitionException {
 
@@ -4712,9 +4858,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1851:1: ruleEString
             {
              before(grammarAccess.getMidiFileAccess().getNameEStringParserRuleCall_1_1_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_rule__MidiFile__NameAssignment_1_13658);
+            pushFollow(FOLLOW_ruleEString_in_rule__MidiFile__NameAssignment_1_13658);
             ruleEString();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFileAccess().getNameEStringParserRuleCall_1_1_0()); 
 
@@ -4735,10 +4882,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__NameAssignment_1_1
+    // $ANTLR end "rule__MidiFile__NameAssignment_1_1"
 
 
-    // $ANTLR start rule__MidiFile__PathAssignment_2_1
+    // $ANTLR start "rule__MidiFile__PathAssignment_2_1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1860:1: rule__MidiFile__PathAssignment_2_1 : ( ruleEString ) ;
     public final void rule__MidiFile__PathAssignment_2_1() throws RecognitionException {
 
@@ -4752,9 +4899,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1866:1: ruleEString
             {
              before(grammarAccess.getMidiFileAccess().getPathEStringParserRuleCall_2_1_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_rule__MidiFile__PathAssignment_2_13689);
+            pushFollow(FOLLOW_ruleEString_in_rule__MidiFile__PathAssignment_2_13689);
             ruleEString();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFileAccess().getPathEStringParserRuleCall_2_1_0()); 
 
@@ -4775,10 +4923,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__PathAssignment_2_1
+    // $ANTLR end "rule__MidiFile__PathAssignment_2_1"
 
 
-    // $ANTLR start rule__MidiFile__FontsizeAssignment_3_1
+    // $ANTLR start "rule__MidiFile__FontsizeAssignment_3_1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1875:1: rule__MidiFile__FontsizeAssignment_3_1 : ( ruleEString ) ;
     public final void rule__MidiFile__FontsizeAssignment_3_1() throws RecognitionException {
 
@@ -4792,9 +4940,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1881:1: ruleEString
             {
              before(grammarAccess.getMidiFileAccess().getFontsizeEStringParserRuleCall_3_1_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_rule__MidiFile__FontsizeAssignment_3_13720);
+            pushFollow(FOLLOW_ruleEString_in_rule__MidiFile__FontsizeAssignment_3_13720);
             ruleEString();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFileAccess().getFontsizeEStringParserRuleCall_3_1_0()); 
 
@@ -4815,10 +4964,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__FontsizeAssignment_3_1
+    // $ANTLR end "rule__MidiFile__FontsizeAssignment_3_1"
 
 
-    // $ANTLR start rule__MidiFile__PicAssignment_4_1
+    // $ANTLR start "rule__MidiFile__PicAssignment_4_1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1890:1: rule__MidiFile__PicAssignment_4_1 : ( ruleEString ) ;
     public final void rule__MidiFile__PicAssignment_4_1() throws RecognitionException {
 
@@ -4832,9 +4981,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1896:1: ruleEString
             {
              before(grammarAccess.getMidiFileAccess().getPicEStringParserRuleCall_4_1_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_rule__MidiFile__PicAssignment_4_13751);
+            pushFollow(FOLLOW_ruleEString_in_rule__MidiFile__PicAssignment_4_13751);
             ruleEString();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFileAccess().getPicEStringParserRuleCall_4_1_0()); 
 
@@ -4855,10 +5005,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__PicAssignment_4_1
+    // $ANTLR end "rule__MidiFile__PicAssignment_4_1"
 
 
-    // $ANTLR start rule__MidiFile__KeyAssignment_5_1
+    // $ANTLR start "rule__MidiFile__KeyAssignment_5_1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1905:1: rule__MidiFile__KeyAssignment_5_1 : ( ruleEString ) ;
     public final void rule__MidiFile__KeyAssignment_5_1() throws RecognitionException {
 
@@ -4872,9 +5022,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1911:1: ruleEString
             {
              before(grammarAccess.getMidiFileAccess().getKeyEStringParserRuleCall_5_1_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_rule__MidiFile__KeyAssignment_5_13782);
+            pushFollow(FOLLOW_ruleEString_in_rule__MidiFile__KeyAssignment_5_13782);
             ruleEString();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFileAccess().getKeyEStringParserRuleCall_5_1_0()); 
 
@@ -4895,10 +5046,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__KeyAssignment_5_1
+    // $ANTLR end "rule__MidiFile__KeyAssignment_5_1"
 
 
-    // $ANTLR start rule__MidiFile__PartsAssignment_6_1
+    // $ANTLR start "rule__MidiFile__PartsAssignment_6_1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1920:1: rule__MidiFile__PartsAssignment_6_1 : ( ruleMidiFilePart ) ;
     public final void rule__MidiFile__PartsAssignment_6_1() throws RecognitionException {
 
@@ -4912,9 +5063,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1926:1: ruleMidiFilePart
             {
              before(grammarAccess.getMidiFileAccess().getPartsMidiFilePartParserRuleCall_6_1_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMidiFilePart_in_rule__MidiFile__PartsAssignment_6_13813);
+            pushFollow(FOLLOW_ruleMidiFilePart_in_rule__MidiFile__PartsAssignment_6_13813);
             ruleMidiFilePart();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFileAccess().getPartsMidiFilePartParserRuleCall_6_1_0()); 
 
@@ -4935,10 +5087,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFile__PartsAssignment_6_1
+    // $ANTLR end "rule__MidiFile__PartsAssignment_6_1"
 
 
-    // $ANTLR start rule__MidiFilePart__ParttypeAssignment_1
+    // $ANTLR start "rule__MidiFilePart__ParttypeAssignment_1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1935:1: rule__MidiFilePart__ParttypeAssignment_1 : ( ruleMidiFilePartType ) ;
     public final void rule__MidiFilePart__ParttypeAssignment_1() throws RecognitionException {
 
@@ -4952,9 +5104,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1941:1: ruleMidiFilePartType
             {
              before(grammarAccess.getMidiFilePartAccess().getParttypeMidiFilePartTypeEnumRuleCall_1_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMidiFilePartType_in_rule__MidiFilePart__ParttypeAssignment_13844);
+            pushFollow(FOLLOW_ruleMidiFilePartType_in_rule__MidiFilePart__ParttypeAssignment_13844);
             ruleMidiFilePartType();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFilePartAccess().getParttypeMidiFilePartTypeEnumRuleCall_1_0()); 
 
@@ -4975,10 +5128,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__ParttypeAssignment_1
+    // $ANTLR end "rule__MidiFilePart__ParttypeAssignment_1"
 
 
-    // $ANTLR start rule__MidiFilePart__BarAssignment_2_1
+    // $ANTLR start "rule__MidiFilePart__BarAssignment_2_1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1950:1: rule__MidiFilePart__BarAssignment_2_1 : ( ruleEInt ) ;
     public final void rule__MidiFilePart__BarAssignment_2_1() throws RecognitionException {
 
@@ -4992,9 +5145,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1956:1: ruleEInt
             {
              before(grammarAccess.getMidiFilePartAccess().getBarEIntParserRuleCall_2_1_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleEInt_in_rule__MidiFilePart__BarAssignment_2_13875);
+            pushFollow(FOLLOW_ruleEInt_in_rule__MidiFilePart__BarAssignment_2_13875);
             ruleEInt();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFilePartAccess().getBarEIntParserRuleCall_2_1_0()); 
 
@@ -5015,10 +5169,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__BarAssignment_2_1
+    // $ANTLR end "rule__MidiFilePart__BarAssignment_2_1"
 
 
-    // $ANTLR start rule__MidiFilePart__RefPartAssignment_3_1
+    // $ANTLR start "rule__MidiFilePart__RefPartAssignment_3_1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1965:1: rule__MidiFilePart__RefPartAssignment_3_1 : ( ( ruleEString ) ) ;
     public final void rule__MidiFilePart__RefPartAssignment_3_1() throws RecognitionException {
 
@@ -5036,9 +5190,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1973:1: ruleEString
             {
              before(grammarAccess.getMidiFilePartAccess().getRefPartMidiFilePartEStringParserRuleCall_3_1_0_1()); 
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_rule__MidiFilePart__RefPartAssignment_3_13910);
+            pushFollow(FOLLOW_ruleEString_in_rule__MidiFilePart__RefPartAssignment_3_13910);
             ruleEString();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFilePartAccess().getRefPartMidiFilePartEStringParserRuleCall_3_1_0_1()); 
 
@@ -5063,10 +5218,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__RefPartAssignment_3_1
+    // $ANTLR end "rule__MidiFilePart__RefPartAssignment_3_1"
 
 
-    // $ANTLR start rule__MidiFilePart__TextlinesAssignment_4_1
+    // $ANTLR start "rule__MidiFilePart__TextlinesAssignment_4_1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1984:1: rule__MidiFilePart__TextlinesAssignment_4_1 : ( ruleMidiFileTextLine ) ;
     public final void rule__MidiFilePart__TextlinesAssignment_4_1() throws RecognitionException {
 
@@ -5080,9 +5235,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1990:1: ruleMidiFileTextLine
             {
              before(grammarAccess.getMidiFilePartAccess().getTextlinesMidiFileTextLineParserRuleCall_4_1_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMidiFileTextLine_in_rule__MidiFilePart__TextlinesAssignment_4_13945);
+            pushFollow(FOLLOW_ruleMidiFileTextLine_in_rule__MidiFilePart__TextlinesAssignment_4_13945);
             ruleMidiFileTextLine();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFilePartAccess().getTextlinesMidiFileTextLineParserRuleCall_4_1_0()); 
 
@@ -5103,10 +5259,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__TextlinesAssignment_4_1
+    // $ANTLR end "rule__MidiFilePart__TextlinesAssignment_4_1"
 
 
-    // $ANTLR start rule__MidiFilePart__TextlinesAssignment_4_2_1
+    // $ANTLR start "rule__MidiFilePart__TextlinesAssignment_4_2_1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:1999:1: rule__MidiFilePart__TextlinesAssignment_4_2_1 : ( ruleMidiFileTextLine ) ;
     public final void rule__MidiFilePart__TextlinesAssignment_4_2_1() throws RecognitionException {
 
@@ -5120,9 +5276,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:2005:1: ruleMidiFileTextLine
             {
              before(grammarAccess.getMidiFilePartAccess().getTextlinesMidiFileTextLineParserRuleCall_4_2_1_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMidiFileTextLine_in_rule__MidiFilePart__TextlinesAssignment_4_2_13976);
+            pushFollow(FOLLOW_ruleMidiFileTextLine_in_rule__MidiFilePart__TextlinesAssignment_4_2_13976);
             ruleMidiFileTextLine();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFilePartAccess().getTextlinesMidiFileTextLineParserRuleCall_4_2_1_0()); 
 
@@ -5143,10 +5300,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFilePart__TextlinesAssignment_4_2_1
+    // $ANTLR end "rule__MidiFilePart__TextlinesAssignment_4_2_1"
 
 
-    // $ANTLR start rule__MidiFileTextLine__ChordPartsAssignment_1_1
+    // $ANTLR start "rule__MidiFileTextLine__ChordPartsAssignment_1_1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:2014:1: rule__MidiFileTextLine__ChordPartsAssignment_1_1 : ( ruleMidiFileChordPart ) ;
     public final void rule__MidiFileTextLine__ChordPartsAssignment_1_1() throws RecognitionException {
 
@@ -5160,9 +5317,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:2020:1: ruleMidiFileChordPart
             {
              before(grammarAccess.getMidiFileTextLineAccess().getChordPartsMidiFileChordPartParserRuleCall_1_1_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMidiFileChordPart_in_rule__MidiFileTextLine__ChordPartsAssignment_1_14007);
+            pushFollow(FOLLOW_ruleMidiFileChordPart_in_rule__MidiFileTextLine__ChordPartsAssignment_1_14007);
             ruleMidiFileChordPart();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFileTextLineAccess().getChordPartsMidiFileChordPartParserRuleCall_1_1_0()); 
 
@@ -5183,10 +5341,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileTextLine__ChordPartsAssignment_1_1
+    // $ANTLR end "rule__MidiFileTextLine__ChordPartsAssignment_1_1"
 
 
-    // $ANTLR start rule__MidiFileChordPart__ChordAssignment_1_1
+    // $ANTLR start "rule__MidiFileChordPart__ChordAssignment_1_1"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:2029:1: rule__MidiFileChordPart__ChordAssignment_1_1 : ( ruleEString ) ;
     public final void rule__MidiFileChordPart__ChordAssignment_1_1() throws RecognitionException {
 
@@ -5200,9 +5358,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:2035:1: ruleEString
             {
              before(grammarAccess.getMidiFileChordPartAccess().getChordEStringParserRuleCall_1_1_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_rule__MidiFileChordPart__ChordAssignment_1_14038);
+            pushFollow(FOLLOW_ruleEString_in_rule__MidiFileChordPart__ChordAssignment_1_14038);
             ruleEString();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFileChordPartAccess().getChordEStringParserRuleCall_1_1_0()); 
 
@@ -5223,10 +5382,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileChordPart__ChordAssignment_1_1
+    // $ANTLR end "rule__MidiFileChordPart__ChordAssignment_1_1"
 
 
-    // $ANTLR start rule__MidiFileChordPart__TextAssignment_2
+    // $ANTLR start "rule__MidiFileChordPart__TextAssignment_2"
     // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:2044:1: rule__MidiFileChordPart__TextAssignment_2 : ( ruleEString ) ;
     public final void rule__MidiFileChordPart__TextAssignment_2() throws RecognitionException {
 
@@ -5240,9 +5399,10 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
             // ../org.mda.editor.xtext.ui/src-gen/org/mda/editor/xtext/ui/contentassist/antlr/internal/InternalMidiPlayer.g:2050:1: ruleEString
             {
              before(grammarAccess.getMidiFileChordPartAccess().getTextEStringParserRuleCall_2_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_rule__MidiFileChordPart__TextAssignment_24069);
+            pushFollow(FOLLOW_ruleEString_in_rule__MidiFileChordPart__TextAssignment_24069);
             ruleEString();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getMidiFileChordPartAccess().getTextEStringParserRuleCall_2_0()); 
 
@@ -5263,179 +5423,177 @@ public class InternalMidiPlayerParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end rule__MidiFileChordPart__TextAssignment_2
+    // $ANTLR end "rule__MidiFileChordPart__TextAssignment_2"
+
+    // Delegated rules
 
 
  
 
-    
-    private static class FollowSets000 {
-        public static final BitSet FOLLOW_ruleMidiFile_in_entryRuleMidiFile61 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleMidiFile68 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group__0_in_ruleMidiFile94 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEString_in_entryRuleEString121 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleEString128 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__EString__Alternatives_in_ruleEString154 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMidiFilePart_in_entryRuleMidiFilePart181 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleMidiFilePart188 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group__0_in_ruleMidiFilePart214 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMidiFileTextLine_in_entryRuleMidiFileTextLine241 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleMidiFileTextLine248 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileTextLine__Group__0_in_ruleMidiFileTextLine274 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEInt_in_entryRuleEInt301 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleEInt308 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__EInt__Group__0_in_ruleEInt334 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMidiFileChordPart_in_entryRuleMidiFileChordPart361 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleMidiFileChordPart368 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileChordPart__Group__0_in_ruleMidiFileChordPart394 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePartType__Alternatives_in_ruleMidiFilePartType431 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING_in_rule__EString__Alternatives466 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_ID_in_rule__EString__Alternatives483 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_11_in_rule__MidiFilePartType__Alternatives516 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_12_in_rule__MidiFilePartType__Alternatives537 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__MidiFilePartType__Alternatives558 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_14_in_rule__MidiFilePartType__Alternatives579 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_15_in_rule__MidiFilePartType__Alternatives600 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_16_in_rule__MidiFilePartType__Alternatives621 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_17_in_rule__MidiFilePartType__Alternatives642 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group__0__Impl_in_rule__MidiFile__Group__0675 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group__1_in_rule__MidiFile__Group__0678 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group__1__Impl_in_rule__MidiFile__Group__1736 = new BitSet(new long[]{0x0000000000F80002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group__2_in_rule__MidiFile__Group__1739 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_1__0_in_rule__MidiFile__Group__1__Impl766 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group__2__Impl_in_rule__MidiFile__Group__2796 = new BitSet(new long[]{0x0000000000F00002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group__3_in_rule__MidiFile__Group__2799 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_2__0_in_rule__MidiFile__Group__2__Impl826 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group__3__Impl_in_rule__MidiFile__Group__3857 = new BitSet(new long[]{0x0000000000E00002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group__4_in_rule__MidiFile__Group__3860 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_3__0_in_rule__MidiFile__Group__3__Impl887 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group__4__Impl_in_rule__MidiFile__Group__4918 = new BitSet(new long[]{0x0000000000C00002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group__5_in_rule__MidiFile__Group__4921 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_4__0_in_rule__MidiFile__Group__4__Impl948 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group__5__Impl_in_rule__MidiFile__Group__5979 = new BitSet(new long[]{0x0000000000800002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group__6_in_rule__MidiFile__Group__5982 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_5__0_in_rule__MidiFile__Group__5__Impl1009 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group__6__Impl_in_rule__MidiFile__Group__61040 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_6__0_in_rule__MidiFile__Group__6__Impl1067 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_1__0__Impl_in_rule__MidiFile__Group_1__01112 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_1__1_in_rule__MidiFile__Group_1__01115 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__MidiFile__Group_1__0__Impl1143 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_1__1__Impl_in_rule__MidiFile__Group_1__11174 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__NameAssignment_1_1_in_rule__MidiFile__Group_1__1__Impl1201 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_2__0__Impl_in_rule__MidiFile__Group_2__01235 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_2__1_in_rule__MidiFile__Group_2__01238 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_19_in_rule__MidiFile__Group_2__0__Impl1266 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_2__1__Impl_in_rule__MidiFile__Group_2__11297 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__PathAssignment_2_1_in_rule__MidiFile__Group_2__1__Impl1324 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_3__0__Impl_in_rule__MidiFile__Group_3__01358 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_3__1_in_rule__MidiFile__Group_3__01361 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_20_in_rule__MidiFile__Group_3__0__Impl1389 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_3__1__Impl_in_rule__MidiFile__Group_3__11420 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__FontsizeAssignment_3_1_in_rule__MidiFile__Group_3__1__Impl1447 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_4__0__Impl_in_rule__MidiFile__Group_4__01481 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_4__1_in_rule__MidiFile__Group_4__01484 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_21_in_rule__MidiFile__Group_4__0__Impl1512 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_4__1__Impl_in_rule__MidiFile__Group_4__11543 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__PicAssignment_4_1_in_rule__MidiFile__Group_4__1__Impl1570 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_5__0__Impl_in_rule__MidiFile__Group_5__01604 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_5__1_in_rule__MidiFile__Group_5__01607 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_22_in_rule__MidiFile__Group_5__0__Impl1635 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_5__1__Impl_in_rule__MidiFile__Group_5__11666 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__KeyAssignment_5_1_in_rule__MidiFile__Group_5__1__Impl1693 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_6__0__Impl_in_rule__MidiFile__Group_6__01727 = new BitSet(new long[]{0x000000000103F800L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_6__1_in_rule__MidiFile__Group_6__01730 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_23_in_rule__MidiFile__Group_6__0__Impl1758 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_6__1__Impl_in_rule__MidiFile__Group_6__11789 = new BitSet(new long[]{0x0000000001000000L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_6__2_in_rule__MidiFile__Group_6__11792 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFile__PartsAssignment_6_1_in_rule__MidiFile__Group_6__1__Impl1819 = new BitSet(new long[]{0x000000000003F802L});
-        public static final BitSet FOLLOW_rule__MidiFile__Group_6__2__Impl_in_rule__MidiFile__Group_6__21850 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_24_in_rule__MidiFile__Group_6__2__Impl1878 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group__0__Impl_in_rule__MidiFilePart__Group__01915 = new BitSet(new long[]{0x000000000003F800L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group__1_in_rule__MidiFilePart__Group__01918 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group__1__Impl_in_rule__MidiFilePart__Group__11976 = new BitSet(new long[]{0x0000000006800002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group__2_in_rule__MidiFilePart__Group__11979 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__ParttypeAssignment_1_in_rule__MidiFilePart__Group__1__Impl2006 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group__2__Impl_in_rule__MidiFilePart__Group__22036 = new BitSet(new long[]{0x0000000004800002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group__3_in_rule__MidiFilePart__Group__22039 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_2__0_in_rule__MidiFilePart__Group__2__Impl2066 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group__3__Impl_in_rule__MidiFilePart__Group__32097 = new BitSet(new long[]{0x0000000000800002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group__4_in_rule__MidiFilePart__Group__32100 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_3__0_in_rule__MidiFilePart__Group__3__Impl2127 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group__4__Impl_in_rule__MidiFilePart__Group__42158 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__0_in_rule__MidiFilePart__Group__4__Impl2185 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_2__0__Impl_in_rule__MidiFilePart__Group_2__02226 = new BitSet(new long[]{0x0000000010000040L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_2__1_in_rule__MidiFilePart__Group_2__02229 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_25_in_rule__MidiFilePart__Group_2__0__Impl2257 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_2__1__Impl_in_rule__MidiFilePart__Group_2__12288 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__BarAssignment_2_1_in_rule__MidiFilePart__Group_2__1__Impl2315 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_3__0__Impl_in_rule__MidiFilePart__Group_3__02349 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_3__1_in_rule__MidiFilePart__Group_3__02352 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_26_in_rule__MidiFilePart__Group_3__0__Impl2380 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_3__1__Impl_in_rule__MidiFilePart__Group_3__12411 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__RefPartAssignment_3_1_in_rule__MidiFilePart__Group_3__1__Impl2438 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__0__Impl_in_rule__MidiFilePart__Group_4__02472 = new BitSet(new long[]{0x0000000009800000L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__1_in_rule__MidiFilePart__Group_4__02475 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_23_in_rule__MidiFilePart__Group_4__0__Impl2503 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__1__Impl_in_rule__MidiFilePart__Group_4__12534 = new BitSet(new long[]{0x0000000009000000L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__2_in_rule__MidiFilePart__Group_4__12537 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__TextlinesAssignment_4_1_in_rule__MidiFilePart__Group_4__1__Impl2564 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__2__Impl_in_rule__MidiFilePart__Group_4__22594 = new BitSet(new long[]{0x0000000001000000L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__3_in_rule__MidiFilePart__Group_4__22597 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_4_2__0_in_rule__MidiFilePart__Group_4__2__Impl2624 = new BitSet(new long[]{0x0000000008000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__3__Impl_in_rule__MidiFilePart__Group_4__32655 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_24_in_rule__MidiFilePart__Group_4__3__Impl2683 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_4_2__0__Impl_in_rule__MidiFilePart__Group_4_2__02722 = new BitSet(new long[]{0x0000000000800002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_4_2__1_in_rule__MidiFilePart__Group_4_2__02725 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_27_in_rule__MidiFilePart__Group_4_2__0__Impl2753 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__Group_4_2__1__Impl_in_rule__MidiFilePart__Group_4_2__12784 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFilePart__TextlinesAssignment_4_2_1_in_rule__MidiFilePart__Group_4_2__1__Impl2811 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileTextLine__Group__0__Impl_in_rule__MidiFileTextLine__Group__02845 = new BitSet(new long[]{0x0000000000800002L});
-        public static final BitSet FOLLOW_rule__MidiFileTextLine__Group__1_in_rule__MidiFileTextLine__Group__02848 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileTextLine__Group__1__Impl_in_rule__MidiFileTextLine__Group__12906 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileTextLine__Group_1__0_in_rule__MidiFileTextLine__Group__1__Impl2933 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileTextLine__Group_1__0__Impl_in_rule__MidiFileTextLine__Group_1__02968 = new BitSet(new long[]{0x0000000021000030L});
-        public static final BitSet FOLLOW_rule__MidiFileTextLine__Group_1__1_in_rule__MidiFileTextLine__Group_1__02971 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_23_in_rule__MidiFileTextLine__Group_1__0__Impl2999 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileTextLine__Group_1__1__Impl_in_rule__MidiFileTextLine__Group_1__13030 = new BitSet(new long[]{0x0000000001000000L});
-        public static final BitSet FOLLOW_rule__MidiFileTextLine__Group_1__2_in_rule__MidiFileTextLine__Group_1__13033 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileTextLine__ChordPartsAssignment_1_1_in_rule__MidiFileTextLine__Group_1__1__Impl3060 = new BitSet(new long[]{0x0000000020000032L});
-        public static final BitSet FOLLOW_rule__MidiFileTextLine__Group_1__2__Impl_in_rule__MidiFileTextLine__Group_1__23091 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_24_in_rule__MidiFileTextLine__Group_1__2__Impl3119 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__EInt__Group__0__Impl_in_rule__EInt__Group__03156 = new BitSet(new long[]{0x0000000000000040L});
-        public static final BitSet FOLLOW_rule__EInt__Group__1_in_rule__EInt__Group__03159 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_28_in_rule__EInt__Group__0__Impl3188 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__EInt__Group__1__Impl_in_rule__EInt__Group__13221 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_rule__EInt__Group__1__Impl3248 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileChordPart__Group__0__Impl_in_rule__MidiFileChordPart__Group__03281 = new BitSet(new long[]{0x0000000020000030L});
-        public static final BitSet FOLLOW_rule__MidiFileChordPart__Group__1_in_rule__MidiFileChordPart__Group__03284 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileChordPart__Group__1__Impl_in_rule__MidiFileChordPart__Group__13342 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_rule__MidiFileChordPart__Group__2_in_rule__MidiFileChordPart__Group__13345 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileChordPart__Group_1__0_in_rule__MidiFileChordPart__Group__1__Impl3372 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileChordPart__Group__2__Impl_in_rule__MidiFileChordPart__Group__23403 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileChordPart__TextAssignment_2_in_rule__MidiFileChordPart__Group__2__Impl3430 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileChordPart__Group_1__0__Impl_in_rule__MidiFileChordPart__Group_1__03466 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_rule__MidiFileChordPart__Group_1__1_in_rule__MidiFileChordPart__Group_1__03469 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_29_in_rule__MidiFileChordPart__Group_1__0__Impl3497 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileChordPart__Group_1__1__Impl_in_rule__MidiFileChordPart__Group_1__13528 = new BitSet(new long[]{0x0000000040000000L});
-        public static final BitSet FOLLOW_rule__MidiFileChordPart__Group_1__2_in_rule__MidiFileChordPart__Group_1__13531 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileChordPart__ChordAssignment_1_1_in_rule__MidiFileChordPart__Group_1__1__Impl3558 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MidiFileChordPart__Group_1__2__Impl_in_rule__MidiFileChordPart__Group_1__23588 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_30_in_rule__MidiFileChordPart__Group_1__2__Impl3616 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEString_in_rule__MidiFile__NameAssignment_1_13658 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEString_in_rule__MidiFile__PathAssignment_2_13689 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEString_in_rule__MidiFile__FontsizeAssignment_3_13720 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEString_in_rule__MidiFile__PicAssignment_4_13751 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEString_in_rule__MidiFile__KeyAssignment_5_13782 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMidiFilePart_in_rule__MidiFile__PartsAssignment_6_13813 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMidiFilePartType_in_rule__MidiFilePart__ParttypeAssignment_13844 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEInt_in_rule__MidiFilePart__BarAssignment_2_13875 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEString_in_rule__MidiFilePart__RefPartAssignment_3_13910 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMidiFileTextLine_in_rule__MidiFilePart__TextlinesAssignment_4_13945 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMidiFileTextLine_in_rule__MidiFilePart__TextlinesAssignment_4_2_13976 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMidiFileChordPart_in_rule__MidiFileTextLine__ChordPartsAssignment_1_14007 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEString_in_rule__MidiFileChordPart__ChordAssignment_1_14038 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEString_in_rule__MidiFileChordPart__TextAssignment_24069 = new BitSet(new long[]{0x0000000000000002L});
-    }
-
+    public static final BitSet FOLLOW_ruleMidiFile_in_entryRuleMidiFile61 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMidiFile68 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group__0_in_ruleMidiFile94 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEString_in_entryRuleEString121 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleEString128 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EString__Alternatives_in_ruleEString154 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMidiFilePart_in_entryRuleMidiFilePart181 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMidiFilePart188 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group__0_in_ruleMidiFilePart214 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMidiFileTextLine_in_entryRuleMidiFileTextLine241 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMidiFileTextLine248 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileTextLine__Group__0_in_ruleMidiFileTextLine274 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEInt_in_entryRuleEInt301 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleEInt308 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EInt__Group__0_in_ruleEInt334 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMidiFileChordPart_in_entryRuleMidiFileChordPart361 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMidiFileChordPart368 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileChordPart__Group__0_in_ruleMidiFileChordPart394 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePartType__Alternatives_in_ruleMidiFilePartType431 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__EString__Alternatives466 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__EString__Alternatives483 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_11_in_rule__MidiFilePartType__Alternatives516 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_rule__MidiFilePartType__Alternatives537 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__MidiFilePartType__Alternatives558 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__MidiFilePartType__Alternatives579 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_rule__MidiFilePartType__Alternatives600 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_rule__MidiFilePartType__Alternatives621 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__MidiFilePartType__Alternatives642 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group__0__Impl_in_rule__MidiFile__Group__0675 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group__1_in_rule__MidiFile__Group__0678 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group__1__Impl_in_rule__MidiFile__Group__1736 = new BitSet(new long[]{0x0000000000F80000L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group__2_in_rule__MidiFile__Group__1739 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_1__0_in_rule__MidiFile__Group__1__Impl766 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group__2__Impl_in_rule__MidiFile__Group__2796 = new BitSet(new long[]{0x0000000000F80000L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group__3_in_rule__MidiFile__Group__2799 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_2__0_in_rule__MidiFile__Group__2__Impl826 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group__3__Impl_in_rule__MidiFile__Group__3857 = new BitSet(new long[]{0x0000000000F80000L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group__4_in_rule__MidiFile__Group__3860 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_3__0_in_rule__MidiFile__Group__3__Impl887 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group__4__Impl_in_rule__MidiFile__Group__4918 = new BitSet(new long[]{0x0000000000F80000L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group__5_in_rule__MidiFile__Group__4921 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_4__0_in_rule__MidiFile__Group__4__Impl948 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group__5__Impl_in_rule__MidiFile__Group__5979 = new BitSet(new long[]{0x0000000000F80000L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group__6_in_rule__MidiFile__Group__5982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_5__0_in_rule__MidiFile__Group__5__Impl1009 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group__6__Impl_in_rule__MidiFile__Group__61040 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_6__0_in_rule__MidiFile__Group__6__Impl1067 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_1__0__Impl_in_rule__MidiFile__Group_1__01112 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_1__1_in_rule__MidiFile__Group_1__01115 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_rule__MidiFile__Group_1__0__Impl1143 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_1__1__Impl_in_rule__MidiFile__Group_1__11174 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__NameAssignment_1_1_in_rule__MidiFile__Group_1__1__Impl1201 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_2__0__Impl_in_rule__MidiFile__Group_2__01235 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_2__1_in_rule__MidiFile__Group_2__01238 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_rule__MidiFile__Group_2__0__Impl1266 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_2__1__Impl_in_rule__MidiFile__Group_2__11297 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__PathAssignment_2_1_in_rule__MidiFile__Group_2__1__Impl1324 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_3__0__Impl_in_rule__MidiFile__Group_3__01358 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_3__1_in_rule__MidiFile__Group_3__01361 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_rule__MidiFile__Group_3__0__Impl1389 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_3__1__Impl_in_rule__MidiFile__Group_3__11420 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__FontsizeAssignment_3_1_in_rule__MidiFile__Group_3__1__Impl1447 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_4__0__Impl_in_rule__MidiFile__Group_4__01481 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_4__1_in_rule__MidiFile__Group_4__01484 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_rule__MidiFile__Group_4__0__Impl1512 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_4__1__Impl_in_rule__MidiFile__Group_4__11543 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__PicAssignment_4_1_in_rule__MidiFile__Group_4__1__Impl1570 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_5__0__Impl_in_rule__MidiFile__Group_5__01604 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_5__1_in_rule__MidiFile__Group_5__01607 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_rule__MidiFile__Group_5__0__Impl1635 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_5__1__Impl_in_rule__MidiFile__Group_5__11666 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__KeyAssignment_5_1_in_rule__MidiFile__Group_5__1__Impl1693 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_6__0__Impl_in_rule__MidiFile__Group_6__01727 = new BitSet(new long[]{0x000000000103F800L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_6__1_in_rule__MidiFile__Group_6__01730 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_rule__MidiFile__Group_6__0__Impl1758 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_6__1__Impl_in_rule__MidiFile__Group_6__11789 = new BitSet(new long[]{0x000000000103F800L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_6__2_in_rule__MidiFile__Group_6__11792 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFile__PartsAssignment_6_1_in_rule__MidiFile__Group_6__1__Impl1819 = new BitSet(new long[]{0x000000000003F802L});
+    public static final BitSet FOLLOW_rule__MidiFile__Group_6__2__Impl_in_rule__MidiFile__Group_6__21850 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_rule__MidiFile__Group_6__2__Impl1878 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group__0__Impl_in_rule__MidiFilePart__Group__01915 = new BitSet(new long[]{0x000000000003F800L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group__1_in_rule__MidiFilePart__Group__01918 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group__1__Impl_in_rule__MidiFilePart__Group__11976 = new BitSet(new long[]{0x0000000006800000L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group__2_in_rule__MidiFilePart__Group__11979 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__ParttypeAssignment_1_in_rule__MidiFilePart__Group__1__Impl2006 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group__2__Impl_in_rule__MidiFilePart__Group__22036 = new BitSet(new long[]{0x0000000006800000L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group__3_in_rule__MidiFilePart__Group__22039 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_2__0_in_rule__MidiFilePart__Group__2__Impl2066 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group__3__Impl_in_rule__MidiFilePart__Group__32097 = new BitSet(new long[]{0x0000000006800000L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group__4_in_rule__MidiFilePart__Group__32100 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_3__0_in_rule__MidiFilePart__Group__3__Impl2127 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group__4__Impl_in_rule__MidiFilePart__Group__42158 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__0_in_rule__MidiFilePart__Group__4__Impl2185 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_2__0__Impl_in_rule__MidiFilePart__Group_2__02226 = new BitSet(new long[]{0x0000000010000040L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_2__1_in_rule__MidiFilePart__Group_2__02229 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_rule__MidiFilePart__Group_2__0__Impl2257 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_2__1__Impl_in_rule__MidiFilePart__Group_2__12288 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__BarAssignment_2_1_in_rule__MidiFilePart__Group_2__1__Impl2315 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_3__0__Impl_in_rule__MidiFilePart__Group_3__02349 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_3__1_in_rule__MidiFilePart__Group_3__02352 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_rule__MidiFilePart__Group_3__0__Impl2380 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_3__1__Impl_in_rule__MidiFilePart__Group_3__12411 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__RefPartAssignment_3_1_in_rule__MidiFilePart__Group_3__1__Impl2438 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__0__Impl_in_rule__MidiFilePart__Group_4__02472 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__1_in_rule__MidiFilePart__Group_4__02475 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_rule__MidiFilePart__Group_4__0__Impl2503 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__1__Impl_in_rule__MidiFilePart__Group_4__12534 = new BitSet(new long[]{0x0000000009000000L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__2_in_rule__MidiFilePart__Group_4__12537 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__TextlinesAssignment_4_1_in_rule__MidiFilePart__Group_4__1__Impl2564 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__2__Impl_in_rule__MidiFilePart__Group_4__22594 = new BitSet(new long[]{0x0000000009000000L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__3_in_rule__MidiFilePart__Group_4__22597 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_4_2__0_in_rule__MidiFilePart__Group_4__2__Impl2624 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_4__3__Impl_in_rule__MidiFilePart__Group_4__32655 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_rule__MidiFilePart__Group_4__3__Impl2683 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_4_2__0__Impl_in_rule__MidiFilePart__Group_4_2__02722 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_4_2__1_in_rule__MidiFilePart__Group_4_2__02725 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_rule__MidiFilePart__Group_4_2__0__Impl2753 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__Group_4_2__1__Impl_in_rule__MidiFilePart__Group_4_2__12784 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFilePart__TextlinesAssignment_4_2_1_in_rule__MidiFilePart__Group_4_2__1__Impl2811 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileTextLine__Group__0__Impl_in_rule__MidiFileTextLine__Group__02845 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_rule__MidiFileTextLine__Group__1_in_rule__MidiFileTextLine__Group__02848 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileTextLine__Group__1__Impl_in_rule__MidiFileTextLine__Group__12906 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileTextLine__Group_1__0_in_rule__MidiFileTextLine__Group__1__Impl2933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileTextLine__Group_1__0__Impl_in_rule__MidiFileTextLine__Group_1__02968 = new BitSet(new long[]{0x0000000021000030L});
+    public static final BitSet FOLLOW_rule__MidiFileTextLine__Group_1__1_in_rule__MidiFileTextLine__Group_1__02971 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_rule__MidiFileTextLine__Group_1__0__Impl2999 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileTextLine__Group_1__1__Impl_in_rule__MidiFileTextLine__Group_1__13030 = new BitSet(new long[]{0x0000000021000030L});
+    public static final BitSet FOLLOW_rule__MidiFileTextLine__Group_1__2_in_rule__MidiFileTextLine__Group_1__13033 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileTextLine__ChordPartsAssignment_1_1_in_rule__MidiFileTextLine__Group_1__1__Impl3060 = new BitSet(new long[]{0x0000000020000032L});
+    public static final BitSet FOLLOW_rule__MidiFileTextLine__Group_1__2__Impl_in_rule__MidiFileTextLine__Group_1__23091 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_rule__MidiFileTextLine__Group_1__2__Impl3119 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EInt__Group__0__Impl_in_rule__EInt__Group__03156 = new BitSet(new long[]{0x0000000010000040L});
+    public static final BitSet FOLLOW_rule__EInt__Group__1_in_rule__EInt__Group__03159 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_rule__EInt__Group__0__Impl3188 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EInt__Group__1__Impl_in_rule__EInt__Group__13221 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rule__EInt__Group__1__Impl3248 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileChordPart__Group__0__Impl_in_rule__MidiFileChordPart__Group__03281 = new BitSet(new long[]{0x0000000020000030L});
+    public static final BitSet FOLLOW_rule__MidiFileChordPart__Group__1_in_rule__MidiFileChordPart__Group__03284 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileChordPart__Group__1__Impl_in_rule__MidiFileChordPart__Group__13342 = new BitSet(new long[]{0x0000000020000030L});
+    public static final BitSet FOLLOW_rule__MidiFileChordPart__Group__2_in_rule__MidiFileChordPart__Group__13345 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileChordPart__Group_1__0_in_rule__MidiFileChordPart__Group__1__Impl3372 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileChordPart__Group__2__Impl_in_rule__MidiFileChordPart__Group__23403 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileChordPart__TextAssignment_2_in_rule__MidiFileChordPart__Group__2__Impl3430 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileChordPart__Group_1__0__Impl_in_rule__MidiFileChordPart__Group_1__03466 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_rule__MidiFileChordPart__Group_1__1_in_rule__MidiFileChordPart__Group_1__03469 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__MidiFileChordPart__Group_1__0__Impl3497 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileChordPart__Group_1__1__Impl_in_rule__MidiFileChordPart__Group_1__13528 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_rule__MidiFileChordPart__Group_1__2_in_rule__MidiFileChordPart__Group_1__13531 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileChordPart__ChordAssignment_1_1_in_rule__MidiFileChordPart__Group_1__1__Impl3558 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MidiFileChordPart__Group_1__2__Impl_in_rule__MidiFileChordPart__Group_1__23588 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_rule__MidiFileChordPart__Group_1__2__Impl3616 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEString_in_rule__MidiFile__NameAssignment_1_13658 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEString_in_rule__MidiFile__PathAssignment_2_13689 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEString_in_rule__MidiFile__FontsizeAssignment_3_13720 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEString_in_rule__MidiFile__PicAssignment_4_13751 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEString_in_rule__MidiFile__KeyAssignment_5_13782 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMidiFilePart_in_rule__MidiFile__PartsAssignment_6_13813 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMidiFilePartType_in_rule__MidiFilePart__ParttypeAssignment_13844 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEInt_in_rule__MidiFilePart__BarAssignment_2_13875 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEString_in_rule__MidiFilePart__RefPartAssignment_3_13910 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMidiFileTextLine_in_rule__MidiFilePart__TextlinesAssignment_4_13945 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMidiFileTextLine_in_rule__MidiFilePart__TextlinesAssignment_4_2_13976 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMidiFileChordPart_in_rule__MidiFileTextLine__ChordPartsAssignment_1_14007 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEString_in_rule__MidiFileChordPart__ChordAssignment_1_14038 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEString_in_rule__MidiFileChordPart__TextAssignment_24069 = new BitSet(new long[]{0x0000000000000002L});
 
 }

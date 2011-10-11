@@ -35,5 +35,7 @@ public class MidiPlayerStandaloneSetupGenerated implements ISetup {
 		
 
 
+
+
 	}
 }

@@ -31,7 +31,6 @@ public class ContentPart extends AbstractPart implements IPresentationView {
 
   private List <Text> textLines = new ArrayList<Text>();
 
-  private Point size;
 
   private Slide currentSlide;
 
@@ -77,6 +76,9 @@ public class ContentPart extends AbstractPart implements IPresentationView {
 
     for (int i = 0; i < getCurrentSlide().getLineCount(); i++) {
       Collection<SlideItem> items = getCurrentSlide().getItems(i);
+      if (items.isEmpty())
+        continue; 
+      
       SlideItem next = items.iterator().next();
       Text nextText = new Text(this, SWT.NONE);
       nextText.setFont(next.getFont());
@@ -121,7 +123,7 @@ public class ContentPart extends AbstractPart implements IPresentationView {
 
   @Override
   public void showSlide (MidiFilePart part) {
-    showPart(part, size);
+    showPart(part, getSize());
   }
 
 

@@ -39,118 +39,118 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class GalleryImpl extends EObjectImpl implements Gallery {
 	/**
-	 * The cached value of the '{@link #getGalleryItems() <em>Gallery Items</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getGalleryItems() <em>Gallery Items</em>}' containment reference list.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGalleryItems()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getGalleryItems()
+   * @generated
+   * @ordered
+   */
 	protected EList<AbstractSessionItem> galleryItems;
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected GalleryImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return MidiplayerPackage.Literals.GALLERY;
-	}
+    return MidiplayerPackage.Literals.GALLERY;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public EList<AbstractSessionItem> getGalleryItems() {
-		if (galleryItems == null) {
-			galleryItems = new EObjectContainmentEList<AbstractSessionItem>(AbstractSessionItem.class, this, MidiplayerPackage.GALLERY__GALLERY_ITEMS);
-		}
-		return galleryItems;
-	}
+    if (galleryItems == null) {
+      galleryItems = new EObjectContainmentEList<AbstractSessionItem>(AbstractSessionItem.class, this, MidiplayerPackage.GALLERY__GALLERY_ITEMS);
+    }
+    return galleryItems;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MidiplayerPackage.GALLERY__GALLERY_ITEMS:
-				return ((InternalEList<?>)getGalleryItems()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+    switch (featureID) {
+      case MidiplayerPackage.GALLERY__GALLERY_ITEMS:
+        return ((InternalEList<?>)getGalleryItems()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case MidiplayerPackage.GALLERY__GALLERY_ITEMS:
-				return getGalleryItems();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID) {
+      case MidiplayerPackage.GALLERY__GALLERY_ITEMS:
+        return getGalleryItems();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case MidiplayerPackage.GALLERY__GALLERY_ITEMS:
-				getGalleryItems().clear();
-				getGalleryItems().addAll((Collection<? extends AbstractSessionItem>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID) {
+      case MidiplayerPackage.GALLERY__GALLERY_ITEMS:
+        getGalleryItems().clear();
+        getGalleryItems().addAll((Collection<? extends AbstractSessionItem>)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case MidiplayerPackage.GALLERY__GALLERY_ITEMS:
-				getGalleryItems().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID) {
+      case MidiplayerPackage.GALLERY__GALLERY_ITEMS:
+        getGalleryItems().clear();
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case MidiplayerPackage.GALLERY__GALLERY_ITEMS:
-				return galleryItems != null && !galleryItems.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID) {
+      case MidiplayerPackage.GALLERY__GALLERY_ITEMS:
+        return galleryItems != null && !galleryItems.isEmpty();
+    }
+    return super.eIsSet(featureID);
+  }
 
 } //GalleryImpl

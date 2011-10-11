@@ -9,12 +9,11 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.mda.IPresentationController;
 import org.mda.IPresentationView;
-import org.mda.editor.preview.ui.PreviewEditorContent;
 
 
 public class SlideListPart extends AbstractPart implements IPresentationController {
 
-  private List <SlideItemPanel> slideItems = new ArrayList<SlideItemPanel>();
+  private final List <SlideItemPanel> slideItems = new ArrayList<SlideItemPanel>();
 
   private IPresentationView view;
 
@@ -29,10 +28,10 @@ public class SlideListPart extends AbstractPart implements IPresentationControll
     super.setMidifile(file);
 
     //remove old items
-    for (SlideItemPanel nextPanel: slideItems) {
+    for (SlideItemPanel nextPanel: getSlideItems()) {
       nextPanel.dispose();
     }
-    slideItems.clear();
+    getSlideItems().clear();
 
     //add new items
     for (MidiFilePart nextPart: file.getParts()) {
@@ -40,7 +39,7 @@ public class SlideListPart extends AbstractPart implements IPresentationControll
       nextPanel.setModelPart(nextPart);
       nextPanel.setContent(getEditorContent());
 
-      slideItems.add(nextPanel);
+      getSlideItems().add(nextPanel);
     }
   }
 
@@ -49,4 +48,9 @@ public class SlideListPart extends AbstractPart implements IPresentationControll
     this.view = view;
   }
 
+  public List <SlideItemPanel> getSlideItems () {
+    return slideItems;
+  }
+
+  
 }

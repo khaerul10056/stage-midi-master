@@ -8,8 +8,10 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.jface.text,
  org.eclipse.ui.editors,
- org.mda.core;bundle-version="1.0.0",
- org.mda.presenter.ui;bundle-version="1.0.0",
- org.mda.commons.ui;bundle-version="1.0.0"
+ org.mda.core;bundle-version="1.0.0";visibility:=reexport,
+ org.mda.presenter.ui;bundle-version="1.0.0";visibility:=reexport,
+ org.mda.commons.ui;bundle-version="1.0.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.mda.editor.preview.ui,
+ org.mda.editor.preview.ui.parts

@@ -17,7 +17,7 @@ public class PDFExporterTest {
 	public void exportTests () {
 		PDFExporter exporter = new PDFExporter();
 		exporter.setExportPath(new File ("tmp"));
-		MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
+		MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("../org.mda.core.test/conf/midiplayer.conf"));
 		for (AbstractSessionItem nextFile: loadRootObject.getSessions().get(0).getItems()) {
 			if (nextFile instanceof MidiFile) {
 				exporter.exportMidifile((MidiFile) nextFile);

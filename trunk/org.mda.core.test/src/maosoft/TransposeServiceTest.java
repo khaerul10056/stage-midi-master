@@ -18,7 +18,7 @@ public class TransposeServiceTest {
 
 	@Test
 	public void transposeFromCToF () throws Exception {
-		MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
+		MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("../org.mda.core.test/conf/midiplayer.conf"));
 		MidiFileSearchConf conf = new MidiFileSearchConf();
 		conf.setTitle("Alle");
 		List<AbstractSessionItem> find = MidiPlayerService.find(loadRootObject, conf);

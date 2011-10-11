@@ -25,214 +25,214 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public static MidiplayerFactory init() {
-		try {
-			MidiplayerFactory theMidiplayerFactory = (MidiplayerFactory)EPackage.Registry.INSTANCE.getEFactory("org.mda.model"); 
-			if (theMidiplayerFactory != null) {
-				return theMidiplayerFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new MidiplayerFactoryImpl();
-	}
+    try {
+      MidiplayerFactory theMidiplayerFactory = (MidiplayerFactory)EPackage.Registry.INSTANCE.getEFactory("org.mda.model"); 
+      if (theMidiplayerFactory != null) {
+        return theMidiplayerFactory;
+      }
+    }
+    catch (Exception exception) {
+      EcorePlugin.INSTANCE.log(exception);
+    }
+    return new MidiplayerFactoryImpl();
+  }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public MidiplayerFactoryImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case MidiplayerPackage.SESSION: return createSession();
-			case MidiplayerPackage.MIDI_FILE: return createMidiFile();
-			case MidiplayerPackage.TEXT_PRESENTATION_EVENT: return createTextPresentationEvent();
-			case MidiplayerPackage.MIDI_FILE_PART: return createMidiFilePart();
-			case MidiplayerPackage.MIDI_FILE_TEXT_LINE: return createMidiFileTextLine();
-			case MidiplayerPackage.GALLERY: return createGallery();
-			case MidiplayerPackage.MIDI_PLAYER_ROOT: return createMidiPlayerRoot();
-			case MidiplayerPackage.MIDI_FILE_CHORD_PART: return createMidiFileChordPart();
-			case MidiplayerPackage.CONFIGURATION: return createConfiguration();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+    switch (eClass.getClassifierID()) {
+      case MidiplayerPackage.SESSION: return createSession();
+      case MidiplayerPackage.MIDI_FILE: return createMidiFile();
+      case MidiplayerPackage.TEXT_PRESENTATION_EVENT: return createTextPresentationEvent();
+      case MidiplayerPackage.MIDI_FILE_PART: return createMidiFilePart();
+      case MidiplayerPackage.MIDI_FILE_TEXT_LINE: return createMidiFileTextLine();
+      case MidiplayerPackage.GALLERY: return createGallery();
+      case MidiplayerPackage.MIDI_PLAYER_ROOT: return createMidiPlayerRoot();
+      case MidiplayerPackage.MIDI_FILE_CHORD_PART: return createMidiFileChordPart();
+      case MidiplayerPackage.CONFIGURATION: return createConfiguration();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case MidiplayerPackage.MIDI_FILE_PART_TYPE:
-				return createMidiFilePartTypeFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+    switch (eDataType.getClassifierID()) {
+      case MidiplayerPackage.MIDI_FILE_PART_TYPE:
+        return createMidiFilePartTypeFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case MidiplayerPackage.MIDI_FILE_PART_TYPE:
-				return convertMidiFilePartTypeToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+    switch (eDataType.getClassifierID()) {
+      case MidiplayerPackage.MIDI_FILE_PART_TYPE:
+        return convertMidiFilePartTypeToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Session createSession() {
-		SessionImpl session = new SessionImpl();
-		return session;
-	}
+    SessionImpl session = new SessionImpl();
+    return session;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public MidiFile createMidiFile() {
-		MidiFileImpl midiFile = new MidiFileImpl();
-		return midiFile;
-	}
+    MidiFileImpl midiFile = new MidiFileImpl();
+    return midiFile;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public TextPresentationEvent createTextPresentationEvent() {
-		TextPresentationEventImpl textPresentationEvent = new TextPresentationEventImpl();
-		return textPresentationEvent;
-	}
+    TextPresentationEventImpl textPresentationEvent = new TextPresentationEventImpl();
+    return textPresentationEvent;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public MidiFilePart createMidiFilePart() {
-		MidiFilePartImpl midiFilePart = new MidiFilePartImpl();
-		return midiFilePart;
-	}
+    MidiFilePartImpl midiFilePart = new MidiFilePartImpl();
+    return midiFilePart;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public MidiFileTextLine createMidiFileTextLine() {
-		MidiFileTextLineImpl midiFileTextLine = new MidiFileTextLineImpl();
-		return midiFileTextLine;
-	}
+    MidiFileTextLineImpl midiFileTextLine = new MidiFileTextLineImpl();
+    return midiFileTextLine;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Gallery createGallery() {
-		GalleryImpl gallery = new GalleryImpl();
-		return gallery;
-	}
+    GalleryImpl gallery = new GalleryImpl();
+    return gallery;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public MidiPlayerRoot createMidiPlayerRoot() {
-		MidiPlayerRootImpl midiPlayerRoot = new MidiPlayerRootImpl();
-		return midiPlayerRoot;
-	}
+    MidiPlayerRootImpl midiPlayerRoot = new MidiPlayerRootImpl();
+    return midiPlayerRoot;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public MidiFileChordPart createMidiFileChordPart() {
-		MidiFileChordPartImpl midiFileChordPart = new MidiFileChordPartImpl();
-		return midiFileChordPart;
-	}
+    MidiFileChordPartImpl midiFileChordPart = new MidiFileChordPartImpl();
+    return midiFileChordPart;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public Configuration createConfiguration() {
-		ConfigurationImpl configuration = new ConfigurationImpl();
-		return configuration;
-	}
+    ConfigurationImpl configuration = new ConfigurationImpl();
+    return configuration;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public MidiFilePartType createMidiFilePartTypeFromString(EDataType eDataType, String initialValue) {
-		MidiFilePartType result = MidiFilePartType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+    MidiFilePartType result = MidiFilePartType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public String convertMidiFilePartTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+    return instanceValue == null ? null : instanceValue.toString();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public MidiplayerPackage getMidiplayerPackage() {
-		return (MidiplayerPackage)getEPackage();
-	}
+    return (MidiplayerPackage)getEPackage();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+   * @deprecated
+   * @generated
+   */
 	@Deprecated
 	public static MidiplayerPackage getPackage() {
-		return MidiplayerPackage.eINSTANCE;
-	}
+    return MidiplayerPackage.eINSTANCE;
+  }
 
 } //MidiplayerFactoryImpl
