@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
-
 import mda.AbstractSessionItem;
 import mda.Gallery;
 import mda.MidiFile;
@@ -18,7 +17,6 @@ import mda.MidiPlayerRoot;
 import mda.MidiplayerFactory;
 import mda.MidiplayerPackage;
 import mda.Session;
-
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -56,6 +54,8 @@ public class MidiPlayerService {
       return (MidiPlayerRoot) poResource.getContents().get(0);
     } else return mf.createMidiPlayerRoot();
   }
+
+
 
   /**
    * find sessionitems by searchconf
@@ -203,6 +203,25 @@ public class MidiPlayerService {
     }
   }
 
+  public final static MidiFilePart getCurrentPart (final MidiFile midifile, int number) {
+    MidiFilePart currentPart = null;
+    for (MidiFilePart nextPart: midifile.getParts()) {
+      if (nextPart.getBar() <= number)
+        currentPart = nextPart;
+    }
+
+    return currentPart;
+  }
+
+  public final static MidiFilePart getNextPart (final MidiFile midifile, int number) {
+    for (MidiFilePart nextPart: midifile.getParts()) {
+      if (nextPart.getBar() > number)
+        return nextPart;
+    }
+
+    return null;
+
+  }
 
   /**
    * getter
@@ -233,7 +252,7 @@ public class MidiPlayerService {
 
   }
 
-  private static List<MidiFilePart> filterIgnoredPartTypes (final Collection<MidiFilePart> unfiltered, MidiFileContentEditorConfigIF config) {
+  private static List<MidiFilePart> filterIgnoredPartTypes (final Collection<MidiFilePart> unfiltered, IMidiFileEditorConfig config) {
     List <MidiFilePart> filtered = new ArrayList<MidiFilePart>();
     for (MidiFilePart nextPart: unfiltered) {
       if (! config.isPartIgnored(nextPart.getParttype()))
@@ -259,14 +278,11 @@ public class MidiPlayerService {
 
 
 
-  public static List<MidiFilePart> getCurrentParts (MidiFile file, int currentBar, MidiFileContentEditorConfigIF config) {
+  public static List<MidiFilePart> getCurrentParts (MidiFile file, int currentBar, IMidiFileEditorConfig config) {
     List <MidiFilePart> parts = ECollections.emptyEList();
-    if (config.isShowOnlyCurrentPart()) {
-      if (currentBar >= 0)
-        parts = MidiPlayerService.getPartsForBar (file, currentBar, config);
-    }
-    else if (file != null)
-      parts = file.getParts();
+    if (currentBar >= 0)
+      parts = MidiPlayerService.getPartsForBar (file, currentBar, config);
+
 
     parts = filterIgnoredPartTypes(parts, config);
 
@@ -274,7 +290,7 @@ public class MidiPlayerService {
 
   }
 
-  private static List<MidiFilePart> getPartsForBar(MidiFile file, int currentBar, MidiFileContentEditorConfigIF config) {
+  private static List<MidiFilePart> getPartsForBar(MidiFile file, int currentBar, IMidiFileEditorConfig config) {
     MidiFilePart fromPart = null;
     MidiFilePart toPart = null;
 
