@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="MDA-Product" uid="org.mda.product" id="org.eclipse.sdk.ide" application="org.eclipse.ui.ide.workbench" version="1.0.0" useFeatures="true" includeLaunchers="true">
+
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
+   </launcherArgs>
+
+   <windowImages/>
+
+
+   <launcher>
+      <solaris/>
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+
+   <vm>
+   </vm>
+
+
+   <plugins>
+      <plugin id="org.mda.core"/>
+      <plugin id="org.mda.model"/>
+      <plugin id="org.mda.ui"/>
+   </plugins>
+
+   <features>
+      <feature id="org.mda.feature" version="1.0.0.qualifier"/>
+   </features>
+
+
+</product>

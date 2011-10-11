@@ -1,0 +1,27 @@
+<project name="stage-midi-master" default="deploy" basedir=".">
+
+	<target name="deploy">
+		<jar  destfile="smm.jar">
+			<fileset dir="../org.mda.core/bin">
+				<include name="**/**/*.class"/>
+			</fileset>
+			<fileset dir="../org.mda.model/bin">
+					<include name="**/**/*.class"/>
+			</fileset>
+			<fileset dir="../org.mda.ui/bin">
+					<include name="**/**/*.class"/>
+			</fileset>
+
+			<fileset dir="/home/oleym/entwicklung/programs/eclipse/plugins/">
+				<include name="org.eclipse.emf.ecore_**.jar"/>
+			</fileset>
+
+			<manifest>
+			    <attribute name="Main-Class" value="org.mda.ui.MidiPlayerApplicationFrame" />
+			</manifest>
+		</jar>
+
+
+	</target>
+
+</project>
