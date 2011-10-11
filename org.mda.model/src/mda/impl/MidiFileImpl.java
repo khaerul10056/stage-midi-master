@@ -39,284 +39,284 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
 	/**
-	 * The cached value of the '{@link #getParts() <em>Parts</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getParts() <em>Parts</em>}' containment reference list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getParts()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getParts()
+   * @generated
+   * @ordered
+   */
   protected EList<MidiFilePart> parts;
   /**
-	 * The default value of the '{@link #getFontsize() <em>Fontsize</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getFontsize() <em>Fontsize</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getFontsize()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getFontsize()
+   * @generated
+   * @ordered
+   */
   protected static final String FONTSIZE_EDEFAULT = null;
   /**
-	 * The cached value of the '{@link #getFontsize() <em>Fontsize</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getFontsize() <em>Fontsize</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getFontsize()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getFontsize()
+   * @generated
+   * @ordered
+   */
   protected String fontsize = FONTSIZE_EDEFAULT;
   /**
-	 * The default value of the '{@link #getPic() <em>Pic</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getPic() <em>Pic</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getPic()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getPic()
+   * @generated
+   * @ordered
+   */
   protected static final String PIC_EDEFAULT = null;
   /**
-	 * The cached value of the '{@link #getPic() <em>Pic</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getPic() <em>Pic</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getPic()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getPic()
+   * @generated
+   * @ordered
+   */
   protected String pic = PIC_EDEFAULT;
   /**
-	 * The default value of the '{@link #getKey() <em>Key</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getKey() <em>Key</em>}' attribute.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getKey()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getKey()
+   * @generated
+   * @ordered
+   */
 	protected static final String KEY_EDEFAULT = null;
 		/**
-	 * The cached value of the '{@link #getKey() <em>Key</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getKey() <em>Key</em>}' attribute.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getKey()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getKey()
+   * @generated
+   * @ordered
+   */
 	protected String key = KEY_EDEFAULT;
 		/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected MidiFileImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return MidiplayerPackage.Literals.MIDI_FILE;
-	}
+    return MidiplayerPackage.Literals.MIDI_FILE;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EList<MidiFilePart> getParts() {
-		if (parts == null) {
-			parts = new EObjectContainmentEList<MidiFilePart>(MidiFilePart.class, this, MidiplayerPackage.MIDI_FILE__PARTS);
-		}
-		return parts;
-	}
+    if (parts == null) {
+      parts = new EObjectContainmentEList<MidiFilePart>(MidiFilePart.class, this, MidiplayerPackage.MIDI_FILE__PARTS);
+    }
+    return parts;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getFontsize() {
-		return fontsize;
-	}
+    return fontsize;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setFontsize(String newFontsize) {
-		String oldFontsize = fontsize;
-		fontsize = newFontsize;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE__FONTSIZE, oldFontsize, fontsize));
-	}
+    String oldFontsize = fontsize;
+    fontsize = newFontsize;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE__FONTSIZE, oldFontsize, fontsize));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getPic() {
-		return pic;
-	}
+    return pic;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setPic(String newPic) {
-		String oldPic = pic;
-		pic = newPic;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE__PIC, oldPic, pic));
-	}
+    String oldPic = pic;
+    pic = newPic;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE__PIC, oldPic, pic));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public String getKey() {
-		return key;
-	}
+    return key;
+  }
 
 		/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setKey(String newKey) {
-		String oldKey = key;
-		key = newKey;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE__KEY, oldKey, key));
-	}
+    String oldKey = key;
+    key = newKey;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE__KEY, oldKey, key));
+  }
 
 		/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MidiplayerPackage.MIDI_FILE__PARTS:
-				return ((InternalEList<?>)getParts()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+    switch (featureID) {
+      case MidiplayerPackage.MIDI_FILE__PARTS:
+        return ((InternalEList<?>)getParts()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case MidiplayerPackage.MIDI_FILE__PARTS:
-				return getParts();
-			case MidiplayerPackage.MIDI_FILE__FONTSIZE:
-				return getFontsize();
-			case MidiplayerPackage.MIDI_FILE__PIC:
-				return getPic();
-			case MidiplayerPackage.MIDI_FILE__KEY:
-				return getKey();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID) {
+      case MidiplayerPackage.MIDI_FILE__PARTS:
+        return getParts();
+      case MidiplayerPackage.MIDI_FILE__FONTSIZE:
+        return getFontsize();
+      case MidiplayerPackage.MIDI_FILE__PIC:
+        return getPic();
+      case MidiplayerPackage.MIDI_FILE__KEY:
+        return getKey();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case MidiplayerPackage.MIDI_FILE__PARTS:
-				getParts().clear();
-				getParts().addAll((Collection<? extends MidiFilePart>)newValue);
-				return;
-			case MidiplayerPackage.MIDI_FILE__FONTSIZE:
-				setFontsize((String)newValue);
-				return;
-			case MidiplayerPackage.MIDI_FILE__PIC:
-				setPic((String)newValue);
-				return;
-			case MidiplayerPackage.MIDI_FILE__KEY:
-				setKey((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID) {
+      case MidiplayerPackage.MIDI_FILE__PARTS:
+        getParts().clear();
+        getParts().addAll((Collection<? extends MidiFilePart>)newValue);
+        return;
+      case MidiplayerPackage.MIDI_FILE__FONTSIZE:
+        setFontsize((String)newValue);
+        return;
+      case MidiplayerPackage.MIDI_FILE__PIC:
+        setPic((String)newValue);
+        return;
+      case MidiplayerPackage.MIDI_FILE__KEY:
+        setKey((String)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case MidiplayerPackage.MIDI_FILE__PARTS:
-				getParts().clear();
-				return;
-			case MidiplayerPackage.MIDI_FILE__FONTSIZE:
-				setFontsize(FONTSIZE_EDEFAULT);
-				return;
-			case MidiplayerPackage.MIDI_FILE__PIC:
-				setPic(PIC_EDEFAULT);
-				return;
-			case MidiplayerPackage.MIDI_FILE__KEY:
-				setKey(KEY_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID) {
+      case MidiplayerPackage.MIDI_FILE__PARTS:
+        getParts().clear();
+        return;
+      case MidiplayerPackage.MIDI_FILE__FONTSIZE:
+        setFontsize(FONTSIZE_EDEFAULT);
+        return;
+      case MidiplayerPackage.MIDI_FILE__PIC:
+        setPic(PIC_EDEFAULT);
+        return;
+      case MidiplayerPackage.MIDI_FILE__KEY:
+        setKey(KEY_EDEFAULT);
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case MidiplayerPackage.MIDI_FILE__PARTS:
-				return parts != null && !parts.isEmpty();
-			case MidiplayerPackage.MIDI_FILE__FONTSIZE:
-				return FONTSIZE_EDEFAULT == null ? fontsize != null : !FONTSIZE_EDEFAULT.equals(fontsize);
-			case MidiplayerPackage.MIDI_FILE__PIC:
-				return PIC_EDEFAULT == null ? pic != null : !PIC_EDEFAULT.equals(pic);
-			case MidiplayerPackage.MIDI_FILE__KEY:
-				return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID) {
+      case MidiplayerPackage.MIDI_FILE__PARTS:
+        return parts != null && !parts.isEmpty();
+      case MidiplayerPackage.MIDI_FILE__FONTSIZE:
+        return FONTSIZE_EDEFAULT == null ? fontsize != null : !FONTSIZE_EDEFAULT.equals(fontsize);
+      case MidiplayerPackage.MIDI_FILE__PIC:
+        return PIC_EDEFAULT == null ? pic != null : !PIC_EDEFAULT.equals(pic);
+      case MidiplayerPackage.MIDI_FILE__KEY:
+        return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
+    }
+    return super.eIsSet(featureID);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public String toString() {
-		if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (fontsize: ");
-		result.append(fontsize);
-		result.append(", pic: ");
-		result.append(pic);
-		result.append(", key: ");
-		result.append(key);
-		result.append(')');
-		return result.toString();
-	}
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (fontsize: ");
+    result.append(fontsize);
+    result.append(", pic: ");
+    result.append(pic);
+    result.append(", key: ");
+    result.append(key);
+    result.append(')');
+    return result.toString();
+  }
 
 } //MidiFileImpl

@@ -27,19 +27,19 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface MidiFileTextLine extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Chord Parts</b></em>' containment reference list.
-	 * The list contents are of type {@link mda.MidiFileChordPart}.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Chord Parts</b></em>' containment reference list.
+   * The list contents are of type {@link mda.MidiFileChordPart}.
+   * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Chord Parts</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Chord Parts</em>' containment reference list.
-	 * @see mda.MidiplayerPackage#getMidiFileTextLine_ChordParts()
-	 * @model containment="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Chord Parts</em>' containment reference list.
+   * @see mda.MidiplayerPackage#getMidiFileTextLine_ChordParts()
+   * @model containment="true"
+   * @generated
+   */
 	EList<MidiFileChordPart> getChordParts();
 
 } // MidiFileTextLine

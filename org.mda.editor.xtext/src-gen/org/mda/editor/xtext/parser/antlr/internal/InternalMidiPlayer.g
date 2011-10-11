@@ -19,11 +19,9 @@ import org.eclipse.xtext.parser.antlr.Lexer;
 @parser::header {
 package org.mda.editor.xtext.parser.antlr.internal; 
 
-import java.io.InputStream;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parser.*;
 import org.eclipse.xtext.parser.impl.*;
-import org.eclipse.xtext.parsetree.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.common.util.Enumerator;
@@ -31,7 +29,6 @@ import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
-import org.eclipse.xtext.conversion.ValueConverterException;
 import org.mda.editor.xtext.services.MidiPlayerGrammarAccess;
 
 }
@@ -40,17 +37,10 @@ import org.mda.editor.xtext.services.MidiPlayerGrammarAccess;
 
  	private MidiPlayerGrammarAccess grammarAccess;
  	
-    public InternalMidiPlayerParser(TokenStream input, IAstFactory factory, MidiPlayerGrammarAccess grammarAccess) {
+    public InternalMidiPlayerParser(TokenStream input, MidiPlayerGrammarAccess grammarAccess) {
         this(input);
-        this.factory = factory;
-        registerRules(grammarAccess.getGrammar());
         this.grammarAccess = grammarAccess;
-    }
-    
-    @Override
-    protected InputStream getTokenFile() {
-    	ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.tokens");
+        registerRules(grammarAccess.getGrammar());
     }
     
     @Override
@@ -77,7 +67,7 @@ import org.mda.editor.xtext.services.MidiPlayerGrammarAccess;
 // Entry rule entryRuleMidiFile
 entryRuleMidiFile returns [EObject current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getMidiFileRule(), currentNode); }
+	{ newCompositeNode(grammarAccess.getMidiFileRule()); }
 	 iv_ruleMidiFile=ruleMidiFile 
 	 { $current=$iv_ruleMidiFile.current; } 
 	 EOF 
@@ -85,193 +75,150 @@ entryRuleMidiFile returns [EObject current=null]
 
 // Rule MidiFile
 ruleMidiFile returns [EObject current=null] 
-    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 ((
-    { 
-        temp=factory.create(grammarAccess.getMidiFileAccess().getMidiFileAction_0().getType().getClassifier());
-        $current = temp; 
-        temp = null;
-        CompositeNode newNode = createCompositeNode(grammarAccess.getMidiFileAccess().getMidiFileAction_0(), currentNode.getParent());
-    newNode.getChildren().add(currentNode);
-    moveLookaheadInfo(currentNode, newNode);
-    currentNode = newNode; 
-        associateNodeWithAstElement(currentNode, $current); 
-    }
-)(	'name' 
     {
-        createLeafNode(grammarAccess.getMidiFileAccess().getNameKeyword_1_0(), null); 
+        $current = forceCreateModelElement(
+            grammarAccess.getMidiFileAccess().getMidiFileAction_0(),
+            $current);
+    }
+)(	otherlv_1='name' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getMidiFileAccess().getNameKeyword_1_0());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getMidiFileAccess().getNameEStringParserRuleCall_1_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getMidiFileAccess().getNameEStringParserRuleCall_1_1_0()); 
 	    }
 		lv_name_2_0=ruleEString		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getMidiFileRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getMidiFileRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"name",
-	        		lv_name_2_0, 
-	        		"EString", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		set(
+       			$current, 
+       			"name",
+        		lv_name_2_0, 
+        		"EString");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))(	'path' 
+))(	otherlv_3='path' 
     {
-        createLeafNode(grammarAccess.getMidiFileAccess().getPathKeyword_2_0(), null); 
+    	newLeafNode(otherlv_3, grammarAccess.getMidiFileAccess().getPathKeyword_2_0());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getMidiFileAccess().getPathEStringParserRuleCall_2_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getMidiFileAccess().getPathEStringParserRuleCall_2_1_0()); 
 	    }
 		lv_path_4_0=ruleEString		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getMidiFileRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getMidiFileRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"path",
-	        		lv_path_4_0, 
-	        		"EString", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		set(
+       			$current, 
+       			"path",
+        		lv_path_4_0, 
+        		"EString");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))?(	'fontsize' 
+))?(	otherlv_5='fontsize' 
     {
-        createLeafNode(grammarAccess.getMidiFileAccess().getFontsizeKeyword_3_0(), null); 
+    	newLeafNode(otherlv_5, grammarAccess.getMidiFileAccess().getFontsizeKeyword_3_0());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getMidiFileAccess().getFontsizeEStringParserRuleCall_3_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getMidiFileAccess().getFontsizeEStringParserRuleCall_3_1_0()); 
 	    }
 		lv_fontsize_6_0=ruleEString		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getMidiFileRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getMidiFileRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"fontsize",
-	        		lv_fontsize_6_0, 
-	        		"EString", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		set(
+       			$current, 
+       			"fontsize",
+        		lv_fontsize_6_0, 
+        		"EString");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))?(	'pic' 
+))?(	otherlv_7='pic' 
     {
-        createLeafNode(grammarAccess.getMidiFileAccess().getPicKeyword_4_0(), null); 
+    	newLeafNode(otherlv_7, grammarAccess.getMidiFileAccess().getPicKeyword_4_0());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getMidiFileAccess().getPicEStringParserRuleCall_4_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getMidiFileAccess().getPicEStringParserRuleCall_4_1_0()); 
 	    }
 		lv_pic_8_0=ruleEString		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getMidiFileRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getMidiFileRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"pic",
-	        		lv_pic_8_0, 
-	        		"EString", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		set(
+       			$current, 
+       			"pic",
+        		lv_pic_8_0, 
+        		"EString");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))?(	'key' 
+))?(	otherlv_9='key' 
     {
-        createLeafNode(grammarAccess.getMidiFileAccess().getKeyKeyword_5_0(), null); 
+    	newLeafNode(otherlv_9, grammarAccess.getMidiFileAccess().getKeyKeyword_5_0());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getMidiFileAccess().getKeyEStringParserRuleCall_5_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getMidiFileAccess().getKeyEStringParserRuleCall_5_1_0()); 
 	    }
 		lv_key_10_0=ruleEString		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getMidiFileRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getMidiFileRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"key",
-	        		lv_key_10_0, 
-	        		"EString", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		set(
+       			$current, 
+       			"key",
+        		lv_key_10_0, 
+        		"EString");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))?(	'{' 
+))?(	otherlv_11='{' 
     {
-        createLeafNode(grammarAccess.getMidiFileAccess().getLeftCurlyBracketKeyword_6_0(), null); 
+    	newLeafNode(otherlv_11, grammarAccess.getMidiFileAccess().getLeftCurlyBracketKeyword_6_0());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getMidiFileAccess().getPartsMidiFilePartParserRuleCall_6_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getMidiFileAccess().getPartsMidiFilePartParserRuleCall_6_1_0()); 
 	    }
 		lv_parts_12_0=ruleMidiFilePart		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getMidiFileRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getMidiFileRule());
 	        }
-	        try {
-	       		add(
-	       			$current, 
-	       			"parts",
-	        		lv_parts_12_0, 
-	        		"MidiFilePart", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		add(
+       			$current, 
+       			"parts",
+        		lv_parts_12_0, 
+        		"MidiFilePart");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*	'}' 
+)*	otherlv_13='}' 
     {
-        createLeafNode(grammarAccess.getMidiFileAccess().getRightCurlyBracketKeyword_6_2(), null); 
+    	newLeafNode(otherlv_13, grammarAccess.getMidiFileAccess().getRightCurlyBracketKeyword_6_2());
     }
 )?)
 ;
@@ -283,7 +230,7 @@ ruleMidiFile returns [EObject current=null]
 // Entry rule entryRuleEString
 entryRuleEString returns [String current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getEStringRule(), currentNode); } 
+	{ newCompositeNode(grammarAccess.getEStringRule()); } 
 	 iv_ruleEString=ruleEString 
 	 { $current=$iv_ruleEString.current.getText(); }  
 	 EOF 
@@ -291,17 +238,15 @@ entryRuleEString returns [String current=null]
 
 // Rule EString
 ruleEString returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
-    @init { setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-	    lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 (    this_STRING_0=RULE_STRING    {
 		$current.merge(this_STRING_0);
     }
 
     { 
-    createLeafNode(grammarAccess.getEStringAccess().getSTRINGTerminalRuleCall_0(), null); 
+    newLeafNode(this_STRING_0, grammarAccess.getEStringAccess().getSTRINGTerminalRuleCall_0()); 
     }
 
     |    this_ID_1=RULE_ID    {
@@ -309,7 +254,7 @@ ruleEString returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()
     }
 
     { 
-    createLeafNode(grammarAccess.getEStringAccess().getIDTerminalRuleCall_1(), null); 
+    newLeafNode(this_ID_1, grammarAccess.getEStringAccess().getIDTerminalRuleCall_1()); 
     }
 )
     ;
@@ -321,7 +266,7 @@ ruleEString returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()
 // Entry rule entryRuleMidiFilePart
 entryRuleMidiFilePart returns [EObject current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getMidiFilePartRule(), currentNode); }
+	{ newCompositeNode(grammarAccess.getMidiFilePartRule()); }
 	 iv_ruleMidiFilePart=ruleMidiFilePart 
 	 { $current=$iv_ruleMidiFilePart.current; } 
 	 EOF 
@@ -329,153 +274,121 @@ entryRuleMidiFilePart returns [EObject current=null]
 
 // Rule MidiFilePart
 ruleMidiFilePart returns [EObject current=null] 
-    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 ((
-    { 
-        temp=factory.create(grammarAccess.getMidiFilePartAccess().getMidiFilePartAction_0().getType().getClassifier());
-        $current = temp; 
-        temp = null;
-        CompositeNode newNode = createCompositeNode(grammarAccess.getMidiFilePartAccess().getMidiFilePartAction_0(), currentNode.getParent());
-    newNode.getChildren().add(currentNode);
-    moveLookaheadInfo(currentNode, newNode);
-    currentNode = newNode; 
-        associateNodeWithAstElement(currentNode, $current); 
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getMidiFilePartAccess().getMidiFilePartAction_0(),
+            $current);
     }
 )(
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getMidiFilePartAccess().getParttypeMidiFilePartTypeEnumRuleCall_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getMidiFilePartAccess().getParttypeMidiFilePartTypeEnumRuleCall_1_0()); 
 	    }
 		lv_parttype_1_0=ruleMidiFilePartType		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getMidiFilePartRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getMidiFilePartRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"parttype",
-	        		lv_parttype_1_0, 
-	        		"MidiFilePartType", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		set(
+       			$current, 
+       			"parttype",
+        		lv_parttype_1_0, 
+        		"MidiFilePartType");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	'bar' 
+)(	otherlv_2='bar' 
     {
-        createLeafNode(grammarAccess.getMidiFilePartAccess().getBarKeyword_2_0(), null); 
+    	newLeafNode(otherlv_2, grammarAccess.getMidiFilePartAccess().getBarKeyword_2_0());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getMidiFilePartAccess().getBarEIntParserRuleCall_2_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getMidiFilePartAccess().getBarEIntParserRuleCall_2_1_0()); 
 	    }
 		lv_bar_3_0=ruleEInt		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getMidiFilePartRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getMidiFilePartRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"bar",
-	        		lv_bar_3_0, 
-	        		"EInt", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		set(
+       			$current, 
+       			"bar",
+        		lv_bar_3_0, 
+        		"EInt");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))?(	'refPart' 
+))?(	otherlv_4='refPart' 
     {
-        createLeafNode(grammarAccess.getMidiFilePartAccess().getRefPartKeyword_3_0(), null); 
+    	newLeafNode(otherlv_4, grammarAccess.getMidiFilePartAccess().getRefPartKeyword_3_0());
     }
 (
 (
 		{
 			if ($current==null) {
-	            $current = factory.create(grammarAccess.getMidiFilePartRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getMidiFilePartRule());
 	        }
         }
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getMidiFilePartAccess().getRefPartMidiFilePartCrossReference_3_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getMidiFilePartAccess().getRefPartMidiFilePartCrossReference_3_1_0()); 
 	    }
 		ruleEString		{ 
-	        currentNode = currentNode.getParent();
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))?(	'{' 
+))?(	otherlv_6='{' 
     {
-        createLeafNode(grammarAccess.getMidiFilePartAccess().getLeftCurlyBracketKeyword_4_0(), null); 
+    	newLeafNode(otherlv_6, grammarAccess.getMidiFilePartAccess().getLeftCurlyBracketKeyword_4_0());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getMidiFilePartAccess().getTextlinesMidiFileTextLineParserRuleCall_4_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getMidiFilePartAccess().getTextlinesMidiFileTextLineParserRuleCall_4_1_0()); 
 	    }
 		lv_textlines_7_0=ruleMidiFileTextLine		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getMidiFilePartRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getMidiFilePartRule());
 	        }
-	        try {
-	       		add(
-	       			$current, 
-	       			"textlines",
-	        		lv_textlines_7_0, 
-	        		"MidiFileTextLine", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		add(
+       			$current, 
+       			"textlines",
+        		lv_textlines_7_0, 
+        		"MidiFileTextLine");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	',' 
+)(	otherlv_8=',' 
     {
-        createLeafNode(grammarAccess.getMidiFilePartAccess().getCommaKeyword_4_2_0(), null); 
+    	newLeafNode(otherlv_8, grammarAccess.getMidiFilePartAccess().getCommaKeyword_4_2_0());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getMidiFilePartAccess().getTextlinesMidiFileTextLineParserRuleCall_4_2_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getMidiFilePartAccess().getTextlinesMidiFileTextLineParserRuleCall_4_2_1_0()); 
 	    }
 		lv_textlines_9_0=ruleMidiFileTextLine		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getMidiFilePartRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getMidiFilePartRule());
 	        }
-	        try {
-	       		add(
-	       			$current, 
-	       			"textlines",
-	        		lv_textlines_9_0, 
-	        		"MidiFileTextLine", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		add(
+       			$current, 
+       			"textlines",
+        		lv_textlines_9_0, 
+        		"MidiFileTextLine");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))*	'}' 
+))*	otherlv_10='}' 
     {
-        createLeafNode(grammarAccess.getMidiFilePartAccess().getRightCurlyBracketKeyword_4_3(), null); 
+    	newLeafNode(otherlv_10, grammarAccess.getMidiFilePartAccess().getRightCurlyBracketKeyword_4_3());
     }
 )?)
 ;
@@ -487,7 +400,7 @@ ruleMidiFilePart returns [EObject current=null]
 // Entry rule entryRuleMidiFileTextLine
 entryRuleMidiFileTextLine returns [EObject current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getMidiFileTextLineRule(), currentNode); }
+	{ newCompositeNode(grammarAccess.getMidiFileTextLineRule()); }
 	 iv_ruleMidiFileTextLine=ruleMidiFileTextLine 
 	 { $current=$iv_ruleMidiFileTextLine.current; } 
 	 EOF 
@@ -495,53 +408,40 @@ entryRuleMidiFileTextLine returns [EObject current=null]
 
 // Rule MidiFileTextLine
 ruleMidiFileTextLine returns [EObject current=null] 
-    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 ((
-    { 
-        temp=factory.create(grammarAccess.getMidiFileTextLineAccess().getMidiFileTextLineAction_0().getType().getClassifier());
-        $current = temp; 
-        temp = null;
-        CompositeNode newNode = createCompositeNode(grammarAccess.getMidiFileTextLineAccess().getMidiFileTextLineAction_0(), currentNode.getParent());
-    newNode.getChildren().add(currentNode);
-    moveLookaheadInfo(currentNode, newNode);
-    currentNode = newNode; 
-        associateNodeWithAstElement(currentNode, $current); 
-    }
-)(	'{' 
     {
-        createLeafNode(grammarAccess.getMidiFileTextLineAccess().getLeftCurlyBracketKeyword_1_0(), null); 
+        $current = forceCreateModelElement(
+            grammarAccess.getMidiFileTextLineAccess().getMidiFileTextLineAction_0(),
+            $current);
+    }
+)(	otherlv_1='{' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getMidiFileTextLineAccess().getLeftCurlyBracketKeyword_1_0());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getMidiFileTextLineAccess().getChordPartsMidiFileChordPartParserRuleCall_1_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getMidiFileTextLineAccess().getChordPartsMidiFileChordPartParserRuleCall_1_1_0()); 
 	    }
 		lv_chordParts_2_0=ruleMidiFileChordPart		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getMidiFileTextLineRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getMidiFileTextLineRule());
 	        }
-	        try {
-	       		add(
-	       			$current, 
-	       			"chordParts",
-	        		lv_chordParts_2_0, 
-	        		"MidiFileChordPart", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		add(
+       			$current, 
+       			"chordParts",
+        		lv_chordParts_2_0, 
+        		"MidiFileChordPart");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*	'}' 
+)*	otherlv_3='}' 
     {
-        createLeafNode(grammarAccess.getMidiFileTextLineAccess().getRightCurlyBracketKeyword_1_2(), null); 
+    	newLeafNode(otherlv_3, grammarAccess.getMidiFileTextLineAccess().getRightCurlyBracketKeyword_1_2());
     }
 )?)
 ;
@@ -553,7 +453,7 @@ ruleMidiFileTextLine returns [EObject current=null]
 // Entry rule entryRuleEInt
 entryRuleEInt returns [String current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getEIntRule(), currentNode); } 
+	{ newCompositeNode(grammarAccess.getEIntRule()); } 
 	 iv_ruleEInt=ruleEInt 
 	 { $current=$iv_ruleEInt.current.getText(); }  
 	 EOF 
@@ -561,23 +461,21 @@ entryRuleEInt returns [String current=null]
 
 // Rule EInt
 ruleEInt returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
-    @init { setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-	    lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 ((
 	kw='-' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getEIntAccess().getHyphenMinusKeyword_0(), null); 
+        newLeafNode(kw, grammarAccess.getEIntAccess().getHyphenMinusKeyword_0()); 
     }
 )?    this_INT_1=RULE_INT    {
 		$current.merge(this_INT_1);
     }
 
     { 
-    createLeafNode(grammarAccess.getEIntAccess().getINTTerminalRuleCall_1(), null); 
+    newLeafNode(this_INT_1, grammarAccess.getEIntAccess().getINTTerminalRuleCall_1()); 
     }
 )
     ;
@@ -589,7 +487,7 @@ ruleEInt returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 // Entry rule entryRuleMidiFileChordPart
 entryRuleMidiFileChordPart returns [EObject current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getMidiFileChordPartRule(), currentNode); }
+	{ newCompositeNode(grammarAccess.getMidiFileChordPartRule()); }
 	 iv_ruleMidiFileChordPart=ruleMidiFileChordPart 
 	 { $current=$iv_ruleMidiFileChordPart.current; } 
 	 EOF 
@@ -597,75 +495,56 @@ entryRuleMidiFileChordPart returns [EObject current=null]
 
 // Rule MidiFileChordPart
 ruleMidiFileChordPart returns [EObject current=null] 
-    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 ((
-    { 
-        temp=factory.create(grammarAccess.getMidiFileChordPartAccess().getMidiFileChordPartAction_0().getType().getClassifier());
-        $current = temp; 
-        temp = null;
-        CompositeNode newNode = createCompositeNode(grammarAccess.getMidiFileChordPartAccess().getMidiFileChordPartAction_0(), currentNode.getParent());
-    newNode.getChildren().add(currentNode);
-    moveLookaheadInfo(currentNode, newNode);
-    currentNode = newNode; 
-        associateNodeWithAstElement(currentNode, $current); 
-    }
-)(	'(' 
     {
-        createLeafNode(grammarAccess.getMidiFileChordPartAccess().getLeftParenthesisKeyword_1_0(), null); 
+        $current = forceCreateModelElement(
+            grammarAccess.getMidiFileChordPartAccess().getMidiFileChordPartAction_0(),
+            $current);
+    }
+)(	otherlv_1='(' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getMidiFileChordPartAccess().getLeftParenthesisKeyword_1_0());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getMidiFileChordPartAccess().getChordEStringParserRuleCall_1_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getMidiFileChordPartAccess().getChordEStringParserRuleCall_1_1_0()); 
 	    }
 		lv_chord_2_0=ruleEString		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getMidiFileChordPartRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getMidiFileChordPartRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"chord",
-	        		lv_chord_2_0, 
-	        		"EString", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		set(
+       			$current, 
+       			"chord",
+        		lv_chord_2_0, 
+        		"EString");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	')' 
+)	otherlv_3=')' 
     {
-        createLeafNode(grammarAccess.getMidiFileChordPartAccess().getRightParenthesisKeyword_1_2(), null); 
+    	newLeafNode(otherlv_3, grammarAccess.getMidiFileChordPartAccess().getRightParenthesisKeyword_1_2());
     }
 )?(
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getMidiFileChordPartAccess().getTextEStringParserRuleCall_2_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getMidiFileChordPartAccess().getTextEStringParserRuleCall_2_0()); 
 	    }
 		lv_text_4_0=ruleEString		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getMidiFileChordPartRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getMidiFileChordPartRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"text",
-	        		lv_text_4_0, 
-	        		"EString", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		set(
+       			$current, 
+       			"text",
+        		lv_text_4_0, 
+        		"EString");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -678,50 +557,48 @@ ruleMidiFileChordPart returns [EObject current=null]
 
 // Rule MidiFilePartType
 ruleMidiFilePartType returns [Enumerator current=null] 
-    @init { setCurrentLookahead(); resetLookahead(); }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
-((	'REFRAIN' 
+    @init { enterRule(); }
+    @after { leaveRule(); }:
+((	enumLiteral_0='REFRAIN' 
 	{
         $current = grammarAccess.getMidiFilePartTypeAccess().getREFRAINEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-        createLeafNode(grammarAccess.getMidiFilePartTypeAccess().getREFRAINEnumLiteralDeclaration_0(), null); 
+        newLeafNode(enumLiteral_0, grammarAccess.getMidiFilePartTypeAccess().getREFRAINEnumLiteralDeclaration_0()); 
     }
 )
-    |(	'BRIDGE' 
+    |(	enumLiteral_1='BRIDGE' 
 	{
         $current = grammarAccess.getMidiFilePartTypeAccess().getBRIDGEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-        createLeafNode(grammarAccess.getMidiFilePartTypeAccess().getBRIDGEEnumLiteralDeclaration_1(), null); 
+        newLeafNode(enumLiteral_1, grammarAccess.getMidiFilePartTypeAccess().getBRIDGEEnumLiteralDeclaration_1()); 
     }
 )
-    |(	'VERS' 
+    |(	enumLiteral_2='VERS' 
 	{
         $current = grammarAccess.getMidiFilePartTypeAccess().getVERSEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-        createLeafNode(grammarAccess.getMidiFilePartTypeAccess().getVERSEnumLiteralDeclaration_2(), null); 
+        newLeafNode(enumLiteral_2, grammarAccess.getMidiFilePartTypeAccess().getVERSEnumLiteralDeclaration_2()); 
     }
 )
-    |(	'SOLO' 
+    |(	enumLiteral_3='SOLO' 
 	{
         $current = grammarAccess.getMidiFilePartTypeAccess().getSOLOEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-        createLeafNode(grammarAccess.getMidiFilePartTypeAccess().getSOLOEnumLiteralDeclaration_3(), null); 
+        newLeafNode(enumLiteral_3, grammarAccess.getMidiFilePartTypeAccess().getSOLOEnumLiteralDeclaration_3()); 
     }
 )
-    |(	'ZWISCHENSPIEL' 
+    |(	enumLiteral_4='ZWISCHENSPIEL' 
 	{
         $current = grammarAccess.getMidiFilePartTypeAccess().getZWISCHENSPIELEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
-        createLeafNode(grammarAccess.getMidiFilePartTypeAccess().getZWISCHENSPIELEnumLiteralDeclaration_4(), null); 
+        newLeafNode(enumLiteral_4, grammarAccess.getMidiFilePartTypeAccess().getZWISCHENSPIELEnumLiteralDeclaration_4()); 
     }
 )
-    |(	'INTRO' 
+    |(	enumLiteral_5='INTRO' 
 	{
         $current = grammarAccess.getMidiFilePartTypeAccess().getINTROEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
-        createLeafNode(grammarAccess.getMidiFilePartTypeAccess().getINTROEnumLiteralDeclaration_5(), null); 
+        newLeafNode(enumLiteral_5, grammarAccess.getMidiFilePartTypeAccess().getINTROEnumLiteralDeclaration_5()); 
     }
 )
-    |(	'EXTRO' 
+    |(	enumLiteral_6='EXTRO' 
 	{
         $current = grammarAccess.getMidiFilePartTypeAccess().getEXTROEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
-        createLeafNode(grammarAccess.getMidiFilePartTypeAccess().getEXTROEnumLiteralDeclaration_6(), null); 
+        newLeafNode(enumLiteral_6, grammarAccess.getMidiFilePartTypeAccess().getEXTROEnumLiteralDeclaration_6()); 
     }
 ));
 
@@ -731,7 +608,7 @@ RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
 RULE_INT : ('0'..'9')+;
 
-RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
+RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
 
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 

@@ -4,10 +4,10 @@ Bundle-Name: Ui
 Bundle-SymbolicName: org.mda.presenter.ui
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.mda.presenter.ui.Activator
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.core.runtime,
- org.mda.core;bundle-version="1.0.0",
- org.mda.commons.ui;bundle-version="1.0.0"
+ org.mda.core;bundle-version="1.0.0";visibility:=reexport,
+ org.mda.commons.ui;bundle-version="1.0.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.mda.presenter.ui,

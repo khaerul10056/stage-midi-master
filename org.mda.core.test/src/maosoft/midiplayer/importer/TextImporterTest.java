@@ -20,7 +20,7 @@ public class TextImporterTest {
 
 	@Test
 	public void importTest() throws Exception {
-		List<String> loadFile = loadFile ("testdata/importer/TestSong1.txt");
+		List<String> loadFile = loadFile ("../org.mda.core.test/testdata/importer/TestSong1.txt");
 
 		for (String nextLine: loadFile) {
 			System.out.println ("- " + nextLine);
@@ -45,7 +45,7 @@ public class TextImporterTest {
 
 	@Test
 	public void importTest2 () throws Exception {
-		List<String> loadFile = loadFile ("testdata/importer/TestSong2.txt");
+		List<String> loadFile = loadFile ("../org.mda.core.test/testdata/importer/TestSong2.txt");
 
 		for (String nextLine: loadFile) {
 			System.out.println ("- " + nextLine);

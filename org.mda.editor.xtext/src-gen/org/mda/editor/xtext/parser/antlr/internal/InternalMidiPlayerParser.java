@@ -1,10 +1,8 @@
 package org.mda.editor.xtext.parser.antlr.internal; 
 
-import java.io.InputStream;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parser.*;
 import org.eclipse.xtext.parser.impl.*;
-import org.eclipse.xtext.parsetree.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.common.util.Enumerator;
@@ -12,7 +10,6 @@ import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
-import org.eclipse.xtext.conversion.ValueConverterException;
 import org.mda.editor.xtext.services.MidiPlayerGrammarAccess;
 
 
@@ -28,37 +25,58 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'name'", "'path'", "'fontsize'", "'pic'", "'key'", "'{'", "'}'", "'bar'", "'refPart'", "','", "'-'", "'('", "')'", "'REFRAIN'", "'BRIDGE'", "'VERS'", "'SOLO'", "'ZWISCHENSPIEL'", "'INTRO'", "'EXTRO'"
     };
     public static final int RULE_ID=5;
-    public static final int RULE_STRING=4;
+    public static final int T__29=29;
+    public static final int T__28=28;
+    public static final int T__27=27;
+    public static final int T__26=26;
+    public static final int T__25=25;
+    public static final int T__24=24;
+    public static final int T__23=23;
+    public static final int T__22=22;
     public static final int RULE_ANY_OTHER=10;
-    public static final int RULE_INT=6;
-    public static final int RULE_WS=9;
+    public static final int T__21=21;
+    public static final int T__20=20;
     public static final int RULE_SL_COMMENT=8;
     public static final int EOF=-1;
     public static final int RULE_ML_COMMENT=7;
+    public static final int T__30=30;
+    public static final int T__19=19;
+    public static final int RULE_STRING=4;
+    public static final int T__16=16;
+    public static final int T__15=15;
+    public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int T__12=12;
+    public static final int T__11=11;
+    public static final int T__14=14;
+    public static final int T__13=13;
+    public static final int RULE_INT=6;
+    public static final int RULE_WS=9;
+
+    // delegates
+    // delegators
+
 
         public InternalMidiPlayerParser(TokenStream input) {
-            super(input);
+            this(input, new RecognizerSharedState());
+        }
+        public InternalMidiPlayerParser(TokenStream input, RecognizerSharedState state) {
+            super(input, state);
+             
         }
         
 
-    public String[] getTokenNames() { return tokenNames; }
+    public String[] getTokenNames() { return InternalMidiPlayerParser.tokenNames; }
     public String getGrammarFileName() { return "../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g"; }
 
 
 
      	private MidiPlayerGrammarAccess grammarAccess;
      	
-        public InternalMidiPlayerParser(TokenStream input, IAstFactory factory, MidiPlayerGrammarAccess grammarAccess) {
+        public InternalMidiPlayerParser(TokenStream input, MidiPlayerGrammarAccess grammarAccess) {
             this(input);
-            this.factory = factory;
-            registerRules(grammarAccess.getGrammar());
             this.grammarAccess = grammarAccess;
-        }
-        
-        @Override
-        protected InputStream getTokenFile() {
-        	ClassLoader classLoader = getClass().getClassLoader();
-        	return classLoader.getResourceAsStream("org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.tokens");
+            registerRules(grammarAccess.getGrammar());
         }
         
         @Override
@@ -73,8 +91,8 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
 
 
-    // $ANTLR start entryRuleMidiFile
-    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:78:1: entryRuleMidiFile returns [EObject current=null] : iv_ruleMidiFile= ruleMidiFile EOF ;
+    // $ANTLR start "entryRuleMidiFile"
+    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:68:1: entryRuleMidiFile returns [EObject current=null] : iv_ruleMidiFile= ruleMidiFile EOF ;
     public final EObject entryRuleMidiFile() throws RecognitionException {
         EObject current = null;
 
@@ -82,16 +100,17 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:79:2: (iv_ruleMidiFile= ruleMidiFile EOF )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:80:2: iv_ruleMidiFile= ruleMidiFile EOF
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:69:2: (iv_ruleMidiFile= ruleMidiFile EOF )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:70:2: iv_ruleMidiFile= ruleMidiFile EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getMidiFileRule(), currentNode); 
-            pushFollow(FollowSets000.FOLLOW_ruleMidiFile_in_entryRuleMidiFile75);
+             newCompositeNode(grammarAccess.getMidiFileRule()); 
+            pushFollow(FOLLOW_ruleMidiFile_in_entryRuleMidiFile75);
             iv_ruleMidiFile=ruleMidiFile();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleMidiFile; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMidiFile85); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMidiFile85); 
 
             }
 
@@ -105,14 +124,21 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleMidiFile
+    // $ANTLR end "entryRuleMidiFile"
 
 
-    // $ANTLR start ruleMidiFile
-    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:87:1: ruleMidiFile returns [EObject current=null] : ( () ( 'name' ( (lv_name_2_0= ruleEString ) ) ) ( 'path' ( (lv_path_4_0= ruleEString ) ) )? ( 'fontsize' ( (lv_fontsize_6_0= ruleEString ) ) )? ( 'pic' ( (lv_pic_8_0= ruleEString ) ) )? ( 'key' ( (lv_key_10_0= ruleEString ) ) )? ( '{' ( (lv_parts_12_0= ruleMidiFilePart ) )* '}' )? ) ;
+    // $ANTLR start "ruleMidiFile"
+    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:77:1: ruleMidiFile returns [EObject current=null] : ( () (otherlv_1= 'name' ( (lv_name_2_0= ruleEString ) ) ) (otherlv_3= 'path' ( (lv_path_4_0= ruleEString ) ) )? (otherlv_5= 'fontsize' ( (lv_fontsize_6_0= ruleEString ) ) )? (otherlv_7= 'pic' ( (lv_pic_8_0= ruleEString ) ) )? (otherlv_9= 'key' ( (lv_key_10_0= ruleEString ) ) )? (otherlv_11= '{' ( (lv_parts_12_0= ruleMidiFilePart ) )* otherlv_13= '}' )? ) ;
     public final EObject ruleMidiFile() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
+        Token otherlv_3=null;
+        Token otherlv_5=null;
+        Token otherlv_7=null;
+        Token otherlv_9=null;
+        Token otherlv_11=null;
+        Token otherlv_13=null;
         AntlrDatatypeRuleToken lv_name_2_0 = null;
 
         AntlrDatatypeRuleToken lv_path_4_0 = null;
@@ -126,67 +152,57 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         EObject lv_parts_12_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:92:6: ( ( () ( 'name' ( (lv_name_2_0= ruleEString ) ) ) ( 'path' ( (lv_path_4_0= ruleEString ) ) )? ( 'fontsize' ( (lv_fontsize_6_0= ruleEString ) ) )? ( 'pic' ( (lv_pic_8_0= ruleEString ) ) )? ( 'key' ( (lv_key_10_0= ruleEString ) ) )? ( '{' ( (lv_parts_12_0= ruleMidiFilePart ) )* '}' )? ) )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:93:1: ( () ( 'name' ( (lv_name_2_0= ruleEString ) ) ) ( 'path' ( (lv_path_4_0= ruleEString ) ) )? ( 'fontsize' ( (lv_fontsize_6_0= ruleEString ) ) )? ( 'pic' ( (lv_pic_8_0= ruleEString ) ) )? ( 'key' ( (lv_key_10_0= ruleEString ) ) )? ( '{' ( (lv_parts_12_0= ruleMidiFilePart ) )* '}' )? )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:80:28: ( ( () (otherlv_1= 'name' ( (lv_name_2_0= ruleEString ) ) ) (otherlv_3= 'path' ( (lv_path_4_0= ruleEString ) ) )? (otherlv_5= 'fontsize' ( (lv_fontsize_6_0= ruleEString ) ) )? (otherlv_7= 'pic' ( (lv_pic_8_0= ruleEString ) ) )? (otherlv_9= 'key' ( (lv_key_10_0= ruleEString ) ) )? (otherlv_11= '{' ( (lv_parts_12_0= ruleMidiFilePart ) )* otherlv_13= '}' )? ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:81:1: ( () (otherlv_1= 'name' ( (lv_name_2_0= ruleEString ) ) ) (otherlv_3= 'path' ( (lv_path_4_0= ruleEString ) ) )? (otherlv_5= 'fontsize' ( (lv_fontsize_6_0= ruleEString ) ) )? (otherlv_7= 'pic' ( (lv_pic_8_0= ruleEString ) ) )? (otherlv_9= 'key' ( (lv_key_10_0= ruleEString ) ) )? (otherlv_11= '{' ( (lv_parts_12_0= ruleMidiFilePart ) )* otherlv_13= '}' )? )
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:93:1: ( () ( 'name' ( (lv_name_2_0= ruleEString ) ) ) ( 'path' ( (lv_path_4_0= ruleEString ) ) )? ( 'fontsize' ( (lv_fontsize_6_0= ruleEString ) ) )? ( 'pic' ( (lv_pic_8_0= ruleEString ) ) )? ( 'key' ( (lv_key_10_0= ruleEString ) ) )? ( '{' ( (lv_parts_12_0= ruleMidiFilePart ) )* '}' )? )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:93:2: () ( 'name' ( (lv_name_2_0= ruleEString ) ) ) ( 'path' ( (lv_path_4_0= ruleEString ) ) )? ( 'fontsize' ( (lv_fontsize_6_0= ruleEString ) ) )? ( 'pic' ( (lv_pic_8_0= ruleEString ) ) )? ( 'key' ( (lv_key_10_0= ruleEString ) ) )? ( '{' ( (lv_parts_12_0= ruleMidiFilePart ) )* '}' )?
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:81:1: ( () (otherlv_1= 'name' ( (lv_name_2_0= ruleEString ) ) ) (otherlv_3= 'path' ( (lv_path_4_0= ruleEString ) ) )? (otherlv_5= 'fontsize' ( (lv_fontsize_6_0= ruleEString ) ) )? (otherlv_7= 'pic' ( (lv_pic_8_0= ruleEString ) ) )? (otherlv_9= 'key' ( (lv_key_10_0= ruleEString ) ) )? (otherlv_11= '{' ( (lv_parts_12_0= ruleMidiFilePart ) )* otherlv_13= '}' )? )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:81:2: () (otherlv_1= 'name' ( (lv_name_2_0= ruleEString ) ) ) (otherlv_3= 'path' ( (lv_path_4_0= ruleEString ) ) )? (otherlv_5= 'fontsize' ( (lv_fontsize_6_0= ruleEString ) ) )? (otherlv_7= 'pic' ( (lv_pic_8_0= ruleEString ) ) )? (otherlv_9= 'key' ( (lv_key_10_0= ruleEString ) ) )? (otherlv_11= '{' ( (lv_parts_12_0= ruleMidiFilePart ) )* otherlv_13= '}' )?
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:93:2: ()
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:94:5: 
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:81:2: ()
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:82:5: 
             {
-             
-                    temp=factory.create(grammarAccess.getMidiFileAccess().getMidiFileAction_0().getType().getClassifier());
-                    current = temp; 
-                    temp = null;
-                    CompositeNode newNode = createCompositeNode(grammarAccess.getMidiFileAccess().getMidiFileAction_0(), currentNode.getParent());
-                newNode.getChildren().add(currentNode);
-                moveLookaheadInfo(currentNode, newNode);
-                currentNode = newNode; 
-                    associateNodeWithAstElement(currentNode, current); 
+
+                    current = forceCreateModelElement(
+                        grammarAccess.getMidiFileAccess().getMidiFileAction_0(),
+                        current);
                 
 
             }
 
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:104:2: ( 'name' ( (lv_name_2_0= ruleEString ) ) )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:104:4: 'name' ( (lv_name_2_0= ruleEString ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:87:2: (otherlv_1= 'name' ( (lv_name_2_0= ruleEString ) ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:87:4: otherlv_1= 'name' ( (lv_name_2_0= ruleEString ) )
             {
-            match(input,11,FollowSets000.FOLLOW_11_in_ruleMidiFile130); 
+            otherlv_1=(Token)match(input,11,FOLLOW_11_in_ruleMidiFile132); 
 
-                    createLeafNode(grammarAccess.getMidiFileAccess().getNameKeyword_1_0(), null); 
+                	newLeafNode(otherlv_1, grammarAccess.getMidiFileAccess().getNameKeyword_1_0());
                 
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:108:1: ( (lv_name_2_0= ruleEString ) )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:109:1: (lv_name_2_0= ruleEString )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:91:1: ( (lv_name_2_0= ruleEString ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:92:1: (lv_name_2_0= ruleEString )
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:109:1: (lv_name_2_0= ruleEString )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:110:3: lv_name_2_0= ruleEString
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:92:1: (lv_name_2_0= ruleEString )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:93:3: lv_name_2_0= ruleEString
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getMidiFileAccess().getNameEStringParserRuleCall_1_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getMidiFileAccess().getNameEStringParserRuleCall_1_1_0()); 
             	    
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_ruleMidiFile151);
+            pushFollow(FOLLOW_ruleEString_in_ruleMidiFile153);
             lv_name_2_0=ruleEString();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getMidiFileRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getMidiFileRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"name",
-            	        		lv_name_2_0, 
-            	        		"EString", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"name",
+                    		lv_name_2_0, 
+                    		"EString");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -197,7 +213,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:132:3: ( 'path' ( (lv_path_4_0= ruleEString ) ) )?
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:109:3: (otherlv_3= 'path' ( (lv_path_4_0= ruleEString ) ) )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -206,41 +222,36 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:132:5: 'path' ( (lv_path_4_0= ruleEString ) )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:109:5: otherlv_3= 'path' ( (lv_path_4_0= ruleEString ) )
                     {
-                    match(input,12,FollowSets000.FOLLOW_12_in_ruleMidiFile163); 
+                    otherlv_3=(Token)match(input,12,FOLLOW_12_in_ruleMidiFile167); 
 
-                            createLeafNode(grammarAccess.getMidiFileAccess().getPathKeyword_2_0(), null); 
+                        	newLeafNode(otherlv_3, grammarAccess.getMidiFileAccess().getPathKeyword_2_0());
                         
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:136:1: ( (lv_path_4_0= ruleEString ) )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:137:1: (lv_path_4_0= ruleEString )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:113:1: ( (lv_path_4_0= ruleEString ) )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:114:1: (lv_path_4_0= ruleEString )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:137:1: (lv_path_4_0= ruleEString )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:138:3: lv_path_4_0= ruleEString
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:114:1: (lv_path_4_0= ruleEString )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:115:3: lv_path_4_0= ruleEString
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getMidiFileAccess().getPathEStringParserRuleCall_2_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getMidiFileAccess().getPathEStringParserRuleCall_2_1_0()); 
                     	    
-                    pushFollow(FollowSets000.FOLLOW_ruleEString_in_ruleMidiFile184);
+                    pushFollow(FOLLOW_ruleEString_in_ruleMidiFile188);
                     lv_path_4_0=ruleEString();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getMidiFileRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getMidiFileRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"path",
-                    	        		lv_path_4_0, 
-                    	        		"EString", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"path",
+                            		lv_path_4_0, 
+                            		"EString");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -254,7 +265,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:160:4: ( 'fontsize' ( (lv_fontsize_6_0= ruleEString ) ) )?
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:131:4: (otherlv_5= 'fontsize' ( (lv_fontsize_6_0= ruleEString ) ) )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -263,41 +274,36 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:160:6: 'fontsize' ( (lv_fontsize_6_0= ruleEString ) )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:131:6: otherlv_5= 'fontsize' ( (lv_fontsize_6_0= ruleEString ) )
                     {
-                    match(input,13,FollowSets000.FOLLOW_13_in_ruleMidiFile197); 
+                    otherlv_5=(Token)match(input,13,FOLLOW_13_in_ruleMidiFile203); 
 
-                            createLeafNode(grammarAccess.getMidiFileAccess().getFontsizeKeyword_3_0(), null); 
+                        	newLeafNode(otherlv_5, grammarAccess.getMidiFileAccess().getFontsizeKeyword_3_0());
                         
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:164:1: ( (lv_fontsize_6_0= ruleEString ) )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:165:1: (lv_fontsize_6_0= ruleEString )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:135:1: ( (lv_fontsize_6_0= ruleEString ) )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:136:1: (lv_fontsize_6_0= ruleEString )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:165:1: (lv_fontsize_6_0= ruleEString )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:166:3: lv_fontsize_6_0= ruleEString
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:136:1: (lv_fontsize_6_0= ruleEString )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:137:3: lv_fontsize_6_0= ruleEString
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getMidiFileAccess().getFontsizeEStringParserRuleCall_3_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getMidiFileAccess().getFontsizeEStringParserRuleCall_3_1_0()); 
                     	    
-                    pushFollow(FollowSets000.FOLLOW_ruleEString_in_ruleMidiFile218);
+                    pushFollow(FOLLOW_ruleEString_in_ruleMidiFile224);
                     lv_fontsize_6_0=ruleEString();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getMidiFileRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getMidiFileRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"fontsize",
-                    	        		lv_fontsize_6_0, 
-                    	        		"EString", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"fontsize",
+                            		lv_fontsize_6_0, 
+                            		"EString");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -311,7 +317,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:188:4: ( 'pic' ( (lv_pic_8_0= ruleEString ) ) )?
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:153:4: (otherlv_7= 'pic' ( (lv_pic_8_0= ruleEString ) ) )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -320,41 +326,36 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:188:6: 'pic' ( (lv_pic_8_0= ruleEString ) )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:153:6: otherlv_7= 'pic' ( (lv_pic_8_0= ruleEString ) )
                     {
-                    match(input,14,FollowSets000.FOLLOW_14_in_ruleMidiFile231); 
+                    otherlv_7=(Token)match(input,14,FOLLOW_14_in_ruleMidiFile239); 
 
-                            createLeafNode(grammarAccess.getMidiFileAccess().getPicKeyword_4_0(), null); 
+                        	newLeafNode(otherlv_7, grammarAccess.getMidiFileAccess().getPicKeyword_4_0());
                         
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:192:1: ( (lv_pic_8_0= ruleEString ) )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:193:1: (lv_pic_8_0= ruleEString )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:157:1: ( (lv_pic_8_0= ruleEString ) )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:158:1: (lv_pic_8_0= ruleEString )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:193:1: (lv_pic_8_0= ruleEString )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:194:3: lv_pic_8_0= ruleEString
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:158:1: (lv_pic_8_0= ruleEString )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:159:3: lv_pic_8_0= ruleEString
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getMidiFileAccess().getPicEStringParserRuleCall_4_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getMidiFileAccess().getPicEStringParserRuleCall_4_1_0()); 
                     	    
-                    pushFollow(FollowSets000.FOLLOW_ruleEString_in_ruleMidiFile252);
+                    pushFollow(FOLLOW_ruleEString_in_ruleMidiFile260);
                     lv_pic_8_0=ruleEString();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getMidiFileRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getMidiFileRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"pic",
-                    	        		lv_pic_8_0, 
-                    	        		"EString", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"pic",
+                            		lv_pic_8_0, 
+                            		"EString");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -368,7 +369,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:216:4: ( 'key' ( (lv_key_10_0= ruleEString ) ) )?
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:175:4: (otherlv_9= 'key' ( (lv_key_10_0= ruleEString ) ) )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -377,41 +378,36 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
             }
             switch (alt4) {
                 case 1 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:216:6: 'key' ( (lv_key_10_0= ruleEString ) )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:175:6: otherlv_9= 'key' ( (lv_key_10_0= ruleEString ) )
                     {
-                    match(input,15,FollowSets000.FOLLOW_15_in_ruleMidiFile265); 
+                    otherlv_9=(Token)match(input,15,FOLLOW_15_in_ruleMidiFile275); 
 
-                            createLeafNode(grammarAccess.getMidiFileAccess().getKeyKeyword_5_0(), null); 
+                        	newLeafNode(otherlv_9, grammarAccess.getMidiFileAccess().getKeyKeyword_5_0());
                         
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:220:1: ( (lv_key_10_0= ruleEString ) )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:221:1: (lv_key_10_0= ruleEString )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:179:1: ( (lv_key_10_0= ruleEString ) )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:180:1: (lv_key_10_0= ruleEString )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:221:1: (lv_key_10_0= ruleEString )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:222:3: lv_key_10_0= ruleEString
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:180:1: (lv_key_10_0= ruleEString )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:181:3: lv_key_10_0= ruleEString
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getMidiFileAccess().getKeyEStringParserRuleCall_5_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getMidiFileAccess().getKeyEStringParserRuleCall_5_1_0()); 
                     	    
-                    pushFollow(FollowSets000.FOLLOW_ruleEString_in_ruleMidiFile286);
+                    pushFollow(FOLLOW_ruleEString_in_ruleMidiFile296);
                     lv_key_10_0=ruleEString();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getMidiFileRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getMidiFileRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"key",
-                    	        		lv_key_10_0, 
-                    	        		"EString", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"key",
+                            		lv_key_10_0, 
+                            		"EString");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -425,7 +421,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:244:4: ( '{' ( (lv_parts_12_0= ruleMidiFilePart ) )* '}' )?
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:197:4: (otherlv_11= '{' ( (lv_parts_12_0= ruleMidiFilePart ) )* otherlv_13= '}' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -434,13 +430,13 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
             }
             switch (alt6) {
                 case 1 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:244:6: '{' ( (lv_parts_12_0= ruleMidiFilePart ) )* '}'
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:197:6: otherlv_11= '{' ( (lv_parts_12_0= ruleMidiFilePart ) )* otherlv_13= '}'
                     {
-                    match(input,16,FollowSets000.FOLLOW_16_in_ruleMidiFile299); 
+                    otherlv_11=(Token)match(input,16,FOLLOW_16_in_ruleMidiFile311); 
 
-                            createLeafNode(grammarAccess.getMidiFileAccess().getLeftCurlyBracketKeyword_6_0(), null); 
+                        	newLeafNode(otherlv_11, grammarAccess.getMidiFileAccess().getLeftCurlyBracketKeyword_6_0());
                         
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:248:1: ( (lv_parts_12_0= ruleMidiFilePart ) )*
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:201:1: ( (lv_parts_12_0= ruleMidiFilePart ) )*
                     loop5:
                     do {
                         int alt5=2;
@@ -453,34 +449,29 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:249:1: (lv_parts_12_0= ruleMidiFilePart )
+                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:202:1: (lv_parts_12_0= ruleMidiFilePart )
                     	    {
-                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:249:1: (lv_parts_12_0= ruleMidiFilePart )
-                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:250:3: lv_parts_12_0= ruleMidiFilePart
+                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:202:1: (lv_parts_12_0= ruleMidiFilePart )
+                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:203:3: lv_parts_12_0= ruleMidiFilePart
                     	    {
                     	     
-                    	    	        currentNode=createCompositeNode(grammarAccess.getMidiFileAccess().getPartsMidiFilePartParserRuleCall_6_1_0(), currentNode); 
+                    	    	        newCompositeNode(grammarAccess.getMidiFileAccess().getPartsMidiFilePartParserRuleCall_6_1_0()); 
                     	    	    
-                    	    pushFollow(FollowSets000.FOLLOW_ruleMidiFilePart_in_ruleMidiFile320);
+                    	    pushFollow(FOLLOW_ruleMidiFilePart_in_ruleMidiFile332);
                     	    lv_parts_12_0=ruleMidiFilePart();
-                    	    _fsp--;
+
+                    	    state._fsp--;
 
 
                     	    	        if (current==null) {
-                    	    	            current = factory.create(grammarAccess.getMidiFileRule().getType().getClassifier());
-                    	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	    	            current = createModelElementForParent(grammarAccess.getMidiFileRule());
                     	    	        }
-                    	    	        try {
-                    	    	       		add(
-                    	    	       			current, 
-                    	    	       			"parts",
-                    	    	        		lv_parts_12_0, 
-                    	    	        		"MidiFilePart", 
-                    	    	        		currentNode);
-                    	    	        } catch (ValueConverterException vce) {
-                    	    				handleValueConverterException(vce);
-                    	    	        }
-                    	    	        currentNode = currentNode.getParent();
+                    	           		add(
+                    	           			current, 
+                    	           			"parts",
+                    	            		lv_parts_12_0, 
+                    	            		"MidiFilePart");
+                    	    	        afterParserOrEnumRuleCall();
                     	    	    
 
                     	    }
@@ -494,9 +485,9 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
                         }
                     } while (true);
 
-                    match(input,17,FollowSets000.FOLLOW_17_in_ruleMidiFile331); 
+                    otherlv_13=(Token)match(input,17,FOLLOW_17_in_ruleMidiFile345); 
 
-                            createLeafNode(grammarAccess.getMidiFileAccess().getRightCurlyBracketKeyword_6_2(), null); 
+                        	newLeafNode(otherlv_13, grammarAccess.getMidiFileAccess().getRightCurlyBracketKeyword_6_2());
                         
 
                     }
@@ -510,9 +501,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -523,11 +512,11 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleMidiFile
+    // $ANTLR end "ruleMidiFile"
 
 
-    // $ANTLR start entryRuleEString
-    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:284:1: entryRuleEString returns [String current=null] : iv_ruleEString= ruleEString EOF ;
+    // $ANTLR start "entryRuleEString"
+    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:231:1: entryRuleEString returns [String current=null] : iv_ruleEString= ruleEString EOF ;
     public final String entryRuleEString() throws RecognitionException {
         String current = null;
 
@@ -535,16 +524,17 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:285:2: (iv_ruleEString= ruleEString EOF )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:286:2: iv_ruleEString= ruleEString EOF
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:232:2: (iv_ruleEString= ruleEString EOF )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:233:2: iv_ruleEString= ruleEString EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getEStringRule(), currentNode); 
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_entryRuleEString370);
+             newCompositeNode(grammarAccess.getEStringRule()); 
+            pushFollow(FOLLOW_ruleEString_in_entryRuleEString384);
             iv_ruleEString=ruleEString();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleEString.getText(); 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleEString381); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleEString395); 
 
             }
 
@@ -558,24 +548,24 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleEString
+    // $ANTLR end "entryRuleEString"
 
 
-    // $ANTLR start ruleEString
-    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:293:1: ruleEString returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_STRING_0= RULE_STRING | this_ID_1= RULE_ID ) ;
+    // $ANTLR start "ruleEString"
+    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:240:1: ruleEString returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_STRING_0= RULE_STRING | this_ID_1= RULE_ID ) ;
     public final AntlrDatatypeRuleToken ruleEString() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
         Token this_STRING_0=null;
         Token this_ID_1=null;
 
-         setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:298:6: ( (this_STRING_0= RULE_STRING | this_ID_1= RULE_ID ) )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:299:1: (this_STRING_0= RULE_STRING | this_ID_1= RULE_ID )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:243:28: ( (this_STRING_0= RULE_STRING | this_ID_1= RULE_ID ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:244:1: (this_STRING_0= RULE_STRING | this_ID_1= RULE_ID )
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:299:1: (this_STRING_0= RULE_STRING | this_ID_1= RULE_ID )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:244:1: (this_STRING_0= RULE_STRING | this_ID_1= RULE_ID )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -587,35 +577,33 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("299:1: (this_STRING_0= RULE_STRING | this_ID_1= RULE_ID )", 7, 0, input);
+                    new NoViableAltException("", 7, 0, input);
 
                 throw nvae;
             }
             switch (alt7) {
                 case 1 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:299:6: this_STRING_0= RULE_STRING
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:244:6: this_STRING_0= RULE_STRING
                     {
-                    this_STRING_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleEString421); 
+                    this_STRING_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleEString435); 
 
                     		current.merge(this_STRING_0);
                         
                      
-                        createLeafNode(grammarAccess.getEStringAccess().getSTRINGTerminalRuleCall_0(), null); 
+                        newLeafNode(this_STRING_0, grammarAccess.getEStringAccess().getSTRINGTerminalRuleCall_0()); 
                         
 
                     }
                     break;
                 case 2 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:307:10: this_ID_1= RULE_ID
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:252:10: this_ID_1= RULE_ID
                     {
-                    this_ID_1=(Token)input.LT(1);
-                    match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleEString447); 
+                    this_ID_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleEString461); 
 
                     		current.merge(this_ID_1);
                         
                      
-                        createLeafNode(grammarAccess.getEStringAccess().getIDTerminalRuleCall_1(), null); 
+                        newLeafNode(this_ID_1, grammarAccess.getEStringAccess().getIDTerminalRuleCall_1()); 
                         
 
                     }
@@ -626,9 +614,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-            	    lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -639,11 +625,11 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleEString
+    // $ANTLR end "ruleEString"
 
 
-    // $ANTLR start entryRuleMidiFilePart
-    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:322:1: entryRuleMidiFilePart returns [EObject current=null] : iv_ruleMidiFilePart= ruleMidiFilePart EOF ;
+    // $ANTLR start "entryRuleMidiFilePart"
+    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:267:1: entryRuleMidiFilePart returns [EObject current=null] : iv_ruleMidiFilePart= ruleMidiFilePart EOF ;
     public final EObject entryRuleMidiFilePart() throws RecognitionException {
         EObject current = null;
 
@@ -651,16 +637,17 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:323:2: (iv_ruleMidiFilePart= ruleMidiFilePart EOF )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:324:2: iv_ruleMidiFilePart= ruleMidiFilePart EOF
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:268:2: (iv_ruleMidiFilePart= ruleMidiFilePart EOF )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:269:2: iv_ruleMidiFilePart= ruleMidiFilePart EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getMidiFilePartRule(), currentNode); 
-            pushFollow(FollowSets000.FOLLOW_ruleMidiFilePart_in_entryRuleMidiFilePart492);
+             newCompositeNode(grammarAccess.getMidiFilePartRule()); 
+            pushFollow(FOLLOW_ruleMidiFilePart_in_entryRuleMidiFilePart506);
             iv_ruleMidiFilePart=ruleMidiFilePart();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleMidiFilePart; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMidiFilePart502); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMidiFilePart516); 
 
             }
 
@@ -674,14 +661,19 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleMidiFilePart
+    // $ANTLR end "entryRuleMidiFilePart"
 
 
-    // $ANTLR start ruleMidiFilePart
-    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:331:1: ruleMidiFilePart returns [EObject current=null] : ( () ( (lv_parttype_1_0= ruleMidiFilePartType ) ) ( 'bar' ( (lv_bar_3_0= ruleEInt ) ) )? ( 'refPart' ( ( ruleEString ) ) )? ( '{' ( (lv_textlines_7_0= ruleMidiFileTextLine ) ) ( ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )* '}' )? ) ;
+    // $ANTLR start "ruleMidiFilePart"
+    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:276:1: ruleMidiFilePart returns [EObject current=null] : ( () ( (lv_parttype_1_0= ruleMidiFilePartType ) ) (otherlv_2= 'bar' ( (lv_bar_3_0= ruleEInt ) ) )? (otherlv_4= 'refPart' ( ( ruleEString ) ) )? (otherlv_6= '{' ( (lv_textlines_7_0= ruleMidiFileTextLine ) ) (otherlv_8= ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )* otherlv_10= '}' )? ) ;
     public final EObject ruleMidiFilePart() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_2=null;
+        Token otherlv_4=null;
+        Token otherlv_6=null;
+        Token otherlv_8=null;
+        Token otherlv_10=null;
         Enumerator lv_parttype_1_0 = null;
 
         AntlrDatatypeRuleToken lv_bar_3_0 = null;
@@ -691,60 +683,50 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         EObject lv_textlines_9_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:336:6: ( ( () ( (lv_parttype_1_0= ruleMidiFilePartType ) ) ( 'bar' ( (lv_bar_3_0= ruleEInt ) ) )? ( 'refPart' ( ( ruleEString ) ) )? ( '{' ( (lv_textlines_7_0= ruleMidiFileTextLine ) ) ( ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )* '}' )? ) )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:337:1: ( () ( (lv_parttype_1_0= ruleMidiFilePartType ) ) ( 'bar' ( (lv_bar_3_0= ruleEInt ) ) )? ( 'refPart' ( ( ruleEString ) ) )? ( '{' ( (lv_textlines_7_0= ruleMidiFileTextLine ) ) ( ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )* '}' )? )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:279:28: ( ( () ( (lv_parttype_1_0= ruleMidiFilePartType ) ) (otherlv_2= 'bar' ( (lv_bar_3_0= ruleEInt ) ) )? (otherlv_4= 'refPart' ( ( ruleEString ) ) )? (otherlv_6= '{' ( (lv_textlines_7_0= ruleMidiFileTextLine ) ) (otherlv_8= ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )* otherlv_10= '}' )? ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:280:1: ( () ( (lv_parttype_1_0= ruleMidiFilePartType ) ) (otherlv_2= 'bar' ( (lv_bar_3_0= ruleEInt ) ) )? (otherlv_4= 'refPart' ( ( ruleEString ) ) )? (otherlv_6= '{' ( (lv_textlines_7_0= ruleMidiFileTextLine ) ) (otherlv_8= ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )* otherlv_10= '}' )? )
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:337:1: ( () ( (lv_parttype_1_0= ruleMidiFilePartType ) ) ( 'bar' ( (lv_bar_3_0= ruleEInt ) ) )? ( 'refPart' ( ( ruleEString ) ) )? ( '{' ( (lv_textlines_7_0= ruleMidiFileTextLine ) ) ( ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )* '}' )? )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:337:2: () ( (lv_parttype_1_0= ruleMidiFilePartType ) ) ( 'bar' ( (lv_bar_3_0= ruleEInt ) ) )? ( 'refPart' ( ( ruleEString ) ) )? ( '{' ( (lv_textlines_7_0= ruleMidiFileTextLine ) ) ( ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )* '}' )?
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:280:1: ( () ( (lv_parttype_1_0= ruleMidiFilePartType ) ) (otherlv_2= 'bar' ( (lv_bar_3_0= ruleEInt ) ) )? (otherlv_4= 'refPart' ( ( ruleEString ) ) )? (otherlv_6= '{' ( (lv_textlines_7_0= ruleMidiFileTextLine ) ) (otherlv_8= ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )* otherlv_10= '}' )? )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:280:2: () ( (lv_parttype_1_0= ruleMidiFilePartType ) ) (otherlv_2= 'bar' ( (lv_bar_3_0= ruleEInt ) ) )? (otherlv_4= 'refPart' ( ( ruleEString ) ) )? (otherlv_6= '{' ( (lv_textlines_7_0= ruleMidiFileTextLine ) ) (otherlv_8= ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )* otherlv_10= '}' )?
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:337:2: ()
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:338:5: 
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:280:2: ()
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:281:5: 
             {
-             
-                    temp=factory.create(grammarAccess.getMidiFilePartAccess().getMidiFilePartAction_0().getType().getClassifier());
-                    current = temp; 
-                    temp = null;
-                    CompositeNode newNode = createCompositeNode(grammarAccess.getMidiFilePartAccess().getMidiFilePartAction_0(), currentNode.getParent());
-                newNode.getChildren().add(currentNode);
-                moveLookaheadInfo(currentNode, newNode);
-                currentNode = newNode; 
-                    associateNodeWithAstElement(currentNode, current); 
+
+                    current = forceCreateModelElement(
+                        grammarAccess.getMidiFilePartAccess().getMidiFilePartAction_0(),
+                        current);
                 
 
             }
 
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:348:2: ( (lv_parttype_1_0= ruleMidiFilePartType ) )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:349:1: (lv_parttype_1_0= ruleMidiFilePartType )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:286:2: ( (lv_parttype_1_0= ruleMidiFilePartType ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:287:1: (lv_parttype_1_0= ruleMidiFilePartType )
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:349:1: (lv_parttype_1_0= ruleMidiFilePartType )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:350:3: lv_parttype_1_0= ruleMidiFilePartType
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:287:1: (lv_parttype_1_0= ruleMidiFilePartType )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:288:3: lv_parttype_1_0= ruleMidiFilePartType
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getMidiFilePartAccess().getParttypeMidiFilePartTypeEnumRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getMidiFilePartAccess().getParttypeMidiFilePartTypeEnumRuleCall_1_0()); 
             	    
-            pushFollow(FollowSets000.FOLLOW_ruleMidiFilePartType_in_ruleMidiFilePart557);
+            pushFollow(FOLLOW_ruleMidiFilePartType_in_ruleMidiFilePart571);
             lv_parttype_1_0=ruleMidiFilePartType();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getMidiFilePartRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getMidiFilePartRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"parttype",
-            	        		lv_parttype_1_0, 
-            	        		"MidiFilePartType", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"parttype",
+                    		lv_parttype_1_0, 
+                    		"MidiFilePartType");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -752,7 +734,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:372:2: ( 'bar' ( (lv_bar_3_0= ruleEInt ) ) )?
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:304:2: (otherlv_2= 'bar' ( (lv_bar_3_0= ruleEInt ) ) )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -761,41 +743,36 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
             }
             switch (alt8) {
                 case 1 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:372:4: 'bar' ( (lv_bar_3_0= ruleEInt ) )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:304:4: otherlv_2= 'bar' ( (lv_bar_3_0= ruleEInt ) )
                     {
-                    match(input,18,FollowSets000.FOLLOW_18_in_ruleMidiFilePart568); 
+                    otherlv_2=(Token)match(input,18,FOLLOW_18_in_ruleMidiFilePart584); 
 
-                            createLeafNode(grammarAccess.getMidiFilePartAccess().getBarKeyword_2_0(), null); 
+                        	newLeafNode(otherlv_2, grammarAccess.getMidiFilePartAccess().getBarKeyword_2_0());
                         
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:376:1: ( (lv_bar_3_0= ruleEInt ) )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:377:1: (lv_bar_3_0= ruleEInt )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:308:1: ( (lv_bar_3_0= ruleEInt ) )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:309:1: (lv_bar_3_0= ruleEInt )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:377:1: (lv_bar_3_0= ruleEInt )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:378:3: lv_bar_3_0= ruleEInt
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:309:1: (lv_bar_3_0= ruleEInt )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:310:3: lv_bar_3_0= ruleEInt
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getMidiFilePartAccess().getBarEIntParserRuleCall_2_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getMidiFilePartAccess().getBarEIntParserRuleCall_2_1_0()); 
                     	    
-                    pushFollow(FollowSets000.FOLLOW_ruleEInt_in_ruleMidiFilePart589);
+                    pushFollow(FOLLOW_ruleEInt_in_ruleMidiFilePart605);
                     lv_bar_3_0=ruleEInt();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getMidiFilePartRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getMidiFilePartRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"bar",
-                    	        		lv_bar_3_0, 
-                    	        		"EInt", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"bar",
+                            		lv_bar_3_0, 
+                            		"EInt");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -809,7 +786,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:400:4: ( 'refPart' ( ( ruleEString ) ) )?
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:326:4: (otherlv_4= 'refPart' ( ( ruleEString ) ) )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -818,33 +795,33 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
             }
             switch (alt9) {
                 case 1 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:400:6: 'refPart' ( ( ruleEString ) )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:326:6: otherlv_4= 'refPart' ( ( ruleEString ) )
                     {
-                    match(input,19,FollowSets000.FOLLOW_19_in_ruleMidiFilePart602); 
+                    otherlv_4=(Token)match(input,19,FOLLOW_19_in_ruleMidiFilePart620); 
 
-                            createLeafNode(grammarAccess.getMidiFilePartAccess().getRefPartKeyword_3_0(), null); 
+                        	newLeafNode(otherlv_4, grammarAccess.getMidiFilePartAccess().getRefPartKeyword_3_0());
                         
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:404:1: ( ( ruleEString ) )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:405:1: ( ruleEString )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:330:1: ( ( ruleEString ) )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:331:1: ( ruleEString )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:405:1: ( ruleEString )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:406:3: ruleEString
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:331:1: ( ruleEString )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:332:3: ruleEString
                     {
 
                     			if (current==null) {
-                    	            current = factory.create(grammarAccess.getMidiFilePartRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getMidiFilePartRule());
                     	        }
                             
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getMidiFilePartAccess().getRefPartMidiFilePartCrossReference_3_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getMidiFilePartAccess().getRefPartMidiFilePartCrossReference_3_1_0()); 
                     	    
-                    pushFollow(FollowSets000.FOLLOW_ruleEString_in_ruleMidiFilePart625);
+                    pushFollow(FOLLOW_ruleEString_in_ruleMidiFilePart643);
                     ruleEString();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
-                    	        currentNode = currentNode.getParent();
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -858,7 +835,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:420:4: ( '{' ( (lv_textlines_7_0= ruleMidiFileTextLine ) ) ( ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )* '}' )?
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:345:4: (otherlv_6= '{' ( (lv_textlines_7_0= ruleMidiFileTextLine ) ) (otherlv_8= ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )* otherlv_10= '}' )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -867,41 +844,36 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
             }
             switch (alt11) {
                 case 1 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:420:6: '{' ( (lv_textlines_7_0= ruleMidiFileTextLine ) ) ( ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )* '}'
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:345:6: otherlv_6= '{' ( (lv_textlines_7_0= ruleMidiFileTextLine ) ) (otherlv_8= ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )* otherlv_10= '}'
                     {
-                    match(input,16,FollowSets000.FOLLOW_16_in_ruleMidiFilePart638); 
+                    otherlv_6=(Token)match(input,16,FOLLOW_16_in_ruleMidiFilePart658); 
 
-                            createLeafNode(grammarAccess.getMidiFilePartAccess().getLeftCurlyBracketKeyword_4_0(), null); 
+                        	newLeafNode(otherlv_6, grammarAccess.getMidiFilePartAccess().getLeftCurlyBracketKeyword_4_0());
                         
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:424:1: ( (lv_textlines_7_0= ruleMidiFileTextLine ) )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:425:1: (lv_textlines_7_0= ruleMidiFileTextLine )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:349:1: ( (lv_textlines_7_0= ruleMidiFileTextLine ) )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:350:1: (lv_textlines_7_0= ruleMidiFileTextLine )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:425:1: (lv_textlines_7_0= ruleMidiFileTextLine )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:426:3: lv_textlines_7_0= ruleMidiFileTextLine
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:350:1: (lv_textlines_7_0= ruleMidiFileTextLine )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:351:3: lv_textlines_7_0= ruleMidiFileTextLine
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getMidiFilePartAccess().getTextlinesMidiFileTextLineParserRuleCall_4_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getMidiFilePartAccess().getTextlinesMidiFileTextLineParserRuleCall_4_1_0()); 
                     	    
-                    pushFollow(FollowSets000.FOLLOW_ruleMidiFileTextLine_in_ruleMidiFilePart659);
+                    pushFollow(FOLLOW_ruleMidiFileTextLine_in_ruleMidiFilePart679);
                     lv_textlines_7_0=ruleMidiFileTextLine();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getMidiFilePartRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getMidiFilePartRule());
                     	        }
-                    	        try {
-                    	       		add(
-                    	       			current, 
-                    	       			"textlines",
-                    	        		lv_textlines_7_0, 
-                    	        		"MidiFileTextLine", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		add(
+                           			current, 
+                           			"textlines",
+                            		lv_textlines_7_0, 
+                            		"MidiFileTextLine");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -909,7 +881,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:448:2: ( ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )*
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:367:2: (otherlv_8= ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) ) )*
                     loop10:
                     do {
                         int alt10=2;
@@ -922,41 +894,36 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:448:4: ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) )
+                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:367:4: otherlv_8= ',' ( (lv_textlines_9_0= ruleMidiFileTextLine ) )
                     	    {
-                    	    match(input,20,FollowSets000.FOLLOW_20_in_ruleMidiFilePart670); 
+                    	    otherlv_8=(Token)match(input,20,FOLLOW_20_in_ruleMidiFilePart692); 
 
-                    	            createLeafNode(grammarAccess.getMidiFilePartAccess().getCommaKeyword_4_2_0(), null); 
+                    	        	newLeafNode(otherlv_8, grammarAccess.getMidiFilePartAccess().getCommaKeyword_4_2_0());
                     	        
-                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:452:1: ( (lv_textlines_9_0= ruleMidiFileTextLine ) )
-                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:453:1: (lv_textlines_9_0= ruleMidiFileTextLine )
+                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:371:1: ( (lv_textlines_9_0= ruleMidiFileTextLine ) )
+                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:372:1: (lv_textlines_9_0= ruleMidiFileTextLine )
                     	    {
-                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:453:1: (lv_textlines_9_0= ruleMidiFileTextLine )
-                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:454:3: lv_textlines_9_0= ruleMidiFileTextLine
+                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:372:1: (lv_textlines_9_0= ruleMidiFileTextLine )
+                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:373:3: lv_textlines_9_0= ruleMidiFileTextLine
                     	    {
                     	     
-                    	    	        currentNode=createCompositeNode(grammarAccess.getMidiFilePartAccess().getTextlinesMidiFileTextLineParserRuleCall_4_2_1_0(), currentNode); 
+                    	    	        newCompositeNode(grammarAccess.getMidiFilePartAccess().getTextlinesMidiFileTextLineParserRuleCall_4_2_1_0()); 
                     	    	    
-                    	    pushFollow(FollowSets000.FOLLOW_ruleMidiFileTextLine_in_ruleMidiFilePart691);
+                    	    pushFollow(FOLLOW_ruleMidiFileTextLine_in_ruleMidiFilePart713);
                     	    lv_textlines_9_0=ruleMidiFileTextLine();
-                    	    _fsp--;
+
+                    	    state._fsp--;
 
 
                     	    	        if (current==null) {
-                    	    	            current = factory.create(grammarAccess.getMidiFilePartRule().getType().getClassifier());
-                    	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	    	            current = createModelElementForParent(grammarAccess.getMidiFilePartRule());
                     	    	        }
-                    	    	        try {
-                    	    	       		add(
-                    	    	       			current, 
-                    	    	       			"textlines",
-                    	    	        		lv_textlines_9_0, 
-                    	    	        		"MidiFileTextLine", 
-                    	    	        		currentNode);
-                    	    	        } catch (ValueConverterException vce) {
-                    	    				handleValueConverterException(vce);
-                    	    	        }
-                    	    	        currentNode = currentNode.getParent();
+                    	           		add(
+                    	           			current, 
+                    	           			"textlines",
+                    	            		lv_textlines_9_0, 
+                    	            		"MidiFileTextLine");
+                    	    	        afterParserOrEnumRuleCall();
                     	    	    
 
                     	    }
@@ -973,9 +940,9 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
                         }
                     } while (true);
 
-                    match(input,17,FollowSets000.FOLLOW_17_in_ruleMidiFilePart703); 
+                    otherlv_10=(Token)match(input,17,FOLLOW_17_in_ruleMidiFilePart727); 
 
-                            createLeafNode(grammarAccess.getMidiFilePartAccess().getRightCurlyBracketKeyword_4_3(), null); 
+                        	newLeafNode(otherlv_10, grammarAccess.getMidiFilePartAccess().getRightCurlyBracketKeyword_4_3());
                         
 
                     }
@@ -989,9 +956,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1002,11 +967,11 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleMidiFilePart
+    // $ANTLR end "ruleMidiFilePart"
 
 
-    // $ANTLR start entryRuleMidiFileTextLine
-    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:488:1: entryRuleMidiFileTextLine returns [EObject current=null] : iv_ruleMidiFileTextLine= ruleMidiFileTextLine EOF ;
+    // $ANTLR start "entryRuleMidiFileTextLine"
+    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:401:1: entryRuleMidiFileTextLine returns [EObject current=null] : iv_ruleMidiFileTextLine= ruleMidiFileTextLine EOF ;
     public final EObject entryRuleMidiFileTextLine() throws RecognitionException {
         EObject current = null;
 
@@ -1014,16 +979,17 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:489:2: (iv_ruleMidiFileTextLine= ruleMidiFileTextLine EOF )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:490:2: iv_ruleMidiFileTextLine= ruleMidiFileTextLine EOF
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:402:2: (iv_ruleMidiFileTextLine= ruleMidiFileTextLine EOF )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:403:2: iv_ruleMidiFileTextLine= ruleMidiFileTextLine EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getMidiFileTextLineRule(), currentNode); 
-            pushFollow(FollowSets000.FOLLOW_ruleMidiFileTextLine_in_entryRuleMidiFileTextLine741);
+             newCompositeNode(grammarAccess.getMidiFileTextLineRule()); 
+            pushFollow(FOLLOW_ruleMidiFileTextLine_in_entryRuleMidiFileTextLine765);
             iv_ruleMidiFileTextLine=ruleMidiFileTextLine();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleMidiFileTextLine; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMidiFileTextLine751); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMidiFileTextLine775); 
 
             }
 
@@ -1037,43 +1003,40 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleMidiFileTextLine
+    // $ANTLR end "entryRuleMidiFileTextLine"
 
 
-    // $ANTLR start ruleMidiFileTextLine
-    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:497:1: ruleMidiFileTextLine returns [EObject current=null] : ( () ( '{' ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )* '}' )? ) ;
+    // $ANTLR start "ruleMidiFileTextLine"
+    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:410:1: ruleMidiFileTextLine returns [EObject current=null] : ( () (otherlv_1= '{' ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )* otherlv_3= '}' )? ) ;
     public final EObject ruleMidiFileTextLine() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
+        Token otherlv_3=null;
         EObject lv_chordParts_2_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:502:6: ( ( () ( '{' ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )* '}' )? ) )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:503:1: ( () ( '{' ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )* '}' )? )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:413:28: ( ( () (otherlv_1= '{' ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )* otherlv_3= '}' )? ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:414:1: ( () (otherlv_1= '{' ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )* otherlv_3= '}' )? )
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:503:1: ( () ( '{' ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )* '}' )? )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:503:2: () ( '{' ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )* '}' )?
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:414:1: ( () (otherlv_1= '{' ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )* otherlv_3= '}' )? )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:414:2: () (otherlv_1= '{' ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )* otherlv_3= '}' )?
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:503:2: ()
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:504:5: 
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:414:2: ()
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:415:5: 
             {
-             
-                    temp=factory.create(grammarAccess.getMidiFileTextLineAccess().getMidiFileTextLineAction_0().getType().getClassifier());
-                    current = temp; 
-                    temp = null;
-                    CompositeNode newNode = createCompositeNode(grammarAccess.getMidiFileTextLineAccess().getMidiFileTextLineAction_0(), currentNode.getParent());
-                newNode.getChildren().add(currentNode);
-                moveLookaheadInfo(currentNode, newNode);
-                currentNode = newNode; 
-                    associateNodeWithAstElement(currentNode, current); 
+
+                    current = forceCreateModelElement(
+                        grammarAccess.getMidiFileTextLineAccess().getMidiFileTextLineAction_0(),
+                        current);
                 
 
             }
 
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:514:2: ( '{' ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )* '}' )?
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:420:2: (otherlv_1= '{' ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )* otherlv_3= '}' )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1082,13 +1045,13 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
             }
             switch (alt13) {
                 case 1 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:514:4: '{' ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )* '}'
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:420:4: otherlv_1= '{' ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )* otherlv_3= '}'
                     {
-                    match(input,16,FollowSets000.FOLLOW_16_in_ruleMidiFileTextLine796); 
+                    otherlv_1=(Token)match(input,16,FOLLOW_16_in_ruleMidiFileTextLine822); 
 
-                            createLeafNode(grammarAccess.getMidiFileTextLineAccess().getLeftCurlyBracketKeyword_1_0(), null); 
+                        	newLeafNode(otherlv_1, grammarAccess.getMidiFileTextLineAccess().getLeftCurlyBracketKeyword_1_0());
                         
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:518:1: ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )*
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:424:1: ( (lv_chordParts_2_0= ruleMidiFileChordPart ) )*
                     loop12:
                     do {
                         int alt12=2;
@@ -1101,34 +1064,29 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:519:1: (lv_chordParts_2_0= ruleMidiFileChordPart )
+                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:425:1: (lv_chordParts_2_0= ruleMidiFileChordPart )
                     	    {
-                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:519:1: (lv_chordParts_2_0= ruleMidiFileChordPart )
-                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:520:3: lv_chordParts_2_0= ruleMidiFileChordPart
+                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:425:1: (lv_chordParts_2_0= ruleMidiFileChordPart )
+                    	    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:426:3: lv_chordParts_2_0= ruleMidiFileChordPart
                     	    {
                     	     
-                    	    	        currentNode=createCompositeNode(grammarAccess.getMidiFileTextLineAccess().getChordPartsMidiFileChordPartParserRuleCall_1_1_0(), currentNode); 
+                    	    	        newCompositeNode(grammarAccess.getMidiFileTextLineAccess().getChordPartsMidiFileChordPartParserRuleCall_1_1_0()); 
                     	    	    
-                    	    pushFollow(FollowSets000.FOLLOW_ruleMidiFileChordPart_in_ruleMidiFileTextLine817);
+                    	    pushFollow(FOLLOW_ruleMidiFileChordPart_in_ruleMidiFileTextLine843);
                     	    lv_chordParts_2_0=ruleMidiFileChordPart();
-                    	    _fsp--;
+
+                    	    state._fsp--;
 
 
                     	    	        if (current==null) {
-                    	    	            current = factory.create(grammarAccess.getMidiFileTextLineRule().getType().getClassifier());
-                    	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	    	            current = createModelElementForParent(grammarAccess.getMidiFileTextLineRule());
                     	    	        }
-                    	    	        try {
-                    	    	       		add(
-                    	    	       			current, 
-                    	    	       			"chordParts",
-                    	    	        		lv_chordParts_2_0, 
-                    	    	        		"MidiFileChordPart", 
-                    	    	        		currentNode);
-                    	    	        } catch (ValueConverterException vce) {
-                    	    				handleValueConverterException(vce);
-                    	    	        }
-                    	    	        currentNode = currentNode.getParent();
+                    	           		add(
+                    	           			current, 
+                    	           			"chordParts",
+                    	            		lv_chordParts_2_0, 
+                    	            		"MidiFileChordPart");
+                    	    	        afterParserOrEnumRuleCall();
                     	    	    
 
                     	    }
@@ -1142,9 +1100,9 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
                         }
                     } while (true);
 
-                    match(input,17,FollowSets000.FOLLOW_17_in_ruleMidiFileTextLine828); 
+                    otherlv_3=(Token)match(input,17,FOLLOW_17_in_ruleMidiFileTextLine856); 
 
-                            createLeafNode(grammarAccess.getMidiFileTextLineAccess().getRightCurlyBracketKeyword_1_2(), null); 
+                        	newLeafNode(otherlv_3, grammarAccess.getMidiFileTextLineAccess().getRightCurlyBracketKeyword_1_2());
                         
 
                     }
@@ -1158,9 +1116,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1171,11 +1127,11 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleMidiFileTextLine
+    // $ANTLR end "ruleMidiFileTextLine"
 
 
-    // $ANTLR start entryRuleEInt
-    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:554:1: entryRuleEInt returns [String current=null] : iv_ruleEInt= ruleEInt EOF ;
+    // $ANTLR start "entryRuleEInt"
+    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:454:1: entryRuleEInt returns [String current=null] : iv_ruleEInt= ruleEInt EOF ;
     public final String entryRuleEInt() throws RecognitionException {
         String current = null;
 
@@ -1183,16 +1139,17 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:555:2: (iv_ruleEInt= ruleEInt EOF )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:556:2: iv_ruleEInt= ruleEInt EOF
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:455:2: (iv_ruleEInt= ruleEInt EOF )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:456:2: iv_ruleEInt= ruleEInt EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getEIntRule(), currentNode); 
-            pushFollow(FollowSets000.FOLLOW_ruleEInt_in_entryRuleEInt867);
+             newCompositeNode(grammarAccess.getEIntRule()); 
+            pushFollow(FOLLOW_ruleEInt_in_entryRuleEInt895);
             iv_ruleEInt=ruleEInt();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleEInt.getText(); 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleEInt878); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleEInt906); 
 
             }
 
@@ -1206,27 +1163,27 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleEInt
+    // $ANTLR end "entryRuleEInt"
 
 
-    // $ANTLR start ruleEInt
-    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:563:1: ruleEInt returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (kw= '-' )? this_INT_1= RULE_INT ) ;
+    // $ANTLR start "ruleEInt"
+    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:463:1: ruleEInt returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (kw= '-' )? this_INT_1= RULE_INT ) ;
     public final AntlrDatatypeRuleToken ruleEInt() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
         Token kw=null;
         Token this_INT_1=null;
 
-         setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:568:6: ( ( (kw= '-' )? this_INT_1= RULE_INT ) )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:569:1: ( (kw= '-' )? this_INT_1= RULE_INT )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:466:28: ( ( (kw= '-' )? this_INT_1= RULE_INT ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:467:1: ( (kw= '-' )? this_INT_1= RULE_INT )
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:569:1: ( (kw= '-' )? this_INT_1= RULE_INT )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:569:2: (kw= '-' )? this_INT_1= RULE_INT
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:467:1: ( (kw= '-' )? this_INT_1= RULE_INT )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:467:2: (kw= '-' )? this_INT_1= RULE_INT
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:569:2: (kw= '-' )?
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:467:2: (kw= '-' )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1235,13 +1192,12 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
             }
             switch (alt14) {
                 case 1 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:570:2: kw= '-'
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:468:2: kw= '-'
                     {
-                    kw=(Token)input.LT(1);
-                    match(input,21,FollowSets000.FOLLOW_21_in_ruleEInt917); 
+                    kw=(Token)match(input,21,FOLLOW_21_in_ruleEInt945); 
 
                             current.merge(kw);
-                            createLeafNode(grammarAccess.getEIntAccess().getHyphenMinusKeyword_0(), null); 
+                            newLeafNode(kw, grammarAccess.getEIntAccess().getHyphenMinusKeyword_0()); 
                         
 
                     }
@@ -1249,13 +1205,12 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-            this_INT_1=(Token)input.LT(1);
-            match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_ruleEInt934); 
+            this_INT_1=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleEInt962); 
 
             		current.merge(this_INT_1);
                 
              
-                createLeafNode(grammarAccess.getEIntAccess().getINTTerminalRuleCall_1(), null); 
+                newLeafNode(this_INT_1, grammarAccess.getEIntAccess().getINTTerminalRuleCall_1()); 
                 
 
             }
@@ -1263,9 +1218,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-            	    lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1276,11 +1229,11 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleEInt
+    // $ANTLR end "ruleEInt"
 
 
-    // $ANTLR start entryRuleMidiFileChordPart
-    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:590:1: entryRuleMidiFileChordPart returns [EObject current=null] : iv_ruleMidiFileChordPart= ruleMidiFileChordPart EOF ;
+    // $ANTLR start "entryRuleMidiFileChordPart"
+    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:488:1: entryRuleMidiFileChordPart returns [EObject current=null] : iv_ruleMidiFileChordPart= ruleMidiFileChordPart EOF ;
     public final EObject entryRuleMidiFileChordPart() throws RecognitionException {
         EObject current = null;
 
@@ -1288,16 +1241,17 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:591:2: (iv_ruleMidiFileChordPart= ruleMidiFileChordPart EOF )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:592:2: iv_ruleMidiFileChordPart= ruleMidiFileChordPart EOF
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:489:2: (iv_ruleMidiFileChordPart= ruleMidiFileChordPart EOF )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:490:2: iv_ruleMidiFileChordPart= ruleMidiFileChordPart EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getMidiFileChordPartRule(), currentNode); 
-            pushFollow(FollowSets000.FOLLOW_ruleMidiFileChordPart_in_entryRuleMidiFileChordPart979);
+             newCompositeNode(grammarAccess.getMidiFileChordPartRule()); 
+            pushFollow(FOLLOW_ruleMidiFileChordPart_in_entryRuleMidiFileChordPart1007);
             iv_ruleMidiFileChordPart=ruleMidiFileChordPart();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleMidiFileChordPart; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMidiFileChordPart989); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMidiFileChordPart1017); 
 
             }
 
@@ -1311,45 +1265,42 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleMidiFileChordPart
+    // $ANTLR end "entryRuleMidiFileChordPart"
 
 
-    // $ANTLR start ruleMidiFileChordPart
-    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:599:1: ruleMidiFileChordPart returns [EObject current=null] : ( () ( '(' ( (lv_chord_2_0= ruleEString ) ) ')' )? ( (lv_text_4_0= ruleEString ) ) ) ;
+    // $ANTLR start "ruleMidiFileChordPart"
+    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:497:1: ruleMidiFileChordPart returns [EObject current=null] : ( () (otherlv_1= '(' ( (lv_chord_2_0= ruleEString ) ) otherlv_3= ')' )? ( (lv_text_4_0= ruleEString ) ) ) ;
     public final EObject ruleMidiFileChordPart() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
+        Token otherlv_3=null;
         AntlrDatatypeRuleToken lv_chord_2_0 = null;
 
         AntlrDatatypeRuleToken lv_text_4_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:604:6: ( ( () ( '(' ( (lv_chord_2_0= ruleEString ) ) ')' )? ( (lv_text_4_0= ruleEString ) ) ) )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:605:1: ( () ( '(' ( (lv_chord_2_0= ruleEString ) ) ')' )? ( (lv_text_4_0= ruleEString ) ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:500:28: ( ( () (otherlv_1= '(' ( (lv_chord_2_0= ruleEString ) ) otherlv_3= ')' )? ( (lv_text_4_0= ruleEString ) ) ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:501:1: ( () (otherlv_1= '(' ( (lv_chord_2_0= ruleEString ) ) otherlv_3= ')' )? ( (lv_text_4_0= ruleEString ) ) )
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:605:1: ( () ( '(' ( (lv_chord_2_0= ruleEString ) ) ')' )? ( (lv_text_4_0= ruleEString ) ) )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:605:2: () ( '(' ( (lv_chord_2_0= ruleEString ) ) ')' )? ( (lv_text_4_0= ruleEString ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:501:1: ( () (otherlv_1= '(' ( (lv_chord_2_0= ruleEString ) ) otherlv_3= ')' )? ( (lv_text_4_0= ruleEString ) ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:501:2: () (otherlv_1= '(' ( (lv_chord_2_0= ruleEString ) ) otherlv_3= ')' )? ( (lv_text_4_0= ruleEString ) )
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:605:2: ()
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:606:5: 
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:501:2: ()
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:502:5: 
             {
-             
-                    temp=factory.create(grammarAccess.getMidiFileChordPartAccess().getMidiFileChordPartAction_0().getType().getClassifier());
-                    current = temp; 
-                    temp = null;
-                    CompositeNode newNode = createCompositeNode(grammarAccess.getMidiFileChordPartAccess().getMidiFileChordPartAction_0(), currentNode.getParent());
-                newNode.getChildren().add(currentNode);
-                moveLookaheadInfo(currentNode, newNode);
-                currentNode = newNode; 
-                    associateNodeWithAstElement(currentNode, current); 
+
+                    current = forceCreateModelElement(
+                        grammarAccess.getMidiFileChordPartAccess().getMidiFileChordPartAction_0(),
+                        current);
                 
 
             }
 
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:616:2: ( '(' ( (lv_chord_2_0= ruleEString ) ) ')' )?
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:507:2: (otherlv_1= '(' ( (lv_chord_2_0= ruleEString ) ) otherlv_3= ')' )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -1358,41 +1309,36 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
             }
             switch (alt15) {
                 case 1 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:616:4: '(' ( (lv_chord_2_0= ruleEString ) ) ')'
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:507:4: otherlv_1= '(' ( (lv_chord_2_0= ruleEString ) ) otherlv_3= ')'
                     {
-                    match(input,22,FollowSets000.FOLLOW_22_in_ruleMidiFileChordPart1034); 
+                    otherlv_1=(Token)match(input,22,FOLLOW_22_in_ruleMidiFileChordPart1064); 
 
-                            createLeafNode(grammarAccess.getMidiFileChordPartAccess().getLeftParenthesisKeyword_1_0(), null); 
+                        	newLeafNode(otherlv_1, grammarAccess.getMidiFileChordPartAccess().getLeftParenthesisKeyword_1_0());
                         
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:620:1: ( (lv_chord_2_0= ruleEString ) )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:621:1: (lv_chord_2_0= ruleEString )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:511:1: ( (lv_chord_2_0= ruleEString ) )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:512:1: (lv_chord_2_0= ruleEString )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:621:1: (lv_chord_2_0= ruleEString )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:622:3: lv_chord_2_0= ruleEString
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:512:1: (lv_chord_2_0= ruleEString )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:513:3: lv_chord_2_0= ruleEString
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getMidiFileChordPartAccess().getChordEStringParserRuleCall_1_1_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getMidiFileChordPartAccess().getChordEStringParserRuleCall_1_1_0()); 
                     	    
-                    pushFollow(FollowSets000.FOLLOW_ruleEString_in_ruleMidiFileChordPart1055);
+                    pushFollow(FOLLOW_ruleEString_in_ruleMidiFileChordPart1085);
                     lv_chord_2_0=ruleEString();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getMidiFileChordPartRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getMidiFileChordPartRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"chord",
-                    	        		lv_chord_2_0, 
-                    	        		"EString", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"chord",
+                            		lv_chord_2_0, 
+                            		"EString");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -1400,9 +1346,9 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,23,FollowSets000.FOLLOW_23_in_ruleMidiFileChordPart1065); 
+                    otherlv_3=(Token)match(input,23,FOLLOW_23_in_ruleMidiFileChordPart1097); 
 
-                            createLeafNode(grammarAccess.getMidiFileChordPartAccess().getRightParenthesisKeyword_1_2(), null); 
+                        	newLeafNode(otherlv_3, grammarAccess.getMidiFileChordPartAccess().getRightParenthesisKeyword_1_2());
                         
 
                     }
@@ -1410,35 +1356,30 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:648:3: ( (lv_text_4_0= ruleEString ) )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:649:1: (lv_text_4_0= ruleEString )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:533:3: ( (lv_text_4_0= ruleEString ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:534:1: (lv_text_4_0= ruleEString )
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:649:1: (lv_text_4_0= ruleEString )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:650:3: lv_text_4_0= ruleEString
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:534:1: (lv_text_4_0= ruleEString )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:535:3: lv_text_4_0= ruleEString
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getMidiFileChordPartAccess().getTextEStringParserRuleCall_2_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getMidiFileChordPartAccess().getTextEStringParserRuleCall_2_0()); 
             	    
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_ruleMidiFileChordPart1088);
+            pushFollow(FOLLOW_ruleEString_in_ruleMidiFileChordPart1120);
             lv_text_4_0=ruleEString();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getMidiFileChordPartRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getMidiFileChordPartRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"text",
-            	        		lv_text_4_0, 
-            	        		"EString", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"text",
+                    		lv_text_4_0, 
+                    		"EString");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -1452,9 +1393,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1465,20 +1404,28 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleMidiFileChordPart
+    // $ANTLR end "ruleMidiFileChordPart"
 
 
-    // $ANTLR start ruleMidiFilePartType
-    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:680:1: ruleMidiFilePartType returns [Enumerator current=null] : ( ( 'REFRAIN' ) | ( 'BRIDGE' ) | ( 'VERS' ) | ( 'SOLO' ) | ( 'ZWISCHENSPIEL' ) | ( 'INTRO' ) | ( 'EXTRO' ) ) ;
+    // $ANTLR start "ruleMidiFilePartType"
+    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:559:1: ruleMidiFilePartType returns [Enumerator current=null] : ( (enumLiteral_0= 'REFRAIN' ) | (enumLiteral_1= 'BRIDGE' ) | (enumLiteral_2= 'VERS' ) | (enumLiteral_3= 'SOLO' ) | (enumLiteral_4= 'ZWISCHENSPIEL' ) | (enumLiteral_5= 'INTRO' ) | (enumLiteral_6= 'EXTRO' ) ) ;
     public final Enumerator ruleMidiFilePartType() throws RecognitionException {
         Enumerator current = null;
 
-         setCurrentLookahead(); resetLookahead(); 
+        Token enumLiteral_0=null;
+        Token enumLiteral_1=null;
+        Token enumLiteral_2=null;
+        Token enumLiteral_3=null;
+        Token enumLiteral_4=null;
+        Token enumLiteral_5=null;
+        Token enumLiteral_6=null;
+
+         enterRule(); 
         try {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:684:6: ( ( ( 'REFRAIN' ) | ( 'BRIDGE' ) | ( 'VERS' ) | ( 'SOLO' ) | ( 'ZWISCHENSPIEL' ) | ( 'INTRO' ) | ( 'EXTRO' ) ) )
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:685:1: ( ( 'REFRAIN' ) | ( 'BRIDGE' ) | ( 'VERS' ) | ( 'SOLO' ) | ( 'ZWISCHENSPIEL' ) | ( 'INTRO' ) | ( 'EXTRO' ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:561:28: ( ( (enumLiteral_0= 'REFRAIN' ) | (enumLiteral_1= 'BRIDGE' ) | (enumLiteral_2= 'VERS' ) | (enumLiteral_3= 'SOLO' ) | (enumLiteral_4= 'ZWISCHENSPIEL' ) | (enumLiteral_5= 'INTRO' ) | (enumLiteral_6= 'EXTRO' ) ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:562:1: ( (enumLiteral_0= 'REFRAIN' ) | (enumLiteral_1= 'BRIDGE' ) | (enumLiteral_2= 'VERS' ) | (enumLiteral_3= 'SOLO' ) | (enumLiteral_4= 'ZWISCHENSPIEL' ) | (enumLiteral_5= 'INTRO' ) | (enumLiteral_6= 'EXTRO' ) )
             {
-            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:685:1: ( ( 'REFRAIN' ) | ( 'BRIDGE' ) | ( 'VERS' ) | ( 'SOLO' ) | ( 'ZWISCHENSPIEL' ) | ( 'INTRO' ) | ( 'EXTRO' ) )
+            // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:562:1: ( (enumLiteral_0= 'REFRAIN' ) | (enumLiteral_1= 'BRIDGE' ) | (enumLiteral_2= 'VERS' ) | (enumLiteral_3= 'SOLO' ) | (enumLiteral_4= 'ZWISCHENSPIEL' ) | (enumLiteral_5= 'INTRO' ) | (enumLiteral_6= 'EXTRO' ) )
             int alt16=7;
             switch ( input.LA(1) ) {
             case 24:
@@ -1518,22 +1465,22 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("685:1: ( ( 'REFRAIN' ) | ( 'BRIDGE' ) | ( 'VERS' ) | ( 'SOLO' ) | ( 'ZWISCHENSPIEL' ) | ( 'INTRO' ) | ( 'EXTRO' ) )", 16, 0, input);
+                    new NoViableAltException("", 16, 0, input);
 
                 throw nvae;
             }
 
             switch (alt16) {
                 case 1 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:685:2: ( 'REFRAIN' )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:562:2: (enumLiteral_0= 'REFRAIN' )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:685:2: ( 'REFRAIN' )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:685:4: 'REFRAIN'
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:562:2: (enumLiteral_0= 'REFRAIN' )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:562:4: enumLiteral_0= 'REFRAIN'
                     {
-                    match(input,24,FollowSets000.FOLLOW_24_in_ruleMidiFilePartType1136); 
+                    enumLiteral_0=(Token)match(input,24,FOLLOW_24_in_ruleMidiFilePartType1170); 
 
                             current = grammarAccess.getMidiFilePartTypeAccess().getREFRAINEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getMidiFilePartTypeAccess().getREFRAINEnumLiteralDeclaration_0(), null); 
+                            newLeafNode(enumLiteral_0, grammarAccess.getMidiFilePartTypeAccess().getREFRAINEnumLiteralDeclaration_0()); 
                         
 
                     }
@@ -1542,15 +1489,15 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:691:6: ( 'BRIDGE' )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:568:6: (enumLiteral_1= 'BRIDGE' )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:691:6: ( 'BRIDGE' )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:691:8: 'BRIDGE'
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:568:6: (enumLiteral_1= 'BRIDGE' )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:568:8: enumLiteral_1= 'BRIDGE'
                     {
-                    match(input,25,FollowSets000.FOLLOW_25_in_ruleMidiFilePartType1151); 
+                    enumLiteral_1=(Token)match(input,25,FOLLOW_25_in_ruleMidiFilePartType1187); 
 
                             current = grammarAccess.getMidiFilePartTypeAccess().getBRIDGEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getMidiFilePartTypeAccess().getBRIDGEEnumLiteralDeclaration_1(), null); 
+                            newLeafNode(enumLiteral_1, grammarAccess.getMidiFilePartTypeAccess().getBRIDGEEnumLiteralDeclaration_1()); 
                         
 
                     }
@@ -1559,15 +1506,15 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:697:6: ( 'VERS' )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:574:6: (enumLiteral_2= 'VERS' )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:697:6: ( 'VERS' )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:697:8: 'VERS'
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:574:6: (enumLiteral_2= 'VERS' )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:574:8: enumLiteral_2= 'VERS'
                     {
-                    match(input,26,FollowSets000.FOLLOW_26_in_ruleMidiFilePartType1166); 
+                    enumLiteral_2=(Token)match(input,26,FOLLOW_26_in_ruleMidiFilePartType1204); 
 
                             current = grammarAccess.getMidiFilePartTypeAccess().getVERSEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getMidiFilePartTypeAccess().getVERSEnumLiteralDeclaration_2(), null); 
+                            newLeafNode(enumLiteral_2, grammarAccess.getMidiFilePartTypeAccess().getVERSEnumLiteralDeclaration_2()); 
                         
 
                     }
@@ -1576,15 +1523,15 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:703:6: ( 'SOLO' )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:580:6: (enumLiteral_3= 'SOLO' )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:703:6: ( 'SOLO' )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:703:8: 'SOLO'
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:580:6: (enumLiteral_3= 'SOLO' )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:580:8: enumLiteral_3= 'SOLO'
                     {
-                    match(input,27,FollowSets000.FOLLOW_27_in_ruleMidiFilePartType1181); 
+                    enumLiteral_3=(Token)match(input,27,FOLLOW_27_in_ruleMidiFilePartType1221); 
 
                             current = grammarAccess.getMidiFilePartTypeAccess().getSOLOEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getMidiFilePartTypeAccess().getSOLOEnumLiteralDeclaration_3(), null); 
+                            newLeafNode(enumLiteral_3, grammarAccess.getMidiFilePartTypeAccess().getSOLOEnumLiteralDeclaration_3()); 
                         
 
                     }
@@ -1593,15 +1540,15 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:709:6: ( 'ZWISCHENSPIEL' )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:586:6: (enumLiteral_4= 'ZWISCHENSPIEL' )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:709:6: ( 'ZWISCHENSPIEL' )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:709:8: 'ZWISCHENSPIEL'
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:586:6: (enumLiteral_4= 'ZWISCHENSPIEL' )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:586:8: enumLiteral_4= 'ZWISCHENSPIEL'
                     {
-                    match(input,28,FollowSets000.FOLLOW_28_in_ruleMidiFilePartType1196); 
+                    enumLiteral_4=(Token)match(input,28,FOLLOW_28_in_ruleMidiFilePartType1238); 
 
                             current = grammarAccess.getMidiFilePartTypeAccess().getZWISCHENSPIELEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getMidiFilePartTypeAccess().getZWISCHENSPIELEnumLiteralDeclaration_4(), null); 
+                            newLeafNode(enumLiteral_4, grammarAccess.getMidiFilePartTypeAccess().getZWISCHENSPIELEnumLiteralDeclaration_4()); 
                         
 
                     }
@@ -1610,15 +1557,15 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:715:6: ( 'INTRO' )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:592:6: (enumLiteral_5= 'INTRO' )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:715:6: ( 'INTRO' )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:715:8: 'INTRO'
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:592:6: (enumLiteral_5= 'INTRO' )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:592:8: enumLiteral_5= 'INTRO'
                     {
-                    match(input,29,FollowSets000.FOLLOW_29_in_ruleMidiFilePartType1211); 
+                    enumLiteral_5=(Token)match(input,29,FOLLOW_29_in_ruleMidiFilePartType1255); 
 
                             current = grammarAccess.getMidiFilePartTypeAccess().getINTROEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getMidiFilePartTypeAccess().getINTROEnumLiteralDeclaration_5(), null); 
+                            newLeafNode(enumLiteral_5, grammarAccess.getMidiFilePartTypeAccess().getINTROEnumLiteralDeclaration_5()); 
                         
 
                     }
@@ -1627,15 +1574,15 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:721:6: ( 'EXTRO' )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:598:6: (enumLiteral_6= 'EXTRO' )
                     {
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:721:6: ( 'EXTRO' )
-                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:721:8: 'EXTRO'
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:598:6: (enumLiteral_6= 'EXTRO' )
+                    // ../org.mda.editor.xtext/src-gen/org/mda/editor/xtext/parser/antlr/internal/InternalMidiPlayer.g:598:8: enumLiteral_6= 'EXTRO'
                     {
-                    match(input,30,FollowSets000.FOLLOW_30_in_ruleMidiFilePartType1226); 
+                    enumLiteral_6=(Token)match(input,30,FOLLOW_30_in_ruleMidiFilePartType1272); 
 
                             current = grammarAccess.getMidiFilePartTypeAccess().getEXTROEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getMidiFilePartTypeAccess().getEXTROEnumLiteralDeclaration_6(), null); 
+                            newLeafNode(enumLiteral_6, grammarAccess.getMidiFilePartTypeAccess().getEXTROEnumLiteralDeclaration_6()); 
                         
 
                     }
@@ -1649,9 +1596,7 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1662,67 +1607,65 @@ public class InternalMidiPlayerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleMidiFilePartType
+    // $ANTLR end "ruleMidiFilePartType"
+
+    // Delegated rules
 
 
  
 
-    
-    private static class FollowSets000 {
-        public static final BitSet FOLLOW_ruleMidiFile_in_entryRuleMidiFile75 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleMidiFile85 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_11_in_ruleMidiFile130 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_ruleEString_in_ruleMidiFile151 = new BitSet(new long[]{0x000000000001F002L});
-        public static final BitSet FOLLOW_12_in_ruleMidiFile163 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_ruleEString_in_ruleMidiFile184 = new BitSet(new long[]{0x000000000001E002L});
-        public static final BitSet FOLLOW_13_in_ruleMidiFile197 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_ruleEString_in_ruleMidiFile218 = new BitSet(new long[]{0x000000000001C002L});
-        public static final BitSet FOLLOW_14_in_ruleMidiFile231 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_ruleEString_in_ruleMidiFile252 = new BitSet(new long[]{0x0000000000018002L});
-        public static final BitSet FOLLOW_15_in_ruleMidiFile265 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_ruleEString_in_ruleMidiFile286 = new BitSet(new long[]{0x0000000000010002L});
-        public static final BitSet FOLLOW_16_in_ruleMidiFile299 = new BitSet(new long[]{0x000000007F020000L});
-        public static final BitSet FOLLOW_ruleMidiFilePart_in_ruleMidiFile320 = new BitSet(new long[]{0x000000007F020000L});
-        public static final BitSet FOLLOW_17_in_ruleMidiFile331 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEString_in_entryRuleEString370 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleEString381 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING_in_ruleEString421 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_ID_in_ruleEString447 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMidiFilePart_in_entryRuleMidiFilePart492 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleMidiFilePart502 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMidiFilePartType_in_ruleMidiFilePart557 = new BitSet(new long[]{0x00000000000D0002L});
-        public static final BitSet FOLLOW_18_in_ruleMidiFilePart568 = new BitSet(new long[]{0x0000000000200040L});
-        public static final BitSet FOLLOW_ruleEInt_in_ruleMidiFilePart589 = new BitSet(new long[]{0x0000000000090002L});
-        public static final BitSet FOLLOW_19_in_ruleMidiFilePart602 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_ruleEString_in_ruleMidiFilePart625 = new BitSet(new long[]{0x0000000000010002L});
-        public static final BitSet FOLLOW_16_in_ruleMidiFilePart638 = new BitSet(new long[]{0x0000000000130000L});
-        public static final BitSet FOLLOW_ruleMidiFileTextLine_in_ruleMidiFilePart659 = new BitSet(new long[]{0x0000000000120000L});
-        public static final BitSet FOLLOW_20_in_ruleMidiFilePart670 = new BitSet(new long[]{0x0000000000130000L});
-        public static final BitSet FOLLOW_ruleMidiFileTextLine_in_ruleMidiFilePart691 = new BitSet(new long[]{0x0000000000120000L});
-        public static final BitSet FOLLOW_17_in_ruleMidiFilePart703 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMidiFileTextLine_in_entryRuleMidiFileTextLine741 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleMidiFileTextLine751 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_16_in_ruleMidiFileTextLine796 = new BitSet(new long[]{0x0000000000420030L});
-        public static final BitSet FOLLOW_ruleMidiFileChordPart_in_ruleMidiFileTextLine817 = new BitSet(new long[]{0x0000000000420030L});
-        public static final BitSet FOLLOW_17_in_ruleMidiFileTextLine828 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEInt_in_entryRuleEInt867 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleEInt878 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_21_in_ruleEInt917 = new BitSet(new long[]{0x0000000000000040L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleEInt934 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMidiFileChordPart_in_entryRuleMidiFileChordPart979 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleMidiFileChordPart989 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_22_in_ruleMidiFileChordPart1034 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_ruleEString_in_ruleMidiFileChordPart1055 = new BitSet(new long[]{0x0000000000800000L});
-        public static final BitSet FOLLOW_23_in_ruleMidiFileChordPart1065 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_ruleEString_in_ruleMidiFileChordPart1088 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_24_in_ruleMidiFilePartType1136 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_25_in_ruleMidiFilePartType1151 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_26_in_ruleMidiFilePartType1166 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_27_in_ruleMidiFilePartType1181 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_28_in_ruleMidiFilePartType1196 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_29_in_ruleMidiFilePartType1211 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_30_in_ruleMidiFilePartType1226 = new BitSet(new long[]{0x0000000000000002L});
-    }
-
+    public static final BitSet FOLLOW_ruleMidiFile_in_entryRuleMidiFile75 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMidiFile85 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_11_in_ruleMidiFile132 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_ruleEString_in_ruleMidiFile153 = new BitSet(new long[]{0x000000000001F002L});
+    public static final BitSet FOLLOW_12_in_ruleMidiFile167 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_ruleEString_in_ruleMidiFile188 = new BitSet(new long[]{0x000000000001E002L});
+    public static final BitSet FOLLOW_13_in_ruleMidiFile203 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_ruleEString_in_ruleMidiFile224 = new BitSet(new long[]{0x000000000001C002L});
+    public static final BitSet FOLLOW_14_in_ruleMidiFile239 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_ruleEString_in_ruleMidiFile260 = new BitSet(new long[]{0x0000000000018002L});
+    public static final BitSet FOLLOW_15_in_ruleMidiFile275 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_ruleEString_in_ruleMidiFile296 = new BitSet(new long[]{0x0000000000010002L});
+    public static final BitSet FOLLOW_16_in_ruleMidiFile311 = new BitSet(new long[]{0x000000007F020000L});
+    public static final BitSet FOLLOW_ruleMidiFilePart_in_ruleMidiFile332 = new BitSet(new long[]{0x000000007F020000L});
+    public static final BitSet FOLLOW_17_in_ruleMidiFile345 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEString_in_entryRuleEString384 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleEString395 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleEString435 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleEString461 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMidiFilePart_in_entryRuleMidiFilePart506 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMidiFilePart516 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMidiFilePartType_in_ruleMidiFilePart571 = new BitSet(new long[]{0x00000000000D0002L});
+    public static final BitSet FOLLOW_18_in_ruleMidiFilePart584 = new BitSet(new long[]{0x0000000000200040L});
+    public static final BitSet FOLLOW_ruleEInt_in_ruleMidiFilePart605 = new BitSet(new long[]{0x0000000000090002L});
+    public static final BitSet FOLLOW_19_in_ruleMidiFilePart620 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_ruleEString_in_ruleMidiFilePart643 = new BitSet(new long[]{0x0000000000010002L});
+    public static final BitSet FOLLOW_16_in_ruleMidiFilePart658 = new BitSet(new long[]{0x0000000000130000L});
+    public static final BitSet FOLLOW_ruleMidiFileTextLine_in_ruleMidiFilePart679 = new BitSet(new long[]{0x0000000000120000L});
+    public static final BitSet FOLLOW_20_in_ruleMidiFilePart692 = new BitSet(new long[]{0x0000000000130000L});
+    public static final BitSet FOLLOW_ruleMidiFileTextLine_in_ruleMidiFilePart713 = new BitSet(new long[]{0x0000000000120000L});
+    public static final BitSet FOLLOW_17_in_ruleMidiFilePart727 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMidiFileTextLine_in_entryRuleMidiFileTextLine765 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMidiFileTextLine775 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_ruleMidiFileTextLine822 = new BitSet(new long[]{0x0000000000420030L});
+    public static final BitSet FOLLOW_ruleMidiFileChordPart_in_ruleMidiFileTextLine843 = new BitSet(new long[]{0x0000000000420030L});
+    public static final BitSet FOLLOW_17_in_ruleMidiFileTextLine856 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEInt_in_entryRuleEInt895 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleEInt906 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_ruleEInt945 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleEInt962 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMidiFileChordPart_in_entryRuleMidiFileChordPart1007 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMidiFileChordPart1017 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_ruleMidiFileChordPart1064 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_ruleEString_in_ruleMidiFileChordPart1085 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_ruleMidiFileChordPart1097 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_ruleEString_in_ruleMidiFileChordPart1120 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_ruleMidiFilePartType1170 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_ruleMidiFilePartType1187 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_ruleMidiFilePartType1204 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_ruleMidiFilePartType1221 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_ruleMidiFilePartType1238 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_ruleMidiFilePartType1255 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleMidiFilePartType1272 = new BitSet(new long[]{0x0000000000000002L});
 
 }

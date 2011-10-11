@@ -36,224 +36,224 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class SessionImpl extends EObjectImpl implements Session {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getItems() <em>Items</em>}' reference list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getItems() <em>Items</em>}' reference list.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getItems()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getItems()
+   * @generated
+   * @ordered
+   */
 	protected EList<AbstractSessionItem> items;
 
 	/**
-	 * The default value of the '{@link #getDefaultpath() <em>Defaultpath</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getDefaultpath() <em>Defaultpath</em>}' attribute.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefaultpath()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getDefaultpath()
+   * @generated
+   * @ordered
+   */
 	protected static final String DEFAULTPATH_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDefaultpath() <em>Defaultpath</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getDefaultpath() <em>Defaultpath</em>}' attribute.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefaultpath()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getDefaultpath()
+   * @generated
+   * @ordered
+   */
 	protected String defaultpath = DEFAULTPATH_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected SessionImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return MidiplayerPackage.Literals.SESSION;
-	}
+    return MidiplayerPackage.Literals.SESSION;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public String getName() {
-		return name;
-	}
+    return name;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.SESSION__NAME, oldName, name));
-	}
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.SESSION__NAME, oldName, name));
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public EList<AbstractSessionItem> getItems() {
-		if (items == null) {
-			items = new EObjectResolvingEList<AbstractSessionItem>(AbstractSessionItem.class, this, MidiplayerPackage.SESSION__ITEMS);
-		}
-		return items;
-	}
+    if (items == null) {
+      items = new EObjectResolvingEList<AbstractSessionItem>(AbstractSessionItem.class, this, MidiplayerPackage.SESSION__ITEMS);
+    }
+    return items;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public String getDefaultpath() {
-		return defaultpath;
-	}
+    return defaultpath;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setDefaultpath(String newDefaultpath) {
-		String oldDefaultpath = defaultpath;
-		defaultpath = newDefaultpath;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.SESSION__DEFAULTPATH, oldDefaultpath, defaultpath));
-	}
+    String oldDefaultpath = defaultpath;
+    defaultpath = newDefaultpath;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.SESSION__DEFAULTPATH, oldDefaultpath, defaultpath));
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case MidiplayerPackage.SESSION__NAME:
-				return getName();
-			case MidiplayerPackage.SESSION__ITEMS:
-				return getItems();
-			case MidiplayerPackage.SESSION__DEFAULTPATH:
-				return getDefaultpath();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID) {
+      case MidiplayerPackage.SESSION__NAME:
+        return getName();
+      case MidiplayerPackage.SESSION__ITEMS:
+        return getItems();
+      case MidiplayerPackage.SESSION__DEFAULTPATH:
+        return getDefaultpath();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case MidiplayerPackage.SESSION__NAME:
-				setName((String)newValue);
-				return;
-			case MidiplayerPackage.SESSION__ITEMS:
-				getItems().clear();
-				getItems().addAll((Collection<? extends AbstractSessionItem>)newValue);
-				return;
-			case MidiplayerPackage.SESSION__DEFAULTPATH:
-				setDefaultpath((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID) {
+      case MidiplayerPackage.SESSION__NAME:
+        setName((String)newValue);
+        return;
+      case MidiplayerPackage.SESSION__ITEMS:
+        getItems().clear();
+        getItems().addAll((Collection<? extends AbstractSessionItem>)newValue);
+        return;
+      case MidiplayerPackage.SESSION__DEFAULTPATH:
+        setDefaultpath((String)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case MidiplayerPackage.SESSION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case MidiplayerPackage.SESSION__ITEMS:
-				getItems().clear();
-				return;
-			case MidiplayerPackage.SESSION__DEFAULTPATH:
-				setDefaultpath(DEFAULTPATH_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID) {
+      case MidiplayerPackage.SESSION__NAME:
+        setName(NAME_EDEFAULT);
+        return;
+      case MidiplayerPackage.SESSION__ITEMS:
+        getItems().clear();
+        return;
+      case MidiplayerPackage.SESSION__DEFAULTPATH:
+        setDefaultpath(DEFAULTPATH_EDEFAULT);
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case MidiplayerPackage.SESSION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case MidiplayerPackage.SESSION__ITEMS:
-				return items != null && !items.isEmpty();
-			case MidiplayerPackage.SESSION__DEFAULTPATH:
-				return DEFAULTPATH_EDEFAULT == null ? defaultpath != null : !DEFAULTPATH_EDEFAULT.equals(defaultpath);
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID) {
+      case MidiplayerPackage.SESSION__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MidiplayerPackage.SESSION__ITEMS:
+        return items != null && !items.isEmpty();
+      case MidiplayerPackage.SESSION__DEFAULTPATH:
+        return DEFAULTPATH_EDEFAULT == null ? defaultpath != null : !DEFAULTPATH_EDEFAULT.equals(defaultpath);
+    }
+    return super.eIsSet(featureID);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", defaultpath: ");
-		result.append(defaultpath);
-		result.append(')');
-		return result.toString();
-	}
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(", defaultpath: ");
+    result.append(defaultpath);
+    result.append(')');
+    return result.toString();
+  }
 
 } //SessionImpl
