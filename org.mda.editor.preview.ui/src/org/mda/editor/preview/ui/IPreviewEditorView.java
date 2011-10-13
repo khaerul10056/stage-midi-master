@@ -9,6 +9,8 @@ public interface IPreviewEditorView {
   boolean stepToNextLine ();
   
   boolean stepToPreviousLine ();
+  
+  boolean toggleChordline ();
 
 
 }
