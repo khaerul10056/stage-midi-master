@@ -36,7 +36,7 @@ public class PresenterTester extends Shell {
     }
     cmbSession.select(0);
 
-    final KeyController controller = new KeyController();
+    final KeyPresentationController controller = new KeyPresentationController();
     btnOK.addKeyListener(controller);
     btnOK.addSelectionListener(new SelectionAdapter() {
 
