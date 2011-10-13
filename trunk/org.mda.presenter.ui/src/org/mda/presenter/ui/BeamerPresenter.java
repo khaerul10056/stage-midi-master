@@ -12,9 +12,8 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.mda.IPresentationController;
-import org.mda.IPresentationView;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
+import org.mda.presenter.ui.slide.IPresentationView;
 import org.mda.presenter.ui.slide.ISlideCalculator;
 import org.mda.presenter.ui.slide.Slide;
 import org.mda.presenter.ui.slide.SlideItem;
@@ -164,14 +163,6 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
     redraw();
     return true;
-  }
-
-
-
-  @Override
-  public void showSlide (MidiFilePart part) {
-    throw new IllegalStateException("NYI");
-
   }
 
 

@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.presenter.ui.BeamerPresenter;
-import org.mda.presenter.ui.ImplementationController;
+import org.mda.presenter.ui.DefaultPresentationController;
 
 
 public class BeamerPresenterTest {
@@ -24,7 +24,7 @@ public class BeamerPresenterTest {
   private BeamerPresenter presenter;
   private MidiFile firstSong;
   private MidiFile secondSong;
-  private ImplementationController controller;
+  private DefaultPresentationController controller;
   private MidiFile lastSong;
   private MidiFilePart lastPartOfLastSong;
   private MidiFilePart preLastPartOfLastSong;
@@ -35,7 +35,7 @@ public class BeamerPresenterTest {
     root = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));
 
     session = root.getSessions().get(0);
-    controller = new ImplementationController();
+    controller = new DefaultPresentationController();
     presenter = new BeamerPresenter(Display.getCurrent(), SWT.NONE, session, controller, new DefaultMidiFileContentEditorConfig());
     firstSong = (MidiFile) session.getItems().get(0);
     secondSong = (MidiFile) session.getItems().get(1);
