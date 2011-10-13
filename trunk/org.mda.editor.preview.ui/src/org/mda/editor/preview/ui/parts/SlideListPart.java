@@ -7,15 +7,12 @@ import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.mda.IPresentationController;
-import org.mda.IPresentationView;
 
 
-public class SlideListPart extends AbstractPart implements IPresentationController {
+public class SlideListPart extends AbstractPart  {
+  
 
   private final List <SlideItemPanel> slideItems = new ArrayList<SlideItemPanel>();
-
-  private IPresentationView view;
 
 
   public SlideListPart (Composite parent) {
@@ -41,11 +38,6 @@ public class SlideListPart extends AbstractPart implements IPresentationControll
 
       getSlideItems().add(nextPanel);
     }
-  }
-
-  @Override
-  public void connect (IPresentationView view) {
-    this.view = view;
   }
 
   public List <SlideItemPanel> getSlideItems () {

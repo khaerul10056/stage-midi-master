@@ -13,15 +13,15 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
-import org.mda.IPresentationView;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
+import org.mda.editor.preview.ui.IPreviewEditorView;
 import org.mda.presenter.ui.CalculatorPreCondition;
 import org.mda.presenter.ui.MidiFileSlideCalculator;
 import org.mda.presenter.ui.slide.Slide;
 import org.mda.presenter.ui.slide.SlideItem;
 
 
-public class ContentPart extends AbstractPart implements IPresentationView {
+public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
   private MidiFile file;
 
@@ -97,30 +97,6 @@ public class ContentPart extends AbstractPart implements IPresentationView {
   }
 
 
-
-  @Override
-  public void end () {
-    dispose();
-  }
-
-
-
-  @Override
-  public boolean nextSlide () {
-    // TODO Auto-generated method stub
-    return false;
-  }
-
-
-
-  @Override
-  public boolean previousSlide () {
-    // TODO Auto-generated method stub
-    return false;
-  }
-
-
-
   @Override
   public void showSlide (MidiFilePart part) {
     showPart(part, getSize());
@@ -134,6 +110,20 @@ public class ContentPart extends AbstractPart implements IPresentationView {
 
   public Slide getCurrentSlide () {
     return currentSlide;
+  }
+
+
+  @Override
+  public boolean stepToNextLine () {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+
+  @Override
+  public boolean stepToPreviousLine () {
+    // TODO Auto-generated method stub
+    return false;
   }
 
 }
