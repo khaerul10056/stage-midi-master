@@ -101,19 +101,20 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         Point textExtend = text != null ? gc.textExtent(text) : nullExtend;
         Point chordExtend = chord != null && getConfig().isChordVisible() ? gc.textExtent(chord): nullExtend ;
 
+        SlideItem newTextItem = null;
         if (text != null) {
           Point point = new Point(currentX, currentY + chordExtend.y);
           Point zoomedPoint = calculateZoomedPoint(point, preCondition);
           Font zoomedFont = calculateZoomedFont(font, preCondition);
-          SlideItem newItem = new SlideItem(zoomedPoint, text, zoomedFont, SlideType.TEXT);
-          slide.addItem(newItem);
+          newTextItem = new SlideItem(zoomedPoint, text, zoomedFont, SlideType.TEXT, null);
+          slide.addItem(newTextItem);
         }
 
         if (chord != null) {
           Point point = new Point (currentX, currentY);
           Point zoomedPoint = calculateZoomedPoint(point, preCondition);
           Font zoomedFont = calculateZoomedFont(font, preCondition);
-          SlideItem newItem = new SlideItem(zoomedPoint, chord, zoomedFont, SlideType.CHORD);
+          SlideItem newItem = new SlideItem(zoomedPoint, chord, zoomedFont, SlideType.CHORD, newTextItem);
           slide.addItem(newItem);
         }
 

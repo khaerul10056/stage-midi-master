@@ -43,8 +43,27 @@ public class Slide {
   public int getLineCount () {
     return currentLine;
   }
+  
+  public String getChordline (final int line) {
+    Collection<SlideItem> items = getItems(line, SlideType.CHORD);
+    if (items == null || items.size() == 0)
+      return "";
+    
+    StringBuilder builder = new StringBuilder();
+    for (SlideItem next : items) {
+      SlideItem textRef = next.getRefSlideItem();
+      int filler = textRef.getText().length() - next.getText().length(); 
+      
+      StringBuilder nextChord = new StringBuilder(next.getText()); 
+      for (int i = 0; i < filler; i++)
+        nextChord = nextChord.append(' ');
+          
+      builder.append(nextChord);
+    }
+    return builder.toString();
+  }
 
-  public String getText (final int line) {
+  public String getTextline (final int line) {
     StringBuilder builder = new StringBuilder();
 
     Collection<SlideItem> items = getItems(line, SlideType.TEXT);
