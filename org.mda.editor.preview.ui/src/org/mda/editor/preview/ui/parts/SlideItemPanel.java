@@ -25,7 +25,6 @@ public class SlideItemPanel extends Composite  {
     setBtnName(new Button(parent, SWT.NONE));
 
     getBtnName().addSelectionListener(new SelectionAdapter() {
-
       @Override
       public void widgetSelected(SelectionEvent e) {
         showPartOnContentScreen();
@@ -36,7 +35,7 @@ public class SlideItemPanel extends Composite  {
   public void showPartOnContentScreen () {
     content.getController().showPart(part);
   }
-
+  
   public void setModelPart (final MidiFilePart part) {
     this.part = part;
     getBtnName().setText(part.getParttype().toString());

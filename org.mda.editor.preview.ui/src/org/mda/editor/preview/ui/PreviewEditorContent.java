@@ -11,12 +11,11 @@ import org.mda.editor.preview.ui.parts.AbstractPart;
 import org.mda.editor.preview.ui.parts.ButtonPanelPart;
 import org.mda.editor.preview.ui.parts.ContentPart;
 import org.mda.editor.preview.ui.parts.SlideListPart;
-import org.mda.presenter.ui.ImplementationController;
 
 
 public class PreviewEditorContent extends Composite  {
 
-  private final ImplementationController controller = new ImplementationController();
+  private final PreviewEditorController controller = new PreviewEditorController();
 
 
   private List <AbstractPart> editorParts = new ArrayList<AbstractPart>();
@@ -60,7 +59,7 @@ public class PreviewEditorContent extends Composite  {
     }
   }
 
-  public ImplementationController getController () {
+  public PreviewEditorController getController () {
     return controller;
   }
 
