@@ -15,9 +15,6 @@ import org.mda.editor.preview.ui.parts.SlideListPart;
 
 public class PreviewEditorContent extends Composite  {
 
-  private final PreviewEditorController controller = new PreviewEditorController();
-
-
   private List <AbstractPart> editorParts = new ArrayList<AbstractPart>();
 
 
@@ -40,10 +37,9 @@ public class PreviewEditorContent extends Composite  {
     getSlidelistpanel().setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, true));
 
     contentpanel = new ContentPart(this, file);
-    editorParts.add(getContentpanel());
-    getContentpanel().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+    editorParts.add(contentpanel);
+    contentpanel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-    getController().connect(getContentpanel());
 
     for (AbstractPart nextPart: editorParts) {
       nextPart.setEditorContent(this);
@@ -57,10 +53,6 @@ public class PreviewEditorContent extends Composite  {
     for (AbstractPart nextPart: editorParts) {
       nextPart.setMidifile(file);
     }
-  }
-
-  public PreviewEditorController getController () {
-    return controller;
   }
 
 

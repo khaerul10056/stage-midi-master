@@ -32,14 +32,16 @@ public class SlideItemPanel extends Composite  {
     });
   }
   
+  /**
+   * shows the selected part on the content screen
+   */
   public void showPartOnContentScreen () {
-    content.getController().showPart(part);
+    content.getContentpanel().showSlide(part);
   }
   
   public void setModelPart (final MidiFilePart part) {
     this.part = part;
     getBtnName().setText(part.getParttype().toString());
-
   }
 
   public void setContent (PreviewEditorContent content) {
