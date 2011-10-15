@@ -1,11 +1,13 @@
 package org.mda.editor.preview.ui.test;
 
 import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import mda.MidiFile;
 import mda.MidiPlayerRoot;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
@@ -14,9 +16,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
+import org.mda.commons.ui.calculator.Slide;
 import org.mda.editor.preview.ui.PreviewEditorContent;
 import org.mda.editor.preview.ui.parts.ContentPart;
-import org.mda.presenter.ui.slide.Slide;
 
 
 public class PreviewEditorTest {
@@ -91,6 +93,8 @@ public class PreviewEditorTest {
     
     logEditorContent(editor.getContentpanel());
     
+    displayAllLoadedFonts(shell);
+    
   }
   
   private void logEditorContent (final ContentPart contentPart) {
@@ -113,15 +117,24 @@ public class PreviewEditorTest {
     }
        
     
-  }
-  
-  @Test
-  public void stepToNextAndPreviousLine () throws Exception {
-    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
-    shell.setVisible(true);
-    //editor.getContentpanel().
+    
+
     
   }
+  
+  private static void displayAllLoadedFonts(Shell shell) {
+    // display all scalable fonts in the system
+    FontData[] fd = shell.getDisplay().getFontList(null, true);
+    for( int i = 0; i < fd.length; i++ ) {
+            System.out.println(fd[i].getName());
+    }
+    // and the non-scalable ones
+    fd = shell.getDisplay().getFontList(null, false);
+    for( int i = 0; i < fd.length; i++ ) {
+            System.out.println(fd[i].getName());
+    }
+}
+  
+  
 
 }

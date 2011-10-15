@@ -1,4 +1,4 @@
-package org.mda.presenter.ui;
+package org.mda.commons.ui.calculator;
 
 import org.eclipse.swt.graphics.Point;
 

@@ -1,4 +1,4 @@
-package org.mda.presenter.ui.slide;
+package org.mda.commons.ui.calculator;
 
 
 public enum SlideType {

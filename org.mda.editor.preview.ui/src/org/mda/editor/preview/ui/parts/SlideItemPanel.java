@@ -37,6 +37,7 @@ public class SlideItemPanel extends Composite  {
    */
   public void showPartOnContentScreen () {
     content.getContentpanel().showSlide(part);
+    content.getPreviewpanel().showSlide(part);
   }
   
   public void setModelPart (final MidiFilePart part) {

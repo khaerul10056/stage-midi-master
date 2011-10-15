@@ -8,18 +8,22 @@ import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.swt.IFocusService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
-import org.mda.editor.preview.ui.IPreviewEditorView;
-import org.mda.presenter.ui.CalculatorPreCondition;
-import org.mda.presenter.ui.MidiFileSlideCalculator;
-import org.mda.presenter.ui.slide.Slide;
-import org.mda.presenter.ui.slide.SlideItem;
+import org.mda.commons.ui.IPreviewEditorView;
+import org.mda.commons.ui.calculator.CalculatorPreCondition;
+import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
+import org.mda.commons.ui.calculator.Slide;
+import org.mda.commons.ui.calculator.SlideItem;
 
 public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
@@ -36,6 +40,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
   private final List<Label>                  chordLines        = new ArrayList<Label>();
 
   private Slide                              currentSlide;
+  
 
   public ContentPart (Composite parent, MidiFile file) {
     super(parent);
@@ -60,7 +65,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
     });
   }
 
-  public Point showPart (final MidiFilePart part, final Point size) {
+  private Point showPart (final MidiFilePart part, final Point size) {
     this.currentPart = part;
 
     calcPreConditions.setCalculationsize(size);
@@ -85,20 +90,46 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
       SlideItem next = items.iterator().next();
       if (config.isChordVisible()) {
         Label chordLabel = new Label (this, SWT.NONE);
-        chordLabel.setFont(next.getFont());
         chordLabel.setText(getCurrentSlide().getChordline(i));
         getChordLines().add(chordLabel);
       }
       
       Text nextText = new Text(this, SWT.NONE);
-      nextText.setFont(next.getFont());
       nextText.setText(getCurrentSlide().getTextline(i));
+      nextText.addFocusListener(new FocusListener() {
+
+        @Override
+        public void focusGained (FocusEvent arg0) {
+          System.out.println ("Gained");
+          
+        }
+
+        @Override
+        public void focusLost (FocusEvent arg0) {
+          System.out.println ("Lost");
+          
+        }});
+      
+      if (getTextLines().isEmpty())
+        nextText.setFocus();
       getTextLines().add(nextText);
     }
 
     layout();
+    
+    getFocusedTextField();
 
     return calcPreConditions.getCalculationsize();
+  }
+  
+  public Text getFocusedTextField () {
+    for (Text nextText: textLines) {
+      if (nextText.isFocusControl())
+        return nextText;
+    }
+    
+    return null;
+    
   }
 
   @Override
@@ -141,5 +172,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
   public List<Text> getTextLines () {
     return textLines;
   }
+
+ 
 
 }

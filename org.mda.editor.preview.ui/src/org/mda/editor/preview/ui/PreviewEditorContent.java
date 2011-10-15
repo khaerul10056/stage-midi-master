@@ -10,6 +10,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.mda.editor.preview.ui.parts.AbstractPart;
 import org.mda.editor.preview.ui.parts.ButtonPanelPart;
 import org.mda.editor.preview.ui.parts.ContentPart;
+import org.mda.editor.preview.ui.parts.PreviewPart;
 import org.mda.editor.preview.ui.parts.SlideListPart;
 
 
@@ -22,23 +23,31 @@ public class PreviewEditorContent extends Composite  {
 
   private final SlideListPart slidelistpanel;
 
+
+  private PreviewPart previewpanel;
+
   public PreviewEditorContent (final Composite composite, final MidiFile file) {
     super(composite, SWT.NONE);
     setBackground(composite.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
-    setLayout(new GridLayout(2, false));
+    setLayout(new GridLayout(3, false));
 
     ButtonPanelPart buttonpanel = new ButtonPanelPart(this);
     editorParts.add(buttonpanel);
-    buttonpanel.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
+    buttonpanel.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 3, 1));
 
     slidelistpanel = new SlideListPart(this);
     editorParts.add(getSlidelistpanel());
-    getSlidelistpanel().setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, true));
+    getSlidelistpanel().setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, true, 1, 2));
 
     contentpanel = new ContentPart(this, file);
     editorParts.add(contentpanel);
-    contentpanel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+    contentpanel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+    
+    setPreviewpanel(new PreviewPart(this));
+    editorParts.add(getPreviewpanel());
+    getPreviewpanel().setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
+    
 
 
     for (AbstractPart nextPart: editorParts) {
@@ -63,6 +72,16 @@ public class PreviewEditorContent extends Composite  {
 
   public SlideListPart getSlidelistpanel () {
     return slidelistpanel;
+  }
+
+
+  public PreviewPart getPreviewpanel () {
+    return previewpanel;
+  }
+
+
+  public void setPreviewpanel (PreviewPart previewpanel) {
+    this.previewpanel = previewpanel;
   }
 
 

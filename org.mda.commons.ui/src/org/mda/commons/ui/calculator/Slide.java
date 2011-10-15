@@ -1,4 +1,4 @@
-package org.mda.presenter.ui.slide;
+package org.mda.commons.ui.calculator;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -52,7 +52,7 @@ public class Slide {
     StringBuilder builder = new StringBuilder();
     for (SlideItem next : items) {
       SlideItem textRef = next.getRefSlideItem();
-      int filler = textRef.getText().length() - next.getText().length(); 
+      int filler = textRef != null ? textRef.getText().length() - next.getText().length() : 0; 
       
       StringBuilder nextChord = new StringBuilder(next.getText()); 
       for (int i = 0; i < filler; i++)

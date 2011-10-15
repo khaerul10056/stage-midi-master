@@ -1,4 +1,4 @@
-package org.mda.presenter.ui;
+package org.mda.commons.ui.calculator;
 
 import java.math.BigDecimal;
 import org.eclipse.swt.graphics.Font;
@@ -6,7 +6,6 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
-import org.mda.presenter.ui.slide.ISlideCalculator;
 
 
 

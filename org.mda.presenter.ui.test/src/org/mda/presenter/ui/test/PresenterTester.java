@@ -20,9 +20,6 @@ import org.mda.presenter.ui.BeamerPresenter;
 public class PresenterTester extends Shell {
 
   public PresenterTester () {
-
-
-
     setLayout(new GridLayout());
     final Combo cmbSession = new Combo(this, SWT.NONE);
     final Button chkWithChords = new Button (this, SWT.CHECK);

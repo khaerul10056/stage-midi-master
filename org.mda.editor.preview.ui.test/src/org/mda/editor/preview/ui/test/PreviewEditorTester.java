@@ -13,12 +13,14 @@ public class PreviewEditorTester extends Shell {
 
 
   private final MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));
+  private PreviewEditorContent editor;
 
   public PreviewEditorTester () {
     super ();
     setText("Preview editor tester");
     setLayout(new FillLayout());
-    PreviewEditorContent editor = new PreviewEditorContent(this, (MidiFile) root.getGallery().getGalleryItems().get(0));
+    setEditor(new PreviewEditorContent(this, (MidiFile) root.getGallery().getGalleryItems().get(0)));
+    open();
   }
 
   @Override
@@ -29,12 +31,19 @@ public class PreviewEditorTester extends Shell {
 
     PreviewEditorTester editorTester = new PreviewEditorTester();
     Display display = editorTester.getDisplay();
-    editorTester.setVisible(true);
     while (!editorTester.isDisposed()) {
       if (!display.readAndDispatch()) {
         display.sleep();
       }
     }
+  }
+
+  public PreviewEditorContent getEditor () {
+    return editor;
+  }
+
+  public void setEditor (PreviewEditorContent editor) {
+    this.editor = editor;
   }
 
 }

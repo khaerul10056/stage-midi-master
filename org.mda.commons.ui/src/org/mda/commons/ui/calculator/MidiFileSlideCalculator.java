@@ -1,4 +1,4 @@
-package org.mda.presenter.ui;
+package org.mda.commons.ui.calculator;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,9 +16,6 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
-import org.mda.presenter.ui.slide.Slide;
-import org.mda.presenter.ui.slide.SlideItem;
-import org.mda.presenter.ui.slide.SlideType;
 
 public class MidiFileSlideCalculator extends SlideCalculator {
 
@@ -43,6 +40,23 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
     init(midifile);
 
+    
+
+
+    for (MidiFilePart nextPart : midifile.getParts()) {
+      slides.add(calculatePart(nextPart, preCondition));
+    }
+    return slides;
+  }
+  
+  
+  private void init (final MidiFile midifile) {
+    if (midifile.getFontsize() != null && midifile.getFontsize().length() > 0)
+      fontsize = Integer.parseInt(midifile.getFontsize());
+
+    font = new Font (Display.getCurrent(), "Arial", fontsize, SWT.NONE);
+    gc.setFont(font);
+    
     if (midifile.getPic() != null && midifile.getPic().length() > 0) {
       File picAsFile = new File (midifile.getPic());
       if (picAsFile.exists()) {
@@ -59,20 +73,6 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     }
     else
       image = null;
-
-
-    for (MidiFilePart nextPart : midifile.getParts()) {
-      slides.add(calculatePart(nextPart, preCondition));
-    }
-    return slides;
-  }
-
-  private void init (final MidiFile midifile) {
-    if (midifile.getFontsize() != null && midifile.getFontsize().length() > 0)
-      fontsize = Integer.parseInt(midifile.getFontsize());
-
-    font = new Font (Display.getCurrent(), "Arial", fontsize, SWT.NONE);
-    gc.setFont(font);
 
   }
 
