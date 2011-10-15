@@ -1,9 +1,8 @@
-package org.mda.presenter.ui.slide;
+package org.mda.commons.ui.calculator;
 
 import java.util.List;
 import mda.AbstractSessionItem;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
-import org.mda.presenter.ui.CalculatorPreCondition;
 
 
 public interface ISlideCalculator {

@@ -11,10 +11,10 @@ import org.eclipse.swt.graphics.Point;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
-import org.mda.presenter.ui.CalculatorPreCondition;
-import org.mda.presenter.ui.MidiFileSlideCalculator;
-import org.mda.presenter.ui.slide.Slide;
-import org.mda.presenter.ui.slide.SlideItem;
+import org.mda.commons.ui.calculator.CalculatorPreCondition;
+import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
+import org.mda.commons.ui.calculator.Slide;
+import org.mda.commons.ui.calculator.SlideItem;
 
 
 public class MidiFileSlideCalculatorTest {
