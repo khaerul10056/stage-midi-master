@@ -378,6 +378,10 @@ public class MidiPlayerService {
 
     return parts;
   }
+  
+ 
+  
+  
 
   public static void removeLine(MidiFilePart part, MidiFileTextLine currentLine) {
     part.getTextlines().remove(currentLine);

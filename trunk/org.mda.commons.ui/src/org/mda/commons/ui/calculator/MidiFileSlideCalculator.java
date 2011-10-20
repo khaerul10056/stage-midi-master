@@ -40,9 +40,6 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
     init(midifile);
 
-    
-
-
     for (MidiFilePart nextPart : midifile.getParts()) {
       slides.add(calculatePart(nextPart, preCondition));
     }
@@ -54,7 +51,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     if (midifile.getFontsize() != null && midifile.getFontsize().length() > 0)
       fontsize = Integer.parseInt(midifile.getFontsize());
 
-    font = new Font (Display.getCurrent(), "Arial", fontsize, SWT.NONE);
+    font = new Font (Display.getCurrent(), "Arial Alternative", fontsize, SWT.NONE);
     gc.setFont(font);
     
     if (midifile.getPic() != null && midifile.getPic().length() > 0) {

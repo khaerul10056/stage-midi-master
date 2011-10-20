@@ -1,17 +1,16 @@
 package org.mda.editor.preview.ui.test;
 
 import static junit.framework.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import mda.MidiFile;
 import mda.MidiPlayerRoot;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -107,7 +106,7 @@ public class PreviewEditorTest {
       chords.add(nextLabel.getText());
     }
     
-    for (Text nextText: contentPart.getTextLines()) {
+    for (StyledText nextText: contentPart.getTextLines()) {
       texts.add(nextText.getText());
     }
     
