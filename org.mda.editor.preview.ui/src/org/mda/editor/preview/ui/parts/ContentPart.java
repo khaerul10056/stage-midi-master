@@ -6,24 +6,23 @@ import java.util.List;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.events.FocusAdapter;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.swt.IFocusService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.IPreviewEditorView;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
+import org.mda.editor.preview.ui.chords.ChordHover;
 
 public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
@@ -35,7 +34,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
   private CalculatorPreCondition             calcPreConditions = new CalculatorPreCondition();            //TODO inject
 
-  private final List<Text>                   textLines         = new ArrayList<Text>();
+  private final List<StyledText>                   textLines         = new ArrayList<StyledText>();
 
   private final List<Label>                  chordLines        = new ArrayList<Label>();
 
@@ -75,7 +74,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
     setCalculatePart(calculator.calculatePart(currentPart, calcPreConditions));
 
     //Dispose and clear old textwidgets and chordwidgets
-    for (Text nextOldLine : getTextLines())
+    for (StyledText nextOldLine : getTextLines())
       nextOldLine.dispose();
     getTextLines().clear();
     for (Label nextOldLine : getChordLines())
@@ -94,22 +93,25 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
         getChordLines().add(chordLabel);
       }
       
-      Text nextText = new Text(this, SWT.NONE);
+      StyledText nextText = new StyledText(this, SWT.NONE);
       nextText.setText(getCurrentSlide().getTextline(i));
-      nextText.addFocusListener(new FocusListener() {
+      nextText.addKeyListener(new KeyAdapter() {
 
         @Override
-        public void focusGained (FocusEvent arg0) {
-          System.out.println ("Gained");
-          
+        public void keyPressed (KeyEvent e) {
+          if (e.keyCode == SWT.ARROW_DOWN)
+             stepToNextLine(); 
+          if (e.keyCode == SWT.ARROW_UP)
+             stepToPreviousLine();
+          if (e.keyCode == SWT.CTRL) {
+            e.doit = false;
+            StyledText focused = getTextLines().get(getFocusedTextField());
+            ChordHover hover = new ChordHover(focused);
+            
+          }
         }
-
-        @Override
-        public void focusLost (FocusEvent arg0) {
-          System.out.println ("Lost");
-          
-        }});
-      
+        
+      });      
       if (getTextLines().isEmpty())
         nextText.setFocus();
       getTextLines().add(nextText);
@@ -122,14 +124,13 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
     return calcPreConditions.getCalculationsize();
   }
   
-  public Text getFocusedTextField () {
-    for (Text nextText: textLines) {
-      if (nextText.isFocusControl())
-        return nextText;
+  public int getFocusedTextField () {
+    for (int i = 0; i < textLines.size(); i++) {
+      if (textLines.get(i).isFocusControl())
+        return i;
     }
     
-    return null;
-    
+    return -1;
   }
 
   @Override
@@ -147,14 +148,64 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
   @Override
   public boolean stepToNextLine () {
-    // TODO Auto-generated method stub
-    return false;
+    int currentLine = getFocusedTextField();
+    if (currentLine == getTextLines().size() - 1)
+      return false;
+    
+    int currentCaretPosition = getTextLines().get(currentLine).getCaretOffset();
+    StyledText newTextLine = getTextLines().get(++currentLine);
+    newTextLine.setCaretOffset(currentCaretPosition);
+    newTextLine.setFocus();
+    return true;
   }
 
   @Override
   public boolean stepToPreviousLine () {
-    // TODO Auto-generated method stub
-    return false;
+    int currentLine = getFocusedTextField();
+    if (currentLine == 0)
+      return false;
+    
+    int currentCaretPosition = getTextLines().get(currentLine).getCaretOffset();
+    StyledText newTextLine = getTextLines().get(--currentLine);
+    newTextLine.setCaretOffset(currentCaretPosition);
+    newTextLine.setFocus();
+    return true;
+  }
+  
+  public String [] splitSpring (String completeString, int pos) {
+    String oldTextLine = completeString.substring(0, pos - 1); 
+    String newTextLine = completeString.substring(pos - 1, completeString.length());
+    return new String [] {oldTextLine, newTextLine};
+  }
+  
+  
+  @Override
+  public void splitLine () {
+    int currentLine = getFocusedTextField();
+    int currentCaretPosition = getTextLines().get(currentLine).getCaretOffset();
+    
+    StyledText currentTextfield = textLines.get(currentLine);
+    Label currentChordLine = chordLines.get(currentLine);
+    //split textline
+    String [] splittedTextlines = splitSpring(currentTextfield.getText(), currentCaretPosition);
+    String [] splittedChordlines = splitSpring(currentChordLine.getText(), currentCaretPosition);
+    
+    //handle splitted textline
+    currentTextfield.setText(splittedTextlines [0]);
+    StyledText newTextField = new StyledText(this, SWT.NONE);
+    newTextField.setText(splittedTextlines [1]); 
+    textLines.add(currentLine + 1, newTextField);
+    
+    //handle splitted chordline
+    currentTextfield.setText(splittedChordlines [0]);
+    Label newLabel = new Label(this, SWT.NONE);
+    newTextField.setText(splittedChordlines [1]); 
+    chordLines.add(currentLine + 1, newLabel);
+  }
+  
+  @Override
+  public void mergeLine () {
+    
   }
 
   @Override
@@ -169,7 +220,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
     return chordLines;
   }
 
-  public List<Text> getTextLines () {
+  public List<StyledText> getTextLines () {
     return textLines;
   }
 
