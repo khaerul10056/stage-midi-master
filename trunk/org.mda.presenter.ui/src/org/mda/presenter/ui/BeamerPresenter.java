@@ -26,7 +26,7 @@ public class BeamerPresenter extends Shell implements IPresentationView {
   private final IPresentationController controller;
   private final IMidiFileEditorUIConfig config;
 
-  
+
 
   private final LinkedHashMap<AbstractSessionItem, List <Slide>> slidesPerItem;
 
@@ -52,7 +52,7 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     open();
     setFocus();
 
-    
+
     slidesPerItem = calculateSlides (session);
 
     addPaintListener(new PaintListener() {
@@ -75,7 +75,7 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
 
         for (SlideItem nextItem: getCurrentSlide().getItems()) {
-          e.gc.setFont(nextItem.getFont());
+          e.gc.setFont(getCurrentSlide().getFont());
           e.gc.drawText(nextItem.getText(), nextItem.getX(), nextItem.getY(), true);
         }
       }
@@ -86,7 +86,7 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
 
 
-  
+
 
   private LinkedHashMap<AbstractSessionItem, List<Slide>> calculateSlides (Session session) {
     LinkedHashMap<AbstractSessionItem, List<Slide>> slidesPerItem = new LinkedHashMap<AbstractSessionItem, List<Slide>>();

@@ -9,6 +9,27 @@ import mda.MidiFilePartType;
 
 public class Utils {
 
+
+  /**
+   * splits a string at the given position and returns splitted string as array of strings
+   * @param completeString
+   * @param pos
+   * @return
+   */
+  public static String[] splitString (String completeString, int pos) {
+    String oldTextLine = completeString.substring(0, pos);
+    String newTextLine = completeString.substring(pos, completeString.length());
+    return new String[] { oldTextLine, newTextLine };
+  }
+
+  /**
+   * trims a string only right, leading whitespaces are untouched
+   * @param untrimmed
+   * @return
+   */
+  public final static String trimRight (final String untrimmed) {
+    return untrimmed.replaceAll("\\s+$", "");
+  }
   /**
    * positions of the beginning of every chord
    *

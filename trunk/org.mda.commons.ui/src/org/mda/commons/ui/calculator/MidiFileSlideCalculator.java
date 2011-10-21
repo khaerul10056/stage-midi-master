@@ -45,15 +45,15 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     }
     return slides;
   }
-  
-  
+
+
   private void init (final MidiFile midifile) {
     if (midifile.getFontsize() != null && midifile.getFontsize().length() > 0)
       fontsize = Integer.parseInt(midifile.getFontsize());
 
     font = new Font (Display.getCurrent(), "Arial Alternative", fontsize, SWT.NONE);
     gc.setFont(font);
-    
+
     if (midifile.getPic() != null && midifile.getPic().length() > 0) {
       File picAsFile = new File (midifile.getPic());
       if (picAsFile.exists()) {
@@ -76,7 +76,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
   public Slide calculatePart (final MidiFilePart part, final CalculatorPreCondition preCondition) {
 
     init((MidiFile) part.eContainer());
-    Slide slide = new Slide(part);
+    Font zoomedFont = calculateZoomedFont(font, preCondition);
+    Slide slide = new Slide(part, zoomedFont);
     slide.setBackgroundImage(image);
 
     currentY = 0;
@@ -102,16 +103,15 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         if (text != null) {
           Point point = new Point(currentX, currentY + chordExtend.y);
           Point zoomedPoint = calculateZoomedPoint(point, preCondition);
-          Font zoomedFont = calculateZoomedFont(font, preCondition);
-          newTextItem = new SlideItem(zoomedPoint, text, zoomedFont, SlideType.TEXT, null);
+
+          newTextItem = new SlideItem(zoomedPoint, text, SlideType.TEXT, null);
           slide.addItem(newTextItem);
         }
 
         if (chord != null) {
           Point point = new Point (currentX, currentY);
           Point zoomedPoint = calculateZoomedPoint(point, preCondition);
-          Font zoomedFont = calculateZoomedFont(font, preCondition);
-          SlideItem newItem = new SlideItem(zoomedPoint, chord, zoomedFont, SlideType.CHORD, newTextItem);
+          SlideItem newItem = new SlideItem(zoomedPoint, chord, SlideType.CHORD, newTextItem);
           slide.addItem(newItem);
         }
 
