@@ -36,6 +36,64 @@ public class MidiPlayerService {
     defaultPaths.add("/home/oleym/privat/soundOfFaith/midi"); //todo konfigurierbar machen, pro Pfad Angabe von Filetypen (.mid, .txt...)
   }
 
+
+
+  /**
+   * splits a line at the given caretposition
+   * @param part            unsplitted part
+   * @param line            current linenumber
+   * @param caretposition   position of caret in current line
+   * @return splitted part
+   */
+  public final static MidiFilePart splitLine (final MidiFilePart part, final int line, int caretposition) {
+
+    MidiFileTextLine currentTextLine = part.getTextlines().get(line);
+
+    int lastToken = 0;
+
+    for (lastToken = 0; lastToken < currentTextLine.getChordParts().size(); lastToken ++) {
+      MidiFileChordPart chordPart = currentTextLine.getChordParts().get(lastToken);
+      int longestToken = chordPart.getChord() == null ? chordPart.getText().length() : Math.max(chordPart.getText().length(), chordPart.getChord().length());
+                                                                                            //if current token is splitted, than break
+      if (longestToken > caretposition)
+        break;
+      caretposition -= longestToken;
+    }
+
+    int splitToken = lastToken;
+    MidiFileChordPart splitPart = currentTextLine.getChordParts().get(splitToken);
+
+    System.out.println ("SplitToken = " + splitPart);
+
+    MidiFileTextLine newLine = mf.createMidiFileTextLine();
+    MidiFileChordPart newPartInNewLine = mf.createMidiFileChordPart();
+
+    int moveLenText = Math.min(splitPart.getText().length(), caretposition);                                  //get splitpoint of text
+    newPartInNewLine.setText(splitPart.getText().substring(moveLenText, splitPart.getText().length()));       //add splitted data to new part
+    splitPart.setText(splitPart.getText().substring(0, moveLenText));                                         //set text in front of splitpoint in old text
+
+
+    if (splitPart.getChord() != null) {
+      int moveLenChord = Math.min(splitPart.getChord().length(), caretposition);                              //get splitpoint of chord
+      newPartInNewLine.setChord(splitPart.getChord().substring(moveLenChord, splitPart.getChord().length())); //set chord after splitpoint in new chord
+      splitPart.setChord(splitPart.getChord().substring(0, moveLenChord));                                    //set chord in front of splitpoint in old chord
+    }
+
+    System.out.println ("SplitPart (" + splitPart + ")");
+    System.out.println ("NewPart (" + newPartInNewLine + ")");
+
+    Collection <MidiFileChordPart>toRemove = new ArrayList<MidiFileChordPart>();
+    newLine.getChordParts().add(newPartInNewLine);                                                            //add new part to new line
+    for (int i = splitToken + 1; i < currentTextLine.getChordParts().size(); i++) {                           //add rest of tokens in new line
+      System.out.println ("Rest Part " + i + "/" + currentTextLine.getChordParts().get(i));
+      toRemove.add(currentTextLine.getChordParts().get(i));
+    }
+    newLine.getChordParts().addAll(toRemove);
+
+    part.getTextlines().add(line + 1, newLine);
+    return part;
+  }
+
   /**
    * loads the rootobject of the midiplayer
    * @param conffileAsFile
@@ -378,10 +436,10 @@ public class MidiPlayerService {
 
     return parts;
   }
-  
- 
-  
-  
+
+
+
+
 
   public static void removeLine(MidiFilePart part, MidiFileTextLine currentLine) {
     part.getTextlines().remove(currentLine);

@@ -10,17 +10,17 @@ import org.eclipse.swt.widgets.Text;
 
 
 public class ChordHover extends Shell {
-  
+
   @Override
   protected void checkSubclass () {
   }
 
   private Text txtChord;
-  
+
   public ChordHover (final StyledText styledText) {
     super (SWT.NONE);
-    
-    
+
+
     setSize(40, 40);
     setLocation(styledText.getLocationAtOffset(styledText.getCaretOffset()).x, styledText.getBounds().y);
     getLocation().y = styledText.getBounds().y;
@@ -29,18 +29,18 @@ public class ChordHover extends Shell {
     txtChord.setText("Am");
     boolean setFocus = txtChord.setFocus();
     txtChord.addKeyListener(new KeyAdapter() {
-      
+
       public void keyReleased (final KeyEvent event) {
-        if (event.keyCode == SWT.CTRL) {
+        if (event.keyCode == SWT.ALT) {
           dispose();
         }
       }
-      
-      
+
+
     });
     setVisible(true);
     setActive();
-    
+
     while (!isDisposed()) {
       if (!getDisplay().readAndDispatch()) {
         getDisplay().sleep();

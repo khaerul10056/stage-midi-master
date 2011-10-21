@@ -5,7 +5,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
+import static org.mda.Utils.trimRight;
 
 /** dataobject containing information created for a slide,
  * e.g. the text with all it's layoutdata
@@ -19,10 +21,13 @@ public class Slide {
 
   private Integer                                       currentLine = 0;
 
+  private final Font font;
+
   private final HashMap<Integer, Collection<SlideItem>> items       = new HashMap<Integer, Collection<SlideItem>>();
 
-  public Slide (EObject modelRef) {
+  public Slide (EObject modelRef, final Font font) {
     this.modelRef = modelRef;
+    this.font = font;
   }
 
   public void addItem (final SlideItem newItem) {
@@ -43,24 +48,24 @@ public class Slide {
   public int getLineCount () {
     return currentLine;
   }
-  
+
   public String getChordline (final int line) {
     Collection<SlideItem> items = getItems(line, SlideType.CHORD);
     if (items == null || items.size() == 0)
       return "";
-    
+
     StringBuilder builder = new StringBuilder();
     for (SlideItem next : items) {
       SlideItem textRef = next.getRefSlideItem();
-      int filler = textRef != null ? textRef.getText().length() - next.getText().length() : 0; 
-      
-      StringBuilder nextChord = new StringBuilder(next.getText()); 
+      int filler = textRef != null ? textRef.getText().length() - next.getText().length() : 0;
+
+      StringBuilder nextChord = new StringBuilder(next.getText());
       for (int i = 0; i < filler; i++)
         nextChord = nextChord.append(' ');
-          
+
       builder.append(nextChord);
     }
-    return builder.toString();
+    return trimRight(builder.toString());
   }
 
   public String getTextline (final int line) {
@@ -70,7 +75,7 @@ public class Slide {
     for (SlideItem next : items) {
       builder.append(next.getText());
     }
-    return builder.toString();
+    return trimRight(builder.toString());
   }
 
   public Collection<SlideItem> getItems (final int line) {
@@ -121,11 +126,14 @@ public class Slide {
 
     for (SlideItem nextItem : getItems()) {
       builder.append("- " +
-        nextItem.getText() + " / " + nextItem.getX() + " / " + nextItem.getY() + " / " + nextItem.getFont().getFontData()[0].getHeight() + " / " +
-        nextItem.getItemType().toString() + "\n");
+        nextItem.getText() + " / " + nextItem.getX() + " / " + nextItem.getY() + " / " + nextItem.getItemType().toString() + "\n");
     }
 
     return builder.toString();
+  }
+
+  public Font getFont () {
+    return font;
   }
 
 }

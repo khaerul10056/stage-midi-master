@@ -11,11 +11,14 @@ import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.IPreviewEditorView;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
@@ -34,12 +37,13 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
   private CalculatorPreCondition             calcPreConditions = new CalculatorPreCondition();            //TODO inject
 
-  private final List<StyledText>                   textLines         = new ArrayList<StyledText>();
+  private final List<StyledText>             textLines         = new ArrayList<StyledText>();
 
   private final List<Label>                  chordLines        = new ArrayList<Label>();
 
   private Slide                              currentSlide;
-  
+
+  private Font                               font;
 
   public ContentPart (Composite parent, MidiFile file) {
     super(parent);
@@ -64,6 +68,10 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
     });
   }
 
+  private int getLayoutFactor () {
+    return config.isChordVisible() ? 2 : 1;
+  }
+
   private Point showPart (final MidiFilePart part, final Point size) {
     this.currentPart = part;
 
@@ -85,51 +93,59 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
       Collection<SlideItem> items = getCurrentSlide().getItems(i);
       if (items.isEmpty())
         continue;
-      
+
       SlideItem next = items.iterator().next();
       if (config.isChordVisible()) {
-        Label chordLabel = new Label (this, SWT.NONE);
+        Label chordLabel = new Label(this, SWT.NONE);
         chordLabel.setText(getCurrentSlide().getChordline(i));
+        chordLabel.setFont(font);
+        chordLabel.setEnabled(false);
         getChordLines().add(chordLabel);
       }
-      
-      StyledText nextText = new StyledText(this, SWT.NONE);
+
+      StyledText nextText = new StyledText(this, SWT.SINGLE);
       nextText.setText(getCurrentSlide().getTextline(i));
+      nextText.setFont(font);
       nextText.addKeyListener(new KeyAdapter() {
 
         @Override
         public void keyPressed (KeyEvent e) {
           if (e.keyCode == SWT.ARROW_DOWN)
-             stepToNextLine(); 
+            stepToNextLine();
           if (e.keyCode == SWT.ARROW_UP)
-             stepToPreviousLine();
-          if (e.keyCode == SWT.CTRL) {
+            stepToPreviousLine();
+          if (e.keyCode == SWT.CR) {
+            e.doit = false;
+            splitLine();
+
+          }
+          if (e.keyCode == SWT.ALT) {
             e.doit = false;
             StyledText focused = getTextLines().get(getFocusedTextField());
             ChordHover hover = new ChordHover(focused);
-            
+
           }
         }
-        
-      });      
+
+      });
       if (getTextLines().isEmpty())
         nextText.setFocus();
       getTextLines().add(nextText);
     }
 
     layout();
-    
+
     getFocusedTextField();
 
     return calcPreConditions.getCalculationsize();
   }
-  
+
   public int getFocusedTextField () {
     for (int i = 0; i < textLines.size(); i++) {
       if (textLines.get(i).isFocusControl())
         return i;
     }
-    
+
     return -1;
   }
 
@@ -140,6 +156,8 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
   private void setCalculatePart (Slide calculatePart) {
     this.currentSlide = calculatePart;
+    FontData fontdata = new FontData("Monospace", 12, SWT.NONE);
+    this.font = new Font(getDisplay(), fontdata);
   }
 
   public Slide getCurrentSlide () {
@@ -151,7 +169,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
     int currentLine = getFocusedTextField();
     if (currentLine == getTextLines().size() - 1)
       return false;
-    
+
     int currentCaretPosition = getTextLines().get(currentLine).getCaretOffset();
     StyledText newTextLine = getTextLines().get(++currentLine);
     newTextLine.setCaretOffset(currentCaretPosition);
@@ -164,55 +182,31 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
     int currentLine = getFocusedTextField();
     if (currentLine == 0)
       return false;
-    
+
     int currentCaretPosition = getTextLines().get(currentLine).getCaretOffset();
     StyledText newTextLine = getTextLines().get(--currentLine);
     newTextLine.setCaretOffset(currentCaretPosition);
     newTextLine.setFocus();
     return true;
   }
-  
-  public String [] splitSpring (String completeString, int pos) {
-    String oldTextLine = completeString.substring(0, pos - 1); 
-    String newTextLine = completeString.substring(pos - 1, completeString.length());
-    return new String [] {oldTextLine, newTextLine};
-  }
-  
-  
+
   @Override
   public void splitLine () {
     int currentLine = getFocusedTextField();
-    int currentCaretPosition = getTextLines().get(currentLine).getCaretOffset();
-    
-    StyledText currentTextfield = textLines.get(currentLine);
-    Label currentChordLine = chordLines.get(currentLine);
-    //split textline
-    String [] splittedTextlines = splitSpring(currentTextfield.getText(), currentCaretPosition);
-    String [] splittedChordlines = splitSpring(currentChordLine.getText(), currentCaretPosition);
-    
-    //handle splitted textline
-    currentTextfield.setText(splittedTextlines [0]);
-    StyledText newTextField = new StyledText(this, SWT.NONE);
-    newTextField.setText(splittedTextlines [1]); 
-    textLines.add(currentLine + 1, newTextField);
-    
-    //handle splitted chordline
-    currentTextfield.setText(splittedChordlines [0]);
-    Label newLabel = new Label(this, SWT.NONE);
-    newTextField.setText(splittedChordlines [1]); 
-    chordLines.add(currentLine + 1, newLabel);
+    currentPart = MidiPlayerService.splitLine(currentPart, currentLine, getTextLines().get(currentLine).getCaretOffset());
+    showPart(currentPart, getSize());
   }
-  
+
   @Override
   public void mergeLine () {
-    
+
   }
 
   @Override
   public boolean toggleChordline () {
     config.setChordVisible(!config.isChordVisible());
     showPart(currentPart, getSize());
-    
+
     return config.isChordVisible();
   }
 
@@ -223,7 +217,5 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
   public List<StyledText> getTextLines () {
     return textLines;
   }
-
- 
 
 }

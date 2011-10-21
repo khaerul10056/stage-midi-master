@@ -15,10 +15,8 @@ public class SlideItem {
   private final Point location;
 
 
-  private final Font font;
-
   private final SlideType itemType;
-  
+
   private final SlideItem refSlideItem;
 
 
@@ -26,12 +24,10 @@ public class SlideItem {
    * Constructor
    * @param location
    * @param text
-   * @param font
    * @param itemType
    * @param refSlideItem  maybe <code>null</code> on text-items. Any chord-item holds a reference to his text-item
    */
-  public SlideItem (final Point location, final String text, final Font font, final SlideType itemType, final SlideItem refSlideItem) {
-    this.font = font;
+  public SlideItem (final Point location, final String text, final SlideType itemType, final SlideItem refSlideItem) {
     this.location = location;
     this.text = text;
     this.itemType = itemType;
@@ -53,10 +49,6 @@ public class SlideItem {
     return location.y;
   }
 
-
-  public Font getFont () {
-    return font;
-  }
 
 
   public SlideType getItemType () {

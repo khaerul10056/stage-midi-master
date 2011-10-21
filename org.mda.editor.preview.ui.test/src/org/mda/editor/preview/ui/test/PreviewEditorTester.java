@@ -29,6 +29,9 @@ public class PreviewEditorTester extends Shell {
 
   public static void main (String[] args) {
 
+
+
+
     PreviewEditorTester editorTester = new PreviewEditorTester();
     Display display = editorTester.getDisplay();
     while (!editorTester.isDisposed()) {

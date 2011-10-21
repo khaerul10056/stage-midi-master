@@ -65,7 +65,7 @@ public class MidiFileSlideCalculatorTest {
 
       like ("X-Coordinate of " + nextFull.getText(), nextFull.getX(), nextHalf.getX() * 2);
       like ("Y-Coordinate of " + nextFull.getText(), nextFull.getY(), nextHalf.getY() * 2);
-      like ("Font of " + nextFull.getText(), nextFull.getFont().getFontData() [0].getHeight(), nextHalf.getFont().getFontData() [0].getHeight() * 2);
+      like ("Font of " + nextFull.getText(), slideFullScreen.getFont().getFontData() [0].getHeight(), slideFullScreen.getFont().getFontData() [0].getHeight() * 2);
     }
 
     System.out.println ("Full: " + slideFullScreen.toString());
