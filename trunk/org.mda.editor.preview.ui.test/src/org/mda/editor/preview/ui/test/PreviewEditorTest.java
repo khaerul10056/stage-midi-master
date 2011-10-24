@@ -80,6 +80,8 @@ public class PreviewEditorTest {
     } catch (Exception e) {
       throw new RuntimeException("Error at index " + i + ":" , e);
     }
+
+    editor.dispose();
   }
 
   @Test

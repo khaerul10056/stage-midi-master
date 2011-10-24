@@ -21,10 +21,9 @@ public class PreviewEditorUiTest {
 
 
 
-  @Test@Ignore
+  @Test
   public void stepToNextAndPreviousLine () throws Exception {
 
-    Display display = Display.getCurrent();
     Shell shell = new PreviewEditorTester();
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     PreviewEditorContent editor = new PreviewEditorContent(shell, song);
@@ -69,12 +68,13 @@ public class PreviewEditorUiTest {
     assertTrue(text.getText().startsWith("Ehre Dir auf Deinem Thron"));
     assertEquals (text.getText().length(), text.getCaretOffset());
 
-    display.dispose();
+    editor.dispose();
+
 
   }
 
   @Test
-  public void splitLine () throws Exception {
+  public void splitLineEndOfChordpart () throws Exception {
     Shell shell = new PreviewEditorTester();
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     PreviewEditorContent editor = new PreviewEditorContent(shell, song);
@@ -104,17 +104,110 @@ public class PreviewEditorUiTest {
     assertEquals("D           G               A", chord2.getText());
     assertEquals("betet an in Wahrheit und in Geist,", text2.getText());
 
-    //split a line in the middle of an chordpart
-    //TODO
-
-    //split a line at the beginning of the line
-    //TODO
-
-    //split a line at the end of the line
-    //TODO
-
-
-
+    editor.dispose();
   }
+
+  @Test
+  public void splitLineMidChordpart () throws Exception {
+    Shell shell = new PreviewEditorTester();
+    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    editor.getContentpanel().showSlide(song.getParts().get(1));
+    shell.setVisible(true);
+
+    //split a line at the beginning of an chordpart
+    editor.getContentpanel().getChordLines().get(0);
+    StyledText text = editor.getContentpanel().getTextLines().get(0);
+    Label chord = editor.getContentpanel().getChordLines().get(0);
+
+    assertEquals("D    G                    A       D           G               A", chord.getText());
+    assertEquals("Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist,", text.getText());  //line 1
+
+    text.setCaretOffset(14);
+
+    editor.getContentpanel().splitLine();
+
+
+    text = editor.getContentpanel().getTextLines().get(0);
+    chord = editor.getContentpanel().getChordLines().get(0);
+    StyledText text2 = editor.getContentpanel().getTextLines().get(1);
+    Label chord2 = editor.getContentpanel().getChordLines().get(1);
+
+    assertEquals("D    G", chord.getText());
+    assertEquals("Alle Schöpfung", text.getText());
+
+    assertEquals("            A       D           G               A", chord2.getText());
+    assertEquals(" staunt und preist, betet an in Wahrheit und in Geist,", text2.getText());
+    editor.dispose();
+  }
+
+  @Test
+  public void splitLineAtHome () throws Exception {
+    Shell shell = new PreviewEditorTester();
+    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    editor.getContentpanel().showSlide(song.getParts().get(1));
+    shell.setVisible(true);
+
+    //split a line at the beginning of an chordpart
+    editor.getContentpanel().getChordLines().get(0);
+    StyledText text = editor.getContentpanel().getTextLines().get(0);
+    Label chord = editor.getContentpanel().getChordLines().get(0);
+
+    assertEquals("D    G                    A       D           G               A", chord.getText());
+    assertEquals("Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist,", text.getText());  //line 1
+
+    text.setCaretOffset(0);
+
+    editor.getContentpanel().splitLine();
+
+
+    text = editor.getContentpanel().getTextLines().get(0);
+    chord = editor.getContentpanel().getChordLines().get(0);
+    StyledText text2 = editor.getContentpanel().getTextLines().get(1);
+    Label chord2 = editor.getContentpanel().getChordLines().get(1);
+
+    assertEquals("", chord.getText());
+    assertEquals("", text.getText());
+
+    assertEquals("D    G                    A       D           G               A", chord2.getText());
+    assertEquals("Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist,", text2.getText());  //line 1
+    editor.dispose();
+  }
+
+  @Test
+  public void splitLineAtEnd () throws Exception {
+    Shell shell = new PreviewEditorTester();
+    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    editor.getContentpanel().showSlide(song.getParts().get(1));
+    shell.setVisible(true);
+
+    //split a line at the beginning of an chordpart
+    editor.getContentpanel().getChordLines().get(0);
+    StyledText text = editor.getContentpanel().getTextLines().get(0);
+    Label chord = editor.getContentpanel().getChordLines().get(0);
+
+    assertEquals("D    G                    A       D           G               A", chord.getText());
+    assertEquals("Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist,", text.getText());  //line 1
+
+    text.setCaretOffset(text.getText().length());
+
+    editor.getContentpanel().splitLine();
+
+
+    text = editor.getContentpanel().getTextLines().get(0);
+    chord = editor.getContentpanel().getChordLines().get(0);
+    StyledText text2 = editor.getContentpanel().getTextLines().get(1);
+    Label chord2 = editor.getContentpanel().getChordLines().get(1);
+
+    assertEquals("", chord2.getText());
+    assertEquals("", text2.getText());
+
+    assertEquals("D    G                    A       D           G               A", chord.getText());
+    assertEquals("Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist,", text.getText());  //line 1
+    editor.dispose();
+  }
+
 
 }
