@@ -1,0 +1,15 @@
+- Editor: 
+   - next line / previous line 
+   - split line / merge line 
+   - edit chord 
+   - handling refs
+   - new part 
+   - clone part 
+   - remove part 
+   - move part up/down 
+
+- User-Plugin 
+   - add user 				\
+   - remove user 				handle with gmail-api?
+   - edit user 
+   - export to user list		/

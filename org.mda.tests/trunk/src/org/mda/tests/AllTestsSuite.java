@@ -8,29 +8,31 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.mda.editor.preview.ui.test.PreviewEditorTest;
+import org.mda.editor.preview.ui.test.PreviewEditorUiTest;
 import org.mda.presenter.ui.test.BeamerPresenterTest;
 import org.mda.presenter.ui.test.MidiFileSlideCalculatorTest;
 
 
 @RunWith(Suite.class)
 @SuiteClasses (  {
- 
+
   //Runtime
   TextImporterTest.class,
   PDFExporterTest.class,
   ChordTest.class,
   TransposeServiceTest.class,
-  
-  
-  
+
+
+
   //UI
   PreviewEditorTest.class,
-  
-  BeamerPresenterTest.class, 
+  PreviewEditorUiTest.class,
+
+  BeamerPresenterTest.class,
   MidiFileSlideCalculatorTest.class
-  
-  
-  
+
+
+
 }
 )
 public class AllTestsSuite {
