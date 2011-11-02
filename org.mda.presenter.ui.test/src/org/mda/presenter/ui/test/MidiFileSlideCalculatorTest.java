@@ -35,7 +35,7 @@ public class MidiFileSlideCalculatorTest {
 
     assertEquals(midiFilePart.getTextlines().size(), calculatePart.getLineCount());
 
-    assertEquals ("Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist, ", calculatePart.getTextline(0));
+    assertEquals ("Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist,", calculatePart.getTextline(0));
 
   }
 
@@ -65,7 +65,7 @@ public class MidiFileSlideCalculatorTest {
 
       like ("X-Coordinate of " + nextFull.getText(), nextFull.getX(), nextHalf.getX() * 2);
       like ("Y-Coordinate of " + nextFull.getText(), nextFull.getY(), nextHalf.getY() * 2);
-      like ("Font of " + nextFull.getText(), slideFullScreen.getFont().getFontData() [0].getHeight(), slideFullScreen.getFont().getFontData() [0].getHeight() * 2);
+      like ("Font of " + nextFull.getText(), slideFullScreen.getFont().getFontData() [0].getHeight(), halfScreen.getFont().getFontData() [0].getHeight() * 2);
     }
 
     System.out.println ("Full: " + slideFullScreen.toString());
@@ -77,7 +77,7 @@ public class MidiFileSlideCalculatorTest {
     if (first + 1 == second || first -1 == second || first == second)
       return;
     else
-      fail (text);
+      fail (text + "first " + first + "->second " + second);
 
   }
 

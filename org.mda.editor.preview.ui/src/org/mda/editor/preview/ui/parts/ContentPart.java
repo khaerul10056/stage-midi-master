@@ -11,6 +11,8 @@ import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
@@ -45,10 +47,12 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
   private Font                               font;
 
+  private MidiFileSlideCalculator            calculator        = new MidiFileSlideCalculator();
+
   public ContentPart (Composite parent, MidiFile file) {
     super(parent);
     this.file = file;
-    currentPart = file.getParts().get(0);
+    setCurrentPart(file.getParts().get(0));
     setLayout(new RowLayout(SWT.VERTICAL));
     //setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
@@ -62,7 +66,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
         Point size = new Point(rect.width, rect.height);
         if (size.x > 0 &&
           size.y > 0)
-          size = showPart(currentPart, size);
+          size = showPart(getCurrentPart(), size);
         setSize(size);
       }
     });
@@ -73,13 +77,16 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
   }
 
   private Point showPart (final MidiFilePart part, final Point size) {
-    this.currentPart = part;
+
+    int currentLine = getFocusedTextFieldIndex();
+    int currentcarePosition = getCaretOffsetOfCurrentTextField();
+
+    this.setCurrentPart(part);
 
     calcPreConditions.setCalculationsize(size);
 
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
     calculator.setConfig(config);
-    setCalculatePart(calculator.calculatePart(currentPart, calcPreConditions));
+    setCalculatePart(calculator.calculatePart(getCurrentPart(), calcPreConditions));
 
     //Dispose and clear old textwidgets and chordwidgets
     for (StyledText nextOldLine : getTextLines())
@@ -108,8 +115,17 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
       nextText.setFont(font);
       nextText.addKeyListener(new KeyAdapter() {
 
+        public void keyReleased (KeyEvent e) {
+          System.out.println ("");
+
+        }
+
         @Override
         public void keyPressed (KeyEvent e) {
+          if (e.keyCode == SWT.DEL) {
+            e.doit = false;
+            deleteCharacter();
+          }
           if (e.keyCode == SWT.ARROW_DOWN)
             stepToNextLine();
           if (e.keyCode == SWT.ARROW_UP)
@@ -117,14 +133,26 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
           if (e.keyCode == SWT.CR) {
             e.doit = false;
             splitLine();
-
           }
           if (e.keyCode == SWT.ALT) {
             e.doit = false;
-            StyledText focused = getTextLines().get(getFocusedTextField());
+            StyledText focused = getTextLines().get(getFocusedTextFieldIndex());
             ChordHover hover = new ChordHover(focused);
-
           }
+
+
+          if (e.character == SWT.BS) {
+            e.doit = false;
+            mergeLine();
+          }
+
+          else if (isShowableCharacter(e.character)) {
+            e.doit = false;
+            System.out.println("Character: <" +
+              e.character + ">");
+            input(e.character);
+          }
+
         }
 
       });
@@ -135,18 +163,51 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
     layout();
 
-    getFocusedTextField();
-
+    if (currentLine >= 0 && currentLine < getTextLines().size()) {
+      getTextLines().get(currentLine).setFocus();
+      if (currentcarePosition >= 0)
+        getTextLines().get(currentLine).setCaretOffset(currentcarePosition);
+    }
     return calcPreConditions.getCalculationsize();
   }
 
-  public int getFocusedTextField () {
+  public int getFocusedTextFieldIndex () {
     for (int i = 0; i < textLines.size(); i++) {
       if (textLines.get(i).isFocusControl())
         return i;
     }
 
     return -1;
+  }
+
+  public boolean isShowableCharacter (final char character) {
+    if (character >= 'A' &&
+      character <= 'Z')
+      return true;
+    if (character >= 'a' &&
+      character <= 'z')
+      return true;
+    if (character >= '0' &&
+      character <= '9')
+      return true;
+
+    return false;
+
+  }
+
+  public Label getFocusedChordLine () {
+    if (getFocusedTextFieldIndex() < 0)
+      return null;
+    return getChordLines().get(getFocusedTextFieldIndex());
+
+  }
+
+  public StyledText getFocusedTextField () {
+    if (getFocusedTextFieldIndex() < 0)
+      return null;
+
+    return getTextLines().get(getFocusedTextFieldIndex());
+
   }
 
   @Override
@@ -166,7 +227,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
   @Override
   public boolean stepToNextLine () {
-    int currentLine = getFocusedTextField();
+    int currentLine = getFocusedTextFieldIndex();
     if (currentLine == getTextLines().size() - 1)
       return false;
 
@@ -179,7 +240,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
   @Override
   public boolean stepToPreviousLine () {
-    int currentLine = getFocusedTextField();
+    int currentLine = getFocusedTextFieldIndex();
     if (currentLine == 0)
       return false;
 
@@ -190,22 +251,42 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
     return true;
   }
 
+  public int getCaretOffsetOfCurrentTextField () {
+    if (getFocusedTextFieldIndex() < 0)
+      return -1;
+
+    return getTextLines().get(getFocusedTextFieldIndex()).getCaretOffset();
+  }
+
   @Override
   public void splitLine () {
-    int currentLine = getFocusedTextField();
-    currentPart = MidiPlayerService.splitLine(currentPart, currentLine, getTextLines().get(currentLine).getCaretOffset());
-    showPart(currentPart, getSize());
+
+    int currentLine = getFocusedTextFieldIndex() + 1;
+    setCurrentPart(MidiPlayerService.splitLine(getCurrentPart(), getFocusedTextFieldIndex(), getCaretOffsetOfCurrentTextField()));
+    showPart(getCurrentPart(), getSize());
+    StyledText newTextLine = getTextLines().get(currentLine);
+    newTextLine.setCaretOffset(0);
+    newTextLine.setFocus();
   }
 
   @Override
   public void mergeLine () {
+    if (getFocusedTextFieldIndex() > 0) {
+      int currentLine = getFocusedTextFieldIndex() - 1;
+      int nextpos = getTextLines().get(currentLine).getText().length();
 
+      setCurrentPart(MidiPlayerService.mergeLine(getCurrentPart(), getFocusedTextFieldIndex(), getCaretOffsetOfCurrentTextField()));
+      showPart(getCurrentPart(), getSize());
+      StyledText previousTextLine = getTextLines().get(currentLine);
+      previousTextLine.setCaretOffset(nextpos);
+      previousTextLine.setFocus();
+    }
   }
 
   @Override
   public boolean toggleChordline () {
     config.setChordVisible(!config.isChordVisible());
-    showPart(currentPart, getSize());
+    showPart(getCurrentPart(), getSize());
 
     return config.isChordVisible();
   }
@@ -216,6 +297,38 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
   public List<StyledText> getTextLines () {
     return textLines;
+  }
+
+  /** removes the selected part of the current textline */
+  public void removeSelected () {
+    if (getFocusedTextField().getSelectionText() != null &&
+      getFocusedTextField().getSelectionText().trim().length() > 0) {
+      int[] selectionRanges = getFocusedTextField().getSelectionRanges();
+      setCurrentPart(MidiPlayerService.remove(getCurrentPart(), getCurrentPart().getTextlines().get(getFocusedTextFieldIndex()), selectionRanges));
+      getFocusedTextField().setCaretOffset(selectionRanges [0]);
+    }
+
+  }
+
+  @Override
+  public void input (char newchar) {
+    removeSelected();
+    currentPart = MidiPlayerService.addCharacter(getCurrentPart(), getFocusedTextFieldIndex(), getCaretOffsetOfCurrentTextField(), newchar);
+    showPart(getCurrentPart(), getSize());
+  }
+
+  @Override
+  public void deleteCharacter () {
+    removeSelected();
+    showPart(getCurrentPart(), getSize());
+  }
+
+  public MidiFilePart getCurrentPart () {
+    return currentPart;
+  }
+
+  private void setCurrentPart (MidiFilePart currentPart) {
+    this.currentPart = currentPart;
   }
 
 }
