@@ -52,79 +52,6 @@ public class MidiPlayerService {
 
   }
 
-
-  public static MidiFilePart addCharacter (MidiFilePart part, int currentLine, int currentCaretPosition, char addedCharacter) {
-    String textAdded = "";
-    for (MidiFileChordPart nextChordPart : part.getTextlines().get(currentLine).getChordParts()) {
-      int from = textAdded.length();
-      textAdded += nextChordPart.getText();
-      int to = textAdded.length();
-      if (from < currentCaretPosition && to >= currentCaretPosition) {
-        int pos = currentCaretPosition - from;
-        StringBuilder builderText = new StringBuilder(nextChordPart.getText());
-        StringBuilder builderChord = new StringBuilder(nextChordPart.getChord());
-        builderText.insert(pos, addedCharacter);
-        if (builderChord.length() >= pos)
-          builderChord.insert(pos, ' ');
-        nextChordPart.setText(builderText.toString());
-        nextChordPart.setChord(builderChord.toString());
-        continue;
-      }
-    }
-
-    return part;
-
-  }
-  /**
-   * @param part
-   * @param currentLine
-   * @param selectionRanges
-   * @return
-   */
-  public static MidiFilePart remove (MidiFilePart part, MidiFileTextLine currentLine, int[] selectionRanges) {
-    Collection<MidiFilePartRemoveToken> removedParts = new ArrayList<MidiFilePartRemoveToken>();
-
-    int from = 0;
-    int to = 0;
-    for (MidiFileChordPart nextChordPart : currentLine.getChordParts()) {
-      to += nextChordPart.getText().length();
-      removedParts.add(new MidiFilePartRemoveToken(nextChordPart, from, to));
-      from+= nextChordPart.getText().length();
-    }
-
-    int selectionFrom = selectionRanges [0];
-    int selectionTo = selectionFrom + selectionRanges [1];
-    for (MidiFilePartRemoveToken nextRemoveToken: removedParts) {
-
-      if (! nextRemoveToken.isInSelection(selectionFrom, selectionTo))
-        continue;
-
-      Integer removeFrom = nextRemoveToken.getRemoveFrom(selectionFrom, selectionTo);
-      Integer removeTo = nextRemoveToken.getRemoveTo(selectionFrom, selectionTo);
-
-      String originalText = nextRemoveToken.getPart().getText();
-      String shrinkedText = originalText.substring(0, removeFrom.intValue()) + originalText.substring(removeTo.intValue(), originalText.length());
-      nextRemoveToken.getPart().setText(shrinkedText);
-
-
-      //chord
-      String originalChord = nextRemoveToken.getPart().getChord();
-      int removeChordFrom = removeFrom.intValue();
-      if (removeChordFrom > originalChord.length())
-        removeChordFrom = originalChord.length();
-
-      int removeChordTo = removeTo.intValue();
-      if (removeChordTo > originalChord.length())
-        removeChordTo = originalChord.length();
-      String shrinkedChord = originalChord.substring(0, removeChordFrom) + originalText.substring(removeChordTo, originalChord.length());
-      nextRemoveToken.getPart().setChord(shrinkedChord);
-    }
-
-    return part;
-  }
-
-
-
   /** splits a line at the given caretposition
    * @param part unsplitted part
    * @param line current linenumber
@@ -553,6 +480,15 @@ public class MidiPlayerService {
     });
   }
 
+  public static String toString (MidiFilePart nextPart) {
+    StringBuilder builder = new StringBuilder();
+    List <String> strings = getRawText(nextPart);
+    for (String nextString: strings)
+      builder.append(nextString + "\n");
+
+    return builder.toString();
+
+  }
   public static List<String> getRawText (MidiFilePart nextPart) {
     List<String> lines = new ArrayList<String>();
 
@@ -562,6 +498,8 @@ public class MidiPlayerService {
     for (MidiFileTextLine nextLine : nextPart.getTextlines()) {
       String nextLineAsText = "";
       for (MidiFileChordPart nextChordPart : nextLine.getChordParts()) {
+        if (nextChordPart.getChord() != null)
+          nextLineAsText += "(" + nextChordPart.getChord() + ")";
         if (nextChordPart.getText() != null)
           nextLineAsText += nextChordPart.getText();
       }

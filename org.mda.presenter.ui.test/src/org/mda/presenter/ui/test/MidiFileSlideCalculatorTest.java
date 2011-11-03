@@ -35,7 +35,7 @@ public class MidiFileSlideCalculatorTest {
 
     assertEquals(midiFilePart.getTextlines().size(), calculatePart.getLineCount());
 
-    assertEquals ("Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist,", calculatePart.getTextline(0));
+    assertEquals ("Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist, ", calculatePart.getTextline(0));
 
   }
 

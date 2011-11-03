@@ -9,7 +9,7 @@ public interface IMidiFileEditorConfig {
    * getter
    * @return true: chordline should be visible, false: chordline is not visible
    */
-  boolean isChordVisible();
+  boolean isChordPresented();
 
   /**
    * getter

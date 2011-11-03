@@ -9,15 +9,10 @@ public interface IPreviewEditorView extends IPreviewView {
 
   boolean stepToPreviousLine ();
 
-  boolean toggleChordline ();
-
   void splitLine ();
 
   void mergeLine ();
 
-  void input (final char newchar);
-
-  void deleteCharacter ();
 
 
 }
