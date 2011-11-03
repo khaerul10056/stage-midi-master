@@ -89,15 +89,14 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
       Point testExtend = gc.textExtent("H");
       int height = testExtend.y;
-      if (getConfig().isChordVisible())
-        height += testExtend.y;
+      height += testExtend.y;
 
       for (MidiFileChordPart chordPart : nextTextLine.getChordParts()) {
-        String chord = getConfig().isChordVisible() ? chordPart.getChord(): null;
+        String chord = getConfig().isChordPresented() ? chordPart.getChord(): null;
         String text = chordPart.getText();
 
         Point textExtend = text != null ? gc.textExtent(text) : nullExtend;
-        Point chordExtend = chord != null && getConfig().isChordVisible() ? gc.textExtent(chord): nullExtend ;
+        Point chordExtend = chord != null && getConfig().isChordPresented() ? gc.textExtent(chord): nullExtend ;
 
         SlideItem newTextItem = null;
         if (text != null) {

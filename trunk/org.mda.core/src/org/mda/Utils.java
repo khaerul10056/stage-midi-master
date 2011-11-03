@@ -28,7 +28,10 @@ public class Utils {
    * @return
    */
   public final static String trimRight (final String untrimmed) {
-    return untrimmed.replaceAll("\\s+$", "");
+    if (untrimmed.endsWith(" "))
+      return untrimmed.replaceAll("\\s+$", "") + " ";
+    else
+      return untrimmed.replaceAll("\\s+$", "");
   }
   /**
    * positions of the beginning of every chord
@@ -156,6 +159,17 @@ public class Utils {
           return i;
     }
     return 0;
+  }
+
+
+  public static String removeString (String text, int start, int length) {
+
+    if (start < 0 || (start + length) >= text.length())
+      throw new ArrayIndexOutOfBoundsException("Text length " + text.length() + ", start" + start + ", length " + length + " is out of bounds");
+
+    String newText = text.substring(0, start);
+    newText += text.substring(start + length, text.length());
+    return newText;
   }
 
 

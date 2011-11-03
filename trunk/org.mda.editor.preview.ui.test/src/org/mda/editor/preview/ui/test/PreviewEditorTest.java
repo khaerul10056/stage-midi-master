@@ -5,7 +5,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import mda.MidiFile;
+import mda.MidiFilePart;
 import mda.MidiPlayerRoot;
+import org.eclipse.emf.common.EMFPlugin;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
@@ -45,6 +48,34 @@ public class PreviewEditorTest {
   }
 
   @Test
+  public void saveToModel () {
+    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    MidiFile old = EcoreUtil.copy(song);
+
+    //initialize model, because it is trimmed
+    MidiFilePart oldModel = old.getParts().get(1);
+    editor.getContentpanel().showSlide(song.getParts().get(1));
+    oldModel = editor.getContentpanel().saveToModel();
+
+
+    logEditorContent(editor.getContentpanel());
+    shell.setVisible(true);
+    //check if multiple save-process change the model
+    for (int i = 0; i< 10; i++) {
+      MidiFilePart saveToModel = editor.getContentpanel().saveToModel();
+      editor.getContentpanel().showSlide(saveToModel);
+      System.out.println("Old: " + MidiPlayerService.toString(oldModel));
+      System.out.println("New: " + MidiPlayerService.toString(saveToModel));
+      if (i > 0)
+        assertEquals(oldModel, saveToModel);
+    }
+
+  }
+
+
+
+  @Test
   public void zoom () {
 
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
@@ -56,6 +87,9 @@ public class PreviewEditorTest {
     shell.setSize(new Point (400, 800));
 
     int heightNew = editor.getContentpanel().getCurrentSlide().getFont().getFontData() [0].getHeight();
+
+
+
 
     assertEquals(height, heightNew * 2);
     shell.dispose();
@@ -84,19 +118,7 @@ public class PreviewEditorTest {
     editor.dispose();
   }
 
-  @Test
-  public void toggleChordline () throws Exception {
 
-    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
-    shell.setVisible(true);
-    editor.getSlidelistpanel().getSlideItems().get(1).showPartOnContentScreen();
-
-    logEditorContent(editor.getContentpanel());
-
-    displayAllLoadedFonts(shell);
-
-  }
 
   private void logEditorContent (final ContentPart contentPart) {
     List <String> chords = new ArrayList<String>();

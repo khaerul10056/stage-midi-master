@@ -10,14 +10,13 @@ import org.eclipse.swt.widgets.Composite;
 
 public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
-  private Button showChordsButton;
+
 
   public ButtonPanelPart (Composite parent) {
     super(parent);
 
     setLayout(new FillLayout(SWT.HORIZONTAL));
-    showChordsButton = addButton("Show chords", SWT.TOGGLE);
-    showChordsButton.addSelectionListener(this);
+
     addButton("Edit theme", SWT.NONE);
     addButton("Infos", SWT.NONE);
   }
@@ -31,13 +30,11 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
   @Override
   public void widgetDefaultSelected (SelectionEvent arg0) {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void widgetSelected (SelectionEvent arg0) {
-     if (arg0.widget == showChordsButton) {
-       showChordsButton.setSelection(getEditorContent().getContentpanel().toggleChordline());
-     }
+
   }
 }

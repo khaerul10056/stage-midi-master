@@ -4,15 +4,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import mda.MidiFile;
+import mda.MidiFileChordPart;
 import mda.MidiFilePart;
+import mda.MidiFileTextLine;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ExtendedModifyEvent;
+import org.eclipse.swt.custom.ExtendedModifyListener;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
@@ -21,6 +23,7 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.mda.MidiPlayerService;
+import org.mda.Utils;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.IPreviewEditorView;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
@@ -72,9 +75,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
     });
   }
 
-  private int getLayoutFactor () {
-    return config.isChordVisible() ? 2 : 1;
-  }
+
 
   private Point showPart (final MidiFilePart part, final Point size) {
 
@@ -101,56 +102,63 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
       if (items.isEmpty())
         continue;
 
-      SlideItem next = items.iterator().next();
-      if (config.isChordVisible()) {
-        Label chordLabel = new Label(this, SWT.NONE);
-        chordLabel.setText(getCurrentSlide().getChordline(i));
-        chordLabel.setFont(font);
-        chordLabel.setEnabled(false);
-        getChordLines().add(chordLabel);
-      }
+      Label chordLabel = new Label(this, SWT.NONE);
+      chordLabel.setText(getCurrentSlide().getChordline(i));
+      chordLabel.setFont(font);
+      chordLabel.setEnabled(false);
+      getChordLines().add(chordLabel);
 
       StyledText nextText = new StyledText(this, SWT.SINGLE);
       nextText.setText(getCurrentSlide().getTextline(i));
       nextText.setFont(font);
+      nextText.addExtendedModifyListener(new ExtendedModifyListener() {
+
+        @Override
+        public void modifyText (ExtendedModifyEvent arg0) {
+          Label lblChordLine = getChordLines().get(getFocusedTextFieldIndex());
+          String newChordLine = lblChordLine.getText();
+          if (arg0.replacedText != null && arg0.replacedText.length() > 0) { //adapt chordline
+            newChordLine = Utils.removeString(newChordLine, arg0.start, arg0.replacedText.length());
+          }
+
+          StringBuilder builder = new StringBuilder(newChordLine);
+          for (int i = 0; i < arg0.length; i++) {
+            builder.insert(arg0.start, ' ');
+          }
+
+          lblChordLine.setText(builder.toString());
+
+          StyledText txtTextLine = getTextLines().get(getFocusedTextFieldIndex());
+          System.out.println (lblChordLine.getText() + "\n" + txtTextLine.getText());
+        }
+      });
       nextText.addKeyListener(new KeyAdapter() {
 
         public void keyReleased (KeyEvent e) {
-          System.out.println ("");
-
         }
 
         @Override
         public void keyPressed (KeyEvent e) {
-          if (e.keyCode == SWT.DEL) {
-            e.doit = false;
-            deleteCharacter();
-          }
           if (e.keyCode == SWT.ARROW_DOWN)
             stepToNextLine();
-          if (e.keyCode == SWT.ARROW_UP)
+          else if (e.keyCode == SWT.ARROW_UP)
             stepToPreviousLine();
-          if (e.keyCode == SWT.CR) {
+          else if (e.keyCode == SWT.CR) {
             e.doit = false;
             splitLine();
           }
-          if (e.keyCode == SWT.ALT) {
+          else if (e.keyCode == SWT.ALT) {
             e.doit = false;
             StyledText focused = getTextLines().get(getFocusedTextFieldIndex());
             ChordHover hover = new ChordHover(focused);
           }
-
-
-          if (e.character == SWT.BS) {
+          else if (e.character == SWT.BS) {
             e.doit = false;
             mergeLine();
           }
-
-          else if (isShowableCharacter(e.character)) {
-            e.doit = false;
-            System.out.println("Character: <" +
-              e.character + ">");
-            input(e.character);
+          else {
+            saveToModel ();
+            showPart(getCurrentPart(), size);
           }
 
         }
@@ -171,6 +179,57 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
     return calcPreConditions.getCalculationsize();
   }
 
+  public MidiFilePart saveToModel () {
+    currentPart.getTextlines().clear();
+    for (int i = 0; i < getTextLines().size(); i++) {
+      MidiFileTextLine newTextLine = MidiPlayerService.mf.createMidiFileTextLine();
+      currentPart.getTextlines().add(newTextLine);
+
+      String chord = getChordLines().get(i).getText();
+      String text = getTextLines().get(i).getText();
+
+      if (chord.trim().length() == 0) { //without chords
+        MidiFileChordPart newChordPart = MidiPlayerService.mf.createMidiFileChordPart();
+        newChordPart.setText(text);
+        newTextLine.getChordParts().add(newChordPart);
+      }
+      else {
+        List <Integer> positions = new ArrayList<Integer>();
+        boolean inChord = false;
+        for (int linepos = 0; linepos < chord.length(); linepos++) { //Find chordpositions
+          if (!inChord && !Character.isWhitespace(chord.charAt(linepos))) {
+              positions.add(new Integer(linepos));
+              inChord = true;
+          }
+
+          if (Character.isWhitespace(chord.charAt(linepos)))
+            inChord = false;
+        }
+
+        positions.add(Math.max(chord.length(), text.length()));
+
+        for (int linepos = 0; linepos < positions.size() - 1; linepos ++) {
+          MidiFileChordPart newChordPart = MidiPlayerService.mf.createMidiFileChordPart();
+          int from = positions.get(linepos);
+          int toChord = Math.min(positions.get(linepos + 1), chord.length());
+          String chordPart = chord.substring(from, toChord);
+          newChordPart.setChord(Utils.trimRight(chordPart));
+
+          if (from < text.length()) {
+            int toText = Math.min(positions.get(linepos + 1), text.length());
+            String textPart = text.substring(from, toText);
+            newChordPart.setText(Utils.trimRight(textPart));
+          }
+          newTextLine.getChordParts().add(newChordPart);
+        }
+      }
+    }
+
+    System.out.println (MidiPlayerService.toString(currentPart));
+
+    return currentPart;
+  }
+
   public int getFocusedTextFieldIndex () {
     for (int i = 0; i < textLines.size(); i++) {
       if (textLines.get(i).isFocusControl())
@@ -178,21 +237,6 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
     }
 
     return -1;
-  }
-
-  public boolean isShowableCharacter (final char character) {
-    if (character >= 'A' &&
-      character <= 'Z')
-      return true;
-    if (character >= 'a' &&
-      character <= 'z')
-      return true;
-    if (character >= '0' &&
-      character <= '9')
-      return true;
-
-    return false;
-
   }
 
   public Label getFocusedChordLine () {
@@ -271,7 +315,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
   @Override
   public void mergeLine () {
-    if (getFocusedTextFieldIndex() > 0) {
+    if (getFocusedTextFieldIndex() > 0 && getCaretOffsetOfCurrentTextField() == 0) {
       int currentLine = getFocusedTextFieldIndex() - 1;
       int nextpos = getTextLines().get(currentLine).getText().length();
 
@@ -283,13 +327,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
     }
   }
 
-  @Override
-  public boolean toggleChordline () {
-    config.setChordVisible(!config.isChordVisible());
-    showPart(getCurrentPart(), getSize());
 
-    return config.isChordVisible();
-  }
 
   public List<Label> getChordLines () {
     return chordLines;
@@ -299,29 +337,6 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
     return textLines;
   }
 
-  /** removes the selected part of the current textline */
-  public void removeSelected () {
-    if (getFocusedTextField().getSelectionText() != null &&
-      getFocusedTextField().getSelectionText().trim().length() > 0) {
-      int[] selectionRanges = getFocusedTextField().getSelectionRanges();
-      setCurrentPart(MidiPlayerService.remove(getCurrentPart(), getCurrentPart().getTextlines().get(getFocusedTextFieldIndex()), selectionRanges));
-      getFocusedTextField().setCaretOffset(selectionRanges [0]);
-    }
-
-  }
-
-  @Override
-  public void input (char newchar) {
-    removeSelected();
-    currentPart = MidiPlayerService.addCharacter(getCurrentPart(), getFocusedTextFieldIndex(), getCaretOffsetOfCurrentTextField(), newchar);
-    showPart(getCurrentPart(), getSize());
-  }
-
-  @Override
-  public void deleteCharacter () {
-    removeSelected();
-    showPart(getCurrentPart(), getSize());
-  }
 
   public MidiFilePart getCurrentPart () {
     return currentPart;
