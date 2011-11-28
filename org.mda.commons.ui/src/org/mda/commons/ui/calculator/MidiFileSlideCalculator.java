@@ -13,8 +13,9 @@ import mda.MidiFileTextLine;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.GC;
-import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 
 public class MidiFileSlideCalculator extends SlideCalculator {
@@ -27,7 +28,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
   private Font font;
 
-  private Image image;
+  private ImageData image;
 
   private Point nullExtend = new Point (0,0);
 
@@ -60,7 +61,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         FileInputStream fis;
         try {
           fis = new FileInputStream(picAsFile);
-          image = new Image(Display.getDefault(), fis);
+          image = new ImageData(fis);
         }
         catch (FileNotFoundException e) {
           // TODO Auto-generated catch block
@@ -73,6 +74,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
   }
 
+
+
   public Slide calculatePart (final MidiFilePart part, final CalculatorPreCondition preCondition) {
 
     init((MidiFile) part.eContainer());
@@ -84,12 +87,15 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
     normalizeSizeToPresentationSize(preCondition);
 
-    for (MidiFileTextLine nextTextLine : part.getTextlines()) {
+    for (MidiFileTextLine nextTextLine : part.getRefPart() != null ? part.getRefPart().getTextlines() : part.getTextlines()) {
       currentX = 0;
 
       Point testExtend = gc.textExtent("H");
       int height = testExtend.y;
-      height += testExtend.y;
+      if (getConfig().isChordPresented())
+        height += testExtend.y;
+      else
+        height += (testExtend.y / 2);
 
       for (MidiFileChordPart chordPart : nextTextLine.getChordParts()) {
         String chord = getConfig().isChordPresented() ? chordPart.getChord(): null;
@@ -99,26 +105,32 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         Point chordExtend = chord != null && getConfig().isChordPresented() ? gc.textExtent(chord): nullExtend ;
 
         SlideItem newTextItem = null;
-        if (text != null) {
-          Point point = new Point(currentX, currentY + chordExtend.y);
-          Point zoomedPoint = calculateZoomedPoint(point, preCondition);
-
-          newTextItem = new SlideItem(zoomedPoint, text, SlideType.TEXT, null);
-          slide.addItem(newTextItem);
-        }
-
-        if (chord != null) {
-          Point point = new Point (currentX, currentY);
-          Point zoomedPoint = calculateZoomedPoint(point, preCondition);
-          SlideItem newItem = new SlideItem(zoomedPoint, chord, SlideType.CHORD, newTextItem);
-          slide.addItem(newItem);
-        }
 
         int biggestXExtend = 0;
         if (chordExtend.x > biggestXExtend)
           biggestXExtend = chordExtend.x;
         if (textExtend.x > biggestXExtend)
           biggestXExtend = textExtend.x;
+
+        if (text != null) {
+          Point point = new Point(currentX, currentY + testExtend.y);
+          Point zoomedPoint = calculateZoomedPoint(point, preCondition);
+
+          Rectangle textRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, textExtend.x, textExtend.y);
+          newTextItem = new SlideItem(textRectangle, text, SlideType.TEXT, null);
+          slide.addItem(newTextItem);
+        }
+
+        if (chord != null && getConfig().isChordPresented()) {
+          Point point = new Point (currentX, currentY);
+          Point zoomedPoint = calculateZoomedPoint(point, preCondition);
+
+          Rectangle chordRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, chordExtend.x, chordExtend.y);
+          SlideItem newItem = new SlideItem(chordRectangle, chord, SlideType.CHORD, newTextItem);
+          slide.addItem(newItem);
+        }
+
+
 
         currentX += biggestXExtend;
 

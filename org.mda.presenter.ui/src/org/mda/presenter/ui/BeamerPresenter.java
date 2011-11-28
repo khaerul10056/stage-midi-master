@@ -5,10 +5,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import mda.AbstractSessionItem;
 import mda.Session;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
@@ -21,9 +23,7 @@ import org.mda.presenter.ui.slide.IPresentationView;
 
 public class BeamerPresenter extends Shell implements IPresentationView {
 
-  private final Session session;
 
-  private final IPresentationController controller;
   private final IMidiFileEditorUIConfig config;
 
 
@@ -41,14 +41,14 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     super (display, style);
 
     calcPreCondition = new CalculatorPreCondition();
-    calcPreCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    this.session = session;
-    this.controller = controller;
+    setBounds(Display.getCurrent().getMonitors() [0].getBounds()); //TODO configure multi monitors
+    setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
+    calcPreCondition.setCalculationsize(new Point (getBounds().width, getBounds().height));
     this.config = config;
     controller.connect(this);
 
-    setBounds(Display.getCurrent().getMonitors() [0].getBounds()); //TODO configure multi monitors
-    //setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
+
+
     open();
     setFocus();
 

@@ -2,13 +2,17 @@ package org.mda.editor.preview.ui.parts;
 
 import static org.mda.commons.ui.calculator.CalculatorRegistry.getCalculator;
 import mda.MidiFilePart;
+import mda.MidiFilePartType;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
+import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.IPreviewView;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
@@ -38,6 +42,9 @@ public class PreviewPart extends AbstractPart implements IPreviewView{
     calcPreCondition = new CalculatorPreCondition();
     calcPreCondition.setCalculationsize(new Point (width, height));
     calculator = (MidiFileSlideCalculator) getCalculator(MidiFileSlideCalculator.class);
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    //config.setChordVisible(false);
+    calculator.setConfig(config);
 
     addPaintListener(new PaintListener() {
 
