@@ -7,6 +7,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
+import org.eclipse.swt.widgets.Display;
 import static org.mda.Utils.trimRight;
 
 /** dataobject containing information created for a slide,
@@ -17,7 +19,7 @@ public class Slide {
   /** reference to the current modelelement (e.g. midifilepart) */
   private final EObject                                 modelRef;
 
-  private Image                                         backgroundImage;
+  private ImageData                                         backgroundImage;
 
   private Integer                                       currentLine = 0;
 
@@ -110,11 +112,18 @@ public class Slide {
     return modelRef;
   }
 
-  public void setBackgroundImage (Image backgroundImage) {
+  public void setBackgroundImage (ImageData backgroundImage) {
     this.backgroundImage = backgroundImage;
   }
 
   public Image getBackgroundImage () {
+    if (backgroundImage == null)
+      return null;
+    else
+      return new Image (Display.getDefault(), backgroundImage);
+  }
+
+  public ImageData getBackgroundImageData () {
     return backgroundImage;
   }
 
