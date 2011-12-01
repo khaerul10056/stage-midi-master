@@ -30,6 +30,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
   private ImageData image;
 
+  private File imageFile;
+
   private Point nullExtend = new Point (0,0);
 
   private final GC gc = new GC(Display.getDefault());
@@ -62,6 +64,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         try {
           fis = new FileInputStream(picAsFile);
           image = new ImageData(fis);
+          imageFile = picAsFile;
         }
         catch (FileNotFoundException e) {
           // TODO Auto-generated catch block
@@ -69,8 +72,10 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         }
       }
     }
-    else
+    else {
       image = null;
+      imageFile = null;
+    }
 
   }
 
@@ -81,7 +86,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     init((MidiFile) part.eContainer());
     Font zoomedFont = calculateZoomedFont(font, preCondition);
     Slide slide = new Slide(part, zoomedFont);
-    slide.setBackgroundImage(image);
+    slide.setBackgroundImage(image, imageFile);
 
     currentY = 0;
 

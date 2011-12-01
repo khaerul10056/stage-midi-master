@@ -9,6 +9,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.mda.editor.preview.ui.test.PreviewEditorTest;
 import org.mda.editor.preview.ui.test.PreviewEditorUiTest;
+import org.mda.export.powerpoint.ExporterTest;
 import org.mda.presenter.ui.test.BeamerPresenterTest;
 import org.mda.presenter.ui.test.MidiFileSlideCalculatorTest;
 
@@ -29,7 +30,11 @@ import org.mda.presenter.ui.test.MidiFileSlideCalculatorTest;
   PreviewEditorUiTest.class,
 
   BeamerPresenterTest.class,
-  MidiFileSlideCalculatorTest.class
+  MidiFileSlideCalculatorTest.class,
+
+
+  //Export
+  ExporterTest.class
 
 
 

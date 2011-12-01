@@ -1,7 +1,6 @@
 package org.mda;
 
 import mda.MidiFileChordPart;
-import mda.MidiFilePart;
 
 public class MidiFilePartRemoveToken {
 

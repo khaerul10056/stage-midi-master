@@ -2,7 +2,6 @@ package org.mda.application;
 
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
@@ -21,7 +20,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
     public void preWindowOpen() {
         IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
 
-        Rectangle bounds = Display.getCurrent().getBounds();
+        Rectangle bounds = new Rectangle(0, 0, 1024, 768);
         configurer.setInitialSize(new Point (bounds.width, bounds.height));
         configurer.setShowCoolBar(false);
         configurer.setShowStatusLine(false);

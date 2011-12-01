@@ -12,7 +12,7 @@
             name="PreviewEditor">
       </editor>
    </extension>
-   
+
    <extension point="org.eclipse.ui.commands">
       <command
             defaultHandler="org.mda.editor.preview.ui.OpenPreviewEditorHandler"
@@ -21,18 +21,5 @@
       </command>
    </extension>
 
-
-    <extension point="org.eclipse.ui.menus">
-
-     <menuContribution
-           allPopups="false"
-           locationURI="popup:org.mda.views.modelnavigator">
-        <command
-              commandId="org.mda.commons.ui.navigator.openprevieweditorhandler"
-              label="Open preview editor"
-              style="push">
-        </command>
-     </menuContribution>
-   </extension>
 
 </plugin>

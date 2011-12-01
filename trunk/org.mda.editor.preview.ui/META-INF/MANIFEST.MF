@@ -14,4 +14,5 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.mda.editor.preview.ui,
+ org.mda.editor.preview.ui.chords,
  org.mda.editor.preview.ui.parts
