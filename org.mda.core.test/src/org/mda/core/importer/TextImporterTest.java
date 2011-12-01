@@ -1,4 +1,4 @@
-package maosoft.midiplayer.importer;
+package org.mda.core.importer;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

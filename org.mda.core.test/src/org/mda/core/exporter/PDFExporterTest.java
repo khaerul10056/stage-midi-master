@@ -1,4 +1,4 @@
-package maosoft.midiplayer.exporter;
+package org.mda.core.exporter;
 
 import java.io.File;
 
