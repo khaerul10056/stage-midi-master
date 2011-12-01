@@ -119,7 +119,7 @@ public class ContentNavigator extends ViewPart {
           IStructuredSelection structSelection = (IStructuredSelection) arg0.getSelection();
           Object selectedObject = structSelection.getFirstElement();
 
-          boolean currentItemIsMidiFile = selectedObject instanceof MidiFile;
+          //boolean currentItemIsMidiFile = selectedObject instanceof MidiFile; TODO
           boolean currentItemIsSession = selectedObject instanceof Session;
 
           itemPowerpoint.setEnabled(currentItemIsSession);

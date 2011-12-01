@@ -11,9 +11,7 @@ import mda.MidiFileTextLine;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.DocumentFont;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -36,14 +34,14 @@ public class PDFExporter {
 	}
 
 
-	private Font getFont (final int size, boolean bold) throws DocumentException, IOException {
-		Font font = new Font(DocumentFont.createFont());
-		font.setSize(size);
-		if (bold)
-		  font.setStyle(Font.BOLD);
-
-		return font;
-	}
+//	private Font getFont (final int size, boolean bold) throws DocumentException, IOException {
+//		Font font = new Font(DocumentFont.createFont());
+//		font.setSize(size);
+//		if (bold)
+//		  font.setStyle(Font.BOLD);
+//
+//		return font;
+//	}
 
 	public void exportMidifile (final MidiFile midifiles) {
 		try {

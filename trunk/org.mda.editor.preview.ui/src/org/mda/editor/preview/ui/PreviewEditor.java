@@ -44,7 +44,7 @@ public class PreviewEditor extends EditorPart {
 
   @Override
   public void createPartControl (Composite parent) {
-    PreviewEditorContent content = new PreviewEditorContent(parent, meei.getRootObject());
+    new PreviewEditorContent(parent, meei.getRootObject());
 
   }
 

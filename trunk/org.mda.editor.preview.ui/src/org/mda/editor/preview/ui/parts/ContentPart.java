@@ -34,8 +34,6 @@ import org.mda.editor.preview.ui.chords.ChordHover;
 
 public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
-  private MidiFile                           file;
-
   private MidiFilePart                       currentPart;
 
   private DefaultMidiFileContentEditorConfig config            = new DefaultMidiFileContentEditorConfig(); //TODO inject
@@ -54,7 +52,6 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
   public ContentPart (Composite parent, MidiFile file) {
     super(parent);
-    this.file = file;
     setCurrentPart(file.getParts().get(0));
     setLayout(new RowLayout(SWT.VERTICAL));
     //setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
@@ -150,7 +147,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
           else if (e.keyCode == SWT.ALT) {
             e.doit = false;
             StyledText focused = getTextLines().get(getFocusedTextFieldIndex());
-            ChordHover hover = new ChordHover(focused);
+            new ChordHover(focused);
           }
           else if (e.character == SWT.BS) {
             e.doit = false;
