@@ -13,7 +13,7 @@ public class Perspective implements IPerspectiveFactory {
 
     layout.setEditorAreaVisible(true);
     layout.addView("org.mda.navigator.ui", IPageLayout.LEFT, 0.40f, layout.getEditorArea());
-    layout.addView("org.mda.editor.preview.ui.editors.previeweditor", IPageLayout.LEFT, 0.60f, layout.getEditorArea());
+   // layout.addView("org.mda.editor.preview.ui.editors.previeweditor", IPageLayout.LEFT, 0.60f, layout.getEditorArea());
   }
 
 }

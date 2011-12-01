@@ -27,7 +27,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.mda.commons.ui.ApplicationSession;
+import org.mda.ApplicationSession;
 import org.mda.commons.ui.MidiFileEditorInput;
 import org.mda.export.powerpoint.Exporter;
 

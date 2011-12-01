@@ -1,14 +1,35 @@
 package org.mda;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
-
 import mda.MidiFileChordPart;
 import mda.MidiFilePartType;
 
 public class Utils {
 
+
+
+  /**
+   * deletes a directory recursively
+   * @param path path
+   * @return true/false
+   */
+  public static boolean deleteDirectory(File path) {
+    if( path.exists() ) {
+      File[] files = path.listFiles();
+      for(int i=0; i<files.length; i++) {
+         if(files[i].isDirectory()) {
+           deleteDirectory(files[i]);
+         }
+         else {
+           files[i].delete();
+         }
+      }
+    }
+    return( path.delete() );
+  }
 
   /**
    * splits a string at the given position and returns splitted string as array of strings

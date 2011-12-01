@@ -75,7 +75,9 @@
       <plugin id="org.mda.commons.ui"/>
       <plugin id="org.mda.core"/>
       <plugin id="org.mda.editor.preview.ui"/>
+      <plugin id="org.mda.export.powerpoint"/>
       <plugin id="org.mda.model"/>
+      <plugin id="org.mda.navigator.ui"/>
       <plugin id="org.mda.presenter.ui"/>
    </plugins>
 

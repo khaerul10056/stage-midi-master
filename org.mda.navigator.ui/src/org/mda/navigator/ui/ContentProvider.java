@@ -3,7 +3,7 @@ package org.mda.navigator.ui;
 import mda.MidiPlayerRoot;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.mda.commons.ui.ApplicationSession;
+import org.mda.ApplicationSession;
 
 
 public class ContentProvider implements ITreeContentProvider {

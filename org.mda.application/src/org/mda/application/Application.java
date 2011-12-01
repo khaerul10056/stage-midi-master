@@ -1,20 +1,35 @@
 package org.mda.application;
 
+import java.io.File;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
+import org.mda.ApplicationSession;
+import org.mda.MdaModule;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 /**
  * This class controls all aspects of the application's execution
  */
 public class Application implements IApplication {
 
+  @Inject
+  private ApplicationSession session;
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
 	 */
 	public Object start(IApplicationContext context) throws Exception {
+
+	  Injector injector = Guice.createInjector(new MdaModule());
+    injector.injectMembers(this);
+
+    session.load(new File ("").getAbsolutePath());
+
 		Display display = PlatformUI.createDisplay();
 		try {
 			int returnCode = PlatformUI.createAndRunWorkbench(display, new ApplicationWorkbenchAdvisor());
@@ -25,7 +40,7 @@ public class Application implements IApplication {
 		} finally {
 			display.dispose();
 		}
-		
+
 	}
 
 	/* (non-Javadoc)

@@ -5,6 +5,7 @@ Bundle-SymbolicName: org.mda.application; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.mda.application.Activator
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.mda.core;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

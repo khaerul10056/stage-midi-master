@@ -1,12 +1,13 @@
 package org.mda.tests;
 
-import maosoft.TransposeServiceTest;
-import maosoft.midiplayer.ChordTest;
-import maosoft.midiplayer.exporter.PDFExporterTest;
-import maosoft.midiplayer.importer.TextImporterTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
+import org.mda.core.ApplicationSessionTest;
+import org.mda.core.ChordTest;
+import org.mda.core.TransposeServiceTest;
+import org.mda.core.exporter.PDFExporterTest;
+import org.mda.core.importer.TextImporterTest;
 import org.mda.editor.preview.ui.test.PreviewEditorTest;
 import org.mda.editor.preview.ui.test.PreviewEditorUiTest;
 import org.mda.export.powerpoint.ExporterTest;
@@ -17,11 +18,12 @@ import org.mda.presenter.ui.test.MidiFileSlideCalculatorTest;
 @RunWith(Suite.class)
 @SuiteClasses (  {
 
-  //Runtime
+  //Core
   TextImporterTest.class,
   PDFExporterTest.class,
   ChordTest.class,
   TransposeServiceTest.class,
+  ApplicationSessionTest.class,
 
 
 
