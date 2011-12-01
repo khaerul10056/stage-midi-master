@@ -7,7 +7,6 @@ import java.util.List;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiPlayerRoot;
-import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.FontData;
@@ -145,18 +144,18 @@ public class PreviewEditorTest {
 
   }
 
-  private static void displayAllLoadedFonts(Shell shell) {
-    // display all scalable fonts in the system
-    FontData[] fd = shell.getDisplay().getFontList(null, true);
-    for( int i = 0; i < fd.length; i++ ) {
-            System.out.println(fd[i].getName());
-    }
-    // and the non-scalable ones
-    fd = shell.getDisplay().getFontList(null, false);
-    for( int i = 0; i < fd.length; i++ ) {
-            System.out.println(fd[i].getName());
-    }
-}
+//  private static void displayAllLoadedFonts(Shell shell) {
+//    // display all scalable fonts in the system
+//    FontData[] fd = shell.getDisplay().getFontList(null, true);
+//    for( int i = 0; i < fd.length; i++ ) {
+//            System.out.println(fd[i].getName());
+//    }
+//    // and the non-scalable ones
+//    fd = shell.getDisplay().getFontList(null, false);
+//    for( int i = 0; i < fd.length; i++ ) {
+//            System.out.println(fd[i].getName());
+//    }
+//}
 
 
 

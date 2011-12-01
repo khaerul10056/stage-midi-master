@@ -1,4 +1,4 @@
-package org.mda.editor.preview.ui;
+package org.mda.commons.ui;
 
 import mda.MidiFile;
 import org.eclipse.jface.resource.ImageDescriptor;

@@ -1,6 +1,5 @@
 package org.mda.presenter.ui.slide;
 
-import mda.MidiFilePart;
 
 
 public interface IPresentationView {
@@ -13,6 +12,6 @@ public interface IPresentationView {
 
   boolean previousSlide ();
 
-  
+
 
 }

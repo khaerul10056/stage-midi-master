@@ -6,11 +6,18 @@
  */
 package mda.util;
 
-import java.util.List;
-
-import mda.*;
-
-import org.eclipse.emf.ecore.EClass;
+import mda.AbstractEvent;
+import mda.AbstractSessionItem;
+import mda.Configuration;
+import mda.Gallery;
+import mda.MidiFile;
+import mda.MidiFileChordPart;
+import mda.MidiFilePart;
+import mda.MidiFileTextLine;
+import mda.MidiPlayerRoot;
+import mda.MidiplayerPackage;
+import mda.Session;
+import mda.TextPresentationEvent;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;

@@ -1,5 +1,6 @@
 package org.mda.commons.ui.calculator;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -26,6 +27,8 @@ public class Slide {
   private final Font font;
 
   private final HashMap<Integer, Collection<SlideItem>> items       = new HashMap<Integer, Collection<SlideItem>>();
+
+  private File backgroundImageFile;
 
   public Slide (EObject modelRef, final Font font) {
     this.modelRef = modelRef;
@@ -112,8 +115,9 @@ public class Slide {
     return modelRef;
   }
 
-  public void setBackgroundImage (ImageData backgroundImage) {
+  public void setBackgroundImage (ImageData backgroundImage, final File backgroundImageFile) {
     this.backgroundImage = backgroundImage;
+    this.backgroundImageFile = backgroundImageFile;
   }
 
   public Image getBackgroundImage () {
@@ -144,5 +148,11 @@ public class Slide {
   public Font getFont () {
     return font;
   }
+
+  public File getBackgroundImageFile () {
+    return backgroundImageFile;
+  }
+
+
 
 }

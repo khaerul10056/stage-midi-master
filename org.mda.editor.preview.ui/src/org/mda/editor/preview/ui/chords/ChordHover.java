@@ -27,7 +27,6 @@ public class ChordHover extends Shell {
     setLayout(new FillLayout());
     txtChord = new Text(getShell(), SWT.NONE);
     txtChord.setText("Am");
-    boolean setFocus = txtChord.setFocus();
     txtChord.addKeyListener(new KeyAdapter() {
 
       public void keyReleased (final KeyEvent event) {

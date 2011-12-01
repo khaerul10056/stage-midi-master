@@ -1,7 +1,5 @@
 package org.mda.commons.ui.calculator;
 
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 
 
