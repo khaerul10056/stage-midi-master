@@ -27,7 +27,6 @@ public class MidiPlayerService {
 
   public static final MidiplayerFactory mf           = MidiplayerFactory.eINSTANCE;
   public static final MidiplayerPackage mp           = MidiplayerPackage.eINSTANCE;
-  private static final String           CONFIGFILE   = "conf/midiplayer.conf";
 
   private static final List<String>     defaultPaths = new ArrayList<String>();
 

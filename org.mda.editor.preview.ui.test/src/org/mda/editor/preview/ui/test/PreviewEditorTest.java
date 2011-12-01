@@ -9,7 +9,6 @@ import mda.MidiFilePart;
 import mda.MidiPlayerRoot;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
