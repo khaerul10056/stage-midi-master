@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Navigator
+Bundle-SymbolicName: org.mda.navigator.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.mda.navigator.ui.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.mda.core;bundle-version="1.0.0",
+ org.mda.model;bundle-version="1.0.0",
+ org.eclipse.ui;bundle-version="3.7.0",
+ org.mda.commons.ui;bundle-version="1.0.0",
+ org.mda.export.powerpoint;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.mda.navigator.ui
