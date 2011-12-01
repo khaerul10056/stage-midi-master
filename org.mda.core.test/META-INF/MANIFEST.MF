@@ -8,7 +8,6 @@ Require-Bundle: org.mda.core;bundle-version="1.0.0",
  org.junit4;bundle-version="4.8.1";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
  org.mda.model;bundle-version="1.0.0"
-Export-Package: maosoft,
- maosoft.midiplayer,
- maosoft.midiplayer.exporter,
- maosoft.midiplayer.importer
+Export-Package: org.mda.core,
+ org.mda.core.exporter,
+ org.mda.core.importer

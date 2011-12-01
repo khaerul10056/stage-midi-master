@@ -12,7 +12,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.mda.commons.ui.ApplicationSession;
+import org.mda.ApplicationSession;
 import org.mda.commons.ui.MidiFileEditorInput;
 
 

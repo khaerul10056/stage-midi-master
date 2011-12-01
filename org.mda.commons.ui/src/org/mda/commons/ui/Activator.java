@@ -4,11 +4,19 @@ import java.io.IOException;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 import org.osgi.framework.BundleContext;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 public class Activator extends AbstractUIPlugin {
 
   private static Activator plugin;
+
+  @Inject
+  private ApplicationSession session;
 
 	/**
    * The constructor
@@ -22,6 +30,10 @@ public class Activator extends AbstractUIPlugin {
    */
   public void start(BundleContext context) throws Exception {
     super.start(context);
+
+    Injector injector = Guice.createInjector(new MdaModule());
+    injector.injectMembers(this);
+
     plugin = this;
   }
 
@@ -47,4 +59,10 @@ public class Activator extends AbstractUIPlugin {
     ImageDescriptor imageDescriptorFromPlugin = imageDescriptorFromPlugin("org.mda.commons.ui", name);
     return imageDescriptorFromPlugin;
   }
+
+  public ApplicationSession getSession () {
+    return session;
+  }
+
+
 }
