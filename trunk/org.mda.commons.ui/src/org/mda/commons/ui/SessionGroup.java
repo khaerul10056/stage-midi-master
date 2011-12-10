@@ -1,14 +1,13 @@
-package org.mda.navigator.ui;
+package org.mda.commons.ui;
 
 import mda.MidiPlayerRoot;
 
 
-public class SongGroup {
-
+public class SessionGroup {
 
   private final MidiPlayerRoot root;
 
-  public SongGroup (final MidiPlayerRoot root) {
+  public SessionGroup (final MidiPlayerRoot root) {
     this.root = root;
   }
 

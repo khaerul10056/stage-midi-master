@@ -31,6 +31,26 @@ public class Utils {
     return( path.delete() );
   }
 
+  public static String getChordFromPosition (String chordline, final int position) {
+
+    if (chordline.length() < position)
+      return "";
+
+    if (chordline.charAt(position) == ' ')
+      return "";
+
+    int lastIndexOf = chordline.lastIndexOf(' ', position);
+    int nextIndexOf = chordline.indexOf(' ', position);
+
+    if (lastIndexOf < 0)
+      lastIndexOf = 0;
+
+    if (nextIndexOf < 0)
+      nextIndexOf = chordline.length();
+
+    return chordline.substring(lastIndexOf, nextIndexOf);
+  }
+
   /**
    * splits a string at the given position and returns splitted string as array of strings
    * @param completeString

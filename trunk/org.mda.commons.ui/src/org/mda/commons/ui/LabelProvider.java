@@ -1,9 +1,10 @@
-package org.mda.navigator.ui;
+package org.mda.commons.ui;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mda.AbstractSessionItem;
+import mda.Gallery;
 import mda.MidiFile;
 import mda.MidiPlayerRoot;
 import mda.Session;
@@ -13,6 +14,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.mda.commons.ui.Activator;
 import org.mda.commons.ui.Util;
+import org.mda.commons.ui.navigator.NavigatorItem;
 
 
 public class LabelProvider implements ILabelProvider {
@@ -45,6 +47,10 @@ public class LabelProvider implements ILabelProvider {
 
   @Override
   public Image getImage (Object element) {
+
+    if (element instanceof NavigatorItem)
+      element = ((NavigatorItem) element).getModelElement();
+
     try {
     if (element instanceof MidiFile) {
       return Activator.loadImage(Display.getDefault(), Util.ICON_SONG).createImage();
@@ -64,6 +70,11 @@ public class LabelProvider implements ILabelProvider {
 
   @Override
   public String getText (Object element) {
+    if (element instanceof NavigatorItem)
+      element = ((NavigatorItem) element).getModelElement();
+
+    if (element instanceof String)
+      return element.toString();
 
     if (element instanceof MidiPlayerRoot) {
       MidiPlayerRoot root = (MidiPlayerRoot) element;
@@ -75,8 +86,8 @@ public class LabelProvider implements ILabelProvider {
     if (element instanceof SessionGroup)
       return "Sessions";
 
-    if (element instanceof SongGroup)
-      return "Songs";
+    if (element instanceof Gallery)
+      return "Gallery";
 
     if (element instanceof AbstractSessionItem) {
       return ((AbstractSessionItem) element).getName().replaceAll(".mid", "");

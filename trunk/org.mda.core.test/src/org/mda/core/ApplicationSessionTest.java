@@ -30,9 +30,7 @@ public class ApplicationSessionTest {
 
 
     } finally  {
-      File file = new File (PATH);
       Utils.deleteDirectory(new File (PATH));
-
     }
   }
 

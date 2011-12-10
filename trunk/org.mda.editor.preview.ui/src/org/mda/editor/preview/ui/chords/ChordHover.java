@@ -4,6 +4,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -17,28 +18,27 @@ public class ChordHover extends Shell {
 
   private Text txtChord;
 
-  public ChordHover (final StyledText styledText) {
+  public ChordHover (final StyledText styledText, Point point, final String preseletion) {
     super (SWT.NONE);
-
-
     setSize(40, 40);
-    setLocation(styledText.getLocationAtOffset(styledText.getCaretOffset()).x, styledText.getBounds().y);
-    getLocation().y = styledText.getBounds().y;
+    setLocation(point.x,point.y - getSize().y);
+    setBackground(getDisplay().getSystemColor(SWT.COLOR_GRAY));
     setLayout(new FillLayout());
     txtChord = new Text(getShell(), SWT.NONE);
-    txtChord.setText("Am");
+    txtChord.setText(preseletion);
     txtChord.addKeyListener(new KeyAdapter() {
 
       public void keyReleased (final KeyEvent event) {
-        if (event.keyCode == SWT.ALT) {
+        if (event.keyCode == SWT.CR || event.keyCode == SWT.ESC) {
           dispose();
         }
       }
 
 
     });
+
     setVisible(true);
-    setActive();
+    txtChord.setFocus();
 
     while (!isDisposed()) {
       if (!getDisplay().readAndDispatch()) {
