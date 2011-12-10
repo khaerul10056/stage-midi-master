@@ -468,15 +468,22 @@ public class MidiPlayerService {
     return index;
   }
 
-  public static void removeSessionsFromGallery (MidiPlayerRoot gallery, List<Session> selectedItems) {
-    gallery.getSessions().removeAll(selectedItems); //todo in service and check, disable button if selected item that is still referenced
-    ECollections.sort(gallery.getSessions(), new Comparator<Session>() {
+  public static void removeSessions (Collection<Session> selectedItems) {
+    MidiPlayerRoot root = null;
+    for (Session next: selectedItems) {
+      root = (MidiPlayerRoot) next.eContainer();
+      root.getSessions().remove(next);
+    }
+    //todo in service and check, disable button if selected item that is still referenced
+    if (root != null) {
+    ECollections.sort(root.getSessions(), new Comparator<Session>() {
 
       @Override
       public int compare (Session o1, Session o2) {
         return o1.getName().compareTo(o2.getName());
       }
     });
+    }
   }
 
   public static String toString (MidiFilePart nextPart) {
@@ -505,6 +512,11 @@ public class MidiPlayerService {
       lines.add(nextLineAsText);
     }
     return lines;
+  }
+
+  public static void addSong (Session session, Collection<MidiFile> selectedSongs) {
+    session.getItems().addAll(selectedSongs);
+
   }
 
 }

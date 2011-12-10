@@ -1,27 +1,37 @@
 package org.mda.editor.preview.ui;
 
+import java.util.logging.Logger;
+import mda.MidiFile;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
+import org.mda.ApplicationSession;
 import org.mda.commons.ui.MidiFileEditorInput;
 
 public class PreviewEditor extends EditorPart {
 
+  private static final Logger LOGGER  = Logger.getLogger(ApplicationSession.class.getName());
+
   private MidiFileEditorInput meei;
+
+  private ApplicationSession  appSession = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
+
+  private PreviewEditorContent previewEditorContent;
 
   @Override
   public void doSave (IProgressMonitor monitor) {
-    // TODO Auto-generated method stub
-
+    LOGGER.info("doSave()");
+    previewEditorContent.getContentpanel().saveToModel();
+    appSession.saveModel();
   }
 
   @Override
   public void doSaveAs () {
-    // TODO Auto-generated method stub
-
+    LOGGER.info("doSaveAs()");
+    previewEditorContent.getContentpanel().saveToModel();
   }
 
   @Override
@@ -34,7 +44,7 @@ public class PreviewEditor extends EditorPart {
 
   @Override
   public boolean isDirty () {
-    return false;
+    return true;
   }
 
   @Override
@@ -44,7 +54,7 @@ public class PreviewEditor extends EditorPart {
 
   @Override
   public void createPartControl (Composite parent) {
-    new PreviewEditorContent(parent, meei.getRootObject());
+    previewEditorContent = new PreviewEditorContent(parent, (MidiFile) meei.getEObject());
 
   }
 

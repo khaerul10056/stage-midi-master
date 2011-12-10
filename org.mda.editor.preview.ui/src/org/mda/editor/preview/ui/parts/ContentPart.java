@@ -124,8 +124,8 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
           }
 
           lblChordLine.setText(builder.toString());
-
           StyledText txtTextLine = getTextLines().get(getFocusedTextFieldIndex());
+          txtTextLine.getCaret().getBounds();
           System.out.println (lblChordLine.getText() + "\n" + txtTextLine.getText());
         }
       });
@@ -147,7 +147,20 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
           else if (e.keyCode == SWT.ALT) {
             e.doit = false;
             StyledText focused = getTextLines().get(getFocusedTextFieldIndex());
-            new ChordHover(focused);
+            Point caretLocation = focused.getCaret().getLocation();
+
+            Label label = getChordLines().get(getFocusedTextFieldIndex());
+
+
+
+
+            Point display2 = focused.toDisplay(1,1);
+            display2.x += caretLocation.x;
+            display2.y += caretLocation.y;
+
+            String chord = Utils.getChordFromPosition(label.getText(), focused.getCaretOffset());
+
+            new ChordHover(focused,  display2, chord);
           }
           else if (e.character == SWT.BS) {
             e.doit = false;

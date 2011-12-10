@@ -1,6 +1,6 @@
 package org.mda.commons.ui;
 
-import mda.MidiFile;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
@@ -8,11 +8,13 @@ import org.eclipse.ui.IPersistableElement;
 
 public class MidiFileEditorInput implements IEditorInput {
 
-  private final MidiFile rootObject;
+  private EObject eObject;
 
-  public MidiFileEditorInput (final MidiFile rootObject) {
-    this.rootObject = rootObject;
+  public MidiFileEditorInput (final EObject eobject) {
+    this.eObject = eobject;
   }
+
+
 
   @Override
   public Object getAdapter (Class adapter) {
@@ -34,7 +36,7 @@ public class MidiFileEditorInput implements IEditorInput {
 
   @Override
   public String getName () {
-    return getRootObject().getName();
+    return eObject.getClass().getName();
   }
 
   @Override
@@ -45,11 +47,11 @@ public class MidiFileEditorInput implements IEditorInput {
 
   @Override
   public String getToolTipText () {
-    return getRootObject().getPath();
+    return "";
   }
 
-  public MidiFile getRootObject () {
-    return rootObject;
+  public EObject getEObject () {
+    return eObject;
   }
 
 }
