@@ -11,7 +11,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
 import org.mda.editor.preview.ui.PreviewEditorContent;
@@ -44,35 +43,7 @@ public class PreviewEditorUiTest {
     text.setSelection(15, 32);
   }
 
-  @Test@Ignore   //Refactor with new mechanism
-  public void typeWhenSelected () throws Exception {
-    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    editor = new PreviewEditorContent(shell, song);
-    editor.getContentpanel().showSlide(song.getParts().get(1));
-    shell.setVisible(true);
 
-    //split a line at the beginning of an chordpart
-    editor.getContentpanel().getChordLines().get(0);
-    StyledText text = editor.getContentpanel().getTextLines().get(0);
-    Label chord = editor.getContentpanel().getChordLines().get(0);
-
-    assertEquals(CHORDLINEORIGINAL, chord.getText());
-    assertEquals(TEXTLINEORIGINAL, text.getText());
-
-    text.setFocus();
-    text.setCaretOffset(15);
-    text.setSelection(15, 32);
-
-    text = editor.getContentpanel().getTextLines().get(0);
-    chord = editor.getContentpanel().getChordLines().get(0);
-
-    System.out.println (MidiPlayerService.getRawText(editor.getContentpanel().getCurrentPart()));
-    //     |                    |       |
-    //Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist
-    //               _________________
-    assertEquals ("Alle Schöpfung A, betet an in Wahrheit und in Geist, ", text.getText());
-    assertEquals ("D    G            D           G               A ", chord.getText());
-  }
 
   @Test
   public void stepToNextAndPreviousLine () throws Exception {
@@ -153,12 +124,12 @@ public class PreviewEditorUiTest {
     assertEquals(CHORDLINEORIGINAL, chord.getText());
     assertEquals(TEXTLINEORIGINAL, text.getText());  //line 1
 
-    text.setCaretOffset(15);
-    text.setFocus();
+    editor.getContentpanel().setCurrentCaretPosition(15);
+    editor.getContentpanel().setFocus(text);
 
     editor.getContentpanel().splitLine();
 
-    assertEquals (3, editor.getContentpanel().getFocusedTextFieldIndex());
+    assertEquals (3, editor.getContentpanel().getCurrentFocusedLine());
     assertEquals (0, editor.getContentpanel().getCaretOffsetOfCurrentTextField());
   }
 
@@ -277,7 +248,7 @@ public class PreviewEditorUiTest {
     editor.getContentpanel().showSlide(song.getParts().get(1));
     shell.setVisible(true);
 
-    //split a line at the beginning of an chordpart
+    //split a line at the end of an chordpart
     editor.getContentpanel().getChordLines().get(0);
     StyledText text = editor.getContentpanel().getTextLines().get(0);
     Label chord = editor.getContentpanel().getChordLines().get(0);
@@ -285,7 +256,7 @@ public class PreviewEditorUiTest {
     assertEquals(CHORDLINEORIGINAL, chord.getText());
     assertEquals(TEXTLINEORIGINAL, text.getText());  //line 1
 
-    text.setCaretOffset(text.getText().length());
+    text.setCaretOffset(text.getText().length() - 1);
 
     editor.getContentpanel().splitLine();
 
@@ -295,11 +266,11 @@ public class PreviewEditorUiTest {
     StyledText text2 = editor.getContentpanel().getTextLines().get(1);
     Label chord2 = editor.getContentpanel().getChordLines().get(1);
 
-    assertEquals("", chord2.getText());
-    assertEquals("", text2.getText());
+    assertEquals(" ", chord2.getText());
+    assertEquals(" ", text2.getText());
 
     assertEquals(CHORDLINEORIGINAL, chord.getText());
-    assertEquals(TEXTLINEORIGINAL, text.getText());  //line 1
+    assertEquals(TEXTLINEORIGINAL.trim(), text.getText());  //line 1
   }
 
 
