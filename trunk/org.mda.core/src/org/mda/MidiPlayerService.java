@@ -519,4 +519,10 @@ public class MidiPlayerService {
 
   }
 
+  public static void editChord (MidiFileTextLine midiFileTextLine, int caretOffset, String chord) {
+
+    // TODO Auto-generated method stub
+
+  }
+
 }

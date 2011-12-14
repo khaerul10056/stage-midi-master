@@ -4,8 +4,10 @@ import static junit.framework.Assert.assertEquals;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import junit.framework.Assert;
 import mda.MidiFile;
 import mda.MidiFilePart;
+import mda.MidiFileTextLine;
 import mda.MidiPlayerRoot;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.custom.StyledText;
@@ -43,6 +45,19 @@ public class PreviewEditorTest {
       editor.dispose();
 
     shell.dispose();
+  }
+
+  @Test
+  public void editChord () {
+    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    ContentPart contentPanel = editor.getContentpanel();
+    contentPanel.showSlide(song.getParts().get(1));
+    contentPanel.editChord(editor.getContentpanel().getChordLines().get(0), editor.getContentpanel().getTextLines().get(0), 0, "Eb", "D");
+    MidiFilePart saveToModel = contentPanel.saveToModel();
+    MidiFileTextLine midiFileTextLine = saveToModel.getTextlines().get(0);
+    Assert.assertEquals("Eb", midiFileTextLine.getChordParts().get(0).getChord().trim());
+
   }
 
   @Test

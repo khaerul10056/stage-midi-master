@@ -18,18 +18,24 @@ public class ChordHover extends Shell {
 
   private Text txtChord;
 
+  private final String before;
+  private String after;
+
   public ChordHover (final StyledText styledText, Point point, final String preseletion) {
     super (SWT.NONE);
+    this.before = preseletion;
     setSize(40, 40);
     setLocation(point.x,point.y - getSize().y);
     setBackground(getDisplay().getSystemColor(SWT.COLOR_GRAY));
     setLayout(new FillLayout());
     txtChord = new Text(getShell(), SWT.NONE);
     txtChord.setText(preseletion);
+    txtChord.selectAll();
     txtChord.addKeyListener(new KeyAdapter() {
 
       public void keyReleased (final KeyEvent event) {
         if (event.keyCode == SWT.CR || event.keyCode == SWT.ESC) {
+          after = txtChord.getText();
           dispose();
         }
       }
@@ -46,6 +52,18 @@ public class ChordHover extends Shell {
       }
     }
 
+  }
+
+  public boolean isChanged () {
+    return ! after.trim().equals(before.trim());
+  }
+
+  public String getChord () {
+    return after.trim();
+  }
+
+  public String getPreviousChord () {
+    return before.trim();
   }
 
 }
