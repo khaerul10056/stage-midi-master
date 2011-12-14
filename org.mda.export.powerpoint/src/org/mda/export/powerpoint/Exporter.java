@@ -30,7 +30,7 @@ public class Exporter {
   private CalculatorPreCondition  calcPreCondition = new CalculatorPreCondition();
 
   public void export (final Collection<AbstractSessionItem> items, final File exportFile) throws IOException {
-    if (! exportFile.getParentFile().exists())
+    if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
 
     SlideShow show = new SlideShow();

@@ -1,6 +1,5 @@
 package org.mda.commons.ui;
 
-import mda.MidiFile;
 import mda.MidiplayerFactory;
 import mda.Session;
 import org.eclipse.swt.SWT;

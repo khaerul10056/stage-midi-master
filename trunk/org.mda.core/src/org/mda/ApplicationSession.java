@@ -16,7 +16,7 @@ public class ApplicationSession {
 
   private static final Logger LOGGER  = Logger.getLogger(ApplicationSession.class.getName());
 
-  private static Properties sessionProps = new Properties();
+  private Properties sessionProps = new Properties();
 
 
   private MidiPlayerRoot playerroot;

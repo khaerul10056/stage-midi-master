@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.mda.export.powerpoint.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.mda.export.powerpoint;bundle-version="1.0.0",
- org.junit4;bundle-version="4.8.1",
  org.mda.core;bundle-version="1.0.0",
- org.mda.model;bundle-version="1.0.0"
+ org.mda.model;bundle-version="1.0.0",
+ org.junit4
 Export-Package: org.mda.export.powerpoint
