@@ -7,6 +7,7 @@ import mda.MidiFile;
 import mda.MidiFileChordPart;
 import mda.MidiFilePart;
 import mda.MidiFileTextLine;
+import org.eclipse.jface.util.Util;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ExtendedModifyEvent;
 import org.eclipse.swt.custom.ExtendedModifyListener;
@@ -151,16 +152,23 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
 
             Label label = getChordLines().get(getFocusedTextFieldIndex());
 
-
-
-
             Point display2 = focused.toDisplay(1,1);
             display2.x += caretLocation.x;
             display2.y += caretLocation.y;
 
             String chord = Utils.getChordFromPosition(label.getText(), focused.getCaretOffset());
 
-            new ChordHover(focused,  display2, chord);
+            ChordHover hover = new ChordHover(focused,  display2, chord);
+            while (!hover.isDisposed()) {
+              // Check for waiting events
+              if (!hover.getDisplay().readAndDispatch())
+                hover.getDisplay().sleep();
+            }
+
+            if (hover.isChanged()) {
+               editChord(label, focused, focused.getCaretOffset(), hover.getChord(), hover.getPreviousChord());
+               saveToModel();
+            }
           }
           else if (e.character == SWT.BS) {
             e.doit = false;
@@ -187,6 +195,18 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView {
         getTextLines().get(currentLine).setCaretOffset(currentcarePosition);
     }
     return calcPreConditions.getCalculationsize();
+  }
+
+  public boolean editChord (final Label chordline, final StyledText textline, final int offset, final String newCharacter, String before) {
+    StringBuilder builder = new StringBuilder(chordline.getText());
+    if (before.length() > 0) {
+    for (int i = offset; i < (offset + before.length()); i++)
+      builder.setCharAt(i, ' ');
+    }
+
+    builder.replace(offset, offset + newCharacter.length(), newCharacter);
+    chordline.setText(builder.toString());
+    return true;
   }
 
   public MidiFilePart saveToModel () {
