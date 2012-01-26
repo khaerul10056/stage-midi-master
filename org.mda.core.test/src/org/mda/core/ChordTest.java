@@ -10,6 +10,8 @@ public class ChordTest {
 
   @Test
   public void sus () throws Exception {
+
+    System.out.println ("Hallo=" + System.getProperty("hallo"));
     Chord chord = new Chord("Dsus4");
     chord.render("Dsus4");
     Assert.assertEquals ("Mainnote invalid", Note.D, chord.getMain());

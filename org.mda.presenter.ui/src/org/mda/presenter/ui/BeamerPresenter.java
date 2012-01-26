@@ -3,6 +3,7 @@ package org.mda.presenter.ui;
 import static org.mda.commons.ui.calculator.CalculatorRegistry.getCalculator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.logging.Logger;
 import mda.AbstractSessionItem;
 import mda.Session;
 import org.eclipse.swt.SWT;
@@ -12,6 +13,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
@@ -23,6 +25,7 @@ import org.mda.presenter.ui.slide.IPresentationView;
 
 public class BeamerPresenter extends Shell implements IPresentationView {
 
+  private static final Logger LOGGER  = Logger.getLogger(BeamerPresenter.class.getName());
 
   private final IMidiFileEditorUIConfig config;
 
@@ -37,21 +40,39 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
   private CalculatorPreCondition calcPreCondition;
 
-  public BeamerPresenter (Display display, int style, Session session, IPresentationController controller, IMidiFileEditorUIConfig config) {
-    super (display, style);
+  private Monitor getPreferredExternalMonitor (Display display) {
+    for (Monitor nextMonitor: display.getMonitors()) {
+      if (! nextMonitor.equals(Display.getCurrent().getPrimaryMonitor()))
+        return nextMonitor;
+    }
 
+    return Display.getCurrent().getPrimaryMonitor();
+
+  }
+
+  public BeamerPresenter (Display display, Session session, IPresentationController controller, IMidiFileEditorUIConfig config) {
+    super (display, SWT.ON_TOP);
     calcPreCondition = new CalculatorPreCondition();
-    setBounds(Display.getCurrent().getMonitors() [0].getBounds()); //TODO configure multi monitors
+
+    Monitor preferredMonitor = getPreferredExternalMonitor(display);
+    if (! preferredMonitor.equals(Display.getCurrent().getPrimaryMonitor())) {
+      setBounds(getPreferredExternalMonitor(display).getBounds());
+    }
+
+    LOGGER.info("Bounds of Display: " + Display.getCurrent().getBounds());
+    LOGGER.info("ClientArea of Display: " + Display.getCurrent().getClientArea());
+
+    for (Shell shell: Display.getCurrent().getShells()) {
+      LOGGER.info ("Shell " + shell.getText() + "-" + shell.getBounds());
+    }
+
     setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
     calcPreCondition.setCalculationsize(new Point (getBounds().width, getBounds().height));
     this.config = config;
     controller.connect(this);
 
-
-
     open();
     setFocus();
-
 
     slidesPerItem = calculateSlides (session);
 
