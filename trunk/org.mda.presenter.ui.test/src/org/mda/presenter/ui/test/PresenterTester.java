@@ -44,7 +44,7 @@ public class PresenterTester extends Shell {
         DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
         config.setChordVisible(chkWithChords.getSelection());
 
-        new BeamerPresenter(Display.getCurrent(), SWT.NONE, currentSession, controller, config);
+        new BeamerPresenter(Display.getCurrent(), currentSession, controller, config);
         btnOK.setFocus();
       }
     });

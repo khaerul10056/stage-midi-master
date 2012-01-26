@@ -22,6 +22,8 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -41,6 +43,7 @@ import org.eclipse.ui.part.ViewPart;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.ContentProvider;
+import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.LabelProvider;
 import org.mda.commons.ui.MidiFileEditorInput;
 import org.mda.commons.ui.NewSessionPanel;
@@ -49,6 +52,8 @@ import org.mda.commons.ui.SessionGroup;
 import org.mda.commons.ui.SongSelectorPanel;
 import org.mda.commons.ui.navigator.NavigatorItem;
 import org.mda.export.powerpoint.Exporter;
+import org.mda.presenter.ui.BeamerPresenter;
+import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
 
 public class ContentNavigator extends ViewPart {
 
@@ -76,6 +81,8 @@ public class ContentNavigator extends ViewPart {
 
   private MenuItem itemDown;
 
+  private MenuItem itemStart;
+
 
   public ContentNavigator () {
     editors.put(MidiFileImpl.class, "org.mda.editor.preview.ui.editors.previeweditor");
@@ -84,7 +91,32 @@ public class ContentNavigator extends ViewPart {
 
 
   private Menu createContextMenu (Tree tree) {
-    Menu menu = new Menu (tree);
+    final Menu menu = new Menu (tree);
+
+    itemStart = new MenuItem(menu, SWT.PUSH);
+    itemStart.setText("Run");
+    itemStart.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        Session session = (Session) getSelected(treviewer.getSelection());
+
+        final GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController(menu.getDisplay());
+        DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+        config.setChordVisible(false);
+        BeamerPresenter presenter = new BeamerPresenter(menu.getDisplay(), session, controller, config);
+
+        presenter.addDisposeListener(new DisposeListener() {
+
+          @Override
+          public void widgetDisposed (DisposeEvent arg0) {
+            controller.close();
+          }
+        });
+
+        presenter.setEnabled(true);
+      }
+
+    });
+
     itemPowerpoint = new MenuItem(menu, SWT.PUSH);
     itemPowerpoint.setText("Export powerpoint (.ppt)");
 

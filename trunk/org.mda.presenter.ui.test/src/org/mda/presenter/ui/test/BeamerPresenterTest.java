@@ -36,7 +36,7 @@ public class BeamerPresenterTest {
 
     session = root.getSessions().get(0);
     controller = new DefaultPresentationController();
-    presenter = new BeamerPresenter(Display.getCurrent(), SWT.NONE, session, controller, new DefaultMidiFileContentEditorConfig());
+    presenter = new BeamerPresenter(Display.getCurrent(), session, controller, new DefaultMidiFileContentEditorConfig());
     firstSong = (MidiFile) session.getItems().get(0);
     secondSong = (MidiFile) session.getItems().get(1);
     lastSong = (MidiFile) session.getItems().get(session.getItems().size() - 1);

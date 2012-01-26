@@ -504,33 +504,34 @@
       </parts>
       <parts bar="10">
         <textlines>
-          <chordParts text="Der Herr "/>
-          <chordParts text="segne dich, be" chord="C"/>
-          <chordParts text="h&#xfc;te dich, " chord="G/C"/>
-          <chordParts text="lasse sein Angesicht " chord="F/C"/>
-          <chordParts text="leuchten &#xfc;ber " chord="C"/>
-          <chordParts text="dir," chord="C/E"/>
+          <chordParts text="Der Herr segne" chord="C "/>
+          <chordParts text=" dich, beh&#xfc;te dich, " chord="G/C "/>
         </textlines>
         <textlines>
-          <chordParts text="und der "/>
-          <chordParts text="Herr " chord="F"/>
-          <chordParts text="sei dir " chord="G"/>
-          <chordParts text="gn&#xe4;di" chord="C"/>
-          <chordParts text="g.  " chord="G/C"/>
-          <chordParts chord="F/C"/>
+          <chordParts text="lasse sein Angesicht " chord="F/C "/>
+          <chordParts text="leuchten &#xfc;ber " chord="C "/>
+          <chordParts text="dir," chord="C/E "/>
         </textlines>
         <textlines>
-          <chordParts text="Er er"/>
-          <chordParts text="hebe sein Angesicht " chord="C"/>
-          <chordParts text="&#xfc;ber dich und er" chord="G/C"/>
-          <chordParts text="f&#xfc;lle dein Herz mit " chord="F/C"/>
-          <chordParts text="seinem Licht," chord="C"/>
+          <chordParts text="und d" chord="F "/>
+          <chordParts text="er Herr " chord="G "/>
+          <chordParts text="sei d" chord="C "/>
+          <chordParts text="ir g" chord="G/C "/>
+          <chordParts text="n&#xe4;dig. " chord="F/C "/>
         </textlines>
         <textlines>
-          <chordParts text="tiefer " chord="C/E"/>
-          <chordParts text="Fri" chord="F"/>
-          <chordParts text="ede begl" chord="G"/>
-          <chordParts text="eite dich." chord="C"/>
+          <chordParts text="Er erhebe sein Anges" chord="C "/>
+          <chordParts text="icht &#xfc;ber dich " chord="G/C "/>
+        </textlines>
+        <textlines>
+          <chordParts text="nd erf&#xfc;lle dein Herz" chord="F/C "/>
+          <chordParts text=" mit seinem Licht," chord="C "/>
+        </textlines>
+        <textlines>
+          <chordParts text="tiefer " chord="C/E "/>
+          <chordParts text="Fri" chord="F "/>
+          <chordParts text="ede begl" chord="G "/>
+          <chordParts text="eite dich." chord="C "/>
         </textlines>
       </parts>
       <parts parttype="VERS" bar="26">

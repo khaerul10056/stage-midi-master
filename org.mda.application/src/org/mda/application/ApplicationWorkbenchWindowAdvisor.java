@@ -1,7 +1,10 @@
 package org.mda.application;
 
-import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Monitor;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
@@ -17,12 +20,36 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         return new ApplicationActionBarAdvisor(configurer);
     }
 
+    private Monitor getPreferredExternalMonitor () {
+      for (Monitor nextMonitor: Display.getCurrent().getMonitors()) {
+        if (nextMonitor.equals(Display.getCurrent().getPrimaryMonitor()))
+          return nextMonitor;
+      }
+
+      return Display.getCurrent().getPrimaryMonitor();
+    }
+
     public void preWindowOpen() {
         IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
 
-        Rectangle bounds = new Rectangle(0, 0, 1024, 768);
-        configurer.setInitialSize(new Point (bounds.width, bounds.height));
+        configurer.setTitle("MDA");
         configurer.setShowCoolBar(false);
         configurer.setShowStatusLine(false);
+        configurer.setShellStyle(SWT.NONE);
     }
+
+    @Override
+    public void postWindowCreate () {
+      super.postWindowCreate();
+      Rectangle bounds = getPreferredExternalMonitor().getBounds();
+      System.out.println ("Setting bounds of workbench to " + bounds);
+      Shell shell = getWindowConfigurer().getWorkbenchConfigurer().getWorkbench().getWorkbenchWindows() [0].getShell();
+
+      //Workaround due to Bug 84938- Provide a way to set initial application window position
+      shell.setBounds(new Rectangle(bounds.x,  bounds.y, bounds.width-100, bounds.height-100));
+
+      //0, 150, 1680, 1050}
+    }
+
+
 }
