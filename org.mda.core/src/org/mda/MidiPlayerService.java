@@ -520,17 +520,24 @@ public class MidiPlayerService {
   }
 
   public static MidiFilePart splitPart (MidiFile midiFile, MidiFilePart midiFilePart, int caretOffsetOfCurrentTextField) {
+    Collection <MidiFileTextLine> movedTextlines = new ArrayList<MidiFileTextLine>();
+
     for (int i = 0; i < midiFile.getParts().size(); i++) {
       MidiFilePart currentPart = midiFile.getParts().get(i);
       if (currentPart.equals(midiFilePart)) {
+
+        for (int j = caretOffsetOfCurrentTextField; j < currentPart.getTextlines().size(); j++) {
+          movedTextlines.add(currentPart.getTextlines().get(j));
+        }
+
         MidiFilePart newPart = mf.createMidiFilePart();
         newPart.setParttype(currentPart.getParttype());
-        for (int j = caretOffsetOfCurrentTextField; j < currentPart.getTextlines().size(); j++) {
-          newPart.getTextlines().add(currentPart.getTextlines().get(j));
-        }
+        newPart.getTextlines().addAll(movedTextlines);
+        midiFile.getParts().add(i +1, newPart);
+        return midiFilePart;
       }
     }
-    return midiFilePart;
+    return null;
   }
 
 }

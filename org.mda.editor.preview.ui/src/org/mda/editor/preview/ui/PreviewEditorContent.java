@@ -23,11 +23,13 @@ public class PreviewEditorContent extends Composite  {
 
   private final SlideListPart slidelistpanel;
 
-
   private PreviewPart previewpanel;
+
+  private MidiFile file;
 
   public PreviewEditorContent (final Composite composite, final MidiFile file) {
     super(composite, SWT.NONE);
+    this.file = file;
     setBackground(composite.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
     setLayout(new GridLayout(3, false));
@@ -48,18 +50,15 @@ public class PreviewEditorContent extends Composite  {
     editorParts.add(getPreviewpanel());
     getPreviewpanel().setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
 
-
-
     for (AbstractPart nextPart: editorParts) {
       nextPart.setEditorContent(this);
     }
 
-    reconnectSong(file);
+    redrawSlidelist();
   }
 
   public void redrawSlidelist () {
-    getSlidelistpanel().setMidifile(getSlidelistpanel().getMidifile());
-    redraw();
+    reconnectSong(file);
   }
 
 
@@ -67,6 +66,8 @@ public class PreviewEditorContent extends Composite  {
     for (AbstractPart nextPart: editorParts) {
       nextPart.setMidifile(file);
     }
+
+    getShell().layout();
   }
 
 

@@ -4,9 +4,13 @@ import mda.MidiFile;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.mda.editor.preview.ui.PreviewEditorContent;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 
 public class AbstractPart extends Composite{
+
+  private static final Log LOGGER  = LogFactory.getLogger(AbstractPart.class);
 
   private MidiFile midifile;
 
@@ -20,6 +24,7 @@ public class AbstractPart extends Composite{
   }
 
   public void setMidifile (MidiFile midifile) {
+    LOGGER.info("setMidifile called for " + this.getClass().getName());
     this.midifile = midifile;
   }
 
