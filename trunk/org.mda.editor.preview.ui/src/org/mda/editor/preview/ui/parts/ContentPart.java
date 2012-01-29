@@ -384,11 +384,10 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
 
   @Override
   public void splitPart () {
-    int currentLine = getCurrentFocusedLine() + 1;
+    int currentLine = getCurrentFocusedLine() - 1;
     setCurrentPart(MidiPlayerService.splitPart(getMidifile(), getCurrentPart(), getCurrentFocusedLine()));
     showPart(getCurrentPart(), getSize());
     StyledText newTextLine = getTextLines().get(currentLine);
-    setCurrentCaretPosition(0);
     setFocus(newTextLine);
     getEditorContent().redrawSlidelist();
 

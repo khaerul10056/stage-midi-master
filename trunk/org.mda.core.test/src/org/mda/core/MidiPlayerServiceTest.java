@@ -2,6 +2,7 @@ package org.mda.core;
 
 import java.io.File;
 import java.util.logging.Logger;
+import junit.framework.Assert;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiPlayerRoot;
@@ -22,17 +23,21 @@ public class MidiPlayerServiceTest {
     int partNumberBefore = file.getParts().size();
 
     MidiFilePart firstPartWithText = file.getParts().get(1);
-    MidiPlayerService.splitPart(file, firstPartWithText, 2);
+    MidiFilePart splitPart = MidiPlayerService.splitPart(file, firstPartWithText, 2);
 
+    assertNotNull (splitPart);
     assertEquals (partNumberBefore + 1, file.getParts().size());
     assertEquals (file.getParts().get(1).getParttype(), file.getParts().get(2).getParttype());
 
     LOGGER.info(MidiPlayerService.getMidiFileAsString(file));
 
-    //TODO Check content
+    MidiFilePart secondPart = file.getParts().get(2);
+    assertEquals (2, firstPartWithText.getTextlines().size());
+    assertEquals (2, secondPart.getTextlines().size());
 
-
-
+    //Wrong parameter: Part of another song
+    MidiFile file2 = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(1);
+    Assert.assertNull(MidiPlayerService.splitPart(file2, firstPartWithText, 3));
   }
 
 }

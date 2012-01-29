@@ -5,16 +5,17 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import mda.MidiPlayerRoot;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 
 public class ApplicationSession {
 
-  private static final Logger LOGGER  = Logger.getLogger(ApplicationSession.class.getName());
+
+  private static final Log LOGGER  = LogFactory.getLogger(ApplicationSession.class);
 
   private Properties sessionProps = new Properties();
 
@@ -77,7 +78,7 @@ public class ApplicationSession {
           sessionProps.load(new FileInputStream(configFileAsFile));
         }
         catch (Exception e) {
-          LOGGER.log(Level.SEVERE, e.getLocalizedMessage(), e);
+          LOGGER.error(e.getLocalizedMessage(), e);
         }
       } else { //or set defaults
         sessionProps.setProperty(PROP_EXPORTPATH, "exportFiles");
@@ -109,7 +110,7 @@ public class ApplicationSession {
 
     }
     catch (IOException e) {
-      LOGGER.log(Level.SEVERE, e.getLocalizedMessage(), e);
+      LOGGER.error(e.getLocalizedMessage(), e);
     }
 
   }
@@ -130,7 +131,7 @@ public class ApplicationSession {
 
   public void setLastModelPath (File lastModelPath) {
     if (! lastModelPath.exists())
-      LOGGER.warning("Model " + lastModelPath.getAbsolutePath() + " doesn't exist");
+      LOGGER.warn("Model " + lastModelPath.getAbsolutePath() + " doesn't exist");
 
     this.lastModelFile = lastModelPath;
     LOGGER.info ("Loading model " + lastModelPath.getAbsolutePath());

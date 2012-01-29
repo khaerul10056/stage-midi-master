@@ -1,6 +1,5 @@
 package org.mda.editor.preview.ui;
 
-import java.util.logging.Logger;
 import mda.MidiFile;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.widgets.Composite;
@@ -10,10 +9,12 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 import org.mda.ApplicationSession;
 import org.mda.commons.ui.MidiFileEditorInput;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 public class PreviewEditor extends EditorPart {
 
-  private static final Logger LOGGER  = Logger.getLogger(ApplicationSession.class.getName());
+  private static final Log LOGGER  = LogFactory.getLogger(PreviewEditor.class);
 
   private MidiFileEditorInput meei;
 

@@ -9,8 +9,12 @@ import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
+
+  private static final Log LOGGER  = LogFactory.getLogger(ApplicationWorkbenchWindowAdvisor.class);
 
     public ApplicationWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
         super(configurer);
@@ -42,7 +46,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
     public void postWindowCreate () {
       super.postWindowCreate();
       Rectangle bounds = getPreferredExternalMonitor().getBounds();
-      System.out.println ("Setting bounds of workbench to " + bounds);
+      LOGGER.info("Setting bounds of workbench to " + bounds);
       Shell shell = getWindowConfigurer().getWorkbenchConfigurer().getWorkbench().getWorkbenchWindows() [0].getShell();
 
       //Workaround due to Bug 84938- Provide a way to set initial application window position
