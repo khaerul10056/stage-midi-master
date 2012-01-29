@@ -11,6 +11,8 @@ public interface IPreviewEditorView extends IPreviewView {
 
   void splitLine ();
 
+  void splitPart ();
+
   void mergeLine ();
 
 

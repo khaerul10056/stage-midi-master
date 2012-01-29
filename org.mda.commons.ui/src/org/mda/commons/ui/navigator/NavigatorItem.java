@@ -1,6 +1,7 @@
 package org.mda.commons.ui.navigator;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 
 public class NavigatorItem<T> {
@@ -9,9 +10,12 @@ public class NavigatorItem<T> {
 
   private final EList <T> holder;
 
-  public NavigatorItem (final T modelElement, final EList <T> holder) {
+  private final EObject mother;
+
+  public NavigatorItem (final T modelElement, final EList <T> holder, final EObject mother) {
     this.modelElement = modelElement;
     this.holder = holder;
+    this.mother = mother;
   }
 
   public T getModelElement () {
@@ -50,6 +54,10 @@ public class NavigatorItem<T> {
       return modelElement.equals(equalsNav.getModelElement()) && holder.equals(equalsNav.getHolder());
     }
     return false;
+  }
+
+  public EObject getMother () {
+    return mother;
   }
 
 

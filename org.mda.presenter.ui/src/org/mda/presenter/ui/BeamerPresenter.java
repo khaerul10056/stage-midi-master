@@ -140,6 +140,8 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     return slidesPerItem.get(getCurrentSessionItem()).get(currentSlideIndex);
   }
 
+
+
   @Override
   public boolean nextSlide () {
     AbstractSessionItem currentSessionItem = getCurrentSessionItem();
@@ -175,6 +177,20 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
     redraw();
     return true;
+  }
+
+  @Override
+  public boolean toItem (AbstractSessionItem item) {
+    AbstractSessionItem[] array = slidesPerItem.keySet().toArray(new AbstractSessionItem [slidesPerItem.size()]);
+    for (int i = 0; i < array.length; i++) {
+      if (array [i].equals(item)) {
+        currentSessionItemIndex = i;
+        currentSlideIndex = 0;
+        redraw();
+        return true;
+      }
+    }
+    return false;
   }
 
 

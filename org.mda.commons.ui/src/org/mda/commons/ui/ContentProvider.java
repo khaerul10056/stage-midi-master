@@ -51,7 +51,7 @@ public class ContentProvider implements ITreeContentProvider {
       Gallery group = (Gallery) parentElement;
       Collection <NavigatorItem> songs = new ArrayList<NavigatorItem>();
       for (AbstractSessionItem next: group.getGalleryItems()) {
-        songs.add(new NavigatorItem(next, group.getGalleryItems()));
+        songs.add(new NavigatorItem(next, group.getGalleryItems(), group));
       }
       return songs.toArray();
     }
@@ -65,7 +65,7 @@ public class ContentProvider implements ITreeContentProvider {
       Session session = (Session) parentElement;
       Collection <NavigatorItem> songs = new ArrayList<NavigatorItem>();
       for (AbstractSessionItem next: session.getItems()) {
-        songs.add(new NavigatorItem(next, session.getItems()));
+        songs.add(new NavigatorItem(next, session.getItems(), session));
       }
       return songs.toArray();
     }

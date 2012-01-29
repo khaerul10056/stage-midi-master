@@ -1,5 +1,7 @@
 package org.mda.presenter.ui.slide;
 
+import mda.AbstractSessionItem;
+
 
 
 public interface IPresentationView {
@@ -11,6 +13,13 @@ public interface IPresentationView {
   boolean nextSlide ();
 
   boolean previousSlide ();
+
+  /**
+   * steps to session item
+   * @param item item
+   * @return true/false
+   */
+  boolean toItem (final AbstractSessionItem item);
 
 
 

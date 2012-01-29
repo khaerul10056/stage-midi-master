@@ -19,13 +19,15 @@ import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.RowLayout;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
@@ -34,6 +36,7 @@ import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
+import org.mda.editor.preview.ui.PreviewEditorContent;
 import org.mda.editor.preview.ui.chords.ChordHover;
 
 public class ContentPart extends AbstractPart implements IPreviewEditorView, CaretListener, FocusListener {
@@ -58,7 +61,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
 
   private int currentFocusedLine;
 
-  public ContentPart (Composite parent, MidiFile file) {
+  public ContentPart (PreviewEditorContent parent, MidiFile file) {
     super(parent);
     setCurrentPart(file.getParts().get(0));
     setLayout(new RowLayout(SWT.VERTICAL));
@@ -80,6 +83,19 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
     });
   }
 
+
+  private void createContextMenu (StyledText text) {
+    Menu popup = new Menu(text);
+    MenuItem item = new MenuItem(popup, SWT.PUSH);
+    item.setText("Split part");
+    item.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        splitPart();
+      }
+    });
+    text.setMenu(popup);
+
+  }
 
 
   private Point showPart (final MidiFilePart part, final Point size) {
@@ -118,6 +134,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
       nextText.addFocusListener(this);
       nextText.setText(getCurrentSlide().getTextline(i));
       nextText.setFont(font);
+      createContextMenu(nextText);
       nextText.addExtendedModifyListener(new ExtendedModifyListener() {
 
         @Override
@@ -365,6 +382,19 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
     }
   }
 
+  @Override
+  public void splitPart () {
+    int currentLine = getCurrentFocusedLine() + 1;
+    setCurrentPart(MidiPlayerService.splitPart(getMidifile(), getCurrentPart(), getCurrentFocusedLine()));
+    showPart(getCurrentPart(), getSize());
+    StyledText newTextLine = getTextLines().get(currentLine);
+    setCurrentCaretPosition(0);
+    setFocus(newTextLine);
+    getEditorContent().redrawSlidelist();
+
+  }
+
+
 
 
   public List<Label> getChordLines () {
@@ -434,5 +464,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
   public void setCurrentFocusedLine (int currentFocusedLine) {
     this.currentFocusedLine = currentFocusedLine;
   }
+
+
 
 }

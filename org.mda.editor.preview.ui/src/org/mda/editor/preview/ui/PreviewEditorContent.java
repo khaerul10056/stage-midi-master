@@ -43,11 +43,11 @@ public class PreviewEditorContent extends Composite  {
     contentpanel = new ContentPart(this, file);
     editorParts.add(contentpanel);
     contentpanel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
-    
+
     setPreviewpanel(new PreviewPart(this));
     editorParts.add(getPreviewpanel());
     getPreviewpanel().setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-    
+
 
 
     for (AbstractPart nextPart: editorParts) {
@@ -55,6 +55,11 @@ public class PreviewEditorContent extends Composite  {
     }
 
     reconnectSong(file);
+  }
+
+  public void redrawSlidelist () {
+    getSlidelistpanel().setMidifile(getSlidelistpanel().getMidifile());
+    redraw();
   }
 
 
