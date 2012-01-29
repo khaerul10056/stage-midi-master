@@ -5,6 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.mda.core.ApplicationSessionTest;
 import org.mda.core.ChordTest;
+import org.mda.core.MidiPlayerServiceTest;
 import org.mda.core.TransposeServiceTest;
 import org.mda.core.exporter.PDFExporterTest;
 import org.mda.core.importer.TextImporterTest;
@@ -23,6 +24,7 @@ import org.mda.presenter.ui.test.MidiFileSlideCalculatorTest;
   PDFExporterTest.class,
   ChordTest.class,
   TransposeServiceTest.class,
+  MidiPlayerServiceTest.class,
   ApplicationSessionTest.class,
 
 

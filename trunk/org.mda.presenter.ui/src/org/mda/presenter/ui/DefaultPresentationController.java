@@ -2,6 +2,7 @@ package org.mda.presenter.ui;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import mda.AbstractSessionItem;
 import org.mda.presenter.ui.slide.IPresentationView;
 
 
@@ -24,7 +25,17 @@ public class DefaultPresentationController implements IPresentationController {
     }
   }
 
-  
+  public boolean toItem (final AbstractSessionItem sessionItem) {
+    boolean done = true;
+    for (IPresentationView nextView: getRegisteredViews()) {
+      if (! nextView.toItem(sessionItem))
+        done = false;
+    }
+
+    return done;
+  }
+
+
 
   public boolean nextSlide () {
     boolean done = true;

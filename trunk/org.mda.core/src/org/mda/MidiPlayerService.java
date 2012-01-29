@@ -519,10 +519,18 @@ public class MidiPlayerService {
 
   }
 
-  public static void editChord (MidiFileTextLine midiFileTextLine, int caretOffset, String chord) {
-
-    // TODO Auto-generated method stub
-
+  public static MidiFilePart splitPart (MidiFile midiFile, MidiFilePart midiFilePart, int caretOffsetOfCurrentTextField) {
+    for (int i = 0; i < midiFile.getParts().size(); i++) {
+      MidiFilePart currentPart = midiFile.getParts().get(i);
+      if (currentPart.equals(midiFilePart)) {
+        MidiFilePart newPart = mf.createMidiFilePart();
+        newPart.setParttype(currentPart.getParttype());
+        for (int j = caretOffsetOfCurrentTextField; j < currentPart.getTextlines().size(); j++) {
+          newPart.getTextlines().add(currentPart.getTextlines().get(j));
+        }
+      }
+    }
+    return midiFilePart;
   }
 
 }

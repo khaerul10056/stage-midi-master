@@ -213,28 +213,35 @@
       </parts>
       <parts parttype="VERS" bar="5">
         <textlines>
-          <chordParts text="Blessed " chord="H"/>
-          <chordParts text="be your name in the " chord="F#"/>
-          <chordParts text="land that is " chord="g#"/>
-          <chordParts text="plentiful, " chord="E"/>
+          <chordParts text="Blessed " chord="H "/>
+          <chordParts text="be your name " chord="F# "/>
         </textlines>
         <textlines>
-          <chordParts text="where your "/>
-          <chordParts text="streams of ab" chord="H"/>
-          <chordParts text="undance flow, " chord="F#"/>
-          <chordParts text="blessed be your name. " chord="E"/>
+          <chordParts text="land that is " chord="g# "/>
+          <chordParts text="plentiful, " chord="E "/>
         </textlines>
         <textlines>
-          <chordParts text="Blessed " chord="H"/>
-          <chordParts text="be your name, when I'm " chord="F#"/>
-          <chordParts text="found in the " chord="g#"/>
-          <chordParts text="desert place, " chord="E"/>
+          <chordParts text="where your st" chord="H "/>
+          <chordParts text="reams of abundance flow, " chord="F# "/>
         </textlines>
         <textlines>
-          <chordParts text="though I "/>
-          <chordParts text="walk through the " chord="H"/>
-          <chordParts text="wilderness, " chord="F#"/>
-          <chordParts text="blessed be your name. " chord="E"/>
+          <chordParts text="blessed be your name. " chord="E "/>
+        </textlines>
+        <textlines>
+          <chordParts text="Blessed " chord="H "/>
+          <chordParts text="be your name, " chord="F# "/>
+        </textlines>
+        <textlines>
+          <chordParts text="found in the " chord="g# "/>
+          <chordParts text="desert place, " chord="E "/>
+        </textlines>
+        <textlines>
+          <chordParts text="though I walk thr" chord="H "/>
+          <chordParts text="ough the wil" chord="F# "/>
+          <chordParts text="derness, " chord="E "/>
+        </textlines>
+        <textlines>
+          <chordParts text="blessed be your name. "/>
         </textlines>
       </parts>
       <parts parttype="ZWISCHENSPIEL" bar="21">
@@ -347,34 +354,34 @@
       </parts>
       <parts parttype="VERS" bar="2">
         <textlines>
-          <chordParts text="This is the " chord="A"/>
-          <chordParts text="air I breathe, " chord="D/A"/>
-          <chordParts text="this is the " chord="A"/>
-          <chordParts text="air I breathe, " chord="D/A"/>
+          <chordParts text="This is the " chord="A "/>
+          <chordParts text="air I breathe, " chord="D/A "/>
+          <chordParts text="this is the " chord="A "/>
+          <chordParts text="air I breathe, " chord="D/A "/>
         </textlines>
         <textlines>
-          <chordParts text="Your " chord="A"/>
-          <chordParts text="holy " chord="E/G#"/>
-          <chordParts text="presenc" chord="f#"/>
-          <chordParts text="e " chord="E"/>
-          <chordParts text="livin" chord="D"/>
-          <chordParts text="g in " chord="f#"/>
-          <chordParts text="me. " chord="E"/>
+          <chordParts text="Your " chord="A "/>
+          <chordParts text="holy " chord="E/G# "/>
+          <chordParts text="presenc" chord="f# "/>
+          <chordParts text="e " chord="E "/>
+          <chordParts text="livin" chord="D "/>
+          <chordParts text="g in " chord="f# "/>
+          <chordParts text="me. " chord="E "/>
         </textlines>
         <textlines>
-          <chordParts text="This is my " chord="A"/>
-          <chordParts text="daily bread, " chord="D/A"/>
-          <chordParts text="this is my " chord="A"/>
-          <chordParts text="daily bread, " chord="D/A"/>
+          <chordParts text="This is my " chord="A "/>
+          <chordParts text="daily bread, " chord="D/A "/>
+          <chordParts text="this is my " chord="A "/>
+          <chordParts text="daily bread," chord="D/A "/>
         </textlines>
         <textlines>
-          <chordParts text="Your " chord="A"/>
-          <chordParts text="very " chord="E/G#"/>
-          <chordParts text="wor" chord="f#"/>
-          <chordParts text="d " chord="E"/>
-          <chordParts text="spok" chord="D"/>
-          <chordParts text="en to " chord="f#"/>
-          <chordParts text="me. " chord="E"/>
+          <chordParts text="Your " chord="A "/>
+          <chordParts text="very " chord="E/G# "/>
+          <chordParts text="wor" chord="f# "/>
+          <chordParts text="d " chord="E "/>
+          <chordParts text="spok" chord="D "/>
+          <chordParts text="en to " chord="f# "/>
+          <chordParts text="me. " chord="E "/>
         </textlines>
       </parts>
       <parts bar="18">

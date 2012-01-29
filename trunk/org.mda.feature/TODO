@@ -1,15 +1,19 @@
-- Editor: 
-   - next line / previous line 
-   - split line / merge line 
-   - edit chord 
-   - handling refs
-   - new part 
-   - clone part 
-   - remove part 
-   - move part up/down 
 
-- User-Plugin 
-   - add user 				\
-   - remove user 				handle with gmail-api?
-   - edit user 
-   - export to user list		/
+Bug		Preview-Screen does not adapt after editing preview-editor-content	new
+Bug		selection of navigator doesn't change while changing slides		new
+Bug		Layout of parts is bullsit						new
+
+
+Editor	 	next line / previous line 						test
+Editor 		split line / merge line 						test
+Editor 		edit chord 								test
+Editor 		split part								<------NEXT
+Editor 		handling refs								new
+Editor 		new part 								new
+Editor 		clone part 								new
+Editor 		remove part 								new
+Editor 		move part up/down 							new
+
+User		import from gmail							new
+		export userlist								new
+		mail to group from gmail						new

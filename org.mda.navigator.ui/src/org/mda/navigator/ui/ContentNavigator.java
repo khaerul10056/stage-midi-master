@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mda.AbstractSessionItem;
 import mda.Gallery;
 import mda.Session;
 import mda.impl.MidiFileImpl;
@@ -97,12 +98,32 @@ public class ContentNavigator extends ViewPart {
     itemStart.setText("Run");
     itemStart.addSelectionListener(new SelectionAdapter() {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        Session session = (Session) getSelected(treviewer.getSelection());
+        Object object = getSelected(treviewer.getSelection());
+        System.out.println ("Selected " + object);
+
+        Session session = null;
+        AbstractSessionItem selectedItem = null;
+
+        if (object instanceof NavigatorItem) {
+          NavigatorItem<AbstractSessionItem> item = (NavigatorItem<AbstractSessionItem>) object;
+          selectedItem = item.getModelElement();
+
+          if (item.getMother() instanceof Session)
+            session = (Session) item.getMother();
+
+        }
+        else if (object instanceof Session) {
+          session = (Session)object;
+        }
+
+        if (session != null){
 
         final GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController(menu.getDisplay());
         DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
         config.setChordVisible(false);
         BeamerPresenter presenter = new BeamerPresenter(menu.getDisplay(), session, controller, config);
+        if (selectedItem != null)
+          controller.toItem(selectedItem);
 
         presenter.addDisposeListener(new DisposeListener() {
 
@@ -113,6 +134,8 @@ public class ContentNavigator extends ViewPart {
         });
 
         presenter.setEnabled(true);
+        }
+        //TODO else errormessage
       }
 
     });

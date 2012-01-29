@@ -1,0 +1,15 @@
+h1. Editor
+
+1. Zeile teilen
+Durch Drücken der <CR>-Taste wird der Rest der Zeile von der Position des Cursors ab, in die nächste Zeile verschoben
+
+2. Zeilen verbinden
+Durch Drücken der <BACKSPACE>-Taste am Anfang einer Zeile wird diese an die darüberliegende Zeile angehängt
+
+3. Chord eingeben
+Durch Drücken der <ALT>-Taste wird ein Hover, in dem man den Akkord eingeben kann. Durch <CR> oder <ESC> wird
+der Akkord übernommen. Zum Löschen eines Akkords den Hover leeren.
+
+4. Parts teilen
+Kontextmenü auf der Zeile aufrufen, die die erste Zeile des neuen Parts sein soll. Split part teilt den Part und
+legt einen neuen Part gleichen Typs mit den darunterliegenden Zeilen an.
