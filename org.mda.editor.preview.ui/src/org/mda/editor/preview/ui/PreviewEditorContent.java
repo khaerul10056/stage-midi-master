@@ -67,7 +67,15 @@ public class PreviewEditorContent extends Composite  {
       nextPart.setMidifile(file);
     }
 
-    getShell().layout();
+    getShell().getDisplay().asyncExec(new Runnable() {
+
+      @Override
+      public void run () {
+        getParent().getShell().layout(true, true);
+      }
+
+    });
+
   }
 
 

@@ -7,6 +7,7 @@ import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
@@ -43,8 +44,17 @@ public class SlideListPart extends AbstractPart  {
          excerpt = nextPart.getTextlines().get(0).getChordParts().get(0).getText();
       LOGGER.info("Add part " + nextPart.getParttype() + "(" + excerpt + ") to partlist");
 
+
+
       getSlideItems().add(nextPanel);
     }
+
+    for (SlideItemPanel panel: slideItems) {
+      panel.getShell().layout();
+    }
+    getShell().layout();
+
+    Display.getCurrent().update();
 
   }
 

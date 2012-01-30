@@ -31,7 +31,7 @@ public class SlideItemPanel extends Composite  {
       }
     });
   }
-  
+
   /**
    * shows the selected part on the content screen
    */
@@ -39,7 +39,7 @@ public class SlideItemPanel extends Composite  {
     content.getContentpanel().showSlide(part);
     content.getPreviewpanel().showSlide(part);
   }
-  
+
   public void setModelPart (final MidiFilePart part) {
     this.part = part;
     getBtnName().setText(part.getParttype().toString());
@@ -60,6 +60,16 @@ public class SlideItemPanel extends Composite  {
   public Button getBtnName () {
     return btnName;
   }
+
+  @Override
+  public void dispose () {
+    btnName.dispose();
+    super.dispose();
+  }
+
+
+
+
 
 
 
