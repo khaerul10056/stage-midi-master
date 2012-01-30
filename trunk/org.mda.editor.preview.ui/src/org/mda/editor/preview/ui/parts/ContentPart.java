@@ -61,8 +61,11 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
 
   private int currentFocusedLine;
 
+  private PreviewEditorContent editorContent;
+
   public ContentPart (PreviewEditorContent parent, MidiFile file) {
     super(parent);
+    editorContent = parent;
     setCurrentPart(file.getParts().get(0));
     setLayout(new RowLayout(SWT.VERTICAL));
     //setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
@@ -205,7 +208,11 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
             showPart(getCurrentPart(), size);
           }
 
+          //editorContent.getPreviewpanel().layout(true,  true);
+
         }
+
+
 
       });
       if (getTextLines().isEmpty())
