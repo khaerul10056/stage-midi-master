@@ -1572,28 +1572,32 @@
       </parts>
       <parts parttype="VERS" bar="27">
         <textlines>
-          <chordParts text="Thank you heavenly " chord="D"/>
-          <chordParts text="father for your " chord="G"/>
-          <chordParts text="love for " chord="D"/>
-          <chordParts text="me, " chord="A"/>
+          <chordParts text="" chord=""/>
+          <chordParts text="Thank you heavenly " chord="F "/>
+          <chordParts text="father for your " chord="G "/>
+          <chordParts text="love for " chord="D "/>
+          <chordParts text="me, " chord="A "/>
         </textlines>
         <textlines>
-          <chordParts text="I'm forever " chord="D"/>
-          <chordParts text="grateful that you " chord="G"/>
-          <chordParts text="sacrif" chord="D"/>
-          <chordParts text="iced your " chord="A"/>
-          <chordParts text="son. " chord="D"/>
+          <chordParts text="" chord=""/>
+          <chordParts text="I'm forever " chord="D "/>
+          <chordParts text="grateful that you " chord="G "/>
+          <chordParts text="sacrif" chord="D "/>
+          <chordParts text="iced your " chord="A "/>
+          <chordParts text="son. " chord="D "/>
         </textlines>
         <textlines>
-          <chordParts text="You saved my " chord="D"/>
-          <chordParts text="soul and changed my " chord="G"/>
-          <chordParts text="destin" chord="D"/>
-          <chordParts text="y, " chord="A"/>
+          <chordParts text="" chord=""/>
+          <chordParts text="You saved my " chord="D "/>
+          <chordParts text="soul and changed my " chord="G "/>
+          <chordParts text="destin" chord="D "/>
+          <chordParts text="y, " chord="A "/>
         </textlines>
         <textlines>
-          <chordParts text="Thank you God for " chord="G"/>
-          <chordParts text="Jesus in " chord="A"/>
-          <chordParts text="me. " chord="D"/>
+          <chordParts text="" chord=""/>
+          <chordParts text="Thank you God for " chord="G "/>
+          <chordParts text="Jesus in " chord="A "/>
+          <chordParts text="me. " chord="D "/>
         </textlines>
       </parts>
       <parts bar="43">

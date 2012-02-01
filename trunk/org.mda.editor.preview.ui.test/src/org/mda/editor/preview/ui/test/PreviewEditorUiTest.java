@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.io.File;
 import mda.MidiFile;
+import mda.MidiFilePart;
 import mda.MidiPlayerRoot;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Label;
@@ -23,15 +24,15 @@ public class PreviewEditorUiTest {
   private Shell shell;
   private PreviewEditorContent editor;
 
+
+
   @Test
   public void deleteWhenSelected () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
     editor.getContentpanel().showSlide(song.getParts().get(1));
-    shell.setVisible(true);
 
     //split a line at the beginning of an chordpart
-    editor.getContentpanel().getChordLines().get(0);
     StyledText text = editor.getContentpanel().getTextLines().get(0);
     Label chord = editor.getContentpanel().getChordLines().get(0);
 
@@ -50,7 +51,6 @@ public class PreviewEditorUiTest {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
     editor.getContentpanel().showSlide(song.getParts().get(1));
-    shell.setVisible(true);
 
     //step to next line (current caretposition in nextline not out of limits)  (1->2)
     StyledText text = editor.getContentpanel().getFocusedTextField();
@@ -93,7 +93,7 @@ public class PreviewEditorUiTest {
 
   @Before
   public void setup () {
-    shell = new PreviewEditorTester();
+    shell = new Shell ();
   }
 
   @After
@@ -107,6 +107,35 @@ public class PreviewEditorUiTest {
     editor = null;
   }
 
+  private void saveAndShowRoundtrip () {
+    MidiFilePart saveToModel = editor.getContentpanel().saveToModel();
+    editor.getContentpanel().showSlide(saveToModel);
+  }
+
+  @Test
+  public void splitAndMergeMiddleOfLinePart () throws Exception {
+    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    editor = new PreviewEditorContent(shell, song);
+    editor.getContentpanel().showSlide(song.getParts().get(1));
+
+    //split a line at the beginning of an chordpart
+
+    assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
+    assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
+
+    getText(0).setCaretOffset(15);
+
+    editor.getContentpanel().splitLine();
+    saveAndShowRoundtrip();
+
+    assertEquals("D    G ", getChord(0).getText());
+    assertEquals("Alle Schöpfung ", getText(0).getText());  //line 1
+
+    assertEquals("           A       D           G               A ", getChord(1).getText());  //line 2
+    assertEquals("staunt und preist, betet an in Wahrheit und in Geist, ", getText(1).getText());
+
+  }
+
   @Test
   public void splitAndMergeThirdLine () throws Exception {
     final String TEXTLINEORIGINAL  = "Alle Schöpfung singt ein Lob, Du bist mächtig, Du bist groß. ";
@@ -114,10 +143,8 @@ public class PreviewEditorUiTest {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
     editor.getContentpanel().showSlide(song.getParts().get(1));
-    shell.setVisible(true);
 
     //split a line at the beginning of an chordpart
-    editor.getContentpanel().getChordLines().get(0);
     StyledText text = editor.getContentpanel().getTextLines().get(2);
     Label chord = editor.getContentpanel().getChordLines().get(2);
 
@@ -138,10 +165,8 @@ public class PreviewEditorUiTest {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
     editor.getContentpanel().showSlide(song.getParts().get(1));
-    shell.setVisible(true);
 
     //split a line at the beginning of an chordpart
-    editor.getContentpanel().getChordLines().get(0);
     StyledText text = editor.getContentpanel().getTextLines().get(0);
     Label chord = editor.getContentpanel().getChordLines().get(0);
 
@@ -180,98 +205,90 @@ public class PreviewEditorUiTest {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
     editor.getContentpanel().showSlide(song.getParts().get(1));
-    shell.setVisible(true);
 
     //split a line at the beginning of an chordpart
     editor.getContentpanel().getChordLines().get(0);
-    StyledText text = editor.getContentpanel().getTextLines().get(0);
-    Label chord = editor.getContentpanel().getChordLines().get(0);
 
-    assertEquals(CHORDLINEORIGINAL, chord.getText());
-    assertEquals(TEXTLINEORIGINAL, text.getText());  //line 1
+    assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
+    assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
 
-    text.setCaretOffset(14);
-
+    getText(0).setCaretOffset(14);
     editor.getContentpanel().splitLine();
+    assertEquals (getText(1), editor.getContentpanel().getFocusedTextField());
 
+    assertEquals("D    G ", getChord(0).getText());
+    assertEquals("Alle Schöpfung", getText(0).getText());
 
-    text = editor.getContentpanel().getTextLines().get(0);
-    chord = editor.getContentpanel().getChordLines().get(0);
-    StyledText text2 = editor.getContentpanel().getTextLines().get(1);
-    Label chord2 = editor.getContentpanel().getChordLines().get(1);
+    assertEquals("            A       D           G               A ", getChord(1).getText());
+    assertEquals(" staunt und preist, betet an in Wahrheit und in Geist, ", getText(1).getText());
 
-    assertEquals (text2, editor.getContentpanel().getFocusedTextField());
+    editor.getContentpanel().mergeLine();
+    assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
+    assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
+  }
 
-    assertEquals("D    G ", chord.getText());
-    assertEquals("Alle Schöpfung", text.getText());
+  private StyledText getText (final int pos) {
+    return editor.getContentpanel().getTextLines().get(pos);
+  }
 
-    assertEquals("            A       D           G               A ", chord2.getText());
-    assertEquals(" staunt und preist, betet an in Wahrheit und in Geist, ", text2.getText());
+  private Label getChord (final int pos) {
+    return editor.getContentpanel().getChordLines().get(pos);
   }
 
   @Test
-  public void splitLineAtHome () throws Exception {
+  public void splitAndMergeLineAtHome () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
     editor.getContentpanel().showSlide(song.getParts().get(1));
-    shell.setVisible(true);
 
     //split a line at the beginning of an chordpart
-    editor.getContentpanel().getChordLines().get(0);
-    StyledText text = editor.getContentpanel().getTextLines().get(0);
-    Label chord = editor.getContentpanel().getChordLines().get(0);
+    assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
+    assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
 
-    assertEquals(CHORDLINEORIGINAL, chord.getText());
-    assertEquals(TEXTLINEORIGINAL, text.getText());  //line 1
-
-    text.setCaretOffset(0);
+    getText(0).setCaretOffset(0);
 
     editor.getContentpanel().splitLine();
 
+    assertEquals("", getChord(0).getText());
+    assertEquals("", getText(0).getText());
 
-    text = editor.getContentpanel().getTextLines().get(0);
-    chord = editor.getContentpanel().getChordLines().get(0);
-    StyledText text2 = editor.getContentpanel().getTextLines().get(1);
-    Label chord2 = editor.getContentpanel().getChordLines().get(1);
+    assertEquals(CHORDLINEORIGINAL, getChord(1).getText());
+    assertEquals(TEXTLINEORIGINAL, getText(1).getText());  //line 1
 
-    assertEquals("", chord.getText());
-    assertEquals("", text.getText());
-
-    assertEquals(CHORDLINEORIGINAL, chord2.getText());
-    assertEquals(TEXTLINEORIGINAL, text2.getText());  //line 1
+    editor.getContentpanel().mergeLine();
+    assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
+    assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
   }
 
   @Test
-  public void splitLineAtEnd () throws Exception {
+  public void splitAndMergeLineAtEnd () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
     editor.getContentpanel().showSlide(song.getParts().get(1));
-    shell.setVisible(true);
 
     //split a line at the end of an chordpart
-    editor.getContentpanel().getChordLines().get(0);
-    StyledText text = editor.getContentpanel().getTextLines().get(0);
-    Label chord = editor.getContentpanel().getChordLines().get(0);
 
-    assertEquals(CHORDLINEORIGINAL, chord.getText());
-    assertEquals(TEXTLINEORIGINAL, text.getText());  //line 1
+    assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
+    assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
 
-    text.setCaretOffset(text.getText().length() - 1);
+    getText(0).setCaretOffset(getText(0).getText().length() - 1);
 
     editor.getContentpanel().splitLine();
 
+    assertEquals(" ", getChord(1).getText());
+    assertEquals(" ", getText(1).getText());
 
-    text = editor.getContentpanel().getTextLines().get(0);
-    chord = editor.getContentpanel().getChordLines().get(0);
-    StyledText text2 = editor.getContentpanel().getTextLines().get(1);
-    Label chord2 = editor.getContentpanel().getChordLines().get(1);
+    assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
+    assertEquals(TEXTLINEORIGINAL.trim(), getText(0).getText());  //line 1
 
-    assertEquals(" ", chord2.getText());
-    assertEquals(" ", text2.getText());
+    editor.getContentpanel().mergeLine();
+    assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
+    assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
 
-    assertEquals(CHORDLINEORIGINAL, chord.getText());
-    assertEquals(TEXTLINEORIGINAL.trim(), text.getText());  //line 1
+
+
   }
+
 
 
 }

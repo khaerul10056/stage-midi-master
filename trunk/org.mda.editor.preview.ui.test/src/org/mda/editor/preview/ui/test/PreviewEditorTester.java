@@ -20,7 +20,7 @@ public class PreviewEditorTester extends Shell {
     setText("Preview editor tester");
     setLayout(new FillLayout());
     setEditor(new PreviewEditorContent(this, (MidiFile) root.getGallery().getGalleryItems().get(0)));
-    open();
+    //open();
   }
 
   @Override
@@ -28,11 +28,8 @@ public class PreviewEditorTester extends Shell {
   }
 
   public static void main (String[] args) {
-
-
-
-
     PreviewEditorTester editorTester = new PreviewEditorTester();
+    editorTester.open();
     Display display = editorTester.getDisplay();
     while (!editorTester.isDisposed()) {
       if (!display.readAndDispatch()) {
