@@ -6,7 +6,6 @@ import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.eclipse.core.runtime.Platform;
 
 /**
  * Log-Factory to use in eclipse. This factory handles loading the configuration
@@ -26,12 +25,6 @@ public class LogFactory {
   static {
 
     String installPath = new File("").getAbsolutePath();
-    try {
-      installPath = Platform.getInstallLocation().getURL().getFile();
-    } catch (Exception e) {
-      // if we are not in an OSGI-Enviroment, we use the current path
-    }
-
     Level level = Level.parse("INFO");
 
     consoleHandler = new ConsoleHandler();
@@ -39,11 +32,14 @@ public class LogFactory {
     consoleHandler.setFormatter(new LogFormatter());
 
     try {
-      File logPath = new File (installPath + "/logs");
-      if (!logPath.exists())
-        logPath.mkdirs();
 
-      fileHandler = new FileHandler(installPath + "/logs/aid.log", 10485760 , 5, true);
+      File logPath = new File (installPath + "/logs");
+      if (!logPath.exists()) {
+        logPath.mkdirs();
+        System.out.println ("Initialize logging in " + logPath.getAbsolutePath());
+      }
+
+      fileHandler = new FileHandler(installPath + "/logs/mda.log", 10485760 , 5, true);
     } catch (Exception e) {
       e.printStackTrace();
     }

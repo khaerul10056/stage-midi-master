@@ -61,6 +61,12 @@ public class ApplicationSession {
   }
 
 
+  private void setDefaultOnDemand (final Properties properties, final String key, final String defaultValue) {
+    String value = properties.getProperty(key);
+    if (value == null)
+      properties.setProperty(key, defaultValue);
+  }
+
   public void load (String path) {
 
     if (path == null)
@@ -68,7 +74,11 @@ public class ApplicationSession {
 
     if (sessionProps.isEmpty()) {
 
+
+
       File confPath = getOrCreateConfigPath(new File (path));
+
+      LOGGER.info("Create initial properties in " + confPath.getAbsolutePath());
 
       configFileAsFile = new File (confPath + File.separator + "mda.properties");
 
@@ -80,11 +90,10 @@ public class ApplicationSession {
         catch (Exception e) {
           LOGGER.error(e.getLocalizedMessage(), e);
         }
-      } else { //or set defaults
-        sessionProps.setProperty(PROP_EXPORTPATH, "exportFiles");
-        sessionProps.setProperty(PROP_LASTMODELFILE, "mda.model.xml");
-
       }
+
+      setDefaultOnDemand(sessionProps, PROP_EXPORTPATH, "exportFiles");
+      setDefaultOnDemand(sessionProps, PROP_LASTMODELFILE, "mda.model.xml");
 
       //Last used exportpath
       String exportPathProp = sessionProps.getProperty(PROP_EXPORTPATH);
@@ -93,7 +102,7 @@ public class ApplicationSession {
 
       //Read the modelfile that was used at last start
       String property = sessionProps.getProperty(PROP_LASTMODELFILE);
-        setLastModelPath(new File (property));
+      setLastModelPath(new File (property));
 
       if (! configFileAsFile.exists())
         save(configFileAsFile);
