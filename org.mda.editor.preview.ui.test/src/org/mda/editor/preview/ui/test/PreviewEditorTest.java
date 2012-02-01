@@ -36,7 +36,6 @@ public class PreviewEditorTest {
   @Before
   public void setUp () {
     shell = new Shell();
-    shell.setSize(new Point (800, 600));
   }
 
   @After
@@ -53,6 +52,8 @@ public class PreviewEditorTest {
     PreviewEditorContent editor = new PreviewEditorContent(shell, song);
     ContentPart contentPanel = editor.getContentpanel();
     contentPanel.showSlide(song.getParts().get(1));
+    contentPanel.setCurrentFocusedLine(0);
+    contentPanel.setCurrentCaretPosition(0);
     contentPanel.editChord(editor.getContentpanel().getChordLines().get(0), editor.getContentpanel().getTextLines().get(0), 0, "Eb", "D");
     MidiFilePart saveToModel = contentPanel.saveToModel();
     MidiFileTextLine midiFileTextLine = saveToModel.getTextlines().get(0);
@@ -69,11 +70,15 @@ public class PreviewEditorTest {
     //initialize model, because it is trimmed
     MidiFilePart oldModel = old.getParts().get(1);
     editor.getContentpanel().showSlide(song.getParts().get(1));
+
+    editor.getContentpanel().stepToNextLine();
+    Assert.assertEquals (1, editor.getContentpanel().getCurrentFocusedLine());
     oldModel = editor.getContentpanel().saveToModel();
+
+    Assert.assertEquals (1, editor.getContentpanel().getCurrentFocusedLine());
 
 
     logEditorContent(editor.getContentpanel());
-    shell.setVisible(true);
     //check if multiple save-process change the model
     for (int i = 0; i< 10; i++) {
       MidiFilePart saveToModel = editor.getContentpanel().saveToModel();
@@ -93,16 +98,14 @@ public class PreviewEditorTest {
 
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     PreviewEditorContent editor = new PreviewEditorContent(shell, song);
-    shell.setVisible(true);
+    shell.setSize(new Point (800, 1600));
+    editor.getContentpanel().showSlide(song.getParts().get(0));
 
     int height = editor.getContentpanel().getCurrentSlide().getFont().getFontData() [0].getHeight();
 
     shell.setSize(new Point (400, 800));
 
     int heightNew = editor.getContentpanel().getCurrentSlide().getFont().getFontData() [0].getHeight();
-
-
-
 
     assertEquals(height, heightNew * 2);
     shell.dispose();
@@ -114,7 +117,6 @@ public class PreviewEditorTest {
 
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     PreviewEditorContent editor = new PreviewEditorContent(shell, song);
-    shell.setVisible(true);
 
     int i = 0;
     try {
@@ -151,26 +153,7 @@ public class PreviewEditorTest {
       System.out.println ("|" + chords.get(i) + "|");
       System.out.println ("|" + texts.get(i) + "|");
     }
-
-
-
-
-
   }
-
-//  private static void displayAllLoadedFonts(Shell shell) {
-//    // display all scalable fonts in the system
-//    FontData[] fd = shell.getDisplay().getFontList(null, true);
-//    for( int i = 0; i < fd.length; i++ ) {
-//            System.out.println(fd[i].getName());
-//    }
-//    // and the non-scalable ones
-//    fd = shell.getDisplay().getFontList(null, false);
-//    for( int i = 0; i < fd.length; i++ ) {
-//            System.out.println(fd[i].getName());
-//    }
-//}
-
 
 
 }
