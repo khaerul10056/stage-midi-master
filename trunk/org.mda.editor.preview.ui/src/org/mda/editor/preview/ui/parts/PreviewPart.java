@@ -10,7 +10,6 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
-import org.mda.commons.ui.IPreviewView;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
 import org.mda.commons.ui.calculator.Slide;
@@ -19,7 +18,7 @@ import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
 
-public class PreviewPart extends AbstractPart implements IPreviewView{
+public class PreviewPart extends AbstractPart {
 
   private static final Log LOGGER  = LogFactory.getLogger(PreviewPart.class);
 
@@ -88,7 +87,7 @@ public class PreviewPart extends AbstractPart implements IPreviewView{
 
 
 
-  @Override
+
   public void showSlide (MidiFilePart part) {
     LOGGER.info("Show slide " + part.getParttype().toString());
     this.currentSlide = calculator.calculatePart(part, calcPreCondition);

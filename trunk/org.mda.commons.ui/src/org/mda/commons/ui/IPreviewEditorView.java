@@ -2,7 +2,7 @@ package org.mda.commons.ui;
 
 
 
-public interface IPreviewEditorView extends IPreviewView {
+public interface IPreviewEditorView  {
 
 
   boolean stepToNextLine ();
@@ -12,6 +12,8 @@ public interface IPreviewEditorView extends IPreviewView {
   void splitLine ();
 
   void splitPart ();
+
+  void mergeWithPreviousPart ();
 
   void mergeLine ();
 

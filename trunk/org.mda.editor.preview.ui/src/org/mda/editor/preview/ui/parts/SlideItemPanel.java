@@ -4,13 +4,18 @@ import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.mda.editor.preview.ui.PreviewEditorContent;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 
 public class SlideItemPanel extends Composite  {
+
+  private static final Log LOGGER  = LogFactory.getLogger(SlideItemPanel.class);
 
   private MidiFilePart part;
 
@@ -27,22 +32,30 @@ public class SlideItemPanel extends Composite  {
     getBtnName().addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent e) {
-        showPartOnContentScreen();
+        select();
       }
     });
   }
 
-  /**
-   * shows the selected part on the content screen
-   */
-  public void showPartOnContentScreen () {
-    content.getContentpanel().showSlide(part);
-    content.getPreviewpanel().showSlide(part);
+
+
+  @Override
+  public void setBackground (Color color) {
+    LOGGER.info("setBackground of part " + part.getParttype() + " to " + color);
+    super.setBackground(color);
+    btnName.setBackground(color);
+
   }
+
+
 
   public void setModelPart (final MidiFilePart part) {
     this.part = part;
     getBtnName().setText(part.getParttype().toString());
+  }
+
+  public MidiFilePart getModelPart () {
+    return part;
   }
 
   public void setContent (PreviewEditorContent content) {
@@ -59,6 +72,10 @@ public class SlideItemPanel extends Composite  {
 
   public Button getBtnName () {
     return btnName;
+  }
+
+  public void select () {
+    content.setCurrentPart(part);
   }
 
   @Override

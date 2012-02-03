@@ -51,7 +51,7 @@ public class PreviewEditorTest {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     PreviewEditorContent editor = new PreviewEditorContent(shell, song);
     ContentPart contentPanel = editor.getContentpanel();
-    contentPanel.showSlide(song.getParts().get(1));
+    contentPanel.setCurrentPart(song.getParts().get(1));
     contentPanel.setCurrentFocusedLine(0);
     contentPanel.setCurrentCaretPosition(0);
     contentPanel.editChord(editor.getContentpanel().getChordLines().get(0), editor.getContentpanel().getTextLines().get(0), 0, "Eb", "D");
@@ -69,7 +69,7 @@ public class PreviewEditorTest {
 
     //initialize model, because it is trimmed
     MidiFilePart oldModel = old.getParts().get(1);
-    editor.getContentpanel().showSlide(song.getParts().get(1));
+    editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     editor.getContentpanel().stepToNextLine();
     Assert.assertEquals (1, editor.getContentpanel().getCurrentFocusedLine());
@@ -82,7 +82,7 @@ public class PreviewEditorTest {
     //check if multiple save-process change the model
     for (int i = 0; i< 10; i++) {
       MidiFilePart saveToModel = editor.getContentpanel().saveToModel();
-      editor.getContentpanel().showSlide(saveToModel);
+      editor.getContentpanel().setCurrentPart(saveToModel);
       System.out.println("Old: " + MidiPlayerService.toString(oldModel));
       System.out.println("New: " + MidiPlayerService.toString(saveToModel));
       if (i > 0)
@@ -99,7 +99,7 @@ public class PreviewEditorTest {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     PreviewEditorContent editor = new PreviewEditorContent(shell, song);
     shell.setSize(new Point (800, 1600));
-    editor.getContentpanel().showSlide(song.getParts().get(0));
+    editor.getContentpanel().setCurrentPart(song.getParts().get(0));
 
     int height = editor.getContentpanel().getCurrentSlide().getFont().getFontData() [0].getHeight();
 
@@ -122,7 +122,7 @@ public class PreviewEditorTest {
     try {
 
     for (i = 0; i < editor.getSlidelistpanel().getSlideItems().size(); i++) {
-      editor.getSlidelistpanel().getSlideItems().get(i).showPartOnContentScreen();
+      editor.getSlidelistpanel().getSlideItems().get(i).select();
       Slide currentSlide = editor.getContentpanel().getCurrentSlide();
       assertEquals (song.getParts().get(i), currentSlide.getModelRef());
     }

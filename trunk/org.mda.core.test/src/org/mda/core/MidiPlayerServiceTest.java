@@ -1,14 +1,17 @@
 package org.mda.core;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertNull;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.util.logging.Logger;
-import junit.framework.Assert;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiPlayerRoot;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
-import static junit.framework.Assert.*;
 
 
 public class MidiPlayerServiceTest {
@@ -37,7 +40,50 @@ public class MidiPlayerServiceTest {
 
     //Wrong parameter: Part of another song
     MidiFile file2 = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(1);
-    Assert.assertNull(MidiPlayerService.splitPart(file2, firstPartWithText, 3));
+    assertNull(MidiPlayerService.splitPart(file2, firstPartWithText, 3));
+  }
+
+  @Test
+  public void mergeParts () {
+    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("../org.mda.core.test/conf/midiplayer.conf"));
+    MidiFile file = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(0);
+    LOGGER.info(MidiPlayerService.getMidiFileAsString(file));
+    int partNumberBefore = file.getParts().size();
+
+
+    MidiFilePart introPart = file.getParts().get(0);
+    MidiFilePart firstPartWithText = file.getParts().get(1);
+    MidiFilePart secondPartWithText = file.getParts().get(2);
+
+
+    //Wrong parameter: First part cannot be merged to previous part
+    assertEquals (introPart, MidiPlayerService.mergeWithPreviousPart(file, introPart));
+    assertEquals (partNumberBefore, file.getParts().size());
+
+    //Correct merge
+    assertEquals (firstPartWithText, MidiPlayerService.mergeWithPreviousPart(file, secondPartWithText));
+    assertEquals (partNumberBefore - 1, file.getParts().size());
+
+    int gesamtNumber = firstPartWithText.getTextlines().size() + secondPartWithText.getTextlines().size();
+    assertEquals (gesamtNumber, firstPartWithText.getTextlines().size());
+    assertTrue (file.getParts().contains(firstPartWithText));
+    assertFalse (file.getParts().contains(secondPartWithText));
+
+    //Merge last part to previous
+    MidiFilePart prelast = file.getParts().get(file.getParts().size() - 2);
+    MidiFilePart last = file.getParts().get(file.getParts().size() - 1);
+
+    int gesamtNumberEnd = prelast.getTextlines().size() + last.getTextlines().size();
+    assertEquals (prelast, MidiPlayerService.mergeWithPreviousPart(file, last));
+    assertEquals (gesamtNumberEnd, prelast.getTextlines().size());
+    assertTrue (file.getParts().contains(prelast));
+    assertFalse (file.getParts().contains(last));
+
+
+
+
+
+
   }
 
 }
