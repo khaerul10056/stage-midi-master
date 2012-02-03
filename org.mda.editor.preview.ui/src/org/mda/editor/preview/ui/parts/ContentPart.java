@@ -45,7 +45,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
 
   private static final Log LOGGER  = LogFactory.getLogger(ContentPart.class);
 
-  private MidiFilePart                       currentPart;
+
 
   private DefaultMidiFileContentEditorConfig config            = new DefaultMidiFileContentEditorConfig(); //TODO inject
 
@@ -271,10 +271,10 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
   }
 
   public MidiFilePart saveToModel () {
-    currentPart.getTextlines().clear();
+    getCurrentPart().getTextlines().clear();
     for (int i = 0; i < getTextLines().size(); i++) {
       MidiFileTextLine newTextLine = MidiPlayerService.mf.createMidiFileTextLine();
-      currentPart.getTextlines().add(newTextLine);
+      getCurrentPart().getTextlines().add(newTextLine);
 
       String chord = getChordLines().get(i).getText();
       String text = getTextLines().get(i).getText();
@@ -320,9 +320,9 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
       }
     }
 
-    LOGGER.info("Save to model: " + MidiPlayerService.toString(currentPart));
+    LOGGER.info("Save to model: " + MidiPlayerService.toString(getCurrentPart()));
 
-    return currentPart;
+    return getCurrentPart();
   }
 
 
