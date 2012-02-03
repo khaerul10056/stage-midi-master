@@ -7,6 +7,8 @@ import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.mda.logging.Log;
@@ -25,7 +27,7 @@ public class SlideListPart extends AbstractPart  {
   public SlideListPart (Composite parent) {
     super(parent);
 
-    setLayout(new FillLayout(SWT.VERTICAL));
+    setLayout(new GridLayout(1, true));
   }
 
 
@@ -59,6 +61,12 @@ public class SlideListPart extends AbstractPart  {
       SlideItemPanel nextPanel = new SlideItemPanel(this);
       nextPanel.setModelPart(nextPart);
       nextPanel.setContent(getEditorContent());
+      GridData data = new GridData();
+      data.widthHint = 130;
+      data.heightHint = 40;
+      data.horizontalAlignment = GridData.HORIZONTAL_ALIGN_FILL;
+      data.grabExcessHorizontalSpace = true;
+      nextPanel.setLayoutData(data);
       String excerpt = "";
       if (nextPart.getTextlines().size() > 0 && nextPart.getTextlines().get(0).getChordParts().size() > 0)
          excerpt = nextPart.getTextlines().get(0).getChordParts().get(0).getText();
@@ -68,6 +76,9 @@ public class SlideListPart extends AbstractPart  {
 
       getSlideItems().add(nextPanel);
     }
+
+    if (file.getParts().size() > 0)
+      setCurrentPart(file.getParts().get(0));
 
     resetColors();
 
