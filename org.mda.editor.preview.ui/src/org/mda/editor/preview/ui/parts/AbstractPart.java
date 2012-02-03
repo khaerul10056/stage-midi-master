@@ -1,6 +1,7 @@
 package org.mda.editor.preview.ui.parts;
 
 import mda.MidiFile;
+import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.mda.editor.preview.ui.PreviewEditorContent;
@@ -13,6 +14,8 @@ public class AbstractPart extends Composite{
   private static final Log LOGGER  = LogFactory.getLogger(AbstractPart.class);
 
   private MidiFile midifile;
+
+  private MidiFilePart currentPart;
 
   private PreviewEditorContent editorContent;
 
@@ -38,6 +41,15 @@ public class AbstractPart extends Composite{
 
   public PreviewEditorContent getEditorContent () {
     return editorContent;
+  }
+
+  public MidiFilePart getCurrentPart () {
+    return currentPart;
+  }
+
+  public void setCurrentPart (MidiFilePart currentPart) {
+    LOGGER.info("setCurrentPart called for " + getClass().getName());
+    this.currentPart = currentPart;
   }
 
 }

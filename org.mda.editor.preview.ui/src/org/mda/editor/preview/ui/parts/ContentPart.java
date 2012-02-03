@@ -100,17 +100,37 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
         splitPart();
       }
     });
+
+
+    MenuItem item2 = new MenuItem(popup, SWT.PUSH);
+    item2.setText("Merge part with previous part");
+    item2.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        mergeWithPreviousPart();
+      }
+    });
+
     text.setMenu(popup);
 
   }
 
+  public void setCurrentPart (MidiFilePart currentPart) {
+    super.setCurrentPart(currentPart);
+    showPart(currentPart, getSize());
+  }
 
+
+  /**
+   * This method should only be called in the repaint-method to adapt size.
+   * In any other cases please call setCurrentPart() which calls showPart()
+   * @param part  part to repaint
+   * @param size  size
+   * @return size
+   */
   private Point showPart (final MidiFilePart part, final Point size) {
 
     int currentLine = getCurrentFocusedLine();
     int currentcarePosition = getCaretOffsetOfCurrentTextField();
-
-    this.setCurrentPart(part);
 
     calcPreConditions.setCalculationsize(size);
 
@@ -320,10 +340,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
     return getTextLines().get(getCurrentFocusedLine());
   }
 
-  @Override
-  public void showSlide (MidiFilePart part) {
-    showPart(part, getSize());
-  }
+
 
   private void setCalculatePart (Slide calculatePart) {
     this.currentSlide = calculatePart;
@@ -378,12 +395,13 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
       return getCurrentCaretPosition();
   }
 
+
+
   @Override
   public void splitLine () {
     LOGGER.info("Split line " + getCurrentFocusedLine() + " at caretposition " + getCaretOffsetOfCurrentTextField());
     int currentLine = getCurrentFocusedLine() + 1;
     setCurrentPart(MidiPlayerService.splitLine(getCurrentPart(), getCurrentFocusedLine(), getCaretOffsetOfCurrentTextField()));
-    showPart(getCurrentPart(), getSize());
     StyledText newTextLine = getTextLines().get(currentLine);
     setCurrentCaretPosition(0);
     setFocus(newTextLine);
@@ -394,8 +412,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
     if (getCurrentFocusedLine() > 0 && getCaretOffsetOfCurrentTextField() == 0) {
       int currentLine = getCurrentFocusedLine() - 1;
       int nextpos = getTextLines().get(currentLine).getText().length();
-      setCurrentPart(MidiPlayerService.mergeLine(getCurrentPart(), getCurrentFocusedLine(), getCaretOffsetOfCurrentTextField()));
-      showPart(getCurrentPart(), getSize());
+      getEditorContent().setCurrentPart(MidiPlayerService.mergeLine(getCurrentPart(), getCurrentFocusedLine(), getCaretOffsetOfCurrentTextField()));
       StyledText previousTextLine = getTextLines().get(currentLine);
       setCurrentCaretPosition(nextpos);
       setFocus(previousTextLine);
@@ -405,8 +422,16 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
   @Override
   public void splitPart () {
     int currentLine = getCurrentFocusedLine() - 1;
-    setCurrentPart(MidiPlayerService.splitPart(getMidifile(), getCurrentPart(), getCurrentFocusedLine()));
-    showPart(getCurrentPart(), getSize());
+    getEditorContent().setCurrentPart(MidiPlayerService.splitPart(getMidifile(), getCurrentPart(), getCurrentFocusedLine()));
+    StyledText newTextLine = getTextLines().get(currentLine);
+    setFocus(newTextLine);
+    getEditorContent().redrawSlidelist();
+  }
+
+  @Override
+  public void mergeWithPreviousPart () {
+    int currentLine = 0;
+    getEditorContent().setCurrentPart(MidiPlayerService.mergeWithPreviousPart(getMidifile(), getCurrentPart()));
     StyledText newTextLine = getTextLines().get(currentLine);
     setFocus(newTextLine);
     getEditorContent().redrawSlidelist();
@@ -424,14 +449,6 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
     return textLines;
   }
 
-
-  public MidiFilePart getCurrentPart () {
-    return currentPart;
-  }
-
-  private void setCurrentPart (MidiFilePart currentPart) {
-    this.currentPart = currentPart;
-  }
 
 
 

@@ -3,6 +3,7 @@ package org.mda.editor.preview.ui;
 import java.util.ArrayList;
 import java.util.List;
 import mda.MidiFile;
+import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -96,6 +97,12 @@ public class PreviewEditorContent extends Composite  {
 
   public void setPreviewpanel (PreviewPart previewpanel) {
     this.previewpanel = previewpanel;
+  }
+
+  public void setCurrentPart (MidiFilePart part) {
+    for (AbstractPart nextPart: editorParts) {
+      nextPart.setCurrentPart(part);
+    }
   }
 
 

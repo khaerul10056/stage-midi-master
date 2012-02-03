@@ -540,4 +540,21 @@ public class MidiPlayerService {
     return null;
   }
 
+  /**
+   * merges a part to the previous part
+   * @param midifile
+   * @param currentPart
+   * @return
+   */
+  public static MidiFilePart mergeWithPreviousPart (MidiFile midifile, MidiFilePart currentPart) {
+    int currentIndex = midifile.getParts().indexOf(currentPart);
+    if (currentIndex == 0)
+      return currentPart;
+
+    MidiFilePart previousPart = midifile.getParts().get(currentIndex - 1);
+    previousPart.getTextlines().addAll(currentPart.getTextlines());
+    midifile.getParts().remove(currentPart);
+    return previousPart;
+  }
+
 }

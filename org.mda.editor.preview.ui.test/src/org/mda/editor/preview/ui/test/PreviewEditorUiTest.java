@@ -30,7 +30,7 @@ public class PreviewEditorUiTest {
   public void deleteWhenSelected () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
-    editor.getContentpanel().showSlide(song.getParts().get(1));
+    editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //split a line at the beginning of an chordpart
     StyledText text = editor.getContentpanel().getTextLines().get(0);
@@ -50,7 +50,7 @@ public class PreviewEditorUiTest {
   public void stepToNextAndPreviousLine () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
-    editor.getContentpanel().showSlide(song.getParts().get(1));
+    editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //step to next line (current caretposition in nextline not out of limits)  (1->2)
     StyledText text = editor.getContentpanel().getFocusedTextField();
@@ -109,14 +109,14 @@ public class PreviewEditorUiTest {
 
   private void saveAndShowRoundtrip () {
     MidiFilePart saveToModel = editor.getContentpanel().saveToModel();
-    editor.getContentpanel().showSlide(saveToModel);
+    editor.getContentpanel().setCurrentPart(saveToModel);
   }
 
   @Test
   public void splitAndMergeMiddleOfLinePart () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
-    editor.getContentpanel().showSlide(song.getParts().get(1));
+    editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //split a line at the beginning of an chordpart
 
@@ -142,7 +142,7 @@ public class PreviewEditorUiTest {
     final String CHORDLINEORIGINAL = "D    G                   A    D       G                A ";
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
-    editor.getContentpanel().showSlide(song.getParts().get(1));
+    editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //split a line at the beginning of an chordpart
     StyledText text = editor.getContentpanel().getTextLines().get(2);
@@ -164,7 +164,7 @@ public class PreviewEditorUiTest {
   public void splitLineEndOfChordpart () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
-    editor.getContentpanel().showSlide(song.getParts().get(1));
+    editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //split a line at the beginning of an chordpart
     StyledText text = editor.getContentpanel().getTextLines().get(0);
@@ -204,7 +204,7 @@ public class PreviewEditorUiTest {
   public void splitLineMidChordpart () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
-    editor.getContentpanel().showSlide(song.getParts().get(1));
+    editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //split a line at the beginning of an chordpart
     editor.getContentpanel().getChordLines().get(0);
@@ -239,7 +239,7 @@ public class PreviewEditorUiTest {
   public void splitAndMergeLineAtHome () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
-    editor.getContentpanel().showSlide(song.getParts().get(1));
+    editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //split a line at the beginning of an chordpart
     assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
@@ -264,7 +264,7 @@ public class PreviewEditorUiTest {
   public void splitAndMergeLineAtEnd () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
-    editor.getContentpanel().showSlide(song.getParts().get(1));
+    editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //split a line at the end of an chordpart
 
