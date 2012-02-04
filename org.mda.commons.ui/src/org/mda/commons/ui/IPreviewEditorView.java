@@ -4,6 +4,9 @@ package org.mda.commons.ui;
 
 public interface IPreviewEditorView  {
 
+  boolean chordToLeft ();
+
+  boolean chordToRight ();
 
   boolean stepToNextLine ();
 

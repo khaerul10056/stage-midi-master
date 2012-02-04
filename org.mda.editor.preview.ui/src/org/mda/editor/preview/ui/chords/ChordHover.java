@@ -55,6 +55,9 @@ public class ChordHover extends Shell {
   }
 
   public boolean isChanged () {
+    if (after != null && before == null)
+      return true;
+
     return ! after.trim().equals(before.trim());
   }
 

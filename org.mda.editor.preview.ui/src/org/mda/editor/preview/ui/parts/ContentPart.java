@@ -19,19 +19,17 @@ import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.MenuItem;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.IPreviewEditorView;
+import org.mda.commons.ui.Util;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
 import org.mda.commons.ui.calculator.Slide;
@@ -161,11 +159,24 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
       });
       nextText.addKeyListener(new KeyAdapter() {
 
+
+        @Override
+        public void keyReleased (KeyEvent e) {
+          LOGGER.info("KeyReleased : " + Util.logEvent(e));
+          if (e.keyCode == SWT.ARROW_LEFT && (e.stateMask & SWT.SHIFT) != 0) {
+            chordToLeft();
+          }
+
+          if (e.keyCode == SWT.ARROW_RIGHT && (e.stateMask & SWT.SHIFT) != 0) {
+            chordToRight();
+          }
+        }
+
         @Override
         public void keyPressed (KeyEvent e) {
           try {
 
-          LOGGER.info("KeyEvent " + e.keyCode + "-" + e.character + "-" + e.stateMask + "-" + e.time);
+          LOGGER.info("KeyPressed : " + Util.logEvent(e));
 
           if (e.keyCode == SWT.ARROW_DOWN)
             stepToNextLine();
@@ -210,11 +221,14 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
           editorContent.getPreviewpanel().setCurrentPart(getCurrentPart());
 
 
+          LOGGER.info("doit was set to " + e.doit);
+
           } catch (Exception exception) {
             LOGGER.error(exception.toString(), exception);
           }
 
         }
+
 
 
 
@@ -337,6 +351,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
       }
     }
   }
+
 
   @Override
   public boolean stepToNextLine () {
@@ -478,6 +493,35 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
 
   public void setCurrentFocusedLine (int currentFocusedLine) {
     this.currentFocusedLine = currentFocusedLine;
+  }
+
+
+  @Override
+  public boolean chordToLeft () {
+    Label label = getChordLines().get(getCurrentFocusedLine());
+    String chord = label.getText();
+    if (Character.isWhitespace(chord.charAt(getCurrentCaretPosition()))) {
+      StringBuilder builder = new StringBuilder(chord);
+      builder.deleteCharAt(getCurrentCaretPosition());
+      label.setText(builder.toString());
+      return true;
+    }
+    else
+      return false;
+  }
+
+
+  @Override
+  public boolean chordToRight () {
+    Label label = getChordLines().get(getCurrentFocusedLine());
+
+    String chord = label.getText();
+    StringBuilder builder = new StringBuilder(chord);
+    builder.insert(getCurrentCaretPosition() - 1, " ");
+
+    label.setText(builder.toString());
+
+    return true;
   }
 
 
