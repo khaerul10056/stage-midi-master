@@ -31,6 +31,8 @@ public class Utils {
     return( path.delete() );
   }
 
+
+
   public static String getChordFromPosition (String chordline, final int position) {
 
     if (chordline.length() < position)

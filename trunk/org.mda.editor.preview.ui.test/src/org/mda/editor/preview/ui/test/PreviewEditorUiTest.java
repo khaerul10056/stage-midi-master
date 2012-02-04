@@ -7,8 +7,12 @@ import java.io.File;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiPlayerRoot;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.After;
 import org.junit.Before;
@@ -288,6 +292,9 @@ public class PreviewEditorUiTest {
 
 
   }
+
+
+
 
 
 
