@@ -91,29 +91,6 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
   }
 
 
-  private void createContextMenu (StyledText text) {
-    Menu popup = new Menu(text);
-    MenuItem item = new MenuItem(popup, SWT.PUSH);
-    item.setText("Split part");
-    item.addSelectionListener(new SelectionAdapter() {
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        splitPart();
-      }
-    });
-
-
-    MenuItem item2 = new MenuItem(popup, SWT.PUSH);
-    item2.setText("Merge part with previous part");
-    item2.addSelectionListener(new SelectionAdapter() {
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        mergeWithPreviousPart();
-      }
-    });
-
-    text.setMenu(popup);
-
-  }
-
   public void setCurrentPart (MidiFilePart currentPart) {
     super.setCurrentPart(currentPart);
     showPart(currentPart, getSize());
@@ -161,7 +138,6 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
       nextText.addFocusListener(this);
       nextText.setText(getCurrentSlide().getTextline(i));
       nextText.setFont(font);
-      createContextMenu(nextText);
       nextText.addExtendedModifyListener(new ExtendedModifyListener() {
 
         @Override
@@ -231,7 +207,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
           saveToModel();
           showPart(getCurrentPart(), size);
 
-          editorContent.getPreviewpanel().showSlide(getCurrentPart());
+          editorContent.getPreviewpanel().setCurrentPart(getCurrentPart());
 
 
           } catch (Exception exception) {
@@ -410,6 +386,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
   @Override
   public void mergeLine () {
     if (getCurrentFocusedLine() > 0 && getCaretOffsetOfCurrentTextField() == 0) {
+      LOGGER.info("Merge line " + getCurrentFocusedLine() + " at caretposition " + getCaretOffsetOfCurrentTextField());
       int currentLine = getCurrentFocusedLine() - 1;
       int nextpos = getTextLines().get(currentLine).getText().length();
       getEditorContent().setCurrentPart(MidiPlayerService.mergeLine(getCurrentPart(), getCurrentFocusedLine(), getCaretOffsetOfCurrentTextField()));
@@ -421,6 +398,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
 
   @Override
   public void splitPart () {
+    LOGGER.info("Split part " + getCurrentFocusedLine() + " at caretposition " + getCaretOffsetOfCurrentTextField());
     int currentLine = getCurrentFocusedLine() - 1;
     getEditorContent().setCurrentPart(MidiPlayerService.splitPart(getMidifile(), getCurrentPart(), getCurrentFocusedLine()));
     StyledText newTextLine = getTextLines().get(currentLine);
@@ -430,6 +408,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
 
   @Override
   public void mergeWithPreviousPart () {
+    LOGGER.info("Merge with previous part " + getCurrentFocusedLine() + " at caretposition " + getCaretOffsetOfCurrentTextField());
     int currentLine = 0;
     getEditorContent().setCurrentPart(MidiPlayerService.mergeWithPreviousPart(getMidifile(), getCurrentPart()));
     StyledText newTextLine = getTextLines().get(currentLine);

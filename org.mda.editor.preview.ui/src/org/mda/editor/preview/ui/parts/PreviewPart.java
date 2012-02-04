@@ -81,15 +81,13 @@ public class PreviewPart extends AbstractPart {
 
 
 
-  protected Slide getCurrentSlide () {
+  public Slide getCurrentSlide () {
     return currentSlide;
   }
 
 
-
-
-  public void showSlide (MidiFilePart part) {
-    LOGGER.info("Show slide " + part.getParttype().toString());
+  public void setCurrentPart (MidiFilePart part) {
+    super.setCurrentPart(part);
     this.currentSlide = calculator.calculatePart(part, calcPreCondition);
     redraw();
   }

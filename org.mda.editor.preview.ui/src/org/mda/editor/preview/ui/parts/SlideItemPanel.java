@@ -9,6 +9,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.mda.editor.preview.ui.PreviewEditorContent;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -30,12 +31,15 @@ public class SlideItemPanel extends Composite  {
     GridLayout layout = new GridLayout(1, true);
     layout.verticalSpacing = 0;
     layout.horizontalSpacing = 0;
+    layout.marginWidth = 0;
     setLayout(layout);
 
-    setBtnName(new Button(this, SWT.NONE));
+    setBtnName(new Button(this, SWT.SHADOW_ETCHED_OUT));
+
     GridData gd = new GridData();
     gd.horizontalAlignment = SWT.FILL;
     gd.grabExcessHorizontalSpace = true;
+    gd.heightHint = 46;
     getBtnName().setLayoutData(gd);
 
     getBtnName().addSelectionListener(new SelectionAdapter() {
@@ -50,8 +54,10 @@ public class SlideItemPanel extends Composite  {
 
   @Override
   public void setBackground (Color color) {
-    LOGGER.info("setBackground of part " + part.getParttype() + " to " + color);
-    super.setBackground(color);
+    if (LOGGER.isDebugEnabled())
+      LOGGER.debug("setBackground of part " + part.getParttype() + " to " + color);
+
+    //super.setBackground(color);
     btnName.setBackground(color);
 
   }
@@ -84,7 +90,7 @@ public class SlideItemPanel extends Composite  {
   }
 
   public void select () {
-    content.setCurrentPart(part);
+    getContent().setCurrentPart(part);
   }
 
   @Override
