@@ -40,6 +40,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         configurer.setShowCoolBar(false);
         configurer.setShowStatusLine(false);
         configurer.setShellStyle(SWT.NONE);
+
     }
 
     @Override
