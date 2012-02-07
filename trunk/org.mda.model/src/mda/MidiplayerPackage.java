@@ -522,13 +522,22 @@ public interface MidiplayerPackage extends EPackage {
 	int CONFIGURATION__PDF_EXPORT_PATH = 3;
 
 		/**
+   * The feature id for the '<em><b>Additionals Path</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONFIGURATION__ADDITIONALS_PATH = 4;
+
+    /**
    * The number of structural features of the '<em>Configuration</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONFIGURATION_FEATURE_COUNT = 4;
+  int CONFIGURATION_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
@@ -542,6 +551,17 @@ public interface MidiplayerPackage extends EPackage {
 
 
 	/**
+   * The meta object id for the '{@link mda.AdditionalType <em>Additional Type</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see mda.AdditionalType
+   * @see mda.impl.MidiplayerPackageImpl#getAdditionalType()
+   * @generated
+   */
+  int ADDITIONAL_TYPE = 12;
+
+
+  /**
    * Returns the meta object for class '{@link mda.Session <em>Session</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -938,6 +958,17 @@ public interface MidiplayerPackage extends EPackage {
 	EAttribute getConfiguration_PdfExportPath();
 
 		/**
+   * Returns the meta object for the attribute '{@link mda.Configuration#getAdditionalsPath <em>Additionals Path</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Additionals Path</em>'.
+   * @see mda.Configuration#getAdditionalsPath()
+   * @see #getConfiguration()
+   * @generated
+   */
+  EAttribute getConfiguration_AdditionalsPath();
+
+    /**
    * Returns the meta object for enum '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -948,6 +979,16 @@ public interface MidiplayerPackage extends EPackage {
 	EEnum getMidiFilePartType();
 
 	/**
+   * Returns the meta object for enum '{@link mda.AdditionalType <em>Additional Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Additional Type</em>'.
+   * @see mda.AdditionalType
+   * @generated
+   */
+  EEnum getAdditionalType();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1288,6 +1329,14 @@ public interface MidiplayerPackage extends EPackage {
 		EAttribute CONFIGURATION__PDF_EXPORT_PATH = eINSTANCE.getConfiguration_PdfExportPath();
 
 				/**
+     * The meta object literal for the '<em><b>Additionals Path</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONFIGURATION__ADDITIONALS_PATH = eINSTANCE.getConfiguration_AdditionalsPath();
+
+        /**
      * The meta object literal for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1296,6 +1345,16 @@ public interface MidiplayerPackage extends EPackage {
      * @generated
      */
 		EEnum MIDI_FILE_PART_TYPE = eINSTANCE.getMidiFilePartType();
+
+        /**
+     * The meta object literal for the '{@link mda.AdditionalType <em>Additional Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see mda.AdditionalType
+     * @see mda.impl.MidiplayerPackageImpl#getAdditionalType()
+     * @generated
+     */
+    EEnum ADDITIONAL_TYPE = eINSTANCE.getAdditionalType();
 
 	}
 

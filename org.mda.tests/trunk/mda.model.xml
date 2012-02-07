@@ -631,21 +631,23 @@
       </parts>
       <parts parttype="VERS" bar="12">
         <textlines>
-          <chordParts text="Wer h&#xe4;lt das All in seiner Hand," chord="h"/>
-          <chordParts text="  " chord="A"/>
-          <chordParts text="  " chord="G"/>
+          <chordParts text="Wer h&#xe4;lt das All in seiner Hand," chord="h "/>
+          <chordParts text=" " chord="A "/>
+          <chordParts chord="G "/>
         </textlines>
         <textlines>
-          <chordParts text="wer schuf das Licht durch sein "/>
-          <chordParts text="m&#xe4;chtiges " chord="D"/>
-          <chordParts text="Wort." chord="F#"/>
+          <chordParts text="wer schuf " chord="D "/>
+          <chordParts text="das Licht durch sein m&#xe4;chtiges Wort." chord="F# "/>
         </textlines>
         <textlines>
-          <chordParts text="Wer weckt das Leben in uns," chord="h"/>
-          <chordParts text="  und " chord="A"/>
-          <chordParts text="wer bewegt die " chord="G"/>
-          <chordParts text="Welt, in laut zu " chord="D"/>
-          <chordParts text="ehren. " chord="F#"/>
+          <chordParts text="Wer weckt das Leben in uns," chord="h "/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und " chord=" "/>
+          <chordParts text="wer bewegt die " chord="G "/>
+          <chordParts text="Welt, in laut zu " chord="D "/>
+          <chordParts text="ehren. " chord="F# "/>
         </textlines>
       </parts>
       <parts bar="22">
@@ -1000,21 +1002,20 @@
       </parts>
       <parts bar="30">
         <textlines>
-          <chordParts text="You "/>
-          <chordParts text="lived and you " chord="D"/>
-          <chordParts text="died, and you " chord="A/C#"/>
-          <chordParts text="rose again on " chord="h"/>
-          <chordParts text="high, " chord="A"/>
+          <chordParts text="You lived and " chord="D "/>
+          <chordParts text="you died, and " chord="A/C# "/>
+          <chordParts text="you rose again" chord="h "/>
+          <chordParts text=" on high, " chord="A "/>
         </textlines>
         <textlines>
-          <chordParts text="you "/>
-          <chordParts text="opened the " chord="D"/>
-          <chordParts text="way, for the " chord="A/C#"/>
-          <chordParts text="world to live a" chord="G/H"/>
-          <chordParts text="gain,  hallel" chord="A"/>
-          <chordParts text="ujah, " chord="G"/>
-          <chordParts text="for all you've " chord="A"/>
-          <chordParts text="done. " chord="D"/>
+          <chordParts text="yo" chord="D "/>
+          <chordParts text="u opened the " chord="A/C# "/>
+          <chordParts text="way, for the wo" chord="G/H "/>
+          <chordParts text="rld to live again, hallelujah, " chord="A "/>
+          <chordParts text="for" chord="Hm "/>
+          <chordParts text=" a" chord="G "/>
+          <chordParts text="ll" chord="A "/>
+          <chordParts text=" you've done. " chord="D "/>
         </textlines>
       </parts>
       <parts parttype="VERS" bar="44" refPart="//@gallery/@galleryItems.6/@parts.1">

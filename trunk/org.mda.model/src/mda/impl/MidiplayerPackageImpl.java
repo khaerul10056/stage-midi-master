@@ -8,6 +8,7 @@ package mda.impl;
 
 import mda.AbstractEvent;
 import mda.AbstractSessionItem;
+import mda.AdditionalType;
 import mda.Configuration;
 import mda.Gallery;
 import mda.MidiFile;
@@ -120,6 +121,13 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	private EEnum midiFilePartTypeEEnum = null;
 
 	/**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum additionalTypeEEnum = null;
+
+  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -515,6 +523,15 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
 		/**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getConfiguration_AdditionalsPath() {
+    return (EAttribute)configurationEClass.getEStructuralFeatures().get(4);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -523,6 +540,15 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
   }
 
 	/**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getAdditionalType() {
+    return additionalTypeEEnum;
+  }
+
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -597,9 +623,11 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     createEAttribute(configurationEClass, CONFIGURATION__SCREEN_ID_ADMIN);
     createEReference(configurationEClass, CONFIGURATION__LAST_SESSION);
     createEAttribute(configurationEClass, CONFIGURATION__PDF_EXPORT_PATH);
+    createEAttribute(configurationEClass, CONFIGURATION__ADDITIONALS_PATH);
 
     // Create enums
     midiFilePartTypeEEnum = createEEnum(MIDI_FILE_PART_TYPE);
+    additionalTypeEEnum = createEEnum(ADDITIONAL_TYPE);
   }
 
 	/**
@@ -681,6 +709,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     initEAttribute(getConfiguration_ScreenIDAdmin(), ecorePackage.getEString(), "screenIDAdmin", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getConfiguration_LastSession(), this.getSession(), null, "lastSession", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConfiguration_PdfExportPath(), ecorePackage.getEString(), "pdfExportPath", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getConfiguration_AdditionalsPath(), ecorePackage.getEString(), "additionalsPath", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(midiFilePartTypeEEnum, MidiFilePartType.class, "MidiFilePartType");
@@ -691,6 +720,12 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     addEEnumLiteral(midiFilePartTypeEEnum, MidiFilePartType.ZWISCHENSPIEL);
     addEEnumLiteral(midiFilePartTypeEEnum, MidiFilePartType.INTRO);
     addEEnumLiteral(midiFilePartTypeEEnum, MidiFilePartType.EXTRO);
+
+    initEEnum(additionalTypeEEnum, AdditionalType.class, "AdditionalType");
+    addEEnumLiteral(additionalTypeEEnum, AdditionalType.IMAGE);
+    addEEnumLiteral(additionalTypeEEnum, AdditionalType.VIDEO);
+    addEEnumLiteral(additionalTypeEEnum, AdditionalType.MIDIFILE);
+    addEEnumLiteral(additionalTypeEEnum, AdditionalType.MP3FILE);
 
     // Create resource
     createResource(eNS_URI);

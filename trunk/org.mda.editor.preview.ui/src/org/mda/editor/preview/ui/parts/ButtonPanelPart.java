@@ -16,6 +16,8 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
   private Button btnMerge;
 
+  private Button btnEditTheme;
+
 
   public ButtonPanelPart (PreviewEditorContent parent) {
     super(parent);
@@ -23,8 +25,7 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
     setLayout(new FillLayout(SWT.HORIZONTAL));
 
-    addButton("Edit theme", SWT.NONE, null);
-    addButton("Infos", SWT.NONE, null);
+    btnEditTheme = addButton("Edit theme", SWT.NONE, "Edit properties like fontcolor or background");
     btnSplit = addButton("Split", SWT.NONE, "Splits this part at current line");
     btnMerge = addButton("Merge", SWT.NONE, "Merges this part with previous part");
   }
@@ -46,6 +47,10 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
   @Override
   public void widgetSelected (SelectionEvent arg0) {
+    if (arg0.widget.equals(btnEditTheme)) {
+      ContentDetails details = new ContentDetails(getMidifile());
+
+    }
     if (arg0.widget.equals(btnMerge))
       previewEditor.getContentpanel().mergeWithPreviousPart();
 
