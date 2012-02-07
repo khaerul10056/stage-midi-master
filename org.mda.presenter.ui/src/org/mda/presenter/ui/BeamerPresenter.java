@@ -12,6 +12,7 @@ import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
@@ -56,7 +57,10 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
     Monitor preferredMonitor = getPreferredExternalMonitor(display);
     if (! preferredMonitor.equals(Display.getCurrent().getPrimaryMonitor())) {
-      setBounds(getPreferredExternalMonitor(display).getBounds());
+      Rectangle bounds = getPreferredExternalMonitor(display).getBounds();
+      LOGGER.info("Set beamer-size to " + bounds.width + "x" + bounds.height);
+      setBounds(bounds);
+      //1400x1050 =0,75   ->preview: 770x262 = 0,34
     }
 
     LOGGER.info("Bounds of Display: " + Display.getCurrent().getBounds());

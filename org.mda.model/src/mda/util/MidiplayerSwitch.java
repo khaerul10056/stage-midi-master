@@ -6,6 +6,7 @@
  */
 package mda.util;
 
+import mda.*;
 import mda.AbstractEvent;
 import mda.AbstractSessionItem;
 import mda.Configuration;

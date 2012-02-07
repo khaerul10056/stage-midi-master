@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
+import mda.Configuration;
 import mda.MidiPlayerRoot;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -23,9 +24,6 @@ public class ApplicationSession {
   private MidiPlayerRoot playerroot;
 
   private File configFileAsFile;
-
-  public static final String PROP_EXPORTPATH = "org.mda.commons.ui.exportpath";
-  private File exportPath;
 
   public static final String PROP_LASTMODELFILE = "org.mda.commons.ui.lastmodelfile";
   private File lastModelFile;
@@ -74,8 +72,6 @@ public class ApplicationSession {
 
     if (sessionProps.isEmpty()) {
 
-
-
       File confPath = getOrCreateConfigPath(new File (path));
 
       LOGGER.info("Create initial properties in " + confPath.getAbsolutePath());
@@ -92,12 +88,7 @@ public class ApplicationSession {
         }
       }
 
-      setDefaultOnDemand(sessionProps, PROP_EXPORTPATH, "exportFiles");
       setDefaultOnDemand(sessionProps, PROP_LASTMODELFILE, "mda.model.xml");
-
-      //Last used exportpath
-      String exportPathProp = sessionProps.getProperty(PROP_EXPORTPATH);
-      setExportPath(new File (exportPathProp));
 
 
       //Read the modelfile that was used at last start
@@ -111,7 +102,6 @@ public class ApplicationSession {
 
 
   public void save (final File configFile)  {
-    sessionProps.put(PROP_EXPORTPATH, getExportPath().toString());
     sessionProps.put(PROP_LASTMODELFILE, getLastModelPath().toString());
 
     try {
@@ -125,11 +115,11 @@ public class ApplicationSession {
   }
 
   public File getExportPath () {
-    return exportPath;
+    return new File (playerroot.getConfig().getPdfExportPath());
   }
 
-  public void setExportPath (File exportPath) {
-    this.exportPath = exportPath;
+  public File getAdditionalsPath () {
+    return new File (playerroot.getConfig().getAdditionalsPath());
   }
 
 
@@ -145,6 +135,14 @@ public class ApplicationSession {
     this.lastModelFile = lastModelPath;
     LOGGER.info ("Loading model " + lastModelPath.getAbsolutePath());
     playerroot = MidiPlayerService.loadRootObject(lastModelPath);
+    if (playerroot.getConfig() == null)
+      playerroot.setConfig(MidiPlayerService.mf.createConfiguration());
+
+    Configuration config = playerroot.getConfig();
+    if (config.getPdfExportPath() == null)
+      config.setPdfExportPath("exportFiles");
+    if (config.getAdditionalsPath() == null)
+      config.setAdditionalsPath("additionals");
   }
 
   public void saveModel () {

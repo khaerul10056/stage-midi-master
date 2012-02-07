@@ -68,5 +68,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="screenIDAdmin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lastSession" eType="#//Session"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pdfExportPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="additionalsPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AdditionalType">
+    <eLiterals name="IMAGE"/>
+    <eLiterals name="VIDEO" value="1"/>
+    <eLiterals name="MIDIFILE" value="2"/>
+    <eLiterals name="MP3FILE" value="3"/>
   </eClassifiers>
 </ecore:EPackage>

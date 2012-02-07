@@ -9,6 +9,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.mda,
+ org.mda.additionals,
  org.mda.export,
  org.mda.importer,
  org.mda.logging,

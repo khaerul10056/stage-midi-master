@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mda.Configuration#getScreenIDAdmin <em>Screen ID Admin</em>}</li>
  *   <li>{@link mda.Configuration#getLastSession <em>Last Session</em>}</li>
  *   <li>{@link mda.Configuration#getPdfExportPath <em>Pdf Export Path</em>}</li>
+ *   <li>{@link mda.Configuration#getAdditionalsPath <em>Additionals Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -131,5 +132,31 @@ public interface Configuration extends EObject {
    * @generated
    */
 	void setPdfExportPath(String value);
+
+    /**
+   * Returns the value of the '<em><b>Additionals Path</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Additionals Path</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Additionals Path</em>' attribute.
+   * @see #setAdditionalsPath(String)
+   * @see mda.MidiplayerPackage#getConfiguration_AdditionalsPath()
+   * @model
+   * @generated
+   */
+  String getAdditionalsPath();
+
+    /**
+   * Sets the value of the '{@link mda.Configuration#getAdditionalsPath <em>Additionals Path</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Additionals Path</em>' attribute.
+   * @see #getAdditionalsPath()
+   * @generated
+   */
+  void setAdditionalsPath(String value);
 
 } // Configuration

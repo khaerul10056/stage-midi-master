@@ -8,7 +8,6 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
@@ -31,25 +30,57 @@ public class PreviewPart extends AbstractPart {
   private CalculatorPreCondition calcPreCondition;
   private MidiFileSlideCalculator calculator;
 
+  private Point lastSize;
+
+  private DefaultMidiFileContentEditorConfig config;
+
+  public int calculateWeight4to3 (final int height) {
+    return height * 4 / 3;
+  }
+
+  private boolean sizeHasChanged (final Point size1, final Point size2) {
+    return size1 == null || ((size1.x != size2.x) || (size1.y != size2.y));
+  }
+
+  public void setSize (final int weight, final int height) {
+    LOGGER.info("set size of previewpart to " + weight + "x" + height);
+    super.setSize(weight, height);
+    calcPreCondition.setCalculationsize(new Point (getBounds().width, getBounds().height));
+  }
+
   public PreviewPart (Composite parent) {
     super(parent);
 
     //TODO check bounds of presentation display
-    width = Display.getCurrent().getBounds().width / 4;
-    height = Display.getCurrent().getBounds().height / 4;
-    setSize(width, height);
+    width = 400;
+    height = 300;
+    LOGGER.info("set Size of preview-part to " + width + "x" + height);
 
-    calcPreCondition = new CalculatorPreCondition();
-    calcPreCondition.setCalculationsize(new Point (width, height));
     calculator = (MidiFileSlideCalculator) getCalculator(MidiFileSlideCalculator.class);
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    //config.setChordVisible(false);
-    calculator.setConfig(config);
+    calcPreCondition = new CalculatorPreCondition();
+    config = new DefaultMidiFileContentEditorConfig();
+    
+
+
+    setSize(width, height); // after initializing calcPreCondition
+
+
 
     addPaintListener(new PaintListener() {
 
       @Override
       public void paintControl (PaintEvent e) {
+
+        Point newSize = getSize();
+        if (sizeHasChanged(lastSize, newSize) && getCurrentPart() != null) {
+          lastSize = newSize;
+        setSize(calculateWeight4to3(newSize.y), newSize.y);
+
+        //config.setChordVisible(false);
+        calculator.setConfig(config);
+        currentSlide = calculator.calculatePart(getCurrentPart(), calcPreCondition);
+        }
+
 
         if (getCurrentSlide() == null)
           return;
@@ -73,6 +104,7 @@ public class PreviewPart extends AbstractPart {
           e.gc.setFont(getCurrentSlide().getFont());
           e.gc.drawText(nextItem.getText(), nextItem.getX(), nextItem.getY(), true);
         }
+
       }
     });
 

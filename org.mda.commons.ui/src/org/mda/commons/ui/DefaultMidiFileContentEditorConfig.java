@@ -75,8 +75,9 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   @Override
   public Point getDefaultPresentationScreenSize () {
-    Rectangle bounds = Display.getCurrent().getMonitors()[0].getBounds();
-    return new Point(bounds.width, bounds.height);
+    return new Point (1280, 800);  //TODO mechanism for size
+    //Rectangle bounds = Display.getCurrent().getMonitors()[0].getBounds();
+    //return new Point(bounds.width, bounds.height);
   }
 
 }

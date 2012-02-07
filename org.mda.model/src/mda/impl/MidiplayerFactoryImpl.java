@@ -85,6 +85,8 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
     switch (eDataType.getClassifierID()) {
       case MidiplayerPackage.MIDI_FILE_PART_TYPE:
         return createMidiFilePartTypeFromString(eDataType, initialValue);
+      case MidiplayerPackage.ADDITIONAL_TYPE:
+        return createAdditionalTypeFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -100,6 +102,8 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
     switch (eDataType.getClassifierID()) {
       case MidiplayerPackage.MIDI_FILE_PART_TYPE:
         return convertMidiFilePartTypeToString(eDataType, instanceValue);
+      case MidiplayerPackage.ADDITIONAL_TYPE:
+        return convertAdditionalTypeToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -216,6 +220,26 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
   }
 
 	/**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AdditionalType createAdditionalTypeFromString(EDataType eDataType, String initialValue) {
+    AdditionalType result = AdditionalType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertAdditionalTypeToString(EDataType eDataType, Object instanceValue) {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated

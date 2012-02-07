@@ -26,7 +26,7 @@ public class ApplicationSessionTest {
 
     Properties props = new Properties();
     props.load(new FileInputStream(confFile));
-    assertNotNull (props.get(ApplicationSession.PROP_EXPORTPATH));
+    assertNotNull (props.get(ApplicationSession.PROP_LASTMODELFILE));
 
 
     } finally  {
