@@ -7,6 +7,7 @@ import org.mda.core.ApplicationSessionTest;
 import org.mda.core.ChordTest;
 import org.mda.core.MidiPlayerServiceTest;
 import org.mda.core.TransposeServiceTest;
+import org.mda.core.additionals.TestAdditionalsHandler;
 import org.mda.core.exporter.PDFExporterTest;
 import org.mda.core.importer.TextImporterTest;
 import org.mda.editor.preview.ui.test.PreviewEditorTest;
@@ -26,6 +27,7 @@ import org.mda.presenter.ui.test.MidiFileSlideCalculatorTest;
   TransposeServiceTest.class,
   MidiPlayerServiceTest.class,
   ApplicationSessionTest.class,
+  TestAdditionalsHandler.class,
 
 
 
@@ -39,6 +41,8 @@ import org.mda.presenter.ui.test.MidiFileSlideCalculatorTest;
 
   //Export
   ExporterTest.class
+
+
 
 
 

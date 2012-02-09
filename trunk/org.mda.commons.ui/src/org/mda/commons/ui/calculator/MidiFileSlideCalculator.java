@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import mda.AbstractSessionItem;
 import mda.MidiFile;
 import mda.MidiFileChordPart;
@@ -19,6 +20,8 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 
 public class MidiFileSlideCalculator extends SlideCalculator {
+
+  private static final Logger LOGGER  = Logger.getLogger(MidiFileSlideCalculator.class.getName());
 
   private int currentX;
 
@@ -85,6 +88,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
     init((MidiFile) part.eContainer());
     Font zoomedFont = calculateZoomedFont(font, preCondition);
+    LOGGER.info("set font to size " + zoomedFont.getFontData() [0].height + " from " + font.getFontData() [0].height);
     Slide slide = new Slide(part, zoomedFont);
     slide.setBackgroundImage(image, imageFile);
 

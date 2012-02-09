@@ -161,6 +161,8 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     else
       currentSlideIndex ++;
 
+    LOGGER.info("Next to " + currentSessionItemIndex + ", " + currentSlideIndex);
+
     redraw();
     return true;
   }
@@ -179,6 +181,8 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     else
       currentSlideIndex --;
 
+    LOGGER.info("Previous to " + currentSessionItemIndex + ", " + currentSlideIndex);
+
     redraw();
     return true;
   }
@@ -191,9 +195,11 @@ public class BeamerPresenter extends Shell implements IPresentationView {
         currentSessionItemIndex = i;
         currentSlideIndex = 0;
         redraw();
+        LOGGER.info("To item " + currentSessionItemIndex + ", " + currentSlideIndex);
         return true;
       }
     }
+    LOGGER.info("To item (not found)");
     return false;
   }
 

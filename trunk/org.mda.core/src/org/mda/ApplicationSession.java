@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Properties;
 import mda.Configuration;
 import mda.MidiPlayerRoot;
+import org.mda.additionals.AdditionalsHandler;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import com.google.inject.Guice;
@@ -27,6 +28,8 @@ public class ApplicationSession {
 
   public static final String PROP_LASTMODELFILE = "org.mda.commons.ui.lastmodelfile";
   private File lastModelFile;
+
+  private AdditionalsHandler additionalsHandler;
 
   /**
    * injector
@@ -116,6 +119,14 @@ public class ApplicationSession {
 
   public File getExportPath () {
     return new File (playerroot.getConfig().getPdfExportPath());
+  }
+
+  public AdditionalsHandler getAdditionalsHandler () {
+    if (additionalsHandler == null) {
+      additionalsHandler = new AdditionalsHandler(getAdditionalsPath());
+    }
+
+    return additionalsHandler;
   }
 
   public File getAdditionalsPath () {
