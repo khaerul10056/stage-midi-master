@@ -23,6 +23,27 @@ public class AdditionalsHandler {
     initialize();
   }
 
+
+  public Additional findByKey (final String key) {
+    String [] keyArray = key.split("#");
+    if (keyArray.length != 3)
+      return null;
+
+    AdditionalType typeFound = AdditionalType.valueOf(keyArray [0]);
+    String name = keyArray [1];
+    AdditionalSuffix suffixFound = AdditionalSuffix.valueOf(keyArray [2]);
+
+    Additional compareAdditional = new Additional(null, typeFound, name, suffixFound);
+
+    for (Additional additional : additionals) {
+      if (additional.equals(compareAdditional))
+          return additional;
+    }
+
+    return null;
+  }
+
+
   /**
    *
    * @param importFiles

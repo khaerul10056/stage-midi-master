@@ -6,6 +6,7 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Button;
 import org.mda.editor.preview.ui.PreviewEditorContent;
+import org.mda.editor.preview.ui.details.MidiFileDetailsShell;
 
 
 public class ButtonPanelPart extends AbstractPart implements SelectionListener {
@@ -25,7 +26,7 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
     setLayout(new FillLayout(SWT.HORIZONTAL));
 
-    btnEditTheme = addButton("Edit theme", SWT.NONE, "Edit properties like fontcolor or background");
+    btnEditTheme = addButton("Edit details", SWT.NONE, "Edit properties like fontcolor or background");
     btnSplit = addButton("Split", SWT.NONE, "Splits this part at current line");
     btnMerge = addButton("Merge", SWT.NONE, "Merges this part with previous part");
   }
@@ -48,7 +49,7 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
   @Override
   public void widgetSelected (SelectionEvent arg0) {
     if (arg0.widget.equals(btnEditTheme)) {
-      ContentDetails details = new ContentDetails(getMidifile());
+      MidiFileDetailsShell details = new MidiFileDetailsShell(getShell(), getMidifile());
 
     }
     if (arg0.widget.equals(btnMerge))

@@ -32,6 +32,27 @@ public class Additional {
 
   }
 
+  public boolean equals (final Object object) {
+
+    if (object == this)
+      return true;
+
+    if (! (object instanceof Additional))
+      return false;
+
+    Additional compareAdditional = (Additional) object;
+    if (!compareAdditional.getName().equals(getName()))
+      return false;
+
+    if (!compareAdditional.getType().equals(getType()))
+      return false;
+
+    if (!compareAdditional.getSuffix().equals(getSuffix()))
+      return false;
+
+    return true;
+  }
+
   private IPreviewHandler getPreviewHandler () {
     for (IPreviewHandler next: previewHandlers) {
       if (next.getSupportedSuffixes().contains(suffix))
@@ -41,6 +62,10 @@ public class Additional {
 
     return new NoPreviewHandler();
 
+  }
+
+  public String getKey () {
+    return type.getName().toLowerCase() + "#" + name + "#" + suffix.name().toLowerCase();
   }
 
   public Image getImage () {

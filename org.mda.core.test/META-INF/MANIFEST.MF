@@ -10,5 +10,6 @@ Require-Bundle: org.mda.core;bundle-version="1.0.0",
  org.mda.model;bundle-version="1.0.0",
  org.aopalliance;bundle-version="1.0.0"
 Export-Package: org.mda.core,
+ org.mda.core.additionals,
  org.mda.core.exporter,
  org.mda.core.importer
