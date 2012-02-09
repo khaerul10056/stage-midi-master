@@ -1,14 +1,22 @@
 package org.mda;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import mda.MidiFileChordPart;
 import mda.MidiFilePartType;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 public class Utils {
 
+
+  private static final Log LOGGER  = LogFactory.getLogger(Utils.class);
 
 
   /**
@@ -29,6 +37,61 @@ public class Utils {
       }
     }
     return( path.delete() );
+  }
+
+  /**
+   * Kopiert eine Datei
+   *
+   * @param to
+   *            Zieldatei
+   * @param from
+   *            Quelldatei
+   */
+  public final static void copyFile(final File to, final File from) {
+    FileInputStream fis1 = null;
+    FileChannel fic1 = null;
+    FileOutputStream fos = null;
+    FileChannel foc = null;
+    try {
+
+      LOGGER.debug("Kopiere Datei " + from.getAbsolutePath() + " nach " + to.getAbsolutePath());
+      fis1 = new FileInputStream(from);
+      fic1 = fis1.getChannel();
+
+      fos = new FileOutputStream(to);
+      foc = fos.getChannel();
+
+      long position = 0;
+      long transfered;
+      long remaining = fic1.size();
+
+      while (remaining > 0) {
+        transfered = fic1.transferTo(position, remaining, foc);
+
+        position += transfered;
+        remaining -= transfered;
+      }
+
+    } catch (IOException e) {
+      throw new IllegalStateException(e);
+    } finally {
+      try {
+        if (fic1 != null)
+          fic1.close();
+
+        if (fis1 != null)
+          fis1.close();
+
+        if (fos != null)
+          fos.close();
+
+        if (foc != null)
+          foc.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+
+    }
   }
 
 

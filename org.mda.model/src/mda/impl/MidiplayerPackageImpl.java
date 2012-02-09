@@ -725,7 +725,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     addEEnumLiteral(additionalTypeEEnum, AdditionalType.IMAGE);
     addEEnumLiteral(additionalTypeEEnum, AdditionalType.VIDEO);
     addEEnumLiteral(additionalTypeEEnum, AdditionalType.MIDIFILE);
-    addEEnumLiteral(additionalTypeEEnum, AdditionalType.MP3FILE);
+    addEEnumLiteral(additionalTypeEEnum, AdditionalType.AUDIO);
 
     // Create resource
     createResource(eNS_URI);

@@ -1,7 +1,10 @@
 package org.mda.additionals;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
 import mda.AdditionalType;
+import org.eclipse.swt.graphics.Image;
 
 
 public class Additional {
@@ -10,11 +13,18 @@ public class Additional {
 
   private final String name;
 
-  private final String suffix;
+  private final AdditionalSuffix suffix;
 
   private final File file;
+  private Image descriptor;
 
-  public Additional (final File file, final AdditionalType type, String name, String suffix) {
+  private static Collection <IPreviewHandler> previewHandlers = new ArrayList<IPreviewHandler>();
+
+  static {
+    previewHandlers.add(new ImagePreviewHandler());
+  }
+
+  public Additional (final File file, final AdditionalType type, String name, AdditionalSuffix suffix) {
     this.file = file;
     this.type = type;
     this.name = name;
@@ -22,7 +32,23 @@ public class Additional {
 
   }
 
-  public String getSuffix () {
+  private IPreviewHandler getPreviewHandler () {
+    for (IPreviewHandler next: previewHandlers) {
+      if (next.getSupportedSuffixes().contains(suffix))
+          return next;
+
+    }
+
+    return new NoPreviewHandler();
+
+  }
+
+  public Image getImage () {
+    return getPreviewHandler().getImage(getFile());
+
+  }
+
+  public AdditionalSuffix getSuffix () {
     return suffix;
   }
 
@@ -36,6 +62,10 @@ public class Additional {
 
   public File getFile () {
     return file;
+  }
+
+  public String toString () {
+    return name + "." + suffix.name().toLowerCase();
   }
 
 }

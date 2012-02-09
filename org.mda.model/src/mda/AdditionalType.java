@@ -53,14 +53,14 @@ public enum AdditionalType implements Enumerator {
   MIDIFILE(2, "MIDIFILE", "MIDIFILE"),
 
   /**
-   * The '<em><b>MP3FILE</b></em>' literal object.
+   * The '<em><b>AUDIO</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #MP3FILE_VALUE
+   * @see #AUDIO_VALUE
    * @generated
    * @ordered
    */
-  MP3FILE(3, "MP3FILE", "MP3FILE");
+  AUDIO(3, "AUDIO", "AUDIO");
 
   /**
    * The '<em><b>IMAGE</b></em>' literal value.
@@ -108,19 +108,19 @@ public enum AdditionalType implements Enumerator {
   public static final int MIDIFILE_VALUE = 2;
 
   /**
-   * The '<em><b>MP3FILE</b></em>' literal value.
+   * The '<em><b>AUDIO</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of '<em><b>MP3FILE</b></em>' literal object isn't clear,
+   * If the meaning of '<em><b>AUDIO</b></em>' literal object isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @see #MP3FILE
+   * @see #AUDIO
    * @model
    * @generated
    * @ordered
    */
-  public static final int MP3FILE_VALUE = 3;
+  public static final int AUDIO_VALUE = 3;
 
   /**
    * An array of all the '<em><b>Additional Type</b></em>' enumerators.
@@ -133,7 +133,7 @@ public enum AdditionalType implements Enumerator {
       IMAGE,
       VIDEO,
       MIDIFILE,
-      MP3FILE,
+      AUDIO,
     };
 
   /**
@@ -187,7 +187,7 @@ public enum AdditionalType implements Enumerator {
       case IMAGE_VALUE: return IMAGE;
       case VIDEO_VALUE: return VIDEO;
       case MIDIFILE_VALUE: return MIDIFILE;
-      case MP3FILE_VALUE: return MP3FILE;
+      case AUDIO_VALUE: return AUDIO;
     }
     return null;
   }

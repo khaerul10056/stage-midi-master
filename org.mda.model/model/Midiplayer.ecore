@@ -74,6 +74,6 @@
     <eLiterals name="IMAGE"/>
     <eLiterals name="VIDEO" value="1"/>
     <eLiterals name="MIDIFILE" value="2"/>
-    <eLiterals name="MP3FILE" value="3"/>
+    <eLiterals name="AUDIO" value="3" literal="AUDIO"/>
   </eClassifiers>
 </ecore:EPackage>
