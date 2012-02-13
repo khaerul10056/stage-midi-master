@@ -1,4 +1,4 @@
-package org.mad.commons.ui.commands;
+package org.mda.commons.ui.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
