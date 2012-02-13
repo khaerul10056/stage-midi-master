@@ -4,8 +4,8 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.mad.commons.ui.commands.ExitHandler"
-            id="org.mad.commons.ui.commands.Exit"
+            defaultHandler="org.mda.commons.ui.commands.ExitHandler"
+            id="org.mda.commons.ui.commands.Exit"
             name="Exit">
       </command>
    </extension>
@@ -17,7 +17,7 @@
                id="fileMenu"
                label="File">
             <command
-                  commandId="org.mad.commons.ui.commands.Exit"
+                  commandId="org.mda.commons.ui.commands.Exit"
                   label="Exit"
                   style="push"
                   tooltip="Exit the application">
