@@ -13,6 +13,9 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
 
   Font getFont ();
 
+
+  Integer getFontsize ();
+
   /**
    * get default-size of presentation screen
    * @return presentation screen size

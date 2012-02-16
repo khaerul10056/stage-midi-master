@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link mda.impl.MidiFileImpl#getParts <em>Parts</em>}</li>
- *   <li>{@link mda.impl.MidiFileImpl#getFontsize <em>Fontsize</em>}</li>
  *   <li>{@link mda.impl.MidiFileImpl#getPic <em>Pic</em>}</li>
  *   <li>{@link mda.impl.MidiFileImpl#getKey <em>Key</em>}</li>
  * </ul>
@@ -47,24 +46,6 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
    * @ordered
    */
   protected EList<MidiFilePart> parts;
-  /**
-   * The default value of the '{@link #getFontsize() <em>Fontsize</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFontsize()
-   * @generated
-   * @ordered
-   */
-  protected static final String FONTSIZE_EDEFAULT = null;
-  /**
-   * The cached value of the '{@link #getFontsize() <em>Fontsize</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFontsize()
-   * @generated
-   * @ordered
-   */
-  protected String fontsize = FONTSIZE_EDEFAULT;
   /**
    * The default value of the '{@link #getPic() <em>Pic</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -137,27 +118,6 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getFontsize() {
-    return fontsize;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setFontsize(String newFontsize) {
-    String oldFontsize = fontsize;
-    fontsize = newFontsize;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE__FONTSIZE, oldFontsize, fontsize));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public String getPic() {
     return pic;
   }
@@ -219,8 +179,6 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
     switch (featureID) {
       case MidiplayerPackage.MIDI_FILE__PARTS:
         return getParts();
-      case MidiplayerPackage.MIDI_FILE__FONTSIZE:
-        return getFontsize();
       case MidiplayerPackage.MIDI_FILE__PIC:
         return getPic();
       case MidiplayerPackage.MIDI_FILE__KEY:
@@ -241,9 +199,6 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
       case MidiplayerPackage.MIDI_FILE__PARTS:
         getParts().clear();
         getParts().addAll((Collection<? extends MidiFilePart>)newValue);
-        return;
-      case MidiplayerPackage.MIDI_FILE__FONTSIZE:
-        setFontsize((String)newValue);
         return;
       case MidiplayerPackage.MIDI_FILE__PIC:
         setPic((String)newValue);
@@ -266,9 +221,6 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
       case MidiplayerPackage.MIDI_FILE__PARTS:
         getParts().clear();
         return;
-      case MidiplayerPackage.MIDI_FILE__FONTSIZE:
-        setFontsize(FONTSIZE_EDEFAULT);
-        return;
       case MidiplayerPackage.MIDI_FILE__PIC:
         setPic(PIC_EDEFAULT);
         return;
@@ -289,8 +241,6 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
     switch (featureID) {
       case MidiplayerPackage.MIDI_FILE__PARTS:
         return parts != null && !parts.isEmpty();
-      case MidiplayerPackage.MIDI_FILE__FONTSIZE:
-        return FONTSIZE_EDEFAULT == null ? fontsize != null : !FONTSIZE_EDEFAULT.equals(fontsize);
       case MidiplayerPackage.MIDI_FILE__PIC:
         return PIC_EDEFAULT == null ? pic != null : !PIC_EDEFAULT.equals(pic);
       case MidiplayerPackage.MIDI_FILE__KEY:
@@ -309,9 +259,7 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (fontsize: ");
-    result.append(fontsize);
-    result.append(", pic: ");
+    result.append(" (pic: ");
     result.append(pic);
     result.append(", key: ");
     result.append(key);

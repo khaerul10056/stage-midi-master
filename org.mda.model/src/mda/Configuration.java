@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mda.Configuration#getLastSession <em>Last Session</em>}</li>
  *   <li>{@link mda.Configuration#getPdfExportPath <em>Pdf Export Path</em>}</li>
  *   <li>{@link mda.Configuration#getAdditionalsPath <em>Additionals Path</em>}</li>
+ *   <li>{@link mda.Configuration#getFontsize <em>Fontsize</em>}</li>
  * </ul>
  * </p>
  *
@@ -158,5 +159,31 @@ public interface Configuration extends EObject {
    * @generated
    */
   void setAdditionalsPath(String value);
+
+    /**
+   * Returns the value of the '<em><b>Fontsize</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Fontsize</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Fontsize</em>' attribute.
+   * @see #setFontsize(Integer)
+   * @see mda.MidiplayerPackage#getConfiguration_Fontsize()
+   * @model
+   * @generated
+   */
+  Integer getFontsize();
+
+    /**
+   * Sets the value of the '{@link mda.Configuration#getFontsize <em>Fontsize</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Fontsize</em>' attribute.
+   * @see #getFontsize()
+   * @generated
+   */
+  void setFontsize(Integer value);
 
 } // Configuration

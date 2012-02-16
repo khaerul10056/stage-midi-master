@@ -17,4 +17,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.mda.editor.preview.ui,
  org.mda.editor.preview.ui.chords,
  org.mda.editor.preview.ui.details,
+ org.mda.editor.preview.ui.newpart,
  org.mda.editor.preview.ui.parts

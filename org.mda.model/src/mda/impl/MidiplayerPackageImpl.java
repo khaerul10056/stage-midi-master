@@ -274,17 +274,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMidiFile_Fontsize() {
-    return (EAttribute)midiFileEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EAttribute getMidiFile_Pic() {
-    return (EAttribute)midiFileEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)midiFileEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -293,7 +284,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * @generated
    */
 	public EAttribute getMidiFile_Key() {
-    return (EAttribute)midiFileEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)midiFileEClass.getEStructuralFeatures().get(2);
   }
 
 		/**
@@ -532,6 +523,15 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
     /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getConfiguration_Fontsize() {
+    return (EAttribute)configurationEClass.getEStructuralFeatures().get(5);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -587,7 +587,6 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
     midiFileEClass = createEClass(MIDI_FILE);
     createEReference(midiFileEClass, MIDI_FILE__PARTS);
-    createEAttribute(midiFileEClass, MIDI_FILE__FONTSIZE);
     createEAttribute(midiFileEClass, MIDI_FILE__PIC);
     createEAttribute(midiFileEClass, MIDI_FILE__KEY);
 
@@ -624,6 +623,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     createEReference(configurationEClass, CONFIGURATION__LAST_SESSION);
     createEAttribute(configurationEClass, CONFIGURATION__PDF_EXPORT_PATH);
     createEAttribute(configurationEClass, CONFIGURATION__ADDITIONALS_PATH);
+    createEAttribute(configurationEClass, CONFIGURATION__FONTSIZE);
 
     // Create enums
     midiFilePartTypeEEnum = createEEnum(MIDI_FILE_PART_TYPE);
@@ -673,7 +673,6 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
     initEClass(midiFileEClass, MidiFile.class, "MidiFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getMidiFile_Parts(), this.getMidiFilePart(), null, "parts", null, 0, -1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMidiFile_Fontsize(), ecorePackage.getEString(), "fontsize", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMidiFile_Pic(), ecorePackage.getEString(), "pic", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMidiFile_Key(), ecorePackage.getEString(), "key", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -710,6 +709,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     initEReference(getConfiguration_LastSession(), this.getSession(), null, "lastSession", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConfiguration_PdfExportPath(), ecorePackage.getEString(), "pdfExportPath", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConfiguration_AdditionalsPath(), ecorePackage.getEString(), "additionalsPath", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getConfiguration_Fontsize(), ecorePackage.getEIntegerObject(), "fontsize", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(midiFilePartTypeEEnum, MidiFilePartType.class, "MidiFilePartType");

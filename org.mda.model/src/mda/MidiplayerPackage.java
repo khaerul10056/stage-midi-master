@@ -181,22 +181,13 @@ public interface MidiplayerPackage extends EPackage {
   int MIDI_FILE__PARTS = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Fontsize</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MIDI_FILE__FONTSIZE = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 1;
-
-  /**
    * The feature id for the '<em><b>Pic</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MIDI_FILE__PIC = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 2;
+  int MIDI_FILE__PIC = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -205,7 +196,7 @@ public interface MidiplayerPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int MIDI_FILE__KEY = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 3;
+	int MIDI_FILE__KEY = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 2;
 
 		/**
    * The number of structural features of the '<em>Midi File</em>' class.
@@ -214,7 +205,7 @@ public interface MidiplayerPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int MIDI_FILE_FEATURE_COUNT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 4;
+	int MIDI_FILE_FEATURE_COUNT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 3;
 
 	/**
    * The meta object id for the '{@link mda.impl.AbstractEventImpl <em>Abstract Event</em>}' class.
@@ -531,13 +522,22 @@ public interface MidiplayerPackage extends EPackage {
   int CONFIGURATION__ADDITIONALS_PATH = 4;
 
     /**
+   * The feature id for the '<em><b>Fontsize</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONFIGURATION__FONTSIZE = 5;
+
+    /**
    * The number of structural features of the '<em>Configuration</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONFIGURATION_FEATURE_COUNT = 5;
+  int CONFIGURATION_FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
@@ -656,17 +656,6 @@ public interface MidiplayerPackage extends EPackage {
    * @generated
    */
   EReference getMidiFile_Parts();
-
-  /**
-   * Returns the meta object for the attribute '{@link mda.MidiFile#getFontsize <em>Fontsize</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Fontsize</em>'.
-   * @see mda.MidiFile#getFontsize()
-   * @see #getMidiFile()
-   * @generated
-   */
-  EAttribute getMidiFile_Fontsize();
 
   /**
    * Returns the meta object for the attribute '{@link mda.MidiFile#getPic <em>Pic</em>}'.
@@ -969,6 +958,17 @@ public interface MidiplayerPackage extends EPackage {
   EAttribute getConfiguration_AdditionalsPath();
 
     /**
+   * Returns the meta object for the attribute '{@link mda.Configuration#getFontsize <em>Fontsize</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Fontsize</em>'.
+   * @see mda.Configuration#getFontsize()
+   * @see #getConfiguration()
+   * @generated
+   */
+  EAttribute getConfiguration_Fontsize();
+
+    /**
    * Returns the meta object for enum '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1087,14 +1087,6 @@ public interface MidiplayerPackage extends EPackage {
      * @generated
      */
     EReference MIDI_FILE__PARTS = eINSTANCE.getMidiFile_Parts();
-
-    /**
-     * The meta object literal for the '<em><b>Fontsize</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MIDI_FILE__FONTSIZE = eINSTANCE.getMidiFile_Fontsize();
 
     /**
      * The meta object literal for the '<em><b>Pic</b></em>' attribute feature.
@@ -1335,6 +1327,14 @@ public interface MidiplayerPackage extends EPackage {
      * @generated
      */
     EAttribute CONFIGURATION__ADDITIONALS_PATH = eINSTANCE.getConfiguration_AdditionalsPath();
+
+        /**
+     * The meta object literal for the '<em><b>Fontsize</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONFIGURATION__FONTSIZE = eINSTANCE.getConfiguration_Fontsize();
 
         /**
      * The meta object literal for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
