@@ -13,4 +13,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.mda.commons.ui,
  org.mda.commons.ui.calculator,
+ org.mda.commons.ui.config,
  org.mda.commons.ui.navigator

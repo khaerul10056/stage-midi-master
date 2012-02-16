@@ -27,7 +27,6 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
   private int currentY;
 
-  private int fontsize = 40;
 
   private Font font;
 
@@ -52,14 +51,10 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     return slides;
   }
 
-
   private void init (final MidiFile midifile) {
-    if (midifile.getFontsize() != null && midifile.getFontsize().length() > 0)
-      fontsize = Integer.parseInt(midifile.getFontsize());
+    LOGGER.info("Setting font to size " + getConfig().getFontsize());
 
-    LOGGER.info("Setting font to size " + fontsize);
-
-    font = new Font (Display.getCurrent(), "Arial Alternative", fontsize, SWT.NONE);
+    font = new Font (Display.getCurrent(), "Arial Alternative", getConfig().getFontsize(), SWT.NONE);
     gc.setFont(font);
 
     if (midifile.getPic() != null && midifile.getPic().length() > 0) {
@@ -160,5 +155,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
   public boolean isAssigned (AbstractSessionItem item) {
     return item instanceof MidiFile;
   }
+
+
 
 }

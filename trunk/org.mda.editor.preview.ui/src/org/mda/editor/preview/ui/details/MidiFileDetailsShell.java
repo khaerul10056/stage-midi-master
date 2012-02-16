@@ -6,7 +6,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Spinner;
 import org.mda.ApplicationSession;
 import org.mda.additionals.Additional;
 import org.mda.additionals.AdditionalsHandler;
@@ -18,7 +17,6 @@ public class MidiFileDetailsShell extends Shell {
 
   private Label lblPicture;
 
-  private Spinner spnFontSize;
 
   private ApplicationSession session = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
 
@@ -34,6 +32,7 @@ public class MidiFileDetailsShell extends Shell {
   }
 
   public MidiFileDetailsShell (final Shell shell, final MidiFile midifile) {
+    this.midifile = midifile;
     setSize(500, 700);
 
     setLayout(new GridLayout(2, false));
@@ -42,24 +41,18 @@ public class MidiFileDetailsShell extends Shell {
     lblPictureText.setLayoutData(getLabelData());
 
     lblPicture = new Label (this, SWT.NONE);
-    Additional findByKey = additionalHandler.findByKey(midifile.getPic());
     lblPicture.setBackground(getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
-    if (findByKey != null)
-      lblPicture.setBackgroundImage(findByKey.getImage());
+    if (midifile.getPic() != null) {
+      Additional findByKey = additionalHandler.findByKey(midifile.getPic());
+      if (findByKey != null)
+        lblPicture.setBackgroundImage(findByKey.getImage());
+    }
     GridData cd = getContentData();
     cd.heightHint = 100;
     cd.widthHint = 130;
     lblPicture.setLayoutData(cd);
 
-    //Fontsize
-    Label lblFontsize = new Label (this, SWT.NONE);
-    lblFontsize.setText("Fontsize:");
-    lblFontsize.setLayoutData(getLabelData());
 
-    spnFontSize = new Spinner(this, SWT.NONE);
-    if (midifile.getFontsize() != null)
-      spnFontSize.setDigits(Integer.parseInt(midifile.getFontsize()));
-    spnFontSize.setLayoutData(getContentData());
 
     open ();
   }

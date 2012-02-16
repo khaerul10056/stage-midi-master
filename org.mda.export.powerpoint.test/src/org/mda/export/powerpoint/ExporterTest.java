@@ -24,11 +24,9 @@ public class ExporterTest {
 
     Collection <AbstractSessionItem> files = new ArrayList<AbstractSessionItem>();
     MidiFile file1 = (MidiFile) root.getGallery().getGalleryItems().get(2);
-    file1.setFontsize("80");
     file1.setPic("testdata/example1.jpg");
 
     MidiFile file2 = (MidiFile) root.getGallery().getGalleryItems().get(3);
-    file2.setFontsize("40");
 
     files.add(file1);
     files.add(file2);

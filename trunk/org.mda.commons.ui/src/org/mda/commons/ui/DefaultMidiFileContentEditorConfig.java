@@ -2,13 +2,13 @@ package org.mda.commons.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import mda.MidiFilePartType;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
-import mda.MidiFilePartType;
+import org.mda.ApplicationSession;
 
 public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConfig {
 
@@ -23,6 +23,26 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
   private List<MidiFilePartType> partsToIgnore   = new ArrayList<MidiFilePartType>();
 
   private Font                   font;
+
+  private Integer fontsize;
+
+
+  private ApplicationSession session = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
+
+  public Integer getFontsize () {
+    if (fontsize != null)
+      return fontsize.intValue();
+
+    if (session != null && session.getCurrentModel() != null && session.getCurrentModel().getConfig() != null && session.getCurrentModel().getConfig().getFontsize() != null)
+      return session.getCurrentModel().getConfig().getFontsize().intValue();
+
+    return 40;
+  }
+
+  public void setFontsize (Integer fontsize) {
+    this.fontsize = fontsize;
+  }
+
 
   @Override
   public boolean isChordPresented () {

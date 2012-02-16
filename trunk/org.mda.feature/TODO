@@ -1,7 +1,13 @@
 
 
-Enhancement		Editor		Move chord foreward/backward											NEXT
-Bug				Editor		Layout of preview is bullsit											new
+Enhancement 	Editor		Add part + Add part ref													NEXT
+Enhancement 	Editor		Remove part																new
+Bug 			Editor		Add splitted part as reference? 										new
+
+Enhancement		Navigator	Presentation-Perspective / Edit-perspective								new
+
+
+Bug				Editor		Remove multiple whitespaces-configuration								new
 Enhancement		Editor		selection of navigator doesn't change while changing slides				new
 
 Enhancement		Editor 		handling refs															new
@@ -17,7 +23,7 @@ Enhancement		User		mail to group from gmail												new
 
 
 ______________________________________
-
+Enhancement		Editor		Move chord foreward/backward											NEXT
 Enhancement 	Editor		merge part																done
 Bug				Editor 		Preview-Screen does not adapt after editing preview-editor-content		done
 Enhancement		Editor	 	next line / previous line 												done

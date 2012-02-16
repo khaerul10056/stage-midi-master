@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link mda.MidiFile#getParts <em>Parts</em>}</li>
- *   <li>{@link mda.MidiFile#getFontsize <em>Fontsize</em>}</li>
  *   <li>{@link mda.MidiFile#getPic <em>Pic</em>}</li>
  *   <li>{@link mda.MidiFile#getKey <em>Key</em>}</li>
  * </ul>
@@ -43,32 +42,6 @@ public interface MidiFile extends AbstractSessionItem {
    * @generated
    */
   EList<MidiFilePart> getParts();
-
-  /**
-   * Returns the value of the '<em><b>Fontsize</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Fontsize</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Fontsize</em>' attribute.
-   * @see #setFontsize(String)
-   * @see mda.MidiplayerPackage#getMidiFile_Fontsize()
-   * @model
-   * @generated
-   */
-  String getFontsize();
-
-  /**
-   * Sets the value of the '{@link mda.MidiFile#getFontsize <em>Fontsize</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Fontsize</em>' attribute.
-   * @see #getFontsize()
-   * @generated
-   */
-  void setFontsize(String value);
 
   /**
    * Returns the value of the '<em><b>Pic</b></em>' attribute.

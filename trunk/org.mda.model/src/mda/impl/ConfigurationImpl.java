@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link mda.impl.ConfigurationImpl#getLastSession <em>Last Session</em>}</li>
  *   <li>{@link mda.impl.ConfigurationImpl#getPdfExportPath <em>Pdf Export Path</em>}</li>
  *   <li>{@link mda.impl.ConfigurationImpl#getAdditionalsPath <em>Additionals Path</em>}</li>
+ *   <li>{@link mda.impl.ConfigurationImpl#getFontsize <em>Fontsize</em>}</li>
  * </ul>
  * </p>
  *
@@ -125,6 +126,26 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
    * @ordered
    */
   protected String additionalsPath = ADDITIONALS_PATH_EDEFAULT;
+
+    /**
+   * The default value of the '{@link #getFontsize() <em>Fontsize</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFontsize()
+   * @generated
+   * @ordered
+   */
+  protected static final Integer FONTSIZE_EDEFAULT = null;
+
+    /**
+   * The cached value of the '{@link #getFontsize() <em>Fontsize</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFontsize()
+   * @generated
+   * @ordered
+   */
+  protected Integer fontsize = FONTSIZE_EDEFAULT;
 
     /**
    * <!-- begin-user-doc -->
@@ -272,6 +293,27 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
    * <!-- end-user-doc -->
    * @generated
    */
+  public Integer getFontsize() {
+    return fontsize;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFontsize(Integer newFontsize) {
+    Integer oldFontsize = fontsize;
+    fontsize = newFontsize;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__FONTSIZE, oldFontsize, fontsize));
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
@@ -286,6 +328,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
         return getPdfExportPath();
       case MidiplayerPackage.CONFIGURATION__ADDITIONALS_PATH:
         return getAdditionalsPath();
+      case MidiplayerPackage.CONFIGURATION__FONTSIZE:
+        return getFontsize();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -312,6 +356,9 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
         return;
       case MidiplayerPackage.CONFIGURATION__ADDITIONALS_PATH:
         setAdditionalsPath((String)newValue);
+        return;
+      case MidiplayerPackage.CONFIGURATION__FONTSIZE:
+        setFontsize((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -340,6 +387,9 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
       case MidiplayerPackage.CONFIGURATION__ADDITIONALS_PATH:
         setAdditionalsPath(ADDITIONALS_PATH_EDEFAULT);
         return;
+      case MidiplayerPackage.CONFIGURATION__FONTSIZE:
+        setFontsize(FONTSIZE_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -362,6 +412,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
         return PDF_EXPORT_PATH_EDEFAULT == null ? pdfExportPath != null : !PDF_EXPORT_PATH_EDEFAULT.equals(pdfExportPath);
       case MidiplayerPackage.CONFIGURATION__ADDITIONALS_PATH:
         return ADDITIONALS_PATH_EDEFAULT == null ? additionalsPath != null : !ADDITIONALS_PATH_EDEFAULT.equals(additionalsPath);
+      case MidiplayerPackage.CONFIGURATION__FONTSIZE:
+        return FONTSIZE_EDEFAULT == null ? fontsize != null : !FONTSIZE_EDEFAULT.equals(fontsize);
     }
     return super.eIsSet(featureID);
   }
@@ -384,6 +436,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
     result.append(pdfExportPath);
     result.append(", additionalsPath: ");
     result.append(additionalsPath);
+    result.append(", fontsize: ");
+    result.append(fontsize);
     result.append(')');
     return result.toString();
   }

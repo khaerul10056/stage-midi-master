@@ -95,7 +95,7 @@ public class ContentNavigator extends ViewPart {
   }
 
 
-  private Session getSessionFromSelection (final SelectionEvent e) {
+  private SelectionInfo getSessionFromSelection (final SelectionEvent e) {
     Object object = getSelected(treviewer.getSelection());
     System.out.println ("Selected " + object);
 
@@ -114,7 +114,7 @@ public class ContentNavigator extends ViewPart {
       session = (Session)object;
     }
 
-    return session;
+    return new SelectionInfo(session, selectedItem);
   }
 
   private Menu createContextMenu (final Tree tree) {
@@ -125,16 +125,16 @@ public class ContentNavigator extends ViewPart {
     itemPreview.setText("Preview...");
     itemPreview.addSelectionListener(new SelectionAdapter() {
       public void widgetSelected (org.eclipse.swt.events.SelectionEvent e) {
-        Session session = getSessionFromSelection(e);
-        AbstractSessionItem selectedItem = null;
+        SelectionInfo selectioninfo = getSessionFromSelection(e);
 
-        if (session != null) {
+        if (selectioninfo != null) {
+
           final GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController(menu.getDisplay());
           DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
           config.setChordVisible(false);
-          BeamerPresenter presenter = new BeamerPresenter(menu.getDisplay(), session, controller, config);
-          if (selectedItem != null)
-            controller.toItem(selectedItem);
+          BeamerPresenter presenter = new BeamerPresenter(menu.getDisplay(), selectioninfo.getSession(), controller, config);
+          if (selectioninfo.getItem() != null)
+            controller.toItem(selectioninfo.getItem());
 
           presenter.addDisposeListener(new DisposeListener() {
 
@@ -155,16 +155,15 @@ public class ContentNavigator extends ViewPart {
     itemStart.addSelectionListener(new SelectionAdapter() {
 
       public void widgetSelected (org.eclipse.swt.events.SelectionEvent e) {
-        Session session = getSessionFromSelection(e);
-        AbstractSessionItem selectedItem = null;
+        SelectionInfo selectioninfo = getSessionFromSelection(e);
 
-        if (session != null) {
+        if (selectioninfo != null) {
           final GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController(menu.getDisplay());
           DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
           config.setChordVisible(false);
-          BeamerPresenter presenter = new BeamerPresenter(menu.getDisplay(), session, controller, config);
-          if (selectedItem != null)
-            controller.toItem(selectedItem);
+          BeamerPresenter presenter = new BeamerPresenter(menu.getDisplay(), selectioninfo.getSession(), controller, config);
+          if (selectioninfo.getItem() != null)
+            controller.toItem(selectioninfo.getItem());
 
           presenter.addDisposeListener(new DisposeListener() {
 
@@ -176,7 +175,6 @@ public class ContentNavigator extends ViewPart {
 
           presenter.setEnabled(true);
         }
-        //TODO else errormessage
       }
 
     });

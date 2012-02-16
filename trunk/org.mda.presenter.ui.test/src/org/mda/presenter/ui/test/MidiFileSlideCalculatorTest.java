@@ -44,8 +44,9 @@ public class MidiFileSlideCalculatorTest {
 
   }
 
-  private Slide calculate (final MidiFilePart part, final boolean chordVisible) {
+  private Slide calculate (final MidiFilePart part, final boolean chordVisible, final int fontsize) {
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setFontsize(fontsize);
     config.setChordVisible(chordVisible);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
@@ -61,7 +62,7 @@ public class MidiFileSlideCalculatorTest {
     //Text and follow chords
 
     MidiFile song = MidiplayerFactory.eINSTANCE.createMidiFile();
-    song.setFontsize("80");
+
 
     MidiFilePart part = MidiplayerFactory.eINSTANCE.createMidiFilePart();
     song.getParts().add(part);
@@ -86,7 +87,7 @@ public class MidiFileSlideCalculatorTest {
     textLine2.getChordParts().add(part3);
     part.getTextlines().add(textLine2);
 
-    Slide slide = calculate(part, true);
+    Slide slide = calculate(part, true, 80);
 
     System.out.println (slide);
 
@@ -118,7 +119,6 @@ public class MidiFileSlideCalculatorTest {
     //Text and follow chords
 
     MidiFile song = MidiplayerFactory.eINSTANCE.createMidiFile();
-    song.setFontsize("80");
 
     MidiFilePart part = MidiplayerFactory.eINSTANCE.createMidiFilePart();
     song.getParts().add(part);
@@ -143,7 +143,7 @@ public class MidiFileSlideCalculatorTest {
     textLine2.getChordParts().add(part3);
     part.getTextlines().add(textLine2);
 
-    Slide slide = calculate(part, false);
+    Slide slide = calculate(part, false, 80);
     System.out.println (slide);
 
     SlideItem item1 = slide.getItems().get(0);
