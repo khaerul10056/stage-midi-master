@@ -1,7 +1,7 @@
 package org.mda.editor.preview.ui.newpart;
 
+import static org.mda.commons.ui.Util.loadImage;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import mda.MidiFile;
 import mda.MidiFilePart;
@@ -9,28 +9,36 @@ import mda.MidiFilePartType;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Widget;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.additionals.AdditionalsHandler;
+import org.mda.commons.ui.Util;
 
 
 public class NewPartShell extends Shell implements SelectionListener {
 
   private MidiFile midifile;
 
-  private Collection <Button> buttonsDefault = new ArrayList<Button>();
+  private MidiFilePart addAfter;
 
-  private Collection <Button> buttonsReference = new ArrayList<Button>();
+  private List <Button> buttonsDefault = new ArrayList<Button>();
 
-  private Collection <MidiFilePart> partReferences = new ArrayList<MidiFilePart>();
+  private List <Button> buttonsReference = new ArrayList<Button>();
+
+  private List <MidiFilePart> partReferences = new ArrayList<MidiFilePart>();
 
   private ApplicationSession session = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
 
   private AdditionalsHandler additionalHandler = session.getAdditionalsHandler();
+
+  private static Image imgNewPart = loadImage(Util.ICON_PART);
+  private static Image imgNewRefPart = loadImage(Util.ICON_REFPART);
 
 
   private GridData getLabelData () {
@@ -52,9 +60,10 @@ public class NewPartShell extends Shell implements SelectionListener {
     return button;
   }
 
-  public NewPartShell (final Shell shell, final MidiFile midifile, int addposition) {
+  public NewPartShell (final Shell shell, final MidiFile midifile, MidiFilePart addAfter) {
     super (shell, SWT.NONE);
     this.midifile = midifile;
+    this.addAfter = addAfter;
 
     setText("Add new part...");
 
@@ -65,13 +74,14 @@ public class NewPartShell extends Shell implements SelectionListener {
     for (MidiFilePartType newTypes : MidiFilePartType.values()) {
       Button button = addButton();
       button.setText("New " + newTypes.getName());
+      button.setImage(imgNewPart);
       completeNumbersOfButtons ++;
       buttonsDefault.add(button);
     }
 
     for (MidiFilePart nextPart: midifile.getParts()) {
 
-      if (nextPart.getRefPart() != null) {
+      if (nextPart.getRefPart() == null) { //only parts that are no refpart itself
         Button btn = addButton();
         List<String> rawText = MidiPlayerService.getRawText(nextPart);
 
@@ -83,8 +93,9 @@ public class NewPartShell extends Shell implements SelectionListener {
         }
         String preview = nextPart.getParttype().getName();
         if (rawText != null && rawText.size() > 0)
-          preview += ": " + rawText.get(0);
+          preview += ": " + (rawText.get(0).length() > 30 ? rawText.get(0).substring(0, 30) + "..." : rawText.get(0));
         btn.setText("Reference to " + preview);
+        btn.setImage(imgNewRefPart);
         btn.setToolTipText(tooltip);
 
         buttonsReference.add(btn);
@@ -114,9 +125,33 @@ public class NewPartShell extends Shell implements SelectionListener {
 
   }
 
+  private boolean isNewButton (final Widget widget) {
+    return buttonsDefault.contains(widget);
+  }
+
+  private MidiFilePartType getPartType (final Widget widget) {
+    int indexOf = buttonsDefault.indexOf(widget);
+    if (indexOf < 0)
+      return null;
+    return MidiFilePartType.get(indexOf);
+  }
+
+  private MidiFilePart getRefPart (final Widget widget) {
+    int indexOf = buttonsReference.indexOf(widget);
+    if (indexOf < 0)
+      return null;
+    return partReferences.get(indexOf);
+  }
+
   @Override
   public void widgetSelected (SelectionEvent arg0) {
-    // TODO Auto-generated method stub
+    Widget widget = arg0.widget;
+
+    MidiFilePartType type = getPartType(widget);
+    MidiFilePart ref = getRefPart(widget);
+    MidiPlayerService.addPartAfter(midifile, addAfter, type, ref);
+
+    dispose();
 
   }
 

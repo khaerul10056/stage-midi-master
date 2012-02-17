@@ -22,6 +22,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 public class MidiPlayerService {
 
@@ -29,6 +31,8 @@ public class MidiPlayerService {
   public static final MidiplayerPackage mp           = MidiplayerPackage.eINSTANCE;
 
   private static final List<String>     defaultPaths = new ArrayList<String>();
+
+  private static final Log LOGGER  = LogFactory.getLogger(MidiPlayerService.class);
 
   static {
     defaultPaths.add("/home/oleym/privat/soundOfFaith/midi"); //todo konfigurierbar machen, pro Pfad Angabe von Filetypen (.mid, .txt...)
@@ -383,17 +387,23 @@ public class MidiPlayerService {
 
   /** adds a new part after the addAfter-parent
    * @param currentMidiFile midifile
-   * @param addAfter after this part the new part is inserted
+   * @param addAfter after this part the new part is inserted, if null than it is added to end
    * @param midiFilePartType type of the new part
    * @param reference referenced part, if the new part should be a reference to another part, maybe <code>null</code>
    * @return */
   public static int addPartAfter (MidiFile currentMidiFile, MidiFilePart addAfter, MidiFilePartType midiFilePartType, MidiFilePart reference) {
-    int index = currentMidiFile.getParts().indexOf(addAfter);
+
+    if (reference != null && midiFilePartType != null && reference.getRefPart().getParttype() != midiFilePartType)
+      LOGGER.warn("addPartAfter was called with different types for direct parameter and reference, using the type " + reference.getParttype() + " from reference");
+
+    int index = addAfter != null ? currentMidiFile.getParts().indexOf(addAfter): (currentMidiFile.getParts().size() - 1);
     MidiFilePart newPart = mf.createMidiFilePart();
     newPart.getTextlines().add(mf.createMidiFileTextLine());
     newPart.setParttype(midiFilePartType);
-    if (reference != null)
+    if (reference != null) {
+      newPart.setParttype(reference.getParttype());
       newPart.setRefPart(reference);
+    }
     currentMidiFile.getParts().add(index + 1, newPart);
     return index + 1;
   }
@@ -460,12 +470,16 @@ public class MidiPlayerService {
    * @param file midifile
    * @param part part to remove
    *          return index of removed part */
-  public static int removePart (final MidiFile file, MidiFilePart part) {
+  public static MidiFilePart removePart (final MidiFile file, MidiFilePart part) {
     int index = file.getParts().indexOf(part);
     if (index >= 0)
       file.getParts().remove(part);
 
-    return index;
+    index --;
+    if (index < 0)
+      index = 0;
+
+    return file.getParts().get(index);
   }
 
   public static void removeSessions (Collection<Session> selectedItems) {
@@ -484,6 +498,20 @@ public class MidiPlayerService {
       }
     });
     }
+  }
+
+  public static String toString (MidiFile midifile) {
+    StringBuilder builder = new StringBuilder();
+
+    for (MidiFilePart nextPart: midifile.getParts()) {
+      builder.append ("\n\n");
+      builder.append (nextPart.getParttype() + "\n");
+      builder.append (nextPart.getBar() + "\n");
+      builder.append(toString(nextPart));
+    }
+
+    return builder.toString();
+
   }
 
   public static String toString (MidiFilePart nextPart) {
