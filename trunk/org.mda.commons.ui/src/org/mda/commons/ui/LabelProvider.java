@@ -1,7 +1,6 @@
 package org.mda.commons.ui;
 
-import java.io.IOException;
-import java.util.logging.Level;
+import static org.mda.commons.ui.Util.loadImage;
 import java.util.logging.Logger;
 import mda.AbstractSessionItem;
 import mda.Gallery;
@@ -11,9 +10,6 @@ import mda.Session;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
-import org.mda.commons.ui.Activator;
-import org.mda.commons.ui.Util;
 import org.mda.commons.ui.navigator.NavigatorItem;
 
 
@@ -51,20 +47,14 @@ public class LabelProvider implements ILabelProvider {
     if (element instanceof NavigatorItem)
       element = ((NavigatorItem) element).getModelElement();
 
-    try {
     if (element instanceof MidiFile) {
-      return Activator.loadImage(Display.getDefault(), Util.ICON_SONG).createImage();
+      return loadImage(Util.ICON_SONG);
     }
 
     if (element instanceof Session) {
-      return Activator.loadImage(Display.getDefault(), Util.ICON_SESSION).createImage();
+      return loadImage(Util.ICON_SESSION);
     }
 
-    }
-    catch (IOException e) {
-      LOGGER.log (Level.SEVERE, e.getLocalizedMessage(), e);
-    }
-    // TODO Auto-generated method stub
     return null;
   }
 
