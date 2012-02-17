@@ -50,6 +50,11 @@ public class SlideItemPanel extends Composite  {
     });
   }
 
+  public boolean isSelected () {
+    return btnName.getSelection();
+
+  }
+
 
 
   @Override

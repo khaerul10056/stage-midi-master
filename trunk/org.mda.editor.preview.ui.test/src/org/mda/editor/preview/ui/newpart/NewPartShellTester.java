@@ -18,13 +18,16 @@ public class NewPartShellTester {
     session.load(null);
     Shell shell = new Shell();
     final MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));
-    NewPartShell additionalshell = new NewPartShell(shell, (MidiFile) root.getGallery().getGalleryItems().get(0), 0);
+    MidiFile file = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    NewPartShell additionalshell = new NewPartShell(shell, file, file.getParts().get(0));
 
     while (!additionalshell.isDisposed()) {
       if (!shell.getDisplay().readAndDispatch()) {
         shell.getDisplay().sleep();
       }
     }
+
+    System.out.println (MidiPlayerService.toString(file));
 
   }
 

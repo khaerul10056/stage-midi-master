@@ -93,5 +93,15 @@ public class SlideListPart extends AbstractPart  {
     return slideItems;
   }
 
+  public int getSelectedSlideItemIndex () {
+    for (int i = 0; i < getSlideItems().size(); i++) {
+      SlideItemPanel nextPanel = getSlideItems().get(i);
+      if (nextPanel.isSelected())
+        return i;
+    }
+
+    return -1;
+  }
+
 
 }
