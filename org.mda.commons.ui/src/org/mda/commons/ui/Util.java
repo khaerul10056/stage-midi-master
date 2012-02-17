@@ -1,7 +1,13 @@
 package org.mda.commons.ui;
 
+import java.net.URL;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.graphics.Image;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 
 
@@ -9,10 +15,35 @@ import org.eclipse.swt.events.KeyEvent;
 
 public class Util {
 
-  public final static String ICON_SONG = "icons/song.jpg";
-  public final static String ICON_SESSION = "icons/session.png";
+  private static final Log LOGGER  = LogFactory.getLogger(Util.class);
 
+  public final static String ICON_SONG = "song.jpg";
+  public final static String ICON_SESSION = "session.png";
+  public final static String ICON_ADD_PART = "add_part.gif";
+  public final static String ICON_PART = "part.gif";
+  public final static String ICON_REFPART = "referencedPart.gif";
 
+  private final static ImageRegistry registry = new ImageRegistry();
+
+  public static Image loadImage (final String id) {
+    Image foundImage = registry.get(id);
+
+    if (foundImage == null) {
+
+      URL url = Util.class.getResource("/org/mda/icons/" + id);
+      ImageDescriptor image = ImageDescriptor.createFromURL(url);
+      if (image != null)
+        foundImage = image.createImage();
+      else
+        LOGGER.warn("Image " + id + " not found");
+
+      if (foundImage != null)
+        registry.put(id, foundImage);
+    }
+
+    return foundImage;
+
+  }
 
 public static String logEvent (KeyEvent event) {
 
