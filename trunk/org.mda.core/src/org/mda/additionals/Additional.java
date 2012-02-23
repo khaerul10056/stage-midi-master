@@ -69,7 +69,7 @@ public class Additional {
   }
 
   public Image getImage () {
-    return getPreviewHandler().getImage(getFile());
+    return getPreviewHandler().getImage(getFile(), getKey());
 
   }
 

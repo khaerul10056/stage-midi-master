@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import static org.mda.Utils.trimRight;
 
@@ -120,11 +121,11 @@ public class Slide {
     this.backgroundImageFile = backgroundImageFile;
   }
 
-  public Image getBackgroundImage () {
+  public Image getBackgroundImage (Point point) {
     if (backgroundImage == null)
       return null;
     else
-      return new Image (Display.getDefault(), backgroundImage);
+      return new Image (Display.getDefault(), backgroundImage.scaledTo(point.x, point.y));
   }
 
   public ImageData getBackgroundImageData () {

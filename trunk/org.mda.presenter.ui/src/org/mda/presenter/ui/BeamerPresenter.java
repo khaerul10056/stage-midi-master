@@ -87,9 +87,9 @@ public class BeamerPresenter extends Shell implements IPresentationView {
         Font font = getFont();
         e.gc.setFont(font);
 
-        if (getCurrentSlide().getBackgroundImage() != null) {
-          if (currentShownImage == null || getCurrentSlide().getBackgroundImage() != currentShownImage) {
-            setBackgroundImage(getCurrentSlide().getBackgroundImage());
+        if (getCurrentSlide().getBackgroundImage(getSize()) != null) {
+          if (currentShownImage == null || getCurrentSlide().getBackgroundImage(getSize()) != currentShownImage) {
+            setBackgroundImage(getCurrentSlide().getBackgroundImage(getSize()));
             currentShownImage = getBackgroundImage();
           }
         }

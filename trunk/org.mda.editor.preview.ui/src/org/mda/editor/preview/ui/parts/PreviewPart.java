@@ -59,9 +59,9 @@ public class PreviewPart extends AbstractPart {
     calculator = (MidiFileSlideCalculator) getCalculator(MidiFileSlideCalculator.class);
     calcPreCondition = new CalculatorPreCondition();
     config = new DefaultMidiFileContentEditorConfig();
-    
 
-
+    setBackground(config.getBackgroundColor());
+    setForeground(config.getForegroundColor());
     setSize(width, height); // after initializing calcPreCondition
 
 
@@ -88,9 +88,9 @@ public class PreviewPart extends AbstractPart {
         Font font = getFont();
         e.gc.setFont(font);
 
-        if (getCurrentSlide().getBackgroundImage() != null) {
-          if (currentShownImage == null || getCurrentSlide().getBackgroundImage() != currentShownImage) {
-            setBackgroundImage(getCurrentSlide().getBackgroundImage());
+        if (getCurrentSlide().getBackgroundImage(getSize()) != null) {
+          if (currentShownImage == null || getCurrentSlide().getBackgroundImage(getSize()) != currentShownImage) {
+            setBackgroundImage(getCurrentSlide().getBackgroundImage(getSize()));
             currentShownImage = getBackgroundImage();
           }
         }

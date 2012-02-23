@@ -1,8 +1,7 @@
 package org.mda.commons.ui.calculator;
 
+import static org.mda.Utils.loadImageFromProject;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -18,6 +17,8 @@ import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
+import org.mda.ApplicationSession;
+import org.mda.additionals.Additional;
 
 public class MidiFileSlideCalculator extends SlideCalculator {
 
@@ -37,6 +38,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
   private Point nullExtend = new Point (0,0);
 
   private final GC gc = new GC(Display.getDefault());
+
+  private ApplicationSession  appSession = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
 
   @Override
   public List<Slide> calculate (final AbstractSessionItem sessionitem, final CalculatorPreCondition preCondition) {
@@ -58,21 +61,19 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     gc.setFont(font);
 
     if (midifile.getPic() != null && midifile.getPic().length() > 0) {
-      File picAsFile = new File (midifile.getPic());
-      if (picAsFile.exists()) {
-        FileInputStream fis;
-        try {
-          fis = new FileInputStream(picAsFile);
-          image = new ImageData(fis);
+
+      Additional findByKey = appSession.getAdditionalsHandler().findByKey(midifile.getPic());
+      if (findByKey != null) {
+        File picAsFile = findByKey.getFile();
+        if (picAsFile.exists()) {
+          LOGGER.info("Load pic from " + picAsFile.getAbsolutePath());
+          image = loadImageFromProject(picAsFile).getImageData();
           imageFile = picAsFile;
-        }
-        catch (FileNotFoundException e) {
-          // TODO Auto-generated catch block
-          e.printStackTrace();
         }
       }
     }
     else {
+      LOGGER.info("Setting image to null");
       image = null;
       imageFile = null;
     }

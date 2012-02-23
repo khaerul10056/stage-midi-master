@@ -246,17 +246,16 @@
       </parts>
       <parts parttype="ZWISCHENSPIEL" bar="21">
         <textlines>
-          <chordParts text=""/>
-          <chordParts text="Every blessing " chord="H"/>
-          <chordParts text="you pour out I'll " chord="F#"/>
-          <chordParts text="turn back to " chord="g#"/>
-          <chordParts text="praise," chord="E"/>
+          <chordParts text="Every blessing " chord="H "/>
+          <chordParts text="you pour out I'll " chord="F# "/>
+          <chordParts text="turn back to " chord="g# "/>
+          <chordParts text="praise," chord="E "/>
         </textlines>
         <textlines>
-          <chordParts text="When the darkness " chord="H"/>
-          <chordParts text="closes in, Lord " chord="F#"/>
-          <chordParts text="still I will " chord="g#"/>
-          <chordParts text="say." chord="E"/>
+          <chordParts text="When the darkness " chord="H "/>
+          <chordParts text="closes in, Lord " chord="F# "/>
+          <chordParts text="still I will " chord="g# "/>
+          <chordParts text="say." chord="E "/>
         </textlines>
       </parts>
       <parts bar="29">
@@ -623,7 +622,7 @@
         <textlines/>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Ehre sei dem Herrn.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:MidiFile" name="Ehre sei dem Herrn.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="image#DSC01532#jpg">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text="h A h A G D F#    h A h A G D F#"/>
@@ -688,22 +687,51 @@
       </parts>
       <parts parttype="VERS" bar="40">
         <textlines>
-          <chordParts text="Wer h&#xe4;lt die seinen in der Hand" chord="h"/>
-          <chordParts text=", " chord="A"/>
-          <chordParts text="wer ist der Weg, f&#xfc;hrt zum " chord="G"/>
-          <chordParts text="herrlichen " chord="D"/>
-          <chordParts text="Ort. " chord="F#"/>
+          <chordParts text="Wer h&#xe4;lt die seinen in der Hand" chord="h "/>
+          <chordParts text=", " chord="A "/>
+          <chordParts text="wer ist der Weg, f&#xfc;hrt zum " chord="G "/>
+          <chordParts text="herrlichen " chord="D "/>
+          <chordParts text="Ort. " chord="F# "/>
         </textlines>
         <textlines>
-          <chordParts text="Und wer ber&#xfc;hrt unser Herz," chord="h"/>
-          <chordParts text=" und " chord="A"/>
-          <chordParts text="wer bewegt die " chord="G"/>
-          <chordParts text="Welt, ihn laut zu " chord="D"/>
-          <chordParts text="Ehren. " chord="F#"/>
+          <chordParts text="Und wer ber&#xfc;hrt unser Herz," chord="h "/>
+          <chordParts text=" und " chord="A "/>
+          <chordParts text="wer bewegt die " chord="G "/>
+          <chordParts text="Welt, ihn laut zu " chord="D "/>
+          <chordParts text="Ehren. " chord="F# "/>
         </textlines>
       </parts>
       <parts bar="50" refPart="//@gallery/@galleryItems.4/@parts.2">
-        <textlines/>
+        <textlines>
+          <chordParts text="Ehre " chord="h "/>
+          <chordParts text="se" chord="A "/>
+          <chordParts text="i dem Herrn, " chord="G "/>
+          <chordParts text="betet an den " chord="D "/>
+          <chordParts text="Gott der uns errettet." chord="A "/>
+        </textlines>
+        <textlines>
+          <chordParts text="Ehre " chord="h "/>
+          <chordParts text="se" chord="A "/>
+          <chordParts text="i dem Herrn, preis" chord="G "/>
+          <chordParts text="et ihn, denn er" chord="D "/>
+          <chordParts text=" regiert die V&#xf6;lker. " chord="A "/>
+        </textlines>
+        <textlines>
+          <chordParts text="Er ist weise und w&#xfc;rdig, " chord="e "/>
+          <chordParts text="er ist" chord="h "/>
+          <chordParts text=" wunderb" chord="A "/>
+          <chordParts text="ar und gro&#xdf;, " chord="G "/>
+        </textlines>
+        <textlines>
+          <chordParts text="darum bete" chord="e "/>
+          <chordParts text="n wir an, Ehre se" chord="F# "/>
+          <chordParts text="i dem H" chord="h "/>
+          <chordParts text="er" chord="A "/>
+          <chordParts text="rn." chord="G "/>
+          <chordParts text=" " chord="h "/>
+          <chordParts chord="A "/>
+          <chordParts chord="G"/>
+        </textlines>
       </parts>
       <parts parttype="SOLO" bar="64">
         <textlines>
@@ -1112,13 +1140,13 @@
     <galleryItems xsi:type="org.mda.model:MidiFile" name="Gnade und Wahrheit.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO">
         <textlines>
-          <chordParts text="  " chord="d"/>
-          <chordParts text="   " chord="Bb"/>
-          <chordParts text="  " chord="F"/>
-          <chordParts text="   " chord="C"/>
-          <chordParts text="  " chord="d"/>
-          <chordParts text="   " chord="Bb"/>
-          <chordParts text="  " chord="F"/>
+          <chordParts text=" " chord="d "/>
+          <chordParts chord="Bb "/>
+          <chordParts chord="F "/>
+          <chordParts chord="C "/>
+          <chordParts chord="d "/>
+          <chordParts chord="Bb "/>
+          <chordParts chord="F "/>
           <chordParts chord="C"/>
         </textlines>
       </parts>
@@ -1217,29 +1245,32 @@
       </parts>
       <parts parttype="VERS" bar="3">
         <textlines>
-          <chordParts text="In der Dunkelheit, ganz ohne " chord="d"/>
-          <chordParts text="Halt, ohne Licht, schau ich der " chord="g7"/>
-          <chordParts text="Macht meiner " chord="A"/>
-          <chordParts text="S&#xfc;nde ins Gesicht. " chord="d"/>
+          <chordParts text="In der Dunkelheit, ganz ohne " chord="d "/>
+          <chordParts text="Halt, ohne Licht, " chord="g7 "/>
         </textlines>
         <textlines>
-          <chordParts text="Ich such den Ort, wo ich " chord="d"/>
-          <chordParts text="Schutz finden kann, " chord="g7"/>
+          <chordParts text="schau ich der " chord=" "/>
+          <chordParts text="Macht meiner " chord="A "/>
+          <chordParts text="S&#xfc;nde ins Gesicht. " chord="d "/>
         </textlines>
         <textlines>
-          <chordParts text="doch dann nimmst " chord="Asus"/>
-          <chordParts text="Du Dich meiner " chord="A"/>
-          <chordParts text="wunden Seele " chord="Bb"/>
+          <chordParts text="Ich such den Ort, wo ich " chord="d "/>
+          <chordParts text="Schutz finden kann, " chord="g7 "/>
+        </textlines>
+        <textlines>
+          <chordParts text="doch dann nimmst " chord="Asus "/>
+          <chordParts text="Du Dich meiner " chord="A "/>
+          <chordParts text="wunden Seele " chord="Bb "/>
           <chordParts text="an. " chord="d/Bb"/>
         </textlines>
         <textlines>
-          <chordParts text="Du sagst: &#x201e;Hab keine Angst, und komm zu " chord="g"/>
-          <chordParts text="mir, Du bist geliebt" chord="d"/>
+          <chordParts text="Du sagst: &#x201e;Hab keine Angst, und komm zu " chord="g "/>
+          <chordParts text="mir, Du bist geliebt" chord="d "/>
         </textlines>
         <textlines>
-          <chordParts text="in meiner " chord="g"/>
-          <chordParts text="Gegenwart, wo meine " chord="Eb"/>
-          <chordParts text="Gnade Dich umgibt&#x201c;" chord="A"/>
+          <chordParts text="in meiner " chord="g "/>
+          <chordParts text="Gegenwart, wo meine " chord="Eb "/>
+          <chordParts text="Gnade Dich umgibt&#x201c;" chord="A "/>
         </textlines>
       </parts>
       <parts bar="16">

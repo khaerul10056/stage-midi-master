@@ -3,20 +3,15 @@ package org.mda.additionals;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
+import org.mda.Utils;
 
 
 public class ImagePreviewHandler implements IPreviewHandler {
 
   @Override
-  public Image getImage (File file) {
-    try {
-      return ImageDescriptor.createFromURL(file.toURL()).createImage();
-    }
-    catch (Exception e) {
-      return null;
-    }
+  public Image getImage (File file, final String key) {
+    return Utils.loadImageFromProject(file);
   }
 
   @Override

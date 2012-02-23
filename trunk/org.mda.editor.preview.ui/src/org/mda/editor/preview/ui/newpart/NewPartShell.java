@@ -1,6 +1,8 @@
 package org.mda.editor.preview.ui.newpart;
 
-import static org.mda.commons.ui.Util.loadImage;
+import static org.mda.Utils.ICON_PART;
+import static org.mda.Utils.ICON_REFPART;
+import static org.mda.Utils.loadImageFromProject;
 import java.util.ArrayList;
 import java.util.List;
 import mda.MidiFile;
@@ -18,7 +20,6 @@ import org.eclipse.swt.widgets.Widget;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.additionals.AdditionalsHandler;
-import org.mda.commons.ui.Util;
 
 
 public class NewPartShell extends Shell implements SelectionListener {
@@ -37,8 +38,8 @@ public class NewPartShell extends Shell implements SelectionListener {
 
   private AdditionalsHandler additionalHandler = session.getAdditionalsHandler();
 
-  private static Image imgNewPart = loadImage(Util.ICON_PART);
-  private static Image imgNewRefPart = loadImage(Util.ICON_REFPART);
+  private static Image imgNewPart = loadImageFromProject(ICON_PART);
+  private static Image imgNewRefPart = loadImageFromProject(ICON_REFPART);
 
 
   private GridData getLabelData () {
