@@ -76,6 +76,8 @@ public class SlideListPart extends AbstractPart  {
       setCurrentPart(file.getParts().get(0));
 
     resetColors();
+    
+    getSlideItems().get(0).select();
 
     for (SlideItemPanel panel: getSlideItems()) {
       panel.getShell().layout();

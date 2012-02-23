@@ -95,6 +95,7 @@ public class SlideItemPanel extends Composite  {
   }
 
   public void select () {
+    btnName.setFocus();
     getContent().setCurrentPart(part);
   }
 
