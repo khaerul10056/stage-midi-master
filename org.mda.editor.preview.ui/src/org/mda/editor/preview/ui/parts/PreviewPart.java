@@ -1,6 +1,7 @@
 package org.mda.editor.preview.ui.parts;
 
 import static org.mda.commons.ui.calculator.CalculatorRegistry.getCalculator;
+import java.io.File;
 import mda.MidiFilePart;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
@@ -25,6 +26,7 @@ public class PreviewPart extends AbstractPart {
   private int height;
 
   private Image currentShownImage = null;
+  private File currentShownImageAsFile = null;
 
   private Slide currentSlide = null;
   private CalculatorPreCondition calcPreCondition;
@@ -70,6 +72,7 @@ public class PreviewPart extends AbstractPart {
 
       @Override
       public void paintControl (PaintEvent e) {
+        LOGGER.info("paintControl was called " + e.x + "-" + e.y + "-" + e.width + "-" + e.height + "-" + e.count);
 
         Point newSize = getSize();
         if (sizeHasChanged(lastSize, newSize) && getCurrentPart() != null) {
@@ -88,15 +91,22 @@ public class PreviewPart extends AbstractPart {
         Font font = getFont();
         e.gc.setFont(font);
 
-        if (getCurrentSlide().getBackgroundImage(getSize()) != null) {
-          if (currentShownImage == null || getCurrentSlide().getBackgroundImage(getSize()) != currentShownImage) {
+        if (getCurrentSlide().getBackgroundImageFile() != null) {
+
+          if (currentShownImage == null ||
+              ! currentShownImageAsFile.equals(getCurrentSlide().getBackgroundImageFile()) ||   //image has changed
+              currentShownImage.getBounds().width != getBounds().width ||                       // size has changed
+              currentShownImage.getBounds().height != getBounds().height) {
+            LOGGER.info("Repaint background image: " + (currentShownImage != null ? currentShownImage.getBounds() : "<null>") +  getBounds());
             setBackgroundImage(getCurrentSlide().getBackgroundImage(getSize()));
             currentShownImage = getBackgroundImage();
+            currentShownImageAsFile = getCurrentSlide().getBackgroundImageFile();
           }
         }
         else {
           setBackgroundImage(null);
           currentShownImage = null;
+          currentShownImageAsFile = null;
         }
 
 
@@ -110,6 +120,8 @@ public class PreviewPart extends AbstractPart {
 
     redraw();
   }
+
+
 
 
 

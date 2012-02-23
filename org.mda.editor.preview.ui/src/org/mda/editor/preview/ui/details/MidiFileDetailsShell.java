@@ -27,6 +27,9 @@ public class MidiFileDetailsShell extends Shell {
 
   private static final Log LOGGER  = LogFactory.getLogger(MidiFileDetailsShell.class);
 
+  private int PREVIEW_HEIGHT = 100;
+  private int PREVIEW_WIDTH = 130;
+
 
   private ApplicationSession session = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
 
@@ -45,13 +48,14 @@ public class MidiFileDetailsShell extends Shell {
     if (midifile.getPic() != null) {
       Additional findByKey = additionalHandler.findByKey(midifile.getPic());
       if (findByKey != null)
-        lblPicture.setBackgroundImage(findByKey.getImage());
+        lblPicture.setBackgroundImage(findByKey.getImageScaled(PREVIEW_WIDTH, PREVIEW_HEIGHT));
     }
   }
 
   public MidiFileDetailsShell (final Shell shell, final MidiFile midifile) {
     this.midifile = midifile;
     setSize(500, 700);
+    setText("Details of song " + midifile.getName());
 
     setLayout(new GridLayout(2, false));
     Label lblPictureText = new Label (this, SWT.NONE);
@@ -91,11 +95,9 @@ public class MidiFileDetailsShell extends Shell {
 
     });
     GridData cd = getContentData();
-    cd.heightHint = 100;
-    cd.widthHint = 130;
+    cd.heightHint = PREVIEW_HEIGHT;
+    cd.widthHint = PREVIEW_WIDTH;
     lblPicture.setLayoutData(cd);
-
-
 
     open ();
   }

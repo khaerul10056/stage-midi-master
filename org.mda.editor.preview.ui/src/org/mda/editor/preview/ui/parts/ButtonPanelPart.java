@@ -88,6 +88,15 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
     }
     if (arg0.widget.equals(btnEditTheme)) {
       MidiFileDetailsShell details = new MidiFileDetailsShell(getShell(), getMidifile());
+      details.addDisposeListener(new DisposeListener() {
+
+        @Override
+        public void widgetDisposed (DisposeEvent arg0) {
+          if (getCurrentPart() != null)
+            getEditorContent().getPreviewpanel().setCurrentPart(getCurrentPart());
+
+        }
+      });
 
     }
     if (arg0.widget.equals(btnMerge))

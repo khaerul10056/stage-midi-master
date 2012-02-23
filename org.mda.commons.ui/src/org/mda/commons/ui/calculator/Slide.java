@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
@@ -17,6 +18,8 @@ import static org.mda.Utils.trimRight;
  * e.g. the text with all it's layoutdata
  * @author oleym */
 public class Slide {
+
+  private static final Logger LOGGER  = Logger.getLogger(Slide.class.getName());
 
   /** reference to the current modelelement (e.g. midifilepart) */
   private final EObject                                 modelRef;
@@ -124,8 +127,10 @@ public class Slide {
   public Image getBackgroundImage (Point point) {
     if (backgroundImage == null)
       return null;
-    else
-      return new Image (Display.getDefault(), backgroundImage.scaledTo(point.x, point.y));
+    else {
+      LOGGER.info("Creating new background image for " + backgroundImageFile.getAbsolutePath());
+      return new Image (Display.getCurrent(), backgroundImage.scaledTo(point.x, point.y));
+    }
   }
 
   public ImageData getBackgroundImageData () {

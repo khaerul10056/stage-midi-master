@@ -14,15 +14,12 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
@@ -175,8 +172,7 @@ public class AdditionalShell extends Shell {
           IStructuredSelection structselection = (IStructuredSelection) arg0.getSelection();
           if (structselection.getFirstElement() instanceof Additional) {
             Additional additional = (Additional) structselection.getFirstElement();
-            ImageData scaledTo = additional.getImage().getImageData().scaledTo(lblPreview.getSize().x, lblPreview.getSize().y);
-            lblPreview.setBackgroundImage(new Image (Display.getDefault(), scaledTo));
+            lblPreview.setBackgroundImage(additional.getImageScaled(lblPreview.getSize().x, lblPreview.getSize().y));
             return;
           }
         }
