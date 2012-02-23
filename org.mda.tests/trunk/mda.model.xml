@@ -131,7 +131,22 @@
         </textlines>
       </parts>
       <parts parttype="BRIDGE" bar="123" refPart="//@gallery/@galleryItems.0/@parts.7">
-        <textlines/>
+        <textlines>
+          <chordParts text="Heilig " chord="D "/>
+          <chordParts text="ist der " chord="G "/>
+          <chordParts text="Herr, die Sch&#xf6;pfung " chord="A "/>
+          <chordParts text="singt, " chord="h "/>
+          <chordParts text="die Sch&#xf6;pfung " chord="G "/>
+          <chordParts text="singt. " chord="A "/>
+        </textlines>
+        <textlines>
+          <chordParts text="Heilig " chord="D "/>
+          <chordParts text="ist der " chord="G "/>
+          <chordParts text="Herr, die Sch&#xf6;pfung " chord="A "/>
+          <chordParts text="singt, " chord="h "/>
+          <chordParts text="die Sch&#xf6;pfung " chord="G "/>
+          <chordParts text="singt. " chord="A "/>
+        </textlines>
       </parts>
       <parts parttype="BRIDGE" bar="139" refPart="//@gallery/@galleryItems.0/@parts.7">
         <textlines/>
@@ -502,7 +517,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Der Herr segne Dich.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:MidiFile" name="Der Herr segne Dich.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="image#DSC01532#jpg">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text="C G/C F/C C C/E F G C"/>
@@ -813,18 +828,18 @@
     <galleryItems xsi:type="org.mda.model:MidiFile" name="Er kam zu uns - Er ist Herr.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO" bar="2">
         <textlines>
-          <chordParts text="  " chord="D"/>
-          <chordParts text="  " chord="G"/>
-          <chordParts text="  " chord="D"/>
-          <chordParts text="   " chord="f#"/>
-          <chordParts text="  " chord="G"/>
-          <chordParts text="  " chord="h"/>
-          <chordParts text="  " chord="E"/>
-          <chordParts text="  " chord="e"/>
-          <chordParts text="     " chord="D/F#"/>
-          <chordParts text="  " chord="G"/>
-          <chordParts text="    " chord="G/A"/>
-          <chordParts text=" " chord="D"/>
+          <chordParts text=" " chord="D "/>
+          <chordParts chord="G "/>
+          <chordParts chord="D "/>
+          <chordParts chord="f# "/>
+          <chordParts chord="G "/>
+          <chordParts chord="h "/>
+          <chordParts chord="E "/>
+          <chordParts chord="e "/>
+          <chordParts chord="D/F# "/>
+          <chordParts chord="G "/>
+          <chordParts chord="G/A "/>
+          <chordParts chord="D"/>
         </textlines>
       </parts>
       <parts parttype="VERS" bar="18">
