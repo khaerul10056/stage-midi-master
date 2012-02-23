@@ -7,7 +7,7 @@ import org.eclipse.swt.graphics.Image;
 
 public interface IPreviewHandler {
 
-  public Image getImage (File file);
+  public Image getImage (File file, String key);
 
   public Collection <AdditionalSuffix> getSupportedSuffixes ();
 

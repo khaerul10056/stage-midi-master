@@ -7,7 +7,6 @@ import mda.AdditionalType;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ListViewer;
@@ -15,16 +14,18 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.additionals.Additional;
 import org.mda.additionals.AdditionalsHandler;
@@ -45,12 +46,22 @@ public class AdditionalShell extends Shell {
   private ListViewer viewer;
 
   private Label lblPreview;
+  private boolean select;
+
+  private AdditionalType onlyType;
+
+  private Additional currentSelection;
+
+  public Additional getSelected () {
+    return currentSelection;
+  }
 
 
   private void buildButtons () {
     Composite btnComp = new Composite(this, SWT.NONE);
     btnComp.setLayout(new RowLayout(SWT.HORIZONTAL));
-    btnComp.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
+    int anzahlButtons = select ? 3 : 2;
+    btnComp.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, anzahlButtons, 1));
 
     Button btnImport = new Button(btnComp, SWT.NONE);
     btnImport.setText("Import");
@@ -77,6 +88,23 @@ public class AdditionalShell extends Shell {
       }
     });
 
+    if (select) {
+      Button btnSelect = new Button(btnComp, SWT.NONE);
+      btnSelect.setText("Select");
+      btnSelect.addSelectionListener(new SelectionAdapter() {
+
+        public void widgetSelected (org.eclipse.swt.events.SelectionEvent e) {
+          if (viewer.getSelection() != null && viewer.getSelection() instanceof IStructuredSelection) {
+            IStructuredSelection structSelection = (IStructuredSelection) viewer.getSelection();
+            if (structSelection.getFirstElement() != null && structSelection.getFirstElement() instanceof Additional)
+              currentSelection = (Additional) structSelection.getFirstElement();
+          }
+
+          dispose();
+        }
+      });
+    }
+
     Button btnCancel = new Button(btnComp, SWT.NONE);
     btnCancel.setText("Cancel");
     btnCancel.addSelectionListener(new SelectionAdapter() {
@@ -88,23 +116,37 @@ public class AdditionalShell extends Shell {
 
   }
 
-  public AdditionalShell (final Shell parent, final AdditionalsHandler handler) {
+  public AdditionalShell (final Shell parent, final AdditionalsHandler handler, final AdditionalType onlyType, final boolean select) {
     this.handler = handler;
+    this.select = select;
+    this.onlyType = onlyType;
     setText("Additionals - " + handler.getAdditionalsPath().getAbsolutePath());
     setLayout(new GridLayout(2, false));
-    cmbType = new Combo(this, SWT.NONE);
 
-    for (AdditionalType nextType: AdditionalType.VALUES) {
-      cmbType.add(nextType.toString());
+    if (onlyType == null) {
+      cmbType = new Combo(this, SWT.NONE);
+
+      for (AdditionalType nextType : AdditionalType.VALUES) {
+        cmbType.add(nextType.toString());
+      }
+
+      cmbType.select(0);
+      GridData gd = new GridData(SWT.BEGINNING, SWT.FILL, false, false);
+      gd.horizontalSpan = 2;
+      cmbType.setLayoutData(gd);
+      cmbType.addSelectionListener(new SelectionAdapter() {
+
+        @Override
+        public void widgetSelected (SelectionEvent arg0) {
+          if (arg0.widget.equals(cmbType)) {
+            int selected = cmbType.getSelectionIndex();
+            refreshView(AdditionalType.VALUES.get(selected));
+          }
+        }
+      });
     }
 
-    cmbType.select(0);
 
-    lblPreview = new Label (this, SWT.NONE);
-    lblPreview.setBackground(getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
-    GridData gd1 = new GridData(SWT.FILL, SWT.FILL, true, true);
-    gd1.verticalSpan = 2;
-    lblPreview.setLayoutData(gd1);
 
 
     lstItems = new List(this, SWT.SCROLL_LINE);
@@ -115,18 +157,15 @@ public class AdditionalShell extends Shell {
     viewer.setLabelProvider(labelProvider);
     viewer.setContentProvider(contentProvider);
 
+    lblPreview = new Label (this, SWT.NONE);
+    lblPreview.setBackground(getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
+    GridData gd1 = new GridData(SWT.FILL, SWT.FILL, true, true);
+    gd1.verticalSpan = 2;
+    lblPreview.setLayoutData(gd1);
+
     refreshView (currentType);
 
-    cmbType.addSelectionListener(new SelectionAdapter() {
 
-      @Override
-      public void widgetSelected (SelectionEvent arg0) {
-        if (arg0.widget.equals(cmbType)) {
-          int selected = cmbType.getSelectionIndex();
-          refreshView(AdditionalType.VALUES.get(selected));
-        }
-      }
-    });
 
     viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -136,7 +175,8 @@ public class AdditionalShell extends Shell {
           IStructuredSelection structselection = (IStructuredSelection) arg0.getSelection();
           if (structselection.getFirstElement() instanceof Additional) {
             Additional additional = (Additional) structselection.getFirstElement();
-            lblPreview.setBackgroundImage(additional.getImage());
+            ImageData scaledTo = additional.getImage().getImageData().scaledTo(lblPreview.getSize().x, lblPreview.getSize().y);
+            lblPreview.setBackgroundImage(new Image (Display.getDefault(), scaledTo));
             return;
           }
         }
@@ -181,7 +221,7 @@ public class AdditionalShell extends Shell {
 
 
 
-    AdditionalShell additionalshell = new AdditionalShell(shell, handler);
+    AdditionalShell additionalshell = new AdditionalShell(shell, handler, null, true);
 
 
 

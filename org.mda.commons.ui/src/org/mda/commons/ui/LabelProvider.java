@@ -1,6 +1,6 @@
 package org.mda.commons.ui;
 
-import static org.mda.commons.ui.Util.loadImage;
+import static org.mda.Utils.*;
 import java.util.logging.Logger;
 import mda.AbstractSessionItem;
 import mda.Gallery;
@@ -48,11 +48,11 @@ public class LabelProvider implements ILabelProvider {
       element = ((NavigatorItem) element).getModelElement();
 
     if (element instanceof MidiFile) {
-      return loadImage(Util.ICON_SONG);
+      return loadImageFromProject(ICON_SONG);
     }
 
     if (element instanceof Session) {
-      return loadImage(Util.ICON_SESSION);
+      return loadImageFromProject(ICON_SESSION);
     }
 
     return null;

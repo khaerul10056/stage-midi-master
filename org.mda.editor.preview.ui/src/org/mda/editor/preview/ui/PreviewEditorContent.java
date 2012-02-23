@@ -31,7 +31,7 @@ public class PreviewEditorContent extends Composite  {
   public PreviewEditorContent (final Composite composite, final MidiFile file) {
     super(composite, SWT.NONE);
     this.file = file;
-    setBackground(composite.getDisplay().getSystemColor(SWT.COLOR_BLACK));
+    //setBackground(composite.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
     setLayout(new GridLayout(3, false));
 

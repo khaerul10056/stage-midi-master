@@ -8,7 +8,7 @@ import org.eclipse.swt.graphics.Image;
 public class NoPreviewHandler implements IPreviewHandler {
 
   @Override
-  public Image getImage (File file) {
+  public Image getImage (File file, final String key) {
     return null;
   }
 

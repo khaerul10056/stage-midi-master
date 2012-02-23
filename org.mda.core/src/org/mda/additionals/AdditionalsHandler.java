@@ -25,13 +25,14 @@ public class AdditionalsHandler {
 
 
   public Additional findByKey (final String key) {
+    LOGGER.info("Find additional by key " + key);
     String [] keyArray = key.split("#");
     if (keyArray.length != 3)
       return null;
 
-    AdditionalType typeFound = AdditionalType.valueOf(keyArray [0]);
+    AdditionalType typeFound = AdditionalType.valueOf(keyArray [0].toUpperCase());
     String name = keyArray [1];
-    AdditionalSuffix suffixFound = AdditionalSuffix.valueOf(keyArray [2]);
+    AdditionalSuffix suffixFound = AdditionalSuffix.valueOf(keyArray [2].toUpperCase());
 
     Additional compareAdditional = new Additional(null, typeFound, name, suffixFound);
 
@@ -98,8 +99,15 @@ public class AdditionalsHandler {
     String suffix = suffixPos < 0 ? null : next.getName().substring(suffixPos + 1, next.getName().length());
     if (suffix == null)
       return null;
-    else
-      return AdditionalSuffix.valueOf(suffix.toUpperCase());
+    else {
+      try {
+      AdditionalSuffix addsuffix = AdditionalSuffix.valueOf(suffix.toUpperCase());
+      return addsuffix;
+
+      } catch (Exception e) {
+        return null;
+      }
+    }
   }
 
   public void read () {
@@ -110,8 +118,14 @@ public class AdditionalsHandler {
     for (AdditionalType nextType: AdditionalType.VALUES) {
       File nextTypePath = new File (additionalsPath.getAbsolutePath(), nextType.toString().toLowerCase());
       for (File next: nextTypePath.listFiles()) {
-        Additional additional = new Additional(next, nextType, getName(next), getSuffix(next));
-        getAdditionals().add(additional);
+        AdditionalSuffix suffix = getSuffix(next);
+        if (suffix != null) {
+        Additional additional = new Additional(next, nextType, getName(next), suffix);
+        if (additional != null)
+          getAdditionals().add(additional);
+        }
+        else
+          LOGGER.warn("File " + next.getAbsolutePath() + " has no valid suffix, ignoring");
       }
     }
   }
