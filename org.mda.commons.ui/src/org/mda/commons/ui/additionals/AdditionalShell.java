@@ -57,14 +57,14 @@ public class AdditionalShell extends Shell {
   private void buildButtons () {
     Composite btnComp = new Composite(this, SWT.NONE);
     btnComp.setLayout(new RowLayout(SWT.HORIZONTAL));
-    int anzahlButtons = select ? 3 : 2;
+    int anzahlButtons = select ? 4 : 3;
     btnComp.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, anzahlButtons, 1));
 
     Button btnImport = new Button(btnComp, SWT.NONE);
     btnImport.setText("Import");
     btnImport.addSelectionListener(new SelectionAdapter() {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        FileDialog dialog = new FileDialog(getShell());
+        FileDialog dialog = new FileDialog(getShell(), SWT.MULTI);
         dialog.open();
 
         String [] filenames = dialog.getFileNames();
@@ -101,6 +101,23 @@ public class AdditionalShell extends Shell {
         }
       });
     }
+
+    Button btnRemove = new Button (btnComp, SWT.NONE);
+    btnRemove.setText("Remove");
+    btnRemove.addSelectionListener(new SelectionAdapter () {
+      public void widgetSelected (org.eclipse.swt.events.SelectionEvent e) {
+        if (viewer.getSelection() != null && viewer.getSelection() instanceof IStructuredSelection) {
+          IStructuredSelection structSelection = (IStructuredSelection) viewer.getSelection();
+          if (structSelection.getFirstElement() != null && structSelection.getFirstElement() instanceof Additional) {
+            Additional removedAdditional = (Additional) structSelection.getFirstElement();
+            handler.remove(removedAdditional);
+          }
+        }
+
+        refreshView(currentType);
+      }
+
+    });
 
     Button btnCancel = new Button(btnComp, SWT.NONE);
     btnCancel.setText("Cancel");
@@ -146,7 +163,7 @@ public class AdditionalShell extends Shell {
 
 
 
-    lstItems = new List(this, SWT.SCROLL_LINE);
+    lstItems = new List(this, SWT.V_SCROLL);
     GridData gd = new GridData(SWT.BEGINNING, SWT.FILL, false, true);
     gd.widthHint = 350;
     lstItems.setLayoutData(gd);

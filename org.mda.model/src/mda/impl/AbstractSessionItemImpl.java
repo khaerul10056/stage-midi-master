@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link mda.impl.AbstractSessionItemImpl#getName <em>Name</em>}</li>
  *   <li>{@link mda.impl.AbstractSessionItemImpl#getPath <em>Path</em>}</li>
+ *   <li>{@link mda.impl.AbstractSessionItemImpl#getBackgroundColor <em>Background Color</em>}</li>
+ *   <li>{@link mda.impl.AbstractSessionItemImpl#getForegroundColor <em>Foreground Color</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,6 +74,46 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
 	protected String path = PATH_EDEFAULT;
 
 	/**
+   * The default value of the '{@link #getBackgroundColor() <em>Background Color</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBackgroundColor()
+   * @generated
+   * @ordered
+   */
+  protected static final String BACKGROUND_COLOR_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getBackgroundColor() <em>Background Color</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBackgroundColor()
+   * @generated
+   * @ordered
+   */
+  protected String backgroundColor = BACKGROUND_COLOR_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getForegroundColor() <em>Foreground Color</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getForegroundColor()
+   * @generated
+   * @ordered
+   */
+  protected static final String FOREGROUND_COLOR_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getForegroundColor() <em>Foreground Color</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getForegroundColor()
+   * @generated
+   * @ordered
+   */
+  protected String foregroundColor = FOREGROUND_COLOR_EDEFAULT;
+
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -134,6 +176,48 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
 
 	/**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getBackgroundColor() {
+    return backgroundColor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setBackgroundColor(String newBackgroundColor) {
+    String oldBackgroundColor = backgroundColor;
+    backgroundColor = newBackgroundColor;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.ABSTRACT_SESSION_ITEM__BACKGROUND_COLOR, oldBackgroundColor, backgroundColor));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getForegroundColor() {
+    return foregroundColor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setForegroundColor(String newForegroundColor) {
+    String oldForegroundColor = foregroundColor;
+    foregroundColor = newForegroundColor;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.ABSTRACT_SESSION_ITEM__FOREGROUND_COLOR, oldForegroundColor, foregroundColor));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -144,6 +228,10 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
         return getName();
       case MidiplayerPackage.ABSTRACT_SESSION_ITEM__PATH:
         return getPath();
+      case MidiplayerPackage.ABSTRACT_SESSION_ITEM__BACKGROUND_COLOR:
+        return getBackgroundColor();
+      case MidiplayerPackage.ABSTRACT_SESSION_ITEM__FOREGROUND_COLOR:
+        return getForegroundColor();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -161,6 +249,12 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
         return;
       case MidiplayerPackage.ABSTRACT_SESSION_ITEM__PATH:
         setPath((String)newValue);
+        return;
+      case MidiplayerPackage.ABSTRACT_SESSION_ITEM__BACKGROUND_COLOR:
+        setBackgroundColor((String)newValue);
+        return;
+      case MidiplayerPackage.ABSTRACT_SESSION_ITEM__FOREGROUND_COLOR:
+        setForegroundColor((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -180,6 +274,12 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
       case MidiplayerPackage.ABSTRACT_SESSION_ITEM__PATH:
         setPath(PATH_EDEFAULT);
         return;
+      case MidiplayerPackage.ABSTRACT_SESSION_ITEM__BACKGROUND_COLOR:
+        setBackgroundColor(BACKGROUND_COLOR_EDEFAULT);
+        return;
+      case MidiplayerPackage.ABSTRACT_SESSION_ITEM__FOREGROUND_COLOR:
+        setForegroundColor(FOREGROUND_COLOR_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -196,6 +296,10 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case MidiplayerPackage.ABSTRACT_SESSION_ITEM__PATH:
         return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
+      case MidiplayerPackage.ABSTRACT_SESSION_ITEM__BACKGROUND_COLOR:
+        return BACKGROUND_COLOR_EDEFAULT == null ? backgroundColor != null : !BACKGROUND_COLOR_EDEFAULT.equals(backgroundColor);
+      case MidiplayerPackage.ABSTRACT_SESSION_ITEM__FOREGROUND_COLOR:
+        return FOREGROUND_COLOR_EDEFAULT == null ? foregroundColor != null : !FOREGROUND_COLOR_EDEFAULT.equals(foregroundColor);
     }
     return super.eIsSet(featureID);
   }
@@ -214,6 +318,10 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
     result.append(name);
     result.append(", path: ");
     result.append(path);
+    result.append(", backgroundColor: ");
+    result.append(backgroundColor);
+    result.append(", foregroundColor: ");
+    result.append(foregroundColor);
     result.append(')');
     return result.toString();
   }

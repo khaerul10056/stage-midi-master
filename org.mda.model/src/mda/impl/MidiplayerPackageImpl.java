@@ -253,6 +253,24 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
 	/**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAbstractSessionItem_BackgroundColor() {
+    return (EAttribute)abstractSessionItemEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAbstractSessionItem_ForegroundColor() {
+    return (EAttribute)abstractSessionItemEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -584,6 +602,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     abstractSessionItemEClass = createEClass(ABSTRACT_SESSION_ITEM);
     createEAttribute(abstractSessionItemEClass, ABSTRACT_SESSION_ITEM__NAME);
     createEAttribute(abstractSessionItemEClass, ABSTRACT_SESSION_ITEM__PATH);
+    createEAttribute(abstractSessionItemEClass, ABSTRACT_SESSION_ITEM__BACKGROUND_COLOR);
+    createEAttribute(abstractSessionItemEClass, ABSTRACT_SESSION_ITEM__FOREGROUND_COLOR);
 
     midiFileEClass = createEClass(MIDI_FILE);
     createEReference(midiFileEClass, MIDI_FILE__PARTS);
@@ -670,6 +690,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     initEClass(abstractSessionItemEClass, AbstractSessionItem.class, "AbstractSessionItem", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAbstractSessionItem_Name(), ecorePackage.getEString(), "name", null, 0, 1, AbstractSessionItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAbstractSessionItem_Path(), ecorePackage.getEString(), "path", null, 0, 1, AbstractSessionItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAbstractSessionItem_BackgroundColor(), ecorePackage.getEString(), "backgroundColor", null, 0, 1, AbstractSessionItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAbstractSessionItem_ForegroundColor(), ecorePackage.getEString(), "foregroundColor", null, 0, 1, AbstractSessionItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(midiFileEClass, MidiFile.class, "MidiFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getMidiFile_Parts(), this.getMidiFilePart(), null, "parts", null, 0, -1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

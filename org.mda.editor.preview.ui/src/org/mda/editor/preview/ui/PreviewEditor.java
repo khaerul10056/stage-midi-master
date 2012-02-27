@@ -8,6 +8,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 import org.mda.ApplicationSession;
+import org.mda.commons.ui.LabelProvider;
 import org.mda.commons.ui.MidiFileEditorInput;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -17,6 +18,8 @@ public class PreviewEditor extends EditorPart {
   private static final Log LOGGER  = LogFactory.getLogger(PreviewEditor.class);
 
   private MidiFileEditorInput meei;
+
+  private LabelProvider provider = new LabelProvider();
 
   private ApplicationSession  appSession = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
 
@@ -41,6 +44,9 @@ public class PreviewEditor extends EditorPart {
     setInput(input);
 
     meei = (MidiFileEditorInput) input;
+    //setContentDescription(meei.getName());
+    setPartName(meei.getName());
+    setTitleImage(provider.getImage(meei.getEObject()));
   }
 
   @Override

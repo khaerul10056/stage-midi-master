@@ -7,9 +7,9 @@ import org.mda.IMidiFileEditorConfig;
 
 public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
 
-  Color getBackgroundColor ();
+  Color getDefaultBackgroundColor ();
 
-  Color getForegroundColor ();
+  Color getDefaultForegroundColor ();
 
   Font getFont ();
 

@@ -62,8 +62,8 @@ public class PreviewPart extends AbstractPart {
     calcPreCondition = new CalculatorPreCondition();
     config = new DefaultMidiFileContentEditorConfig();
 
-    setBackground(config.getBackgroundColor());
-    setForeground(config.getForegroundColor());
+    setBackground(config.getDefaultBackgroundColor());
+    setForeground(config.getDefaultForegroundColor());
     setSize(width, height); // after initializing calcPreCondition
 
 
@@ -90,9 +90,9 @@ public class PreviewPart extends AbstractPart {
 
         Font font = getFont();
         e.gc.setFont(font);
+        e.gc.setForeground(getCurrentSlide().getForegroundColor());
 
         if (getCurrentSlide().getBackgroundImageFile() != null) {
-
           if (currentShownImage == null ||
               ! currentShownImageAsFile.equals(getCurrentSlide().getBackgroundImageFile()) ||   //image has changed
               currentShownImage.getBounds().width != getBounds().width ||                       // size has changed
@@ -105,6 +105,7 @@ public class PreviewPart extends AbstractPart {
         }
         else {
           setBackgroundImage(null);
+          setBackground(getCurrentSlide().getBackgroundColor());
           currentShownImage = null;
           currentShownImageAsFile = null;
         }
@@ -112,6 +113,7 @@ public class PreviewPart extends AbstractPart {
 
         for (SlideItem nextItem: getCurrentSlide().getItems()) {
           e.gc.setFont(getCurrentSlide().getFont());
+
           e.gc.drawText(nextItem.getText(), nextItem.getX(), nextItem.getY(), true);
         }
 
@@ -121,6 +123,11 @@ public class PreviewPart extends AbstractPart {
     redraw();
   }
 
+  public void setBackgroundImage(Image newImage) {
+    if (currentShownImage != null)
+      currentShownImage.dispose();
+    super.setBackgroundImage(newImage);
+  }
 
 
 
