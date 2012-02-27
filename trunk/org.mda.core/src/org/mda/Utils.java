@@ -14,7 +14,9 @@ import mda.MidiFileChordPart;
 import mda.MidiFilePartType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
@@ -37,6 +39,25 @@ public class Utils {
   private final static ImageRegistry registry = new ImageRegistry();
 
   public static final String ICON_PROPERTIES = "properties.gif";
+
+  public static String colorToString (final Color color) {
+    return color.getGreen() + "x" + color.getRed() + "x" + color.getBlue();
+  }
+
+  public static Color stringToColor (final String colorAsString, final Color defaultColor) {
+    if (colorAsString == null)
+      return defaultColor;
+
+    String [] colors = colorAsString.split("x");
+    if (colors.length != 3)
+      return defaultColor;
+
+    int green = Integer.parseInt(colors [0]);
+    int red = Integer.parseInt(colors [1]);
+    int blue = Integer.parseInt(colors [2]);
+
+    return new Color (Display.getCurrent(), red, green, blue);
+  }
 
   public static Image loadImageFromProject (final String id) {
     Image foundImage = registry.get(id);

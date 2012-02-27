@@ -18,6 +18,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
+import org.mda.Utils;
 import org.mda.additionals.Additional;
 
 public class MidiFileSlideCalculator extends SlideCalculator {
@@ -83,12 +84,17 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
 
   public Slide calculatePart (final MidiFilePart part, final CalculatorPreCondition preCondition) {
-
-    init((MidiFile) part.eContainer());
+    MidiFile midifile = (MidiFile) part.eContainer();
+    init(midifile);
     Font zoomedFont = calculateZoomedFont(font, preCondition);
     LOGGER.info("set font to size " + zoomedFont.getFontData() [0].height + " from " + font.getFontData() [0].height);
     Slide slide = new Slide(part, zoomedFont);
     slide.setBackgroundImage(image, imageFile);
+
+    slide.setBackgroundColor(Utils.stringToColor(midifile.getBackgroundColor(), getConfig().getDefaultBackgroundColor()));
+    LOGGER.info("set background to " + slide.getBackgroundColor());
+    slide.setForegroundColor(Utils.stringToColor(midifile.getForegroundColor(), getConfig().getDefaultForegroundColor()));
+    LOGGER.info("set foreground to " + slide.getForegroundColor());
 
     currentY = 0;
 

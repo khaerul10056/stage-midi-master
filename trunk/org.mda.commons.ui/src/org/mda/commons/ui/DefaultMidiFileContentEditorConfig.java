@@ -65,7 +65,7 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
     this.backgroundColor = black;
   }
 
-  public Color getBackgroundColor () {
+  public Color getDefaultBackgroundColor () {
     return backgroundColor;
   }
 
@@ -73,7 +73,7 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
     this.foregroundColor = white;
   }
 
-  public Color getForegroundColor () {
+  public Color getDefaultForegroundColor () {
     return foregroundColor;
   }
 

@@ -1,33 +1,38 @@
 
 
+Enhancement 	Editor			edit backgroundcolor and foregroundcolor								NEXT
 
-Enhancement 	Editor		Remove part																new
-Bug 			Editor		Add splitted part as reference? 										new
+Enhancement     Editor			alignment: left, right, center pro File
+Enhancement		Editor			edit font / bold / italic / outline 									new
+Enhancement		Presentation	perspective with controlfunctions (black / white / default-page)		new
+Enhancement 	Editor			Remove part																new
+Enhancement		Additionals		Rotate and save rotation												new
+Bug 			Editor			Add splitted part as reference? 										new
 
-Enhancement		Navigator	Presentation-Perspective / Edit-perspective								new
+Enhancement		Navigator		Presentation-Perspective / Edit-perspective								new
 
 
-Bug				Editor		Remove multiple whitespaces-configuration								new
-Enhancement		Editor		selection of navigator doesn't change while changing slides				new
+Bug				Editor			Remove multiple whitespaces-configuration								new
+Enhancement		Editor			selection of navigator doesn't change while changing slides				new
 
-Enhancement		Editor 		handling refs															new
-Enhancement		Editor 		new part 																new
-Enhancement		Editor 		clone part 																new
-Enhancement		Editor 		remove part 															new
-Enhancement		Editor 		move part up/down 														new
+Enhancement		Editor 			handling refs															new
+Enhancement		Editor 			new part 																new
+Enhancement		Editor 			clone part 																new
+Enhancement		Editor 			remove part 															new
+Enhancement		Editor 			move part up/down 														new
 
-Enhancement		User		import from gmail														new
-Enhancement		User		export userlist															new
-Enhancement		User		mail to group from gmail												new
+Enhancement		User			import from gmail														new
+Enhancement		User			export userlist															new
+Enhancement		User			mail to group from gmail												new
 
 
 
 ______________________________________
-Enhancement 	Editor		Add part + Add part ref													done
-Enhancement		Editor		Move chord foreward/backward											NEXT
-Enhancement 	Editor		merge part																done
-Bug				Editor 		Preview-Screen does not adapt after editing preview-editor-content		done
-Enhancement		Editor	 	next line / previous line 												done
-Enhancement		Editor 		split line / merge line 												done
-Enhancement		Editor 		edit chord 																done
-Enhancement		Editor 		split part																done
+Enhancement 	Editor			Add part + Add part ref													done
+Enhancement		Editor			Move chord foreward/backward											done
+Enhancement 	Editor			merge part																done
+Bug				Editor 			Preview-Screen does not adapt after editing preview-editor-content		done
+Enhancement		Editor	 		next line / previous line 												done
+Enhancement		Editor 			split line / merge line 												done
+Enhancement		Editor 			edit chord 																done
+Enhancement		Editor 			split part																done

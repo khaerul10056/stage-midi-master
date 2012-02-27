@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
@@ -33,6 +34,10 @@ public class Slide {
   private final HashMap<Integer, Collection<SlideItem>> items       = new HashMap<Integer, Collection<SlideItem>>();
 
   private File backgroundImageFile;
+
+  private Color backgroundColor;
+
+  private Color foregroundColor;
 
   public Slide (EObject modelRef, final Font font) {
     this.modelRef = modelRef;
@@ -157,6 +162,22 @@ public class Slide {
 
   public File getBackgroundImageFile () {
     return backgroundImageFile;
+  }
+
+  public Color getBackgroundColor () {
+    return backgroundColor;
+  }
+
+  public void setBackgroundColor (Color backgroundColor) {
+    this.backgroundColor = backgroundColor;
+  }
+
+  public Color getForegroundColor () {
+    return foregroundColor;
+  }
+
+  public void setForegroundColor (Color foregroundColor) {
+    this.foregroundColor = foregroundColor;
   }
 
 

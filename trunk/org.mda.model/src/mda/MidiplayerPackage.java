@@ -135,13 +135,31 @@ public interface MidiplayerPackage extends EPackage {
 	int ABSTRACT_SESSION_ITEM__PATH = 1;
 
 	/**
+   * The feature id for the '<em><b>Background Color</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_SESSION_ITEM__BACKGROUND_COLOR = 2;
+
+  /**
+   * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_SESSION_ITEM__FOREGROUND_COLOR = 3;
+
+  /**
    * The number of structural features of the '<em>Abstract Session Item</em>' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int ABSTRACT_SESSION_ITEM_FEATURE_COUNT = 2;
+	int ABSTRACT_SESSION_ITEM_FEATURE_COUNT = 4;
 
 	/**
    * The meta object id for the '{@link mda.impl.MidiFileImpl <em>Midi File</em>}' class.
@@ -172,6 +190,24 @@ public interface MidiplayerPackage extends EPackage {
 	int MIDI_FILE__PATH = ABSTRACT_SESSION_ITEM__PATH;
 
 	/**
+   * The feature id for the '<em><b>Background Color</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MIDI_FILE__BACKGROUND_COLOR = ABSTRACT_SESSION_ITEM__BACKGROUND_COLOR;
+
+  /**
+   * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MIDI_FILE__FOREGROUND_COLOR = ABSTRACT_SESSION_ITEM__FOREGROUND_COLOR;
+
+  /**
    * The feature id for the '<em><b>Parts</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -637,6 +673,28 @@ public interface MidiplayerPackage extends EPackage {
 	EAttribute getAbstractSessionItem_Path();
 
 	/**
+   * Returns the meta object for the attribute '{@link mda.AbstractSessionItem#getBackgroundColor <em>Background Color</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Background Color</em>'.
+   * @see mda.AbstractSessionItem#getBackgroundColor()
+   * @see #getAbstractSessionItem()
+   * @generated
+   */
+  EAttribute getAbstractSessionItem_BackgroundColor();
+
+  /**
+   * Returns the meta object for the attribute '{@link mda.AbstractSessionItem#getForegroundColor <em>Foreground Color</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Foreground Color</em>'.
+   * @see mda.AbstractSessionItem#getForegroundColor()
+   * @see #getAbstractSessionItem()
+   * @generated
+   */
+  EAttribute getAbstractSessionItem_ForegroundColor();
+
+  /**
    * Returns the meta object for class '{@link mda.MidiFile <em>Midi File</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1071,6 +1129,22 @@ public interface MidiplayerPackage extends EPackage {
 		EAttribute ABSTRACT_SESSION_ITEM__PATH = eINSTANCE.getAbstractSessionItem_Path();
 
 		/**
+     * The meta object literal for the '<em><b>Background Color</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABSTRACT_SESSION_ITEM__BACKGROUND_COLOR = eINSTANCE.getAbstractSessionItem_BackgroundColor();
+
+    /**
+     * The meta object literal for the '<em><b>Foreground Color</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABSTRACT_SESSION_ITEM__FOREGROUND_COLOR = eINSTANCE.getAbstractSessionItem_ForegroundColor();
+
+    /**
      * The meta object literal for the '{@link mda.impl.MidiFileImpl <em>Midi File</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

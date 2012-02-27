@@ -1,6 +1,7 @@
 package org.mda.presenter.ui;
 
 import static org.mda.commons.ui.calculator.CalculatorRegistry.getCalculator;
+import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.logging.Logger;
@@ -38,6 +39,7 @@ public class BeamerPresenter extends Shell implements IPresentationView {
   private int currentSlideIndex = 0;
 
   private Image currentShownImage = null;
+  private File currentShownImageAsFile;
 
   private CalculatorPreCondition calcPreCondition;
 
@@ -82,21 +84,32 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
     addPaintListener(new PaintListener() {
 
+
+
       @Override
       public void paintControl (PaintEvent e) {
         Font font = getFont();
         e.gc.setFont(font);
 
-        if (getCurrentSlide().getBackgroundImage(getSize()) != null) {
-          if (currentShownImage == null || getCurrentSlide().getBackgroundImage(getSize()) != currentShownImage) {
+        if (getCurrentSlide().getBackgroundImageFile() != null) {
+          if (currentShownImage == null ||
+              ! currentShownImageAsFile.equals(getCurrentSlide().getBackgroundImageFile()) ||   //image has changed
+              currentShownImage.getBounds().width != getBounds().width ||                       // size has changed
+              currentShownImage.getBounds().height != getBounds().height) {
+            LOGGER.info("Repaint background image: " + (currentShownImage != null ? currentShownImage.getBounds() : "<null>") +  getBounds());
             setBackgroundImage(getCurrentSlide().getBackgroundImage(getSize()));
             currentShownImage = getBackgroundImage();
+            currentShownImageAsFile = getCurrentSlide().getBackgroundImageFile();
           }
         }
         else {
           setBackgroundImage(null);
+          setBackground(getCurrentSlide().getBackgroundColor());
           currentShownImage = null;
+          currentShownImageAsFile = null;
         }
+
+        e.gc.setForeground(getCurrentSlide().getForegroundColor());
 
 
         for (SlideItem nextItem: getCurrentSlide().getItems()) {
@@ -107,6 +120,12 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     });
 
     redraw();
+  }
+
+  public void setBackgroundImage(Image newImage) {
+    if (currentShownImage != null)
+      currentShownImage.dispose();
+    super.setBackgroundImage(newImage);
   }
 
 
