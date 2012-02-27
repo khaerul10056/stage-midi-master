@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Properties;
 import mda.Configuration;
 import mda.MidiPlayerRoot;
+import mda.Session;
 import org.mda.additionals.AdditionalsHandler;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -30,6 +31,8 @@ public class ApplicationSession {
   private File lastModelFile;
 
   private AdditionalsHandler additionalsHandler;
+
+  private Session currentSession;
 
   /**
    * injector
@@ -159,6 +162,14 @@ public class ApplicationSession {
 
   public void saveModel () {
     MidiPlayerService.saveRootObject(playerroot);
+  }
+
+  public Session getCurrentSession () {
+    return currentSession;
+  }
+
+  public void setCurrentSession (Session currentSession) {
+    this.currentSession = currentSession;
   }
 
 

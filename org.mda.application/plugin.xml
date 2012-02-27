@@ -14,9 +14,17 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="RCP Perspective"
-            class="org.mda.application.Perspective"
-            id="org.mda.application.perspective">
+            name="Admin Perspective"
+            class="org.mda.application.AdminPerspective"
+            id="org.mda.application.adminperspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Presentation Perspective"
+            class="org.mda.application.PresentationPerspective"
+            id="org.mda.application.presentationperspective">
       </perspective>
    </extension>
    <extension

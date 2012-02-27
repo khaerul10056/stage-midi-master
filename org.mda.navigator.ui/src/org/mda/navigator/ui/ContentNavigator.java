@@ -38,6 +38,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IPerspectiveRegistry;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
@@ -53,6 +54,7 @@ import org.mda.commons.ui.NewSessionPanel;
 import org.mda.commons.ui.NewSongPanel;
 import org.mda.commons.ui.SessionGroup;
 import org.mda.commons.ui.SongSelectorPanel;
+import org.mda.commons.ui.Util;
 import org.mda.commons.ui.navigator.NavigatorItem;
 import org.mda.export.powerpoint.Exporter;
 import org.mda.presenter.ui.BeamerPresenter;
@@ -129,10 +131,15 @@ public class ContentNavigator extends ViewPart {
 
         if (selectioninfo != null) {
 
+          appSession.setCurrentSession(selectioninfo.getSession());
+          final IPerspectiveRegistry reg = getSite().getWorkbenchWindow().getWorkbench().getPerspectiveRegistry();
+          getSite().getWorkbenchWindow().getActivePage().setPerspective(reg.findPerspectiveWithId(Util.PRESENTATION_PERSPECTIVE));
+
+
           final GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController(menu.getDisplay());
           DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
           config.setChordVisible(false);
-          BeamerPresenter presenter = new BeamerPresenter(menu.getDisplay(), selectioninfo.getSession(), controller, config);
+          BeamerPresenter presenter = new BeamerPresenter(menu.getDisplay(), selectioninfo.getSession(), controller, config, false);
           if (selectioninfo.getItem() != null)
             controller.toItem(selectioninfo.getItem());
 
@@ -140,7 +147,9 @@ public class ContentNavigator extends ViewPart {
 
             @Override
             public void widgetDisposed (DisposeEvent arg0) {
+              getSite().getWorkbenchWindow().getActivePage().setPerspective(reg.findPerspectiveWithId(Util.ADMIN_PERSPECTIVE));
               controller.close();
+              appSession.setCurrentSession(null);
             }
           });
 
@@ -158,10 +167,15 @@ public class ContentNavigator extends ViewPart {
         SelectionInfo selectioninfo = getSessionFromSelection(e);
 
         if (selectioninfo != null) {
+
+          appSession.setCurrentSession(selectioninfo.getSession()); // must be before setting perspective
+          final IPerspectiveRegistry reg = getSite().getWorkbenchWindow().getWorkbench().getPerspectiveRegistry();
+          getSite().getWorkbenchWindow().getActivePage().setPerspective(reg.findPerspectiveWithId(Util.PRESENTATION_PERSPECTIVE));
+
           final GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController(menu.getDisplay());
           DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
           config.setChordVisible(false);
-          BeamerPresenter presenter = new BeamerPresenter(menu.getDisplay(), selectioninfo.getSession(), controller, config);
+          BeamerPresenter presenter = new BeamerPresenter(menu.getDisplay(), selectioninfo.getSession(), controller, config, true);
           if (selectioninfo.getItem() != null)
             controller.toItem(selectioninfo.getItem());
 
@@ -169,7 +183,9 @@ public class ContentNavigator extends ViewPart {
 
             @Override
             public void widgetDisposed (DisposeEvent arg0) {
+              getSite().getWorkbenchWindow().getActivePage().setPerspective(reg.findPerspectiveWithId(Util.ADMIN_PERSPECTIVE));
               controller.close();
+              appSession.setCurrentSession(null);
             }
           });
 

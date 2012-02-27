@@ -95,14 +95,10 @@ public class MidiFileDetailsShell extends Shell {
               LOGGER.info("Set picture of file " + midifile.getName() + " to " + additional.getKey());
               midifile.setPic(additional.getKey());
             }
-
-
-
             refreshData();
           }
         });
       }
-
     });
     GridData cd = getContentData();
     cd.heightHint = PREVIEW_HEIGHT;
@@ -110,7 +106,6 @@ public class MidiFileDetailsShell extends Shell {
     lblPicture.setLayoutData(cd);
 
     //Background-Color
-
     // Use a label full of spaces to show the color
     Label lblBackground = new Label (this, SWT.NONE);
     lblBackground.setText("Background-Color:");
@@ -124,7 +119,7 @@ public class MidiFileDetailsShell extends Shell {
       @Override
       public void mouseDoubleClick (MouseEvent e) {
         // Create the color-change dialog
-        ColorDialog dlg = new ColorDialog(shell);
+        ColorDialog dlg = new ColorDialog(getShell());
 
         // Set the selected color in the dialog from
         // user's selected color
@@ -157,7 +152,7 @@ public class MidiFileDetailsShell extends Shell {
       @Override
       public void mouseDoubleClick (MouseEvent e) {
         // Create the color-change dialog
-        ColorDialog dlg = new ColorDialog(shell);
+        ColorDialog dlg = new ColorDialog(getShell());
 
         // Set the selected color in the dialog from
         // user's selected color

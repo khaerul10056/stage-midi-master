@@ -2,7 +2,6 @@ package org.mda.presenter.ui.test;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import mda.MidiPlayerRoot;
 import mda.Session;
@@ -68,7 +67,7 @@ public class PresenterTester extends Shell {
         final GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController(getDisplay());
 
 
-        BeamerPresenter beamerPresenter = new BeamerPresenter(Display.getCurrent(), currentSession, controller, config);
+        BeamerPresenter beamerPresenter = new BeamerPresenter(Display.getCurrent(), currentSession, controller, config, false);
 
         beamerPresenter.setSize(size);
         controller.connect(beamerPresenter);
