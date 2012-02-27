@@ -13,6 +13,10 @@ public class Util {
 
   private static final Log LOGGER  = LogFactory.getLogger(Util.class);
 
+  public final static String ADMIN_PERSPECTIVE = "org.mda.application.adminperspective";
+
+  public final static String PRESENTATION_PERSPECTIVE = "org.mda.application.presentationperspective";
+
 
 
 public static String logEvent (KeyEvent event) {

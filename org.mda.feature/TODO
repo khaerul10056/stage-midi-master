@@ -1,6 +1,6 @@
 
 
-Enhancement 	Editor			edit backgroundcolor and foregroundcolor								NEXT
+
 
 Enhancement     Editor			alignment: left, right, center pro File
 Enhancement		Editor			edit font / bold / italic / outline 									new
@@ -28,6 +28,7 @@ Enhancement		User			mail to group from gmail												new
 
 
 ______________________________________
+Enhancement 	Editor			edit backgroundcolor and foregroundcolor								done
 Enhancement 	Editor			Add part + Add part ref													done
 Enhancement		Editor			Move chord foreward/backward											done
 Enhancement 	Editor			merge part																done

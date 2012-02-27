@@ -53,8 +53,8 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
   }
 
-  public BeamerPresenter (Display display, Session session, IPresentationController controller, IMidiFileEditorUIConfig config) {
-    super (display, SWT.ON_TOP);
+  public BeamerPresenter (Display display, Session session, IPresentationController controller, IMidiFileEditorUIConfig config, final boolean onTop) {
+    super (display, onTop ? SWT.ON_TOP: SWT.NONE);
     calcPreCondition = new CalculatorPreCondition();
 
     Monitor preferredMonitor = getPreferredExternalMonitor(display);
