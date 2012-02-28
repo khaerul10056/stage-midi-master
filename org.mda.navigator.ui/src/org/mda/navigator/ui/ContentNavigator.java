@@ -5,13 +5,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import mda.AbstractSessionItem;
 import mda.Gallery;
 import mda.Session;
 import mda.impl.MidiFileImpl;
 import mda.impl.SessionImpl;
+import org.eclipse.core.commands.Command;
+import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -23,13 +23,10 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -38,37 +35,38 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IPerspectiveRegistry;
+import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.part.ViewPart;
 import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
+import org.mda.SelectionInfo;
 import org.mda.commons.ui.ContentProvider;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.LabelProvider;
 import org.mda.commons.ui.MidiFileEditorInput;
 import org.mda.commons.ui.NewSessionPanel;
 import org.mda.commons.ui.NewSongPanel;
 import org.mda.commons.ui.SessionGroup;
 import org.mda.commons.ui.SongSelectorPanel;
-import org.mda.commons.ui.Util;
 import org.mda.commons.ui.navigator.NavigatorItem;
 import org.mda.export.powerpoint.Exporter;
-import org.mda.presenter.ui.BeamerPresenter;
-import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 public class ContentNavigator extends ViewPart {
 
-  private static final Logger LOGGER  = Logger.getLogger(ContentNavigator.class.getName());
+  private static final Log LOGGER  = LogFactory.getLogger(ContentNavigator.class);
 
   private Text                txtSearchfield;
 
   private Tree                treModel;
 
-  private ApplicationSession  appSession = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
+  private ApplicationSession  appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
   private MenuItem            itemPowerpoint;
 
@@ -130,31 +128,17 @@ public class ContentNavigator extends ViewPart {
         SelectionInfo selectioninfo = getSessionFromSelection(e);
 
         if (selectioninfo != null) {
-
-          appSession.setCurrentSession(selectioninfo.getSession());
-          final IPerspectiveRegistry reg = getSite().getWorkbenchWindow().getWorkbench().getPerspectiveRegistry();
-          getSite().getWorkbenchWindow().getActivePage().setPerspective(reg.findPerspectiveWithId(Util.PRESENTATION_PERSPECTIVE));
-
-
-          final GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController(menu.getDisplay());
-          DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-          config.setChordVisible(false);
-          BeamerPresenter presenter = new BeamerPresenter(menu.getDisplay(), selectioninfo.getSession(), controller, config, false);
-          if (selectioninfo.getItem() != null)
-            controller.toItem(selectioninfo.getItem());
-
-          presenter.addDisposeListener(new DisposeListener() {
-
-            @Override
-            public void widgetDisposed (DisposeEvent arg0) {
-              getSite().getWorkbenchWindow().getActivePage().setPerspective(reg.findPerspectiveWithId(Util.ADMIN_PERSPECTIVE));
-              controller.close();
-              appSession.setCurrentSession(null);
-            }
-          });
-
-          presenter.setBounds(new Rectangle(tree.getShell().getBounds().x, tree.getShell().getBounds().y, 1024, 768)); // TODO adapt size
-          presenter.setEnabled(true);
+          selectioninfo.setPreview(true);
+          IWorkbench workbench = getSite().getWorkbenchWindow().getWorkbench();
+          ICommandService cmdService = (ICommandService) workbench.getService(ICommandService.class);
+          Command cmd = cmdService.getCommand("org.mda.presenter.ui.commands.startPresentation");
+          ExecutionEvent event = new ExecutionEvent(cmd, new HashMap<String, String>(), this, selectioninfo);
+          try {
+            cmd.executeWithChecks(event);
+          }
+          catch (Exception e1) {
+              LOGGER.error(e1.getLocalizedMessage(), e1);
+          }
         }
       }
     });
@@ -167,29 +151,17 @@ public class ContentNavigator extends ViewPart {
         SelectionInfo selectioninfo = getSessionFromSelection(e);
 
         if (selectioninfo != null) {
-
-          appSession.setCurrentSession(selectioninfo.getSession()); // must be before setting perspective
-          final IPerspectiveRegistry reg = getSite().getWorkbenchWindow().getWorkbench().getPerspectiveRegistry();
-          getSite().getWorkbenchWindow().getActivePage().setPerspective(reg.findPerspectiveWithId(Util.PRESENTATION_PERSPECTIVE));
-
-          final GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController(menu.getDisplay());
-          DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-          config.setChordVisible(false);
-          BeamerPresenter presenter = new BeamerPresenter(menu.getDisplay(), selectioninfo.getSession(), controller, config, true);
-          if (selectioninfo.getItem() != null)
-            controller.toItem(selectioninfo.getItem());
-
-          presenter.addDisposeListener(new DisposeListener() {
-
-            @Override
-            public void widgetDisposed (DisposeEvent arg0) {
-              getSite().getWorkbenchWindow().getActivePage().setPerspective(reg.findPerspectiveWithId(Util.ADMIN_PERSPECTIVE));
-              controller.close();
-              appSession.setCurrentSession(null);
-            }
-          });
-
-          presenter.setEnabled(true);
+          selectioninfo.setPreview(false);
+          IWorkbench workbench = getSite().getWorkbenchWindow().getWorkbench();
+          ICommandService cmdService = (ICommandService) workbench.getService(ICommandService.class);
+          Command cmd = cmdService.getCommand("org.mda.presenter.ui.commands.startPresentation");
+          ExecutionEvent event = new ExecutionEvent(cmd, new HashMap<String, String>(), this, selectioninfo);
+          try {
+            cmd.executeWithChecks(event);
+          }
+          catch (Exception e1) {
+              LOGGER.error(e1.getLocalizedMessage(), e1);
+          }
         }
       }
 
@@ -212,7 +184,7 @@ public class ContentNavigator extends ViewPart {
 
         }
         catch (IOException e1) {
-          LOGGER.log(Level.SEVERE, e1.getLocalizedMessage(), e1);
+          LOGGER.error(e1.getLocalizedMessage(), e1);
         }
       }
     });
@@ -433,7 +405,7 @@ public class ContentNavigator extends ViewPart {
           page.openEditor(editorInput, editorId);
         }
         catch (PartInitException e) {
-          LOGGER.log(Level.SEVERE, e.getLocalizedMessage(), e);
+          LOGGER.error(e.getLocalizedMessage(), e);
         }
         }
 

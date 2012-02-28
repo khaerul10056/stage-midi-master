@@ -2,6 +2,7 @@ package org.mda.presenter.ui.test;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import mda.MidiPlayerRoot;
 import mda.Session;
@@ -20,6 +21,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.presenter.ui.BeamerPresenter;
+import org.mda.presenter.ui.IPresentationController;
 import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
 
 public class PresenterTester extends Shell {
@@ -64,18 +66,19 @@ public class PresenterTester extends Shell {
         DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
         config.setChordVisible(chkWithChords.getSelection());
 
-        final GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController(getDisplay());
 
+        final Collection <IPresentationController> controllers = new ArrayList<IPresentationController>();
+        final GlobalKeyRegistryPresentationController globalKeyRegPresentationController = new GlobalKeyRegistryPresentationController(getDisplay());
+        controllers.add(globalKeyRegPresentationController);
 
-        BeamerPresenter beamerPresenter = new BeamerPresenter(Display.getCurrent(), currentSession, controller, config, false);
+        BeamerPresenter beamerPresenter = new BeamerPresenter(Display.getCurrent(), currentSession, controllers, config, false);
 
         beamerPresenter.setSize(size);
-        controller.connect(beamerPresenter);
         beamerPresenter.addDisposeListener(new DisposeListener() {
 
           @Override
           public void widgetDisposed (DisposeEvent arg0) {
-            controller.close();
+               globalKeyRegPresentationController.close();
           }
         });
 

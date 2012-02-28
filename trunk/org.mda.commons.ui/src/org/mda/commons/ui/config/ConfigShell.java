@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Spinner;
 import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 
 
 public class ConfigShell extends Shell {
@@ -22,7 +23,7 @@ public class ConfigShell extends Shell {
 
   private Spinner spnFontSize;
 
-  private ApplicationSession session = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
+  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
 
 

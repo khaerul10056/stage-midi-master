@@ -2,22 +2,27 @@ package org.mda.navigator.ui;
 
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.ui.part.ViewPart;
-import org.mda.ApplicationSession;
 import org.mda.commons.ui.ContentProvider;
 import org.mda.commons.ui.LabelProvider;
+import org.mda.presenter.ui.DefaultPresentationController;
+import org.mda.presenter.ui.MdaPresenterModule;
+import org.mda.presenter.ui.PresentationContext;
 
 
 public class PresentationNavigator extends ViewPart{
 
-  private ApplicationSession  appSession = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
+  private PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
   private List treModel;
   private ListViewer treviewer;
+
+  private final DefaultPresentationController controller = new DefaultPresentationController();
 
   private void layoutButton (final Button button) {
     GridData data = new GridData();
@@ -50,10 +55,20 @@ public class PresentationNavigator extends ViewPart{
     Button btnPrev = new Button(comp, SWT.PUSH);
     btnPrev.setText("Prev slide");
     layoutButton(btnPrev);
+    btnPrev.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        getController().previousSlide();
+      }
+    });
 
     Button btnNext = new Button(comp, SWT.PUSH);
     btnNext.setText("Next slide");
     layoutButton(btnNext);
+    btnNext.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        getController().nextSlide();
+      }
+    });
 
     Button btnBlack = new Button(comp, SWT.PUSH);
     btnBlack.setText("Black slide");
@@ -76,6 +91,8 @@ public class PresentationNavigator extends ViewPart{
   @Override
   public void createPartControl (Composite arg0) {
     arg0.setLayout(new GridLayout(1, false));
+    if (! presentationContext.getRegisteredControllers().contains(getController()))
+      presentationContext.getRegisteredControllers().add(getController());
 
     createButtons(arg0);
 
@@ -85,7 +102,9 @@ public class PresentationNavigator extends ViewPart{
     ContentProvider contentprovider = new ContentProvider();
     treviewer.setContentProvider(contentprovider);
     treviewer.setLabelProvider(new LabelProvider());
-    treviewer.setInput(appSession.getCurrentSession());
+    treviewer.setInput(presentationContext.getCurrentSession());
+
+
 
   }
 
@@ -93,6 +112,10 @@ public class PresentationNavigator extends ViewPart{
   public void setFocus () {
     // TODO Auto-generated method stub
 
+  }
+
+  private DefaultPresentationController getController () {
+    return controller;
   }
 
 }

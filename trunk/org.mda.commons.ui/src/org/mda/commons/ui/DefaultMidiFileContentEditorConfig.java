@@ -9,6 +9,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 
 public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConfig {
 
@@ -27,7 +28,7 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
   private Integer fontsize;
 
 
-  private ApplicationSession session = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
+  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
   public Integer getFontsize () {
     if (fontsize != null)

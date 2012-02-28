@@ -6,11 +6,12 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 
 
 public class ConfigHandler extends AbstractHandler {
 
-  private ApplicationSession session = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
+  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
   @Override
   public Object execute(ExecutionEvent event) throws ExecutionException {

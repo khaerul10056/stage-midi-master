@@ -8,6 +8,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 import org.mda.commons.ui.LabelProvider;
 import org.mda.commons.ui.MidiFileEditorInput;
 import org.mda.logging.Log;
@@ -21,7 +22,7 @@ public class PreviewEditor extends EditorPart {
 
   private LabelProvider provider = new LabelProvider();
 
-  private ApplicationSession  appSession = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
+  private ApplicationSession  appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
   private PreviewEditorContent previewEditorContent;
 

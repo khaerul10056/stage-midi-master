@@ -18,6 +18,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 import org.mda.Utils;
 import org.mda.additionals.Additional;
 
@@ -40,7 +41,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
   private final GC gc = new GC(Display.getDefault());
 
-  private ApplicationSession  appSession = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
+  private ApplicationSession  appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
   @Override
   public List<Slide> calculate (final AbstractSessionItem sessionitem, final CalculatorPreCondition preCondition) {

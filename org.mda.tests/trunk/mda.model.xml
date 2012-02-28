@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <org.mda.model:MidiPlayerRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda.model="org.mda.model">
   <gallery>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Alle Schoepfung staunt und preist.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="/home/oleym/privat/soundOfFaith/beamer/background/252090.pcd.png">
+    <galleryItems xsi:type="org.mda.model:MidiFile" name="Alle Schoepfung staunt und preist.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="image#dsc00129#jpg">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text="D G A G   D G A G"/>
@@ -220,7 +220,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Blessed be your name.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="/home/oleym/privat/soundOfFaith/beamer/background/252098.pcd.png">
+    <galleryItems xsi:type="org.mda.model:MidiFile" name="Blessed be your name.mid" path="/home/oleym/privat/soundOfFaith/midi" backgroundColor="89x232x89" foregroundColor="249x249x249" pic="image#dsc00171#jpg">
       <parts parttype="INTRO" bar="1">
         <textlines>
           <chordParts text="H 2x"/>
@@ -323,7 +323,19 @@
         <textlines/>
       </parts>
       <parts bar="70" refPart="//@gallery/@galleryItems.1/@parts.3">
-        <textlines/>
+        <textlines>
+          <chordParts text="Blessed be t" chord="H "/>
+          <chordParts text="he name of the Lord, b" chord="F# "/>
+          <chordParts text="lesse" chord="g# "/>
+          <chordParts text="d be your name, " chord="E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Blessed be t" chord="H "/>
+          <chordParts text="he name of the Lord, B" chord="F# "/>
+          <chordParts text="less" chord="g# "/>
+          <chordParts text="ed be" chord="F# "/>
+          <chordParts text=" your glorious name." chord="E "/>
+        </textlines>
       </parts>
       <parts parttype="BRIDGE" bar="79">
         <textlines>
@@ -517,7 +529,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Der Herr segne Dich.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="image#DSC01532#jpg">
+    <galleryItems xsi:type="org.mda.model:MidiFile" name="Der Herr segne Dich.mid" path="/home/oleym/privat/soundOfFaith/midi" backgroundColor="36x30x229" foregroundColor="92x213x92" pic="image#DSC01532#jpg">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text="C G/C F/C C C/E F G C"/>
@@ -1040,14 +1052,14 @@
     <galleryItems xsi:type="org.mda.model:MidiFile" name="For all you've done.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO" bar="2">
         <textlines>
-          <chordParts text="  " chord="D"/>
-          <chordParts text="     " chord="Dsus"/>
-          <chordParts text="  " chord="D"/>
-          <chordParts text="     " chord="Dsus"/>
-          <chordParts text="  " chord="D"/>
-          <chordParts text="     " chord="Dsus"/>
-          <chordParts text="  " chord="D"/>
-          <chordParts text="  " chord="Dsus"/>
+          <chordParts text=" " chord="D "/>
+          <chordParts chord="Dsus "/>
+          <chordParts chord="D "/>
+          <chordParts chord="Dsus "/>
+          <chordParts chord="D "/>
+          <chordParts chord="Dsus "/>
+          <chordParts chord="D "/>
+          <chordParts chord="Dsus"/>
         </textlines>
       </parts>
       <parts parttype="VERS" bar="14">

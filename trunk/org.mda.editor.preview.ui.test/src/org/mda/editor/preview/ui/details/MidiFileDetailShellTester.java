@@ -12,8 +12,7 @@ public class MidiFileDetailShellTester {
 
   /** @param args */
   public static void main (String[] args) throws Exception {
-    MdaModule module = new MdaModule();
-    ApplicationSession session = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
+    ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
     session.load(null);
     Shell shell = new Shell();
     final MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));

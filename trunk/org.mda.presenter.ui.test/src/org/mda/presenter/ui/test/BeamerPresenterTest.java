@@ -4,17 +4,19 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiPlayerRoot;
 import mda.Session;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.presenter.ui.BeamerPresenter;
 import org.mda.presenter.ui.DefaultPresentationController;
+import org.mda.presenter.ui.IPresentationController;
 
 
 public class BeamerPresenterTest {
@@ -35,8 +37,10 @@ public class BeamerPresenterTest {
     root = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));
 
     session = root.getSessions().get(0);
-    controller = new DefaultPresentationController();
-    presenter = new BeamerPresenter(Display.getCurrent(), session, controller, new DefaultMidiFileContentEditorConfig(), false);
+
+    Collection <IPresentationController> controllers = new ArrayList<IPresentationController>();
+    controllers.add(new DefaultPresentationController());
+    presenter = new BeamerPresenter(Display.getCurrent(), session, controllers, new DefaultMidiFileContentEditorConfig(), false);
     firstSong = (MidiFile) session.getItems().get(0);
     secondSong = (MidiFile) session.getItems().get(1);
     lastSong = (MidiFile) session.getItems().get(session.getItems().size() - 1);
