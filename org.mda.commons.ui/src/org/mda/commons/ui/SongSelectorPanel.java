@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 import org.mda.commons.ui.navigator.NavigatorItem;
 
 
@@ -22,7 +23,7 @@ public class SongSelectorPanel extends Shell {
 
   private final Table table;
 
-  private ApplicationSession  appSession = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
+  private ApplicationSession  appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
   private Collection <MidiFile> selectedfiles = new ArrayList<MidiFile>();
 

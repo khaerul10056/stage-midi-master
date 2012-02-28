@@ -2,6 +2,7 @@ package org.mda.presenter.ui;
 
 import static org.mda.commons.ui.calculator.CalculatorRegistry.getCalculator;
 import java.io.File;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.logging.Logger;
@@ -53,7 +54,7 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
   }
 
-  public BeamerPresenter (Display display, Session session, IPresentationController controller, IMidiFileEditorUIConfig config, final boolean onTop) {
+  public BeamerPresenter (Display display, Session session, Collection <IPresentationController> controller, IMidiFileEditorUIConfig config, final boolean onTop) {
     super (display, onTop ? SWT.ON_TOP: SWT.NONE);
     calcPreCondition = new CalculatorPreCondition();
 
@@ -75,7 +76,9 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
     calcPreCondition.setCalculationsize(new Point (getBounds().width, getBounds().height));
     this.config = config;
-    controller.connect(this);
+    for (IPresentationController nextController: controller) {
+      nextController.connect(this);
+    }
 
     open();
     setFocus();

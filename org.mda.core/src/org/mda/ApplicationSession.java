@@ -7,12 +7,9 @@ import java.io.IOException;
 import java.util.Properties;
 import mda.Configuration;
 import mda.MidiPlayerRoot;
-import mda.Session;
 import org.mda.additionals.AdditionalsHandler;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 
 
 public class ApplicationSession {
@@ -32,20 +29,10 @@ public class ApplicationSession {
 
   private AdditionalsHandler additionalsHandler;
 
-  private Session currentSession;
 
-  /**
-   * injector
-   */
-  private final static Injector injector = Guice.createInjector(new MdaModule());
 
-  /**
-   * getter
-   * @return Injector
-   */
-  public static Injector getInjector () {
-    return injector;
-  }
+
+
 
   public MidiPlayerRoot getCurrentModel () {
     return playerroot;
@@ -164,13 +151,9 @@ public class ApplicationSession {
     MidiPlayerService.saveRootObject(playerroot);
   }
 
-  public Session getCurrentSession () {
-    return currentSession;
-  }
 
-  public void setCurrentSession (Session currentSession) {
-    this.currentSession = currentSession;
-  }
+
+
 
 
 

@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 import org.mda.Utils;
 import org.mda.additionals.Additional;
 import org.mda.additionals.AdditionalsHandler;
@@ -39,7 +40,7 @@ public class MidiFileDetailsShell extends Shell {
   private Color defaultBackground = Display.getCurrent().getSystemColor(SWT.COLOR_BLACK);
   private Color defaultForeground = Display.getCurrent().getSystemColor(SWT.COLOR_WHITE);
 
-  private ApplicationSession session = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
+  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
   private AdditionalsHandler additionalHandler = session.getAdditionalsHandler();
 

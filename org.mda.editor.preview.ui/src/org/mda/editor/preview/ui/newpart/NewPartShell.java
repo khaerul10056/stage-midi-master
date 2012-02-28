@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Widget;
 import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 import org.mda.additionals.AdditionalsHandler;
 
@@ -34,7 +35,7 @@ public class NewPartShell extends Shell implements SelectionListener {
 
   private List <MidiFilePart> partReferences = new ArrayList<MidiFilePart>();
 
-  private ApplicationSession session = ApplicationSession.getInjector().getInstance(ApplicationSession.class);
+  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
   private AdditionalsHandler additionalHandler = session.getAdditionalsHandler();
 
