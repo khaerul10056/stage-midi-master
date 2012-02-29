@@ -1,5 +1,7 @@
 package org.mda.commons.ui;
 
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.mda.logging.Log;
@@ -17,6 +19,15 @@ public class Util {
 
   public final static String PRESENTATION_PERSPECTIVE = "org.mda.application.presentationperspective";
 
+
+  public static Object getStructuredSelection (ISelection selection) {
+    if (selection instanceof IStructuredSelection) {
+      IStructuredSelection structSelection = (IStructuredSelection) selection;
+      return structSelection.getFirstElement();
+    }
+
+    return null;
+  }
 
 
 public static String logEvent (KeyEvent event) {

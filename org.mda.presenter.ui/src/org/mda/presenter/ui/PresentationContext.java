@@ -9,6 +9,8 @@ public class PresentationContext {
 
   private Session currentSession;
 
+
+
   private final Collection <IPresentationController> registeredControllers = new ArrayList<IPresentationController>();
 
   public Session getCurrentSession () {

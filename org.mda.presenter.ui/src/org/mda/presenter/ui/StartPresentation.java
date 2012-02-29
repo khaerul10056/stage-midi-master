@@ -10,7 +10,6 @@ import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.ui.IPerspectiveRegistry;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.mda.ApplicationSession;
 import org.mda.SelectionInfo;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.Util;
@@ -27,13 +26,15 @@ public class StartPresentation extends AbstractHandler {
 
     final IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
     final IPerspectiveRegistry reg = activeWorkbenchWindow.getWorkbench().getPerspectiveRegistry();
-    activeWorkbenchWindow.getActivePage().setPerspective(reg.findPerspectiveWithId(Util.PRESENTATION_PERSPECTIVE));
 
     //Register global controller
     final GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController(activeWorkbenchWindow.getShell().getDisplay());
     final Collection <IPresentationController> controllers = new ArrayList<IPresentationController>();
     if (! presentationContext.getRegisteredControllers().contains(controller))
       presentationContext.getRegisteredControllers().add(controller);
+
+    presentationContext.setCurrentSession(selectioninfo.getSession());
+    activeWorkbenchWindow.getActivePage().setPerspective(reg.findPerspectiveWithId(Util.PRESENTATION_PERSPECTIVE));
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setChordVisible(false);
@@ -50,6 +51,8 @@ public class StartPresentation extends AbstractHandler {
         //Remove global controller
         controller.close();
         controllers.remove(controller);
+
+        presentationContext.setCurrentSession(null);
       }
     });
 

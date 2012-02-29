@@ -1,10 +1,9 @@
-package org.mda.editor.preview.ui.parts;
+package org.mda.editor.preview.ui;
 
 import mda.MidiFile;
 import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.mda.editor.preview.ui.PreviewEditorContent;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
