@@ -1,10 +1,7 @@
 package org.mda.presenter.ui;
 
-import static org.mda.commons.ui.calculator.CalculatorRegistry.getCalculator;
 import java.io.File;
 import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.logging.Logger;
 import mda.AbstractSessionItem;
 import mda.Session;
@@ -13,14 +10,11 @@ import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
-import org.mda.commons.ui.calculator.CalculatorPreCondition;
-import org.mda.commons.ui.calculator.ISlideCalculator;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.presenter.ui.slide.IPresentationView;
@@ -30,19 +24,11 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
   private static final Logger LOGGER  = Logger.getLogger(BeamerPresenter.class.getName());
 
-  private final IMidiFileEditorUIConfig config;
-
-
-
-  private final LinkedHashMap<AbstractSessionItem, List <Slide>> slidesPerItem;
-
-  private int currentSessionItemIndex = 0;
-  private int currentSlideIndex = 0;
+  private PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
 
   private Image currentShownImage = null;
   private File currentShownImageAsFile;
 
-  private CalculatorPreCondition calcPreCondition;
 
   private Monitor getPreferredExternalMonitor (Display display) {
     for (Monitor nextMonitor: display.getMonitors()) {
@@ -54,9 +40,8 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
   }
 
-  public BeamerPresenter (Display display, Session session, Collection <IPresentationController> controller, IMidiFileEditorUIConfig config, final boolean onTop) {
+  public BeamerPresenter (Display display, Session session, final boolean onTop) {
     super (display, onTop ? SWT.ON_TOP: SWT.NONE);
-    calcPreCondition = new CalculatorPreCondition();
 
     Monitor preferredMonitor = getPreferredExternalMonitor(display);
     if (! preferredMonitor.equals(Display.getCurrent().getPrimaryMonitor())) {
@@ -74,16 +59,15 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     }
 
     setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
-    calcPreCondition.setCalculationsize(new Point (getBounds().width, getBounds().height));
-    this.config = config;
-    for (IPresentationController nextController: controller) {
+
+    for (IPresentationController nextController: presentationContext.getRegisteredControllers()) {
       nextController.connect(this);
     }
 
     open();
     setFocus();
 
-    slidesPerItem = calculateSlides (session);
+
 
     addPaintListener(new PaintListener() {
 
@@ -94,7 +78,7 @@ public class BeamerPresenter extends Shell implements IPresentationView {
         Font font = getFont();
         e.gc.setFont(font);
 
-        if (getCurrentSlide().getBackgroundImageFile() != null) {
+        if (presentationContext.getCurrentSlide().getBackgroundImageFile() != null) {
           if (currentShownImage == null ||
               ! currentShownImageAsFile.equals(getCurrentSlide().getBackgroundImageFile()) ||   //image has changed
               currentShownImage.getBounds().width != getBounds().width ||                       // size has changed
@@ -125,27 +109,14 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     redraw();
   }
 
+  public Slide getCurrentSlide () {
+    return presentationContext.getCurrentSlide();
+  }
+
   public void setBackgroundImage(Image newImage) {
     if (currentShownImage != null)
       currentShownImage.dispose();
     super.setBackgroundImage(newImage);
-  }
-
-
-
-
-
-  private LinkedHashMap<AbstractSessionItem, List<Slide>> calculateSlides (Session session) {
-    LinkedHashMap<AbstractSessionItem, List<Slide>> slidesPerItem = new LinkedHashMap<AbstractSessionItem, List<Slide>>();
-
-    for (AbstractSessionItem nextItem: session.getItems()) {
-      ISlideCalculator calculator = getCalculator(nextItem);
-      calculator.setConfig(config);
-      List<Slide> calculate = calculator.calculate(nextItem, calcPreCondition);
-      slidesPerItem.put(nextItem, calculate);
-    }
-
-    return slidesPerItem;
   }
 
 
@@ -158,71 +129,39 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     dispose();
   }
 
-  public AbstractSessionItem getCurrentSessionItem () {
-    return slidesPerItem.keySet().toArray(new AbstractSessionItem [slidesPerItem.keySet().size()]) [currentSessionItemIndex];
-  }
-
-  public Slide getCurrentSlide () {
-    return slidesPerItem.get(getCurrentSessionItem()).get(currentSlideIndex);
-  }
 
 
 
   @Override
   public boolean nextSlide () {
-    AbstractSessionItem currentSessionItem = getCurrentSessionItem();
-    if (currentSlideIndex >= slidesPerItem.get(currentSessionItem).size() - 1) { // last slide of current item reached
-      if (currentSessionItemIndex >= slidesPerItem.keySet().toArray().length - 1) { // last slide ever reached
-        return false;
-      }
-      else {
-        currentSessionItemIndex ++;
-        currentSlideIndex = 0;
-      }
-    }
-    else
-      currentSlideIndex ++;
+    boolean bool = presentationContext.nextSlide();
+    if (bool)
+      redraw();
 
-    LOGGER.info("Next to " + currentSessionItemIndex + ", " + currentSlideIndex);
-
-    redraw();
     return true;
   }
 
   @Override
   public boolean previousSlide () {
-    if (currentSlideIndex == 0) { // first slide of current item reached
-      if (currentSessionItemIndex == 0) { // first slide ever reached
-        return false;
-      }
-      else {
-        currentSessionItemIndex --;
-        currentSlideIndex = slidesPerItem.get(getCurrentSessionItem()).size() - 1;
-      }
-    }
-    else
-      currentSlideIndex --;
+    boolean bool = presentationContext.previousSlide();
+    if (bool)
+      redraw();
 
-    LOGGER.info("Previous to " + currentSessionItemIndex + ", " + currentSlideIndex);
-
-    redraw();
     return true;
   }
 
   @Override
   public boolean toItem (AbstractSessionItem item) {
-    AbstractSessionItem[] array = slidesPerItem.keySet().toArray(new AbstractSessionItem [slidesPerItem.size()]);
-    for (int i = 0; i < array.length; i++) {
-      if (array [i].equals(item)) {
-        currentSessionItemIndex = i;
-        currentSlideIndex = 0;
-        redraw();
-        LOGGER.info("To item " + currentSessionItemIndex + ", " + currentSlideIndex);
-        return true;
-      }
-    }
+    boolean bool = presentationContext.toItem(item);
+    if (bool)
+      redraw();
+
     LOGGER.info("To item (not found)");
     return false;
+  }
+
+  public AbstractSessionItem getCurrentSessionItem () {
+    return presentationContext.getCurrentSessionItem();
   }
 
 

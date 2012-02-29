@@ -149,7 +149,22 @@
         </textlines>
       </parts>
       <parts parttype="BRIDGE" bar="139" refPart="//@gallery/@galleryItems.0/@parts.7">
-        <textlines/>
+        <textlines>
+          <chordParts text="Heilig " chord="D "/>
+          <chordParts text="ist der " chord="G "/>
+          <chordParts text="Herr, die Sch&#xf6;pfung " chord="A "/>
+          <chordParts text="singt, " chord="h "/>
+          <chordParts text="die Sch&#xf6;pfung " chord="G "/>
+          <chordParts text="singt. " chord="A "/>
+        </textlines>
+        <textlines>
+          <chordParts text="Heilig " chord="D "/>
+          <chordParts text="ist der " chord="G "/>
+          <chordParts text="Herr, die Sch&#xf6;pfung " chord="A "/>
+          <chordParts text="singt, " chord="h "/>
+          <chordParts text="die Sch&#xf6;pfung " chord="G "/>
+          <chordParts text="singt. " chord="A "/>
+        </textlines>
       </parts>
       <parts bar="155">
         <textlines>

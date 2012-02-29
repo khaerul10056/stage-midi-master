@@ -23,7 +23,7 @@ public class ContentOverviewPanel extends Composite  {
 
   private static final Log LOGGER  = LogFactory.getLogger(ContentOverviewPanel.class);
 
-  private int width;
+   private int width;
   private int height;
 
   private Image currentShownImage = null;
@@ -38,6 +38,7 @@ public class ContentOverviewPanel extends Composite  {
   private MidiFilePart currentPart;
 
   private DefaultMidiFileContentEditorConfig config;
+
 
 
 

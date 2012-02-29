@@ -30,6 +30,10 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
   private Composite root;
 
+  int currentSlide = 0;
+
+
+
   @Override
   public void createPartControl (Composite arg0) {
     LOGGER.info("creatPart");
@@ -63,7 +67,7 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
   @Override
   public boolean nextSlide () {
-    // TODO Auto-generated method stub
+    currentSlide ++;
     return false;
   }
 
@@ -79,6 +83,8 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
   @Override
   public boolean toItem (AbstractSessionItem item) {
+
+    currentSlide = 0;
 
     for (ContentOverviewPanel oldPanel : previewParts)
       oldPanel.dispose();

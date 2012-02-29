@@ -27,18 +27,22 @@ public class StartPresentation extends AbstractHandler {
     final IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
     final IPerspectiveRegistry reg = activeWorkbenchWindow.getWorkbench().getPerspectiveRegistry();
 
+
+
     //Register global controller
     final GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController(activeWorkbenchWindow.getShell().getDisplay());
     final Collection <IPresentationController> controllers = new ArrayList<IPresentationController>();
     if (! presentationContext.getRegisteredControllers().contains(controller))
       presentationContext.getRegisteredControllers().add(controller);
 
-    presentationContext.setCurrentSession(selectioninfo.getSession());
-    activeWorkbenchWindow.getActivePage().setPerspective(reg.findPerspectiveWithId(Util.PRESENTATION_PERSPECTIVE));
-
+    BeamerPresenter presenter = new BeamerPresenter(activeWorkbenchWindow.getShell().getDisplay(), selectioninfo.getSession(), ! selectioninfo.isPreview());
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setChordVisible(false);
-    BeamerPresenter presenter = new BeamerPresenter(activeWorkbenchWindow.getShell().getDisplay(), selectioninfo.getSession(), presentationContext.getRegisteredControllers(), config, ! selectioninfo.isPreview());
+    presentationContext.setCurrentSession(selectioninfo.getSession(), config, presenter.getSize());
+
+    activeWorkbenchWindow.getActivePage().setPerspective(reg.findPerspectiveWithId(Util.PRESENTATION_PERSPECTIVE));
+
+
     if (selectioninfo.getItem() != null)
       controller.toItem(selectioninfo.getItem());
 
@@ -52,7 +56,7 @@ public class StartPresentation extends AbstractHandler {
         controller.close();
         controllers.remove(controller);
 
-        presentationContext.setCurrentSession(null);
+        presentationContext.closeSession();
       }
     });
 
