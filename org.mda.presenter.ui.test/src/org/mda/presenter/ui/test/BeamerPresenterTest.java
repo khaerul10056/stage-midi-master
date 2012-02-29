@@ -40,7 +40,7 @@ public class BeamerPresenterTest {
 
     Collection <IPresentationController> controllers = new ArrayList<IPresentationController>();
     controllers.add(new DefaultPresentationController());
-    presenter = new BeamerPresenter(Display.getCurrent(), session, controllers, new DefaultMidiFileContentEditorConfig(), false);
+    presenter = new BeamerPresenter(Display.getCurrent(), session, false);
     firstSong = (MidiFile) session.getItems().get(0);
     secondSong = (MidiFile) session.getItems().get(1);
     lastSong = (MidiFile) session.getItems().get(session.getItems().size() - 1);
