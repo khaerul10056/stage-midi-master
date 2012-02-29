@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -53,6 +52,7 @@ import org.mda.commons.ui.NewSessionPanel;
 import org.mda.commons.ui.NewSongPanel;
 import org.mda.commons.ui.SessionGroup;
 import org.mda.commons.ui.SongSelectorPanel;
+import org.mda.commons.ui.Util;
 import org.mda.commons.ui.navigator.NavigatorItem;
 import org.mda.export.powerpoint.Exporter;
 import org.mda.logging.Log;
@@ -96,7 +96,7 @@ public class ContentNavigator extends ViewPart {
 
 
   private SelectionInfo getSessionFromSelection (final SelectionEvent e) {
-    Object object = getSelected(treviewer.getSelection());
+    Object object = Util.getStructuredSelection(treviewer.getSelection());
     System.out.println ("Selected " + object);
 
     Session session = null;
@@ -172,7 +172,7 @@ public class ContentNavigator extends ViewPart {
 
     itemPowerpoint.addSelectionListener(new SelectionAdapter() {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        Session session = (Session) getSelected(treviewer.getSelection());
+        Session session = (Session) Util.getStructuredSelection(treviewer.getSelection());
         Exporter exporter = new Exporter();
         try {
           File file = new File (appSession.getExportPath().getAbsolutePath() + File.separator + session.getName() + ".ppt");
@@ -227,7 +227,7 @@ public class ContentNavigator extends ViewPart {
   }
 
   private void insert () {
-    Object object =  getSelected(treviewer.getSelection());
+    Object object = Util.getStructuredSelection(treviewer.getSelection());
 
     //add a new song into gallery
     if (object instanceof Gallery) {
@@ -278,7 +278,7 @@ public class ContentNavigator extends ViewPart {
   }
 
   private void remove () {
-    Object object =  getSelected(treviewer.getSelection());
+    Object object = Util.getStructuredSelection(treviewer.getSelection());
 
     if (object instanceof NavigatorItem) {
       NavigatorItem<?> item = (NavigatorItem<?>) object;
@@ -295,7 +295,7 @@ public class ContentNavigator extends ViewPart {
   }
 
   private void moveDown () {
-    Object object =  getSelected(treviewer.getSelection());
+    Object object = Util.getStructuredSelection(treviewer.getSelection());
 
     if (object instanceof NavigatorItem) {
       NavigatorItem<?> item = (NavigatorItem<?>) object;
@@ -305,22 +305,12 @@ public class ContentNavigator extends ViewPart {
   }
 
   private void moveUp () {
-    Object object =  getSelected(treviewer.getSelection());
+    Object object = Util.getStructuredSelection(treviewer.getSelection());
     if (object instanceof NavigatorItem) {
       NavigatorItem<?> item = (NavigatorItem<?>) object;
       item.moveUp();
       refresh();
     }
-  }
-
-
-  private Object getSelected (ISelection selection) {
-    if (selection instanceof IStructuredSelection) {
-      IStructuredSelection structSelection = (IStructuredSelection) selection;
-      return structSelection.getFirstElement();
-    }
-
-    return null;
   }
 
 
@@ -389,7 +379,7 @@ public class ContentNavigator extends ViewPart {
       @Override
       public void doubleClick (DoubleClickEvent arg0) {
 
-        Object object = getSelected(arg0.getSelection());
+        Object object = Util.getStructuredSelection(arg0.getSelection());
 
         if (object instanceof NavigatorItem)
           object = ((NavigatorItem) object).getModelElement();

@@ -1,6 +1,9 @@
 package org.mda.navigator.ui;
 
+import mda.AbstractSessionItem;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ListViewer;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.layout.GridData;
@@ -11,6 +14,9 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.ui.part.ViewPart;
 import org.mda.commons.ui.ContentProvider;
 import org.mda.commons.ui.LabelProvider;
+import org.mda.commons.ui.Util;
+import org.mda.commons.ui.navigator.NavigatorItem;
+import org.mda.logging.Log;
 import org.mda.presenter.ui.DefaultPresentationController;
 import org.mda.presenter.ui.MdaPresenterModule;
 import org.mda.presenter.ui.PresentationContext;
@@ -103,6 +109,15 @@ public class PresentationNavigator extends ViewPart{
     treviewer.setContentProvider(contentprovider);
     treviewer.setLabelProvider(new LabelProvider());
     treviewer.setInput(presentationContext.getCurrentSession());
+    treviewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
+      @Override
+      public void selectionChanged (SelectionChangedEvent arg0) {
+        NavigatorItem <AbstractSessionItem> item = (NavigatorItem<AbstractSessionItem>) Util.getStructuredSelection(treviewer.getSelection());
+        AbstractSessionItem selectSessionItem = item.getModelElement();
+        controller.toItem(selectSessionItem);
+      }
+    });
 
 
 

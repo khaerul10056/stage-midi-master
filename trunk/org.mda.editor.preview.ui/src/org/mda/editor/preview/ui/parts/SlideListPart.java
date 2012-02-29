@@ -8,6 +8,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.mda.editor.preview.ui.AbstractPart;
 import org.mda.editor.preview.ui.StepTypeColorInfo;
 import org.mda.editor.preview.ui.StepTypeColorer;
 import org.mda.logging.Log;

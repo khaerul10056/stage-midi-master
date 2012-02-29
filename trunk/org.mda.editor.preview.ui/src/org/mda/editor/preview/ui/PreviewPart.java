@@ -1,4 +1,4 @@
-package org.mda.editor.preview.ui.parts;
+package org.mda.editor.preview.ui;
 
 import static org.mda.commons.ui.calculator.CalculatorRegistry.getCalculator;
 import java.io.File;
@@ -50,12 +50,10 @@ public class PreviewPart extends AbstractPart {
     calcPreCondition.setCalculationsize(new Point (getBounds().width, getBounds().height));
   }
 
-  public PreviewPart (Composite parent) {
+  public PreviewPart (Composite parent, int width, int height) {
     super(parent);
 
     //TODO check bounds of presentation display
-    width = 400;
-    height = 300;
     LOGGER.info("set Size of preview-part to " + width + "x" + height);
 
     calculator = (MidiFileSlideCalculator) getCalculator(MidiFileSlideCalculator.class);

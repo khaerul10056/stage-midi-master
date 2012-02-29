@@ -8,10 +8,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.mda.editor.preview.ui.parts.AbstractPart;
 import org.mda.editor.preview.ui.parts.ButtonPanelPart;
 import org.mda.editor.preview.ui.parts.ContentPart;
-import org.mda.editor.preview.ui.parts.PreviewPart;
 import org.mda.editor.preview.ui.parts.SlideListPart;
 
 
@@ -47,7 +45,7 @@ public class PreviewEditorContent extends Composite  {
     editorParts.add(contentpanel);
     contentpanel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
-    setPreviewpanel(new PreviewPart(this));
+    setPreviewpanel(new PreviewPart(this, 400, 300));
     editorParts.add(getPreviewpanel());
     getPreviewpanel().setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
 
