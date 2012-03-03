@@ -6,10 +6,13 @@ import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
@@ -35,11 +38,23 @@ public class ContentOverviewPanel extends Composite  {
 
   private Point lastSize;
 
-  private MidiFilePart currentPart;
+  private final MidiFilePart currentPart;
 
   private DefaultMidiFileContentEditorConfig config;
 
+  private boolean selected;
 
+
+
+  public void setSelected (final boolean selected) {
+    boolean mustRepaint = this.selected != selected;
+    LOGGER.info("setSelected called for " + this + " is " + selected);
+    this.selected = selected;
+
+    if (mustRepaint)
+      redraw();
+
+  }
 
 
   public int calculateWeight3to4 (final int height) {
@@ -71,8 +86,6 @@ public class ContentOverviewPanel extends Composite  {
     setBackground(config.getDefaultBackgroundColor());
     setForeground(config.getDefaultForegroundColor());
 
-
-
     addPaintListener(new PaintListener() {
 
       @Override
@@ -85,8 +98,10 @@ public class ContentOverviewPanel extends Composite  {
 
         //config.setChordVisible(false);
         calculator.setConfig(config);
-        currentSlide = calculator.calculatePart(currentPart, calcPreCondition);
+        currentSlide = calculator.calculatePart(getCurrentPart(), calcPreCondition);
         }
+
+
 
 
         if (getCurrentSlide() == null)
@@ -121,6 +136,15 @@ public class ContentOverviewPanel extends Composite  {
           e.gc.drawText(nextItem.getText(), nextItem.getX(), nextItem.getY(), true);
         }
 
+        if (selected) {
+
+          Color red = new Color(Display.getCurrent(), 255, 0, 0);
+          Rectangle rect1 = new Rectangle(0, 0, getSize().x -1 , getSize().y - 1);
+          LOGGER.info("Paint a border at " + rect1);
+          e.gc.setForeground(red);
+          e.gc.drawRectangle(rect1);
+        }
+
       }
     });
 
@@ -148,8 +172,13 @@ public class ContentOverviewPanel extends Composite  {
   public Point computeSize(int wHint, int hHint, boolean bool) {
     int x = (getParent().getSize().x / 4) - 5;
     Point newSize = new Point(x, calculateWeight3to4(x));
+
     LOGGER.info("computeSize " + newSize);
     return newSize;
+  }
+
+  public MidiFilePart getCurrentPart () {
+    return currentPart;
   }
 
 

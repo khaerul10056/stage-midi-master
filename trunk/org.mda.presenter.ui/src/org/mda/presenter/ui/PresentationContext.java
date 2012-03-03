@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.logging.Logger;
 import mda.AbstractSessionItem;
 import mda.Session;
 import org.eclipse.swt.graphics.Point;
@@ -13,11 +12,13 @@ import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.ISlideCalculator;
 import org.mda.commons.ui.calculator.Slide;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 
 public class PresentationContext {
 
-  private static final Logger LOGGER  = Logger.getLogger(PresentationContext.class.getName());
+  private static final Log LOGGER  = LogFactory.getLogger(PresentationContext.class);
 
 
   private Session currentSession;
@@ -31,7 +32,7 @@ public class PresentationContext {
   private IMidiFileEditorUIConfig config;
 
 
-  private final Collection <IPresentationController> registeredControllers = new ArrayList<IPresentationController>();
+  private final List <IPresentationController> registeredControllers = new ArrayList<IPresentationController>();
 
   public Session getCurrentSession () {
     return currentSession;
@@ -50,6 +51,23 @@ public class PresentationContext {
     this.config = null;
     calcPreCondition = null;
     slidesPerItem = null;
+  }
+
+  public void registerController (final IPresentationController controller) {
+    LOGGER.info("Register Controller " + controller.getClass().getName());
+    boolean replaced = false;
+    for (int i = 0; i < registeredControllers.size(); i++) {
+      if (registeredControllers.get(i).getClass().equals(controller.getClass())) {
+        registeredControllers.set(i, controller);
+        replaced = true;
+        break;
+      }
+    }
+
+    if (! replaced)
+      registeredControllers.add(controller);
+
+    LOGGER.info("Controllers: " + registeredControllers);
   }
 
   public Collection <IPresentationController> getRegisteredControllers () {

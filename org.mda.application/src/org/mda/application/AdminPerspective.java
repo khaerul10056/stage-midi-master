@@ -10,8 +10,7 @@ public class AdminPerspective implements IPerspectiveFactory {
   private static final Log LOGGER  = LogFactory.getLogger(AdminPerspective.class);
 
   public void createInitialLayout (IPageLayout layout) {
-    LOGGER.info("Initialize layout");
-
+    LOGGER.info("Initialize layout for admin perspective " + System.identityHashCode(this));
 
     layout.setEditorAreaVisible(true);
     layout.addView("org.mda.navigator.ui.admin", IPageLayout.LEFT, 0.40f, layout.getEditorArea());

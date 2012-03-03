@@ -1,7 +1,6 @@
 package org.mda.presenter.ui;
 
 import java.io.File;
-import java.util.Collection;
 import java.util.logging.Logger;
 import mda.AbstractSessionItem;
 import mda.Session;
@@ -14,10 +13,12 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
-import org.mda.commons.ui.IMidiFileEditorUIConfig;
+import org.eclipse.ui.IPartService;
+import org.eclipse.ui.PlatformUI;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.presenter.ui.slide.IPresentationView;
+import org.mda.presenter.ui.slide.PresentationToControllerConnector;
 
 
 public class BeamerPresenter extends Shell implements IPresentationView {
@@ -28,6 +29,8 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
   private Image currentShownImage = null;
   private File currentShownImageAsFile;
+
+  private PresentationToControllerConnector connectorcontroller;
 
 
   private Monitor getPreferredExternalMonitor (Display display) {
@@ -60,9 +63,9 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
     setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
-    for (IPresentationController nextController: presentationContext.getRegisteredControllers()) {
-      nextController.connect(this);
-    }
+    IPartService service = (IPartService) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart().getSite().getService(IPartService.class);
+    connectorcontroller = new PresentationToControllerConnector(this);
+    service.addPartListener(connectorcontroller);
 
     open();
     setFocus();
@@ -107,6 +110,12 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     });
 
     redraw();
+  }
+
+  public void dispose () {
+    IPartService service = (IPartService) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart().getSite().getService(IPartService.class);
+    service.removePartListener(connectorcontroller);
+    super.dispose();
   }
 
   public Slide getCurrentSlide () {
