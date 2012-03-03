@@ -9,13 +9,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IPartService;
 import org.eclipse.ui.part.ViewPart;
 import org.mda.MidiPlayerService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.slide.IPresentationView;
+import org.mda.presenter.ui.slide.PresentationToControllerConnector;
 
 
 public class ContentOverview extends ViewPart implements IPresentationView{
@@ -24,27 +24,18 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
   private PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
 
-  private AbstractSessionItem currentItem = null;
-
   private Collection<ContentOverviewPanel> previewParts = new ArrayList<ContentOverviewPanel>();
 
   private Composite root;
-
-  int currentSlide = 0;
-
 
 
   @Override
   public void createPartControl (Composite arg0) {
     LOGGER.info("creatPart");
     this.root = arg0;
-    root.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_BLUE));
     root.setLayout(new GridLayout(4, false));
-
-    for (IPresentationController controller : presentationContext.getRegisteredControllers()) {
-      controller.connect(this);
-    }
-
+    IPartService partservice = (IPartService) getSite().getService(IPartService.class);
+    partservice.addPartListener(new PresentationToControllerConnector(this));
   }
 
 
@@ -59,15 +50,14 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
   @Override
   public void end () {
-    // TODO Auto-generated method stub
-
+    dispose();
   }
 
 
 
   @Override
   public boolean nextSlide () {
-    currentSlide ++;
+    refresh();
     return false;
   }
 
@@ -75,8 +65,16 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
   @Override
   public boolean previousSlide () {
-    // TODO Auto-generated method stub
+    refresh();
     return false;
+  }
+
+  public void refresh () {
+    LOGGER.info("refresh() called");
+    for (ContentOverviewPanel oldPanel : previewParts) {
+      oldPanel.setSelected(oldPanel.getCurrentPart().equals(presentationContext.getCurrentSlide().getModelRef()));
+    }
+
   }
 
 
@@ -84,17 +82,12 @@ public class ContentOverview extends ViewPart implements IPresentationView{
   @Override
   public boolean toItem (AbstractSessionItem item) {
 
-    currentSlide = 0;
-
     for (ContentOverviewPanel oldPanel : previewParts)
       oldPanel.dispose();
     previewParts.clear();
 
-
-
-    currentItem = item;
     if (item instanceof MidiFile) {
-      MidiFile file = (MidiFile) currentItem;
+      MidiFile file = (MidiFile) item;
       for (MidiFilePart nextPart: file.getParts()) {
         LOGGER.info("Create overviewpanel for part " + MidiPlayerService.toString(nextPart));
         ContentOverviewPanel overviewPanel = new ContentOverviewPanel(root, nextPart);
@@ -103,12 +96,7 @@ public class ContentOverview extends ViewPart implements IPresentationView{
         overviewPanel.setSize(320, 240);
         overviewPanel.redraw();
         previewParts.add(overviewPanel);
-
-
-
-
       }
-
     }
 
     root.layout(true, true);

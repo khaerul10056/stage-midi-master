@@ -1,7 +1,5 @@
 package org.mda.presenter.ui;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -13,10 +11,14 @@ import org.eclipse.ui.PlatformUI;
 import org.mda.SelectionInfo;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.Util;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
 
 
-public class StartPresentation extends AbstractHandler {
+public class StartPresentation extends AbstractHandler  {
+
+  private static final Log LOGGER  = LogFactory.getLogger(StartPresentation.class);
 
   private PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
 
@@ -27,13 +29,9 @@ public class StartPresentation extends AbstractHandler {
     final IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
     final IPerspectiveRegistry reg = activeWorkbenchWindow.getWorkbench().getPerspectiveRegistry();
 
-
-
     //Register global controller
-    final GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController(activeWorkbenchWindow.getShell().getDisplay());
-    final Collection <IPresentationController> controllers = new ArrayList<IPresentationController>();
-    if (! presentationContext.getRegisteredControllers().contains(controller))
-      presentationContext.getRegisteredControllers().add(controller);
+    final GlobalKeyRegistryPresentationController globalkeycontroller = new GlobalKeyRegistryPresentationController(activeWorkbenchWindow.getShell().getDisplay());
+    presentationContext.registerController(globalkeycontroller);
 
     BeamerPresenter presenter = new BeamerPresenter(activeWorkbenchWindow.getShell().getDisplay(), selectioninfo.getSession(), ! selectioninfo.isPreview());
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
@@ -42,21 +40,19 @@ public class StartPresentation extends AbstractHandler {
 
     activeWorkbenchWindow.getActivePage().setPerspective(reg.findPerspectiveWithId(Util.PRESENTATION_PERSPECTIVE));
 
-
     if (selectioninfo.getItem() != null)
-      controller.toItem(selectioninfo.getItem());
+      globalkeycontroller.toItem(selectioninfo.getItem());
 
     presenter.addDisposeListener(new DisposeListener() {
 
       @Override
       public void widgetDisposed (DisposeEvent arg0) {
+        globalkeycontroller.close();
+
         activeWorkbenchWindow.getActivePage().setPerspective(reg.findPerspectiveWithId(Util.ADMIN_PERSPECTIVE));
-
-        //Remove global controller
-        controller.close();
-        controllers.remove(controller);
-
         presentationContext.closeSession();
+
+        LOGGER.info("Remaining " + presentationContext.getRegisteredControllers() + " registered controllers after closing presentation");
       }
     });
 
@@ -64,5 +60,7 @@ public class StartPresentation extends AbstractHandler {
 
     return null;
   }
+
+
 
 }

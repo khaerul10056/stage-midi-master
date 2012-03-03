@@ -66,7 +66,6 @@ public class PresenterTester extends Shell {
         DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
         config.setChordVisible(chkWithChords.getSelection());
 
-
         final Collection <IPresentationController> controllers = new ArrayList<IPresentationController>();
         final GlobalKeyRegistryPresentationController globalKeyRegPresentationController = new GlobalKeyRegistryPresentationController(getDisplay());
         controllers.add(globalKeyRegPresentationController);

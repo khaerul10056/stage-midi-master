@@ -1,18 +1,19 @@
 package org.mda.commons.ui.calculator;
 
 import java.math.BigDecimal;
-import java.util.logging.Logger;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 
 
 public abstract class SlideCalculator implements ISlideCalculator {
 
-  private static final Logger LOGGER  = Logger.getLogger(SlideCalculator.class.getName());
+  private static final Log LOGGER  = LogFactory.getLogger(SlideCalculator.class);
 
   private IMidiFileEditorUIConfig config;
 
@@ -60,7 +61,8 @@ public abstract class SlideCalculator implements ISlideCalculator {
   private BigDecimal getZoomFactor (final CalculatorPreCondition preCondition) {
     BigDecimal zoomFactor = new BigDecimal(preCondition.getCalculationsize().x);
     BigDecimal zoomedFactor = zoomFactor.divide(new BigDecimal (getConfig().getDefaultPresentationScreenSize().x), 10, BigDecimal.ROUND_UP);
-    LOGGER.info("set zoom factor " + zoomFactor.toString() + ", " + getConfig().getDefaultPresentationScreenSize() + "-> " + zoomedFactor.toString());
+    if (LOGGER.isDebugEnabled())
+      LOGGER.debug("set zoom factor " + zoomFactor.toString() + ", " + getConfig().getDefaultPresentationScreenSize() + "-> " + zoomedFactor.toString());
     return zoomedFactor;
   }
 
