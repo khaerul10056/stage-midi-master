@@ -11,8 +11,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.List;
-import org.eclipse.ui.IViewSite;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 import org.mda.commons.ui.ContentProvider;
 import org.mda.commons.ui.LabelProvider;
@@ -21,6 +19,7 @@ import org.mda.commons.ui.navigator.NavigatorItem;
 import org.mda.presenter.ui.DefaultPresentationController;
 import org.mda.presenter.ui.MdaPresenterModule;
 import org.mda.presenter.ui.PresentationContext;
+import org.mda.presenter.ui.SpecialSlide;
 
 
 public class PresentationNavigator extends ViewPart{
@@ -38,36 +37,27 @@ public class PresentationNavigator extends ViewPart{
     data.heightHint = 50;
   }
 
-
-
-  @Override
-  public void init (IViewSite site) throws PartInitException {
-    // TODO Auto-generated method stub
-    super.init(site);
-  }
-
-
-
   private void createButtons (final Composite arg) {
     Composite comp = new Composite(arg, SWT.NONE);
     comp.setLayout(new GridLayout(2, true));
 
-    Button btnHome = new Button(comp, SWT.PUSH);
-    layoutButton(btnHome);
-    btnHome.setText("Home");
-    layoutButton(btnHome);
-
-    Button btnEnd = new Button(comp, SWT.PUSH);
-    btnEnd.setText("End");
-    layoutButton(btnEnd);
-
     Button btnPrevSong = new Button(comp, SWT.PUSH);
     btnPrevSong.setText("Prev song");
     layoutButton(btnPrevSong);
+    btnPrevSong.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        getController().previousSong();
+      }
+    });
 
     Button btnNextSong = new Button(comp, SWT.PUSH);
     btnNextSong.setText("Next song");
     layoutButton(btnNextSong);
+    btnNextSong.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        getController().nextSong ();
+      }
+    });
 
     Button btnPrev = new Button(comp, SWT.PUSH);
     btnPrev.setText("Prev slide");
@@ -87,20 +77,36 @@ public class PresentationNavigator extends ViewPart{
       }
     });
 
-    Button btnBlack = new Button(comp, SWT.PUSH);
+    final Button btnBlack = new Button(comp, SWT.TOGGLE);
     btnBlack.setText("Black slide");
     layoutButton(btnBlack);
+    btnBlack.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        getController().toggleBlack (btnBlack.getSelection());
+      }
+    });
 
-    Button btnWhite = new Button(comp, SWT.PUSH);
+    final Button btnWhite = new Button(comp, SWT.TOGGLE);
     btnWhite.setText("White slide");
     layoutButton(btnWhite);
+    btnWhite.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        getController().toggleWhite(btnWhite.getSelection());
+      }
+    });
 
-    Button btnBackground = new Button(comp, SWT.PUSH);
+    final Button btnBackground = new Button(comp, SWT.TOGGLE);
     btnBackground.setText("Slide with background");
     layoutButton(btnBackground);
+    btnBackground.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        getController().toggleOnlyBackground(btnBackground.getSelection());
+      }
+    });
 
     Button btnDefaultSite = new Button(comp, SWT.PUSH);
     btnDefaultSite.setText("Default slide");
+    btnDefaultSite.setEnabled(false);
     layoutButton(btnDefaultSite);
 
   }
@@ -124,23 +130,22 @@ public class PresentationNavigator extends ViewPart{
       @Override
       public void selectionChanged (SelectionChangedEvent arg0) {
         NavigatorItem <AbstractSessionItem> item = (NavigatorItem<AbstractSessionItem>) Util.getStructuredSelection(treviewer.getSelection());
-        AbstractSessionItem selectSessionItem = item.getModelElement();
-        controller.toItem(selectSessionItem);
+        if (item != null) {
+          AbstractSessionItem selectSessionItem = item.getModelElement();
+          controller.toItem(selectSessionItem);
+        }
       }
     });
+  }
 
-
-
+  private DefaultPresentationController getController () {
+    return controller;
   }
 
   @Override
   public void setFocus () {
     // TODO Auto-generated method stub
 
-  }
-
-  private DefaultPresentationController getController () {
-    return controller;
   }
 
 }

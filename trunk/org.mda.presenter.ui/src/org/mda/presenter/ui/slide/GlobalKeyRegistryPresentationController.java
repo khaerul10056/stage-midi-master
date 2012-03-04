@@ -11,6 +11,7 @@ public class GlobalKeyRegistryPresentationController extends DefaultPresentation
   private Display  display;
 
   private Listener listener;
+  boolean toggled = false;
 
   public GlobalKeyRegistryPresentationController (final Display display) {
     this.display = display;
@@ -26,11 +27,32 @@ public class GlobalKeyRegistryPresentationController extends DefaultPresentation
         if (e.character == SWT.ESC)
           end();
 
-        if (e.keyCode == SWT.ARROW_RIGHT)
+        if (e.keyCode == SWT.ARROW_RIGHT && e.stateMask == SWT.NONE)
           nextSlide();
 
-        if (e.keyCode == SWT.ARROW_LEFT)
+        if (e.keyCode == SWT.ARROW_LEFT && e.stateMask == SWT.NONE)
           previousSlide();
+
+        if (e.keyCode == SWT.ARROW_LEFT && e.stateMask == SWT.SHIFT)
+          previousSong();
+
+        if (e.keyCode == SWT.ARROW_RIGHT && e.stateMask == SWT.SHIFT)
+          nextSong();
+
+        if (e.character == 'w') {
+          toggled = ! toggled;
+          toggleWhite(toggled);
+        }
+
+        if (e.character == 'b') {
+          toggled = ! toggled;
+          toggleBlack(toggled);
+        }
+
+        if (e.character == 't') {
+          toggled = ! toggled;
+          toggleOnlyBackground(toggled);
+        }
       }
     };
   }

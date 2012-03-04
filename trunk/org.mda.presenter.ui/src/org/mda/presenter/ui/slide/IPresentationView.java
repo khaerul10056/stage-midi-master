@@ -10,16 +10,17 @@ public interface IPresentationView {
    */
   void end ();
 
-  boolean nextSlide ();
-
-  boolean previousSlide ();
+  /**
+   * refresh the view, for example if next slide is shown
+   */
+  void refresh ();
 
   /**
-   * steps to session item
-   * @param item item
-   * @return true/false
+   * change complete item, change song for example
+   * @param item
+   * @return
    */
-  boolean toItem (final AbstractSessionItem item);
+  boolean toItem (AbstractSessionItem item);
 
 
 
