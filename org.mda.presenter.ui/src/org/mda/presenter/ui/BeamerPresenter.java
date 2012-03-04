@@ -139,31 +139,21 @@ public class BeamerPresenter extends Shell implements IPresentationView {
   }
 
 
-
-
   @Override
   public boolean nextSlide () {
-    boolean bool = presentationContext.nextSlide();
-    if (bool)
-      redraw();
-
+    redraw();
     return true;
   }
 
   @Override
   public boolean previousSlide () {
-    boolean bool = presentationContext.previousSlide();
-    if (bool)
-      redraw();
-
+    redraw();
     return true;
   }
 
   @Override
   public boolean toItem (AbstractSessionItem item) {
-    boolean bool = presentationContext.toItem(item);
-    if (bool)
-      redraw();
+    redraw();
 
     LOGGER.info("To item (not found)");
     return false;
