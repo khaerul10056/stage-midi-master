@@ -31,6 +31,8 @@ public class PresentationContext {
   private CalculatorPreCondition calcPreCondition;
   private IMidiFileEditorUIConfig config;
 
+  private SpecialSlide specialSlide = null;
+
 
   private final List <IPresentationController> registeredControllers = new ArrayList<IPresentationController>();
 
@@ -74,6 +76,9 @@ public class PresentationContext {
     return registeredControllers;
   }
 
+  public int getCurrentSessionItemIndex () {
+    return currentSessionItemIndex;
+  }
   public AbstractSessionItem getCurrentSessionItem () {
     return slidesPerItem.keySet().toArray(new AbstractSessionItem [slidesPerItem.keySet().size()]) [currentSessionItemIndex];
   }
@@ -95,9 +100,6 @@ public class PresentationContext {
     return slidesPerItem;
   }
 
-
-
-
   public boolean nextSlide () {
     AbstractSessionItem currentSessionItem = getCurrentSessionItem();
     if (currentSlideIndex >= slidesPerItem.get(currentSessionItem).size() - 1) { // last slide of current item reached
@@ -113,6 +115,22 @@ public class PresentationContext {
       currentSlideIndex ++;
 
     LOGGER.info("Next to " + currentSessionItemIndex + ", " + currentSlideIndex);
+    return true;
+  }
+
+  public boolean previousSong ()  {
+    if (currentSessionItemIndex == 0)
+      return false;
+
+    currentSessionItemIndex --;
+    return true;
+  }
+
+  public boolean nextSong () {
+    if (currentSessionItemIndex == getCurrentSession().getItems().size())
+      return false;
+
+    currentSessionItemIndex ++;
     return true;
   }
 
@@ -147,5 +165,15 @@ public class PresentationContext {
     LOGGER.info("To item (not found)");
     return false;
   }
+
+  public SpecialSlide getSpecialSlide () {
+    return specialSlide;
+  }
+
+  public void setSpecialSlide (SpecialSlide specialSlide) {
+    this.specialSlide = specialSlide;
+  }
+
+
 
 }

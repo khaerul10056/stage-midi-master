@@ -44,7 +44,6 @@ public class DefaultPresentationController implements IPresentationController {
   }
 
   public void end () {
-
     presentationContext.closeSession();
 
     for (IPresentationView nextView: getRegisteredViews()) {
@@ -53,47 +52,78 @@ public class DefaultPresentationController implements IPresentationController {
   }
 
   public boolean toItem (final AbstractSessionItem sessionItem) {
-    boolean done = true;
-
-    presentationContext.toItem(sessionItem);
-
+    boolean done = presentationContext.toItem(sessionItem);
+    if (done) {
     for (IPresentationView nextView: getRegisteredViews()) {
       LOGGER.info("Dispatch toItem to " + nextView.getClass().getName() + "-" + System.identityHashCode(nextView));
       if (! nextView.toItem(sessionItem))
         done = false;
     }
-
+    }
     return done;
   }
 
 
 
   public boolean nextSlide () {
-    boolean done = true;
-
-    presentationContext.nextSlide();
-
-    for (IPresentationView nextView: getRegisteredViews()) {
-      LOGGER.info("Dispatch nextSlide to " + nextView.getClass().getName() + "-" + System.identityHashCode(nextView));
-      if (! nextView.nextSlide())
-        done = false;
-    }
-
+    boolean done = presentationContext.nextSlide();
+    refreshViews(done);
     return done;
+  }
+
+  public void refreshViews (boolean done) {
+    if (done) {
+      for (IPresentationView nextView : getRegisteredViews()) {
+        LOGGER.info("Dispatch refreshView to " + nextView.getClass().getName() + "-" + System.identityHashCode(nextView));
+        nextView.refresh();
+      }
+    }
   }
 
   public boolean previousSlide () {
-    boolean done = true;
-
-    presentationContext.previousSlide();
-
-    for (IPresentationView nextView: getRegisteredViews()) {
-      LOGGER.info("Dispatch previousSlide to " + nextView.getClass().getName() + "-" + System.identityHashCode(nextView));
-      if (!nextView.previousSlide())
-        done = false;
-    }
-
+    boolean done = presentationContext.previousSlide();
+    refreshViews(done);
     return done;
   }
+
+  public boolean previousSong () {
+    boolean done = presentationContext.previousSong();
+    toItem(presentationContext.getCurrentSessionItem());
+    return done;
+  }
+
+  public boolean nextSong () {
+    boolean done = presentationContext.nextSong();
+    toItem(presentationContext.getCurrentSessionItem());
+    return done;
+  }
+
+  public void toggleBlack (boolean isSelected) {
+    if (isSelected)
+      presentationContext.setSpecialSlide(SpecialSlide.BLACK);
+    else
+      presentationContext.setSpecialSlide(SpecialSlide.NONE);
+
+    refreshViews(true);
+  }
+
+  public void toggleWhite (boolean isSelected) {
+    if (isSelected)
+      presentationContext.setSpecialSlide(SpecialSlide.WHITE);
+    else
+      presentationContext.setSpecialSlide(SpecialSlide.NONE);
+
+    refreshViews(true);
+  }
+
+  public void toggleOnlyBackground (boolean isSelected) {
+    if (isSelected)
+      presentationContext.setSpecialSlide(SpecialSlide.WITHOUT_TEXT);
+    else
+      presentationContext.setSpecialSlide(SpecialSlide.NONE);
+
+    refreshViews(true);
+  }
+
 
 }

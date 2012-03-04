@@ -81,6 +81,20 @@ public class BeamerPresenter extends Shell implements IPresentationView {
         Font font = getFont();
         e.gc.setFont(font);
 
+        if (presentationContext.getSpecialSlide() == SpecialSlide.BLACK) {
+          e.gc.setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
+          e.gc.fillRectangle(e.gc.getClipping());
+          redraw();
+          return;
+        }
+
+        if (presentationContext.getSpecialSlide() == SpecialSlide.WHITE) {
+          e.gc.setBackground(getDisplay().getSystemColor(SWT.COLOR_WHITE));
+          e.gc.fillRectangle(e.gc.getClipping());
+          redraw();
+          return;
+        }
+
         if (presentationContext.getCurrentSlide().getBackgroundImageFile() != null) {
           if (currentShownImage == null ||
               ! currentShownImageAsFile.equals(getCurrentSlide().getBackgroundImageFile()) ||   //image has changed
@@ -101,6 +115,11 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
         e.gc.setForeground(getCurrentSlide().getForegroundColor());
 
+
+        if (presentationContext.getSpecialSlide() == SpecialSlide.WITHOUT_TEXT) {
+          redraw();
+          return;
+        }
 
         for (SlideItem nextItem: getCurrentSlide().getItems()) {
           e.gc.setFont(getCurrentSlide().getFont());
@@ -138,28 +157,18 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     dispose();
   }
 
-
-  @Override
-  public boolean nextSlide () {
-    redraw();
-    return true;
-  }
-
-  @Override
-  public boolean previousSlide () {
-    redraw();
-    return true;
-  }
-
-  @Override
   public boolean toItem (AbstractSessionItem item) {
     redraw();
-
-    LOGGER.info("To item (not found)");
-    return false;
+    return true;
   }
 
-  public AbstractSessionItem getCurrentSessionItem () {
+
+  @Override
+  public void refresh () {
+    redraw();
+  }
+
+   public AbstractSessionItem getCurrentSessionItem () {
     return presentationContext.getCurrentSessionItem();
   }
 
