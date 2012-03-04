@@ -11,12 +11,13 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.List;
+import org.eclipse.ui.IViewSite;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 import org.mda.commons.ui.ContentProvider;
 import org.mda.commons.ui.LabelProvider;
 import org.mda.commons.ui.Util;
 import org.mda.commons.ui.navigator.NavigatorItem;
-import org.mda.logging.Log;
 import org.mda.presenter.ui.DefaultPresentationController;
 import org.mda.presenter.ui.MdaPresenterModule;
 import org.mda.presenter.ui.PresentationContext;
@@ -36,6 +37,16 @@ public class PresentationNavigator extends ViewPart{
     data.grabExcessHorizontalSpace = true;
     data.heightHint = 50;
   }
+
+
+
+  @Override
+  public void init (IViewSite site) throws PartInitException {
+    // TODO Auto-generated method stub
+    super.init(site);
+  }
+
+
 
   private void createButtons (final Composite arg) {
     Composite comp = new Composite(arg, SWT.NONE);
@@ -97,8 +108,7 @@ public class PresentationNavigator extends ViewPart{
   @Override
   public void createPartControl (Composite arg0) {
     arg0.setLayout(new GridLayout(1, false));
-    if (! presentationContext.getRegisteredControllers().contains(getController()))
-      presentationContext.getRegisteredControllers().add(getController());
+    presentationContext.registerController(getController());
 
     createButtons(arg0);
 

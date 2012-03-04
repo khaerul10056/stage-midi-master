@@ -48,7 +48,8 @@ public class ContentOverviewPanel extends Composite  {
 
   public void setSelected (final boolean selected) {
     boolean mustRepaint = this.selected != selected;
-    LOGGER.info("setSelected called for " + this + " is " + selected);
+    if (LOGGER.isDebugEnabled())
+      LOGGER.debug("setSelected called for " + this + " is " + selected);
     this.selected = selected;
 
     if (mustRepaint)

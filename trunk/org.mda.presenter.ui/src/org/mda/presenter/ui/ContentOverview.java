@@ -57,7 +57,7 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
   @Override
   public boolean nextSlide () {
-    refresh();
+    refreshSelection();
     return false;
   }
 
@@ -65,12 +65,12 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
   @Override
   public boolean previousSlide () {
-    refresh();
+    refreshSelection();
     return false;
   }
 
-  public void refresh () {
-    LOGGER.info("refresh() called");
+  public void refreshSelection () {
+    LOGGER.info("refreshSelection called");
     for (ContentOverviewPanel oldPanel : previewParts) {
       oldPanel.setSelected(oldPanel.getCurrentPart().equals(presentationContext.getCurrentSlide().getModelRef()));
     }
@@ -100,6 +100,8 @@ public class ContentOverview extends ViewPart implements IPresentationView{
     }
 
     root.layout(true, true);
+    refreshSelection();
+
     return false;
   }
 
