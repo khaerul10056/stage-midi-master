@@ -84,14 +84,12 @@ public class BeamerPresenter extends Shell implements IPresentationView {
         if (presentationContext.getSpecialSlide() == SpecialSlide.BLACK) {
           e.gc.setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
           e.gc.fillRectangle(e.gc.getClipping());
-          redraw();
           return;
         }
 
         if (presentationContext.getSpecialSlide() == SpecialSlide.WHITE) {
           e.gc.setBackground(getDisplay().getSystemColor(SWT.COLOR_WHITE));
           e.gc.fillRectangle(e.gc.getClipping());
-          redraw();
           return;
         }
 
@@ -117,7 +115,6 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
 
         if (presentationContext.getSpecialSlide() == SpecialSlide.WITHOUT_TEXT) {
-          redraw();
           return;
         }
 
