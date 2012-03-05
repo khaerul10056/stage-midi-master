@@ -102,9 +102,6 @@ public class ContentOverviewPanel extends Composite  {
         currentSlide = calculator.calculatePart(getCurrentPart(), calcPreCondition);
         }
 
-
-
-
         if (getCurrentSlide() == null)
           return;
 
@@ -140,10 +137,17 @@ public class ContentOverviewPanel extends Composite  {
         if (selected) {
 
           Color red = new Color(Display.getCurrent(), 255, 0, 0);
-          Rectangle rect1 = new Rectangle(0, 0, getSize().x -1 , getSize().y - 1);
-          LOGGER.info("Paint a border at " + rect1);
           e.gc.setForeground(red);
-          e.gc.drawRectangle(rect1);
+          LOGGER.info("Paint a border");
+          for (int i = 0; i < 5; i++) {
+            Rectangle rect1 = new Rectangle(i, i, getSize().x - (2*i) , getSize().y - (2*i));
+            e.gc.drawRectangle(rect1);
+
+          }
+
+
+
+
         }
 
       }
