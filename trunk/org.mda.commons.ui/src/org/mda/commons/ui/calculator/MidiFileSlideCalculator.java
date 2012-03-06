@@ -1,6 +1,5 @@
 package org.mda.commons.ui.calculator;
 
-import static org.mda.Utils.loadImageFromProject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,6 @@ import mda.MidiFileTextLine;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.GC;
-import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
@@ -21,6 +19,7 @@ import org.mda.ApplicationSession;
 import org.mda.MdaModule;
 import org.mda.Utils;
 import org.mda.additionals.Additional;
+import org.mda.commons.ui.imagecache.ImageCache;
 
 public class MidiFileSlideCalculator extends SlideCalculator {
 
@@ -33,7 +32,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
   private Font font;
 
-  private ImageData image;
+
+  private ImageCache imageCache = new ImageCache();
 
   private File imageFile;
 
@@ -69,14 +69,12 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         File picAsFile = findByKey.getFile();
         if (picAsFile.exists()) {
           LOGGER.info("Load pic from " + picAsFile.getAbsolutePath());
-          image = loadImageFromProject(picAsFile).getImageData();
           imageFile = picAsFile;
         }
       }
     }
     else {
       LOGGER.info("Setting image to null");
-      image = null;
       imageFile = null;
     }
 
@@ -90,7 +88,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     Font zoomedFont = calculateZoomedFont(font, preCondition);
     LOGGER.info("set font to size " + zoomedFont.getFontData() [0].height + " from " + font.getFontData() [0].height);
     Slide slide = new Slide(part, zoomedFont);
-    slide.setBackgroundImage(image, imageFile);
+    slide.setBackgroundImage(imageFile);
 
     slide.setBackgroundColor(Utils.stringToColor(midifile.getBackgroundColor(), getConfig().getDefaultBackgroundColor()));
     LOGGER.info("set background to " + slide.getBackgroundColor());

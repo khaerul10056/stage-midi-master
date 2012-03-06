@@ -6,20 +6,24 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import mda.AbstractSessionItem;
+import mda.MidiFile;
 import mda.Session;
 import org.eclipse.swt.graphics.Point;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.ISlideCalculator;
 import org.mda.commons.ui.calculator.Slide;
+import org.mda.commons.ui.imagecache.ImageCache;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.ui.slide.NavigationRefreshAction;
 
 
 public class PresentationContext {
 
   private static final Log LOGGER  = LogFactory.getLogger(PresentationContext.class);
 
+  private ImageCache  imagecache = new ImageCache ();
 
   private Session currentSession;
 
@@ -48,11 +52,12 @@ public class PresentationContext {
     slidesPerItem = calculateSlides (currentSession);
   }
 
-  public void closeSession () {
+  public void closePresentationSession () {
     this.currentSession = null;
     this.config = null;
     calcPreCondition = null;
     slidesPerItem = null;
+    imagecache.clear();
   }
 
   public void registerController (final IPresentationController controller) {
@@ -100,13 +105,15 @@ public class PresentationContext {
     return slidesPerItem;
   }
 
-  public boolean nextSlide () {
+  public NavigationRefreshAction nextSlide () {
+    NavigationRefreshAction action = NavigationRefreshAction.REFRESH_VIEW;
     AbstractSessionItem currentSessionItem = getCurrentSessionItem();
     if (currentSlideIndex >= slidesPerItem.get(currentSessionItem).size() - 1) { // last slide of current item reached
       if (currentSessionItemIndex >= slidesPerItem.keySet().toArray().length - 1) { // last slide ever reached
-        return false;
+        return NavigationRefreshAction.NONE;
       }
       else {
+        action = NavigationRefreshAction.DIFFERENT_ITEM_START;
         currentSessionItemIndex ++;
         currentSlideIndex = 0;
       }
@@ -115,7 +122,7 @@ public class PresentationContext {
       currentSlideIndex ++;
 
     LOGGER.info("Next to " + currentSessionItemIndex + ", " + currentSlideIndex);
-    return true;
+    return action;
   }
 
   public boolean previousSong ()  {
@@ -134,13 +141,15 @@ public class PresentationContext {
     return true;
   }
 
-  public boolean previousSlide () {
+  public NavigationRefreshAction previousSlide () {
+    NavigationRefreshAction action = NavigationRefreshAction.REFRESH_VIEW;
     if (currentSlideIndex == 0) { // first slide of current item reached
       if (currentSessionItemIndex == 0) { // first slide ever reached
-        return false;
+        return NavigationRefreshAction.NONE;
       }
       else {
         currentSessionItemIndex --;
+        action = NavigationRefreshAction.DIFFERENT_ITEM_END;
         currentSlideIndex = slidesPerItem.get(getCurrentSessionItem()).size() - 1;
       }
     }
@@ -149,15 +158,15 @@ public class PresentationContext {
 
     LOGGER.info("Previous to " + currentSessionItemIndex + ", " + currentSlideIndex);
 
-    return true;
+    return action;
   }
 
-  public boolean toItem (AbstractSessionItem item) {
+  public boolean toItem (AbstractSessionItem item, boolean toEnd) {
     AbstractSessionItem[] array = slidesPerItem.keySet().toArray(new AbstractSessionItem [slidesPerItem.size()]);
     for (int i = 0; i < array.length; i++) {
       if (array [i].equals(item)) {
         currentSessionItemIndex = i;
-        currentSlideIndex = 0;
+        currentSlideIndex = toEnd ? ((MidiFile)getCurrentSessionItem()).getParts().size() - 1 : 0;
         LOGGER.info("To item " + currentSessionItemIndex + ", " + currentSlideIndex);
         return true;
       }

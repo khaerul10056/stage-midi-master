@@ -28,6 +28,8 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
   private Composite root;
 
+  private AbstractSessionItem currentItem;
+
 
   @Override
   public void createPartControl (Composite arg0) {
@@ -55,6 +57,12 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
   @Override
   public void refresh () {
+
+    if (currentItem == null || ! currentItem.equals(presentationContext.getCurrentSessionItem())) {
+      currentItem = presentationContext.getCurrentSessionItem();
+      toItem(currentItem);
+    }
+
     LOGGER.info("refreshSelection called");
     for (ContentOverviewPanel oldPanel : previewParts) {
       oldPanel.setSelected(oldPanel.getCurrentPart().equals(presentationContext.getCurrentSlide().getModelRef()));

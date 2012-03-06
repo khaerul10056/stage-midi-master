@@ -66,7 +66,7 @@ public class Exporter {
     newSlide.setFollowMasterScheme(false);
 
     Fill fill = newSlide.getBackground().getFill();
-    if (song.getBackgroundImageData() != null) {
+    if (song.getBackgroundImageFile() != null) {
 
       int idx;
       try {

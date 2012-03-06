@@ -138,13 +138,6 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     return presentationContext.getCurrentSlide();
   }
 
-  public void setBackgroundImage(Image newImage) {
-    if (currentShownImage != null)
-      currentShownImage.dispose();
-    super.setBackgroundImage(newImage);
-  }
-
-
   protected void checkSubclass () {
     /* Do nothing - Subclassing is allowed */
   }

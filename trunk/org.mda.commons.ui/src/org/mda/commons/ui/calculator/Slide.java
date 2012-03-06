@@ -1,5 +1,6 @@
 package org.mda.commons.ui.calculator;
 
+import static org.mda.Utils.trimRight;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,10 +11,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.widgets.Display;
-import static org.mda.Utils.trimRight;
+import org.mda.commons.ui.imagecache.ImageCache;
 
 /** dataobject containing information created for a slide,
  * e.g. the text with all it's layoutdata
@@ -22,10 +21,13 @@ public class Slide {
 
   private static final Logger LOGGER  = Logger.getLogger(Slide.class.getName());
 
+
+  private ImageCache imagecache = new ImageCache();
+
+  private int duration;
+
   /** reference to the current modelelement (e.g. midifilepart) */
   private final EObject                                 modelRef;
-
-  private ImageData                                         backgroundImage;
 
   private Integer                                       currentLine = 0;
 
@@ -38,6 +40,7 @@ public class Slide {
   private Color backgroundColor;
 
   private Color foregroundColor;
+
 
   public Slide (EObject modelRef, final Font font) {
     this.modelRef = modelRef;
@@ -124,23 +127,24 @@ public class Slide {
     return modelRef;
   }
 
-  public void setBackgroundImage (ImageData backgroundImage, final File backgroundImageFile) {
-    this.backgroundImage = backgroundImage;
+  public void setBackgroundImage (final File backgroundImageFile) {
     this.backgroundImageFile = backgroundImageFile;
   }
 
   public Image getBackgroundImage (Point point) {
-    if (backgroundImage == null)
+    if (backgroundImageFile == null)
       return null;
     else {
       LOGGER.info("Creating new background image for " + backgroundImageFile.getAbsolutePath());
-      return new Image (Display.getCurrent(), backgroundImage.scaledTo(point.x, point.y));
+      long beginning = System.currentTimeMillis();
+      Image scaledImage =  imagecache.getImage(backgroundImageFile, point);
+      duration += (System.currentTimeMillis() - beginning);
+      LOGGER.info("Duration : " + duration);
+
+      return scaledImage;
     }
   }
 
-  public ImageData getBackgroundImageData () {
-    return backgroundImage;
-  }
 
   public String toString () {
     StringBuilder builder = new StringBuilder();
