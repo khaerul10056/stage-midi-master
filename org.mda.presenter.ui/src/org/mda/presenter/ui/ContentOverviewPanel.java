@@ -156,11 +156,7 @@ public class ContentOverviewPanel extends Composite  {
     layout();
   }
 
-  public void setBackgroundImage(Image newImage) {
-    if (currentShownImage != null)
-      currentShownImage.dispose();
-    super.setBackgroundImage(newImage);
-  }
+
 
 
 

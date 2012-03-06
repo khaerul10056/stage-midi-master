@@ -50,7 +50,7 @@ public class StartPresentation extends AbstractHandler  {
         globalkeycontroller.close();
 
         activeWorkbenchWindow.getActivePage().setPerspective(reg.findPerspectiveWithId(Util.ADMIN_PERSPECTIVE));
-        presentationContext.closeSession();
+        presentationContext.closePresentationSession();
 
         LOGGER.info("Remaining " + presentationContext.getRegisteredControllers() + " registered controllers after closing presentation");
       }
