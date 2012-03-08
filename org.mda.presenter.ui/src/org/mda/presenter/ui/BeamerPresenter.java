@@ -14,7 +14,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IPartService;
-import org.eclipse.ui.PlatformUI;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.presenter.ui.slide.IPresentationView;
@@ -32,6 +31,8 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
   private PresentationToControllerConnector connectorcontroller;
 
+  private IPartService service;
+
 
   private Monitor getPreferredExternalMonitor (Display display) {
     for (Monitor nextMonitor: display.getMonitors()) {
@@ -39,12 +40,13 @@ public class BeamerPresenter extends Shell implements IPresentationView {
         return nextMonitor;
     }
 
-    return Display.getCurrent().getPrimaryMonitor();
+    return display.getPrimaryMonitor();
 
   }
 
-  public BeamerPresenter (Display display, Session session, final boolean onTop) {
+  public BeamerPresenter (Display display, Session session, final boolean onTop, IPartService service) {
     super (display, onTop ? SWT.ON_TOP: SWT.NONE);
+    this.service = service;
 
     Monitor preferredMonitor = getPreferredExternalMonitor(display);
     if (! preferredMonitor.equals(Display.getCurrent().getPrimaryMonitor())) {
@@ -63,9 +65,11 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
     setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
-    IPartService service = (IPartService) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart().getSite().getService(IPartService.class);
-    connectorcontroller = new PresentationToControllerConnector(this);
-    service.addPartListener(connectorcontroller);
+
+    if (service != null) {
+      connectorcontroller = new PresentationToControllerConnector(this);
+      service.addPartListener(connectorcontroller);
+    }
 
     open();
     setFocus();
@@ -129,8 +133,8 @@ public class BeamerPresenter extends Shell implements IPresentationView {
   }
 
   public void dispose () {
-    IPartService service = (IPartService) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart().getSite().getService(IPartService.class);
-    service.removePartListener(connectorcontroller);
+    if (service != null)
+      service.removePartListener(connectorcontroller);
     super.dispose();
   }
 

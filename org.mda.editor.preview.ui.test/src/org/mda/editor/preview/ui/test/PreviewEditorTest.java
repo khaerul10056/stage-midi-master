@@ -17,6 +17,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.editor.preview.ui.PreviewEditorContent;
@@ -36,6 +38,8 @@ public class PreviewEditorTest {
   @Before
   public void setUp () {
     shell = new Shell();
+    MdaModule.getInjector().getInstance(ApplicationSession.class).load(null);
+
   }
 
   @After

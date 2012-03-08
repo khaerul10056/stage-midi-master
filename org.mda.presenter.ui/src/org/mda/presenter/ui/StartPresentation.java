@@ -5,6 +5,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.ui.IPartService;
 import org.eclipse.ui.IPerspectiveRegistry;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -33,7 +34,8 @@ public class StartPresentation extends AbstractHandler  {
     final GlobalKeyRegistryPresentationController globalkeycontroller = new GlobalKeyRegistryPresentationController(activeWorkbenchWindow.getShell().getDisplay());
     presentationContext.registerController(globalkeycontroller);
 
-    BeamerPresenter presenter = new BeamerPresenter(activeWorkbenchWindow.getShell().getDisplay(), selectioninfo.getSession(), ! selectioninfo.isPreview());
+    IPartService service = (IPartService) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart().getSite().getService(IPartService.class);
+    BeamerPresenter presenter = new BeamerPresenter(activeWorkbenchWindow.getShell().getDisplay(), selectioninfo.getSession(), ! selectioninfo.isPreview(), service);
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setChordVisible(false);
     presentationContext.setCurrentSession(selectioninfo.getSession(), config, presenter.getSize());

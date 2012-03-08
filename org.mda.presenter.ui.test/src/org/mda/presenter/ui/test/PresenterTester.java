@@ -70,7 +70,7 @@ public class PresenterTester extends Shell {
         final GlobalKeyRegistryPresentationController globalKeyRegPresentationController = new GlobalKeyRegistryPresentationController(getDisplay());
         controllers.add(globalKeyRegPresentationController);
 
-        BeamerPresenter beamerPresenter = new BeamerPresenter(Display.getCurrent(), currentSession, false);
+        BeamerPresenter beamerPresenter = new BeamerPresenter(Display.getCurrent(), currentSession, false, null);
 
         beamerPresenter.setSize(size);
         beamerPresenter.addDisposeListener(new DisposeListener() {

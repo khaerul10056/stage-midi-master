@@ -36,8 +36,6 @@ public class Utils {
   public final static String ICON_SPLIT_PART = "split_part.gif";
   public final static String ICON_MERGE_PART = "merge_part.gif";
 
-  private final static ImageRegistry registry = new ImageRegistry();
-
   public static final String ICON_PROPERTIES = "properties.gif";
 
   public static String colorToString (final Color color) {
@@ -60,29 +58,17 @@ public class Utils {
   }
 
   public static Image loadImageFromProject (final String id) {
-    Image foundImage = registry.get(id);
-
-    if (foundImage == null) {
-
       URL url = Utils.class.getResource("/org/mda/icons/" + id);
       ImageDescriptor image = ImageDescriptor.createFromURL(url);
       if (image != null)
-        foundImage = image.createImage();
-      else
+        return image.createImage();
+      else {
         LOGGER.warn("Image " + id + " not found");
-
-      if (foundImage != null)
-        registry.put(id, foundImage);
-    }
-
-    return foundImage;
-
+        return null;
+      }
   }
 
   public static Image loadImageFromProject (final File file) {
-    Image foundImage = registry.get(file.getAbsolutePath());
-
-    if (foundImage == null) {
       ImageDescriptor image;
       try {
         image = ImageDescriptor.createFromURL(file.toURI().toURL());
@@ -91,16 +77,11 @@ public class Utils {
         return null;
       }
       if (image != null)
-        foundImage = image.createImage();
-      else
+        return image.createImage();
+      else {
         LOGGER.warn("Image " + file.getAbsolutePath() + " not found");
-
-      if (foundImage != null)
-        registry.put(file.getAbsolutePath(), foundImage);
-    }
-
-    return foundImage;
-
+        return null;
+      }
   }
 
   /**
