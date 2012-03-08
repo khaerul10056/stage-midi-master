@@ -35,13 +35,13 @@ public class MidiPlayerServiceTest {
     assertNotSame(MidiFilePartType.ZWISCHENSPIEL, file.getParts().get(1).getParttype());
     assertEquals (numberOfParts - 1, file.getParts().size());
 
-    numberOfParts = file.getParts().size();
-    for (int i = file.getParts().size() - 1; i >= 0; i--) {
-      MidiPlayerService.removePart(file, file.getParts().get(i));
-      numberOfParts --;
-      assertEquals (numberOfParts, file.getParts().size());
-
+    do {
+      //LOGGER.info("Remove part " + file.getParts().get(0).getParttype() + ", " + file.getParts().size());
+      MidiPlayerService.removePart(file, file.getParts().get(0));
+      //LOGGER.info("Removed part " + file.getParts().get(0).getParttype() + ", " + file.getParts().size());
+      LOGGER.info("-" + MidiPlayerService.getMidiFileAsString(file));
     }
+    while (file.getParts().size() > 0);
 
     assertEquals (0, file.getParts().size());
 

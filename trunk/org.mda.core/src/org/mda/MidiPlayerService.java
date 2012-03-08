@@ -479,7 +479,10 @@ public class MidiPlayerService {
     if (index < 0)
       index = 0;
 
-    return file.getParts().get(index);
+    if (file.getParts().size() > 0)
+      return file.getParts().get(index);
+    else
+      return null;
   }
 
   public static void removeSessions (Collection<Session> selectedItems) {

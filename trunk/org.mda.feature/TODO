@@ -1,14 +1,11 @@
 
 
 
-Enhancement		Navigator		Presentation-Perspective / Edit-perspective								currentist
-Enhancement     Editor			alignment: left, right, center pro File
-Enhancement		Editor			edit font / bold / italic / outline 									new
-Enhancement		Presentation	perspective with controlfunctions (black / white / default-page)		new
 Enhancement 	Editor			Remove part																new
 Enhancement		Additionals		Rotate and save rotation												new
 Bug 			Editor			Add splitted part as reference? 										new
-
+Enhancement     Editor			alignment: left, right, center pro File, indentions
+Enhancement		Editor			edit font / bold / italic / outline 									new
 
 
 
@@ -28,6 +25,8 @@ Enhancement		User			mail to group from gmail												new
 
 
 ______________________________________
+Enhancement		Presentation	perspective with controlfunctions (black / white / default-page)		done
+Enhancement		Navigator		Presentation-Perspective / Edit-perspective								done
 Enhancement 	Editor			edit backgroundcolor and foregroundcolor								done
 Enhancement 	Editor			Add part + Add part ref													done
 Enhancement		Editor			Move chord foreward/backward											done

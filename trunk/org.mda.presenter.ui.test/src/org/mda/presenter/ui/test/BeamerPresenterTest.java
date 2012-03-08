@@ -10,13 +10,18 @@ import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiPlayerRoot;
 import mda.Session;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import org.junit.Test;
+import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.presenter.ui.BeamerPresenter;
 import org.mda.presenter.ui.DefaultPresentationController;
 import org.mda.presenter.ui.IPresentationController;
+import org.mda.presenter.ui.MdaPresenterModule;
+import org.mda.presenter.ui.PresentationContext;
 
 
 public class BeamerPresenterTest {
@@ -39,8 +44,12 @@ public class BeamerPresenterTest {
     session = root.getSessions().get(0);
 
     Collection <IPresentationController> controllers = new ArrayList<IPresentationController>();
-    controllers.add(new DefaultPresentationController());
-    presenter = new BeamerPresenter(Display.getCurrent(), session, false);
+    controller = new DefaultPresentationController();
+    controllers.add(controller);
+    presenter = new BeamerPresenter(Display.getDefault(), session, false, null);
+    PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
+    MdaModule.getInjector().getInstance(ApplicationSession.class).load(null);
+    presentationContext.setCurrentSession(session, new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
     firstSong = (MidiFile) session.getItems().get(0);
     secondSong = (MidiFile) session.getItems().get(1);
     lastSong = (MidiFile) session.getItems().get(session.getItems().size() - 1);
