@@ -2,9 +2,7 @@ package org.mda.importer;
 
 import mda.AbstractSessionItem;
 import mda.Session;
-
 import org.mda.MidiPlayerListener;
-import org.mda.PlayerMode;
 
 public class MidiPlayerAdapter implements MidiPlayerListener {
 
@@ -20,9 +18,7 @@ public class MidiPlayerAdapter implements MidiPlayerListener {
 	public void stopped() {
 	}
 
-	@Override
-	public void modeToggled(PlayerMode chosePlayerMode) {
-	}
+
 
   @Override
   public void barChanged(int currentBar) {

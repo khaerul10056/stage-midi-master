@@ -40,6 +40,10 @@ public class DefaultPresentationController implements IPresentationController {
     LOGGER.info("Views: " + views);
   }
 
+  public int getRegisteredViewsCount () {
+    return views.size();
+  }
+
   private Collection <IPresentationView> getRegisteredViews () {
     return views;
   }
@@ -98,13 +102,15 @@ public class DefaultPresentationController implements IPresentationController {
 
   public boolean previousSong () {
     boolean done = presentationContext.previousSong();
-    toItem(presentationContext.getCurrentSessionItem());
+    if (done)
+      toItem(presentationContext.getCurrentSessionItem());
     return done;
   }
 
   public boolean nextSong () {
     boolean done = presentationContext.nextSong();
-    toItem(presentationContext.getCurrentSessionItem());
+    if (done)
+      toItem(presentationContext.getCurrentSessionItem());
     return done;
   }
 

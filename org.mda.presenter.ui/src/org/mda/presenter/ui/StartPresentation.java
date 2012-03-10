@@ -24,8 +24,8 @@ public class StartPresentation extends AbstractHandler  {
   private PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
 
   @Override
-  public Object execute (ExecutionEvent arg0) throws ExecutionException {
-    SelectionInfo selectioninfo = (SelectionInfo) arg0.getApplicationContext();
+  public Object execute (ExecutionEvent event) throws ExecutionException {
+    SelectionInfo selectioninfo = (SelectionInfo) event.getApplicationContext();
 
     final IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
     final IPerspectiveRegistry reg = activeWorkbenchWindow.getWorkbench().getPerspectiveRegistry();

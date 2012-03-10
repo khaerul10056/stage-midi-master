@@ -22,6 +22,8 @@ public class MidiPlayerServiceTest {
   private static final Log LOGGER  = LogFactory.getLogger(MidiPlayerServiceTest.class);
 
 
+
+
   @Test
   public void removePart () {
     MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("../org.mda.core.test/conf/midiplayer.conf"));

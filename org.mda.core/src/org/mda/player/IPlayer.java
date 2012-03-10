@@ -2,13 +2,10 @@ package org.mda.player;
 
 import java.awt.event.KeyListener;
 import javax.sound.midi.MidiUnavailableException;
-
 import mda.MidiFile;
 import mda.MidiPlayerRoot;
 import mda.Session;
-
 import org.mda.MidiPlayerListener;
-import org.mda.PlayerMode;
 
 public interface IPlayer extends KeyListener {
 
@@ -47,6 +44,5 @@ public interface IPlayer extends KeyListener {
 
 	Object getNameOf(int index);
 
-	PlayerMode getPlayerMode();
 
 }

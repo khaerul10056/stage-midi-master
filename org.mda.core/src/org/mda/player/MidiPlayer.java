@@ -26,7 +26,6 @@ import mda.MidiPlayerRoot;
 import mda.Session;
 import org.mda.MidiPlayerListener;
 import org.mda.MidiPlayerService;
-import org.mda.PlayerMode;
 
 public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 		KeyListener, IPlayer {
@@ -39,7 +38,6 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 	private Sequencer sequencer;
 	private Sequence currentSequence;
 	private int currentSongIndex;
-	private PlayerMode playerMode = PlayerMode.PROBE;
 	private int loopFrom = 0;
 	private int loopTo = -1;
 
@@ -74,9 +72,6 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 		thread.start();
 	}
 
-	public PlayerMode getPlayerMode() {
-		return playerMode;
-	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -102,22 +97,6 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 			e.consume();
 		} else if (e.getKeyChar() == 'r') {
 			replayCurrentSong();
-			e.consume();
-		} else if (e.getKeyCode() == KeyEvent.VK_F9) {
-			PlayerMode[] modes = PlayerMode.values();
-			for (int i = 0; i < modes.length; i++) {
-				if (modes[i] == playerMode) {
-					if (i < modes.length - 1)
-						playerMode = modes[i + 1];
-					else
-						playerMode = modes[0];
-					break;
-				}
-			}
-
-			for (MidiPlayerListener listener : listeners) {
-				listener.modeToggled(playerMode);
-			}
 			e.consume();
 		}
 
@@ -418,8 +397,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 	}
 
 	public void moveSongUp() {
-		if (!isRunning() && playerMode == PlayerMode.PROBE
-				&& currentSongIndex > 0) {
+		if (!isRunning() 	&& currentSongIndex > 0) {
 			AbstractSessionItem abstractSessionItem = getCurrentSession()
 					.getItems().get(currentSongIndex);
 			getCurrentSession().getItems().remove(currentSongIndex);
@@ -435,8 +413,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 	}
 
 	public void moveSongDown() {
-		if (!isRunning() && playerMode == PlayerMode.PROBE
-				&& currentSongIndex < getCurrentSession().getItems().size() - 1) {
+		if (!isRunning() 	&& currentSongIndex < getCurrentSession().getItems().size() - 1) {
 			AbstractSessionItem abstractSessionItem = getCurrentSession()
 					.getItems().get(currentSongIndex);
 			getCurrentSession().getItems().remove(currentSongIndex);

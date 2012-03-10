@@ -1,6 +1,5 @@
 package org.mda.logging;
 
-import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,17 +13,13 @@ public class Log {
 
   private static Logger logger;
 
-  /**
-   * layer for loggin structural
-   */
-  private static int layer;
+
 
   /**
    * prefix of the logger
    */
   private static String prefix = "";
 
-  private static Stack <Long> starttimes = new Stack<Long>();
 
 
   /**
@@ -34,7 +29,6 @@ public class Log {
   public Log (final Logger logger) {
     Log.logger = logger;
   }
-
 
   public boolean isDebugEnabled() {
     return logger.isLoggable(Level.FINE);
@@ -65,33 +59,4 @@ public class Log {
   public void warn(final String meldung) {
     logger.warning(prefix + meldung);
   }
-
-  private void calculateLayer(final int layer) {
-    prefix = "";
-    for (int i = 0; i < layer; i++)
-      prefix += "    ";
-  }
-
-  public void beginTask(final String meldung) {
-    logger.info(meldung);
-    starttimes.push(new Long (System.currentTimeMillis()));
-
-    calculateLayer(++layer);
-  }
-
-  public void endTask(final String meldung) {
-    calculateLayer(--layer);
-
-    long duration = -1;
-
-
-    if (!starttimes.empty()) {
-      Long since = starttimes.pop();
-      duration = System.currentTimeMillis() - since.longValue();
-    }
-
-    logger.info((duration >  0) ? meldung + " (Duration: " + duration + " ms)":meldung);
-
-  }
-
 }
