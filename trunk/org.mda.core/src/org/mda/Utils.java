@@ -13,7 +13,6 @@ import java.util.TreeMap;
 import mda.MidiFileChordPart;
 import mda.MidiFilePartType;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
@@ -76,12 +75,12 @@ public class Utils {
       catch (MalformedURLException e) {
         return null;
       }
-      if (image != null)
-        return image.createImage();
-      else {
+      if (image.getClass().getSimpleName().equals("MissingImageDescriptor")) {
         LOGGER.warn("Image " + file.getAbsolutePath() + " not found");
         return null;
       }
+      else
+        return image.createImage();
   }
 
   /**
@@ -92,6 +91,8 @@ public class Utils {
   public static boolean deleteDirectory(File path) {
     if( path.exists() ) {
       File[] files = path.listFiles();
+      if (files != null) {
+
       for(int i=0; i<files.length; i++) {
          if(files[i].isDirectory()) {
            deleteDirectory(files[i]);
@@ -99,6 +100,7 @@ public class Utils {
          else {
            files[i].delete();
          }
+      }
       }
     }
     return( path.delete() );
@@ -112,7 +114,7 @@ public class Utils {
    * @param from
    *            Quelldatei
    */
-  public final static void copyFile(final File to, final File from) {
+  public final static void copyFile(final File to, final File from) throws IOException {
     FileInputStream fis1 = null;
     FileChannel fic1 = null;
     FileOutputStream fos = null;
@@ -137,10 +139,7 @@ public class Utils {
         remaining -= transfered;
       }
 
-    } catch (IOException e) {
-      throw new IllegalStateException(e);
     } finally {
-      try {
         if (fic1 != null)
           fic1.close();
 
@@ -152,16 +151,15 @@ public class Utils {
 
         if (foc != null)
           foc.close();
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-
     }
   }
 
 
 
   public static String getChordFromPosition (String chordline, final int position) {
+
+    if (position < 0)
+      return "";
 
     if (chordline.length() < position)
       return "";
@@ -277,8 +275,9 @@ public class Utils {
     }
 
     if (indeces.length == 0) {
+      String text = getTextWithoutTagsTrimmed(textline);
       MidiFileChordPart nextPart = MidiPlayerService.mf.createMidiFileChordPart();
-      nextPart.setText(textline);
+      nextPart.setText(text);
       parts.add(nextPart);
     }
     else {
@@ -316,21 +315,7 @@ public class Utils {
     return parts;
   }
 
-  public static int nextWhitespaceRight(StringBuilder builder, int loeschposition) {
-    for (int i = loeschposition; i < builder.length(); i++) {
-      if (Character.isWhitespace(builder.charAt(i)))
-          return i;
-    }
-    return builder.length();
-  }
 
-  public static int nextWhitespaceLeft(StringBuilder builder, int loeschposition) {
-    for (int i = loeschposition; i > 0; i--) {
-      if (Character.isWhitespace(builder.charAt(i)))
-          return i;
-    }
-    return 0;
-  }
 
 
   public static String removeString (String text, int start, int length) {
