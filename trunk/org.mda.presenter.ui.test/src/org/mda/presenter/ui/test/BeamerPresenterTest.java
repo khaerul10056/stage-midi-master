@@ -4,14 +4,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiPlayerRoot;
 import mda.Session;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
@@ -19,9 +19,9 @@ import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.presenter.ui.BeamerPresenter;
 import org.mda.presenter.ui.DefaultPresentationController;
-import org.mda.presenter.ui.IPresentationController;
 import org.mda.presenter.ui.MdaPresenterModule;
 import org.mda.presenter.ui.PresentationContext;
+import org.mda.presenter.ui.SpecialSlide;
 
 
 public class BeamerPresenterTest {
@@ -37,19 +37,23 @@ public class BeamerPresenterTest {
   private MidiFilePart preLastPartOfLastSong;
   private MidiFilePart firstPartOfLastSong;
   private MidiFile prelastSong;
+  private PresentationContext presentationContext;
 
-  public BeamerPresenterTest () {
+  @Before
+  public void before () {
     root = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));
 
     session = root.getSessions().get(0);
 
-    Collection <IPresentationController> controllers = new ArrayList<IPresentationController>();
-    controller = new DefaultPresentationController();
-    controllers.add(controller);
+    //Collection <IPresentationController> controllers = new ArrayList<IPresentationController>();
     presenter = new BeamerPresenter(Display.getDefault(), session, false, null);
-    PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
+    controller = new DefaultPresentationController();
+    controller.connect(presenter);
+
+    presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
     MdaModule.getInjector().getInstance(ApplicationSession.class).load(null);
     presentationContext.setCurrentSession(session, new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
+    presenter.redraw();
     firstSong = (MidiFile) session.getItems().get(0);
     secondSong = (MidiFile) session.getItems().get(1);
     lastSong = (MidiFile) session.getItems().get(session.getItems().size() - 1);
@@ -57,12 +61,13 @@ public class BeamerPresenterTest {
     firstPartOfLastSong = lastSong.getParts().get(0);
     preLastPartOfLastSong = lastSong.getParts().get(lastSong.getParts().size() - 2);
     lastPartOfLastSong = lastSong.getParts().get(lastSong.getParts().size() - 1);
-
-
   }
 
+
+
+
   @Test
-  public void next () {
+  public void nextAndPreviousSlide () {
     //Next slide
     assertEquals(firstSong, presenter.getCurrentSessionItem());
     assertEquals (firstSong.getParts().get(0), presenter.getCurrentSlide().getModelRef());
@@ -84,13 +89,6 @@ public class BeamerPresenterTest {
     while (presenter.getCurrentSlide().getModelRef() != lastPartOfLastSong)
       assertTrue (controller.nextSlide());
     assertFalse (controller.nextSlide());
-  }
-
-  @Test
-  public void previous () {
-
-    while (presenter.getCurrentSlide().getModelRef() != lastPartOfLastSong)
-      assertTrue (controller.nextSlide());
 
     //Previous slide
     assertTrue (controller.previousSlide());
@@ -111,10 +109,61 @@ public class BeamerPresenterTest {
       assertTrue (controller.previousSlide());
 
     assertFalse (controller.previousSlide());
-
-
-
-
+    controller.end();
   }
+
+  @Test
+  public void nextAndPreviousSong () {
+    assertEquals(firstSong, presenter.getCurrentSessionItem());
+    assertEquals (firstSong.getParts().get(0), presenter.getCurrentSlide().getModelRef());
+    assertTrue (controller.nextSong()); //Next song
+    assertEquals (secondSong.getParts().get(0), presenter.getCurrentSlide().getModelRef());
+    while (presenter.getCurrentSlide().getModelRef() != firstPartOfLastSong)
+      assertTrue (controller.nextSong());
+
+    assertFalse (controller.nextSong());
+    while (presenter.getCurrentSlide().getModelRef() != firstSong.getParts().get(0))
+      assertTrue (controller.previousSong());
+
+    assertFalse (controller.previousSong());
+    controller.end();
+  }
+
+  @Test
+  public void toggleBlack () {
+    controller.toggleBlack(false);
+    Assert.assertEquals (SpecialSlide.NONE, presentationContext.getSpecialSlide());
+    controller.toggleBlack(true);
+    Assert.assertEquals (SpecialSlide.BLACK, presentationContext.getSpecialSlide());
+    controller.toggleBlack(false);
+    Assert.assertEquals (SpecialSlide.NONE, presentationContext.getSpecialSlide());
+    controller.end();
+    Assert.assertTrue(presenter.isDisposed());
+  }
+
+
+  @Test
+  public void toggleWhite () {
+    controller.toggleWhite(false);
+    Assert.assertEquals (SpecialSlide.NONE, presentationContext.getSpecialSlide());
+    controller.toggleWhite(true);
+    Assert.assertEquals (SpecialSlide.WHITE, presentationContext.getSpecialSlide());
+    controller.toggleWhite(false);
+    Assert.assertEquals (SpecialSlide.NONE, presentationContext.getSpecialSlide());
+    controller.end();
+  }
+
+  @Test
+  public void toggleOnlyBackground () {
+    controller.toggleOnlyBackground(false);
+    Assert.assertEquals (SpecialSlide.NONE, presentationContext.getSpecialSlide());
+    controller.toggleOnlyBackground(true);
+    Assert.assertEquals (SpecialSlide.WITHOUT_TEXT, presentationContext.getSpecialSlide());
+    controller.toggleOnlyBackground(false);
+    Assert.assertEquals (SpecialSlide.NONE, presentationContext.getSpecialSlide());
+    controller.end();
+  }
+
+
 
 }

@@ -134,7 +134,7 @@ public class PresentationContext {
   }
 
   public boolean nextSong () {
-    if (currentSessionItemIndex == getCurrentSession().getItems().size())
+    if (currentSessionItemIndex == getCurrentSession().getItems().size() - 1)
       return false;
 
     currentSessionItemIndex ++;

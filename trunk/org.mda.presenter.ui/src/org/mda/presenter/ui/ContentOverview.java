@@ -36,9 +36,13 @@ public class ContentOverview extends ViewPart implements IPresentationView{
     LOGGER.info("creatPart");
     this.root = arg0;
     root.setLayout(new GridLayout(4, false));
-    IPartService partservice = (IPartService) getSite().getService(IPartService.class);
-    partservice.addPartListener(new PresentationToControllerConnector(this));
+    if (getSite() != null) {
+      IPartService partservice = (IPartService) getSite().getService(IPartService.class);
+      partservice.addPartListener(new PresentationToControllerConnector(this));
+    }
   }
+
+
 
 
 

@@ -88,6 +88,9 @@ public class ContentNavigator extends ViewPart {
 
   private MenuItem itemPreview;
 
+  TreeViewer getTreeViewer () {
+    return treviewer;
+  }
 
   public ContentNavigator () {
     editors.put(MidiFileImpl.class, "org.mda.editor.preview.ui.editors.previeweditor");
@@ -95,7 +98,7 @@ public class ContentNavigator extends ViewPart {
   }
 
 
-  private SelectionInfo getSessionFromSelection (final SelectionEvent e) {
+  public SelectionInfo getSessionFromSelection (final SelectionEvent e) {
     Object object = Util.getStructuredSelection(treviewer.getSelection());
     System.out.println ("Selected " + object);
 
@@ -226,7 +229,7 @@ public class ContentNavigator extends ViewPart {
     return menu;
   }
 
-  private void insert () {
+  public void insert () {
     Object object = Util.getStructuredSelection(treviewer.getSelection());
 
     //add a new song into gallery
@@ -277,7 +280,7 @@ public class ContentNavigator extends ViewPart {
 
   }
 
-  private void remove () {
+  public void remove () {
     Object object = Util.getStructuredSelection(treviewer.getSelection());
 
     if (object instanceof NavigatorItem) {
@@ -294,7 +297,7 @@ public class ContentNavigator extends ViewPart {
     }
   }
 
-  private void moveDown () {
+  public void moveDown () {
     Object object = Util.getStructuredSelection(treviewer.getSelection());
 
     if (object instanceof NavigatorItem) {
@@ -304,7 +307,7 @@ public class ContentNavigator extends ViewPart {
     }
   }
 
-  private void moveUp () {
+  public void moveUp () {
     Object object = Util.getStructuredSelection(treviewer.getSelection());
     if (object instanceof NavigatorItem) {
       NavigatorItem<?> item = (NavigatorItem<?>) object;

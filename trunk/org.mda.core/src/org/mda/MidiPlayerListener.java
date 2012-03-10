@@ -14,8 +14,6 @@ public interface MidiPlayerListener {
 
 	public void stopped ();
 
-	public void modeToggled(PlayerMode chosePlayerMode);
-
 	public void barChanged (int currentBar);
 
 	public void tickChanged(int currentTick);

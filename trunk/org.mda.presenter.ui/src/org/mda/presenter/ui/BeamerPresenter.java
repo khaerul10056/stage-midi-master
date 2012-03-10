@@ -80,6 +80,8 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
 
 
+
+
       @Override
       public void paintControl (PaintEvent e) {
         Font font = getFont();

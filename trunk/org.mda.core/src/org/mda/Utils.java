@@ -60,12 +60,12 @@ public class Utils {
   public static Image loadImageFromProject (final String id) {
       URL url = Utils.class.getResource("/org/mda/icons/" + id);
       ImageDescriptor image = ImageDescriptor.createFromURL(url);
-      if (image != null)
-        return image.createImage();
-      else {
+      if (image.getClass().getSimpleName().equals("MissingImageDescriptor")) {
         LOGGER.warn("Image " + id + " not found");
         return null;
       }
+      else
+        return image.createImage();
   }
 
   public static Image loadImageFromProject (final File file) {
