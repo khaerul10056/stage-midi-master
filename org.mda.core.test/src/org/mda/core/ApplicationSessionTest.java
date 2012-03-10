@@ -21,7 +21,7 @@ public class ApplicationSessionTest {
 
     session.load(PATH);
 
-    File confFile = new File (PATH + "/.mda/mda.properties");
+    File confFile = new File ("../org.mda.tests/.mda/mda.properties");
     assertTrue (confFile.exists());
 
     Properties props = new Properties();

@@ -1,6 +1,7 @@
 package org.mda.additionals;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -81,6 +82,10 @@ public class AdditionalsHandler {
       getAdditionals().add(additional);
       } catch (IllegalArgumentException e) {
         builder.append("Could not import file " + next.getAbsolutePath() + " due to unvalid suffix\n");
+        continue;
+      }
+      catch (IOException e) {
+        builder.append("Error copying file " + next.getAbsolutePath() + "\n");
         continue;
       }
     }

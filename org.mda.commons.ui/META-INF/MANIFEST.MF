@@ -14,6 +14,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.mda.commons.ui,
  org.mda.commons.ui.additionals,
  org.mda.commons.ui.calculator,
+ org.mda.commons.ui.commands,
  org.mda.commons.ui.config,
  org.mda.commons.ui.imagecache,
  org.mda.commons.ui.navigator
