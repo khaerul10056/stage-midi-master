@@ -51,7 +51,8 @@ public class StartPresentation extends AbstractHandler  {
       public void widgetDisposed (DisposeEvent arg0) {
         globalkeycontroller.close();
 
-        activeWorkbenchWindow.getActivePage().setPerspective(reg.findPerspectiveWithId(Util.ADMIN_PERSPECTIVE));
+        if (activeWorkbenchWindow != null && activeWorkbenchWindow.getActivePage() != null)
+          activeWorkbenchWindow.getActivePage().setPerspective(reg.findPerspectiveWithId(Util.ADMIN_PERSPECTIVE));
         presentationContext.closePresentationSession();
 
         LOGGER.info("Remaining " + presentationContext.getRegisteredControllers() + " registered controllers after closing presentation");
