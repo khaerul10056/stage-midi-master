@@ -62,7 +62,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     font = new Font (Display.getCurrent(), "Arial Alternative", getConfig().getFontsize(), SWT.NONE);
     gc.setFont(font);
 
-    if (midifile.getPic() != null && midifile.getPic().length() > 0) {
+    if (midifile.getPic() != null && midifile.getPic().length() > 0 && getConfig().isShowBackground()) {
 
       Additional findByKey = appSession.getAdditionalsHandler().findByKey(midifile.getPic());
       if (findByKey != null) {
@@ -82,6 +82,10 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
 
 
+  private int getOffsetChordToText (int currentY, Point testExtend) {
+    return getConfig().isChordPresented() ? currentY + testExtend.y : currentY;
+  }
+
   public Slide calculatePart (final MidiFilePart part, final CalculatorPreCondition preCondition) {
     MidiFile midifile = (MidiFile) part.eContainer();
     init(midifile);
@@ -95,14 +99,27 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     slide.setForegroundColor(Utils.stringToColor(midifile.getForegroundColor(), getConfig().getDefaultForegroundColor()));
     LOGGER.info("set foreground to " + slide.getForegroundColor());
 
-    currentY = 0;
+    currentY = 0; //TODO part per slide
+
+    Point testExtend = gc.textExtent("H");
 
     normalizeSizeToPresentationSize(preCondition);
 
-    for (MidiFileTextLine nextTextLine : part.getRefPart() != null ? part.getRefPart().getTextlines() : part.getTextlines()) {
-      currentX = 0;
+    int leftPosDefault = 0;
 
-      Point testExtend = gc.textExtent("H");
+    if (getConfig().isShowBlockType()) { //show blocktype (e.g. refrain, chorus..)
+      String blockType = part.getParttype().getName() + " ";
+      Point textExtent = gc.textExtent(blockType);
+      int addToY = getOffsetChordToText(currentY, testExtend);
+      SlideItem newTextItem = new SlideItem(new Rectangle(leftPosDefault, addToY, textExtent.x, textExtent.y), blockType, SlideType.TEXT, null);
+      slide.addItem(newTextItem);
+      leftPosDefault += textExtent.x;
+    }
+
+    //Calculate current part
+    for (MidiFileTextLine nextTextLine : part.getRefPart() != null ? part.getRefPart().getTextlines() : part.getTextlines()) {
+      currentX = leftPosDefault;
+
       int height = testExtend.y;
       if (getConfig().isChordPresented())
         height += testExtend.y;
@@ -114,6 +131,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         String text = chordPart.getText();
 
         Point textExtend = text != null ? gc.textExtent(text) : nullExtend;
+
         Point chordExtend = chord != null && getConfig().isChordPresented() ? gc.textExtent(chord): nullExtend ;
 
         SlideItem newTextItem = null;
@@ -125,7 +143,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
           biggestXExtend = textExtend.x;
 
         if (text != null) {
-          Point point = new Point(currentX, currentY + testExtend.y);
+          int addToY = getOffsetChordToText(currentY, testExtend);
+          Point point = new Point(currentX, addToY);
           Point zoomedPoint = calculateZoomedPoint(point, preCondition);
 
           Rectangle textRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, textExtend.x, textExtend.y);

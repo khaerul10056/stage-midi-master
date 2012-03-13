@@ -1,8 +1,6 @@
 package org.mda.presenter.ui.test;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import mda.MidiPlayerRoot;
 import mda.Session;
@@ -18,10 +16,12 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
-import org.mda.MidiPlayerService;
+import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.presenter.ui.BeamerPresenter;
-import org.mda.presenter.ui.IPresentationController;
+import org.mda.presenter.ui.MdaPresenterModule;
+import org.mda.presenter.ui.PresentationContext;
 import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
 
 public class PresenterTester extends Shell {
@@ -37,8 +37,16 @@ public class PresenterTester extends Shell {
     sizes.add(new Point(800, 600));
 
     final Combo cmbSession = new Combo(this, SWT.NONE);
+
     final Button chkWithChords = new Button (this, SWT.CHECK);
     chkWithChords.setText("Show chords");
+
+    final Button chkWithBackground = new Button (this, SWT.CHECK);
+    chkWithBackground.setText("Show background");
+
+    final Button chkWithBlocktypes = new Button (this, SWT.CHECK);
+    chkWithBackground.setText("Show blocktypes");
+
     final Combo cmbSize = new Combo(this, SWT.NONE);
     for (Point next: sizes) {
       cmbSize.add(next.toString());
@@ -48,7 +56,10 @@ public class PresenterTester extends Shell {
     final Button btnOK = new Button(this, SWT.NONE);
     btnOK.setText("Show");
 
-    final MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));
+    ApplicationSession appsession = MdaModule.getInjector().getInstance(ApplicationSession.class);
+    appsession.load("../org.mda.core.test/testdata/testmodel.conf");
+
+    final MidiPlayerRoot root = appsession.getCurrentModel();
     for (Session session : root.getSessions()) {
       cmbSession.add(session.getName());
     }
@@ -65,14 +76,18 @@ public class PresenterTester extends Shell {
 
         DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
         config.setChordVisible(chkWithChords.getSelection());
+        config.setShowBackground(chkWithBackground.getSelection());
+        config.setShowBlockType(chkWithBlocktypes.getSelection());
 
-        final Collection <IPresentationController> controllers = new ArrayList<IPresentationController>();
+        PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
+        presentationContext.setCurrentSession(currentSession, config, size);
+
         final GlobalKeyRegistryPresentationController globalKeyRegPresentationController = new GlobalKeyRegistryPresentationController(getDisplay());
-        controllers.add(globalKeyRegPresentationController);
+        presentationContext.registerController(globalKeyRegPresentationController);
 
         BeamerPresenter beamerPresenter = new BeamerPresenter(Display.getCurrent(), currentSession, false, null);
+        globalKeyRegPresentationController.connect(beamerPresenter);
 
-        beamerPresenter.setSize(size);
         beamerPresenter.addDisposeListener(new DisposeListener() {
 
           @Override

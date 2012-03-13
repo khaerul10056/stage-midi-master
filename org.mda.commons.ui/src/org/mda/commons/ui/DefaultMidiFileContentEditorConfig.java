@@ -30,6 +30,10 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
+  private boolean showBackground;
+
+  private boolean showBlockType;
+
   public Integer getFontsize () {
     if (fontsize != null)
       return fontsize.intValue();
@@ -99,6 +103,24 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
     return new Point (1280, 800);  //TODO mechanism for size
     //Rectangle bounds = Display.getCurrent().getMonitors()[0].getBounds();
     //return new Point(bounds.width, bounds.height);
+  }
+
+  @Override
+  public boolean isShowBackground () {
+    return showBackground;
+  }
+
+  public void setShowBackground (boolean showBackground) {
+    this.showBackground = showBackground;
+  }
+
+  @Override
+  public boolean isShowBlockType () {
+    return showBlockType;
+  }
+
+  public void setShowBlockType (final boolean showBlockType) {
+    this.showBlockType = showBlockType;
   }
 
 }

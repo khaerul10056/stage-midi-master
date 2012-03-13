@@ -7,6 +7,8 @@ import org.mda.IMidiFileEditorConfig;
 
 public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
 
+
+
   Color getDefaultBackgroundColor ();
 
   Color getDefaultForegroundColor ();
@@ -21,6 +23,15 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
    * @return presentation screen size
    */
   Point getDefaultPresentationScreenSize();
+
+  boolean isShowBackground ();
+
+  /**
+   * returns if the blocktype at the beginning of an block (e.g. refrain) is shown
+   * If the blocktype is shown all following lines are indented after this type
+   * @return
+   */
+  boolean isShowBlockType ();
 
 
 
