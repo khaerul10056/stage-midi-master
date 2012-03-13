@@ -45,7 +45,7 @@ public class PresenterTester extends Shell {
     chkWithBackground.setText("Show background");
 
     final Button chkWithBlocktypes = new Button (this, SWT.CHECK);
-    chkWithBackground.setText("Show blocktypes");
+    chkWithBlocktypes.setText("Show blocktypes");
 
     final Combo cmbSize = new Combo(this, SWT.NONE);
     for (Point next: sizes) {
