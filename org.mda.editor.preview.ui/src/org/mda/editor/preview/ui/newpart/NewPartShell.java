@@ -85,7 +85,7 @@ public class NewPartShell extends Shell implements SelectionListener {
 
       if (nextPart.getRefPart() == null) { //only parts that are no refpart itself
         Button btn = addButton();
-        List<String> rawText = MidiPlayerService.getRawText(nextPart);
+        List<String> rawText = MidiPlayerService.getRawText(nextPart, true);
 
         String tooltip = "";
         for (String nextRaw: rawText) {

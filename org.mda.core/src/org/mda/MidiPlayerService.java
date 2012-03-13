@@ -324,14 +324,14 @@ public class MidiPlayerService {
 
   public static String toString (MidiFilePart nextPart) {
     StringBuilder builder = new StringBuilder();
-    List <String> strings = getRawText(nextPart);
+    List <String> strings = getRawText(nextPart, true);
     for (String nextString: strings)
       builder.append(nextString + "\n");
 
     return builder.toString();
 
   }
-  public static List<String> getRawText (MidiFilePart nextPart) {
+  public static List<String> getRawText (MidiFilePart nextPart, boolean chords) {
     List<String> lines = new ArrayList<String>();
 
     if (nextPart.getRefPart() != null)
@@ -340,7 +340,7 @@ public class MidiPlayerService {
     for (MidiFileTextLine nextLine : nextPart.getTextlines()) {
       String nextLineAsText = "";
       for (MidiFileChordPart nextChordPart : nextLine.getChordParts()) {
-        if (nextChordPart.getChord() != null)
+        if (nextChordPart.getChord() != null && chords)
           nextLineAsText += "(" + nextChordPart.getChord() + ")";
         if (nextChordPart.getText() != null)
           nextLineAsText += nextChordPart.getText();
