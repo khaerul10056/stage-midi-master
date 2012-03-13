@@ -70,6 +70,8 @@ public class ContentNavigator extends ViewPart {
 
   private MenuItem            itemPowerpoint;
 
+  private MenuItem            itemPdf;
+
   private TreeViewer treviewer;
 
   private HashMap<Class<? extends EObject>, String> editors = new HashMap<Class<? extends EObject>, String>();
@@ -187,6 +189,28 @@ public class ContentNavigator extends ViewPart {
 
         }
         catch (IOException e1) {
+          LOGGER.error(e1.getLocalizedMessage(), e1);
+        }
+      }
+    });
+
+    itemPdf = new MenuItem(menu, SWT.PUSH);
+    itemPdf.setText("Export pdf (.pdf)");
+
+    itemPdf.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        Gallery gallery = (Gallery) Util.getStructuredSelection(treviewer.getSelection());
+        org.mda.export.pdf.Exporter exporter = new org.mda.export.pdf.Exporter();
+        try {
+          File file = new File (appSession.getExportPath().getAbsolutePath() + File.separator + "songsheets.pdf");
+
+          exporter.export(gallery.getGalleryItems(), file);
+
+          MessageDialog.openConfirm(getSite().getShell(), "Exportfiles saved", "PDF-Exportfile saved in " + file.getAbsolutePath());
+
+
+        }
+        catch (Exception e1) {
           LOGGER.error(e1.getLocalizedMessage(), e1);
         }
       }
@@ -425,6 +449,7 @@ public class ContentNavigator extends ViewPart {
           itemRemove.setEnabled(currentItemIsNavigatorItem || currentItemIsSession);
           itemUp.setEnabled(currentItemIsNavigatorItem);
           itemDown.setEnabled(currentItemIsNavigatorItem);
+          itemPdf.setEnabled(currentItemIsGallery);
         }
 
       }
