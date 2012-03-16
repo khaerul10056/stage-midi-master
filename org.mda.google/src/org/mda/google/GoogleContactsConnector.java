@@ -8,6 +8,7 @@ import mda.MidiplayerFactory;
 import mda.User;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import com.google.gdata.client.GoogleService;
 import com.google.gdata.client.contacts.ContactsService;
 import com.google.gdata.client.http.AuthSubUtil;
 import com.google.gdata.data.contacts.ContactEntry;
@@ -21,10 +22,35 @@ public class GoogleContactsConnector {
 
   private static final Log LOGGER  = LogFactory.getLogger(GoogleContactsConnector.class);
 
+  public final static String feedUrl = "https://www.google.com/m8/feeds/contacts/markus.oley@gmail.com/full?max-results=1000";
+
+  private GoogleService service;
+
+  public void setGoogleService (final GoogleService googleService) {
+    this.service = googleService;
+  }
+
+  public GoogleService getGoogleService () throws ServiceException, IOException{
+    if (service == null) {
+      String next = "http://www.example.com/welcome.html";
+      String scope = "http://www.google.com/m8/feeds/";
+      boolean secure = false;
+      boolean session = true;
+      AuthSubUtil.getRequestUrl(next, scope, secure, session);
+      // Request the feed
+
+      ContactsService myService = new ContactsService("exampleCo");
+      myService.setUserCredentials("markus.oley@googlemail.com", "mo351977");
+      service = myService;
+    }
+
+    return service;
+  }
+
   public static ContactGroupEntry getGroup (ContactsService myService, final String name) throws Exception {
 
-    URL feedUrl = new URL("https://www.google.com/m8/feeds/groups/markus.oley@gmail.com/full");
-    ContactGroupFeed resultFeed = myService.getFeed(feedUrl, ContactGroupFeed.class);
+    URL feedUrlAsUrl = new URL(feedUrl);
+    ContactGroupFeed resultFeed = myService.getFeed(feedUrlAsUrl, ContactGroupFeed.class);
     List<ContactGroupEntry> entries = resultFeed.getEntries();
     for (ContactGroupEntry nextEntry : entries) {
       System.out.println("Group: " +
@@ -33,7 +59,7 @@ public class GoogleContactsConnector {
     return null;
   }
 
-  private User findByMailadress (final MidiPlayerRoot model, String name, String firstname) {
+  private User findByNames (final MidiPlayerRoot model, String name, String firstname) {
     for (User next : model.getUsers()) {
       if (next.getName().equals(name) &&
         next.getFirstname().equals(firstname))
@@ -63,18 +89,9 @@ public class GoogleContactsConnector {
 
   public void importAllContacts (MidiPlayerRoot model, List<GoogleContactsDescriptor> descs) throws ServiceException, IOException {
 
-    String next = "http://www.example.com/welcome.html";
-    String scope = "http://www.google.com/m8/feeds/";
-    boolean secure = false;
-    boolean session = true;
-    AuthSubUtil.getRequestUrl(next, scope, secure, session);
-    // Request the feed
 
-    ContactsService myService = new ContactsService("exampleCo");
-    myService.setUserCredentials("markus.oley@googlemail.com", "mo351977");
-
-    URL feedUrl = new URL("https://www.google.com/m8/feeds/contacts/markus.oley@gmail.com/full?max-results=1000");
-    ContactFeed resultFeed = myService.getFeed(feedUrl, ContactFeed.class);
+    GoogleService myService = getGoogleService();
+    ContactFeed resultFeed = myService.getFeed(new URL(feedUrl), ContactFeed.class);
 
     for (GoogleContactsDescriptor nextDesc : descs) {
 
@@ -95,7 +112,7 @@ public class GoogleContactsConnector {
           continue;
         }
 
-        User existingUser = findByMailadress(model, getName(entry), getFirstName(entry));
+        User existingUser = findByNames(model, getName(entry), getFirstName(entry));
 
         if (existingUser == null) {
           LOGGER.info("User " +  getName(entry) + "-" +  getFirstName(entry) + " was not found");

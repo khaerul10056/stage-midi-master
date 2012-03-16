@@ -21,4 +21,8 @@ Bundle-ClassPath: lib/gdata-calendar-2.0.jar,
  lib/gdata-maps-2.0.jar,
  .,
  lib/google-collect-1.0-rc1.jar
-Export-Package: org.mda.google
+Export-Package: com.google.gdata.client,
+ com.google.gdata.data,
+ com.google.gdata.data.contacts,
+ com.google.gdata.data.extensions,
+ org.mda.google

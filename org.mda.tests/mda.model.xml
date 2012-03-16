@@ -2900,4 +2900,10 @@
   <sessions name="Probe" items="//@gallery/@galleryItems.0 //@gallery/@galleryItems.2 //@gallery/@galleryItems.1 //@gallery/@galleryItems.3 //@gallery/@galleryItems.4 //@gallery/@galleryItems.5 //@gallery/@galleryItems.6 //@gallery/@galleryItems.7 //@gallery/@galleryItems.8 //@gallery/@galleryItems.9 //@gallery/@galleryItems.10 //@gallery/@galleryItems.11 //@gallery/@galleryItems.12 //@gallery/@galleryItems.13 //@gallery/@galleryItems.14 //@gallery/@galleryItems.15 //@gallery/@galleryItems.17 //@gallery/@galleryItems.19 //@gallery/@galleryItems.18"/>
   <sessions name="Weihnachtsmarkt" items="//@gallery/@galleryItems.1 //@gallery/@galleryItems.3 //@gallery/@galleryItems.17 //@gallery/@galleryItems.12"/>
   <config screenIDPresentation=":0.0" screenIDAdmin=":0.1" lastSession="//@sessions.0" pdfExportPath="/home/oleym/privat/soundOfFaith/texte_pdf" additionalsPath="additionals" fontsize="40"/>
+  <users mail="khd.rausch@t-online.de" name="Rausch" firstname="Dieter"/>
+  <users mail="biz.heidi-huebner@web.de" name="H&#xfc;bner" firstname="Heidi"/>
+  <users mail="Gabriele.Beetz@gmx.de" name="Beetz" firstname="Gabi"/>
+  <users mail="renate.meinel@gmx.de" name="Meinel" firstname="Renate"/>
+  <users mail="gabyhllein@yahoo.de" name="H&#xf6;llein" firstname="Gaby"/>
+  <users mail="markus.oley@t-online.de" name="" firstname="Loopback"/>
 </org.mda.model:MidiPlayerRoot>
