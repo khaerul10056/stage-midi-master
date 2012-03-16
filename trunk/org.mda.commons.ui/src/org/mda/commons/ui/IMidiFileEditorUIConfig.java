@@ -8,6 +8,7 @@ import org.mda.IMidiFileEditorConfig;
 public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
 
 
+  IGraphicsContext getGraphicsContext ();
 
   Color getDefaultBackgroundColor ();
 
@@ -32,6 +33,8 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
    * @return
    */
   boolean isShowBlockType ();
+
+  boolean isPagePerPart ();
 
 
 

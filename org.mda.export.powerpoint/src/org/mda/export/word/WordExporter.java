@@ -2,7 +2,6 @@ package org.mda.export.word;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 import mda.AbstractSessionItem;
@@ -11,13 +10,12 @@ import org.apache.poi.hpsf.MutablePropertySet;
 import org.apache.poi.hpsf.MutableSection;
 import org.apache.poi.hpsf.SummaryInformation;
 import org.apache.poi.hpsf.Variant;
-import org.apache.poi.hpsf.WritingNotSupportedException;
 import org.apache.poi.hpsf.wellknown.PropertyIDMap;
 import org.apache.poi.hpsf.wellknown.SectionIDMap;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 
-public class Exporter {
+public class WordExporter {
 
 
   public void export (final Collection<AbstractSessionItem> items, final File exportFile) throws Exception {

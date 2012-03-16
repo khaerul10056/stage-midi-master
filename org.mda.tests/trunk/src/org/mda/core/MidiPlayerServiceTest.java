@@ -26,7 +26,7 @@ public class MidiPlayerServiceTest {
 
   @Test
   public void removePart () {
-    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("../org.mda.core.test/conf/midiplayer.conf"));
+    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
     MidiFile file = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(0);
     assertEquals (MidiFilePartType.INTRO, file.getParts().get(0).getParttype());
     assertEquals (MidiFilePartType.VERS, file.getParts().get(1).getParttype());
@@ -52,7 +52,7 @@ public class MidiPlayerServiceTest {
 
   @Test
   public void addNewPartRef () {
-    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("../org.mda.core.test/conf/midiplayer.conf"));
+    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
     MidiFile file = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(0);
     LOGGER.info("Vorher: " + MidiPlayerService.toString(file));
     int numberOfParts = file.getParts().size();
@@ -65,7 +65,7 @@ public class MidiPlayerServiceTest {
 
   @Test
   public void addNewPartAfter () {
-    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("../org.mda.core.test/conf/midiplayer.conf"));
+    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
     MidiFile file = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(0);
     LOGGER.info("Vorher: " + MidiPlayerService.toString(file));
     int numberOfParts = file.getParts().size();
@@ -90,7 +90,7 @@ public class MidiPlayerServiceTest {
 
   @Test
   public void addNewPartEnd () {
-    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("../org.mda.core.test/conf/midiplayer.conf"));
+    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
     MidiFile file = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(0);
     LOGGER.info("Vorher: " + MidiPlayerService.toString(file));
     int numberOfParts = file.getParts().size();
@@ -114,7 +114,7 @@ public class MidiPlayerServiceTest {
 
   @Test
   public void splitPart () {
-    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("../org.mda.core.test/conf/midiplayer.conf"));
+    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
     MidiFile file = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(0);
     LOGGER.info(MidiPlayerService.getMidiFileAsString(file));
     int partNumberBefore = file.getParts().size();
@@ -139,7 +139,7 @@ public class MidiPlayerServiceTest {
 
   @Test
   public void mergeParts () {
-    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("../org.mda.core.test/conf/midiplayer.conf"));
+    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
     MidiFile file = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(0);
     LOGGER.info(MidiPlayerService.getMidiFileAsString(file));
     int partNumberBefore = file.getParts().size();

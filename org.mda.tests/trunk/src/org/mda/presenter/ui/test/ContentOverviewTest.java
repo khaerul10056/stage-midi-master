@@ -21,7 +21,7 @@ public class ContentOverviewTest {
 
   @Before
   public void setup () {
-    MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));
+    MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
     presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
     MdaModule.getInjector().getInstance(ApplicationSession.class).load(null);
     presentationContext.setCurrentSession(root.getSessions().get(0), new DefaultMidiFileContentEditorConfig(), new Point (400, 200));

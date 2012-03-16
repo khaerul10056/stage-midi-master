@@ -41,7 +41,7 @@ public class BeamerPresenterTest {
 
   @Before
   public void before () {
-    root = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));
+    root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
 
     session = root.getSessions().get(0);
 

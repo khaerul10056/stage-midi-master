@@ -31,7 +31,7 @@ public class PreviewEditorTest {
 
   private PreviewEditorContent editor;
 
-  private MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));
+  private MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
 
 
 

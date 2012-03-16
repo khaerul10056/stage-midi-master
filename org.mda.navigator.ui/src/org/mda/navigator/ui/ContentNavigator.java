@@ -12,6 +12,7 @@ import mda.impl.MidiFileImpl;
 import mda.impl.SessionImpl;
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -54,7 +55,7 @@ import org.mda.commons.ui.SessionGroup;
 import org.mda.commons.ui.SongSelectorPanel;
 import org.mda.commons.ui.Util;
 import org.mda.commons.ui.navigator.NavigatorItem;
-import org.mda.export.powerpoint.Exporter;
+import org.mda.export.powerpoint.PptExporter;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
@@ -178,7 +179,7 @@ public class ContentNavigator extends ViewPart {
     itemPowerpoint.addSelectionListener(new SelectionAdapter() {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         Session session = (Session) Util.getStructuredSelection(treviewer.getSelection());
-        Exporter exporter = new Exporter();
+        PptExporter exporter = new PptExporter();
         try {
           File file = new File (appSession.getExportPath().getAbsolutePath() + File.separator + session.getName() + ".ppt");
 
@@ -200,7 +201,10 @@ public class ContentNavigator extends ViewPart {
     itemPdf.addSelectionListener(new SelectionAdapter() {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         Gallery gallery = (Gallery) Util.getStructuredSelection(treviewer.getSelection());
-        org.mda.export.pdf.Exporter exporter = new org.mda.export.pdf.Exporter();
+
+        System.out.println (Platform.getBundle("org.mda.export.powerpoint").getLocation());
+
+        org.mda.export.pdf.PdfExporter exporter = new org.mda.export.pdf.PdfExporter();
         try {
           File file = new File (appSession.getExportPath().getAbsolutePath() + File.separator + "songsheets.pdf");
 

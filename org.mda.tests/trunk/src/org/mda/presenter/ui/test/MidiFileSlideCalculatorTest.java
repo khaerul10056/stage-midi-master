@@ -5,13 +5,13 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import java.io.File;
 import java.util.Iterator;
+import java.util.List;
 import mda.MidiFile;
-import mda.MidiFileChordPart;
 import mda.MidiFilePart;
-import mda.MidiFileTextLine;
+import mda.MidiFilePartType;
 import mda.MidiPlayerRoot;
-import mda.MidiplayerFactory;
 import org.eclipse.swt.graphics.Point;
+import org.junit.Assert;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
@@ -27,7 +27,7 @@ public class MidiFileSlideCalculatorTest {
   @Test
   public void createLines () {
 
-    MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));
+    MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     MidiFilePart midiFilePart = song.getParts().get(1);
 
@@ -44,51 +44,107 @@ public class MidiFileSlideCalculatorTest {
 
   }
 
-  private Slide calculate (final MidiFilePart part, final boolean chordVisible, final int fontsize) {
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setFontsize(fontsize);
-    config.setChordVisible(chordVisible);
+  private List<Slide> calculate (final MidiFile part, DefaultMidiFileContentEditorConfig config) {
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
     MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
     calculator.setConfig(config);
-    return calculator.calculatePart(part, preCondition);
+    return calculator.calculate(part, preCondition);
   }
+
+  @Test
+  public void pagePerPart () {
+
+    final String ONE = "This is a";
+    final String TWO = "second line";
+    final String THREE = "third line";
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    creator.line().text(ONE).chordAndText("D", "test");
+    creator.line().text(TWO);
+    creator.part(MidiFilePartType.ZWISCHENSPIEL).line().text(THREE);
+    MidiFile song = creator.get();
+    Assert.assertEquals (2, song.getParts().size());
+
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setChordVisible(true);
+    config.setPagePerPart(true);
+    config.setFontsize(80);
+
+    List<Slide> slides = calculate(song, config);
+    Assert.assertEquals (2, slides.size());
+    Slide slide = slides.get(0);
+    Slide slide2 = slides.get(1);
+
+    SlideItem firstLineItem = slide.getItems().get(0);
+    SlideItem thirdLineItem = slide2.getItems().get(0);
+
+    Assert.assertEquals (ONE, firstLineItem.getText());
+    Assert.assertEquals (THREE, thirdLineItem.getText());
+
+    Assert.assertEquals (firstLineItem.getY(), thirdLineItem.getY());
+  }
+  @Test
+  public void checkWithType () {
+
+    final String ONE = "This is a";
+    final String TWO = "second line";
+    final String THREE = "third line";
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    creator.line().text(ONE).chordAndText("D", "test");
+    creator.line().text(TWO);
+    creator.part(MidiFilePartType.ZWISCHENSPIEL).line().text(THREE);
+    MidiFile song = creator.get();
+    Assert.assertEquals (2, song.getParts().size());
+
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setChordVisible(true);
+    config.setShowBlockType(true);
+    config.setPagePerPart(false);
+    config.setFontsize(80);
+
+    List<Slide> slides = calculate(song, config);
+    Assert.assertEquals (2, slides.size());
+    Slide slide = slides.get(0);
+    Slide slide2 = slides.get(1);
+
+    SlideItem parttypeItem = slide.getItems().get(0);
+    SlideItem firstLineItem = slide.getItems().get(1);
+    SlideItem chordLineItem = slide.getItems().get(3);
+    SlideItem secondLineItem = slide.getItems().get(4);
+    SlideItem parttypeItem2 = slide2.getItems().get(0);
+    SlideItem thirdLineItem = slide2.getItems().get(1);
+
+    Assert.assertEquals ("REFRAIN ", parttypeItem.getText());
+    Assert.assertEquals (ONE, firstLineItem.getText());
+    Assert.assertEquals (TWO, secondLineItem.getText());
+
+    Assert.assertEquals (parttypeItem.getY(), firstLineItem.getY());
+    Assert.assertTrue (chordLineItem.getY() < firstLineItem.getY());
+    Assert.assertTrue (parttypeItem.getX() + parttypeItem.getWidth() < secondLineItem.getX());
+    Assert.assertEquals(firstLineItem.getX(), secondLineItem.getX());
+    Assert.assertEquals(firstLineItem.getX(), thirdLineItem.getX());
+    Assert.assertEquals (parttypeItem.getX(), parttypeItem2.getX());
+    Assert.assertTrue (parttypeItem2.getY() > secondLineItem.getY());
+  }
+
+
+
+
 
   @Test
   public void checkConcreteWithChord () {
 
-    //Text and follow chords
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    creator.line().text("This is a").chordAndText("D", "test");
+    creator.line().text("second line");
+    MidiFile song = creator.get();
 
-    MidiFile song = MidiplayerFactory.eINSTANCE.createMidiFile();
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setChordVisible(true);
+    config.setFontsize(80);
 
-
-    MidiFilePart part = MidiplayerFactory.eINSTANCE.createMidiFilePart();
-    song.getParts().add(part);
-
-    //           D
-    // This is a test
-    MidiFileTextLine textLine = MidiplayerFactory.eINSTANCE.createMidiFileTextLine();
-    MidiFileChordPart part1 = MidiplayerFactory.eINSTANCE.createMidiFileChordPart();
-    part1.setText("This is a");
-    textLine.getChordParts().add(part1);
-    MidiFileChordPart part2 = MidiplayerFactory.eINSTANCE.createMidiFileChordPart();
-    part2.setText("test");
-    part2.setChord("D");
-    textLine.getChordParts().add(part2);
-    part.getTextlines().add(textLine);
-
-    //
-    // second line
-    MidiFileTextLine textLine2 = MidiplayerFactory.eINSTANCE.createMidiFileTextLine();
-    MidiFileChordPart part3 = MidiplayerFactory.eINSTANCE.createMidiFileChordPart();
-    part3.setText("second line");
-    textLine2.getChordParts().add(part3);
-    part.getTextlines().add(textLine2);
-
-    Slide slide = calculate(part, true, 80);
-
+    Slide slide = calculate(song, config).get(0);
     System.out.println (slide);
 
     SlideItem item1 = slide.getItems().get(0);
@@ -118,32 +174,15 @@ public class MidiFileSlideCalculatorTest {
 
     //Text and follow chords
 
-    MidiFile song = MidiplayerFactory.eINSTANCE.createMidiFile();
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    creator.line().text("This is a").chordAndText("D", "test");
+    creator.line().text("second line");
+    MidiFile song = creator.get();
 
-    MidiFilePart part = MidiplayerFactory.eINSTANCE.createMidiFilePart();
-    song.getParts().add(part);
-    MidiFileTextLine textLine = MidiplayerFactory.eINSTANCE.createMidiFileTextLine();
-
-    //           D
-    // This is a test
-    MidiFileChordPart part1 = MidiplayerFactory.eINSTANCE.createMidiFileChordPart();
-    part1.setText("This is a");
-    textLine.getChordParts().add(part1);
-    MidiFileChordPart part2 = MidiplayerFactory.eINSTANCE.createMidiFileChordPart();
-    part2.setText("test");
-    part2.setChord("D");
-    textLine.getChordParts().add(part2);
-    part.getTextlines().add(textLine);
-
-    //
-    // second line
-    MidiFileTextLine textLine2 = MidiplayerFactory.eINSTANCE.createMidiFileTextLine();
-    MidiFileChordPart part3 = MidiplayerFactory.eINSTANCE.createMidiFileChordPart();
-    part3.setText("second line");
-    textLine2.getChordParts().add(part3);
-    part.getTextlines().add(textLine2);
-
-    Slide slide = calculate(part, false, 80);
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setChordVisible(false);
+    config.setFontsize(80);
+    Slide slide = calculate(song, config).get(0);
     System.out.println (slide);
 
     SlideItem item1 = slide.getItems().get(0);
@@ -167,7 +206,7 @@ public class MidiFileSlideCalculatorTest {
   @Test
   public void zoom () {
 
-    MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));
+    MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     MidiFilePart midiFilePart = song.getParts().get(1);
 

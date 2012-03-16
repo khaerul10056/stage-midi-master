@@ -1,9 +1,13 @@
 package org.mda.export.powerpoint;
 
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 public class Activator implements BundleActivator {
+
+  private static final Log LOGGER  = LogFactory.getLogger(Activator.class);
 
 	private static BundleContext context;
 
@@ -16,6 +20,7 @@ public class Activator implements BundleActivator {
 	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
 	 */
 	public void start(BundleContext bundleContext) throws Exception {
+    LOGGER.info("Starting bundle " + getClass().getName() + "-" +  bundleContext.getBundle().getSymbolicName());
 		Activator.context = bundleContext;
 	}
 

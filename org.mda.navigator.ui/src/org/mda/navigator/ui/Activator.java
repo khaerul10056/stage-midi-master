@@ -1,9 +1,13 @@
 package org.mda.navigator.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 import org.osgi.framework.BundleContext;
 
 public class Activator extends AbstractUIPlugin {
+
+  private static final Log LOGGER  = LogFactory.getLogger(Activator.class);
 
   // The plug-in ID
   public static final String PLUGIN_ID = "org.mda.navigator.ui"; //$NON-NLS-1$
@@ -22,6 +26,7 @@ public class Activator extends AbstractUIPlugin {
    * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
    */
   public void start(BundleContext context) throws Exception {
+    LOGGER.info("Starting bundle " + getClass().getName() + "-" +  context.getBundle().getSymbolicName());
     super.start(context);
     plugin = this;
   }

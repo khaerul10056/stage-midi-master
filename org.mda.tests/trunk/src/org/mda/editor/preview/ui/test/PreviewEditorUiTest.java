@@ -7,12 +7,8 @@ import java.io.File;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiPlayerRoot;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.After;
 import org.junit.Before;
@@ -22,7 +18,7 @@ import org.mda.editor.preview.ui.PreviewEditorContent;
 
 public class PreviewEditorUiTest {
 
-  private MidiPlayerRoot root   = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));
+  private MidiPlayerRoot root   = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
   private final String TEXTLINEORIGINAL  = "Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist, ";
   private final String CHORDLINEORIGINAL = "D    G                    A       D           G               A ";
   private Shell shell;

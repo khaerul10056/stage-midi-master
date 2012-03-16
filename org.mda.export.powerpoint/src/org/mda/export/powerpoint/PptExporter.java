@@ -22,9 +22,9 @@ import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
 
-public class Exporter {
+public class PptExporter {
 
-  private final static Logger LOG = Logger.getLogger(Exporter.class.getName());
+  private final static Logger LOG = Logger.getLogger(PptExporter.class.getName());
 
   private MidiFileSlideCalculator calculator       = new MidiFileSlideCalculator();
   private CalculatorPreCondition  calcPreCondition = new CalculatorPreCondition();
