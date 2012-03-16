@@ -1,16 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: org.mda.core
 Bundle-SymbolicName: org.mda.core;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-ClassPath: .,
- lib/iText-5.0.5.jar
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.mda,
  org.mda.additionals,
- org.mda.export,
  org.mda.importer,
  org.mda.logging,
  org.mda.player

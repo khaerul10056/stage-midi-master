@@ -10,12 +10,19 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
+import org.mda.commons.ui.calculator.SWTGraphicsContext;
 
 public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConfig {
 
   private boolean                chordVisible    = true;
 
   private boolean                editable        = true;
+
+  /**
+   * if set to true, every part is layouted on a new side
+   * if set to false, any part of one item is layouted on one slide
+   */
+  private boolean                pagePerPart    = true;
 
   private Color                  backgroundColor = Display.getDefault().getSystemColor(SWT.COLOR_BLACK);
 
@@ -24,6 +31,9 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
   private List<MidiFilePartType> partsToIgnore   = new ArrayList<MidiFilePartType>();
 
   private Font                   font;
+
+
+  private IGraphicsContext graphicsContext = new SWTGraphicsContext();
 
   private Integer fontsize;
 
@@ -122,5 +132,26 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
   public void setShowBlockType (final boolean showBlockType) {
     this.showBlockType = showBlockType;
   }
+
+  public boolean isPagePerPart () {
+    return pagePerPart;
+  }
+
+  public void setPagePerPart (boolean pagePerPart) {
+    this.pagePerPart = pagePerPart;
+  }
+
+  @Override
+  public IGraphicsContext getGraphicsContext () {
+    if (graphicsContext == null)
+      throw new IllegalStateException("No Graphics context set, but accessed");
+    return graphicsContext;
+  }
+
+  public void setGraphicsContext (IGraphicsContext graphicsContext) {
+    this.graphicsContext = graphicsContext;
+  }
+
+
 
 }

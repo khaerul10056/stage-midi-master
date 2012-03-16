@@ -25,7 +25,6 @@
       <import plugin="com.google.inject" version="2.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.mda.core" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ui.ide" version="3.6.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.resources" version="3.7.100" match="greaterOrEqual"/>
       <import plugin="org.mda.commons.ui" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jface.text"/>
@@ -33,7 +32,9 @@
       <import plugin="org.mda.presenter.ui" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui" version="3.7.0" match="greaterOrEqual"/>
       <import plugin="org.mda.export.powerpoint" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ui.views" version="3.6.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface" version="3.7.0" match="greaterOrEqual"/>
+      <import plugin="org.aopalliance" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.swt" version="3.7.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -84,5 +85,11 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
+   <plugin
+         id="org.mda.export.powerpoint"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
 </feature>

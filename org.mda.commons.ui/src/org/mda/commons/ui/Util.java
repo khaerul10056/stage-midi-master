@@ -4,8 +4,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
-import org.mda.logging.Log;
-import org.mda.logging.LogFactory;
 
 
 
@@ -13,7 +11,6 @@ import org.mda.logging.LogFactory;
 
 public class Util {
 
-  private static final Log LOGGER  = LogFactory.getLogger(Util.class);
 
   public final static String ADMIN_PERSPECTIVE = "org.mda.application.adminperspective";
 

@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
-import mda.AbstractSessionItem;
-import mda.Gallery;
 import mda.MidiFile;
 import mda.MidiFileChordPart;
 import mda.MidiFilePart;

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Test
+Bundle-Name: org.mda.editor.preview.ui.test
 Bundle-SymbolicName: org.mda.editor.preview.ui.test
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.core.runtime,
@@ -9,4 +9,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.mda.editor.preview.ui;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.mda.editor.preview.ui.test
+Export-Package: 

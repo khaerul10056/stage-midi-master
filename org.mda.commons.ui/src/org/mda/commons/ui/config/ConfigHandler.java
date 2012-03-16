@@ -16,7 +16,7 @@ public class ConfigHandler extends AbstractHandler {
   @Override
   public Object execute(ExecutionEvent event) throws ExecutionException {
     Shell parentShell = HandlerUtil.getActiveWorkbenchWindow(event).getShell();
-    ConfigShell shell = new ConfigShell(parentShell, session.getCurrentModel().getConfig());
+    new ConfigShell(parentShell, session.getCurrentModel().getConfig());
     return null;
   }
 
