@@ -1,4 +1,0 @@
-import org::mda::editor::xtext::midiPlayer;
-
-sortedGreetings(Model this) :
-	this.greetings.sortBy(g|g.name.toLowerCase());
