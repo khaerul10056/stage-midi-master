@@ -14,6 +14,7 @@ import mda.MidiPlayerRoot;
 import mda.MidiplayerPackage;
 import mda.Session;
 
+import mda.User;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -38,6 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link mda.impl.MidiPlayerRootImpl#getGallery <em>Gallery</em>}</li>
  *   <li>{@link mda.impl.MidiPlayerRootImpl#getSessions <em>Sessions</em>}</li>
  *   <li>{@link mda.impl.MidiPlayerRootImpl#getConfig <em>Config</em>}</li>
+ *   <li>{@link mda.impl.MidiPlayerRootImpl#getUsers <em>Users</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,6 +75,16 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
    * @ordered
    */
   protected Configuration config;
+
+  /**
+   * The cached value of the '{@link #getUsers() <em>Users</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getUsers()
+   * @generated
+   * @ordered
+   */
+  protected EList<User> users;
 
   /**
    * <!-- begin-user-doc -->
@@ -193,6 +205,18 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
 
   /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<User> getUsers() {
+    if (users == null) {
+      users = new EObjectContainmentEList<User>(User.class, this, MidiplayerPackage.MIDI_PLAYER_ROOT__USERS);
+    }
+    return users;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -205,6 +229,8 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
         return ((InternalEList<?>)getSessions()).basicRemove(otherEnd, msgs);
       case MidiplayerPackage.MIDI_PLAYER_ROOT__CONFIG:
         return basicSetConfig(null, msgs);
+      case MidiplayerPackage.MIDI_PLAYER_ROOT__USERS:
+        return ((InternalEList<?>)getUsers()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -223,6 +249,8 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
         return getSessions();
       case MidiplayerPackage.MIDI_PLAYER_ROOT__CONFIG:
         return getConfig();
+      case MidiplayerPackage.MIDI_PLAYER_ROOT__USERS:
+        return getUsers();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -246,6 +274,10 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
       case MidiplayerPackage.MIDI_PLAYER_ROOT__CONFIG:
         setConfig((Configuration)newValue);
         return;
+      case MidiplayerPackage.MIDI_PLAYER_ROOT__USERS:
+        getUsers().clear();
+        getUsers().addAll((Collection<? extends User>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -267,6 +299,9 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
       case MidiplayerPackage.MIDI_PLAYER_ROOT__CONFIG:
         setConfig((Configuration)null);
         return;
+      case MidiplayerPackage.MIDI_PLAYER_ROOT__USERS:
+        getUsers().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -285,6 +320,8 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
         return sessions != null && !sessions.isEmpty();
       case MidiplayerPackage.MIDI_PLAYER_ROOT__CONFIG:
         return config != null;
+      case MidiplayerPackage.MIDI_PLAYER_ROOT__USERS:
+        return users != null && !users.isEmpty();
     }
     return super.eIsSet(featureID);
   }

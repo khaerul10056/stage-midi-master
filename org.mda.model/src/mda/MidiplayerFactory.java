@@ -107,6 +107,24 @@ public interface MidiplayerFactory extends EFactory {
   Configuration createConfiguration();
 
   /**
+   * Returns a new object of class '<em>User</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>User</em>'.
+   * @generated
+   */
+  User createUser();
+
+  /**
+   * Returns a new object of class '<em>Export Configuration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Export Configuration</em>'.
+   * @generated
+   */
+  ExportConfiguration createExportConfiguration();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

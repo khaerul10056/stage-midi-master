@@ -59,6 +59,8 @@
         eType="#//Session" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="config" eType="#//Configuration"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="users" upperBound="-1"
+        eType="#//User" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MidiFileChordPart">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -77,5 +79,18 @@
     <eLiterals name="VIDEO" value="1"/>
     <eLiterals name="MIDIFILE" value="2"/>
     <eLiterals name="AUDIO" value="3" literal="AUDIO"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="User">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mail" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exportConfiguration" eType="#//ExportConfiguration"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//UserType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExportConfiguration"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="UserType">
+    <eLiterals name="MEMBER"/>
+    <eLiterals name="FRIEND"/>
   </eClassifiers>
 </ecore:EPackage>

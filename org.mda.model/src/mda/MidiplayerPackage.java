@@ -457,13 +457,22 @@ public interface MidiplayerPackage extends EPackage {
   int MIDI_PLAYER_ROOT__CONFIG = 2;
 
   /**
+   * The feature id for the '<em><b>Users</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MIDI_PLAYER_ROOT__USERS = 3;
+
+  /**
    * The number of structural features of the '<em>Midi Player Root</em>' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int MIDI_PLAYER_ROOT_FEATURE_COUNT = 3;
+	int MIDI_PLAYER_ROOT_FEATURE_COUNT = 4;
 
 	/**
    * The meta object id for the '{@link mda.impl.MidiFileChordPartImpl <em>Midi File Chord Part</em>}' class.
@@ -576,6 +585,89 @@ public interface MidiplayerPackage extends EPackage {
   int CONFIGURATION_FEATURE_COUNT = 6;
 
   /**
+   * The meta object id for the '{@link mda.impl.UserImpl <em>User</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see mda.impl.UserImpl
+   * @see mda.impl.MidiplayerPackageImpl#getUser()
+   * @generated
+   */
+  int USER = 11;
+
+    /**
+   * The feature id for the '<em><b>Mail</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int USER__MAIL = 0;
+
+    /**
+   * The feature id for the '<em><b>Export Configuration</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int USER__EXPORT_CONFIGURATION = 1;
+
+    /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int USER__NAME = 2;
+
+    /**
+   * The feature id for the '<em><b>Firstname</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int USER__FIRSTNAME = 3;
+
+    /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int USER__TYPE = 4;
+
+    /**
+   * The number of structural features of the '<em>User</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int USER_FEATURE_COUNT = 5;
+
+    /**
+   * The meta object id for the '{@link mda.impl.ExportConfigurationImpl <em>Export Configuration</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see mda.impl.ExportConfigurationImpl
+   * @see mda.impl.MidiplayerPackageImpl#getExportConfiguration()
+   * @generated
+   */
+  int EXPORT_CONFIGURATION = 12;
+
+    /**
+   * The number of structural features of the '<em>Export Configuration</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPORT_CONFIGURATION_FEATURE_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -583,7 +675,7 @@ public interface MidiplayerPackage extends EPackage {
    * @see mda.impl.MidiplayerPackageImpl#getMidiFilePartType()
    * @generated
    */
-	int MIDI_FILE_PART_TYPE = 11;
+	int MIDI_FILE_PART_TYPE = 13;
 
 
 	/**
@@ -594,7 +686,18 @@ public interface MidiplayerPackage extends EPackage {
    * @see mda.impl.MidiplayerPackageImpl#getAdditionalType()
    * @generated
    */
-  int ADDITIONAL_TYPE = 12;
+  int ADDITIONAL_TYPE = 14;
+
+
+  /**
+   * The meta object id for the '{@link mda.UserType <em>User Type</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see mda.UserType
+   * @see mda.impl.MidiplayerPackageImpl#getUserType()
+   * @generated
+   */
+  int USER_TYPE = 15;
 
 
   /**
@@ -919,6 +1022,17 @@ public interface MidiplayerPackage extends EPackage {
   EReference getMidiPlayerRoot_Config();
 
   /**
+   * Returns the meta object for the containment reference list '{@link mda.MidiPlayerRoot#getUsers <em>Users</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Users</em>'.
+   * @see mda.MidiPlayerRoot#getUsers()
+   * @see #getMidiPlayerRoot()
+   * @generated
+   */
+  EReference getMidiPlayerRoot_Users();
+
+  /**
    * Returns the meta object for class '{@link mda.MidiFileChordPart <em>Midi File Chord Part</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1027,6 +1141,81 @@ public interface MidiplayerPackage extends EPackage {
   EAttribute getConfiguration_Fontsize();
 
     /**
+   * Returns the meta object for class '{@link mda.User <em>User</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>User</em>'.
+   * @see mda.User
+   * @generated
+   */
+  EClass getUser();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.User#getMail <em>Mail</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Mail</em>'.
+   * @see mda.User#getMail()
+   * @see #getUser()
+   * @generated
+   */
+  EAttribute getUser_Mail();
+
+    /**
+   * Returns the meta object for the containment reference '{@link mda.User#getExportConfiguration <em>Export Configuration</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Export Configuration</em>'.
+   * @see mda.User#getExportConfiguration()
+   * @see #getUser()
+   * @generated
+   */
+  EReference getUser_ExportConfiguration();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.User#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see mda.User#getName()
+   * @see #getUser()
+   * @generated
+   */
+  EAttribute getUser_Name();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.User#getFirstname <em>Firstname</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Firstname</em>'.
+   * @see mda.User#getFirstname()
+   * @see #getUser()
+   * @generated
+   */
+  EAttribute getUser_Firstname();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.User#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see mda.User#getType()
+   * @see #getUser()
+   * @generated
+   */
+  EAttribute getUser_Type();
+
+    /**
+   * Returns the meta object for class '{@link mda.ExportConfiguration <em>Export Configuration</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Export Configuration</em>'.
+   * @see mda.ExportConfiguration
+   * @generated
+   */
+  EClass getExportConfiguration();
+
+    /**
    * Returns the meta object for enum '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1045,6 +1234,16 @@ public interface MidiplayerPackage extends EPackage {
    * @generated
    */
   EEnum getAdditionalType();
+
+  /**
+   * Returns the meta object for enum '{@link mda.UserType <em>User Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>User Type</em>'.
+   * @see mda.UserType
+   * @generated
+   */
+  EEnum getUserType();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1327,6 +1526,14 @@ public interface MidiplayerPackage extends EPackage {
     EReference MIDI_PLAYER_ROOT__CONFIG = eINSTANCE.getMidiPlayerRoot_Config();
 
     /**
+     * The meta object literal for the '<em><b>Users</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MIDI_PLAYER_ROOT__USERS = eINSTANCE.getMidiPlayerRoot_Users();
+
+    /**
      * The meta object literal for the '{@link mda.impl.MidiFileChordPartImpl <em>Midi File Chord Part</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1411,6 +1618,66 @@ public interface MidiplayerPackage extends EPackage {
     EAttribute CONFIGURATION__FONTSIZE = eINSTANCE.getConfiguration_Fontsize();
 
         /**
+     * The meta object literal for the '{@link mda.impl.UserImpl <em>User</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see mda.impl.UserImpl
+     * @see mda.impl.MidiplayerPackageImpl#getUser()
+     * @generated
+     */
+    EClass USER = eINSTANCE.getUser();
+
+        /**
+     * The meta object literal for the '<em><b>Mail</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute USER__MAIL = eINSTANCE.getUser_Mail();
+
+        /**
+     * The meta object literal for the '<em><b>Export Configuration</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference USER__EXPORT_CONFIGURATION = eINSTANCE.getUser_ExportConfiguration();
+
+        /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute USER__NAME = eINSTANCE.getUser_Name();
+
+        /**
+     * The meta object literal for the '<em><b>Firstname</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute USER__FIRSTNAME = eINSTANCE.getUser_Firstname();
+
+        /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute USER__TYPE = eINSTANCE.getUser_Type();
+
+        /**
+     * The meta object literal for the '{@link mda.impl.ExportConfigurationImpl <em>Export Configuration</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see mda.impl.ExportConfigurationImpl
+     * @see mda.impl.MidiplayerPackageImpl#getExportConfiguration()
+     * @generated
+     */
+    EClass EXPORT_CONFIGURATION = eINSTANCE.getExportConfiguration();
+
+        /**
      * The meta object literal for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1429,6 +1696,16 @@ public interface MidiplayerPackage extends EPackage {
      * @generated
      */
     EEnum ADDITIONAL_TYPE = eINSTANCE.getAdditionalType();
+
+        /**
+     * The meta object literal for the '{@link mda.UserType <em>User Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see mda.UserType
+     * @see mda.impl.MidiplayerPackageImpl#getUserType()
+     * @generated
+     */
+    EEnum USER_TYPE = eINSTANCE.getUserType();
 
 	}
 
