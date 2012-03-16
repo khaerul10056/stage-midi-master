@@ -10,6 +10,7 @@ import mda.AbstractEvent;
 import mda.AbstractSessionItem;
 import mda.AdditionalType;
 import mda.Configuration;
+import mda.ExportConfiguration;
 import mda.Gallery;
 import mda.MidiFile;
 import mda.MidiFileChordPart;
@@ -22,6 +23,8 @@ import mda.MidiplayerPackage;
 import mda.Session;
 import mda.TextPresentationEvent;
 
+import mda.User;
+import mda.UserType;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -115,6 +118,20 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
   /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass userEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exportConfigurationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -126,6 +143,13 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * @generated
    */
   private EEnum additionalTypeEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum userTypeEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -460,6 +484,15 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
   /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMidiPlayerRoot_Users() {
+    return (EReference)midiPlayerRootEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -550,6 +583,69 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
     /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getUser() {
+    return userEClass;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getUser_Mail() {
+    return (EAttribute)userEClass.getEStructuralFeatures().get(0);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getUser_ExportConfiguration() {
+    return (EReference)userEClass.getEStructuralFeatures().get(1);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getUser_Name() {
+    return (EAttribute)userEClass.getEStructuralFeatures().get(2);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getUser_Firstname() {
+    return (EAttribute)userEClass.getEStructuralFeatures().get(3);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getUser_Type() {
+    return (EAttribute)userEClass.getEStructuralFeatures().get(4);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExportConfiguration() {
+    return exportConfigurationEClass;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -564,6 +660,15 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    */
   public EEnum getAdditionalType() {
     return additionalTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getUserType() {
+    return userTypeEEnum;
   }
 
   /**
@@ -632,6 +737,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     createEReference(midiPlayerRootEClass, MIDI_PLAYER_ROOT__GALLERY);
     createEReference(midiPlayerRootEClass, MIDI_PLAYER_ROOT__SESSIONS);
     createEReference(midiPlayerRootEClass, MIDI_PLAYER_ROOT__CONFIG);
+    createEReference(midiPlayerRootEClass, MIDI_PLAYER_ROOT__USERS);
 
     midiFileChordPartEClass = createEClass(MIDI_FILE_CHORD_PART);
     createEAttribute(midiFileChordPartEClass, MIDI_FILE_CHORD_PART__TEXT);
@@ -645,9 +751,19 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     createEAttribute(configurationEClass, CONFIGURATION__ADDITIONALS_PATH);
     createEAttribute(configurationEClass, CONFIGURATION__FONTSIZE);
 
+    userEClass = createEClass(USER);
+    createEAttribute(userEClass, USER__MAIL);
+    createEReference(userEClass, USER__EXPORT_CONFIGURATION);
+    createEAttribute(userEClass, USER__NAME);
+    createEAttribute(userEClass, USER__FIRSTNAME);
+    createEAttribute(userEClass, USER__TYPE);
+
+    exportConfigurationEClass = createEClass(EXPORT_CONFIGURATION);
+
     // Create enums
     midiFilePartTypeEEnum = createEEnum(MIDI_FILE_PART_TYPE);
     additionalTypeEEnum = createEEnum(ADDITIONAL_TYPE);
+    userTypeEEnum = createEEnum(USER_TYPE);
   }
 
 	/**
@@ -720,6 +836,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     initEReference(getMidiPlayerRoot_Gallery(), this.getGallery(), null, "gallery", null, 0, 1, MidiPlayerRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMidiPlayerRoot_Sessions(), this.getSession(), null, "sessions", null, 0, -1, MidiPlayerRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMidiPlayerRoot_Config(), this.getConfiguration(), null, "config", null, 0, 1, MidiPlayerRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMidiPlayerRoot_Users(), this.getUser(), null, "users", null, 0, -1, MidiPlayerRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(midiFileChordPartEClass, MidiFileChordPart.class, "MidiFileChordPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMidiFileChordPart_Text(), ecorePackage.getEString(), "text", null, 0, 1, MidiFileChordPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -732,6 +849,15 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     initEAttribute(getConfiguration_PdfExportPath(), ecorePackage.getEString(), "pdfExportPath", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConfiguration_AdditionalsPath(), ecorePackage.getEString(), "additionalsPath", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConfiguration_Fontsize(), ecorePackage.getEIntegerObject(), "fontsize", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getUser_Mail(), ecorePackage.getEString(), "mail", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getUser_ExportConfiguration(), this.getExportConfiguration(), null, "exportConfiguration", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getUser_Name(), ecorePackage.getEString(), "name", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getUser_Firstname(), ecorePackage.getEString(), "firstname", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getUser_Type(), this.getUserType(), "type", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exportConfigurationEClass, ExportConfiguration.class, "ExportConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Initialize enums and add enum literals
     initEEnum(midiFilePartTypeEEnum, MidiFilePartType.class, "MidiFilePartType");
@@ -748,6 +874,10 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     addEEnumLiteral(additionalTypeEEnum, AdditionalType.VIDEO);
     addEEnumLiteral(additionalTypeEEnum, AdditionalType.MIDIFILE);
     addEEnumLiteral(additionalTypeEEnum, AdditionalType.AUDIO);
+
+    initEEnum(userTypeEEnum, UserType.class, "UserType");
+    addEEnumLiteral(userTypeEEnum, UserType.MEMBER);
+    addEEnumLiteral(userTypeEEnum, UserType.FRIEND);
 
     // Create resource
     createResource(eNS_URI);

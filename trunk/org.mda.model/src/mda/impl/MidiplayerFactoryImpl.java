@@ -70,6 +70,8 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
       case MidiplayerPackage.MIDI_PLAYER_ROOT: return createMidiPlayerRoot();
       case MidiplayerPackage.MIDI_FILE_CHORD_PART: return createMidiFileChordPart();
       case MidiplayerPackage.CONFIGURATION: return createConfiguration();
+      case MidiplayerPackage.USER: return createUser();
+      case MidiplayerPackage.EXPORT_CONFIGURATION: return createExportConfiguration();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -87,6 +89,8 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
         return createMidiFilePartTypeFromString(eDataType, initialValue);
       case MidiplayerPackage.ADDITIONAL_TYPE:
         return createAdditionalTypeFromString(eDataType, initialValue);
+      case MidiplayerPackage.USER_TYPE:
+        return createUserTypeFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -104,6 +108,8 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
         return convertMidiFilePartTypeToString(eDataType, instanceValue);
       case MidiplayerPackage.ADDITIONAL_TYPE:
         return convertAdditionalTypeToString(eDataType, instanceValue);
+      case MidiplayerPackage.USER_TYPE:
+        return convertUserTypeToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -201,6 +207,26 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 
   /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public User createUser() {
+    UserImpl user = new UserImpl();
+    return user;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExportConfiguration createExportConfiguration() {
+    ExportConfigurationImpl exportConfiguration = new ExportConfigurationImpl();
+    return exportConfiguration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -236,6 +262,26 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
    * @generated
    */
   public String convertAdditionalTypeToString(EDataType eDataType, Object instanceValue) {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public UserType createUserTypeFromString(EDataType eDataType, String initialValue) {
+    UserType result = UserType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertUserTypeToString(EDataType eDataType, Object instanceValue) {
     return instanceValue == null ? null : instanceValue.toString();
   }
 

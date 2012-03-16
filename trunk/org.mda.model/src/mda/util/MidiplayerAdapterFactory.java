@@ -116,6 +116,14 @@ public class MidiplayerAdapterFactory extends AdapterFactoryImpl {
         return createConfigurationAdapter();
       }
       @Override
+      public Adapter caseUser(User object) {
+        return createUserAdapter();
+      }
+      @Override
+      public Adapter caseExportConfiguration(ExportConfiguration object) {
+        return createExportConfigurationAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object) {
         return createEObjectAdapter();
       }
@@ -286,6 +294,34 @@ public class MidiplayerAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createConfigurationAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link mda.User <em>User</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see mda.User
+   * @generated
+   */
+  public Adapter createUserAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link mda.ExportConfiguration <em>Export Configuration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see mda.ExportConfiguration
+   * @generated
+   */
+  public Adapter createExportConfigurationAdapter() {
     return null;
   }
 

@@ -1,10 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Google
-Bundle-SymbolicName: org.mda.google
+Bundle-SymbolicName: org.mda.google;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.mda.google.Activator
-Require-Bundle: org.eclipse.core.runtime
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui;bundle-version="3.7.0",
+ org.mda.model;bundle-version="1.0.0",
+ org.mda.core;bundle-version="1.0.0",
+ org.aopalliance;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ClassPath: lib/gdata-calendar-2.0.jar,
@@ -17,3 +21,4 @@ Bundle-ClassPath: lib/gdata-calendar-2.0.jar,
  lib/gdata-maps-2.0.jar,
  .,
  lib/google-collect-1.0-rc1.jar
+Export-Package: org.mda.google
