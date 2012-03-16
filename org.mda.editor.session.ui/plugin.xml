@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.mda.editor.session.ui.SessionEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            extensions="mdi"
+            icon="icons/sample.gif"
+            id="org.mda.editor.session.ui.editors.sessioneditor"
+            name="Session Editor">
+      </editor>
+   </extension>
+
+   <!--<extension point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.mda.editor.preview.ui.OpenPreviewEditorHandler"
+            id="org.mda.commons.ui.navigator.openprevieweditorhandler"
+            name="Open preview editor">
+      </command>
+   </extension>-->
+
+
+</plugin>
