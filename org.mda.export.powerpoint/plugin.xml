@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.mda.commons.ui.config.SendSongbooksHandler"
+            id="org.mda.commons.ui.config.SendSongbooks"
+            name="Send songbooks...">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               id="fileMenu"
+               label="File">
+            <command
+                  commandId="org.mda.commons.ui.config.SendSongbooksHandler"
+                  label="Send songbooks..."
+                  style="push"
+                  tooltip="Send songbooks to all users, that have enabled this feature">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+
+
+</plugin>

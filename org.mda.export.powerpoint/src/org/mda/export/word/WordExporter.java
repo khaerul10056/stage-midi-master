@@ -2,23 +2,29 @@ package org.mda.export.word;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 import mda.AbstractSessionItem;
+import mda.ExportConfiguration;
 import org.apache.poi.hpsf.MutableProperty;
 import org.apache.poi.hpsf.MutablePropertySet;
 import org.apache.poi.hpsf.MutableSection;
 import org.apache.poi.hpsf.SummaryInformation;
 import org.apache.poi.hpsf.Variant;
+import org.apache.poi.hpsf.WritingNotSupportedException;
 import org.apache.poi.hpsf.wellknown.PropertyIDMap;
 import org.apache.poi.hpsf.wellknown.SectionIDMap;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.mda.export.ExportException;
+import org.mda.export.ExportResult;
+import org.mda.export.IExport;
 
 
-public class WordExporter {
+public class WordExporter implements IExport {
 
 
-  public void export (final Collection<AbstractSessionItem> items, final File exportFile) throws Exception {
+  public ExportResult export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration exportConf) throws ExportException {
 
 //    POIFSFileSystem fs = new POIFSFileSystem();
 //    HWPFDocument document = new HWPFDocument(fs);
@@ -57,6 +63,7 @@ public class WordExporter {
     /* For writing the property set into a POI file system it has to be
      * handed over to the POIFS.createDocument() method as an input stream
      * which produces the bytes making out the property set stream. */
+    try {
     final InputStream is = mps.toInputStream();
 
     /* Create the summary information property set in the POI file
@@ -66,6 +73,20 @@ public class WordExporter {
 
     /* Write the whole POI file system to a disk file. */
     poiFs.writeFilesystem(new FileOutputStream(exportFile));
+
+    } catch (IOException e) {
+      throw new ExportException("Error saving exportfile " + exportFile.getAbsolutePath(), e);
+    } catch (WritingNotSupportedException e) {
+      throw new ExportException("Error saving exportfile " + exportFile.getAbsolutePath(), e);
+    }
+
+    ExportResult result = new ExportResult();
+    return result;
+  }
+
+  @Override
+  public String getSuffix () {
+    return ".doc";
   }
 
 }
