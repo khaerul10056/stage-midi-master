@@ -21,7 +21,6 @@ import org.eclipse.swt.graphics.Point;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
-import org.mda.export.ExportResult;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
@@ -31,7 +30,7 @@ public class PptExporter extends AbstractExporter {
 
 
 
-  public ExportResult export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration exportconfig) throws ExportException {
+  public File export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration exportconfig) throws ExportException {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
 
@@ -59,8 +58,7 @@ public class PptExporter extends AbstractExporter {
     } catch (IOException e) {
       throw new ExportException("Error saving file " + exportFile.getAbsolutePath(), e);
     }
-    ExportResult result = new ExportResult();
-    return result;
+    return exportFile;
   }
 
   private void exportSlide (SlideShow show, org.mda.commons.ui.calculator.Slide song) {

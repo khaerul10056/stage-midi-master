@@ -14,10 +14,10 @@ public interface IExport {
     * @param items
     * @param exportFile
     * @param config
-    * @return
+    * @return exportfile or <code>null</code> if an error occured
     * @throws Exception
     */
-   ExportResult export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration config) throws ExportException;
+   File export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration config) throws ExportException;
 
    /**
     * gets the suffix for this export
