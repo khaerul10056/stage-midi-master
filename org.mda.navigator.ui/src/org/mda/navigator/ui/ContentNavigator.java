@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import mda.AbstractSessionItem;
+import mda.ExportConfiguration;
 import mda.Gallery;
 import mda.Session;
 import mda.impl.MidiFileImpl;
@@ -55,6 +56,7 @@ import org.mda.commons.ui.SessionGroup;
 import org.mda.commons.ui.SongSelectorPanel;
 import org.mda.commons.ui.Util;
 import org.mda.commons.ui.navigator.NavigatorItem;
+import org.mda.export.ExportException;
 import org.mda.export.powerpoint.PptExporter;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -183,13 +185,15 @@ public class ContentNavigator extends ViewPart {
         try {
           File file = new File (appSession.getExportPath().getAbsolutePath() + File.separator + session.getName() + ".ppt");
 
-          exporter.export(session.getItems(), file);
+          ExportConfiguration conf = MidiPlayerService.mf.createExportConfiguration();
+          conf.setWithChords(false);
+          exporter.export(session.getItems(), file, conf);
 
           MessageDialog.openConfirm(getSite().getShell(), "Exportfiles saved", "Powerpoint-Exportfile saved in " + file.getAbsolutePath());
 
 
         }
-        catch (IOException e1) {
+        catch (ExportException e1) {
           LOGGER.error(e1.getLocalizedMessage(), e1);
         }
       }
@@ -207,8 +211,10 @@ public class ContentNavigator extends ViewPart {
         org.mda.export.pdf.PdfExporter exporter = new org.mda.export.pdf.PdfExporter();
         try {
           File file = new File (appSession.getExportPath().getAbsolutePath() + File.separator + "songsheets.pdf");
+          ExportConfiguration conf = MidiPlayerService.mf.createExportConfiguration();
+          conf.setWithChords(false);
 
-          exporter.export(gallery.getGalleryItems(), file);
+          exporter.export(gallery.getGalleryItems(), file, conf);
 
           MessageDialog.openConfirm(getSite().getShell(), "Exportfiles saved", "PDF-Exportfile saved in " + file.getAbsolutePath());
 
