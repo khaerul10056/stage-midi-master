@@ -39,7 +39,7 @@ public class PdfExporter extends AbstractExporter {
   private CalculatorPreCondition  calcPreCondition = new CalculatorPreCondition();
 
 
-  public ExportResult export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration exportconfig) throws ExportException  {
+  public File export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration exportconfig) throws ExportException  {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
 
@@ -78,8 +78,7 @@ public class PdfExporter extends AbstractExporter {
     catch (DocumentException e) {
       throw new ExportException("Erroring creating document " + exportFile.getAbsolutePath(), e);
     }
-    ExportResult result = new ExportResult();
-    return result;
+    return exportFile;
   }
 
   private float getCm (final int pixel) {

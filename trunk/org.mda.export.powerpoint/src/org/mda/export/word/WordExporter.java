@@ -24,7 +24,7 @@ import org.mda.export.IExport;
 public class WordExporter implements IExport {
 
 
-  public ExportResult export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration exportConf) throws ExportException {
+  public File export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration exportConf) throws ExportException {
 
 //    POIFSFileSystem fs = new POIFSFileSystem();
 //    HWPFDocument document = new HWPFDocument(fs);
@@ -80,8 +80,7 @@ public class WordExporter implements IExport {
       throw new ExportException("Error saving exportfile " + exportFile.getAbsolutePath(), e);
     }
 
-    ExportResult result = new ExportResult();
-    return result;
+    return exportFile;
   }
 
   @Override
