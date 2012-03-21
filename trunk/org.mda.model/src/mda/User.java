@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mda.User#getName <em>Name</em>}</li>
  *   <li>{@link mda.User#getFirstname <em>Firstname</em>}</li>
  *   <li>{@link mda.User#getType <em>Type</em>}</li>
+ *   <li>{@link mda.User#isSendSongbook <em>Send Songbook</em>}</li>
  * </ul>
  * </p>
  *
@@ -161,5 +162,31 @@ public interface User extends EObject {
    * @generated
    */
   void setType(UserType value);
+
+  /**
+   * Returns the value of the '<em><b>Send Songbook</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Send Songbook</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Send Songbook</em>' attribute.
+   * @see #setSendSongbook(boolean)
+   * @see mda.MidiplayerPackage#getUser_SendSongbook()
+   * @model
+   * @generated
+   */
+  boolean isSendSongbook();
+
+  /**
+   * Sets the value of the '{@link mda.User#isSendSongbook <em>Send Songbook</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Send Songbook</em>' attribute.
+   * @see #isSendSongbook()
+   * @generated
+   */
+  void setSendSongbook(boolean value);
 
 } // User

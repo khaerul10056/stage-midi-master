@@ -640,13 +640,22 @@ public interface MidiplayerPackage extends EPackage {
   int USER__TYPE = 4;
 
     /**
+   * The feature id for the '<em><b>Send Songbook</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int USER__SEND_SONGBOOK = 5;
+
+    /**
    * The number of structural features of the '<em>User</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int USER_FEATURE_COUNT = 5;
+  int USER_FEATURE_COUNT = 6;
 
     /**
    * The meta object id for the '{@link mda.impl.ExportConfigurationImpl <em>Export Configuration</em>}' class.
@@ -659,13 +668,22 @@ public interface MidiplayerPackage extends EPackage {
   int EXPORT_CONFIGURATION = 12;
 
     /**
+   * The feature id for the '<em><b>With Chords</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPORT_CONFIGURATION__WITH_CHORDS = 0;
+
+    /**
    * The number of structural features of the '<em>Export Configuration</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPORT_CONFIGURATION_FEATURE_COUNT = 0;
+  int EXPORT_CONFIGURATION_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
@@ -1206,6 +1224,17 @@ public interface MidiplayerPackage extends EPackage {
   EAttribute getUser_Type();
 
     /**
+   * Returns the meta object for the attribute '{@link mda.User#isSendSongbook <em>Send Songbook</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Send Songbook</em>'.
+   * @see mda.User#isSendSongbook()
+   * @see #getUser()
+   * @generated
+   */
+  EAttribute getUser_SendSongbook();
+
+    /**
    * Returns the meta object for class '{@link mda.ExportConfiguration <em>Export Configuration</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1214,6 +1243,17 @@ public interface MidiplayerPackage extends EPackage {
    * @generated
    */
   EClass getExportConfiguration();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.ExportConfiguration#isWithChords <em>With Chords</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>With Chords</em>'.
+   * @see mda.ExportConfiguration#isWithChords()
+   * @see #getExportConfiguration()
+   * @generated
+   */
+  EAttribute getExportConfiguration_WithChords();
 
     /**
    * Returns the meta object for enum '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}'.
@@ -1668,6 +1708,14 @@ public interface MidiplayerPackage extends EPackage {
     EAttribute USER__TYPE = eINSTANCE.getUser_Type();
 
         /**
+     * The meta object literal for the '<em><b>Send Songbook</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute USER__SEND_SONGBOOK = eINSTANCE.getUser_SendSongbook();
+
+        /**
      * The meta object literal for the '{@link mda.impl.ExportConfigurationImpl <em>Export Configuration</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1676,6 +1724,14 @@ public interface MidiplayerPackage extends EPackage {
      * @generated
      */
     EClass EXPORT_CONFIGURATION = eINSTANCE.getExportConfiguration();
+
+        /**
+     * The meta object literal for the '<em><b>With Chords</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXPORT_CONFIGURATION__WITH_CHORDS = eINSTANCE.getExportConfiguration_WithChords();
 
         /**
      * The meta object literal for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
