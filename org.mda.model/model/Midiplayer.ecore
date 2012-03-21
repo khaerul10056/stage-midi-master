@@ -87,8 +87,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//UserType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sendSongbook" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExportConfiguration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExportConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="withChords" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="UserType">
     <eLiterals name="MEMBER"/>
     <eLiterals name="FRIEND"/>

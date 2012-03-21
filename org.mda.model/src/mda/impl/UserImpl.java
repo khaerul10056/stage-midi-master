@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link mda.impl.UserImpl#getName <em>Name</em>}</li>
  *   <li>{@link mda.impl.UserImpl#getFirstname <em>Firstname</em>}</li>
  *   <li>{@link mda.impl.UserImpl#getType <em>Type</em>}</li>
+ *   <li>{@link mda.impl.UserImpl#isSendSongbook <em>Send Songbook</em>}</li>
  * </ul>
  * </p>
  *
@@ -127,6 +128,26 @@ public class UserImpl extends EObjectImpl implements User {
    * @ordered
    */
   protected UserType type = TYPE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isSendSongbook() <em>Send Songbook</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isSendSongbook()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean SEND_SONGBOOK_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isSendSongbook() <em>Send Songbook</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isSendSongbook()
+   * @generated
+   * @ordered
+   */
+  protected boolean sendSongbook = SEND_SONGBOOK_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -279,6 +300,27 @@ public class UserImpl extends EObjectImpl implements User {
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isSendSongbook() {
+    return sendSongbook;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSendSongbook(boolean newSendSongbook) {
+    boolean oldSendSongbook = sendSongbook;
+    sendSongbook = newSendSongbook;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.USER__SEND_SONGBOOK, oldSendSongbook, sendSongbook));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
@@ -306,6 +348,8 @@ public class UserImpl extends EObjectImpl implements User {
         return getFirstname();
       case MidiplayerPackage.USER__TYPE:
         return getType();
+      case MidiplayerPackage.USER__SEND_SONGBOOK:
+        return isSendSongbook();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -332,6 +376,9 @@ public class UserImpl extends EObjectImpl implements User {
         return;
       case MidiplayerPackage.USER__TYPE:
         setType((UserType)newValue);
+        return;
+      case MidiplayerPackage.USER__SEND_SONGBOOK:
+        setSendSongbook((Boolean)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -360,6 +407,9 @@ public class UserImpl extends EObjectImpl implements User {
       case MidiplayerPackage.USER__TYPE:
         setType(TYPE_EDEFAULT);
         return;
+      case MidiplayerPackage.USER__SEND_SONGBOOK:
+        setSendSongbook(SEND_SONGBOOK_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -382,6 +432,8 @@ public class UserImpl extends EObjectImpl implements User {
         return FIRSTNAME_EDEFAULT == null ? firstname != null : !FIRSTNAME_EDEFAULT.equals(firstname);
       case MidiplayerPackage.USER__TYPE:
         return type != TYPE_EDEFAULT;
+      case MidiplayerPackage.USER__SEND_SONGBOOK:
+        return sendSongbook != SEND_SONGBOOK_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -404,6 +456,8 @@ public class UserImpl extends EObjectImpl implements User {
     result.append(firstname);
     result.append(", type: ");
     result.append(type);
+    result.append(", sendSongbook: ");
+    result.append(sendSongbook);
     result.append(')');
     return result.toString();
   }

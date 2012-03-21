@@ -640,8 +640,26 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getUser_SendSongbook() {
+    return (EAttribute)userEClass.getEStructuralFeatures().get(5);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getExportConfiguration() {
     return exportConfigurationEClass;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExportConfiguration_WithChords() {
+    return (EAttribute)exportConfigurationEClass.getEStructuralFeatures().get(0);
   }
 
     /**
@@ -757,8 +775,10 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     createEAttribute(userEClass, USER__NAME);
     createEAttribute(userEClass, USER__FIRSTNAME);
     createEAttribute(userEClass, USER__TYPE);
+    createEAttribute(userEClass, USER__SEND_SONGBOOK);
 
     exportConfigurationEClass = createEClass(EXPORT_CONFIGURATION);
+    createEAttribute(exportConfigurationEClass, EXPORT_CONFIGURATION__WITH_CHORDS);
 
     // Create enums
     midiFilePartTypeEEnum = createEEnum(MIDI_FILE_PART_TYPE);
@@ -856,8 +876,10 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     initEAttribute(getUser_Name(), ecorePackage.getEString(), "name", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getUser_Firstname(), ecorePackage.getEString(), "firstname", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getUser_Type(), this.getUserType(), "type", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getUser_SendSongbook(), ecorePackage.getEBoolean(), "sendSongbook", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exportConfigurationEClass, ExportConfiguration.class, "ExportConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExportConfiguration_WithChords(), ecorePackage.getEBoolean(), "withChords", null, 0, 1, ExportConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(midiFilePartTypeEEnum, MidiFilePartType.class, "MidiFilePartType");
