@@ -9,8 +9,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
-import java.util.logging.Logger;
 import mda.AbstractSessionItem;
+import mda.ExportConfiguration;
 import org.apache.poi.hslf.model.Fill;
 import org.apache.poi.hslf.model.Picture;
 import org.apache.poi.hslf.model.Slide;
@@ -19,40 +19,48 @@ import org.apache.poi.hslf.usermodel.RichTextRun;
 import org.apache.poi.hslf.usermodel.SlideShow;
 import org.eclipse.swt.graphics.Point;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
-import org.mda.commons.ui.calculator.CalculatorPreCondition;
-import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
+import org.mda.export.AbstractExporter;
+import org.mda.export.ExportException;
+import org.mda.export.ExportResult;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
-public class PptExporter {
+public class PptExporter extends AbstractExporter {
 
-  private final static Logger LOG = Logger.getLogger(PptExporter.class.getName());
+  private final static Log LOG = LogFactory.getLogger(PptExporter.class);
 
-  private MidiFileSlideCalculator calculator       = new MidiFileSlideCalculator();
-  private CalculatorPreCondition  calcPreCondition = new CalculatorPreCondition();
 
-  public void export (final Collection<AbstractSessionItem> items, final File exportFile) throws IOException {
+
+  public ExportResult export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration exportconfig) throws ExportException {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
 
     SlideShow show = new SlideShow();
-    show.setPageSize(new Dimension(calculator.getConfig().getDefaultPresentationScreenSize().x, calculator.getConfig().getDefaultPresentationScreenSize().y));
+    show.setPageSize(new Dimension(getCalculator().getConfig().getDefaultPresentationScreenSize().x, getCalculator().getConfig().getDefaultPresentationScreenSize().y));
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(false);
-    calculator.setConfig(config);
+    config.setChordVisible(exportconfig.isWithChords());
+    getCalculator().setConfig(config);
     LOG.info("Calculate size " + show.getPageSize().width + "x" + show.getPageSize().height + " from " +
-            calculator.getConfig().getDefaultPresentationScreenSize().x + "x" + calculator.getConfig().getDefaultPresentationScreenSize().y );
-    calcPreCondition.setCalculationsize(new Point (show.getPageSize().width, show.getPageSize().height));
+        getCalculator().getConfig().getDefaultPresentationScreenSize().x + "x" + getCalculator().getConfig().getDefaultPresentationScreenSize().y );
+    getCalcPreCondition().setCalculationsize(new Point (show.getPageSize().width, show.getPageSize().height));
 
     for (AbstractSessionItem nextItem : items) {
-      List<org.mda.commons.ui.calculator.Slide> calculate = calculator.calculate(nextItem, calcPreCondition);
+      List<org.mda.commons.ui.calculator.Slide> calculate = getCalculator().calculate(nextItem, getCalcPreCondition());
 
       for (org.mda.commons.ui.calculator.Slide nextInternSlide : calculate) {
         exportSlide(show, nextInternSlide);
       }
     }
+    try {
     FileOutputStream out = new FileOutputStream(exportFile);
     show.write(out);
     out.close();
+    } catch (IOException e) {
+      throw new ExportException("Error saving file " + exportFile.getAbsolutePath(), e);
+    }
+    ExportResult result = new ExportResult();
+    return result;
   }
 
   private void exportSlide (SlideShow show, org.mda.commons.ui.calculator.Slide song) {
@@ -118,6 +126,11 @@ public class PptExporter {
 //      txt.setAnchor(rect);
 //      newSlide.addShape(txt);
 //    }
+  }
+
+  @Override
+  public String getSuffix () {
+    return ".ppt";
   }
 
 }

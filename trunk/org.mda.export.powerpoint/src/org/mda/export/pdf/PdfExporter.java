@@ -1,12 +1,14 @@
 package org.mda.export.pdf;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 import mda.AbstractSessionItem;
+import mda.ExportConfiguration;
 import mda.MidiFile;
 import org.eclipse.swt.graphics.Point;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
@@ -15,6 +17,9 @@ import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.commons.ui.calculator.SlideType;
+import org.mda.export.AbstractExporter;
+import org.mda.export.ExportException;
+import org.mda.export.ExportResult;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import com.lowagie.text.Document;
@@ -26,20 +31,21 @@ import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfWriter;
 
 
-public class PdfExporter {
+public class PdfExporter extends AbstractExporter {
 
   private static final Log LOGGER  = LogFactory.getLogger(PdfExporter.class);
 
   private MidiFileSlideCalculator calculator       = new MidiFileSlideCalculator();
   private CalculatorPreCondition  calcPreCondition = new CalculatorPreCondition();
 
-  public void export (final Collection<AbstractSessionItem> items, final File exportFile) throws IOException, DocumentException {
+
+  public ExportResult export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration exportconfig) throws ExportException  {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
 
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(true);
+    config.setChordVisible(exportconfig.isWithChords());
     config.setShowBlockType(true);
     config.setPagePerPart(false);
     config.setFontsize(new Integer (12));
@@ -49,7 +55,10 @@ public class PdfExporter {
     Rectangle pagesizeA4 = PageSize.A4;
     Document document = new Document(PageSize.A4);
 
-    PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(exportFile));
+    PdfWriter writer;
+    try {
+      writer = PdfWriter.getInstance(document, new FileOutputStream(exportFile));
+
     document.open();
     float x = pagesizeA4.width();
     float y = pagesizeA4.height();
@@ -61,6 +70,16 @@ public class PdfExporter {
     }
 
     document.close();
+
+    }
+    catch (FileNotFoundException e) {
+      throw new ExportException("Erroring creating document " + exportFile.getAbsolutePath(), e);
+    }
+    catch (DocumentException e) {
+      throw new ExportException("Erroring creating document " + exportFile.getAbsolutePath(), e);
+    }
+    ExportResult result = new ExportResult();
+    return result;
   }
 
   private float getCm (final int pixel) {
@@ -73,9 +92,14 @@ public class PdfExporter {
     return ergebnis.intValue();
   }
 
-  private void export (final Document doc, final PdfWriter writer, final MidiFile nextItem) throws DocumentException {
+  private void export (final Document doc, final PdfWriter writer, final MidiFile nextItem) throws ExportException {
 
-    doc.newPage();
+    try {
+      doc.newPage();
+    }
+    catch (DocumentException e) {
+      throw new ExportException("Error createing new page in document " + doc.toString(), e);
+    }
 
     List<Slide> calculate = calculator.calculate(nextItem, calcPreCondition);
 
@@ -127,4 +151,8 @@ public class PdfExporter {
     }
   }
 
+  @Override
+  public String getSuffix () {
+    return ".pdf";
+  }
 }
