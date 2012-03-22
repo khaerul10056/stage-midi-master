@@ -187,7 +187,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
             e.doit = false;
             splitLine();
           }
-          else if (e.keyCode == SWT.ALT) {
+          else if (e.keyCode == SWT.CTRL) {
             e.doit = false;
             StyledText focused = getTextLines().get(getCurrentFocusedLine());
             Point caretLocation = focused.getCaret().getLocation();
