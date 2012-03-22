@@ -17,10 +17,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Widget;
-import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
-import org.mda.additionals.AdditionalsHandler;
 
 
 public class NewPartShell extends Shell implements SelectionListener {
@@ -35,17 +32,8 @@ public class NewPartShell extends Shell implements SelectionListener {
 
   private List <MidiFilePart> partReferences = new ArrayList<MidiFilePart>();
 
-  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
-
-  private AdditionalsHandler additionalHandler = session.getAdditionalsHandler();
-
   private static Image imgNewPart = loadImageFromProject(ICON_PART);
   private static Image imgNewRefPart = loadImageFromProject(ICON_REFPART);
-
-
-  private GridData getLabelData () {
-    return new GridData(SWT.BEGINNING, SWT.CENTER, false, false);
-  }
 
   private GridData getContentData () {
     return new GridData(SWT.FILL, SWT.FILL, false, false);
@@ -127,9 +115,7 @@ public class NewPartShell extends Shell implements SelectionListener {
 
   }
 
-  private boolean isNewButton (final Widget widget) {
-    return buttonsDefault.contains(widget);
-  }
+
 
   private MidiFilePartType getPartType (final Widget widget) {
     int indexOf = buttonsDefault.indexOf(widget);

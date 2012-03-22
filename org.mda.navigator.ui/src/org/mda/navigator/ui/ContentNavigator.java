@@ -1,7 +1,6 @@
 package org.mda.navigator.ui;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -111,7 +110,7 @@ public class ContentNavigator extends ViewPart {
     AbstractSessionItem selectedItem = null;
 
     if (object instanceof NavigatorItem) {
-      NavigatorItem<AbstractSessionItem> item = (NavigatorItem<AbstractSessionItem>) object;
+      NavigatorItem<? extends AbstractSessionItem> item = (NavigatorItem) object;
       selectedItem = item.getModelElement();
 
       if (item.getMother() instanceof Session)
@@ -419,7 +418,7 @@ public class ContentNavigator extends ViewPart {
         Object object = Util.getStructuredSelection(arg0.getSelection());
 
         if (object instanceof NavigatorItem)
-          object = ((NavigatorItem) object).getModelElement();
+          object = ((NavigatorItem<?>) object).getModelElement();
         if (object instanceof EObject) {
           EObject eobject = (EObject) object;
         String editorId = editors.get(eobject.getClass());

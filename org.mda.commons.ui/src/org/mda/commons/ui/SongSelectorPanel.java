@@ -50,7 +50,7 @@ public class SongSelectorPanel extends Shell {
         IStructuredSelection selection = (IStructuredSelection) tableviewer.getSelection();
         for (Object next : selection.toArray()) {
           if (next instanceof NavigatorItem) {
-            NavigatorItem item = (NavigatorItem) next;
+            NavigatorItem<?> item = (NavigatorItem<?>) next;
             if (item.getModelElement() instanceof MidiFile)
               selectedfiles.add((MidiFile) item.getModelElement());
           }

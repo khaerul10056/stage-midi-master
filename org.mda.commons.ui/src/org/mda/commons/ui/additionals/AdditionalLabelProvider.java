@@ -1,16 +1,13 @@
 package org.mda.commons.ui.additionals;
 
-import java.util.logging.Logger;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 import org.mda.additionals.Additional;
-import org.mda.commons.ui.LabelProvider;
 
 
 public class AdditionalLabelProvider implements ILabelProvider {
 
-  private static final Logger LOGGER = Logger.getLogger(LabelProvider.class.getName());
 
   @Override
   public void addListener (ILabelProviderListener listener) {

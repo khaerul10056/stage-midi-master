@@ -19,7 +19,6 @@ public class Additional {
   private final AdditionalSuffix suffix;
 
   private final File file;
-  private Image descriptor;
 
   private static final Logger LOGGER  = Logger.getLogger(Additional.class.getName());
 

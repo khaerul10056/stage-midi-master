@@ -19,7 +19,6 @@ import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.commons.ui.calculator.SlideType;
 import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
-import org.mda.export.ExportResult;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import com.lowagie.text.Document;
