@@ -161,7 +161,7 @@ public class Utils {
     if (position < 0)
       return "";
 
-    if (chordline.length() < position)
+    if (chordline.length() <= position)
       return "";
 
     if (chordline.charAt(position) == ' ')

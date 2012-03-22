@@ -103,7 +103,12 @@ public class UtilsTest {
     Assert.assertEquals ("D", chordPositions.get(new Integer (3)));
     Assert.assertEquals ("G", chordPositions.get(new Integer (6)));
     Assert.assertEquals ("Ab", chordPositions.get(new Integer (9)));
+
+
+    Assert.assertEquals ("", chordPositions.get(new Integer (0)));
   }
+
+
 
   @Test
   public void copyFile () throws Exception {
@@ -156,6 +161,8 @@ public class UtilsTest {
 
   @Test
   public void getChordFromString () {
+    Assert.assertEquals ("", Utils.getChordFromPosition("", 1));
+    Assert.assertEquals ("", Utils.getChordFromPosition("", 0));
     Assert.assertEquals ("A", Utils.getChordFromPosition("A   D   G   A", 0));
     Assert.assertEquals ("", Utils.getChordFromPosition("A   D   G   A", 1));
     Assert.assertEquals ("", Utils.getChordFromPosition("A   D   G   A", 3));
