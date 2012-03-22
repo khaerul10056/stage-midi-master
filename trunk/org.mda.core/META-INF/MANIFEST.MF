@@ -3,8 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.mda.core
 Bundle-SymbolicName: org.mda.core;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.mda,
  org.mda.additionals,
