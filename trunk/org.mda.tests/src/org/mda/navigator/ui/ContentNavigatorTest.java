@@ -34,7 +34,7 @@ public class ContentNavigatorTest {
     Session session = appSession.getCurrentModel().getSessions().get(0);
     AbstractSessionItem abstractSessionItem = session.getItems().get(3);
 
-    NavigatorItem item = new NavigatorItem(abstractSessionItem, session.getItems(), session);
+    NavigatorItem<AbstractSessionItem> item = new NavigatorItem<AbstractSessionItem>(abstractSessionItem, session.getItems(), session);
 
     ContentNavigator navigator = new ContentNavigator();
     navigator.createPartControl(new Shell());
@@ -52,7 +52,7 @@ public class ContentNavigatorTest {
     Session session = appSession.getCurrentModel().getSessions().get(0);
     AbstractSessionItem abstractSessionItem = session.getItems().get(3);
 
-    NavigatorItem item = new NavigatorItem(abstractSessionItem, session.getItems(), session);
+    NavigatorItem<AbstractSessionItem> item = new NavigatorItem<AbstractSessionItem>(abstractSessionItem, session.getItems(), session);
 
     ContentNavigator navigator = new ContentNavigator();
     navigator.createPartControl(new Shell());

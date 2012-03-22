@@ -45,7 +45,6 @@ public class AdditionalShell extends Shell {
   private Label lblPreview;
   private boolean select;
 
-  private AdditionalType onlyType;
 
   private Additional currentSelection;
 
@@ -133,7 +132,6 @@ public class AdditionalShell extends Shell {
   public AdditionalShell (final Shell parent, final AdditionalsHandler handler, final AdditionalType onlyType, final boolean select) {
     this.handler = handler;
     this.select = select;
-    this.onlyType = onlyType;
     setText("Additionals - " + handler.getAdditionalsPath().getAbsolutePath());
     setLayout(new GridLayout(2, false));
 

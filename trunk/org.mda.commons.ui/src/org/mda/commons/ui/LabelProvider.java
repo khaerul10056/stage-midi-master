@@ -1,7 +1,8 @@
 package org.mda.commons.ui;
 
-import static org.mda.Utils.*;
-import java.util.logging.Logger;
+import static org.mda.Utils.ICON_SESSION;
+import static org.mda.Utils.ICON_SONG;
+import static org.mda.Utils.loadImageFromProject;
 import mda.AbstractSessionItem;
 import mda.Gallery;
 import mda.MidiFile;
@@ -15,7 +16,6 @@ import org.mda.commons.ui.navigator.NavigatorItem;
 
 public class LabelProvider implements ILabelProvider {
 
-  private static final Logger LOGGER = Logger.getLogger(LabelProvider.class.getName());
 
   @Override
   public void addListener (ILabelProviderListener listener) {
@@ -45,7 +45,7 @@ public class LabelProvider implements ILabelProvider {
   public Image getImage (Object element) {
 
     if (element instanceof NavigatorItem)
-      element = ((NavigatorItem) element).getModelElement();
+      element = ((NavigatorItem<?>) element).getModelElement();
 
     if (element instanceof MidiFile) {
       return loadImageFromProject(ICON_SONG);

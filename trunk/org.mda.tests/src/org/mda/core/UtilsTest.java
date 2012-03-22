@@ -9,7 +9,6 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.junit.Assert;
 import org.junit.Test;
-import org.mda.MidiPlayerService;
 import org.mda.Utils;
 
 

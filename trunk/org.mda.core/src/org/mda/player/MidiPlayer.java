@@ -512,7 +512,6 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 
 	public void setLoopTo(int i) {
 		this.loopTo = i;
-
 	}
 
 	public int getLoopFrom() {

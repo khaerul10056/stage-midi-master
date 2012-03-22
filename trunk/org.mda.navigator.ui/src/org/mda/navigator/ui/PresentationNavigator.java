@@ -19,7 +19,6 @@ import org.mda.commons.ui.navigator.NavigatorItem;
 import org.mda.presenter.ui.DefaultPresentationController;
 import org.mda.presenter.ui.MdaPresenterModule;
 import org.mda.presenter.ui.PresentationContext;
-import org.mda.presenter.ui.SpecialSlide;
 
 
 public class PresentationNavigator extends ViewPart{

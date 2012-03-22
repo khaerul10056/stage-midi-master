@@ -17,7 +17,6 @@ import org.apache.poi.hpsf.wellknown.PropertyIDMap;
 import org.apache.poi.hpsf.wellknown.SectionIDMap;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.mda.export.ExportException;
-import org.mda.export.ExportResult;
 import org.mda.export.IExport;
 
 
