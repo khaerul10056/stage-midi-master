@@ -61,6 +61,9 @@ public class ChordHover extends Shell {
     return ! after.trim().equals(before.trim());
   }
 
+  public void setChord (final String newChord) {
+    this.after = newChord;
+  }
   public String getChord () {
     return after.trim();
   }

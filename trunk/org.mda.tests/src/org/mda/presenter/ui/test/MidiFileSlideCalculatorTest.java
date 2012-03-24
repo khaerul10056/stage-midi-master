@@ -24,6 +24,33 @@ import org.mda.commons.ui.calculator.SlideType;
 
 public class MidiFileSlideCalculatorTest {
 
+
+
+
+  @Test
+  public void createChordRelatedPart () throws Exception {
+    MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", " ").get();
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    CalculatorPreCondition preCondition = new CalculatorPreCondition();
+    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
+
+    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    Slide calculatePart = calculator.calculatePart(song.getParts().get(0), preCondition);
+    assertEquals (1, calculatePart.getTextline(0).length());
+  }
+
+  @Test
+  public void chordRelatedPartWith2Spaces () throws Exception {
+    MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", "  ").get();
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    CalculatorPreCondition preCondition = new CalculatorPreCondition();
+    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
+
+    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    Slide calculatePart = calculator.calculatePart(song.getParts().get(0), preCondition);
+    assertEquals (2, calculatePart.getTextline(0).length());
+  }
+
   @Test
   public void createLines () {
 

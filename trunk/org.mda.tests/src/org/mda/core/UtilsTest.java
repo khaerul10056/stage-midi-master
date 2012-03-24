@@ -91,10 +91,7 @@ public class UtilsTest {
 
 
 
-  @Test
-  public void nextWhitespaceRight () {
 
-  }
   @Test
   public void getChordPositions () {
     TreeMap<Integer,String> chordPositions = Utils.getChordPositions("A  D  G  Ab");
@@ -105,7 +102,8 @@ public class UtilsTest {
     Assert.assertEquals ("Ab", chordPositions.get(new Integer (9)));
 
 
-    Assert.assertEquals ("", chordPositions.get(new Integer (0)));
+    chordPositions = Utils.getChordPositions("");
+    Assert.assertEquals (0, chordPositions.size());
   }
 
 
@@ -178,22 +176,8 @@ public class UtilsTest {
     Assert.assertEquals ("this is a test", Utils.removeString("Hello, this is a test", 0, 7));
     Assert.assertEquals ("Heis is a test", Utils.removeString("Hello, this is a test", 2, 7));
 
-
-    try {
-    Assert.assertEquals ("Heis is a test", Utils.removeString("Hello, this is a test", -1, 7));
-    Assert.fail ("Exception expected");
-    } catch (ArrayIndexOutOfBoundsException e) {
-
-    }
-
-    try {
-    Assert.assertEquals ("Heis is a test", Utils.removeString("Hello, this is a test", 2, 712));
-    Assert.fail ("Exception expected");
-    } catch (ArrayIndexOutOfBoundsException e) {
-
-    }
-
-
+    Assert.assertEquals ("this is a test", Utils.removeString("Hello, this is a test", -1, 7));
+    Assert.assertEquals ("Hello, ", Utils.removeString("Hello, this is a test", 7, 712));
   }
 
 }
