@@ -6,13 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 import junit.framework.Assert;
 import mda.MidiFile;
+import mda.MidiFileChordPart;
 import mda.MidiFilePart;
+import mda.MidiFilePartType;
 import mda.MidiFileTextLine;
 import mda.MidiPlayerRoot;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ExtendedModifyListener;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.After;
 import org.junit.Before;
@@ -23,6 +28,7 @@ import org.mda.MidiPlayerService;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.editor.preview.ui.PreviewEditorContent;
 import org.mda.editor.preview.ui.parts.ContentPart;
+import org.mda.presenter.ui.test.MidiFileCreator;
 
 
 public class PreviewEditorTest {
@@ -48,6 +54,103 @@ public class PreviewEditorTest {
       editor.dispose();
 
     shell.dispose();
+  }
+
+
+  @Test
+  public void newPart () {
+    //create an empty line
+    MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).get();
+
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    ContentPart contentPanel = editor.getContentpanel();
+    Assert.assertEquals (1, contentPanel.getTextLines().size());
+    Assert.assertEquals (1, contentPanel.getChordLines().size());
+  }
+
+
+  @Test
+  public void trim () {
+    MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D    ", "Hallo    ").get();
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    ContentPart contentPanel = editor.getContentpanel();
+    System.out.println ("<" + contentPanel.getChordLines().get(0).getText() + ">");
+    System.out.println ("<" + contentPanel.getTextLines().get(0).getText() + ">");
+    MidiFilePart part = contentPanel.saveToModel();
+    Assert.assertEquals("D", part.getTextlines().get(0).getChordParts().get(0).getChord());
+    Assert.assertEquals("Hallo ", part.getTextlines().get(0).getChordParts().get(0).getText());
+  }
+
+  @Test
+  public void donttrim () {
+    MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", "Hallo    ").chordAndText("D", " ").get();
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    ContentPart contentPanel = editor.getContentpanel();
+    System.out.println ("<" + contentPanel.getChordLines().get(0).getText() + ">");
+    System.out.println ("<" + contentPanel.getTextLines().get(0).getText() + ">");
+    MidiFilePart part = contentPanel.saveToModel();
+    Assert.assertEquals("D", part.getTextlines().get(0).getChordParts().get(0).getChord());
+    Assert.assertEquals("Hallo    ", part.getTextlines().get(0).getChordParts().get(0).getText());
+    Assert.assertEquals("D", part.getTextlines().get(0).getChordParts().get(1).getChord());
+    Assert.assertEquals(" ", part.getTextlines().get(0).getChordParts().get(1).getText());
+  }
+
+
+
+  @Test
+  public void removeLast () {
+    MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chord("D").chord("G").chord("A").chord("G").get();
+
+    /**
+     * <D G A G  D G A   >
+<                >
+2012-03-24 21:24:36,127 INFO org.mda.editor.preview.ui.parts.SlideItemPanel ReplacedText : < >
+2012-03-24 21:24:36,128 INFO org.mda.editor.preview.ui.parts.SlideItemPanel Modified     : <16-0
+     */
+    ContentPart.listenersActive = false;
+
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    ContentPart contentPanel = editor.getContentpanel();
+    contentPanel.getChordLines().get(0).setText("D G A G  D G A   ");
+    Listener[] listeners = contentPanel.getTextLines().get(0).getListeners(SWT.Modify);
+    for (Listener next: listeners) {
+      contentPanel.getTextLines().get(0).removeExtendedModifyListener((ExtendedModifyListener) next);
+    }
+    contentPanel.getTextLines().get(0).setText ("                ");
+
+    contentPanel.doModifyText(" ", 16, 0);
+  }
+
+  @Test
+  public void chordlineLongerAsTextLIne () {
+    MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", "This is a").chordAndText("Ab", "").get();
+
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    ContentPart contentPanel = editor.getContentpanel();
+    MidiFilePart saveToModel = contentPanel.saveToModel();
+    MidiFileChordPart midiFileChordPart = saveToModel.getTextlines().get(0).getChordParts().get(1);
+    Assert.assertEquals (midiFileChordPart.getText().length(), midiFileChordPart.getChord().length());
+  }
+
+  @Test
+  public void editChordAfterText () {
+    MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", "Hello").chordAndText("D", "  ").get();
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    ContentPart contentPanel = editor.getContentpanel();
+    contentPanel.setCurrentPart(song.getParts().get(0));
+    contentPanel.setCurrentFocusedLine(0);
+    contentPanel.setCurrentCaretPosition(5);
+    contentPanel.editChord(editor.getContentpanel().getChordLines().get(0), editor.getContentpanel().getTextLines().get(0), 5, "Eb", "");
+
+    MidiFilePart saveToModel = contentPanel.saveToModel();
+    MidiFileChordPart chordpart1 = saveToModel.getTextlines().get(0).getChordParts().get(0);
+    Assert.assertEquals ("D", chordpart1.getChord().trim());
+    Assert.assertEquals ("Hello", chordpart1.getText());
+
+    MidiFileChordPart chordpart2 = saveToModel.getTextlines().get(0).getChordParts().get(1);
+    Assert.assertEquals ("Eb", chordpart2.getChord().trim());
+    Assert.assertEquals ("  ", chordpart2.getText());
+
   }
 
   @Test

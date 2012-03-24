@@ -1,6 +1,5 @@
 package org.mda.commons.ui.calculator;
 
-import static org.mda.Utils.trimRight;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,6 +11,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
+import org.mda.Utils;
 import org.mda.commons.ui.imagecache.ImageCache;
 
 /** dataobject containing information created for a slide,
@@ -82,7 +82,7 @@ public class Slide {
 
       builder.append(nextChord);
     }
-    return trimRight(builder.toString());
+    return Utils.trimRight(builder.toString());
   }
 
   public String getTextline (final int line) {
@@ -92,7 +92,7 @@ public class Slide {
     for (SlideItem next : items) {
       builder.append(next.getText());
     }
-    return trimRight(builder.toString());
+    return builder.toString();
   }
 
   public Collection<SlideItem> getItems (final int line) {

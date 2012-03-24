@@ -41,6 +41,12 @@ public class Utils {
     return color.getGreen() + "x" + color.getRed() + "x" + color.getBlue();
   }
 
+  public static String createEmptyString (final int length) {
+    StringBuilder builder = new StringBuilder();
+    for (int i = 0; i < length; i++)
+      builder.append (" ");
+    return builder.toString();
+  }
   public static Color stringToColor (final String colorAsString, final Color defaultColor) {
     if (colorAsString == null)
       return defaultColor;
@@ -320,8 +326,12 @@ public class Utils {
 
   public static String removeString (String text, int start, int length) {
 
-    if (start < 0 || (start + length) >= text.length())
-      throw new ArrayIndexOutOfBoundsException("Text length " + text.length() + ", start" + start + ", length " + length + " is out of bounds");
+
+    if (start < 0)
+      start = 0;
+
+    if (start + length >= text.length())
+      length = text.length() - start;
 
     String newText = text.substring(0, start);
     newText += text.substring(start + length, text.length());

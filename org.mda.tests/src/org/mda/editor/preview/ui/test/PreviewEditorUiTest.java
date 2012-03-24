@@ -19,8 +19,8 @@ import org.mda.editor.preview.ui.PreviewEditorContent;
 public class PreviewEditorUiTest {
 
   private MidiPlayerRoot root   = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
-  private final String TEXTLINEORIGINAL  = "Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist, ";
   private final String CHORDLINEORIGINAL = "D    G                    A       D           G               A ";
+  private final String TEXTLINEORIGINAL  = "Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist, ";
   private Shell shell;
   private PreviewEditorContent editor;
 
@@ -117,6 +117,7 @@ public class PreviewEditorUiTest {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
+    saveAndShowRoundtrip();
 
     //split a line at the beginning of an chordpart
 

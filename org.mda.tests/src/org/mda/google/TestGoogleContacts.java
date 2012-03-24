@@ -86,6 +86,7 @@ public class TestGoogleContacts {
     ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
     session.load(null);
     MidiPlayerRoot currentModel = session.getCurrentModel();
+    currentModel.getUsers().clear();
 
     GoogleContactsConnector connector = new GoogleContactsConnector();
     connector.setGoogleService(mockedService);
