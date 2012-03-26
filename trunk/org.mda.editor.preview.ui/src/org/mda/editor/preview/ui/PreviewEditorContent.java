@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import mda.MidiFile;
 import mda.MidiFilePart;
+import mda.MidiFilePartType;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.mda.MidiPlayerService;
 import org.mda.editor.preview.ui.parts.ButtonPanelPart;
 import org.mda.editor.preview.ui.parts.ContentPart;
 import org.mda.editor.preview.ui.parts.SlideListPart;
@@ -29,6 +31,11 @@ public class PreviewEditorContent extends Composite  {
   public PreviewEditorContent (final Composite composite, final MidiFile file) {
     super(composite, SWT.NONE);
     this.file = file;
+    if (file.getParts().size() == 0) {
+      MidiFilePart part = MidiPlayerService.mf.createMidiFilePart();
+      part.setParttype(MidiFilePartType.VERS);
+      file.getParts().add(part);
+    }
     //setBackground(composite.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
     setLayout(new GridLayout(3, false));
