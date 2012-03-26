@@ -11,6 +11,7 @@ import org.mda.core.additionals.TestAdditionalsHandler;
 import org.mda.core.importer.TextImporterTest;
 import org.mda.editor.preview.ui.test.PreviewEditorTest;
 import org.mda.editor.preview.ui.test.PreviewEditorUiTest;
+import org.mda.export.TestExportEngine;
 import org.mda.google.TestGoogleContacts;
 import org.mda.navigator.ui.ContentNavigatorTest;
 import org.mda.navigator.ui.PresentationNavigatorTest;
@@ -46,17 +47,10 @@ import org.mda.presenter.ui.test.MidiFileSlideCalculatorTest;
 
 
   //Google
-  TestGoogleContacts.class
+  TestGoogleContacts.class,
 
   //Export
-//  PptExporterTest.class,
-//
-//  PdfExporterTest.class,
-
-
-
-
-
+  TestExportEngine.class
 
 }
 )
