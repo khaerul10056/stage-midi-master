@@ -58,6 +58,52 @@ public class PreviewEditorTest {
 
 
   @Test
+  public void newSong () {
+    MidiFile song = MidiFileCreator.create().get();
+
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    ContentPart contentPanel = editor.getContentpanel();
+  }
+
+  @Test
+  public void moveChords () {
+    MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", "Alle ").chordAndText("G", "Schoepfung staunt und").get();
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    ContentPart contentPanel = editor.getContentpanel();
+
+    System.out.println (MidiPlayerService.toString(song.getParts().get(0)));
+    contentPanel.setCurrentCaretPosition(2);
+    Assert.assertTrue (contentPanel.chordToRight());
+    Assert.assertTrue (contentPanel.chordToRight());
+    MidiFilePart newPart = contentPanel.saveToModel();
+    MidiFileTextLine midiFileTextLine = newPart.getTextlines().get(0);
+    Assert.assertEquals ("D", midiFileTextLine.getChordParts().get(0).getChord());
+    Assert.assertEquals ("Alle Sc", midiFileTextLine.getChordParts().get(0).getText());
+    Assert.assertEquals ("G", midiFileTextLine.getChordParts().get(1).getChord());
+    Assert.assertEquals ("hoepfung staunt und", midiFileTextLine.getChordParts().get(1).getText());
+
+    for (int i = 0; i < 40; i++)
+      contentPanel.chordToRight();
+    newPart = contentPanel.saveToModel();
+
+    midiFileTextLine = newPart.getTextlines().get(0);
+    Assert.assertEquals ("G", midiFileTextLine.getChordParts().get(1).getChord());
+    Assert.assertEquals ("  ", midiFileTextLine.getChordParts().get(1).getText());
+
+
+    for (int i = 0; i < 42; i++) {
+      Assert.assertTrue (contentPanel.chordToLeft());
+    }
+
+    newPart = contentPanel.saveToModel();
+    midiFileTextLine = newPart.getTextlines().get(0);
+    Assert.assertEquals ("D", midiFileTextLine.getChordParts().get(0).getChord());
+    Assert.assertEquals ("Alle ", midiFileTextLine.getChordParts().get(0).getText());
+    Assert.assertEquals ("G", midiFileTextLine.getChordParts().get(1).getChord());
+    Assert.assertEquals ("Schoepfung staunt und", midiFileTextLine.getChordParts().get(1).getText());
+  }
+
+  @Test
   public void newPart () {
     //create an empty line
     MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).get();
