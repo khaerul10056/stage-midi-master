@@ -1,5 +1,7 @@
 package org.mda.editor.preview.ui.parts;
 
+import static org.mda.Utils.ICON_LINK;
+import static org.mda.Utils.loadImageFromProject;
 import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -33,7 +35,7 @@ public class SlideItemPanel extends Composite  {
     layout.marginWidth = 0;
     setLayout(layout);
 
-    setBtnName(new Button(this, SWT.SHADOW_ETCHED_OUT));
+    setBtnName( new Button(this, SWT.SHADOW_ETCHED_OUT));
 
     GridData gd = new GridData();
     gd.horizontalAlignment = SWT.FILL;
@@ -71,6 +73,10 @@ public class SlideItemPanel extends Composite  {
   public void setModelPart (final MidiFilePart part) {
     this.part = part;
     getBtnName().setText(part.getParttype().toString());
+    if (part.getRefPart() != null)
+      getBtnName().setImage(loadImageFromProject(ICON_LINK));
+    else
+      getBtnName().setImage(null);
   }
 
   public MidiFilePart getModelPart () {

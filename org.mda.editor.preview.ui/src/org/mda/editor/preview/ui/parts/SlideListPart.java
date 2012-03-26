@@ -59,6 +59,7 @@ public class SlideListPart extends AbstractPart  {
       SlideItemPanel nextPanel = new SlideItemPanel(this);
       nextPanel.setModelPart(nextPart);
       nextPanel.setContent(getEditorContent());
+
       GridData data = new GridData();
       data.widthHint = 130;
       data.heightHint = 50;
@@ -77,7 +78,7 @@ public class SlideListPart extends AbstractPart  {
       setCurrentPart(file.getParts().get(0));
 
     resetColors();
-    
+
     getSlideItems().get(0).select();
 
     for (SlideItemPanel panel: getSlideItems()) {
