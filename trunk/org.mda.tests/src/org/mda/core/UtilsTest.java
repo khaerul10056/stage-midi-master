@@ -127,6 +127,8 @@ public class UtilsTest {
     } catch (FileNotFoundException e) {
 
     }
+    
+    Assert.assertTrue(file.delete());
 
   }
 
