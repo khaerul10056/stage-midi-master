@@ -185,8 +185,7 @@ public class PreviewEditorTest {
     PreviewEditorContent editor = new PreviewEditorContent(shell, song);
     ContentPart contentPanel = editor.getContentpanel();
     contentPanel.setCurrentPart(song.getParts().get(0));
-    contentPanel.setCurrentFocusedLine(0);
-    contentPanel.setCurrentCaretPosition(5);
+    contentPanel.setCurrentCaretPosition(5, 0);
     contentPanel.editChord(editor.getContentpanel().getChordLines().get(0), editor.getContentpanel().getTextLines().get(0), 5, "Eb", "");
 
     MidiFilePart saveToModel = contentPanel.saveToModel();
@@ -197,6 +196,19 @@ public class PreviewEditorTest {
     MidiFileChordPart chordpart2 = saveToModel.getTextlines().get(0).getChordParts().get(1);
     Assert.assertEquals ("Eb", chordpart2.getChord().trim());
     Assert.assertEquals ("  ", chordpart2.getText());
+
+  }
+
+  @Test
+  public void editChordInNewChordline () {
+    MidiFile song = MidiFileCreator.create().part(MidiFilePartType.VERS).line().text("This is new textline").get();
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    ContentPart contentPanel = editor.getContentpanel();
+    contentPanel.setCurrentPart(song.getParts().get(0));
+
+    contentPanel.setCurrentCaretPosition(5, 0);
+    contentPanel.editChord(editor.getContentpanel().getChordLines().get(0), editor.getContentpanel().getTextLines().get(0), 5, "Eb", "");
+
 
   }
 
