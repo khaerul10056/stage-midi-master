@@ -182,30 +182,26 @@
       </parts>
       <parts bar="155">
         <textlines>
-          <chordParts text="Gott ist "/>
-          <chordParts text="gro&#xdf;, und sein " chord="D"/>
-          <chordParts text="Lob erf&#xfc;llt die " chord="G"/>
-          <chordParts text="Erde und den " chord="A"/>
-          <chordParts text="Himmel" chord="G"/>
+          <chordParts text="Gott ist gro&#xdf;, " chord="D"/>
+          <chordParts text="und sein Lob erf" chord="G"/>
+          <chordParts text="&#xfc;llt die Erde" chord="A"/>
+          <chordParts text=" und den Himmel" chord="G"/>
         </textlines>
         <textlines>
-          <chordParts text="alle "/>
-          <chordParts text="Welt erhebt den " chord="h"/>
-          <chordParts text="Namen uns'res " chord="G"/>
-          <chordParts text="Herrn. " chord="A"/>
+          <chordParts text="alle Welt erhebt" chord="h"/>
+          <chordParts text=" den Namen uns" chord="G"/>
+          <chordParts text="'res Herrn. " chord="A"/>
         </textlines>
         <textlines>
-          <chordParts text="Gott ist "/>
-          <chordParts text="gro&#xdf;, singt sein " chord="D"/>
-          <chordParts text="Lob in alle " chord="G"/>
-          <chordParts text="Welt, mit dem " chord="A"/>
-          <chordParts text="Himmel" chord="G"/>
+          <chordParts text="Gott ist gro&#xdf;, si" chord="D"/>
+          <chordParts text="ngt sein Lob" chord="G"/>
+          <chordParts text=" in alle Welt," chord="A"/>
+          <chordParts text=" mit dem Himmel" chord="G"/>
         </textlines>
         <textlines>
-          <chordParts text="denn wir "/>
-          <chordParts text="leben f&#xfc;r die " chord="h"/>
-          <chordParts text="Ehre unsres " chord="G"/>
-          <chordParts text="Herrn." chord="A"/>
+          <chordParts text="denn wir leben" chord="h"/>
+          <chordParts text=" f&#xfc;r die Ehr" chord="G"/>
+          <chordParts text="e unsres Herrn." chord="A"/>
         </textlines>
       </parts>
       <parts bar="171">
@@ -404,7 +400,7 @@
           <chordParts text="   " chord="A"/>
           <chordParts text="     " chord="D/A"/>
           <chordParts text="   " chord="A"/>
-          <chordParts chord="D/A"/>
+          <chordParts text="   " chord="D/A"/>
         </textlines>
       </parts>
       <parts parttype="VERS" bar="2">
@@ -625,7 +621,36 @@
         </textlines>
       </parts>
       <parts bar="43" refPart="//@gallery/@galleryItems.3/@parts.1">
-        <textlines/>
+        <textlines>
+          <chordParts text="Der Herr segne" chord="C"/>
+          <chordParts text=" dich, beh&#xfc;te dich, " chord="G/C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="lasse sein Angesicht " chord="F/C"/>
+          <chordParts text="leuchten &#xfc;ber " chord="C"/>
+          <chordParts text="dir," chord="C/E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und d" chord="F"/>
+          <chordParts text="er Herr " chord="G"/>
+          <chordParts text="sei d" chord="C"/>
+          <chordParts text="ir g" chord="G/C"/>
+          <chordParts text="n&#xe4;dig. " chord="F/C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Er erhebe sein Anges" chord="C"/>
+          <chordParts text="icht &#xfc;ber dich " chord="G/C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="nd erf&#xfc;lle dein Herz" chord="F/C"/>
+          <chordParts text=" mit seinem Licht," chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="tiefer " chord="C/E"/>
+          <chordParts text="Fri" chord="F"/>
+          <chordParts text="ede begl" chord="G"/>
+          <chordParts text="eite dich." chord="C"/>
+        </textlines>
       </parts>
       <parts parttype="VERS" bar="59">
         <textlines>

@@ -11,6 +11,8 @@ import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiFilePartType;
 import mda.MidiPlayerRoot;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
 import org.mda.logging.Log;
@@ -20,14 +22,66 @@ import org.mda.logging.LogFactory;
 public class MidiPlayerServiceTest {
 
   private static final Log LOGGER  = LogFactory.getLogger(MidiPlayerServiceTest.class);
+  private static MidiPlayerRoot loadRootObject;
+//1,398
 
 
+  @BeforeClass
+  public static void beforeClass () {
+    loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
+  }
+
+  @Test
+  public void moveDown () {
+    MidiFile file = (MidiFile) EcoreUtil.copy(loadRootObject.getGallery().getGalleryItems().get(0));
+
+    int lastPartIndex = file.getParts().size() - 1;
+    int prelastPartIndex = file.getParts().size() - 2;
+
+    MidiFilePartType type1 = file.getParts().get(lastPartIndex).getParttype();
+    MidiFilePartType type2 = file.getParts().get(lastPartIndex - 1).getParttype();
+
+    //Move last part down should do nothing
+    MidiFilePart lastPartToMove = file.getParts().get(lastPartIndex);
+    MidiFilePart movedPart = MidiPlayerService.movePartDown(file, lastPartToMove);
+    assertEquals (movedPart, lastPartToMove);
+    assertEquals (type1, file.getParts().get(lastPartIndex).getParttype());
+    assertEquals (type2, file.getParts().get(prelastPartIndex).getParttype());
+
+    //Move any other part down should work
+    MidiFilePart prelastPartToMove = file.getParts().get(prelastPartIndex);
+    movedPart = MidiPlayerService.movePartDown(file, prelastPartToMove);
+    assertEquals (movedPart, prelastPartToMove);
+    assertEquals (type1, file.getParts().get(prelastPartIndex).getParttype());
+    assertEquals (type2, file.getParts().get(lastPartIndex).getParttype());
+  }
+
+  @Test
+  public void moveUp () {
+    MidiFile file = (MidiFile) EcoreUtil.copy(loadRootObject.getGallery().getGalleryItems().get(0));
+
+    MidiFilePartType type1 = file.getParts().get(0).getParttype();
+    MidiFilePartType type2 = file.getParts().get(1).getParttype();
+
+    //Move first part up should do nothing
+    MidiFilePart firstPartToMove = file.getParts().get(0);
+    MidiFilePart movedPart = MidiPlayerService.movePartUp(file, firstPartToMove);
+    assertEquals (movedPart, firstPartToMove);
+    assertEquals (type1, file.getParts().get(0).getParttype());
+    assertEquals (type2, file.getParts().get(1).getParttype());
+
+    //Move any other part up should work
+    MidiFilePart secondPartToMove = file.getParts().get(1);
+    movedPart = MidiPlayerService.movePartUp(file, secondPartToMove);
+    assertEquals (movedPart, secondPartToMove);
+    assertEquals (type1, file.getParts().get(1).getParttype());
+    assertEquals (type2, file.getParts().get(0).getParttype());
+  }
 
 
   @Test
   public void removePart () {
-    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
-    MidiFile file = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(0);
+    MidiFile file = (MidiFile) EcoreUtil.copy(loadRootObject.getGallery().getGalleryItems().get(0));
     assertEquals (MidiFilePartType.INTRO, file.getParts().get(0).getParttype());
     assertEquals (MidiFilePartType.VERS, file.getParts().get(1).getParttype());
     assertNotSame(MidiFilePartType.ZWISCHENSPIEL, file.getParts().get(2).getParttype());
@@ -52,8 +106,7 @@ public class MidiPlayerServiceTest {
 
   @Test
   public void addNewPartRef () {
-    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
-    MidiFile file = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(0);
+    MidiFile file = (MidiFile) EcoreUtil.copy(loadRootObject.getGallery().getGalleryItems().get(0));
     LOGGER.info("Vorher: " + MidiPlayerService.toString(file));
     int numberOfParts = file.getParts().size();
     MidiPlayerService.addPartAfter(file, null , null, file.getParts().get(0));
@@ -65,8 +118,7 @@ public class MidiPlayerServiceTest {
 
   @Test
   public void addNewPartAfter () {
-    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
-    MidiFile file = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(0);
+    MidiFile file = (MidiFile) EcoreUtil.copy(loadRootObject.getGallery().getGalleryItems().get(0));
     LOGGER.info("Vorher: " + MidiPlayerService.toString(file));
     int numberOfParts = file.getParts().size();
 
@@ -90,8 +142,7 @@ public class MidiPlayerServiceTest {
 
   @Test
   public void addNewPartEnd () {
-    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
-    MidiFile file = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(0);
+    MidiFile file = (MidiFile) EcoreUtil.copy(loadRootObject.getGallery().getGalleryItems().get(0));
     LOGGER.info("Vorher: " + MidiPlayerService.toString(file));
     int numberOfParts = file.getParts().size();
 
@@ -114,8 +165,7 @@ public class MidiPlayerServiceTest {
 
   @Test
   public void splitPart () {
-    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
-    MidiFile file = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(0);
+    MidiFile file = (MidiFile) EcoreUtil.copy(loadRootObject.getGallery().getGalleryItems().get(0));
     LOGGER.info(MidiPlayerService.getMidiFileAsString(file));
     int partNumberBefore = file.getParts().size();
 
@@ -139,8 +189,7 @@ public class MidiPlayerServiceTest {
 
   @Test
   public void mergeParts () {
-    MidiPlayerRoot loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
-    MidiFile file = (MidiFile) loadRootObject.getGallery().getGalleryItems().get(0);
+    MidiFile file = (MidiFile) EcoreUtil.copy(loadRootObject.getGallery().getGalleryItems().get(0));
     LOGGER.info(MidiPlayerService.getMidiFileAsString(file));
     int partNumberBefore = file.getParts().size();
 
@@ -172,12 +221,6 @@ public class MidiPlayerServiceTest {
     assertEquals (gesamtNumberEnd, prelast.getTextlines().size());
     assertTrue (file.getParts().contains(prelast));
     assertFalse (file.getParts().contains(last));
-
-
-
-
-
-
   }
 
 

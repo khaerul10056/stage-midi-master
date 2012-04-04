@@ -255,18 +255,36 @@ public class MidiPlayerService {
 
 
 
-  public static int movePartUp (MidiFile currentMidiFile, MidiFilePart part) {
+  /**
+   * moves a part up in the list of parts of a file
+   * @param currentMidiFile file
+   * @param part part
+   * @return moved part
+   */
+  public static MidiFilePart movePartUp (MidiFile currentMidiFile, MidiFilePart part) {
     int i = currentMidiFile.getParts().indexOf(part);
+    if (i == 0) //if first do nothing
+      return part;
+
     currentMidiFile.getParts().remove(i);
     currentMidiFile.getParts().add(i - 1, part);
-    return i - 1;
+    return currentMidiFile.getParts().get(i - 1);
   }
 
-  public static int movePartDown (MidiFile currentMidiFile, MidiFilePart part) {
+  /**
+   * move a part down in the list of parts of a file
+   * @param currentMidiFile file
+   * @param part part
+   * @return moved part
+   */
+  public static MidiFilePart movePartDown (MidiFile currentMidiFile, MidiFilePart part) {
     int i = currentMidiFile.getParts().indexOf(part);
+    if (i == currentMidiFile.getParts().size() - 1) //if last do nothing
+      return part;
+
     currentMidiFile.getParts().remove(i);
     currentMidiFile.getParts().add(i + 1, part);
-    return i + 1;
+    return currentMidiFile.getParts().get(i + 1);
   }
 
   /** removes the given part from the file

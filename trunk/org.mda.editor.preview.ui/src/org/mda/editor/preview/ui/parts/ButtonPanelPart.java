@@ -2,6 +2,8 @@ package org.mda.editor.preview.ui.parts;
 
 import static org.mda.Utils.ICON_ADD_PART;
 import static org.mda.Utils.ICON_MERGE_PART;
+import static org.mda.Utils.ICON_MOVE_PART_DOWN;
+import static org.mda.Utils.ICON_MOVE_PART_UP;
 import static org.mda.Utils.ICON_PROPERTIES;
 import static org.mda.Utils.ICON_REMOVE_PART;
 import static org.mda.Utils.ICON_SPLIT_PART;
@@ -33,6 +35,10 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
   private Button btnNewPart;
   private Button btnRemovePart;
 
+  private Button btnUp;
+
+  private Button btnDown;
+
 
   public ButtonPanelPart (PreviewEditorContent parent) {
     super(parent);
@@ -52,6 +58,12 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
     btnMerge = addButton("Merge", SWT.NONE, "Merges this part with previous part");
     btnMerge.setImage(loadImageFromProject(ICON_MERGE_PART));
+
+    btnUp = addButton("Up", SWT.NONE, "Moves a part up");
+    btnUp.setImage(loadImageFromProject(ICON_MOVE_PART_UP));
+
+    btnDown = addButton("Down", SWT.NONE, "Moves a part down");
+    btnDown.setImage(loadImageFromProject(ICON_MOVE_PART_DOWN));
   }
 
   public Button addButton (final String text, int style, final String tooltip) {
@@ -105,6 +117,19 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
     if (arg0.widget.equals(btnSplit))
       previewEditor.getContentpanel().splitPart();
+
+    if (arg0.widget.equals(btnUp)) {
+      MidiFilePart nextPart = MidiPlayerService.movePartUp(getMidifile(), getEditorContent().getSlidelistpanel().getCurrentPart());
+      getEditorContent().setCurrentPart(nextPart);
+      getEditorContent().redrawSlidelist();
+    }
+
+    if (arg0.widget.equals(btnDown)) {
+      MidiFilePart nextPart = MidiPlayerService.movePartDown(getMidifile(), getEditorContent().getSlidelistpanel().getCurrentPart());
+      getEditorContent().setCurrentPart(nextPart);
+      getEditorContent().redrawSlidelist();
+    }
+
 
   }
 }

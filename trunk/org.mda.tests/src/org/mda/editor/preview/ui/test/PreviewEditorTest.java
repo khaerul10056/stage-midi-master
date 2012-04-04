@@ -63,6 +63,7 @@ public class PreviewEditorTest {
 
     PreviewEditorContent editor = new PreviewEditorContent(shell, song);
     ContentPart contentPanel = editor.getContentpanel();
+    assertEquals (1, contentPanel.getTextLines().size());
   }
 
   @Test

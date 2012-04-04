@@ -7,6 +7,7 @@ import java.util.HashMap;
 import mda.AbstractSessionItem;
 import mda.ExportConfiguration;
 import mda.Gallery;
+import mda.MidiFile;
 import mda.Session;
 import mda.impl.MidiFileImpl;
 import mda.impl.SessionImpl;
@@ -54,6 +55,7 @@ import org.mda.commons.ui.NewSongPanel;
 import org.mda.commons.ui.SessionGroup;
 import org.mda.commons.ui.SongSelectorPanel;
 import org.mda.commons.ui.Util;
+import org.mda.commons.ui.imports.ImportShell;
 import org.mda.commons.ui.navigator.NavigatorItem;
 import org.mda.export.ExportException;
 import org.mda.export.powerpoint.PptExporter;
@@ -79,6 +81,8 @@ public class ContentNavigator extends ViewPart {
   private HashMap<Class<? extends EObject>, String> editors = new HashMap<Class<? extends EObject>, String>();
 
   private MenuItem itemAdd;
+
+  private MenuItem itemImportText;
 
   private MenuItem itemRemove;
 
@@ -196,6 +200,18 @@ public class ContentNavigator extends ViewPart {
           LOGGER.error(e1.getLocalizedMessage(), e1);
         }
       }
+    });
+    itemImportText = new MenuItem(menu, SWT.PUSH);
+    itemImportText.setText("Import text");
+    itemImportText.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        NavigatorItem item = (NavigatorItem) Util.getStructuredSelection(treviewer.getSelection());
+        new ImportShell(getSite().getShell(), (MidiFile) item.getModelElement());
+
+
+
+      }
+
     });
 
     itemPdf = new MenuItem(menu, SWT.PUSH);
@@ -459,6 +475,7 @@ public class ContentNavigator extends ViewPart {
           itemUp.setEnabled(currentItemIsNavigatorItem);
           itemDown.setEnabled(currentItemIsNavigatorItem);
           itemPdf.setEnabled(currentItemIsGallery);
+          itemImportText.setEnabled(currentItemIsNavigatorItem);
         }
 
       }

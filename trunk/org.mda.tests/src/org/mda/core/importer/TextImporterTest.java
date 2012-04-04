@@ -5,18 +5,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import mda.MidiFile;
 import mda.MidiFilePartType;
 import mda.MidiplayerFactory;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
 import org.mda.importer.DefaultTextImporterConfig;
 import org.mda.importer.TextImporterService;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 public class TextImporterTest {
+
+  private static final Log LOGGER  = LogFactory.getLogger(TextImporterTest.class);
 
 	@Test
 	public void importTest() throws Exception {
@@ -39,7 +41,7 @@ public class TextImporterTest {
 		Assert.assertEquals (MidiFilePartType.REFRAIN, midifile.getParts().get(1).getParttype());
 		Assert.assertEquals (MidiFilePartType.VERS, midifile.getParts().get(2).getParttype());
 
-		System.out.println (MidiPlayerService.getMidiFileAsString(midifile));
+		LOGGER.info(MidiPlayerService.getMidiFileAsString(midifile));
 
 	}
 
@@ -61,7 +63,7 @@ public class TextImporterTest {
 		Assert.assertEquals (MidiFilePartType.VERS, midifile.getParts().get(1).getParttype());
 		Assert.assertEquals (MidiFilePartType.REFRAIN, midifile.getParts().get(2).getParttype());
 
-		System.out.println (MidiPlayerService.getMidiFileAsString(midifile));
+		LOGGER.info(MidiPlayerService.getMidiFileAsString(midifile));
 
 
 	}
