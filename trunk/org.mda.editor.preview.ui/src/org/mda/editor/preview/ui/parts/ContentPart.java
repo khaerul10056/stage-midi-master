@@ -289,7 +289,16 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
         builder.setCharAt(i, ' ');
     }
 
-    builder.replace(offset, offset + newCharacter.length(), newCharacter);
+    int maxlen = offset + newCharacter.length();
+
+    //if chordline is too short than fill up with whitespaces to replace with the new chord
+    int fillUp = maxlen - builder.length();
+    if (fillUp > 0) {
+      for (int i = 0; i < fillUp; i++)
+        builder.append(" ");
+    }
+
+    builder.replace(offset, maxlen, newCharacter);
     setCurrentCaretPosition(getCaretOffsetOfCurrentTextField() + 1);
     chordline.setText(builder.toString());
 
