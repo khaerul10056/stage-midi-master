@@ -17,5 +17,6 @@ Export-Package: org.mda.commons.ui,
  org.mda.commons.ui.commands,
  org.mda.commons.ui.config,
  org.mda.commons.ui.imagecache,
+ org.mda.commons.ui.imports,
  org.mda.commons.ui.navigator,
  org.mda.commons.ui.user

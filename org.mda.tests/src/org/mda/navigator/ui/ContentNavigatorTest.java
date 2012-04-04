@@ -5,6 +5,7 @@ import mda.Session;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
@@ -12,6 +13,8 @@ import org.mda.commons.ui.navigator.NavigatorItem;
 
 
 public class ContentNavigatorTest {
+
+  private static ApplicationSession appSession;
 
   @Test
   public void partControl () throws Exception {
@@ -26,11 +29,14 @@ public class ContentNavigatorTest {
 
   }
 
+  @BeforeClass
+  public static void beforeClass () {
+    appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
+    appSession.load(null);
+  }
+
   @Test
   public void moveUp () throws Exception {
-
-    ApplicationSession appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
-    appSession.load(null);
     Session session = appSession.getCurrentModel().getSessions().get(0);
     AbstractSessionItem abstractSessionItem = session.getItems().get(3);
 
@@ -47,8 +53,6 @@ public class ContentNavigatorTest {
 
   @Test
   public void moveDown () throws Exception {
-    ApplicationSession appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
-    appSession.load(null);
     Session session = appSession.getCurrentModel().getSessions().get(0);
     AbstractSessionItem abstractSessionItem = session.getItems().get(3);
 

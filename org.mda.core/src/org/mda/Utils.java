@@ -35,6 +35,8 @@ public class Utils {
 
   public final static String ICON_SPLIT_PART = "split_part.gif";
   public final static String ICON_MERGE_PART = "merge_part.gif";
+  public final static String ICON_MOVE_PART_UP = "part_up.gif";
+  public final static String ICON_MOVE_PART_DOWN = "part_down.gif";
 
   public static final String ICON_PROPERTIES = "properties.gif";
 
