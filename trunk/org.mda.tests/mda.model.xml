@@ -2076,7 +2076,7 @@
           <chordParts text="   " chord="G"/>
           <chordParts text="  " chord="a"/>
           <chordParts text="  " chord="F"/>
-          <chordParts chord="G"/>
+          <chordParts text=" " chord="G"/>
         </textlines>
       </parts>
       <parts parttype="VERS" bar="10">
@@ -2370,7 +2370,7 @@
     <galleryItems xsi:type="org.mda.model:MidiFile" name="We have a vision.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO">
         <textlines>
-          <chordParts chord="A"/>
+          <chordParts text=" " chord="A"/>
         </textlines>
       </parts>
       <parts parttype="VERS" bar="4">

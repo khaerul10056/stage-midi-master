@@ -24,6 +24,8 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -57,6 +59,7 @@ import org.mda.commons.ui.SongSelectorPanel;
 import org.mda.commons.ui.Util;
 import org.mda.commons.ui.imports.ImportShell;
 import org.mda.commons.ui.navigator.NavigatorItem;
+import org.mda.commons.ui.transpose.TransposeShell;
 import org.mda.export.ExportException;
 import org.mda.export.powerpoint.PptExporter;
 import org.mda.logging.Log;
@@ -83,6 +86,8 @@ public class ContentNavigator extends ViewPart {
   private MenuItem itemAdd;
 
   private MenuItem itemImportText;
+
+  private MenuItem itemTranspose;
 
   private MenuItem itemRemove;
 
@@ -212,6 +217,22 @@ public class ContentNavigator extends ViewPart {
 
       }
 
+    });
+
+    itemTranspose = new MenuItem(menu, SWT.PUSH);
+    itemTranspose.setText("Transpose...");
+    itemTranspose.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+        NavigatorItem item = (NavigatorItem) Util.getStructuredSelection(treviewer.getSelection());
+        TransposeShell transposeShell = new TransposeShell(getSite().getShell(), (MidiFile) item.getModelElement());
+        transposeShell.addDisposeListener(new DisposeListener() {
+
+          @Override
+          public void widgetDisposed (DisposeEvent arg0) {
+            refresh();
+          }
+        });
+      }
     });
 
     itemPdf = new MenuItem(menu, SWT.PUSH);
@@ -476,6 +497,7 @@ public class ContentNavigator extends ViewPart {
           itemDown.setEnabled(currentItemIsNavigatorItem);
           itemPdf.setEnabled(currentItemIsGallery);
           itemImportText.setEnabled(currentItemIsNavigatorItem);
+          itemTranspose.setEnabled(currentItemIsNavigatorItem);
         }
 
       }
