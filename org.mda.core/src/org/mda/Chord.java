@@ -1,8 +1,9 @@
 package org.mda;
 
-import org.mda.importer.InvalidChordException;
-import org.mda.importer.Note;
-import org.mda.importer.NoteAddition;
+import org.mda.transpose.InvalidChordException;
+import org.mda.transpose.Note;
+import org.mda.transpose.NoteAddition;
+import org.mda.transpose.Scale;
 
 public final class Chord {
 
@@ -47,6 +48,9 @@ public final class Chord {
    */
   private static NoteAddition getAddition (final String chordAsString) throws InvalidChordException {
 
+    if (chordAsString.length() == 0)
+      return null;
+
     for (NoteAddition nextNote: NoteAddition.values()) {
       if (chordAsString.startsWith(nextNote.getLabel())) {
         return nextNote;
@@ -63,8 +67,7 @@ public final class Chord {
    * @return
    * @throws InvalidChordException
    */
-  public void render (String chordAsString) throws InvalidChordException {
-    this.chordAsString = chordAsString;
+  public void render () throws InvalidChordException {
     main = getMainNote(chordAsString);
 
 
@@ -90,7 +93,17 @@ public final class Chord {
   }
 
   public String toString () {
-    return chordAsString;
+
+    StringBuilder builder = new StringBuilder();
+    builder.append (getMain().toString());
+
+    if (getAddition() != null)
+      builder.append(getAddition().toString());
+
+    if (getBass() != null)
+      builder.append ("/" + getBass().toString());
+
+    return builder.toString();
   }
 
   public void setAddition(NoteAddition addition) {
@@ -107,6 +120,14 @@ public final class Chord {
 
   public Note getBass() {
     return bass;
+  }
+
+  public void transpose (final Scale scale, int diff, Note to) {
+    if (getBass() != null)
+      bass = scale.transpose(getBass(), diff, to);
+
+    if (getMain() != null)
+      main = scale.transpose(getMain(), diff, to);
   }
 
 }

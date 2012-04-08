@@ -1,4 +1,4 @@
-package org.mda.importer;
+package org.mda.transpose;
 
 public enum NoteAddition {
   maj ("maj"),

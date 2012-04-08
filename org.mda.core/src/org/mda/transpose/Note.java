@@ -1,4 +1,4 @@
-package org.mda.importer;
+package org.mda.transpose;
 
 public enum Note {
   CIS ("C#"),
@@ -18,6 +18,7 @@ public enum Note {
   A ("A"),
   B ("B"),
   Bb ("Bb"),
+  HES ("Hes"),
   H ("H"),
 
   cis ("c#"),
@@ -48,5 +49,6 @@ public enum Note {
   }
 
   private final String label;
+
 
 }

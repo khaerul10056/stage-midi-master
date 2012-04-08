@@ -19,6 +19,7 @@ import org.mda.presenter.ui.slide.PresentationToControllerConnectorTest;
 import org.mda.presenter.ui.test.BeamerPresenterTest;
 import org.mda.presenter.ui.test.ContentOverviewTest;
 import org.mda.presenter.ui.test.MidiFileSlideCalculatorTest;
+import org.mda.transpose.TransposeTest;
 
 
 @RunWith(Suite.class)
@@ -31,6 +32,7 @@ import org.mda.presenter.ui.test.MidiFileSlideCalculatorTest;
   ApplicationSessionTest.class,
   TestAdditionalsHandler.class,
   UtilsTest.class,
+  TransposeTest.class,
 
 
 
