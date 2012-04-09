@@ -45,6 +45,10 @@ public class Scale {
     offsetFrom += diff;
     if (offsetFrom > getSteps().size())
       offsetFrom -= getSteps().size();
+    else if (offsetFrom < 0)
+      offsetFrom = getSteps().size() + offsetFrom;
+
+
 
 
     ScaleStep toStep = getSteps().get(offsetFrom);
