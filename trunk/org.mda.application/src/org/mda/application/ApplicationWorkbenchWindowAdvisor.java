@@ -9,12 +9,16 @@ import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
+import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
 public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 
   private static final Log LOGGER  = LogFactory.getLogger(ApplicationWorkbenchWindowAdvisor.class);
+
+  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
     public ApplicationWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
         super(configurer);
@@ -36,7 +40,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
     public void preWindowOpen() {
         IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
 
-        configurer.setTitle("MDA");
+        configurer.setTitle("MDA (#" + session.getVersion() + ")");
         configurer.setShowCoolBar(false);
         configurer.setShowStatusLine(false);
         configurer.setShellStyle(SWT.NONE);

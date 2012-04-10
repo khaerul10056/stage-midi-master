@@ -29,6 +29,8 @@ public class ApplicationSession {
 
   private AdditionalsHandler additionalsHandler;
 
+  private String version;
+
 
 
 
@@ -149,6 +151,16 @@ public class ApplicationSession {
 
   public void saveModel () {
     MidiPlayerService.saveRootObject(playerroot);
+  }
+
+
+  public String getVersion () {
+    return version;
+  }
+
+
+  public void setVersion (String version) {
+    this.version = version;
   }
 
 

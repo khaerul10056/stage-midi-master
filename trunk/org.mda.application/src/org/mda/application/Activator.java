@@ -14,7 +14,9 @@ public class Activator extends AbstractUIPlugin {
 
 	// The shared instance
 	private static Activator plugin;
-	
+
+	private String version;
+
 	/**
 	 * The constructor
 	 */
@@ -27,6 +29,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+		setVersion(getBundle().getVersion().toString());
 		plugin = this;
 	}
 
@@ -58,4 +61,12 @@ public class Activator extends AbstractUIPlugin {
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
+
+  public String getVersion () {
+    return version;
+  }
+
+  public void setVersion (String version) {
+    this.version = version;
+  }
 }

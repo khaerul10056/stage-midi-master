@@ -22,6 +22,8 @@ public class Application implements IApplication {
 
     session.load(null);
 
+    session.setVersion(Activator.getDefault().getVersion());
+
 		Display display = PlatformUI.createDisplay();
 		try {
 			int returnCode = PlatformUI.createAndRunWorkbench(display, new ApplicationWorkbenchAdvisor());
