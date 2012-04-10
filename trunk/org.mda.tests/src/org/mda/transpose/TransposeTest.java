@@ -2,6 +2,7 @@ package org.mda.transpose;
 
 import mda.MidiFile;
 import mda.MidiFileChordPart;
+import mda.MidiFilePart;
 import mda.MidiFilePartType;
 import org.junit.Assert;
 import org.junit.Test;
@@ -57,6 +58,48 @@ public class TransposeTest {
 
 
   }
+
+  @Test
+  public void transposeSong () throws Exception {
+    MidiFileCreator creator = MidiFileCreator.create();
+    creator = creator.part(MidiFilePartType.INTRO).line().chordAndText("D", "Hello").chordAndText("G", "you");
+    creator = creator.part(MidiFilePartType.VERS).line().chordAndText("D", "Hello").chordAndText("G", "you");
+    creator = creator.part(MidiFilePartType.REFRAIN).line().chordAndText("D", "Hello").chordAndText("G", "you");
+    creator = creator.part(MidiFilePartType.VERS).line().chordAndText("D", "Hello").chordAndText("G", "you");
+    MidiFile file = creator.get();
+
+    TransposeService ts = new TransposeService();
+    ts.transpose(file, Note.D, Note.E);
+
+    for (MidiFilePart nextPart: file.getParts()) {
+      MidiFileChordPart first = nextPart.getTextlines().get(0).getChordParts().get(0);
+      MidiFileChordPart second = nextPart.getTextlines().get(0).getChordParts().get(1);
+      Assert.assertEquals ("E", first.getChord());
+      Assert.assertEquals ("A", second.getChord());
+    }
+
+    Assert.assertEquals (Note.E.getLabel(), file.getKey());
+
+
+
+  }
+
+  @Test
+  public void transposeMoll () throws Exception {
+
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.INTRO);
+    MidiFile file = creator.line().chordAndText("f#", "Hello").get();
+
+    TransposeService ts = new TransposeService();
+    ts.transpose(file, Note.A, Note.F);
+    MidiFileChordPart first = file.getParts().get(0).getTextlines().get(0).getChordParts().get(0);
+
+    Assert.assertEquals ("d", first.getChord());
+
+
+
+  }
+
 
 
 }

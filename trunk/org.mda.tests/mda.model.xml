@@ -405,34 +405,34 @@
       </parts>
       <parts parttype="VERS" bar="2">
         <textlines>
-          <chordParts text="This is the " chord="A "/>
-          <chordParts text="air I breathe, " chord="D/A "/>
-          <chordParts text="this is the " chord="A "/>
-          <chordParts text="air I breathe, " chord="D/A "/>
+          <chordParts text="This is the " chord="A"/>
+          <chordParts text="air I breathe, " chord="D/A"/>
+          <chordParts text="this is the " chord="A"/>
+          <chordParts text="air I breathe, " chord="D/A"/>
         </textlines>
         <textlines>
-          <chordParts text="Your " chord="A "/>
-          <chordParts text="holy " chord="E/G# "/>
-          <chordParts text="presenc" chord="f# "/>
-          <chordParts text="e " chord="E "/>
-          <chordParts text="livin" chord="D "/>
-          <chordParts text="g in " chord="f# "/>
-          <chordParts text="me. " chord="E "/>
+          <chordParts text="Your " chord="A"/>
+          <chordParts text="holy " chord="E/G#"/>
+          <chordParts text="presenc" chord="f#"/>
+          <chordParts text="e " chord="E"/>
+          <chordParts text="livin" chord="D"/>
+          <chordParts text="g in " chord="f#"/>
+          <chordParts text="me. " chord="E"/>
         </textlines>
         <textlines>
-          <chordParts text="This is my " chord="A "/>
-          <chordParts text="daily bread, " chord="D/A "/>
-          <chordParts text="this is my " chord="A "/>
-          <chordParts text="daily bread," chord="D/A "/>
+          <chordParts text="This is my " chord="A"/>
+          <chordParts text="daily bread, " chord="D/A"/>
+          <chordParts text="this is my " chord="A"/>
+          <chordParts text="daily bread," chord="D/A"/>
         </textlines>
         <textlines>
-          <chordParts text="Your " chord="A "/>
-          <chordParts text="very " chord="E/G# "/>
-          <chordParts text="wor" chord="f# "/>
-          <chordParts text="d " chord="E "/>
-          <chordParts text="spok" chord="D "/>
-          <chordParts text="en to " chord="f# "/>
-          <chordParts text="me. " chord="E "/>
+          <chordParts text="Your " chord="A"/>
+          <chordParts text="very " chord="E/G#"/>
+          <chordParts text="wor" chord="f#"/>
+          <chordParts text="d " chord="E"/>
+          <chordParts text="spok" chord="D"/>
+          <chordParts text="en to " chord="f#"/>
+          <chordParts text="me. " chord="E"/>
         </textlines>
       </parts>
       <parts bar="18">
@@ -894,18 +894,18 @@
     <galleryItems xsi:type="org.mda.model:MidiFile" name="Er kam zu uns - Er ist Herr.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO" bar="2">
         <textlines>
-          <chordParts text=" " chord="D "/>
-          <chordParts chord="G "/>
-          <chordParts chord="D "/>
-          <chordParts chord="f# "/>
-          <chordParts chord="G "/>
-          <chordParts chord="h "/>
-          <chordParts chord="E "/>
-          <chordParts chord="e "/>
-          <chordParts chord="D/F# "/>
-          <chordParts chord="G "/>
-          <chordParts chord="G/A "/>
-          <chordParts chord="D"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="   " chord="f#"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="E"/>
+          <chordParts text="  " chord="e"/>
+          <chordParts text="     " chord="D/F#"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="    " chord="G/A"/>
+          <chordParts text=" " chord="D"/>
         </textlines>
       </parts>
       <parts parttype="VERS" bar="18">

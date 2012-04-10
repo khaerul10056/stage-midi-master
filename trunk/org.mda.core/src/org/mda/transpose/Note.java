@@ -19,26 +19,7 @@ public enum Note {
   B ("B"),
   Bb ("Bb"),
   HES ("Hes"),
-  H ("H"),
-
-  cis ("c#"),
-  des ("db"),
-  dis ("d#"),
-  es ("eb"),
-  fis ("f#"),
-  ges ("gb"),
-  gis ("g#"),
-  aS ("ab"),
-  ais ("a#"),
-  c ("c"),
-  d ("d"),
-  e ("e"),
-  f ("f"),
-  g ("g"),
-  a ("a"),
-  b ("b"),
-  h ("h");
-
+  H ("H");
 
   private Note (final String label) {
     this.label = label;

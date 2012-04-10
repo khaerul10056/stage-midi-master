@@ -39,6 +39,7 @@ public class Utils {
   public final static String ICON_MOVE_PART_DOWN = "part_down.gif";
 
   public static final String ICON_PROPERTIES = "properties.gif";
+  public static final String ICON_TRANSPOSE = "transpose.gif";
 
   public static String colorToString (final Color color) {
     return color.getGreen() + "x" + color.getRed() + "x" + color.getBlue();
