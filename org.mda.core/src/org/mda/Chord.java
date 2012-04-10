@@ -52,7 +52,7 @@ public final class Chord {
 
 
 
-    throw new InvalidChordException();
+    throw new InvalidChordException(chordAsString);
   }
 
   /**
@@ -63,16 +63,18 @@ public final class Chord {
    */
   private static NoteAddition getAddition (final String chordAsString) throws InvalidChordException {
 
-    if (chordAsString.length() == 0)
+    final String additionText = chordAsString.trim();
+
+    if (additionText.length() == 0)
       return null;
 
     for (NoteAddition nextNote: NoteAddition.values()) {
-      if (chordAsString.startsWith(nextNote.getLabel())) {
+      if (additionText.startsWith(nextNote.getLabel())) {
         return nextNote;
       }
     }
 
-    throw new InvalidChordException();
+    throw new InvalidChordException(chordAsString);
   }
 
 
