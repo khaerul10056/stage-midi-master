@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.mda.MidiPlayerService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.transpose.InvalidChordException;
@@ -60,7 +61,8 @@ public class TransposeShell extends Shell {
     viewer1 = new ComboViewer(cmbFrom);
     viewer1.setLabelProvider(new ChordLabelProvider());
     viewer1.setContentProvider(new ChordContentProvider());
-    viewer1.setInput(new Scale());
+    Scale scale = new Scale();
+    viewer1.setInput(scale);
 
     Label lblTo = new Label (this, SWT.NONE);
     lblTo.setText("To key:");
@@ -71,6 +73,19 @@ public class TransposeShell extends Shell {
     viewer2.setLabelProvider(new ChordLabelProvider());
     viewer2.setContentProvider(new ChordContentProvider());
     viewer2.setInput(new Scale());
+
+    if (midifile.getKey() != null) {
+    try {
+    Note testNote = Note.valueOf(midifile.getKey());
+    if (testNote != null) {
+      ScaleStep foundStep = scale.findNote(testNote);
+      if (foundStep != null)
+        viewer1.setSelection(new StructuredSelection(foundStep));
+    }
+    } catch  (Exception e) {
+      LOGGER.error(e.toString(), e);
+    }
+    }
 
     createButtonPanel(this);
 
@@ -100,6 +115,8 @@ public class TransposeShell extends Shell {
         TransposeService transposeService = new TransposeService();
         try {
           transposeService.transpose(midifile, fromNote, toNote);
+
+          LOGGER.info("Transposed song: " + MidiPlayerService.toString(midifile));
         }
         catch (InvalidChordException e) {
           LOGGER.error(e.toString(), e);

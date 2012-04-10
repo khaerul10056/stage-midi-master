@@ -7,6 +7,7 @@ import static org.mda.Utils.ICON_MOVE_PART_UP;
 import static org.mda.Utils.ICON_PROPERTIES;
 import static org.mda.Utils.ICON_REMOVE_PART;
 import static org.mda.Utils.ICON_SPLIT_PART;
+import static org.mda.Utils.ICON_TRANSPOSE;
 import static org.mda.Utils.loadImageFromProject;
 import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
@@ -17,6 +18,7 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.mda.MidiPlayerService;
+import org.mda.commons.ui.transpose.TransposeShell;
 import org.mda.editor.preview.ui.AbstractPart;
 import org.mda.editor.preview.ui.PreviewEditorContent;
 import org.mda.editor.preview.ui.details.MidiFileDetailsShell;
@@ -32,6 +34,7 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
   private Button btnMerge;
 
   private Button btnEditTheme;
+  private Button btnTranspose;
   private Button btnNewPart;
   private Button btnRemovePart;
 
@@ -51,8 +54,7 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
     btnRemovePart = addButton("Remove", SWT.NONE, "Removes the selected part");
     btnRemovePart.setImage(loadImageFromProject(ICON_REMOVE_PART));
-    btnEditTheme = addButton("Details...", SWT.NONE, "Edit properties like fontcolor or background");
-    btnEditTheme.setImage(loadImageFromProject(ICON_PROPERTIES));
+
     btnSplit = addButton("Split", SWT.NONE, "Splits this part at current line");
     btnSplit.setImage(loadImageFromProject(ICON_SPLIT_PART));
 
@@ -64,6 +66,12 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
     btnDown = addButton("Down", SWT.NONE, "Moves a part down");
     btnDown.setImage(loadImageFromProject(ICON_MOVE_PART_DOWN));
+
+    btnEditTheme = addButton("Details...", SWT.NONE, "Edit properties like fontcolor or background");
+    btnEditTheme.setImage(loadImageFromProject(ICON_PROPERTIES));
+
+    btnTranspose = addButton("Transpose...", SWT.NONE, "Transpose song to another key");
+    btnTranspose.setImage(loadImageFromProject(ICON_TRANSPOSE));
   }
 
   public Button addButton (final String text, int style, final String tooltip) {
@@ -87,6 +95,16 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
       NewPartShell shell = new NewPartShell(getShell(), getMidifile(), getEditorContent().getSlidelistpanel().getCurrentPart());
       shell.addDisposeListener(new DisposeListener() {
 
+        @Override
+        public void widgetDisposed (DisposeEvent arg0) {
+         getEditorContent().redrawSlidelist();
+        }
+      });
+    }
+
+    if (arg0.widget.equals(btnTranspose)) {
+      TransposeShell transposeShell = new TransposeShell(getShell(), getMidifile());
+      transposeShell.addDisposeListener(new DisposeListener() {
         @Override
         public void widgetDisposed (DisposeEvent arg0) {
          getEditorContent().redrawSlidelist();

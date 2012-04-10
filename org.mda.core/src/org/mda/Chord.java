@@ -7,9 +7,6 @@ import org.mda.transpose.Scale;
 
 public final class Chord {
 
-  //private Note [] stepsMax = {Note.C, Note.CIS, Note.D, Note.DIS, Note.E,Note.F, Note.FIS, Note.G, Note.GIS, Note.A, Note.AIS, Note.H};
-  //private Note [] stepsMin = {Note.C, Note.DES, Note.D, Note.ES, Note.E,Note.F, Note.GES, Note.G, Note.AS, Note.A, Note.B, Note.H};
-
   private Note main;
   private Note bass;
   private NoteAddition addition;
@@ -18,9 +15,10 @@ public final class Chord {
 
   private String chordAsString;
 
+  private boolean minor;
+
   public Chord (final String chord) throws InvalidChordException {
     chordAsString = chord;
-    //render(chord);
   }
 
   /**
@@ -29,13 +27,30 @@ public final class Chord {
    * @return mainnote
    * @throws InvalidChordException
    */
-  private static Note getMainNote (final String chordAsString) throws InvalidChordException {
+  private ChordRenderToken renderNotePart (final String chordAsString) throws InvalidChordException {
 
+    //For example Am
     for (Note nextNote: Note.values()) {
-      if (chordAsString.startsWith(nextNote.getLabel())) {
-        return nextNote;
+      if (chordAsString.startsWith(nextNote.getLabel() + "m")) {
+        return new ChordRenderToken(true, nextNote, nextNote.getLabel().length() + 1);
       }
     }
+
+    //For example A
+    for (Note nextNote: Note.values()) {
+      if (chordAsString.startsWith(nextNote.getLabel())) {
+        return new ChordRenderToken(false, nextNote, nextNote.getLabel().length());
+      }
+    }
+
+    //For example a
+    for (Note nextNote: Note.values()) {
+      if (chordAsString.startsWith(nextNote.getLabel().toLowerCase())) {
+        return new ChordRenderToken(true, nextNote, nextNote.getLabel().length());
+      }
+    }
+
+
 
     throw new InvalidChordException();
   }
@@ -68,13 +83,14 @@ public final class Chord {
    * @throws InvalidChordException
    */
   public void render () throws InvalidChordException {
-    main = getMainNote(chordAsString);
-
+    ChordRenderToken renderNotePart = renderNotePart(chordAsString);
+    minor = renderNotePart.isMinor();
+    main = renderNotePart.getNote();
 
     int basepartBeginning = chordAsString.indexOf("/");
     basepartdividerInserted = basepartBeginning >= 0;
 
-    int fromAddition = main.getLabel().length();
+    int fromAddition = renderNotePart.getTokenlength();
     int toAddition = basepartdividerInserted ? basepartBeginning : chordAsString.length();
 
     setAddition(getAddition(chordAsString.substring(fromAddition, toAddition)));
@@ -82,7 +98,8 @@ public final class Chord {
 
 
     if (basepartBeginning >= main.getLabel().length() && basepartBeginning < chordAsString.length() - 1) {
-      setBass(getMainNote(chordAsString.substring(basepartBeginning + 1, chordAsString.length())));
+      ChordRenderToken renderedNotePart = renderNotePart(chordAsString.substring(basepartBeginning + 1, chordAsString.length()));
+      setBass(renderedNotePart.getNote());
     }
 
 
@@ -95,7 +112,7 @@ public final class Chord {
   public String toString () {
 
     StringBuilder builder = new StringBuilder();
-    builder.append (getMain().toString());
+    builder.append (isMinor() ? getMain().toString().toLowerCase() : getMain().toString());
 
     if (getAddition() != null)
       builder.append(getAddition().toString());
@@ -128,6 +145,10 @@ public final class Chord {
 
     if (getMain() != null)
       main = scale.transpose(getMain(), diff, to);
+  }
+
+  public boolean isMinor () {
+    return minor;
   }
 
 }

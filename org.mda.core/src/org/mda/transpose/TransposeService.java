@@ -5,10 +5,13 @@ import mda.MidiFileChordPart;
 import mda.MidiFilePart;
 import mda.MidiFileTextLine;
 import org.mda.Chord;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 
 public class TransposeService {
 
+  private static final Log LOGGER  = LogFactory.getLogger(TransposeService.class);
 
   private Scale scale = new Scale ();
 
@@ -24,6 +27,8 @@ public class TransposeService {
       for (MidiFileTextLine nextLine: nextPart.getTextlines())
         for (MidiFileChordPart nextChordPart: nextLine.getChordParts())
           transpose(nextChordPart, from, to);
+
+    song.setKey(to.getLabel());
   }
 
   private int getDiff (final Note from, final Note to) {
@@ -49,12 +54,10 @@ public class TransposeService {
     Chord chord = new Chord(chordPart.getChord());
     chord.render();
     chord.transpose (scale, diff, to);
+
+    LOGGER.info("Transpose Chord " + chordPart.getChord() + " -> " + chord.toString());
+
     chordPart.setChord(chord.toString());
-
-    int max = Note.values().length;
-
-
-
 
 
   }
