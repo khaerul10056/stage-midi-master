@@ -4,6 +4,7 @@ import static org.mda.Utils.ICON_ADD_PART;
 import static org.mda.Utils.ICON_MERGE_PART;
 import static org.mda.Utils.ICON_MOVE_PART_DOWN;
 import static org.mda.Utils.ICON_MOVE_PART_UP;
+import static org.mda.Utils.ICON_PARTPROPERTIES;
 import static org.mda.Utils.ICON_PROPERTIES;
 import static org.mda.Utils.ICON_REMOVE_PART;
 import static org.mda.Utils.ICON_SPLIT_PART;
@@ -17,11 +18,13 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Label;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.transpose.TransposeShell;
 import org.mda.editor.preview.ui.AbstractPart;
 import org.mda.editor.preview.ui.PreviewEditorContent;
 import org.mda.editor.preview.ui.details.MidiFileDetailsShell;
+import org.mda.editor.preview.ui.details.MidiPartDetailsShell;
 import org.mda.editor.preview.ui.newpart.NewPartShell;
 
 
@@ -33,7 +36,7 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
   private Button btnMerge;
 
-  private Button btnEditTheme;
+  private Button btnSongDetails;
   private Button btnTranspose;
   private Button btnNewPart;
   private Button btnRemovePart;
@@ -42,12 +45,23 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
   private Button btnDown;
 
+  private Button btnPartDetails;
+
 
   public ButtonPanelPart (PreviewEditorContent parent) {
     super(parent);
     this.previewEditor = parent;
 
     setLayout(new RowLayout(SWT.HORIZONTAL));
+
+    btnSongDetails = addButton("Song-Details...", SWT.NONE, "Edit properties of the complete song");
+    btnSongDetails.setImage(loadImageFromProject(ICON_PROPERTIES));
+
+    btnTranspose = addButton("Transpose...", SWT.NONE, "Transpose song to another key");
+    btnTranspose.setImage(loadImageFromProject(ICON_TRANSPOSE));
+
+    Label lblFiller = new Label (this, SWT.NONE);
+    lblFiller.setText("     ");
 
     btnNewPart = addButton("Add", SWT.NONE, "Add a new part after selected part");
     btnNewPart.setImage(loadImageFromProject(ICON_ADD_PART));
@@ -67,11 +81,10 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
     btnDown = addButton("Down", SWT.NONE, "Moves a part down");
     btnDown.setImage(loadImageFromProject(ICON_MOVE_PART_DOWN));
 
-    btnEditTheme = addButton("Details...", SWT.NONE, "Edit properties like fontcolor or background");
-    btnEditTheme.setImage(loadImageFromProject(ICON_PROPERTIES));
+    btnPartDetails = addButton("Part-Properties...", SWT.NONE, "Edit properties of the current part");
+    btnPartDetails.setImage(loadImageFromProject(ICON_PARTPROPERTIES));
 
-    btnTranspose = addButton("Transpose...", SWT.NONE, "Transpose song to another key");
-    btnTranspose.setImage(loadImageFromProject(ICON_TRANSPOSE));
+
   }
 
   public Button addButton (final String text, int style, final String tooltip) {
@@ -117,7 +130,7 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
       getEditorContent().setCurrentPart(nextPart);
       getEditorContent().redrawSlidelist();
     }
-    if (arg0.widget.equals(btnEditTheme)) {
+    if (arg0.widget.equals(btnSongDetails)) {
       MidiFileDetailsShell details = new MidiFileDetailsShell(getShell(), getMidifile());
       details.addDisposeListener(new DisposeListener() {
 
@@ -125,6 +138,20 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
         public void widgetDisposed (DisposeEvent arg0) {
           if (getCurrentPart() != null)
             getEditorContent().getPreviewpanel().setCurrentPart(getCurrentPart());
+
+        }
+      });
+
+    }
+
+    if (arg0.widget.equals(btnPartDetails)) {
+      MidiPartDetailsShell details = new MidiPartDetailsShell(getShell(), getCurrentPart());
+      details.addDisposeListener(new DisposeListener() {
+
+        @Override
+        public void widgetDisposed (DisposeEvent arg0) {
+          getEditorContent().setCurrentPart(getCurrentPart());
+          getEditorContent().redrawSlidelist();
 
         }
       });

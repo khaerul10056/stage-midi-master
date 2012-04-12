@@ -4,21 +4,14 @@
     <galleryItems xsi:type="org.mda.model:MidiFile" name="Alle Schoepfung staunt und preist.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="image#dsc00129#jpg">
       <parts parttype="INTRO">
         <textlines>
-          <chordParts text="  " chord="D "/>
-          <chordParts text="  " chord="G "/>
-          <chordParts text="  " chord="A "/>
-          <chordParts text="   " chord="G  "/>
-          <chordParts text="  " chord="D "/>
-          <chordParts text="  " chord="G "/>
-          <chordParts text="  " chord="A "/>
-          <chordParts text=" " chord="G "/>
-        </textlines>
-      </parts>
-      <parts parttype="BRIDGE">
-        <textlines>
-          <chordParts text="  " chord="A "/>
-          <chordParts text="  " chord="B "/>
-          <chordParts text="      " chord="A     "/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="   " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="G"/>
         </textlines>
       </parts>
       <parts parttype="VERS" bar="11">
@@ -65,7 +58,7 @@
           <chordParts text=" " chord="A"/>
         </textlines>
       </parts>
-      <parts bar="43">
+      <parts parttype="BRIDGE" bar="43">
         <textlines>
           <chordParts text="Gott ist gro&#xdf;, " chord="D"/>
           <chordParts text="und sein Lob erf" chord="G"/>
@@ -120,10 +113,10 @@
           <chordParts chord="A"/>
         </textlines>
       </parts>
-      <parts bar="83" refPart="//@gallery/@galleryItems.0/@parts.3">
+      <parts bar="83" refPart="//@gallery/@galleryItems.0/@parts.2">
         <textlines/>
       </parts>
-      <parts parttype="ZWISCHENSPIEL" bar="99" refPart="//@gallery/@galleryItems.0/@parts.4">
+      <parts parttype="ZWISCHENSPIEL" bar="99" refPart="//@gallery/@galleryItems.0/@parts.3">
         <textlines/>
       </parts>
       <parts parttype="BRIDGE" bar="107">
@@ -144,7 +137,7 @@
           <chordParts text="singt. " chord="A"/>
         </textlines>
       </parts>
-      <parts parttype="BRIDGE" bar="123" refPart="//@gallery/@galleryItems.0/@parts.8">
+      <parts parttype="BRIDGE" bar="123" refPart="//@gallery/@galleryItems.0/@parts.7">
         <textlines>
           <chordParts text="Heilig " chord="D "/>
           <chordParts text="ist der " chord="G "/>
@@ -162,7 +155,7 @@
           <chordParts text="singt. " chord="A "/>
         </textlines>
       </parts>
-      <parts parttype="BRIDGE" bar="139" refPart="//@gallery/@galleryItems.0/@parts.8">
+      <parts parttype="BRIDGE" bar="139" refPart="//@gallery/@galleryItems.0/@parts.7">
         <textlines>
           <chordParts text="Heilig " chord="D "/>
           <chordParts text="ist der " chord="G "/>
