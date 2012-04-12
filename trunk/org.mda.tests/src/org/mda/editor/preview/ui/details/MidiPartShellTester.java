@@ -8,7 +8,8 @@ import org.mda.ApplicationSession;
 import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 
-public class MidiFileDetailShellTester {
+
+public class MidiPartShellTester {
 
   /** @param args */
   public static void main (String[] args) throws Exception {
@@ -16,7 +17,8 @@ public class MidiFileDetailShellTester {
     session.load(null);
     Shell shell = new Shell();
     final MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
-    MidiFileDetailsShell additionalshell = new MidiFileDetailsShell(shell, (MidiFile) root.getGallery().getGalleryItems().get(0));
+    MidiFile file = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    MidiPartDetailsShell additionalshell = new MidiPartDetailsShell(shell, file.getParts().get(0));
 
     while (!additionalshell.isDisposed()) {
       if (!shell.getDisplay().readAndDispatch()) {

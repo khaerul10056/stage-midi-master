@@ -463,13 +463,20 @@ public class ContentNavigator extends ViewPart {
         if (arg0.getSelection() instanceof IStructuredSelection) {
           IStructuredSelection structSelection = (IStructuredSelection) arg0.getSelection();
           Object selectedObject = structSelection.getFirstElement();
+          NavigatorItem<?> selectedNavigatorItem = null;
+          if (selectedObject instanceof NavigatorItem)
+            selectedNavigatorItem = (NavigatorItem<?>) selectedObject;
 
           //boolean currentItemIsMidiFile = selectedObject instanceof MidiFile; TODO
           boolean currentItemIsSession = selectedObject instanceof Session;
           boolean currentItemIsGallery = selectedObject instanceof Gallery;
-          boolean currentItemIsNavigatorItem = selectedObject instanceof NavigatorItem;
+
+          boolean currentItemIsNavigatorItem = selectedNavigatorItem != null;
+          boolean currentItemIsNavigatorItemInSession = currentItemIsNavigatorItem  && selectedNavigatorItem.getMother() instanceof Session;
           boolean currentItemIsSessionGroup = selectedObject instanceof SessionGroup;
 
+          itemPreview.setEnabled(currentItemIsNavigatorItemInSession);
+          itemStart.setEnabled(currentItemIsNavigatorItemInSession);
           itemPowerpoint.setEnabled(currentItemIsSession);
           itemAdd.setEnabled(currentItemIsSession || currentItemIsGallery || currentItemIsSessionGroup);
           itemRemove.setEnabled(currentItemIsNavigatorItem || currentItemIsSession);

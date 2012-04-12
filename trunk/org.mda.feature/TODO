@@ -1,4 +1,11 @@
+Enhancement     Additionals             Create mp3/wav-cd
+                        ffmpeg -i "Alle Schoepfung staunt und preist.mp3" "Alle Schoepfung staunt und preist.wav"
+                        mkisofs -o [OUTPUTFILE] [PATH] -hfs-volid HFS_VOLID -joliet-long
+                        wodim --devices
+                        wodim -v dev=/dev/sg2 speed=10 -eject /home/neostream/iso/ubuntu-12.04-beta2-desktop-i386.iso
 
+
+Enhancement     Additionals             mp3s    
 Enhancement     Editor		    Part up/down
 
 Enhancement 	Editor			Remove part																new
