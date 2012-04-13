@@ -74,8 +74,19 @@ public class MidiPlayerService {
     }
 
     int splitToken = lastToken;
-    MidiFileChordPart splitPart = currentTextLine.getChordParts().get(splitToken);
 
+
+    //If split at the end of the line, then add a new line
+    if (splitToken >= currentTextLine.getChordParts().size()) {
+      MidiFileTextLine newTextLine = mf.createMidiFileTextLine();
+      MidiFileChordPart chordpart = mf.createMidiFileChordPart();
+      chordpart.setText(" ");
+      newTextLine.getChordParts().add(chordpart);
+      part.getTextlines().add(newTextLine);
+      return part;
+    }
+
+    MidiFileChordPart splitPart = currentTextLine.getChordParts().get(splitToken);
     System.out.println("SplitToken = " +
       splitPart);
 
