@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import mda.MidiFile;
 import mda.MidiFilePart;
+import mda.MidiFilePartType;
 import mda.MidiPlayerRoot;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Label;
@@ -15,6 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
 import org.mda.editor.preview.ui.PreviewEditorContent;
+import org.mda.presenter.ui.test.MidiFileCreator;
 
 public class PreviewEditorUiTest {
 
@@ -262,7 +264,24 @@ public class PreviewEditorUiTest {
   }
 
   @Test
-  public void splitAndMergeLineAtEnd () throws Exception {
+  public void splitAndMergeAtEndOfLine () throws Exception {
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS).line();
+    MidiFile song = creator.chordAndText("H", "Dies ist ein Test").get();
+    editor = new PreviewEditorContent(shell, song);
+    editor.getContentpanel().setCurrentPart(song.getParts().get(0));
+    getText(0).setCaretOffset(17); //To end of line
+    editor.getContentpanel().splitLine();
+
+    assertEquals("", getChord(1).getText());
+    assertEquals(" ", getText(1).getText());
+
+    editor.getContentpanel().mergeLine();
+    assertEquals("Dies ist ein Test ", getText(0).getText());  //line 0
+    assertEquals (1, editor.getContentpanel().getTextLines().size());
+  }
+
+  @Test
+  public void splitAndMergeLineAtPreEnd () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));

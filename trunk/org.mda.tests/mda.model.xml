@@ -2258,7 +2258,7 @@
           <chordParts text="n, und dein " chord="f#/A"/>
           <chordParts text="Wort bleibt be" chord="D/A"/>
           <chordParts text="steh'n " chord="E/A"/>
-          <chordParts chord="A"/>
+          <chordParts text=" " chord="A"/>
         </textlines>
       </parts>
       <parts>
@@ -2278,7 +2278,23 @@
         </textlines>
       </parts>
       <parts parttype="VERS" refPart="//@gallery/@galleryItems.14/@parts.1">
-        <textlines/>
+        <textlines>
+          <chordParts text="Unbeschreiblich tief ist deine " chord="A"/>
+          <chordParts text="Liebe" chord="c#/A"/>
+          <chordParts text=", endlos " chord="f#/A"/>
+          <chordParts text="weit wie das " chord="D/A"/>
+          <chordParts text="Meer." chord="E/A"/>
+          <chordParts text="  " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="D" chord=""/>
+          <chordParts text="eine Treue reicht bis zu den W" chord="A"/>
+          <chordParts text="olken" chord="c#/A"/>
+          <chordParts text=", und dein W" chord="f#/A"/>
+          <chordParts text="ort bleibt bes" chord="D/A"/>
+          <chordParts text="teh'n  " chord="E/A"/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
       </parts>
       <parts>
         <textlines>

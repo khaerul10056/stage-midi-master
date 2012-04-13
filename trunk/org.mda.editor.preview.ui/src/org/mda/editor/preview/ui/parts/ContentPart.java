@@ -466,8 +466,9 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
       int nextpos = getTextLines().get(currentLine).getText().length();
       getEditorContent().setCurrentPart(MidiPlayerService.mergeLine(getCurrentPart(), getCurrentFocusedLine(), getCaretOffsetOfCurrentTextField()));
       StyledText previousTextLine = getTextLines().get(currentLine);
-      setCurrentCaretPosition(nextpos);
       setFocus(previousTextLine);
+      setCurrentCaretPosition(nextpos);
+
     }
   }
 
