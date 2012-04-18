@@ -1,6 +1,7 @@
 package org.mda.google;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import mda.MidiPlayerRoot;
@@ -25,6 +26,7 @@ public class GoogleContactsConnector {
   public final static String feedUrl = "https://www.google.com/m8/feeds/contacts/markus.oley@gmail.com/full?max-results=1000";
 
   private GoogleService service;
+
 
   public void setGoogleService (final GoogleService googleService) {
     this.service = googleService;
@@ -87,6 +89,13 @@ public class GoogleContactsConnector {
     return entry.getName().getGivenName().getValue();
   }
 
+  public URL getUrl (final String urlAsString) throws MalformedURLException {
+    URL url = new URL(urlAsString);
+
+    LOGGER.info("get url " + System.identityHashCode(url) + "(" + urlAsString + ")");
+    return url;
+  }
+
   public void importAllContacts (MidiPlayerRoot model, List<GoogleContactsDescriptor> descs) throws ServiceException, IOException {
 
 
@@ -94,33 +103,39 @@ public class GoogleContactsConnector {
     ContactFeed resultFeed = myService.getFeed(new URL(feedUrl), ContactFeed.class);
 
     for (GoogleContactsDescriptor nextDesc : descs) {
+      LOGGER.info("Analyse googlecontactsdescriptor " + nextDesc);
 
       for (int i = 0; i < resultFeed.getEntries().size(); i++) {
         ContactEntry entry = resultFeed.getEntries().get(i);
+        LOGGER.info("Check entry " + entry.getName().getFamilyName().getValue() + " - " + System.identityHashCode(entry));
 
         boolean groupFound = false;
         for (GroupMembershipInfo group : entry.getGroupMembershipInfos()) {
           String groupHref = group.getHref();
-          ContactGroupEntry newentry = myService.getEntry(new URL(groupHref), ContactGroupEntry.class);
+          ContactGroupEntry newGroupEntry = myService.getEntry(getUrl(groupHref), ContactGroupEntry.class);
+          LOGGER.info("  Entry has group " + groupHref + " - " + System.identityHashCode(newGroupEntry) + " - " + newGroupEntry.getPlainTextContent());
 
-          if (nextDesc.usesGroup(newentry.getPlainTextContent())) {
+          if (nextDesc.usesGroup(newGroupEntry.getPlainTextContent())) {
             groupFound = true;
             break;
           }
+          else
+            LOGGER.info("  GroupEntry " + newGroupEntry.getPlainTextContent() + " is not used (" + nextDesc + ")");
         }
         if (!groupFound) {
+          LOGGER.info("  Contact is not in a valid group");
           continue;
         }
 
         User existingUser = findByNames(model, getName(entry), getFirstName(entry));
 
         if (existingUser == null) {
-          LOGGER.info("User " +  getName(entry) + "-" +  getFirstName(entry) + " was not found");
+          LOGGER.info("  User " +  getName(entry) + "-" +  getFirstName(entry) + " was not found");
           existingUser = MidiplayerFactory.eINSTANCE.createUser();
           model.getUsers().add(existingUser);
         }
         else
-          LOGGER.info("User " + getName(entry) + "-" +  getFirstName(entry) +  " already exists, overwrite basics");
+          LOGGER.info("  User " + getName(entry) + "-" +  getFirstName(entry) +  " already exists, overwrite basics");
 
         existingUser.setFirstname(getFirstName(entry));
         existingUser.setName(getName(entry));
@@ -128,10 +143,10 @@ public class GoogleContactsConnector {
         existingUser.setMail(getMailadress(entry));
 
         if (LOGGER.isInfoEnabled()) {
-          LOGGER.info("First Name           : " + existingUser.getFirstname());
-          LOGGER.info("Last  Name           : " + existingUser.getName());
-          LOGGER.info("Type                 : " + existingUser.getType().getName());
-          LOGGER.info("Mailadress           : " + existingUser.getMail());
+          LOGGER.info("  First Name           : " + existingUser.getFirstname());
+          LOGGER.info("  Last  Name           : " + existingUser.getName());
+          LOGGER.info("  Type                 : " + existingUser.getType().getName());
+          LOGGER.info("  Mailadress           : " + existingUser.getMail());
         }
 
       }

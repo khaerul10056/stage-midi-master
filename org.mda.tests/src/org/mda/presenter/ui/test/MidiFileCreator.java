@@ -18,6 +18,11 @@ public class MidiFileCreator {
     midifile = MidiplayerFactory.eINSTANCE.createMidiFile();
   }
 
+  public MidiFileCreator setName (final String name) {
+    midifile.setName(name);
+    return this;
+  }
+
   public static MidiFileCreator create () {
     return new MidiFileCreator();
   }
@@ -25,6 +30,16 @@ public class MidiFileCreator {
   public MidiFileCreator part (MidiFilePartType type) {
     currentPart = MidiplayerFactory.eINSTANCE.createMidiFilePart();
     currentPart.setParttype(type);
+    midifile.getParts().add(currentPart);
+    currentTextLine = null;
+    return this;
+  }
+
+  public MidiFileCreator refPart (final int reference) {
+    currentPart = MidiplayerFactory.eINSTANCE.createMidiFilePart();
+    MidiFilePart refPart = midifile.getParts().get(reference);
+    currentPart.setParttype(refPart.getParttype());
+    currentPart.setRefPart(refPart);
     midifile.getParts().add(currentPart);
     currentTextLine = null;
     return this;

@@ -1,6 +1,7 @@
 package org.mda.editor.preview.ui.parts;
 
 import static org.mda.Utils.ICON_ADD_PART;
+import static org.mda.Utils.ICON_CLONE_PART;
 import static org.mda.Utils.ICON_MERGE_PART;
 import static org.mda.Utils.ICON_MOVE_PART_DOWN;
 import static org.mda.Utils.ICON_MOVE_PART_UP;
@@ -39,6 +40,8 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
   private Button btnSongDetails;
   private Button btnTranspose;
   private Button btnNewPart;
+
+  private Button btnClonePart;
   private Button btnRemovePart;
 
   private Button btnUp;
@@ -65,6 +68,9 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
     btnNewPart = addButton("Add", SWT.NONE, "Add a new part after selected part");
     btnNewPart.setImage(loadImageFromProject(ICON_ADD_PART));
+
+    btnClonePart = addButton("Clone", SWT.NONE, "Clone selected part");
+    btnClonePart.setImage(loadImageFromProject(ICON_CLONE_PART));
 
     btnRemovePart = addButton("Remove", SWT.NONE, "Removes the selected part");
     btnRemovePart.setImage(loadImageFromProject(ICON_REMOVE_PART));
@@ -113,6 +119,11 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
          getEditorContent().redrawSlidelist();
         }
       });
+    }
+
+    if (arg0.widget.equals(btnClonePart)) {
+      MidiPlayerService.clonePart(getMidifile(), getEditorContent().getSlidelistpanel().getCurrentPart());
+      getEditorContent().redrawSlidelist();
     }
 
     if (arg0.widget.equals(btnTranspose)) {

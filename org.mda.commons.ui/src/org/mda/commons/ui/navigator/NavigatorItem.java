@@ -4,7 +4,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 
-public class NavigatorItem<T> {
+public class NavigatorItem<T>  {
 
   private final T modelElement;
 
@@ -47,6 +47,8 @@ public class NavigatorItem<T> {
 
   }
 
+
+
   @Override
   public boolean equals (Object obj) {
     if (obj instanceof NavigatorItem) {
@@ -59,13 +61,6 @@ public class NavigatorItem<T> {
   public EObject getMother () {
     return mother;
   }
-
-
-
-
-
-
-
 
 
 }

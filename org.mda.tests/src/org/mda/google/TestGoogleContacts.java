@@ -1,5 +1,7 @@
 package org.mda.google;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +11,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.*;
 import com.google.gdata.client.GoogleService;
 import com.google.gdata.data.contacts.ContactEntry;
 import com.google.gdata.data.contacts.ContactFeed;
@@ -23,6 +26,8 @@ import com.google.gdata.data.extensions.Name;
 
 
 public class TestGoogleContacts {
+
+  private static final Log LOGGER  = LogFactory.getLogger(TestGoogleContacts.class);
 
 
   private ContactEntry createContact (final String familyname, final String firstname, final String mail, final String href) {
@@ -44,6 +49,7 @@ public class TestGoogleContacts {
     }
     return entry1;
   }
+
   @Test
   public void importUsers () throws Exception {
 
@@ -70,18 +76,25 @@ public class TestGoogleContacts {
     list.add(entry1);
     list.add(entry2);
     list.add(entry3);
+    LOGGER.info("Entry1=" + System.identityHashCode(entry1));
+    LOGGER.info("Entry2=" + System.identityHashCode(entry2));
+    LOGGER.info("Entry3=" + System.identityHashCode(entry3));
     when (contactFeed.getEntries()).thenReturn(list);
 
     ContactGroupEntry invalidGroup = mock(ContactGroupEntry.class);
+    LOGGER.info("InvalidGroup=" + System.identityHashCode(invalidGroup));
     when (invalidGroup.getPlainTextContent()).thenReturn("RATZL");
 
     ContactGroupEntry validGroup = mock(ContactGroupEntry.class);
+    LOGGER.info("ValidGroup=" + System.identityHashCode(validGroup));
     when (validGroup.getPlainTextContent()).thenReturn(VALIDGROUP);
 
     GoogleService mockedService = Mockito.mock(GoogleService.class);
     when(mockedService.getFeed(new URL(GoogleContactsConnector.feedUrl), ContactFeed.class)).thenReturn(contactFeed);
-    when (mockedService.getEntry(new URL(HREF1), ContactGroupEntry.class)).thenReturn(validGroup);
-    when (mockedService.getEntry(new URL(HREF2), ContactGroupEntry.class)).thenReturn(invalidGroup);
+
+
+
+
 
     ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
     session.load(null);
@@ -89,6 +102,20 @@ public class TestGoogleContacts {
     currentModel.getUsers().clear();
 
     GoogleContactsConnector connector = new GoogleContactsConnector();
+
+    URL urlHref1 = connector.getUrl(HREF1);
+    URL urlHref2 = connector.getUrl(HREF2);
+
+    LOGGER.info("URL1 = " + System.identityHashCode(urlHref1));
+    LOGGER.info("URL2 = " + System.identityHashCode(urlHref2));
+
+    when (mockedService.getEntry(urlHref1, ContactGroupEntry.class)).thenReturn(validGroup);
+    LOGGER.info("HRef " + HREF1 + " assigned to object " + System.identityHashCode(validGroup) + "-" + validGroup.getPlainTextContent());
+
+    when (mockedService.getEntry(urlHref2, ContactGroupEntry.class)).thenReturn(invalidGroup);
+    LOGGER.info("HRef " + HREF2 + " assigned to object " + System.identityHashCode(invalidGroup) + "-" + invalidGroup.getPlainTextContent());
+
+
     connector.setGoogleService(mockedService);
     GoogleContactsDescriptor desc = new GoogleContactsDescriptor(UserType.MEMBER);
     desc.addGroup(VALIDGROUP);

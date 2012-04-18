@@ -11,7 +11,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -75,7 +74,6 @@ public class ImportShell extends Shell {
 
     Composite compButtons = new Composite(comp, SWT.NONE);
     compButtons.setLayout(new RowLayout(SWT.HORIZONTAL));
-    compButtons.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_DARK_RED));
 
     btnOk = new Button(compButtons, SWT.NONE);
     btnOk.setText("Importieren");
@@ -90,6 +88,7 @@ public class ImportShell extends Shell {
         TextImporterService service = new TextImporterService(txt, config);
         service.importText(midifile);
         LOGGER.info(MidiPlayerService.toString(midifile));
+        dispose();
       }
 
     });

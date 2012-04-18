@@ -3,6 +3,7 @@ package org.mda.tests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
+import org.mda.commons.ui.ContentProviderTest;
 import org.mda.core.ApplicationSessionTest;
 import org.mda.core.ChordTest;
 import org.mda.core.MidiPlayerServiceTest;
@@ -33,8 +34,7 @@ import org.mda.transpose.TransposeTest;
   TestAdditionalsHandler.class,
   UtilsTest.class,
   TransposeTest.class,
-
-
+  ContentProviderTest.class,
 
   //UI
   PreviewEditorTest.class,

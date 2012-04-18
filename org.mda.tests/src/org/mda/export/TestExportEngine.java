@@ -6,6 +6,7 @@ import mda.AbstractSessionItem;
 import mda.MidiPlayerRoot;
 import mda.User;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
@@ -58,7 +59,7 @@ public class TestExportEngine {
 
   }
 
-  @Test
+  @Test@Ignore //Mock the mailing
   public void checkMail () {
     Assert.assertNotNull ("Test exportSongbooks must run before", exportSongbooks);
 

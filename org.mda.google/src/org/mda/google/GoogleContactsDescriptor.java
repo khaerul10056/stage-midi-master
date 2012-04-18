@@ -26,6 +26,16 @@ public class GoogleContactsDescriptor {
     return groups.contains(groupname);
   }
 
+  public String toString () {
+    StringBuilder builder = new StringBuilder();
+    builder.append("GoogleContactsDescriptor " + usertype.getName() + ":");
+    for (String nextGroup: groups) {
+      builder.append("- " + nextGroup + "\n");
+    }
+
+    return builder.toString();
+  }
+
 
 
 }
