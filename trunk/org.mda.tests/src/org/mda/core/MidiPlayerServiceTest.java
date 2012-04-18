@@ -7,6 +7,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 import java.io.File;
+import junit.framework.Assert;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiFilePartType;
@@ -17,6 +18,7 @@ import org.junit.Test;
 import org.mda.MidiPlayerService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.ui.test.MidiFileCreator;
 
 
 public class MidiPlayerServiceTest {
@@ -29,6 +31,54 @@ public class MidiPlayerServiceTest {
   @BeforeClass
   public static void beforeClass () {
     loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
+  }
+
+
+  @Test
+  public void clonePart () {
+    MidiFileCreator creator = MidiFileCreator.create();
+    creator = creator.part(MidiFilePartType.VERS).line().chordAndText("D", "This is a testline");
+    creator = creator.part(MidiFilePartType.REFRAIN).line().chordAndText("D", "This is a testrefrain");
+    creator = creator.refPart(0);
+    MidiFile file = creator.get();
+
+    MidiFile fileCloned = EcoreUtil.copy(file);
+
+    //Clone normal part
+    MidiPlayerService.clonePart(fileCloned, fileCloned.getParts().get(0));
+    String firstString = MidiPlayerService.toString(fileCloned.getParts().get(0));
+    String clonedString = MidiPlayerService.toString(fileCloned.getParts().get(1));
+    Assert.assertEquals (firstString, clonedString);
+    Assert.assertEquals (MidiFilePartType.REFRAIN, fileCloned.getParts().get(2).getParttype());
+  }
+
+  @Test
+  public void clonePartRef () {
+    MidiFileCreator creator = MidiFileCreator.create();
+    creator = creator.part(MidiFilePartType.VERS).line().chordAndText("D", "This is a testline");
+    creator = creator.refPart(0);
+    MidiFile file = creator.get();
+
+    MidiFile fileCloned = EcoreUtil.copy(file);
+
+    //Clone ref part
+    MidiPlayerService.clonePart(fileCloned, fileCloned.getParts().get(1));
+    String firstString = MidiPlayerService.toString(fileCloned.getParts().get(1));
+    String clonedString = MidiPlayerService.toString(fileCloned.getParts().get(2));
+    Assert.assertEquals (firstString, clonedString);
+    Assert.assertEquals (3, fileCloned.getParts().size());
+  }
+
+  @Test
+  public void removeLine () {
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS);
+    creator = creator.line().chordAndText("D", "This is a testline");
+    creator = creator.line().chordAndText("D", "This is another testline");
+    MidiFile file = creator.get();
+    MidiPlayerService.removeLine(file.getParts().get(0), 0);
+    Assert.assertEquals(1, file.getParts().get(0).getTextlines().size());
+    Assert.assertTrue (file.getParts().get(0).getTextlines().get(0).getChordParts().get(0).getText().startsWith("This is another"));
+
   }
 
   @Test

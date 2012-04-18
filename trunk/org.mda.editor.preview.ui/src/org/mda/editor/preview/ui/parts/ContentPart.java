@@ -96,6 +96,9 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
   public void setCurrentPart (MidiFilePart currentPart) {
     super.setCurrentPart(currentPart);
     showPart(currentPart, getSize());
+    setCurrentFocusedLine(0);
+    setCurrentCaretPosition(0); //initialize position again
+
   }
 
   /** This method should only be called in the repaint-method to adapt size.
@@ -145,7 +148,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
     if (currentLine >= 0 && currentLine < getTextLines().size()) {
       setFocus(getTextLines().get(currentLine));
       if (currentcarePosition >= 0)
-        setCurrentCaretPosition(currentcarePosition, currentLine);
+        setCurrentCaretPositionInLine(currentcarePosition, currentLine);
     }
     return calcPreConditions.getCalculationsize();
   }
@@ -174,6 +177,30 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
     LOGGER.info("PostModifyText:\n<" + lblChordLine.getText() + ">\n<" + txtTextLine.getText() + ">");
   }
 
+  /**
+   * returns if the line indexed by the parameter is empty or not
+   * @param pos index to check
+   * @return is empty?
+   */
+  public boolean isLineEmpty (final int pos) {
+
+    if (pos >= getChordLines().size())
+      return false;
+
+    if (pos >= getTextLines().size())
+      return false;
+
+    if (! getChordLines().get(pos).getText().trim().isEmpty())
+        return false;
+
+    if (! getTextLines().get(pos).getText().trim().isEmpty())
+      return false;
+
+    return true;
+
+  }
+
+
   private void addTextLine (final String text, final Point size) {
     StyledText nextText = new StyledText(this, SWT.SINGLE);
     nextText.addCaretListener(this);
@@ -198,25 +225,37 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
         if (e.keyCode == SWT.ARROW_LEFT &&
           (e.stateMask & SWT.SHIFT) != 0) {
           chordToLeft();
+          saveToModel();
+        }
+
+        if ((e.keyCode == SWT.DEL && (e.stateMask & SWT.SHIFT) != 0 ) ||
+            (e.keyCode == SWT.DEL && isLineEmpty(getCurrentFocusedLine()))) {
+          e.doit = false;
+          MidiPlayerService.removeLine(getCurrentPart(), getCurrentFocusedLine());
         }
 
         if (e.keyCode == SWT.ARROW_RIGHT &&
           (e.stateMask & SWT.SHIFT) != 0) {
           chordToRight();
+          saveToModel();
         }
+
+        showPart(getCurrentPart(), size);
+
       }
+
 
       @Override
       public void keyPressed (KeyEvent e) {
         try {
 
-          LOGGER.info("KeyPressed : " +
-            Util.logEvent(e));
+          LOGGER.info("KeyPressed : " + Util.logEvent(e));
 
           if (e.keyCode == SWT.ARROW_DOWN)
             stepToNextLine();
           else if (e.keyCode == SWT.ARROW_UP)
             stepToPreviousLine();
+
           else if (e.keyCode == SWT.CR) {
             e.doit = false;
             splitLine();
@@ -513,10 +552,16 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
   }
 
   public void setCurrentCaretPosition (int currentCaretPosition) {
-    setCurrentCaretPosition(currentCaretPosition, currentFocusedLine);
+    setCurrentCaretPositionInLine(currentCaretPosition, currentFocusedLine);
   }
 
-  public void setCurrentCaretPosition (int currentCaretPosition, int focusedLine) {
+  /**
+   * sets in the focusedline the currentCaretposition
+   * <b>Attention: doesn't set the current focused line</b>
+   * @param currentCaretPosition
+   * @param focusedLine
+   */
+  public void setCurrentCaretPositionInLine (int currentCaretPosition, int focusedLine) {
     getTextLines().get(focusedLine).setCaretOffset(currentCaretPosition);
     this.currentCaretPosition = currentCaretPosition;
   }

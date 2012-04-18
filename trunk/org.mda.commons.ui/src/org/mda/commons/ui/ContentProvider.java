@@ -2,6 +2,9 @@ package org.mda.commons.ui;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import mda.AbstractSessionItem;
 import mda.Gallery;
 import mda.MidiPlayerRoot;
@@ -49,10 +52,20 @@ public class ContentProvider implements ITreeContentProvider {
 
     if (parentElement instanceof Gallery) {
       Gallery group = (Gallery) parentElement;
-      Collection <NavigatorItem<?>> songs = new ArrayList<NavigatorItem<?>>();
+      List <NavigatorItem<AbstractSessionItem>> songs = new ArrayList<NavigatorItem<AbstractSessionItem>>();
       for (AbstractSessionItem next: group.getGalleryItems()) {
         songs.add(new NavigatorItem<AbstractSessionItem>(next, group.getGalleryItems(), group));
       }
+
+      Collections.sort(songs, new Comparator<NavigatorItem<AbstractSessionItem>>() {
+
+        @Override
+        public int compare (NavigatorItem<AbstractSessionItem> o1, NavigatorItem<AbstractSessionItem> o2) {
+          return o1.getModelElement().getName().compareTo(o2.getModelElement().getName());
+        }
+
+      });
+
       return songs.toArray();
     }
 

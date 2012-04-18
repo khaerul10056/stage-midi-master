@@ -45,14 +45,17 @@ public class PresentationContext {
   }
 
   public void setCurrentSession (Session currentSession, final IMidiFileEditorUIConfig config, Point size) {
+    LOGGER.info("set current session " + currentSession.getName() + " at presentationcontext");
     this.currentSession = currentSession;
     this.config = config;
     calcPreCondition = new CalculatorPreCondition();
     calcPreCondition.setCalculationsize(size);
     slidesPerItem = calculateSlides (currentSession);
+    LOGGER.info("set current session " + currentSession.getName() + " at presentationcontext calculation finished");
   }
 
   public void closePresentationSession () {
+    LOGGER.info("Closing presentationsession");
     this.currentSession = null;
     this.config = null;
     calcPreCondition = null;

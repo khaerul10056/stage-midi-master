@@ -43,6 +43,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         configurer.setTitle("MDA (#" + session.getVersion() + ")");
         configurer.setShowCoolBar(false);
         configurer.setShowStatusLine(false);
+
         configurer.setShellStyle(SWT.NONE);
 
     }
@@ -55,7 +56,8 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
       Shell shell = getWindowConfigurer().getWorkbenchConfigurer().getWorkbench().getWorkbenchWindows() [0].getShell();
 
       //Workaround due to Bug 84938- Provide a way to set initial application window position
-      shell.setBounds(new Rectangle(bounds.x,  bounds.y, bounds.width-100, bounds.height-100));
+      shell.setBounds(new Rectangle(bounds.x,  bounds.y, bounds.width - 100, bounds.height - 100));
+
 
       //0, 150, 1680, 1050}
     }

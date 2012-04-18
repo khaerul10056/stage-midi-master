@@ -28,6 +28,7 @@ public class Utils {
   public final static String ICON_SONG = "song.jpg";
   public final static String ICON_SESSION = "session.png";
   public final static String ICON_ADD_PART = "add_part.gif";
+  public final static String ICON_CLONE_PART = "clone_part.gif";
   public final static String ICON_LINK = "link.gif";
   public final static String ICON_REMOVE_PART = "remove_part.gif";
   public final static String ICON_PART = "part.gif";

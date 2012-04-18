@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -34,6 +35,31 @@ public class MidiPlayerService {
 
   static {
     defaultPaths.add("/home/oleym/privat/soundOfFaith/midi"); //todo konfigurierbar machen, pro Pfad Angabe von Filetypen (.mid, .txt...)
+  }
+
+
+  /**
+   * removes a complete line from a part
+   * @param part part
+   * @param line line
+   * @return part
+   */
+  public final static MidiFilePart removeLine (final MidiFilePart part, final int line) {
+    part.getTextlines().remove(line);
+    return part;
+  }
+
+  /**
+   * clones a part and inserts it after the cloned part
+   * @param midifile midifile
+   * @param clonablePart  part to clone
+   * @return midifile
+   */
+  public final static MidiFile clonePart (final MidiFile midifile, final MidiFilePart clonablePart) {
+    int indexOfCurrent = midifile.getParts().indexOf(clonablePart);
+    MidiFilePart clonedPart = EcoreUtil.copy(clonablePart);
+    midifile.getParts().add(indexOfCurrent + 1, clonedPart);
+    return midifile;
   }
 
   /** merges a line to the previous line

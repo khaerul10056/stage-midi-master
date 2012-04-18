@@ -17,7 +17,7 @@
                id="fileMenu"
                label="File">
             <command
-                  commandId="org.mda.commons.ui.config.SendSongbooksHandler"
+                  commandId="org.mda.commons.ui.config.SendSongbooks"
                   label="Send songbooks..."
                   style="push"
                   tooltip="Send songbooks to all users, that have enabled this feature">

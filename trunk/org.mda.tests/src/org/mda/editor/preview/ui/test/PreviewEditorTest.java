@@ -28,6 +28,8 @@ import org.mda.MidiPlayerService;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.editor.preview.ui.PreviewEditorContent;
 import org.mda.editor.preview.ui.parts.ContentPart;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.test.MidiFileCreator;
 
 
@@ -38,6 +40,8 @@ public class PreviewEditorTest {
   private PreviewEditorContent editor;
 
   private MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
+
+  private static final Log LOGGER  = LogFactory.getLogger(PreviewEditorTest.class);
 
 
 
@@ -56,6 +60,53 @@ public class PreviewEditorTest {
     shell.dispose();
   }
 
+
+  @Test
+  public void isLineEmpty () {
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    creator = creator.line().chordAndText(" ", " ");
+    creator = creator.line().chordAndText("D", " ");
+    creator = creator.line().chordAndText("", "Test");
+    MidiFile midiFile = creator.get();
+    PreviewEditorContent editor = new PreviewEditorContent(shell, midiFile);
+    editor.setCurrentPart(midiFile.getParts().get(0));
+    Assert.assertTrue (editor.getContentpanel().isLineEmpty(0));
+    Assert.assertFalse (editor.getContentpanel().isLineEmpty(1));
+    Assert.assertFalse (editor.getContentpanel().isLineEmpty(2));
+
+
+  }
+
+  @Test
+  public void stepToNewPart () {
+    //select first part
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    creator = creator.line().chordAndText("D", "This is a test");
+    creator = creator.line().chordAndText("F", "and another line");
+    creator = creator.line().chordAndText("F", "and another line");
+    creator = creator.part(MidiFilePartType.VERS);
+    creator = creator.line().chordAndText("D", "and only one line");
+    MidiFile midiFile = creator.get();
+
+    PreviewEditorContent editor = new PreviewEditorContent(shell, midiFile);
+    editor.setCurrentPart(midiFile.getParts().get(0));
+    logEditorContent(editor.getContentpanel());
+
+    //set new position
+    editor.getContentpanel().setCurrentFocusedLine(2);
+    editor.getContentpanel().setCurrentCaretPosition(20);
+
+    //select second part (with invalid position) and step right
+    editor.setCurrentPart(midiFile.getParts().get(1));
+    editor.getContentpanel().setCurrentCaretPosition(1);
+    logEditorContent(editor.getContentpanel());
+
+    Assert.assertEquals (0, editor.getContentpanel().getCurrentFocusedLine());
+    Assert.assertEquals (1, editor.getContentpanel().getCurrentCaretPosition());
+
+
+
+  }
 
   @Test
   public void newSong () {
@@ -185,7 +236,7 @@ public class PreviewEditorTest {
     PreviewEditorContent editor = new PreviewEditorContent(shell, song);
     ContentPart contentPanel = editor.getContentpanel();
     contentPanel.setCurrentPart(song.getParts().get(0));
-    contentPanel.setCurrentCaretPosition(5, 0);
+    contentPanel.setCurrentCaretPositionInLine(5, 0);
     contentPanel.editChord(editor.getContentpanel().getChordLines().get(0), editor.getContentpanel().getTextLines().get(0), 5, "Eb", "");
 
     MidiFilePart saveToModel = contentPanel.saveToModel();
@@ -206,7 +257,7 @@ public class PreviewEditorTest {
     ContentPart contentPanel = editor.getContentpanel();
     contentPanel.setCurrentPart(song.getParts().get(0));
 
-    contentPanel.setCurrentCaretPosition(5, 0);
+    contentPanel.setCurrentCaretPositionInLine(5, 0);
     contentPanel.editChord(editor.getContentpanel().getChordLines().get(0), editor.getContentpanel().getTextLines().get(0), 5, "Eb", "");
 
 
@@ -249,8 +300,8 @@ public class PreviewEditorTest {
     for (int i = 0; i< 10; i++) {
       MidiFilePart saveToModel = editor.getContentpanel().saveToModel();
       editor.getContentpanel().setCurrentPart(saveToModel);
-      System.out.println("Old: " + MidiPlayerService.toString(oldModel));
-      System.out.println("New: " + MidiPlayerService.toString(saveToModel));
+      LOGGER.info("Old: " + MidiPlayerService.toString(oldModel));
+      LOGGER.info("New: " + MidiPlayerService.toString(saveToModel));
       if (i > 0)
         assertEquals(oldModel, saveToModel);
     }
@@ -317,8 +368,8 @@ public class PreviewEditorTest {
     }
 
     for (int i = 0; i <  chords.size(); i++) {
-      System.out.println ("|" + chords.get(i) + "|");
-      System.out.println ("|" + texts.get(i) + "|");
+      LOGGER.info ("|" + chords.get(i) + "|");
+      LOGGER.info ("|" + texts.get(i) + "|");
     }
   }
 
