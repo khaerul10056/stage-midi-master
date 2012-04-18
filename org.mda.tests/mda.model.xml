@@ -2910,37 +2910,32 @@
           <chordParts text="ly. " chord="E"/>
           <chordParts text="  " chord="H"/>
           <chordParts text="    " chord="c#"/>
+          <chordParts text="your name is " chord="A"/>
+          <chordParts text="ho" chord="E"/>
+          <chordParts text="ly" chord="H"/>
+          <chordParts text=".      " chord="c#"/>
+          <chordParts text="your name is " chord="A"/>
+          <chordParts text="ho" chord="E"/>
+          <chordParts text="ly" chord="H"/>
+          <chordParts text=". " chord="c#"/>
         </textlines>
         <textlines>
-          <chordParts text="your "/>
-          <chordParts text="name is holy." chord="A"/>
-          <chordParts text="  " chord="E"/>
-          <chordParts text="  " chord="H"/>
-          <chordParts text="  your " chord="c#"/>
-          <chordParts text="name is holy." chord="A"/>
-          <chordParts text="  " chord="E"/>
-          <chordParts text="  " chord="H"/>
-          <chordParts text=" " chord="c#"/>
+          <chordParts text="your name is " chord="A"/>
+          <chordParts text="ho" chord="E"/>
+          <chordParts text="ly" chord="H"/>
+          <chordParts text=".      " chord="c#"/>
+          <chordParts text="your name is " chord="A"/>
+          <chordParts text="ho" chord="E"/>
+          <chordParts text="ly" chord="H"/>
+          <chordParts text=". " chord="c#"/>
         </textlines>
         <textlines>
-          <chordParts text="your "/>
-          <chordParts text="name is holy." chord="A"/>
-          <chordParts text="  " chord="E"/>
-          <chordParts text="  " chord="H"/>
-          <chordParts text="  your " chord="c#"/>
-          <chordParts text="name is holy." chord="A"/>
-          <chordParts text="  " chord="E"/>
-          <chordParts text="  " chord="H"/>
-          <chordParts text=" " chord="c#"/>
-        </textlines>
-        <textlines>
-          <chordParts text="your "/>
-          <chordParts text="name is holy." chord="A"/>
-          <chordParts text="  " chord="E"/>
-          <chordParts text="  " chord="H"/>
-          <chordParts text="  your " chord="c#"/>
-          <chordParts text="name is holy." chord="A"/>
-          <chordParts text=" " chord="E"/>
+          <chordParts text="your name is " chord="A"/>
+          <chordParts text="ho" chord="E"/>
+          <chordParts text="ly" chord="H"/>
+          <chordParts text=".      " chord="c#"/>
+          <chordParts text="your name is " chord="A"/>
+          <chordParts text="holy. " chord="E"/>
         </textlines>
       </parts>
     </galleryItems>
