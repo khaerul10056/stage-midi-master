@@ -108,8 +108,11 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
    * @return size */
   private Point showPart (final MidiFilePart part, final Point size) {
 
+
     int currentLine = getCurrentFocusedLine();
     int currentcarePosition = getCaretOffsetOfCurrentTextField();
+
+    LOGGER.info("Show part (position " + currentLine + "/" + currentcarePosition);
 
     calcPreConditions.setCalculationsize(size);
 
@@ -146,6 +149,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
 
     //focus first line
     if (currentLine >= 0 && currentLine < getTextLines().size()) {
+      LOGGER.info("Focus first line");
       setFocus(getTextLines().get(currentLine));
       if (currentcarePosition >= 0)
         setCurrentCaretPositionInLine(currentcarePosition, currentLine);
@@ -224,23 +228,27 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
           Util.logEvent(e));
         if (e.keyCode == SWT.ARROW_LEFT &&
           (e.stateMask & SWT.SHIFT) != 0) {
+          LOGGER.info("- Move chord to left");
           chordToLeft();
           saveToModel();
+          showPart(getCurrentPart(), size);
         }
 
         if ((e.keyCode == SWT.DEL && (e.stateMask & SWT.SHIFT) != 0 ) ||
             (e.keyCode == SWT.DEL && isLineEmpty(getCurrentFocusedLine()))) {
           e.doit = false;
+          LOGGER.info("- Remove complete line");
           MidiPlayerService.removeLine(getCurrentPart(), getCurrentFocusedLine());
+          showPart(getCurrentPart(), size);
         }
 
         if (e.keyCode == SWT.ARROW_RIGHT &&
           (e.stateMask & SWT.SHIFT) != 0) {
+          LOGGER.info("- Move chord to right");
           chordToRight();
           saveToModel();
+          showPart(getCurrentPart(), size);
         }
-
-        showPart(getCurrentPart(), size);
 
       }
 
@@ -251,13 +259,18 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
 
           LOGGER.info("KeyPressed : " + Util.logEvent(e));
 
-          if (e.keyCode == SWT.ARROW_DOWN)
+          if (e.keyCode == SWT.ARROW_DOWN) {
+            LOGGER.info("- Arrow down, stepping to next line");
             stepToNextLine();
-          else if (e.keyCode == SWT.ARROW_UP)
+          }
+          else if (e.keyCode == SWT.ARROW_UP) {
+            LOGGER.info("- Arrow up, stepping to previous line");
             stepToPreviousLine();
+          }
 
           else if (e.keyCode == SWT.CR) {
             e.doit = false;
+            LOGGER.info("- CR, splitting line");
             splitLine();
           }
           else if (e.keyCode == SWT.CTRL) {
@@ -286,6 +299,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
           }
           else if (e.character == SWT.BS) {
             e.doit = false;
+            LOGGER.info("Backspace, Merging lines");
             mergeLine();
           }
 
@@ -442,13 +456,9 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
   }
 
   public void setFocus (final StyledText currenttext) {
+    LOGGER.info("set Focus to <" + currenttext.getText() + ">");
     currenttext.setFocus();
-    for (int i = 0; i < textLines.size(); i++) {
-      if (textLines.get(i) == currenttext) {
-        currentFocusedLine = i;
-        return;
-      }
-    }
+    currentFocusedLine = textLines.indexOf(currenttext);
   }
 
   @Override
@@ -558,12 +568,13 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
   /**
    * sets in the focusedline the currentCaretposition
    * <b>Attention: doesn't set the current focused line</b>
-   * @param currentCaretPosition
+   * @param newCaretPosition
    * @param focusedLine
    */
-  public void setCurrentCaretPositionInLine (int currentCaretPosition, int focusedLine) {
-    getTextLines().get(focusedLine).setCaretOffset(currentCaretPosition);
-    this.currentCaretPosition = currentCaretPosition;
+  public void setCurrentCaretPositionInLine (int newCaretPosition, int focusedLine) {
+    LOGGER.info("set current caret at position " + newCaretPosition + " in line " + focusedLine);
+    getTextLines().get(focusedLine).setCaretOffset(newCaretPosition);
+    this.currentCaretPosition = newCaretPosition;
   }
 
   @Override

@@ -1,8 +1,10 @@
+Bug 			Editor					Backspace on second char at a line merges lines
+Bug             Editor                  Adding a space to first cahr at a line doesn't work
 Bug             Import                  Recognizing chordlines: Parts with only chords should be imported as chords
-Bug             Editor                  Del on a empty line should remove the complete line
+
 Bug             Editor                  Remove Session leadsto error (Session...is not contained in a resource)
 Bug             Editor			Check if song is referenced before removing
-Enhancment      Editor			Clone part (no reference)
+
 Enhancement     Additionals             Create mp3/wav-cd
                         ffmpeg -i "Alle Schoepfung staunt und preist.mp3" "Alle Schoepfung staunt und preist.wav"
                         mkisofs -o [OUTPUTFILE] [PATH] -hfs-volid HFS_VOLID -joliet-long
@@ -31,6 +33,8 @@ Enhancement		User			mail to group from gmail												new
 
 
 ______________________________________
+Enhancment      Editor			Clone part (no reference)
+Bug             Editor                  Del on a empty line should remove the complete line
 Enhancement	Gallery				Sort alphabetically														done
 Bug             Editor          Curserpos-Values are not adapted when changing part						done
 Enhancement		Presentation	perspective with controlfunctions (black / white / default-page)		done
