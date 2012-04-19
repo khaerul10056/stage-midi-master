@@ -36,7 +36,6 @@ public class PreviewEditorContent extends Composite  {
       part.setParttype(MidiFilePartType.VERS);
       file.getParts().add(part);
     }
-    //setBackground(composite.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
     setLayout(new GridLayout(3, false));
 

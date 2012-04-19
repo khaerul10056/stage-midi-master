@@ -8,10 +8,12 @@ import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 import java.io.File;
 import junit.framework.Assert;
+import mda.Gallery;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiFilePartType;
 import mda.MidiPlayerRoot;
+import mda.Session;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,6 +35,55 @@ public class MidiPlayerServiceTest {
     loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
   }
 
+
+  @Test
+  public void removeReferences () {
+    MidiFile creator = MidiFileCreator.create().setName("Hello").get();
+    MidiFile creator2 = MidiFileCreator.create().setName("Hello2").get();
+    final String TESTSESSION = "TESTSESSION";
+
+    MidiPlayerRoot root = MidiPlayerService.mf.createMidiPlayerRoot();
+    Gallery gallery = MidiPlayerService.mf.createGallery();
+    gallery.getGalleryItems().add(creator2);
+    gallery.getGalleryItems().add(creator);
+    root.setGallery(gallery);
+
+    Session session = MidiPlayerService.mf.createSession();
+    session.setName(TESTSESSION);
+    session.getItems().add(creator2);
+    root.getSessions().add(session);
+
+    Assert.assertEquals (2, root.getGallery().getGalleryItems().size());
+    Assert.assertEquals (1, root.getSessions().get(0).getItems().size());
+
+    MidiPlayerService.removeSongAndReferences(root, creator2);
+
+
+    Assert.assertEquals (1, root.getGallery().getGalleryItems().size());
+    Assert.assertEquals (0, root.getSessions().get(0).getItems().size());
+
+  }
+
+  @Test
+  public void getReferenced () {
+
+    MidiFile creator = MidiFileCreator.create().setName("Hello").get();
+    MidiFile creator2 = MidiFileCreator.create().setName("Hello2").get();
+    final String TESTSESSION = "TESTSESSION";
+
+    MidiPlayerRoot root = MidiPlayerService.mf.createMidiPlayerRoot();
+    Session session = MidiPlayerService.mf.createSession();
+    session.setName(TESTSESSION);
+    session.getItems().add(creator2);
+    root.getSessions().add(session);
+
+    String referenced1 = MidiPlayerService.getReferenced(root, creator);
+    Assert.assertNull (referenced1);
+
+    String referenced2 = MidiPlayerService.getReferenced(root, creator2);
+    Assert.assertTrue(referenced2.indexOf(TESTSESSION) >= 0);
+
+  }
 
   @Test
   public void clonePart () {

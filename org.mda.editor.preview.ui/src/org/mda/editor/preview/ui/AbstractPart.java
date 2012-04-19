@@ -22,7 +22,6 @@ public class AbstractPart extends Composite{
 
   public AbstractPart (Composite parent) {
     super(parent, SWT.NONE);
-    // TODO Auto-generated constructor stub
   }
 
   public void setMidifile (MidiFile midifile) {
