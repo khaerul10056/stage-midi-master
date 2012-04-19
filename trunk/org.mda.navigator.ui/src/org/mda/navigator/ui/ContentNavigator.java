@@ -33,6 +33,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IEditorInput;
@@ -334,9 +335,25 @@ public class ContentNavigator extends ViewPart {
     Object object = Util.getStructuredSelection(treviewer.getSelection());
 
     if (object instanceof NavigatorItem) {
-      NavigatorItem<?> item = (NavigatorItem<?>) object;
-      item.remove();
-      refresh();
+      NavigatorItem<AbstractSessionItem> item = (NavigatorItem<AbstractSessionItem>) object;
+
+      String referenced = MidiPlayerService.getReferenced(appSession.getCurrentModel(), item.getModelElement());
+      boolean removeAnyway = true;
+      if (referenced != null) {
+
+      MessageBox messageBox = new MessageBox(getSite().getShell(), SWT.ICON_QUESTION | SWT.YES | SWT.NO);
+      messageBox.setMessage(referenced);
+      messageBox.setText("Current item is referenced");
+      int response = messageBox.open();
+      if (response == SWT.NO)
+        removeAnyway = false;
+      }
+
+      if (removeAnyway) {
+        MidiPlayerService.removeSongAndReferences(appSession.getCurrentModel(), item.getModelElement());
+        refresh();
+      }
+
     }
 
     if (object instanceof Session) {

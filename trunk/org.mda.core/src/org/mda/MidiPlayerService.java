@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import mda.AbstractSessionItem;
 import mda.MidiFile;
 import mda.MidiFileChordPart;
 import mda.MidiFilePart;
@@ -37,6 +38,60 @@ public class MidiPlayerService {
     defaultPaths.add("/home/oleym/privat/soundOfFaith/midi"); //todo konfigurierbar machen, pro Pfad Angabe von Filetypen (.mid, .txt...)
   }
 
+
+  /**
+   * removes a sessionitem itself and all references in any session, if it is referenced
+   * @param rootobject   rootobject
+   * @param sessionitem  sessionitem to be removed
+   */
+  public static void removeSongAndReferences (final MidiPlayerRoot rootobject, final AbstractSessionItem sessionitem) {
+
+    for (Session session: rootobject.getSessions()) {
+
+      Collection<AbstractSessionItem> deleted = new ArrayList<AbstractSessionItem>();
+
+      for (AbstractSessionItem nextSessionitem : session.getItems()) {
+        if (sessionitem == nextSessionitem)
+          deleted.add(nextSessionitem);
+      }
+
+      session.getItems().removeAll(deleted);
+    }
+
+    rootobject.getGallery().getGalleryItems().remove(sessionitem);
+  }
+
+  /**
+   * check if the session item is reverenced
+   * @param rootobject
+   * @return errormessage or <code>null</code> if object is not referenced anymore
+   */
+  public static String getReferenced (final MidiPlayerRoot rootobject, final AbstractSessionItem sessionitem) {
+    StringBuilder builder = new StringBuilder();
+    int numberOfSession = 0;
+
+    for (Session session: rootobject.getSessions()) {
+      for (AbstractSessionItem nextSessionitem : session.getItems()) {
+        if (sessionitem == nextSessionitem) {
+          numberOfSession ++;
+          builder.append("- " + session.getName() + "\n");
+        }
+      }
+    }
+
+    if (builder.length() == 0)
+      return null;
+
+    if (numberOfSession == 1)
+      builder.insert(0, sessionitem.getName() + " is referenced in the following session:\n");
+    else
+      builder.insert(0, sessionitem.getName() + " is referenced in the following " + numberOfSession + "sessions:\n");
+
+    builder.append("\nRemove it anyway?");
+
+    return builder.toString();
+
+  }
 
   /**
    * removes a complete line from a part

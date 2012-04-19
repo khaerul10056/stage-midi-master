@@ -2,7 +2,7 @@ Bug 			Editor					Backspace on second char at a line merges lines
 Bug             Editor                  Adding a space to first cahr at a line doesn't work
 Bug             Import                  Recognizing chordlines: Parts with only chords should be imported as chords
 
-Bug             Editor                  Remove Session leadsto error (Session...is not contained in a resource)
+
 Bug             Editor			Check if song is referenced before removing
 
 Enhancement     Additionals             Create mp3/wav-cd
@@ -22,6 +22,7 @@ Enhancement		User			import from gmail														new
 Enhancement		User			export userlist															new
 Enhancement		User			mail to group from gmail												new
 _____________________________________
+Bug             Editor                  Remove Session leadsto error (Session...is not contained in a resource)
 Enhancement		Editor 			handling refs															new
 Enhancement		Editor 			new part 																new
 Enhancement		Editor 			clone part 																new
