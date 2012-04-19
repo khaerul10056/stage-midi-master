@@ -108,7 +108,7 @@ public class MidiPlayerService {
       MidiFileChordPart chordpart = mf.createMidiFileChordPart();
       chordpart.setText(" ");
       newTextLine.getChordParts().add(chordpart);
-      part.getTextlines().add(newTextLine);
+      part.getTextlines().add(line + 1, newTextLine);
       return part;
     }
 

@@ -12,27 +12,21 @@ Enhancement     Additionals             Create mp3/wav-cd
                         wodim -v dev=/dev/sg2 speed=10 -eject /home/neostream/iso/ubuntu-12.04-beta2-desktop-i386.iso
 
 Enhancement     Additionals             mp3s
-Enhancement     Editor		    Part up/down
-Enhancement 	Editor			Remove part																new
 Enhancement		Additionals		Rotate and save rotation												new
 Bug 			Editor			Add splitted part as reference? 										new
 Enhancement     Editor			alignment: left, right, center pro File, indentions
 Enhancement		Editor			edit font / bold / italic / outline 									new
 Bug				Editor			Remove multiple whitespaces-configuration								new
 Enhancement		Editor			selection of navigator doesn't change while changing slides				new
+Enhancement		User			import from gmail														new
+Enhancement		User			export userlist															new
+Enhancement		User			mail to group from gmail												new
+_____________________________________
 Enhancement		Editor 			handling refs															new
 Enhancement		Editor 			new part 																new
 Enhancement		Editor 			clone part 																new
 Enhancement		Editor 			remove part 															new
 Enhancement		Editor 			move part up/down 														new
-
-Enhancement		User			import from gmail														new
-Enhancement		User			export userlist															new
-Enhancement		User			mail to group from gmail												new
-
-
-
-______________________________________
 Enhancment      Editor			Clone part (no reference)
 Bug             Editor                  Del on a empty line should remove the complete line
 Enhancement	Gallery				Sort alphabetically														done

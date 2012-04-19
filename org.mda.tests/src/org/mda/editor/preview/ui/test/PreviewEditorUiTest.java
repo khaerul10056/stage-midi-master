@@ -127,6 +127,7 @@ public class PreviewEditorUiTest {
     assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
 
     getText(0).setCaretOffset(15);
+    editor.getContentpanel().saveCurrentCaretSituation();
 
     editor.getContentpanel().splitLine();
     saveAndShowRoundtrip();
@@ -177,6 +178,7 @@ public class PreviewEditorUiTest {
     assertEquals(TEXTLINEORIGINAL, text.getText());  //line 1
 
     text.setCaretOffset(34);
+    editor.getContentpanel().saveCurrentCaretSituation();
 
     editor.getContentpanel().splitLine();
 
@@ -216,6 +218,7 @@ public class PreviewEditorUiTest {
     assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
 
     getText(0).setCaretOffset(14);
+    editor.getContentpanel().saveCurrentCaretSituation();
     editor.getContentpanel().splitLine();
     assertEquals (getText(1), editor.getContentpanel().getFocusedTextField());
 
@@ -249,6 +252,7 @@ public class PreviewEditorUiTest {
     assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
 
     getText(0).setCaretOffset(0);
+    editor.getContentpanel().saveCurrentCaretSituation();
 
     editor.getContentpanel().splitLine();
 
@@ -265,11 +269,31 @@ public class PreviewEditorUiTest {
 
   @Test
   public void splitAndMergeAtEndOfLine () throws Exception {
-    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS).line();
-    MidiFile song = creator.chordAndText("H", "Dies ist ein Test").get();
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS);
+    creator =  creator.line().chordAndText("H", "Dies ist ein Test");
+    MidiFile song = creator.line().chordAndText("H", "another line").get();
     editor = new PreviewEditorContent(shell, song);
     editor.getContentpanel().setCurrentPart(song.getParts().get(0));
     getText(0).setCaretOffset(17); //To end of line
+    editor.getContentpanel().saveCurrentCaretSituation();
+    editor.getContentpanel().splitLine();
+
+    assertEquals("", getChord(1).getText());
+    assertEquals(" ", getText(1).getText());
+
+    editor.getContentpanel().mergeLine();
+    assertEquals("Dies ist ein Test ", getText(0).getText());  //line 0
+    assertEquals (2, editor.getContentpanel().getTextLines().size());
+  }
+
+  @Test
+  public void splitAndMergeAtEndOfLastLine () throws Exception {
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS);
+    MidiFile song =  creator.line().chordAndText("H", "Dies ist ein Test").get();
+    editor = new PreviewEditorContent(shell, song);
+    editor.getContentpanel().setCurrentPart(song.getParts().get(0));
+    getText(0).setCaretOffset(17); //To end of line
+    editor.getContentpanel().saveCurrentCaretSituation();
     editor.getContentpanel().splitLine();
 
     assertEquals("", getChord(1).getText());
@@ -292,6 +316,7 @@ public class PreviewEditorUiTest {
     assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
 
     getText(0).setCaretOffset(getText(0).getText().length() - 1);
+    editor.getContentpanel().saveCurrentCaretSituation();
 
     editor.getContentpanel().splitLine();
 

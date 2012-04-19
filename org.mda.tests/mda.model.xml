@@ -1577,11 +1577,7 @@
           <chordParts text="den die " chord="F"/>
           <chordParts text="ganze " chord="Bb"/>
           <chordParts text="Sch&#xf6;pfung " chord="F"/>
-          <chordParts text="preist, " chord="C"/>
-        </textlines>
-        <textlines>
-          <chordParts text=""/>
-          <chordParts text="Vater, " chord="F"/>
+          <chordParts text="preist, ater, " chord="C"/>
           <chordParts text="Sohn und " chord="Bb"/>
           <chordParts text="heiliger " chord="F"/>
           <chordParts text="Geist, " chord="C"/>
@@ -1733,28 +1729,25 @@
       </parts>
       <parts bar="43">
         <textlines>
-          <chordParts text="I'm so glad that "/>
-          <chordParts text="Jesus " chord="G"/>
-          <chordParts text="lives in my " chord="A"/>
-          <chordParts text="house, " chord="D"/>
+          <chordParts text="I'm so" chord="G"/>
+          <chordParts text=" glad that J" chord="A"/>
+          <chordParts text="esus lives in my house, " chord="D"/>
         </textlines>
         <textlines>
-          <chordParts text="Good to know that "/>
-          <chordParts text="he is " chord="G"/>
-          <chordParts text="here with me " chord="A"/>
-          <chordParts text="now, " chord="D"/>
+          <chordParts text="Good t" chord="G"/>
+          <chordParts text="o know that h" chord="A"/>
+          <chordParts text="e is " chord="D"/>
+          <chordParts text="here with me no" chord="G"/>
+          <chordParts text="w, " chord="A"/>
         </textlines>
         <textlines>
-          <chordParts text="All of my "/>
-          <chordParts text="life, Jesus in " chord="G"/>
-          <chordParts text="me, Jesus in my " chord="A"/>
-          <chordParts text="house, " chord="h"/>
+          <chordParts text="All of my lif" chord=""/>
+          <chordParts text="e, Jesus in me, Jesuaaaaaaaan my house, " chord="h"/>
         </textlines>
         <textlines>
-          <chordParts text="All of my "/>
-          <chordParts text="life, and " chord="G"/>
-          <chordParts text="always will " chord="A"/>
-          <chordParts text="be. " chord="D"/>
+          <chordParts text="All of my " chord="G"/>
+          <chordParts text="life, and al" chord="A"/>
+          <chordParts text="ways will be. " chord="D"/>
         </textlines>
       </parts>
       <parts parttype="ZWISCHENSPIEL" bar="57">

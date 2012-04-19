@@ -78,6 +78,27 @@ public class PreviewEditorTest {
   }
 
   @Test
+  public void testCaret () {
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    creator = creator.line().chordAndText("D", "This is a test");
+    creator = creator.line().chordAndText("F", "and another line");
+    creator = creator.line().chordAndText("F", "and another line");
+    creator = creator.part(MidiFilePartType.VERS);
+    creator = creator.line().chordAndText("D", "and only one line");
+    MidiFile midiFile = creator.get();
+
+    PreviewEditorContent editor = new PreviewEditorContent(shell, midiFile);
+    editor.setCurrentPart(midiFile.getParts().get(0));
+    logEditorContent(editor.getContentpanel());
+
+    //set new position
+    editor.getContentpanel().setCurrentFocusedLine(2);
+    editor.getContentpanel().setCurrentCaretPosition(20);
+    Assert.assertEquals (2, editor.getContentpanel().getCurrentFocusedLine());
+    Assert.assertEquals (20, editor.getContentpanel().getCurrentCaretPosition());
+  }
+
+  @Test
   public void stepToNewPart () {
     //select first part
     MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);

@@ -8,8 +8,6 @@ import mda.MidiFileChordPart;
 import mda.MidiFilePart;
 import mda.MidiFileTextLine;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CaretEvent;
-import org.eclipse.swt.custom.CaretListener;
 import org.eclipse.swt.custom.ExtendedModifyEvent;
 import org.eclipse.swt.custom.ExtendedModifyListener;
 import org.eclipse.swt.custom.StyledText;
@@ -40,7 +38,7 @@ import org.mda.editor.preview.ui.chords.ChordHover;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
-public class ContentPart extends AbstractPart implements IPreviewEditorView, CaretListener, FocusListener {
+public class ContentPart extends AbstractPart implements IPreviewEditorView, FocusListener {
 
   private static final Log                   LOGGER            = LogFactory.getLogger(ContentPart.class);
 
@@ -147,7 +145,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
 
     layout();
 
-    //focus first line
+    //focus last focused position
     if (currentLine >= 0 && currentLine < getTextLines().size()) {
       LOGGER.info("Focus first line");
       setFocus(getTextLines().get(currentLine));
@@ -157,11 +155,17 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
     return calcPreConditions.getCalculationsize();
   }
 
+  public void saveCurrentCaretSituation () {
+    int before = currentCaretPosition;
+    this.currentCaretPosition = getTextLines().get(getCurrentFocusedLine()).getCaretOffset();
+    LOGGER.info("save current caret from " + before + " to " + currentCaretPosition);
+  }
+
   public void doModifyText (final String replacedText, final int start, final int length) {
     Label lblChordLine = getChordLines().get(getCurrentFocusedLine());
     StyledText txtTextLine = getTextLines().get(getCurrentFocusedLine());
 
-    LOGGER.info("PreModifyText:\n<" + lblChordLine.getText() + ">\n<" + txtTextLine.getText() + ">");
+    LOGGER.info("PreModifyText:\n<" + lblChordLine.getText() + ">\n<" + txtTextLine.getText() + ">" + logCaretBehaviour());
     LOGGER.info("ReplacedText : <" + replacedText + ">");
     LOGGER.info("Modified     : <" + start + "-" + length);
 
@@ -178,7 +182,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
 
     lblChordLine.setText(builder.toString());
 
-    LOGGER.info("PostModifyText:\n<" + lblChordLine.getText() + ">\n<" + txtTextLine.getText() + ">");
+    LOGGER.info("PostModifyText:\n<" + lblChordLine.getText() + ">\n<" + txtTextLine.getText() + ">"  + logCaretBehaviour());
   }
 
   /**
@@ -207,7 +211,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
 
   private void addTextLine (final String text, final Point size) {
     StyledText nextText = new StyledText(this, SWT.SINGLE);
-    nextText.addCaretListener(this);
+
     nextText.addFocusListener(this);
     nextText.setText(text);
     nextText.setFont(font);
@@ -224,8 +228,8 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
 
       @Override
       public void keyReleased (KeyEvent e) {
-        LOGGER.info("KeyReleased : " +
-          Util.logEvent(e));
+        LOGGER.info("KeyReleased : " + Util.logEvent(e) + logCaretBehaviour());
+
         if (e.keyCode == SWT.ARROW_LEFT &&
           (e.stateMask & SWT.SHIFT) != 0) {
           LOGGER.info("- Move chord to left");
@@ -237,40 +241,50 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
         if ((e.keyCode == SWT.DEL && (e.stateMask & SWT.SHIFT) != 0 ) ||
             (e.keyCode == SWT.DEL && isLineEmpty(getCurrentFocusedLine()))) {
           e.doit = false;
-          LOGGER.info("- Remove complete line");
+          LOGGER.info("KeyReleased : - Remove complete line");
           MidiPlayerService.removeLine(getCurrentPart(), getCurrentFocusedLine());
           showPart(getCurrentPart(), size);
         }
 
         if (e.keyCode == SWT.ARROW_RIGHT &&
           (e.stateMask & SWT.SHIFT) != 0) {
-          LOGGER.info("- Move chord to right");
+          LOGGER.info("KeyReleased : - Move chord to right");
           chordToRight();
           saveToModel();
           showPart(getCurrentPart(), size);
         }
+
+        LOGGER.info("KeyReleased end : " + logCaretBehaviour());
 
       }
 
 
       @Override
       public void keyPressed (KeyEvent e) {
+
         try {
 
-          LOGGER.info("KeyPressed : " + Util.logEvent(e));
+          LOGGER.info("KeyPressed : " + Util.logEvent(e) + logCaretBehaviour());
+          if (e.character == SWT.BS) {
+            e.doit = false;
+            LOGGER.info("KeyPressed : - Backspace, Merging lines" + logCaretBehaviour());
+            mergeLine();
+          }
+
+          saveCurrentCaretSituation(); //has to be saved after backspace is handled
 
           if (e.keyCode == SWT.ARROW_DOWN) {
-            LOGGER.info("- Arrow down, stepping to next line");
+            LOGGER.info("KeyPressed : - Arrow down, stepping to next line");
             stepToNextLine();
           }
           else if (e.keyCode == SWT.ARROW_UP) {
-            LOGGER.info("- Arrow up, stepping to previous line");
+            LOGGER.info("KeyPressed : - Arrow up, stepping to previous line");
             stepToPreviousLine();
           }
 
           else if (e.keyCode == SWT.CR) {
             e.doit = false;
-            LOGGER.info("- CR, splitting line");
+            LOGGER.info("KeyPressed : - CR, splitting line");
             splitLine();
           }
           else if (e.keyCode == SWT.CTRL) {
@@ -297,17 +311,15 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
               editChord(label, focused, focused.getCaretOffset(), hover.getChord(), hover.getPreviousChord());
             }
           }
-          else if (e.character == SWT.BS) {
-            e.doit = false;
-            LOGGER.info("Backspace, Merging lines");
-            mergeLine();
-          }
+
+
 
           saveToModel();
           showPart(getCurrentPart(), size);
 
           editorContent.getPreviewpanel().setCurrentPart(getCurrentPart());
 
+          LOGGER.info("KeyPressed end : " + logCaretBehaviour());
           LOGGER.info("doit was set to " + e.doit);
 
         }
@@ -317,7 +329,11 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
 
       }
 
+
     });
+
+//    nextText.addCaretListener(this); // needs to be registered after the keylistener because in
+//                                     // keylistener we must use the current position
 
     }
     if (getTextLines().isEmpty())
@@ -356,6 +372,10 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
     chordline.setText(builder.toString());
 
     return true;
+  }
+
+  public String logCaretBehaviour () {
+    return " (Caret at " + getCurrentFocusedLine() + "/" + getCurrentCaretPosition() + ")";
   }
 
 
@@ -552,10 +572,11 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
     return textLines;
   }
 
-  @Override
-  public void caretMoved (CaretEvent arg0) {
-    setCurrentCaretPosition(arg0.caretOffset);
-  }
+//  @Override
+//  public void caretMoved (CaretEvent arg0) {
+//    LOGGER.info("Caret moved thrown at position " + arg0.caretOffset + "-" + logCaretBehaviour());
+//    setCurrentCaretPosition(arg0.caretOffset);
+//  }
 
   public int getCurrentCaretPosition () {
     return currentCaretPosition;
@@ -582,8 +603,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Car
     for (int i = 0; i < getTextLines().size(); i++)
       if (arg0.getSource() == getTextLines().get(i))
         currentFocusedLine = i;
-    LOGGER.info("Focused gained in new line: " +
-      currentFocusedLine);
+    LOGGER.info("Focused gained in new line: " + currentFocusedLine);
   }
 
   @Override
