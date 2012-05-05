@@ -7,9 +7,13 @@ import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 
 public class NewPartShellTester {
+
+  private static final Log LOGGER  = LogFactory.getLogger(NewPartShellTester.class);
 
   /** @param args */
   public static void main (String[] args) throws Exception {
@@ -26,7 +30,7 @@ public class NewPartShellTester {
       }
     }
 
-    System.out.println (MidiPlayerService.toString(file));
+    LOGGER.info(MidiPlayerService.toString(file));
 
   }
 

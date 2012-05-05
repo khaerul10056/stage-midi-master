@@ -14,7 +14,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
@@ -119,10 +118,6 @@ public class PresenterTester extends Shell {
   }
 
   public static void main (String[] args) throws Exception {
-
-    for (Monitor nextMonitor: Display.getDefault().getMonitors()) {
-      System.out.println ("Monitor " + nextMonitor.toString() + " - Bounds: " + nextMonitor.getBounds());
-    }
     new PresenterTester();
   }
 

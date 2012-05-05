@@ -3,15 +3,17 @@ package org.mda.presenter.ui.test;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.DefaultPresentationController;
 
 
 public class KeyPresentationController extends DefaultPresentationController implements KeyListener {
 
-
+  private static final Log LOGGER  = LogFactory.getLogger(KeyPresentationController.class);
   @Override
   public void keyPressed (KeyEvent e) {
-    System.out.println ("KeyPressed " + e.character);
+    LOGGER.info("KeyPressed " + e.character);
 
     if (e.character == SWT.ESC)
       end();
@@ -26,9 +28,9 @@ public class KeyPresentationController extends DefaultPresentationController imp
 
   @Override
   public void keyReleased (KeyEvent e) {
-    System.out.println ("KeyReleased " + e.character);
+    LOGGER.info("KeyReleased " + e.character);
   }
 
-  
+
 
 }
