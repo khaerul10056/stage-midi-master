@@ -2,15 +2,18 @@ package org.mda.importer;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import mda.MidiFile;
 import mda.MidiFileChordPart;
 import mda.MidiFilePart;
 import mda.MidiFileTextLine;
-
 import org.mda.MidiPlayerService;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 public class TextImporterService {
+
+  private static final Log LOGGER  = LogFactory.getLogger(TextImporterService.class);
+
   private List<TextImporterLine> lines = new ArrayList<TextImporterLine>();
 
   public TextImporterService(final List<String> text, final TextImporterConfigIF config) {
@@ -31,22 +34,22 @@ public class TextImporterService {
 
         if (currentMidifilePart != null) {
           midifile.getParts().add(currentMidifilePart);
-          System.out.println("Add part " + currentMidifilePart.getParttype());
+          LOGGER.info("Add part " + currentMidifilePart.getParttype());
         }
 
         if (nextLine.getPartType() != null) {
           currentMidifilePart = MidiPlayerService.mf.createMidiFilePart();
           currentMidifilePart.setParttype(nextLine.getPartType());
-          System.out.println("Create part " + nextLine.getPartType());
+          LOGGER.info("Create part " + nextLine.getPartType());
         }
       }
 
       if (currentMidifilePart != null && !nextLine.isChordLine()) {
         MidiFileTextLine nextTextLine = MidiPlayerService.mf.createMidiFileTextLine();
         currentMidifilePart.getTextlines().add(nextTextLine);
-        System.out.println("addLine " + nextTextLine.toString());
+        LOGGER.info("addLine " + nextTextLine.toString());
         for (MidiFileChordPart nextChordPart : nextLine.getChordParts()) {
-          System.out.println("addPart " + nextChordPart.getText());
+          LOGGER.info("addPart " + nextChordPart.getText());
           nextTextLine.getChordParts().add(nextChordPart);
         }
       }

@@ -1,9 +1,7 @@
-Bug 			Editor					Backspace on second char at a line merges lines
-Bug             Editor                  Adding a space to first cahr at a line doesn't work
-Bug             Import                  Recognizing chordlines: Parts with only chords should be imported as chords
+Enhancement     Editor          Häufigkeit an Zeile, Part angeben
+Enhancment      Editor			Zeile kopieren
+Bug             Import          Recognizing chordlines: Parts with only chords should be imported as chords
 
-
-Bug             Editor			Check if song is referenced before removing
 
 Enhancement     Additionals             Create mp3/wav-cd
                         ffmpeg -i "Alle Schoepfung staunt und preist.mp3" "Alle Schoepfung staunt und preist.wav"
@@ -11,7 +9,7 @@ Enhancement     Additionals             Create mp3/wav-cd
                         wodim --devices
                         wodim -v dev=/dev/sg2 speed=10 -eject /home/neostream/iso/ubuntu-12.04-beta2-desktop-i386.iso
 
-Enhancement     Additionals             mp3s
+Enhancement     Additionals     mp3s																	new
 Enhancement		Additionals		Rotate and save rotation												new
 Bug 			Editor			Add splitted part as reference? 										new
 Enhancement     Editor			alignment: left, right, center pro File, indentions
@@ -21,15 +19,20 @@ Enhancement		Editor			selection of navigator doesn't change while changing slide
 Enhancement		User			import from gmail														new
 Enhancement		User			export userlist															new
 Enhancement		User			mail to group from gmail												new
+Enhancement     Editor			boolean flag on line thatLine should be added to new slide 				new
 _____________________________________
-Bug             Editor                  Remove Session leadsto error (Session...is not contained in a resource)
-Enhancement		Editor 			handling refs															new
-Enhancement		Editor 			new part 																new
-Enhancement		Editor 			clone part 																new
-Enhancement		Editor 			remove part 															new
-Enhancement		Editor 			move part up/down 														new
-Enhancment      Editor			Clone part (no reference)
-Bug             Editor                  Del on a empty line should remove the complete line
+Bug             Editor			Check if song is referenced before removing								done
+Bug 			Editor			Backspace on second char at a line merges lines							done
+Bug             Editor          Adding a space to first cahr at a line doesn't work						done
+Bug 			Editor			Song should only be saved if it is changed								done
+Bug             Editor          Remove Session leadsto error (Session...is not contained in a resource) done
+Enhancement		Editor 			handling refs															done
+Enhancement		Editor 			new part 																done
+Enhancement		Editor 			clone part 																done
+Enhancement		Editor 			remove part 															done
+Enhancement		Editor 			move part up/down 														done
+Enhancment      Editor			Clone part (no reference)												done
+Bug             Editor          Del on a empty line should remove the complete line						done
 Enhancement	Gallery				Sort alphabetically														done
 Bug             Editor          Curserpos-Values are not adapted when changing part						done
 Enhancement		Presentation	perspective with controlfunctions (black / white / default-page)		done

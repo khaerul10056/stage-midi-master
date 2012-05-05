@@ -16,6 +16,7 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   private boolean                chordVisible    = true;
 
+
   private boolean                editable        = true;
 
   /**
@@ -43,6 +44,9 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
   private boolean showBackground;
 
   private boolean showBlockType;
+
+
+  private boolean newPageRespected = true;
 
   public Integer getFontsize () {
     if (fontsize != null)
@@ -150,6 +154,15 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   public void setGraphicsContext (IGraphicsContext graphicsContext) {
     this.graphicsContext = graphicsContext;
+  }
+
+  @Override
+  public boolean isNewPageRespected () {
+    return newPageRespected;
+  }
+
+  public void setNewPageRespected (boolean newPageRespected) {
+    this.newPageRespected = newPageRespected;
   }
 
 

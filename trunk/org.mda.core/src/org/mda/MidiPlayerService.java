@@ -168,7 +168,7 @@ public class MidiPlayerService {
     }
 
     MidiFileChordPart splitPart = currentTextLine.getChordParts().get(splitToken);
-    System.out.println("SplitToken = " +
+    LOGGER.info("SplitToken = " +
       splitPart);
 
     MidiFileTextLine newLine = mf.createMidiFileTextLine();
@@ -184,16 +184,13 @@ public class MidiPlayerService {
       splitPart.setChord(splitPart.getChord().substring(0, moveLenChord)); //set chord in front of splitpoint in old chord
     }
 
-    System.out.println("SplitPart (" +
-      splitPart + ")");
-    System.out.println("NewPart (" +
-      newPartInNewLine + ")");
+    LOGGER.info("SplitPart (" + splitPart + ")");
+    LOGGER.info("NewPart (" + newPartInNewLine + ")");
 
     Collection<MidiFileChordPart> toRemove = new ArrayList<MidiFileChordPart>();
     newLine.getChordParts().add(newPartInNewLine); //add new part to new line
     for (int i = splitToken + 1; i < currentTextLine.getChordParts().size(); i++) { //add rest of tokens in new line
-      System.out.println("Rest Part " +
-        i + "/" + currentTextLine.getChordParts().get(i));
+      LOGGER.info("Rest Part " + i + "/" + currentTextLine.getChordParts().get(i));
       toRemove.add(currentTextLine.getChordParts().get(i));
     }
     newLine.getChordParts().addAll(toRemove);

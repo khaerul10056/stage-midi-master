@@ -6,6 +6,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.ui.IPartService;
+import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IPerspectiveRegistry;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -30,6 +31,9 @@ public class StartPresentation extends AbstractHandler  {
     final IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
     final IPerspectiveRegistry reg = activeWorkbenchWindow.getWorkbench().getPerspectiveRegistry();
 
+    LOGGER.info("Starting presentation of selection " + selectioninfo.getSession().getName() + "-" + selectioninfo.getItem().getName());
+
+
     //Register global controller
     final GlobalKeyRegistryPresentationController globalkeycontroller = new GlobalKeyRegistryPresentationController(activeWorkbenchWindow.getShell().getDisplay());
     presentationContext.registerController(globalkeycontroller);
@@ -38,9 +42,12 @@ public class StartPresentation extends AbstractHandler  {
     BeamerPresenter presenter = new BeamerPresenter(activeWorkbenchWindow.getShell().getDisplay(), selectioninfo.getSession(), ! selectioninfo.isPreview(), service);
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setChordVisible(false);
+    config.setShowBackground(true);
     presentationContext.setCurrentSession(selectioninfo.getSession(), config, presenter.getSize());
 
-    activeWorkbenchWindow.getActivePage().setPerspective(reg.findPerspectiveWithId(Util.PRESENTATION_PERSPECTIVE));
+    IPerspectiveDescriptor presentationPerspective = reg.findPerspectiveWithId(Util.PRESENTATION_PERSPECTIVE);
+    LOGGER.info("Set perspective " + presentationPerspective.getId());
+    activeWorkbenchWindow.getActivePage().setPerspective(presentationPerspective);
 
     if (selectioninfo.getItem() != null)
       globalkeycontroller.toItem(selectioninfo.getItem());
@@ -55,6 +62,8 @@ public class StartPresentation extends AbstractHandler  {
           activeWorkbenchWindow.getActivePage().setPerspective(reg.findPerspectiveWithId(Util.ADMIN_PERSPECTIVE));
         presentationContext.closePresentationSession();
 
+        if (activeWorkbenchWindow.getActivePage().getPerspective() != null)
+          LOGGER.info("Remaining perspective " + activeWorkbenchWindow.getActivePage().getPerspective().getId() + " after closing presentation");
         LOGGER.info("Remaining " + presentationContext.getRegisteredControllers() + " registered controllers after closing presentation");
       }
     });

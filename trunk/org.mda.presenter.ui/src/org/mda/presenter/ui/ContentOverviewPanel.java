@@ -1,6 +1,5 @@
 package org.mda.presenter.ui;
 
-import static org.mda.commons.ui.calculator.CalculatorRegistry.getCalculator;
 import java.io.File;
 import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
@@ -13,9 +12,8 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
+import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
-import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.logging.Log;
@@ -34,13 +32,10 @@ public class ContentOverviewPanel extends Composite  {
 
   private Slide currentSlide = null;
   private CalculatorPreCondition calcPreCondition;
-  private MidiFileSlideCalculator calculator;
 
   private Point lastSize;
 
   private final MidiFilePart currentPart;
-
-  private DefaultMidiFileContentEditorConfig config;
 
   private boolean selected;
 
@@ -57,6 +52,10 @@ public class ContentOverviewPanel extends Composite  {
 
   }
 
+  public boolean isSelected () {
+    return selected;
+  }
+
 
   public int calculateWeight3to4 (final int height) {
     return height * 3 / 4;
@@ -69,20 +68,19 @@ public class ContentOverviewPanel extends Composite  {
   public void setSize (final int weight, final int height) {
 
     super.setSize(weight, height);
-    LOGGER.info("set size of Contentoverviewpanel to " + getSize().x + "x" + getSize().y);
+    LOGGER.debug("set size of Contentoverviewpanel to " + getSize().x + "x" + getSize().y);
     calcPreCondition.setCalculationsize(new Point (getBounds().width, getBounds().height));
   }
 
-  public ContentOverviewPanel (Composite parent, MidiFilePart part) {
+  public ContentOverviewPanel (Composite parent, MidiFilePart part, Slide calculatedSlide, IMidiFileEditorUIConfig config) {
     super(parent, SWT.NONE);
     this.currentPart = part;
+    this.currentSlide = calculatedSlide;
 
     //TODO check bounds of presentation display
-    LOGGER.info("set Size of preview-part to " + width + "x" + height);
+    LOGGER.debug("set Size of preview-part to " + width + "x" + height);
 
-    calculator = (MidiFileSlideCalculator) getCalculator(MidiFileSlideCalculator.class);
-    calcPreCondition = new CalculatorPreCondition();
-    config = new DefaultMidiFileContentEditorConfig();
+
 
     setBackground(config.getDefaultBackgroundColor());
     setForeground(config.getDefaultForegroundColor());
@@ -91,15 +89,14 @@ public class ContentOverviewPanel extends Composite  {
 
       @Override
       public void paintControl (PaintEvent e) {
-        LOGGER.info("paintControl was called " + e.x + "-" + e.y + "-" + e.width + "-" + e.height + "-" + e.count);
+        LOGGER.debug("paintControl was called " + e.x + "-" + e.y + "-" + e.width + "-" + e.height + "-" + e.count);
 
         Point newSize = getSize();
         if (sizeHasChanged(lastSize, newSize)) {
           lastSize = newSize;
 
         //config.setChordVisible(false);
-        calculator.setConfig(config);
-        currentSlide = calculator.calculatePart(getCurrentPart(), calcPreCondition);
+
         }
 
         if (getCurrentSlide() == null)
@@ -138,7 +135,7 @@ public class ContentOverviewPanel extends Composite  {
 
           Color red = new Color(Display.getCurrent(), 255, 0, 0);
           e.gc.setForeground(red);
-          LOGGER.info("Paint a border");
+          LOGGER.debug("Paint a border");
           for (int i = 0; i < 5; i++) {
             Rectangle rect1 = new Rectangle(i, i, getSize().x - (2*i) , getSize().y - (2*i));
             e.gc.drawRectangle(rect1);
@@ -161,7 +158,7 @@ public class ContentOverviewPanel extends Composite  {
 
 
 
-  private Slide getCurrentSlide () {
+  public Slide getCurrentSlide () {
     return currentSlide;
   }
 

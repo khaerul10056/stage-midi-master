@@ -2,6 +2,7 @@ package org.mda.commons.ui;
 
 import mda.MidiFile;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
@@ -11,10 +12,13 @@ public class MidiFileEditorInput implements IEditorInput {
 
   private EObject eObject;
 
+  private EObject memento;
+
 
 
   public MidiFileEditorInput (final EObject eobject) {
     this.eObject = eobject;
+    this.memento = EcoreUtil.copy(eobject);
   }
 
 
@@ -34,6 +38,11 @@ public class MidiFileEditorInput implements IEditorInput {
   @Override
   public ImageDescriptor getImageDescriptor () {
     return null;
+  }
+
+
+  public boolean isDirty () {
+    return ! EcoreUtil.equals(memento, eObject);
   }
 
   @Override

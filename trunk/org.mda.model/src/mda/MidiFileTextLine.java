@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link mda.MidiFileTextLine#getChordParts <em>Chord Parts</em>}</li>
+ *   <li>{@link mda.MidiFileTextLine#isNewSlide <em>New Slide</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,5 +42,31 @@ public interface MidiFileTextLine extends EObject {
    * @generated
    */
 	EList<MidiFileChordPart> getChordParts();
+
+  /**
+   * Returns the value of the '<em><b>New Slide</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>New Slide</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>New Slide</em>' attribute.
+   * @see #setNewSlide(boolean)
+   * @see mda.MidiplayerPackage#getMidiFileTextLine_NewSlide()
+   * @model
+   * @generated
+   */
+  boolean isNewSlide();
+
+  /**
+   * Sets the value of the '{@link mda.MidiFileTextLine#isNewSlide <em>New Slide</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>New Slide</em>' attribute.
+   * @see #isNewSlide()
+   * @generated
+   */
+  void setNewSlide(boolean value);
 
 } // MidiFileTextLine

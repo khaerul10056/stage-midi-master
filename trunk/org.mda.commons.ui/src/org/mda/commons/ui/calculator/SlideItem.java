@@ -17,6 +17,7 @@ public class SlideItem {
   private final SlideType itemType;
 
   private final SlideItem refSlideItem;
+  private final boolean newSlide;
 
 
   /**
@@ -25,12 +26,14 @@ public class SlideItem {
    * @param text
    * @param itemType
    * @param refSlideItem  maybe <code>null</code> on text-items. Any chord-item holds a reference to his text-item
+   * @param newSlide if a new slide is forces in this line
    */
-  public SlideItem (final Rectangle location, final String text, final SlideType itemType, final SlideItem refSlideItem) {
+  public SlideItem (final Rectangle location, final String text, final SlideType itemType, final SlideItem refSlideItem, final boolean newSlide) {
     this.location = location;
     this.text = text;
     this.itemType = itemType;
     this.refSlideItem = refSlideItem;
+    this.newSlide = newSlide;
   }
 
 
@@ -63,6 +66,11 @@ public class SlideItem {
 
   public SlideItem getRefSlideItem () {
     return refSlideItem;
+  }
+
+
+  public boolean isNewSlide () {
+    return newSlide;
   }
 
 

@@ -59,6 +59,7 @@ public class PreviewPart extends AbstractPart {
     calculator = (MidiFileSlideCalculator) getCalculator(MidiFileSlideCalculator.class);
     calcPreCondition = new CalculatorPreCondition();
     config = new DefaultMidiFileContentEditorConfig();
+    config.setShowBackground(true);
 
     setBackground(config.getDefaultBackgroundColor());
     setForeground(config.getDefaultForegroundColor());
@@ -79,7 +80,7 @@ public class PreviewPart extends AbstractPart {
 
         //config.setChordVisible(false);
         calculator.setConfig(config);
-        currentSlide = calculator.calculatePart(getCurrentPart(), calcPreCondition);
+        currentSlide = calculator.calculatePart(getCurrentPart(), calcPreCondition).get(0);
         }
 
 
@@ -137,7 +138,7 @@ public class PreviewPart extends AbstractPart {
 
   public void setCurrentPart (MidiFilePart part) {
     super.setCurrentPart(part);
-    this.currentSlide = calculator.calculatePart(part, calcPreCondition);
+    this.currentSlide = calculator.calculatePart(part, calcPreCondition).get(0);
     redraw();
   }
 

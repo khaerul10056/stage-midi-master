@@ -50,6 +50,8 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
   private Button btnPartDetails;
 
+  private Button btnNewSlideToggle;
+
 
   public ButtonPanelPart (PreviewEditorContent parent) {
     super(parent);
@@ -91,6 +93,10 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
     btnPartDetails.setImage(loadImageFromProject(ICON_PARTPROPERTIES));
 
 
+    btnNewSlideToggle = addButton("New slide", SWT.NONE, "If you want to split a part in seperate slides, add a <NewSlide-Marker>");
+    btnNewSlideToggle.setImage(loadImageFromProject(ICON_PARTPROPERTIES));
+
+
   }
 
   public Button addButton (final String text, int style, final String tooltip) {
@@ -119,6 +125,14 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
          getEditorContent().redrawSlidelist();
         }
       });
+    }
+
+    if (arg0.widget.equals(btnNewSlideToggle)) {
+      MidiFilePart currentPart = getEditorContent().getSlidelistpanel().getCurrentPart();
+      int focusedLine = getEditorContent().getContentpanel().getCurrentFocusedLine();
+      boolean isSet = currentPart.getTextlines().get(focusedLine).isNewSlide();
+      currentPart.getTextlines().get(focusedLine).setNewSlide(!isSet);
+      getEditorContent().setCurrentPart(currentPart);
     }
 
     if (arg0.widget.equals(btnClonePart)) {
