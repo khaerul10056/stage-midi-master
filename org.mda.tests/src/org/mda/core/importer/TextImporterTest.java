@@ -24,15 +24,16 @@ public class TextImporterTest {
 	public void importTest() throws Exception {
 		List<String> loadFile = loadFile ("testdata/importer/TestSong1.txt");
 
-		for (String nextLine: loadFile) {
-			System.out.println ("- " + nextLine);
+		if (LOGGER.isDebugEnabled()) {
+		  for (String nextLine: loadFile) {
+	  		LOGGER.debug("- " + nextLine);
+  		}
 		}
 
 		DefaultTextImporterConfig config = new DefaultTextImporterConfig();
 		TextImporterService service = new TextImporterService (loadFile, config);
 
 		MidiFile midifile = MidiplayerFactory.eINSTANCE.createMidiFile();
-
 
 
 		service.importText(midifile);
@@ -49,8 +50,10 @@ public class TextImporterTest {
 	public void importTest2 () throws Exception {
 		List<String> loadFile = loadFile ("testdata/importer/TestSong2.txt");
 
-		for (String nextLine: loadFile) {
-			System.out.println ("- " + nextLine);
+		if (LOGGER.isDebugEnabled()) {
+		  for (String nextLine: loadFile) {
+		    LOGGER.debug("- " + nextLine);
+		  }
 		}
 
 		DefaultTextImporterConfig config = new DefaultTextImporterConfig();

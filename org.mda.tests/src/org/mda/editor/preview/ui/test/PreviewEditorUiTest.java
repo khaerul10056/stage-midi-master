@@ -11,11 +11,11 @@ import mda.MidiPlayerRoot;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
 import org.mda.editor.preview.ui.PreviewEditorContent;
+import org.mda.editor.preview.ui.parts.TextLine;
 import org.mda.presenter.ui.test.MidiFileCreator;
 
 public class PreviewEditorUiTest {
@@ -23,9 +23,8 @@ public class PreviewEditorUiTest {
   private MidiPlayerRoot root   = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
   private final String CHORDLINEORIGINAL = "D    G                    A       D           G               A ";
   private final String TEXTLINEORIGINAL  = "Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist, ";
-  private Shell shell;
+  private static Shell shell;
   private PreviewEditorContent editor;
-
 
 
   @Test
@@ -93,21 +92,12 @@ public class PreviewEditorUiTest {
     assertEquals (text.getText().length(), text.getCaretOffset());
   }
 
-  @Before
-  public void setup () {
+  @BeforeClass
+  public static void setup () {
     shell = new Shell ();
   }
 
-  @After
-  public void tearDown () {
-    if (shell != null)
-      shell.dispose();
-    shell = null;
 
-    if (editor != null)
-      editor.dispose();
-    editor = null;
-  }
 
   private void saveAndShowRoundtrip () {
     MidiFilePart saveToModel = editor.getContentpanel().saveToModel();
@@ -149,7 +139,7 @@ public class PreviewEditorUiTest {
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //split a line at the beginning of an chordpart
-    StyledText text = editor.getContentpanel().getTextLines().get(2);
+    TextLine text = editor.getContentpanel().getTextLines().get(2);
     Label chord = editor.getContentpanel().getChordLines().get(2);
 
     assertEquals(CHORDLINEORIGINAL, chord.getText());

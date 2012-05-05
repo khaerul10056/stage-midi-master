@@ -1226,58 +1226,50 @@
       </parts>
       <parts parttype="VERS">
         <textlines>
-          <chordParts text="Wir "/>
-          <chordParts text="schauen der Wahrheit ins " chord="d"/>
-          <chordParts text="Auge, " chord="Bb"/>
-          <chordParts text="stellen uns in Dein " chord="F"/>
-          <chordParts text="Licht, " chord="C"/>
+          <chordParts text="Wir schauen der Wahrheit " chord="d"/>
+          <chordParts text="ins Au" chord="Bb"/>
+          <chordParts text="ge, stellen uns in D" chord="F"/>
+          <chordParts text="ein Licht, " chord="C"/>
         </textlines>
         <textlines>
-          <chordParts text="wir "/>
-          <chordParts text="halten dort aus durch " chord="d"/>
-          <chordParts text="Gnade, " chord="Bb"/>
-          <chordParts text="denn Du verdammst uns " chord="F"/>
-          <chordParts text="nicht. " chord="C"/>
+          <chordParts text="wir halten dort aus du" chord="d"/>
+          <chordParts text="rch Gna" chord="Bb"/>
+          <chordParts text="de, denn Du verdammst " chord="F"/>
+          <chordParts text="uns nicht. " chord="C"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="Du kennst alle tot" chord="g"/>
+          <chordParts text="en Winke" chord="C"/>
+          <chordParts text="l, siehst unsern blind" chord="Bb"/>
+          <chordParts text="en Fleck. " chord="F"/>
         </textlines>
         <textlines>
-          <chordParts text="Du "/>
-          <chordParts text="kennst alle toten " chord="g"/>
-          <chordParts text="Winkel, " chord="C"/>
-          <chordParts text="siehst unsern blinden " chord="Bb"/>
-          <chordParts text="Fleck. " chord="F"/>
-        </textlines>
-        <textlines>
-          <chordParts text="Ber"/>
-          <chordParts text="&#xfc;hrst unsere wunden " chord="g"/>
-          <chordParts text="Punkte, " chord="C"/>
-          <chordParts text="nimmst unsre &#xc4;ngste " chord="Bb"/>
-          <chordParts text="weg. " chord="A7"/>
+          <chordParts text="Ber&#xfc;hrst unsere wund" chord="g"/>
+          <chordParts text="en Punkt" chord="C"/>
+          <chordParts text="e, nimmst unsre &#xc4;ngs" chord="Bb"/>
+          <chordParts text="te weg. " chord="A7"/>
         </textlines>
       </parts>
       <parts>
         <textlines>
-          <chordParts text=""/>
           <chordParts text="Jesus, dein " chord="g7"/>
           <chordParts text="Licht scheint voll " chord="C7"/>
           <chordParts text="Gnade und " chord="F"/>
           <chordParts text="Wahrheit, " chord="d"/>
         </textlines>
         <textlines>
-          <chordParts text=""/>
           <chordParts text="Jesus, dein " chord="g7"/>
           <chordParts text="Licht strahlt in " chord="C7"/>
           <chordParts text="unsre Dunkel" chord="A7/C#"/>
           <chordParts text="heit, " chord="d"/>
         </textlines>
         <textlines>
-          <chordParts text=""/>
           <chordParts text="Jesus, durch" chord="g7"/>
           <chordParts text="dring uns mit " chord="C7"/>
           <chordParts text="Gnade und " chord="F"/>
           <chordParts text="Wahrheit, " chord="d"/>
         </textlines>
         <textlines>
-          <chordParts text=""/>
           <chordParts text="Jesus, komm " chord="g7"/>
           <chordParts text="bring uns ins " chord="C"/>
           <chordParts text="Licht. " chord="F"/>

@@ -12,6 +12,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
@@ -26,8 +27,8 @@ import org.mda.presenter.ui.SpecialSlide;
 
 public class BeamerPresenterTest {
 
-  private MidiPlayerRoot root;
-  private Session session;
+  private static MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
+  private static Session session;
   private BeamerPresenter presenter;
   private MidiFile firstSong;
   private MidiFile secondSong;
@@ -37,22 +38,25 @@ public class BeamerPresenterTest {
   private MidiFilePart preLastPartOfLastSong;
   private MidiFilePart firstPartOfLastSong;
   private MidiFile prelastSong;
-  private PresentationContext presentationContext;
+  private static PresentationContext presentationContext;
+
+  @BeforeClass
+  public static void beforeClass () {
+    session = root.getSessions().get(0);
+    presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
+    MdaModule.getInjector().getInstance(ApplicationSession.class).load(null);
+
+  }
 
   @Before
   public void before () {
-    root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
-
-    session = root.getSessions().get(0);
+    presentationContext.setCurrentSession(session, new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
 
     //Collection <IPresentationController> controllers = new ArrayList<IPresentationController>();
     presenter = new BeamerPresenter(Display.getDefault(), session, false, null);
     controller = new DefaultPresentationController();
     controller.connect(presenter);
 
-    presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
-    MdaModule.getInjector().getInstance(ApplicationSession.class).load(null);
-    presentationContext.setCurrentSession(session, new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
     presenter.redraw();
     firstSong = (MidiFile) session.getItems().get(0);
     secondSong = (MidiFile) session.getItems().get(1);

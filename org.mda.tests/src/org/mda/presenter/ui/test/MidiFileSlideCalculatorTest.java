@@ -9,6 +9,7 @@ import java.util.List;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiFilePartType;
+import mda.MidiFileTextLine;
 import mda.MidiPlayerRoot;
 import org.eclipse.swt.graphics.Point;
 import org.junit.Assert;
@@ -26,6 +27,67 @@ public class MidiFileSlideCalculatorTest {
 
 
 
+  /**
+   * Tests if the new slide - attribute at the {@link MidiFileTextLine} is handled while calculating
+   * a slide
+   *
+   * @throws Exception Exception
+   */
+  @Test
+  public void newSlideAtLineisInactive () throws Exception {
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS);
+    creator = creator.line().chordAndText("D", " ");
+    creator = creator.line().chordAndText("F", "second line");
+    creator = creator.line().chordAndText("G", "thir line on a new slide");
+    MidiFile song = creator.get();
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setNewPageRespected(false);
+    CalculatorPreCondition preCondition = new CalculatorPreCondition();
+    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
+    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    calculator.setConfig(config);
+    List<Slide> calculate = calculator.calculate(song, preCondition);
+    Assert.assertEquals(1, calculate.size());
+
+    song.getParts().get(0).getTextlines().get(1).setNewSlide(true);
+
+
+
+    calculate = calculator.calculate(song, preCondition);
+
+    Assert.assertEquals(1, calculate.size());
+
+  }
+
+  /**
+   * Tests if the new slide - attribute at the {@link MidiFileTextLine} is handled while calculating
+   * a slide
+   *
+   * @throws Exception Exception
+   */
+  @Test
+  public void newSlideAtLineIsActive () throws Exception {
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS);
+    creator = creator.line().chordAndText("D", " ");
+    creator = creator.line().chordAndText("F", "second line");
+    creator = creator.line().chordAndText("G", "thir line on a new slide");
+    MidiFile song = creator.get();
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    CalculatorPreCondition preCondition = new CalculatorPreCondition();
+    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
+
+    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    List<Slide> calculate = calculator.calculate(song, preCondition);
+    Assert.assertEquals(1, calculate.size());
+
+    song.getParts().get(0).getTextlines().get(1).setNewSlide(true);
+
+    calculate = calculator.calculate(song, preCondition);
+    Assert.assertEquals(2, calculate.size());
+    Assert.assertEquals (calculate.get(0).getItems().get(0).getY(), calculate.get(1).getItems().get(0).getY());
+    Assert.assertEquals (calculate.get(0).getItems().get(0).getX(), calculate.get(1).getItems().get(0).getX());
+  }
+
 
   @Test
   public void createChordRelatedPart () throws Exception {
@@ -35,7 +97,7 @@ public class MidiFileSlideCalculatorTest {
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
     MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
-    Slide calculatePart = calculator.calculatePart(song.getParts().get(0), preCondition);
+    Slide calculatePart = calculator.calculatePart(song.getParts().get(0), preCondition).get(0);
     assertEquals (1, calculatePart.getTextline(0).length());
   }
 
@@ -47,7 +109,7 @@ public class MidiFileSlideCalculatorTest {
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
     MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
-    Slide calculatePart = calculator.calculatePart(song.getParts().get(0), preCondition);
+    Slide calculatePart = calculator.calculatePart(song.getParts().get(0), preCondition).get(0);
     assertEquals (2, calculatePart.getTextline(0).length());
   }
 
@@ -63,7 +125,7 @@ public class MidiFileSlideCalculatorTest {
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
     MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
-    Slide calculatePart = calculator.calculatePart(midiFilePart, preCondition);
+    Slide calculatePart = calculator.calculatePart(midiFilePart, preCondition).get(0);
 
     assertEquals(midiFilePart.getTextlines().size(), calculatePart.getLineCount());
 
@@ -242,12 +304,12 @@ public class MidiFileSlideCalculatorTest {
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
     MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
-    Slide slideFullScreen = calculator.calculatePart(midiFilePart, preCondition);
+    Slide slideFullScreen = calculator.calculatePart(midiFilePart, preCondition).get(0);
 
 
     Point half = new Point (config.getDefaultPresentationScreenSize().x / 2, config.getDefaultPresentationScreenSize().y / 2);
     preCondition.setCalculationsize(half);
-    Slide halfScreen = calculator.calculatePart(midiFilePart, preCondition);
+    Slide halfScreen = calculator.calculatePart(midiFilePart, preCondition).get(0);
 
     Iterator<SlideItem> halfIterator = halfScreen.getItems().iterator();
 

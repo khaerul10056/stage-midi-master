@@ -10,11 +10,13 @@ import org.eclipse.swt.widgets.Display;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mda.Utils;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 
 public class UtilsTest {
 
-
+  private static final Log LOGGER  = LogFactory.getLogger(UtilsTest.class);
 
   @Test
   public void colorToString () {
@@ -84,8 +86,8 @@ public class UtilsTest {
 
 
     for (MidiFileChordPart nextPart: chordPartsFromText) {
-      System.out.println("CHORDS   :" + nextPart.getChord());
-      System.out.println("TEXT     :" + nextPart.getText());
+      LOGGER.info("CHORDS   :" + nextPart.getChord());
+      LOGGER.info("TEXT     :" + nextPart.getText());
     }
   }
 
@@ -127,7 +129,7 @@ public class UtilsTest {
     } catch (FileNotFoundException e) {
 
     }
-    
+
     Assert.assertTrue(file.delete());
 
   }

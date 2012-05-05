@@ -19,8 +19,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
@@ -35,29 +34,17 @@ import org.mda.presenter.ui.test.MidiFileCreator;
 
 public class PreviewEditorTest {
 
-  private Shell shell;
-
-  private PreviewEditorContent editor;
+  private static Shell shell;
 
   private MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
 
   private static final Log LOGGER  = LogFactory.getLogger(PreviewEditorTest.class);
 
 
-
-  @Before
-  public void setUp () {
+  @BeforeClass
+  public static void setUp () {
     shell = new Shell();
     MdaModule.getInjector().getInstance(ApplicationSession.class).load(null);
-
-  }
-
-  @After
-  public void tearDown () {
-    if (editor != null)
-      editor.dispose();
-
-    shell.dispose();
   }
 
 
@@ -73,8 +60,6 @@ public class PreviewEditorTest {
     Assert.assertTrue (editor.getContentpanel().isLineEmpty(0));
     Assert.assertFalse (editor.getContentpanel().isLineEmpty(1));
     Assert.assertFalse (editor.getContentpanel().isLineEmpty(2));
-
-
   }
 
   @Test
@@ -124,9 +109,6 @@ public class PreviewEditorTest {
 
     Assert.assertEquals (0, editor.getContentpanel().getCurrentFocusedLine());
     Assert.assertEquals (1, editor.getContentpanel().getCurrentCaretPosition());
-
-
-
   }
 
   @Test
@@ -144,7 +126,7 @@ public class PreviewEditorTest {
     PreviewEditorContent editor = new PreviewEditorContent(shell, song);
     ContentPart contentPanel = editor.getContentpanel();
 
-    System.out.println (MidiPlayerService.toString(song.getParts().get(0)));
+    LOGGER.info(MidiPlayerService.toString(song.getParts().get(0)));
     contentPanel.setCurrentCaretPosition(2);
     Assert.assertTrue (contentPanel.chordToRight());
     Assert.assertTrue (contentPanel.chordToRight());
@@ -163,10 +145,8 @@ public class PreviewEditorTest {
     Assert.assertEquals ("G", midiFileTextLine.getChordParts().get(1).getChord());
     Assert.assertEquals ("  ", midiFileTextLine.getChordParts().get(1).getText());
 
-
-    for (int i = 0; i < 42; i++) {
+    for (int i = 0; i < 42; i++)
       Assert.assertTrue (contentPanel.chordToLeft());
-    }
 
     newPart = contentPanel.saveToModel();
     midiFileTextLine = newPart.getTextlines().get(0);
@@ -193,8 +173,6 @@ public class PreviewEditorTest {
     MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D    ", "Hallo    ").get();
     PreviewEditorContent editor = new PreviewEditorContent(shell, song);
     ContentPart contentPanel = editor.getContentpanel();
-    System.out.println ("<" + contentPanel.getChordLines().get(0).getText() + ">");
-    System.out.println ("<" + contentPanel.getTextLines().get(0).getText() + ">");
     MidiFilePart part = contentPanel.saveToModel();
     Assert.assertEquals("D", part.getTextlines().get(0).getChordParts().get(0).getChord());
     Assert.assertEquals("Hallo ", part.getTextlines().get(0).getChordParts().get(0).getText());
@@ -205,8 +183,6 @@ public class PreviewEditorTest {
     MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", "Hallo    ").chordAndText("D", " ").get();
     PreviewEditorContent editor = new PreviewEditorContent(shell, song);
     ContentPart contentPanel = editor.getContentpanel();
-    System.out.println ("<" + contentPanel.getChordLines().get(0).getText() + ">");
-    System.out.println ("<" + contentPanel.getTextLines().get(0).getText() + ">");
     MidiFilePart part = contentPanel.saveToModel();
     Assert.assertEquals("D", part.getTextlines().get(0).getChordParts().get(0).getChord());
     Assert.assertEquals("Hallo    ", part.getTextlines().get(0).getChordParts().get(0).getText());
@@ -238,6 +214,23 @@ public class PreviewEditorTest {
     contentPanel.getTextLines().get(0).setText ("                ");
 
     contentPanel.doModifyText(" ", 16, 0);
+  }
+
+  @Test
+  public void loadAndSavePartWithNewSlide () {
+    MidiFileCreator part = MidiFileCreator.create().part(MidiFilePartType.INTRO);
+    part = part.line().chordAndText("D", "This is the first line").chordAndText("Ab", "");
+    part = part.line().chordAndText("D", "Second line").chordAndText("Ab", "");
+    part = part.line().chordAndText("D", "Third line").chordAndText("Ab", "");
+
+    MidiFile song = part.get();
+    song.getParts().get(0).getTextlines().get(2).setNewSlide(true);
+
+    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    ContentPart contentPanel = editor.getContentpanel();
+    MidiFilePart saveToModel = contentPanel.saveToModel();
+    Assert.assertTrue ("newSlide is not saved", saveToModel.getTextlines().get(2).isNewSlide());
+
   }
 
   @Test
@@ -346,7 +339,6 @@ public class PreviewEditorTest {
     int heightNew = editor.getContentpanel().getCurrentSlide().getFont().getFontData() [0].getHeight();
 
     assertEquals(height, heightNew * 2);
-    shell.dispose();
   }
 
 
