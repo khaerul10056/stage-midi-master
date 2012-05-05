@@ -7,11 +7,15 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 /**
  * This class controls all aspects of the application's execution
  */
 public class Application implements IApplication {
+
+  private static final Log LOGGER  = LogFactory.getLogger(Application.class);
 
   private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
@@ -19,7 +23,6 @@ public class Application implements IApplication {
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
 	 */
 	public Object start(IApplicationContext context) throws Exception {
-
     session.load(null);
 
     session.setVersion(Activator.getDefault().getVersion());

@@ -430,6 +430,15 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
 	/**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getMidiFileTextLine_NewSlide() {
+    return (EAttribute)midiFileTextLineEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -747,6 +756,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
     midiFileTextLineEClass = createEClass(MIDI_FILE_TEXT_LINE);
     createEReference(midiFileTextLineEClass, MIDI_FILE_TEXT_LINE__CHORD_PARTS);
+    createEAttribute(midiFileTextLineEClass, MIDI_FILE_TEXT_LINE__NEW_SLIDE);
 
     galleryEClass = createEClass(GALLERY);
     createEReference(galleryEClass, GALLERY__GALLERY_ITEMS);
@@ -848,6 +858,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
     initEClass(midiFileTextLineEClass, MidiFileTextLine.class, "MidiFileTextLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getMidiFileTextLine_ChordParts(), this.getMidiFileChordPart(), null, "chordParts", null, 0, -1, MidiFileTextLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMidiFileTextLine_NewSlide(), ecorePackage.getEBoolean(), "newSlide", null, 0, 1, MidiFileTextLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(galleryEClass, Gallery.class, "Gallery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getGallery_GalleryItems(), this.getAbstractSessionItem(), null, "galleryItems", null, 0, -1, Gallery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

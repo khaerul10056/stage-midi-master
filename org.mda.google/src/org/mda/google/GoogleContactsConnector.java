@@ -55,8 +55,7 @@ public class GoogleContactsConnector {
     ContactGroupFeed resultFeed = myService.getFeed(feedUrlAsUrl, ContactGroupFeed.class);
     List<ContactGroupEntry> entries = resultFeed.getEntries();
     for (ContactGroupEntry nextEntry : entries) {
-      System.out.println("Group: " +
-        nextEntry.getTitle().getPlainText());
+      LOGGER.info("Group: " + nextEntry.getTitle().getPlainText());
     }
     return null;
   }

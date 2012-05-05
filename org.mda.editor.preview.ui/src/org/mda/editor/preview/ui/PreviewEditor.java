@@ -26,6 +26,7 @@ public class PreviewEditor extends EditorPart {
 
   private PreviewEditorContent previewEditorContent;
 
+
   @Override
   public void doSave (IProgressMonitor monitor) {
     LOGGER.info("doSave()");
@@ -52,7 +53,7 @@ public class PreviewEditor extends EditorPart {
 
   @Override
   public boolean isDirty () {
-    return true;
+    return meei.isDirty();
   }
 
   @Override

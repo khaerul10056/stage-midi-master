@@ -28,6 +28,7 @@ public class Slide {
 
   /** reference to the current modelelement (e.g. midifilepart) */
   private final EObject                                 modelRef;
+  private final EObject                                 firstLineModelRef;
 
   private Integer                                       currentLine = 0;
 
@@ -42,10 +43,13 @@ public class Slide {
   private Color foregroundColor;
 
 
-  public Slide (EObject modelRef, final Font font) {
+  public Slide (EObject modelRef, final EObject firstLineModelRef, final Font font) {
     this.modelRef = modelRef;
+    this.firstLineModelRef = firstLineModelRef;
     this.font = font;
   }
+
+
 
   public void addItem (final SlideItem newItem) {
 
@@ -85,6 +89,14 @@ public class Slide {
     return Utils.trimRight(builder.toString());
   }
 
+  public boolean isNewLineForced (final int line) {
+    List<SlideItem> items = getItems(line, SlideType.TEXT);
+    if (items.size() == 0)
+      return false;
+    else
+      return items.get(0).isNewSlide();
+  }
+
   public String getTextline (final int line) {
     StringBuilder builder = new StringBuilder();
 
@@ -99,9 +111,9 @@ public class Slide {
     return getItems(line, null);
   }
 
-  public Collection<SlideItem> getItems (final int line, SlideType itemType) {
+  public List<SlideItem> getItems (final int line, SlideType itemType) {
 
-    Collection<SlideItem> filteredItems = new ArrayList<SlideItem>();
+    List<SlideItem> filteredItems = new ArrayList<SlideItem>();
     Collection<SlideItem> allItemsOfLine = items.get(line);
     if (allItemsOfLine != null) {
       for (SlideItem next : allItemsOfLine) {
@@ -182,6 +194,12 @@ public class Slide {
 
   public void setForegroundColor (Color foregroundColor) {
     this.foregroundColor = foregroundColor;
+  }
+
+
+
+  public EObject getFirstLineModelRef () {
+    return firstLineModelRef;
   }
 
 

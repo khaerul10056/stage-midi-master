@@ -383,13 +383,22 @@ public interface MidiplayerPackage extends EPackage {
 	int MIDI_FILE_TEXT_LINE__CHORD_PARTS = 0;
 
 	/**
+   * The feature id for the '<em><b>New Slide</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MIDI_FILE_TEXT_LINE__NEW_SLIDE = 1;
+
+  /**
    * The number of structural features of the '<em>Midi File Text Line</em>' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int MIDI_FILE_TEXT_LINE_FEATURE_COUNT = 1;
+	int MIDI_FILE_TEXT_LINE_FEATURE_COUNT = 2;
 
 	/**
    * The meta object id for the '{@link mda.impl.GalleryImpl <em>Gallery</em>}' class.
@@ -976,6 +985,17 @@ public interface MidiplayerPackage extends EPackage {
 	EReference getMidiFileTextLine_ChordParts();
 
 	/**
+   * Returns the meta object for the attribute '{@link mda.MidiFileTextLine#isNewSlide <em>New Slide</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>New Slide</em>'.
+   * @see mda.MidiFileTextLine#isNewSlide()
+   * @see #getMidiFileTextLine()
+   * @generated
+   */
+  EAttribute getMidiFileTextLine_NewSlide();
+
+  /**
    * Returns the meta object for class '{@link mda.Gallery <em>Gallery</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1514,6 +1534,14 @@ public interface MidiplayerPackage extends EPackage {
 		EReference MIDI_FILE_TEXT_LINE__CHORD_PARTS = eINSTANCE.getMidiFileTextLine_ChordParts();
 
 		/**
+     * The meta object literal for the '<em><b>New Slide</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MIDI_FILE_TEXT_LINE__NEW_SLIDE = eINSTANCE.getMidiFileTextLine_NewSlide();
+
+    /**
      * The meta object literal for the '{@link mda.impl.GalleryImpl <em>Gallery</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

@@ -109,7 +109,7 @@ public class ContentNavigator extends ViewPart {
 
   public SelectionInfo getSessionFromSelection (final SelectionEvent e) {
     Object object = Util.getStructuredSelection(treviewer.getSelection());
-    System.out.println ("Selected " + object);
+    LOGGER.info("Selected " + object);
 
     Session session = null;
     AbstractSessionItem selectedItem = null;
@@ -223,7 +223,7 @@ public class ContentNavigator extends ViewPart {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         Gallery gallery = (Gallery) Util.getStructuredSelection(treviewer.getSelection());
 
-        System.out.println (Platform.getBundle("org.mda.export.powerpoint").getLocation());
+        LOGGER.info(Platform.getBundle("org.mda.export.powerpoint").getLocation());
 
         org.mda.export.pdf.PdfExporter exporter = new org.mda.export.pdf.PdfExporter();
         try {
@@ -511,8 +511,6 @@ public class ContentNavigator extends ViewPart {
 
   @Override
   public void setFocus () {
-    // TODO Auto-generated method stub
-
   }
 
 }

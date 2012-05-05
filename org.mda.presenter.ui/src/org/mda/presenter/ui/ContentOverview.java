@@ -1,17 +1,22 @@
 package org.mda.presenter.ui;
 
+import static org.mda.commons.ui.calculator.CalculatorRegistry.getCalculator;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import mda.AbstractSessionItem;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IPartService;
 import org.eclipse.ui.part.ViewPart;
-import org.mda.MidiPlayerService;
+import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
+import org.mda.commons.ui.calculator.CalculatorPreCondition;
+import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
+import org.mda.commons.ui.calculator.Slide;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.slide.IPresentationView;
@@ -24,7 +29,7 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
   private PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
 
-  private Collection<ContentOverviewPanel> previewParts = new ArrayList<ContentOverviewPanel>();
+  private List<ContentOverviewPanel> previewParts = new ArrayList<ContentOverviewPanel>();
 
   private Composite root;
 
@@ -33,13 +38,19 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
   @Override
   public void createPartControl (Composite arg0) {
-    LOGGER.info("creatPart");
+    LOGGER.info("create Part ContentOverview");
     this.root = arg0;
     root.setLayout(new GridLayout(4, false));
     if (getSite() != null) {
+      PresentationToControllerConnector presentationToControllerConnector = new PresentationToControllerConnector(this);
       IPartService partservice = (IPartService) getSite().getService(IPartService.class);
-      partservice.addPartListener(new PresentationToControllerConnector(this));
+      LOGGER.info("Establishing partlistener " + System.identityHashCode(presentationToControllerConnector) + " at partservice " + System.identityHashCode(partservice));
+      partservice.addPartListener(presentationToControllerConnector);
     }
+  }
+
+  public List <ContentOverviewPanel> getPreviewParts () {
+    return previewParts;
   }
 
 
@@ -69,7 +80,7 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
     LOGGER.info("refreshSelection called");
     for (ContentOverviewPanel oldPanel : previewParts) {
-      oldPanel.setSelected(oldPanel.getCurrentPart().equals(presentationContext.getCurrentSlide().getModelRef()));
+      oldPanel.setSelected(oldPanel.getCurrentSlide().getFirstLineModelRef().equals(presentationContext.getCurrentSlide().getFirstLineModelRef()));
     }
 
   }
@@ -85,12 +96,18 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
     if (item instanceof MidiFile) {
       MidiFile file = (MidiFile) item;
-      for (MidiFilePart nextPart: file.getParts()) {
-        LOGGER.info("Create overviewpanel for part " + MidiPlayerService.toString(nextPart));
-        ContentOverviewPanel overviewPanel = new ContentOverviewPanel(root, nextPart);
 
+      Point size = new Point (320, 240);
+      MidiFileSlideCalculator calculator = (MidiFileSlideCalculator) getCalculator(MidiFileSlideCalculator.class);
+      CalculatorPreCondition calcPreCondition = new CalculatorPreCondition();
+      DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+      calculator.setConfig(config);
+      calcPreCondition.setCalculationsize(size);
+      List<Slide> slides = calculator.calculate(item, calcPreCondition);
+      for (Slide slide: slides) {
+        ContentOverviewPanel overviewPanel = new ContentOverviewPanel(root, (MidiFilePart) slide.getModelRef(), slide, config);
         overviewPanel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
-        overviewPanel.setSize(320, 240);
+        overviewPanel.setSize(size);
         overviewPanel.redraw();
         previewParts.add(overviewPanel);
       }

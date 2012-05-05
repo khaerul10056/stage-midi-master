@@ -10,7 +10,6 @@ import mda.MidiFileTextLine;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ExtendedModifyEvent;
 import org.eclipse.swt.custom.ExtendedModifyListener;
-import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.FocusEvent;
@@ -46,7 +45,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
 
   private CalculatorPreCondition             calcPreConditions = new CalculatorPreCondition();            //TODO inject
 
-  private final List<StyledText>             textLines         = new ArrayList<StyledText>();
+  private final List<TextLine>             textLines         = new ArrayList<TextLine>();
 
   private final List<Label>                  chordLines        = new ArrayList<Label>();
 
@@ -73,8 +72,6 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
 
     setCurrentPart(file.getParts().get(0));
     setLayout(new RowLayout(SWT.VERTICAL));
-    //setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
-
     getShell().addControlListener(new ControlAdapter() {
 
       /** Sent when the size (width, height) of a control changes.
@@ -113,12 +110,13 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
     LOGGER.info("Show part (position " + currentLine + "/" + currentcarePosition);
 
     calcPreConditions.setCalculationsize(size);
+    config.setNewPageRespected(false);
 
     calculator.setConfig(config);
-    setCalculatePart(calculator.calculatePart(getCurrentPart(), calcPreConditions));
+    setCalculatePart(calculator.calculatePart(getCurrentPart(), calcPreConditions).get(0));
 
     //Dispose and clear old textwidgets and chordwidgets
-    for (StyledText nextOldLine : getTextLines())
+    for (TextLine nextOldLine : getTextLines())
       nextOldLine.dispose();
     getTextLines().clear();
     for (Label nextOldLine : getChordLines())
@@ -131,15 +129,17 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
       if (items.isEmpty())
         continue;
 
+      if (getCurrentSlide().isNewLineForced(i))
+        new Label(this, SWT.SEPARATOR | SWT.SHADOW_OUT | SWT.HORIZONTAL);
+
       addChordLine(getCurrentSlide().getChordline(i));
-      addTextLine(getCurrentSlide().getTextline(i), size);
+      addTextLine(getCurrentSlide().isNewLineForced(i), getCurrentSlide().getTextline(i), size);
     }
 
     //If no line is available, then default one
-
     if (getTextLines().size() == 0 && getChordLines().size() == 0) {
       addChordLine("");
-      addTextLine(" ", size);
+      addTextLine(false, " ", size);
     }
 
 
@@ -163,7 +163,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
 
   public void doModifyText (final String replacedText, final int start, final int length) {
     Label lblChordLine = getChordLines().get(getCurrentFocusedLine());
-    StyledText txtTextLine = getTextLines().get(getCurrentFocusedLine());
+    TextLine txtTextLine = getTextLines().get(getCurrentFocusedLine());
 
     LOGGER.info("PreModifyText:\n<" + lblChordLine.getText() + ">\n<" + txtTextLine.getText() + ">" + logCaretBehaviour());
     LOGGER.info("ReplacedText : <" + replacedText + ">");
@@ -209,8 +209,8 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
   }
 
 
-  private void addTextLine (final String text, final Point size) {
-    StyledText nextText = new StyledText(this, SWT.SINGLE);
+  private void addTextLine (final boolean newSlide, final String text, final Point size) {
+    TextLine nextText = new TextLine(newSlide, this, SWT.SINGLE);
 
     nextText.addFocusListener(this);
     nextText.setText(text);
@@ -289,7 +289,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
           }
           else if (e.keyCode == SWT.CTRL) {
             e.doit = false;
-            StyledText focused = getTextLines().get(getCurrentFocusedLine());
+            TextLine focused = getTextLines().get(getCurrentFocusedLine());
             Point caretLocation = focused.getCaret().getLocation();
 
             Label label = getChordLines().get(getCurrentFocusedLine());
@@ -351,7 +351,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
 
   }
 
-  public boolean editChord (final Label chordline, final StyledText textline, final int offset, final String newCharacter, String before) {
+  public boolean editChord (final Label chordline, final TextLine textline, final int offset, final String newCharacter, String before) {
     StringBuilder builder = new StringBuilder(chordline.getText());
     if (before.length() > 0) {
       for (int i = offset; i < (offset + before.length()); i++)
@@ -388,6 +388,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
 
       String chord = Utils.trimRight(getChordLines().get(i).getText());
       String text = getTextLines().get(i).getText();
+      newTextLine.setNewSlide(getTextLines().get(i).isNewSlide());
 
       // if test is longer than chord then try to trim text
       int chordLongerAsText = chord.length() - text.length();
@@ -458,7 +459,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
 
   }
 
-  public StyledText getFocusedTextField () {
+  public TextLine getFocusedTextField () {
     if (getCurrentFocusedLine() < 0)
       return null;
 
@@ -475,7 +476,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
     return currentSlide;
   }
 
-  public void setFocus (final StyledText currenttext) {
+  public void setFocus (final TextLine currenttext) {
     LOGGER.info("set Focus to <" + currenttext.getText() + ">");
     currenttext.setFocus();
     currentFocusedLine = textLines.indexOf(currenttext);
@@ -488,7 +489,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
       return false;
 
     int currentCaretPosition = getTextLines().get(currentLine).getCaretOffset();
-    StyledText newTextLine = getTextLines().get(++currentLine);
+    TextLine newTextLine = getTextLines().get(++currentLine);
     newTextLine.setCaretOffset(currentCaretPosition);
     setFocus(newTextLine);
     return true;
@@ -501,7 +502,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
       return false;
 
     int currentCaretPosition = getTextLines().get(currentLine).getCaretOffset();
-    StyledText newTextLine = getTextLines().get(--currentLine);
+    TextLine newTextLine = getTextLines().get(--currentLine);
     newTextLine.setCaretOffset(currentCaretPosition);
     setFocus(newTextLine);
     return true;
@@ -520,7 +521,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
       getCurrentFocusedLine() + " at caretposition " + getCaretOffsetOfCurrentTextField());
     int currentLine = getCurrentFocusedLine() + 1;
     setCurrentPart(MidiPlayerService.splitLine(getCurrentPart(), getCurrentFocusedLine(), getCaretOffsetOfCurrentTextField()));
-    StyledText newTextLine = getTextLines().get(currentLine);
+    TextLine newTextLine = getTextLines().get(currentLine);
     setCurrentCaretPosition(0);
     setFocus(newTextLine);
   }
@@ -534,7 +535,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
       int currentLine = getCurrentFocusedLine() - 1;
       int nextpos = getTextLines().get(currentLine).getText().length();
       getEditorContent().setCurrentPart(MidiPlayerService.mergeLine(getCurrentPart(), getCurrentFocusedLine(), getCaretOffsetOfCurrentTextField()));
-      StyledText previousTextLine = getTextLines().get(currentLine);
+      TextLine previousTextLine = getTextLines().get(currentLine);
       setFocus(previousTextLine);
       setCurrentCaretPosition(nextpos);
 
@@ -547,7 +548,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
       getCurrentFocusedLine() + " at caretposition " + getCaretOffsetOfCurrentTextField());
     int currentLine = getCurrentFocusedLine() - 1;
     getEditorContent().setCurrentPart(MidiPlayerService.splitPart(getMidifile(), getCurrentPart(), getCurrentFocusedLine()));
-    StyledText newTextLine = getTextLines().get(currentLine);
+    TextLine newTextLine = getTextLines().get(currentLine);
     setFocus(newTextLine);
     getEditorContent().redrawSlidelist();
   }
@@ -558,7 +559,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
       getCurrentFocusedLine() + " at caretposition " + getCaretOffsetOfCurrentTextField());
     int currentLine = 0;
     getEditorContent().setCurrentPart(MidiPlayerService.mergeWithPreviousPart(getMidifile(), getCurrentPart()));
-    StyledText newTextLine = getTextLines().get(currentLine);
+    TextLine newTextLine = getTextLines().get(currentLine);
     setFocus(newTextLine);
     getEditorContent().redrawSlidelist();
 
@@ -568,7 +569,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
     return chordLines;
   }
 
-  public List<StyledText> getTextLines () {
+  public List<TextLine> getTextLines () {
     return textLines;
   }
 

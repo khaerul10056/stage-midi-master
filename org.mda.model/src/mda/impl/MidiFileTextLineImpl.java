@@ -12,10 +12,12 @@ import mda.MidiFileChordPart;
 import mda.MidiFileTextLine;
 import mda.MidiplayerPackage;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -28,6 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link mda.impl.MidiFileTextLineImpl#getChordParts <em>Chord Parts</em>}</li>
+ *   <li>{@link mda.impl.MidiFileTextLineImpl#isNewSlide <em>New Slide</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,6 +48,25 @@ public class MidiFileTextLineImpl extends EObjectImpl implements MidiFileTextLin
 	protected EList<MidiFileChordPart> chordParts;
 
 	/**
+   * The default value of the '{@link #isNewSlide() <em>New Slide</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isNewSlide()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean NEW_SLIDE_EDEFAULT = false;
+  /**
+   * The cached value of the '{@link #isNewSlide() <em>New Slide</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isNewSlide()
+   * @generated
+   * @ordered
+   */
+  protected boolean newSlide = NEW_SLIDE_EDEFAULT;
+
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -77,6 +99,27 @@ public class MidiFileTextLineImpl extends EObjectImpl implements MidiFileTextLin
 
 	/**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isNewSlide() {
+    return newSlide;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setNewSlide(boolean newNewSlide) {
+    boolean oldNewSlide = newSlide;
+    newSlide = newNewSlide;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE_TEXT_LINE__NEW_SLIDE, oldNewSlide, newSlide));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -99,6 +142,8 @@ public class MidiFileTextLineImpl extends EObjectImpl implements MidiFileTextLin
     switch (featureID) {
       case MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS:
         return getChordParts();
+      case MidiplayerPackage.MIDI_FILE_TEXT_LINE__NEW_SLIDE:
+        return isNewSlide();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -116,6 +161,9 @@ public class MidiFileTextLineImpl extends EObjectImpl implements MidiFileTextLin
         getChordParts().clear();
         getChordParts().addAll((Collection<? extends MidiFileChordPart>)newValue);
         return;
+      case MidiplayerPackage.MIDI_FILE_TEXT_LINE__NEW_SLIDE:
+        setNewSlide((Boolean)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -131,6 +179,9 @@ public class MidiFileTextLineImpl extends EObjectImpl implements MidiFileTextLin
       case MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS:
         getChordParts().clear();
         return;
+      case MidiplayerPackage.MIDI_FILE_TEXT_LINE__NEW_SLIDE:
+        setNewSlide(NEW_SLIDE_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -145,8 +196,26 @@ public class MidiFileTextLineImpl extends EObjectImpl implements MidiFileTextLin
     switch (featureID) {
       case MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS:
         return chordParts != null && !chordParts.isEmpty();
+      case MidiplayerPackage.MIDI_FILE_TEXT_LINE__NEW_SLIDE:
+        return newSlide != NEW_SLIDE_EDEFAULT;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString() {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (newSlide: ");
+    result.append(newSlide);
+    result.append(')');
+    return result.toString();
   }
 
 } //MidiFileTextLineImpl
