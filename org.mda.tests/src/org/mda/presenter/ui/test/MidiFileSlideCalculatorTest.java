@@ -27,6 +27,11 @@ public class MidiFileSlideCalculatorTest {
 
 
 
+  @Test
+  public void showTitle () {
+     throw new IllegalStateException("not yet implemented");
+  }
+
   /**
    * Tests if the new slide - attribute at the {@link MidiFileTextLine} is handled while calculating
    * a slide

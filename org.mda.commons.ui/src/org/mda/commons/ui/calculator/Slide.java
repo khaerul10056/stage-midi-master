@@ -161,8 +161,7 @@ public class Slide {
   public String toString () {
     StringBuilder builder = new StringBuilder();
 
-    builder.append("Part " +
-      modelRef);
+    builder.append("Part " + modelRef);
 
     for (SlideItem nextItem : getItems()) {
       builder.append("- " +
