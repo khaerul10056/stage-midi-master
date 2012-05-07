@@ -55,6 +55,12 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
    */
   boolean isNewPageRespected ();
 
+  /**
+   * returns is a title should be shown above
+   * @return true/false
+   */
+  boolean isShowTitle();
+
 
 
 

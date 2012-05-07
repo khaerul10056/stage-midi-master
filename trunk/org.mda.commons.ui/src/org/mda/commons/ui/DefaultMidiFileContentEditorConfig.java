@@ -48,6 +48,8 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   private boolean newPageRespected = true;
 
+  private boolean showTitle = false;
+
   public Integer getFontsize () {
     if (fontsize != null)
       return fontsize.intValue();
@@ -163,6 +165,16 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   public void setNewPageRespected (boolean newPageRespected) {
     this.newPageRespected = newPageRespected;
+  }
+
+  @Override
+  public boolean isShowTitle () {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  public void setShowTitle (boolean showTitle) {
+    this.showTitle = showTitle;
   }
 
 
