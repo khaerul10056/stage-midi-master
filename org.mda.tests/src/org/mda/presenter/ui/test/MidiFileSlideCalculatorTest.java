@@ -25,11 +25,32 @@ import org.mda.commons.ui.calculator.SlideType;
 
 public class MidiFileSlideCalculatorTest {
 
-
-
   @Test
   public void showTitle () {
-     throw new IllegalStateException("not yet implemented");
+    final String TITLE = "Songtitle.mid";
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS);
+    creator = creator.line().chordAndText("D", "First line");
+    creator = creator.line().chordAndText("F", "second line");
+    creator = creator.line().chordAndText("G", "thir line on a new slide");
+    MidiFile song = creator.get();
+    song.setName(TITLE);
+
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setNewPageRespected(false);
+    config.setShowTitle(true);
+    CalculatorPreCondition preCondition = new CalculatorPreCondition();
+    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
+    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    calculator.setConfig(config);
+    List<Slide> calculate = calculator.calculate(song, preCondition);
+
+    SlideItem item1 = calculate.get(0).getItems().get(0);
+    SlideItem item2 = calculate.get(0).getItems().get(1);
+    Assert.assertEquals ("SONGTITLE", item1.getText());
+    Assert.assertEquals ("First line", item2.getText());
+    Assert.assertEquals (item1.getX(), item2.getX());
+    Assert.assertTrue (item1.getY() < item2.getY());
+
   }
 
   /**

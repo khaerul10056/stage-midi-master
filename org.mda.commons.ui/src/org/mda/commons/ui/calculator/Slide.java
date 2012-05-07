@@ -196,6 +196,12 @@ public class Slide {
   }
 
 
+  public boolean isSameSlide (final Slide slide) {
+    boolean modelRefEquals = slide.getModelRef().equals(getModelRef());
+    boolean firstLineEquals = slide.getFirstLineModelRef() == null ? getFirstLineModelRef() == null : slide.getFirstLineModelRef().equals(getFirstLineModelRef());
+    return modelRefEquals && firstLineEquals;
+  }
+
 
   public EObject getFirstLineModelRef () {
     return firstLineModelRef;

@@ -3,7 +3,7 @@ package org.mda.export.pdf;
 import java.math.BigDecimal;
 import org.eclipse.swt.graphics.Point;
 import org.mda.commons.ui.IGraphicsContext;
-import org.mda.commons.ui.IMidiFileEditorUIConfig;
+import org.mda.commons.ui.calculator.FontDescriptor;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import com.lowagie.text.pdf.BaseFont;
@@ -19,11 +19,14 @@ public class PDFGraphicsContext implements IGraphicsContext {
    * @param text
    * @return
    */
-  public Point getSize (String text, final IMidiFileEditorUIConfig config) {
+  public Point getSize (String text, final FontDescriptor font) {
     BaseFont bf;
-    int fontsize = config.getFontsize().intValue();
+    int fontsize = font.getFontsizeAsInt();
     try {
-      bf = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED);
+      if (font.isBold())
+        bf = BaseFont.createFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252, BaseFont.EMBEDDED);
+      else
+        bf = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED);
       bf.setForceWidthsOutput(true);
     }
     catch (Exception e) {

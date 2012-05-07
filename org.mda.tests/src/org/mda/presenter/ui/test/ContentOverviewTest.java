@@ -66,6 +66,63 @@ public class ContentOverviewTest {
 
   }
 
+  /**
+   * Tests following szenario:
+   * SONG1
+   *   PART1
+   *   PART2 with new slide
+   *   PART1REF
+   *   PART1REF
+   * SONG2
+   *   PART1
+   *
+   * If stepping back from song2 to song1 last ref should be the selected one
+   */
+  @Test
+  public void navigateContentOverviewWithNewSlides () {
+    MidiFileCreator part = MidiFileCreator.create().part(MidiFilePartType.VERS).line().text("First line").line().text("Second line");
+    part = part.part(MidiFilePartType.REFRAIN).line().text("First line").line().text("Second line");
+    MidiFile song1 = part.get();
+    song1.getParts().get(0).getTextlines().get(1).setNewSlide(true);
+    song1.getParts().get(1).getTextlines().get(1).setNewSlide(true);
+
+    //System.out.println(MidiPlayerService.toString(song1));
+
+    part = MidiFileCreator.create().part(MidiFilePartType.VERS);
+    part = part.part(MidiFilePartType.REFRAIN);
+    MidiFile song2 = part.get();
+
+    Session session = MidiPlayerService.mf.createSession();
+    session.getItems().add(song1);
+    session.getItems().add(song2);
+
+    presentationContext.setCurrentSession(session, new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
+
+    ContentOverview overview = new ContentOverview();
+    overview.createPartControl(new Shell());
+    overview.toItem(song2);
+    presentationContext.nextSong();
+    overview.refresh();
+
+    Assert.assertTrue (overview.getPreviewParts().get(0).isSelected());
+
+    //..now stepping back
+    presentationContext.toItem(song1, true);
+    overview.refresh();
+
+    for (int i = 0; i < overview.getPreviewParts().size(); i++) {
+      System.out.println (overview.getPreviewParts().get(i).getCurrentPart().getParttype() + "-" + overview.getPreviewParts().get(i).isSelected());
+    }
+
+    Assert.assertFalse (overview.getPreviewParts().get(2).isSelected());
+    Assert.assertTrue (overview.getPreviewParts().get(3).isSelected());
+
+
+
+
+
+  }
+
 
 
 }

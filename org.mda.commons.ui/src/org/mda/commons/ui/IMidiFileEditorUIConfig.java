@@ -1,9 +1,9 @@
 package org.mda.commons.ui;
 
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Point;
 import org.mda.IMidiFileEditorConfig;
+import org.mda.commons.ui.calculator.FontDescriptor;
 
 public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
 
@@ -14,10 +14,7 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
 
   Color getDefaultForegroundColor ();
 
-  Font getFont ();
-
-
-  Integer getFontsize ();
+  FontDescriptor getFont ();
 
   /**
    * get default-size of presentation screen

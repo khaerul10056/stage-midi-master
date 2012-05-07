@@ -44,9 +44,9 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     List<Slide> slides = new ArrayList<Slide>();
     MidiFile midifile = (MidiFile) sessionitem;
 
-    init(midifile);
-
     currentY = 0;
+
+    init(midifile);
 
     for (MidiFilePart nextPart : midifile.getParts()) {
       slides.addAll(calculatePart(nextPart, preCondition));
@@ -54,10 +54,31 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     return slides;
   }
 
+
+  private void addTitle (Slide slide, final MidiFile midifile, final CalculatorPreCondition preCondition) {
+    if (midifile.getName() != null && ! midifile.getName().isEmpty()) {
+
+      String name = midifile.getName().endsWith(".mid") ? midifile.getName().substring(0, midifile.getName().length() - 4) : midifile.getName();
+
+      Point point = new Point (currentX, currentY);
+      Point zoomedPoint = calculateZoomedPoint(point, preCondition);
+
+      FontDescriptor descTitle = new FontDescriptor(getConfig().getFont());
+      descTitle.setBold(true);
+
+      Point sizeTitle = getGc().getSize(midifile.getName(), descTitle);
+
+      Rectangle titleRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, sizeTitle.x, sizeTitle.y);
+
+      SlideItem titleItem = new SlideItem(titleRectangle, name.toUpperCase(), SlideType.TEXT, null, false, descTitle);
+      slide.addItem (titleItem);
+      currentY += sizeTitle.y * 2;
+    }
+  }
+
   private void init (final MidiFile midifile) {
     if (LOGGER.isDebugEnabled())
-      LOGGER.debug("Setting font to size " + getConfig().getFontsize());
-
+      LOGGER.debug("Setting font to size " + getConfig().getFont());
 
     if (midifile.getPic() != null && midifile.getPic().length() > 0 && getConfig().isShowBackground()) {
 
@@ -99,7 +120,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     int length = 0;
     String longestPart = "";
     for (MidiFilePart nextPart: file.getParts()) {
-      Point currentOffset = getGc().getSize(nextPart.getParttype().getName(), getConfig());
+      Point currentOffset = getGc().getSize(nextPart.getParttype().getName(), getConfig().getFont());
       //currentOffset = calculateZoomedPoint(currentOffset, preCondition);
       if (currentOffset.x > length) {
         length = currentOffset.x;
@@ -135,31 +156,41 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     List <Slide> slides = new ArrayList<Slide>();
 
     //TODO centralize fonthandling
-    Font font = new Font (Display.getCurrent(), "Arial Alternative", getConfig().getFontsize().intValue(), SWT.NONE);
+    Font font = new Font (Display.getCurrent(), "Arial Alternative", getConfig().getFont().getFontsizeAsInt(), SWT.NONE);
     int longestTypeOffset = getOffsetLongestPartType(midifile, preCondition);
 
     Font zoomedFont = calculateZoomedFont(font, preCondition);
     if (LOGGER.isDebugEnabled())
       LOGGER.debug("set font to size " + zoomedFont.getFontData() [0].height + " from " + font.getFontData() [0].height);
 
-    testExtend = getGc().getSize("H", getConfig());
+    testExtend = getGc().getSize("H", getConfig().getFont());
 
     Slide slide = newSlide(midifile, part, part.getTextlines().size() > 0 ? part.getTextlines().get(0) : null, zoomedFont);
     slides.add(slide);
 
+    int leftPosDefault = 0;
+    //add title, if configured
+    if (midifile.getParts().get(0).equals(part)) {
+      currentX = leftPosDefault;
+
+      if (getConfig().isShowTitle()) {
+        addTitle(slide, midifile, preCondition);
+      }
+    }
+
     normalizeSizeToPresentationSize(preCondition);
 
-    int leftPosDefault = 0;
+
 
     if (getConfig().isShowBlockType()) { //show blocktype (e.g. refrain, chorus..)
       String blockType = part.getParttype().getName() + " ";
-      Point parttypeExtend = getGc().getSize(blockType, getConfig());
+      Point parttypeExtend = getGc().getSize(blockType, getConfig().getFont());
       int addToY = getOffsetChordToText(currentY, parttypeExtend);
       Point point = new Point(leftPosDefault, addToY);
       Point zoomedPoint = calculateZoomedPoint(point, preCondition);
       Rectangle textRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, parttypeExtend.x, parttypeExtend.y);
 
-      SlideItem newTextItem = new SlideItem(textRectangle, blockType, SlideType.TEXT, null, false);
+      SlideItem newTextItem = new SlideItem(textRectangle, blockType, SlideType.TEXT, null, false, getConfig().getFont());
       slide.addItem(newTextItem);
       leftPosDefault += longestTypeOffset;
     }
@@ -187,9 +218,9 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         String chord = getConfig().isChordPresented() ? chordPart.getChord(): null;
         String text = chordPart.getText();
 
-        Point textExtend = text != null ? getGc().getSize(text, getConfig()) : nullExtend;
+        Point textExtend = text != null ? getGc().getSize(text, getConfig().getFont()) : nullExtend;
 
-        Point chordExtend = chord != null && getConfig().isChordPresented() ? getGc().getSize(chord, getConfig()): nullExtend ;
+        Point chordExtend = chord != null && getConfig().isChordPresented() ? getGc().getSize(chord, getConfig().getFont()): nullExtend ;
 
         SlideItem newTextItem = null;
 
@@ -205,7 +236,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
           Point zoomedPoint = calculateZoomedPoint(point, preCondition);
 
           Rectangle textRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, textExtend.x, textExtend.y);
-          newTextItem = new SlideItem(textRectangle, text, SlideType.TEXT, null, newSlideForced);
+          newTextItem = new SlideItem(textRectangle, text, SlideType.TEXT, null, newSlideForced, getConfig().getFont());
           slide.addItem(newTextItem);
         }
 
@@ -214,7 +245,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
           Point zoomedPoint = calculateZoomedPoint(point, preCondition);
 
           Rectangle chordRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, chordExtend.x, chordExtend.y);
-          SlideItem newItem = new SlideItem(chordRectangle, chord, SlideType.CHORD, newTextItem, newSlideForced);
+          SlideItem newItem = new SlideItem(chordRectangle, chord, SlideType.CHORD, newTextItem, newSlideForced, getConfig().getFont());
           slide.addItem(newItem);
         }
 

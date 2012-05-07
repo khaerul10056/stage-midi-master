@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import mda.AbstractSessionItem;
-import mda.MidiFile;
 import mda.Session;
 import org.eclipse.swt.graphics.Point;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
@@ -169,7 +168,8 @@ public class PresentationContext {
     for (int i = 0; i < array.length; i++) {
       if (array [i].equals(item)) {
         currentSessionItemIndex = i;
-        currentSlideIndex = toEnd ? ((MidiFile)getCurrentSessionItem()).getParts().size() - 1 : 0;
+        int lastIndex = slidesPerItem.get(item).size() - 1;
+        currentSlideIndex = toEnd ? lastIndex : 0;
         LOGGER.info("To item " + currentSessionItemIndex + ", " + currentSlideIndex);
         return true;
       }

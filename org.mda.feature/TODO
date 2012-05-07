@@ -1,5 +1,6 @@
-Enhancement     Editor          Häufigkeit an Zeile, Part angeben
-Enhancment      Editor			Zeile kopieren
+
+Enhancement     Editor          Numbers of executing for line, part
+Enhancment      Editor			Copy complete line
 Bug             Import          Recognizing chordlines: Parts with only chords should be imported as chords
 
 
@@ -19,8 +20,9 @@ Enhancement		Editor			selection of navigator doesn't change while changing slide
 Enhancement		User			import from gmail														new
 Enhancement		User			export userlist															new
 Enhancement		User			mail to group from gmail												new
-Enhancement     Editor			boolean flag on line thatLine should be added to new slide 				new
 _____________________________________
+Enhancement     Editor			boolean flag on line thatLine should be added to new slide 				done
+Bug 			Presentation	if force new slide, stepping back marks the last occurence				done
 Bug             Editor			Check if song is referenced before removing								done
 Bug 			Editor			Backspace on second char at a line merges lines							done
 Bug             Editor          Adding a space to first cahr at a line doesn't work						done

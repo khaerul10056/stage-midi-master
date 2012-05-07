@@ -164,6 +164,8 @@ public class ContentOverviewPanel extends Composite  {
 
 
 
+
+
   /**
    * this preview must have a fixed size (1/4 of display for each direction
    */

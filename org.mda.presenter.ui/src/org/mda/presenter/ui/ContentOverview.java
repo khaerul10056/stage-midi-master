@@ -80,7 +80,7 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
     LOGGER.info("refreshSelection called");
     for (ContentOverviewPanel oldPanel : previewParts) {
-      oldPanel.setSelected(oldPanel.getCurrentSlide().getFirstLineModelRef().equals(presentationContext.getCurrentSlide().getFirstLineModelRef()));
+      oldPanel.setSelected(oldPanel.getCurrentSlide().isSameSlide(presentationContext.getCurrentSlide()));
     }
 
   }

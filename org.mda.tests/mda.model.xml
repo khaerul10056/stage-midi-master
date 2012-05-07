@@ -238,7 +238,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Blessed be your name.mid" path="/home/oleym/privat/soundOfFaith/midi" backgroundColor="89x232x89" foregroundColor="249x249x249" pic="image#dsc00171#jpg">
+    <galleryItems xsi:type="org.mda.model:MidiFile" name="Blessed be your name.mid" path="/home/oleym/privat/soundOfFaith/midi" backgroundColor="72x121x72" foregroundColor="249x249x249" pic="image#dsc00171#jpg">
       <parts parttype="INTRO" bar="1">
         <textlines>
           <chordParts text="H 2x"/>
@@ -246,32 +246,32 @@
       </parts>
       <parts parttype="VERS" bar="5">
         <textlines>
-          <chordParts text="Blessed " chord="H "/>
-          <chordParts text="be your name " chord="F# "/>
+          <chordParts text="Blessed " chord="H"/>
+          <chordParts text="be your name " chord="F#"/>
         </textlines>
         <textlines>
-          <chordParts text="land that is " chord="g# "/>
-          <chordParts text="plentiful, " chord="E "/>
+          <chordParts text="land that is " chord="g#"/>
+          <chordParts text="plentiful, " chord="E"/>
         </textlines>
         <textlines>
-          <chordParts text="where your st" chord="H "/>
-          <chordParts text="reams of abundance flow, " chord="F# "/>
+          <chordParts text="where your st" chord="H"/>
+          <chordParts text="reams of abundance flow, " chord="F#"/>
         </textlines>
         <textlines>
-          <chordParts text="blessed be your name. " chord="E "/>
+          <chordParts text="blessed be your name. " chord="E"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="Blessed " chord="H"/>
+          <chordParts text="be your name, " chord="F#"/>
         </textlines>
         <textlines>
-          <chordParts text="Blessed " chord="H "/>
-          <chordParts text="be your name, " chord="F# "/>
+          <chordParts text="found in the " chord="g#"/>
+          <chordParts text="desert place, " chord="E"/>
         </textlines>
         <textlines>
-          <chordParts text="found in the " chord="g# "/>
-          <chordParts text="desert place, " chord="E "/>
-        </textlines>
-        <textlines>
-          <chordParts text="though I walk thr" chord="H "/>
-          <chordParts text="ough the wil" chord="F# "/>
-          <chordParts text="derness, " chord="E "/>
+          <chordParts text="though I walk thr" chord="H"/>
+          <chordParts text="ough the wil" chord="F#"/>
+          <chordParts text="derness, " chord="E"/>
         </textlines>
         <textlines>
           <chordParts text="blessed be your name. "/>
@@ -316,22 +316,20 @@
           <chordParts text="down on me, " chord="E"/>
         </textlines>
         <textlines>
-          <chordParts text="When the "/>
-          <chordParts text="world's all as " chord="H"/>
-          <chordParts text="it should be, " chord="F#"/>
-          <chordParts text="blessed be your name. " chord="E"/>
+          <chordParts text="When the world'" chord="H"/>
+          <chordParts text="s all as it sh" chord="F#"/>
+          <chordParts text="ould be, blessed be your name. " chord="E"/>
         </textlines>
-        <textlines>
+        <textlines newSlide="true">
           <chordParts text="Blessed " chord="H"/>
           <chordParts text="be your name on the " chord="F#"/>
           <chordParts text="road marked with " chord="g#"/>
           <chordParts text="suffering, " chord="E"/>
         </textlines>
         <textlines>
-          <chordParts text="Though there's "/>
-          <chordParts text="pain in the " chord="H"/>
-          <chordParts text="offering, " chord="F#"/>
-          <chordParts text="blessed be your name. " chord="E"/>
+          <chordParts text="Though there" chord="H"/>
+          <chordParts text="'s pain in" chord="F#"/>
+          <chordParts text=" the offering, blessed be your name. " chord="E"/>
         </textlines>
       </parts>
       <parts parttype="ZWISCHENSPIEL" bar="54" refPart="//@gallery/@galleryItems.1/@parts.2">
