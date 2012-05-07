@@ -5,11 +5,11 @@ import java.util.List;
 import mda.MidiFilePartType;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
+import org.mda.commons.ui.calculator.FontDescriptor;
 import org.mda.commons.ui.calculator.SWTGraphicsContext;
 
 public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConfig {
@@ -31,7 +31,6 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   private List<MidiFilePartType> partsToIgnore   = new ArrayList<MidiFilePartType>();
 
-  private Font                   font;
 
 
   private IGraphicsContext graphicsContext = new SWTGraphicsContext();
@@ -50,14 +49,14 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   private boolean showTitle = false;
 
-  public Integer getFontsize () {
+  public FontDescriptor getFont () {
     if (fontsize != null)
-      return fontsize.intValue();
+      return new FontDescriptor(fontsize);
 
     if (session != null && session.getCurrentModel() != null && session.getCurrentModel().getConfig() != null && session.getCurrentModel().getConfig().getFontsize() != null)
-      return session.getCurrentModel().getConfig().getFontsize().intValue();
+      return new FontDescriptor(session.getCurrentModel().getConfig().getFontsize());
 
-    return 40;
+    return new FontDescriptor(40);
   }
 
   public void setFontsize (Integer fontsize) {
@@ -104,14 +103,6 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   public boolean isPartIgnored (final MidiFilePartType parttype) {
     return partsToIgnore.contains(parttype);
-  }
-
-  public Font getFont () {
-    return font;
-  }
-
-  public void setFont (Font font) {
-    this.font = font;
   }
 
   @Override
@@ -169,8 +160,7 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   @Override
   public boolean isShowTitle () {
-    // TODO Auto-generated method stub
-    return false;
+    return showTitle;
   }
 
   public void setShowTitle (boolean showTitle) {

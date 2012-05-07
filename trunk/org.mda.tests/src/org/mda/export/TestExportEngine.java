@@ -114,7 +114,7 @@ public class TestExportEngine {
         User secondUser = MidiPlayerService.mf.createUser();
         secondUser.setName("WithoutChords");
         ExportConfiguration conf2  = MidiPlayerService.mf.createExportConfiguration();
-        conf2.setWithChords(true);
+        conf2.setWithChords(false);
         secondUser.setSendSongbook(true);
         secondUser.setExportConfiguration(conf2);
 

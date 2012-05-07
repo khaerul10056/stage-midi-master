@@ -13,6 +13,7 @@ import mda.MidiFile;
 import org.eclipse.swt.graphics.Point;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
+import org.mda.commons.ui.calculator.FontDescriptor;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
@@ -47,6 +48,7 @@ public class PdfExporter extends AbstractExporter {
     config.setChordVisible(exportconfig.isWithChords());
     config.setShowBlockType(true);
     config.setPagePerPart(false);
+    config.setShowTitle(true);
     config.setFontsize(new Integer (12));
     config.setGraphicsContext(new PDFGraphicsContext());
     calculator.setConfig(config);
@@ -117,13 +119,14 @@ public class PdfExporter extends AbstractExporter {
       float cmWidth = getCm(nextItem.getWidth());
       float cmY = doc.getPageSize().height() - getCm(nextItem.getY());
       LOGGER.info("Add text " + nextItem.getText() + " to X " + nextItem.getX() + "(" + cmX + ") " + ", Y " + nextItem.getY() + "(" + cmY + ")");
-      absText(writer, nextItem.getText(), cmX, cmY, cmWidth, chord);
+
+      absText(writer, nextItem.getText(), cmX, cmY, cmWidth, chord, nextItem.getFont());
     }
 
 
   }
 
-  private static void absText(final PdfWriter writer, String text, float x, float y, float width, final boolean chord) {
+  private static void absText(final PdfWriter writer, String text, float x, float y, float width, final boolean chord, FontDescriptor fontDescriptor) {
     try {
       PdfContentByte cb = writer.getDirectContent();
       BaseFont bf = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED); //centralize fonthandling
@@ -134,10 +137,14 @@ public class PdfExporter extends AbstractExporter {
       cb.saveState();
       cb.beginText();
       cb.moveText(x, y);
-      if (chord)
+      if (chord) //TODO: with fondescriptor
         cb.setFontAndSize(bfBold, 10);
-      else
-        cb.setFontAndSize(bf, 14);
+      else {
+        if (fontDescriptor.isBold())
+          cb.setFontAndSize(bfBold, 14);
+        else
+          cb.setFontAndSize(bf, 14);
+      }
 
       cb.showText(text);
       cb.endText();

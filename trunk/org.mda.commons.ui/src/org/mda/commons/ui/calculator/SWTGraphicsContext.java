@@ -6,7 +6,6 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import org.mda.commons.ui.IGraphicsContext;
-import org.mda.commons.ui.IMidiFileEditorUIConfig;
 
 
 public class SWTGraphicsContext implements IGraphicsContext {
@@ -14,9 +13,13 @@ public class SWTGraphicsContext implements IGraphicsContext {
   private final GC gc = new GC(Display.getDefault());
 
   @Override
-  public Point getSize (String text, final IMidiFileEditorUIConfig config) {
+  public Point getSize (String text, final FontDescriptor fontdesc) {
     //TODO centralize fonthandling
-    Font font = new Font (Display.getCurrent(), "Arial Alternative", config.getFontsize().intValue(), SWT.NONE);
+    Font font;
+    if (fontdesc.isBold())
+      font = new Font (Display.getCurrent(), "Arial Alternative", fontdesc.getFontsizeAsInt(), SWT.BOLD);
+    else
+      font = new Font (Display.getCurrent(), "Arial Alternative", fontdesc.getFontsizeAsInt(), SWT.NONE);
     gc.setFont(font);
     Point textExtent = gc.textExtent(text);
     return textExtent;

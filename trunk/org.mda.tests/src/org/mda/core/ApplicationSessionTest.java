@@ -19,7 +19,7 @@ public class ApplicationSessionTest {
     try {
     ApplicationSession session = new ApplicationSession();
 
-    session.load(PATH);
+    session.load(null);
 
     File confFile = new File ("../org.mda.tests/.mda/mda.properties");
     assertTrue (confFile.exists());

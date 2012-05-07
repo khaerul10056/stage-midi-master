@@ -60,14 +60,15 @@ public class ApplicationSession {
       properties.setProperty(key, defaultValue);
   }
 
-  public void load (String path) {
+  public void load (String originpath) {
 
+    File path = null;
     if (path == null)
-      path = new File ("").getAbsolutePath();
+      path = new File ("");
 
     if (sessionProps.isEmpty()) {
 
-      File confPath = getOrCreateConfigPath(new File (path));
+      File confPath = getOrCreateConfigPath(path);
 
       LOGGER.info("Create initial properties in " + confPath.getAbsolutePath());
 
@@ -88,6 +89,9 @@ public class ApplicationSession {
 
       //Read the modelfile that was used at last start
       String property = sessionProps.getProperty(PROP_LASTMODELFILE);
+      if (originpath != null)
+        property = originpath;
+
       setLastModelPath(new File (property));
 
       if (! configFileAsFile.exists())

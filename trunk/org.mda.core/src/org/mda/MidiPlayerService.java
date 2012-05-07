@@ -443,7 +443,10 @@ public class MidiPlayerService {
       nextPart = nextPart.getRefPart();
 
     for (MidiFileTextLine nextLine : nextPart.getTextlines()) {
+
       String nextLineAsText = "";
+      if (nextLine.isNewSlide())
+        nextLineAsText += "->";
       for (MidiFileChordPart nextChordPart : nextLine.getChordParts()) {
         if (nextChordPart.getChord() != null && chords)
           nextLineAsText += "(" + nextChordPart.getChord() + ")";
