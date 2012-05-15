@@ -46,7 +46,6 @@ public class TestAdditionalsHandler {
   @Test
   public void twoPointsInName () throws Exception {
     AdditionalsHandler handler = new AdditionalsHandler(forTest);
-    handler.read();
 
     final String FILENAME1 = "This is a test.mp3.wav";
     File from1 = new File (handler.getAdditionalsPath().getAbsolutePath() + File.separator + FILENAME1);
@@ -62,7 +61,7 @@ public class TestAdditionalsHandler {
   @Test
   public void importFiles () throws Exception {
     AdditionalsHandler handler = new AdditionalsHandler(forTest);
-    handler.read();
+
     final String FILENAME1 = "This is a test.mp3";
     File from1 = new File (handler.getAdditionalsPath().getAbsolutePath() + File.separator + FILENAME1);
     from1.createNewFile();
@@ -106,7 +105,6 @@ public class TestAdditionalsHandler {
     File midifile = new File (handler.getAdditionalsPath().getAbsolutePath() + "/" + AdditionalType.MIDIFILE.name().toLowerCase() +"/" + name1 + "." +  suffix2);
     assertTrue (midifile.createNewFile());
 
-    handler.read();
     assertEquals (2, handler.getAdditionals().size());
 
     List <Additional> sublistMp3s = handler.getAdditionals(AdditionalType.AUDIO);

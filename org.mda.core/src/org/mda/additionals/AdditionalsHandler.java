@@ -26,6 +26,7 @@ public class AdditionalsHandler {
 
 
   public Additional findByKey (final String key) {
+    readOnDemand();
     LOGGER.info("Find additional by key " + key);
     String [] keyArray = key.split("#");
     if (keyArray.length != 3)
@@ -52,7 +53,7 @@ public class AdditionalsHandler {
    * @return ErrorString, if not error occured, this is an empty string
    */
   public String importFiles (Collection <File> importFiles) {
-
+    readOnDemand();
     StringBuilder builder = new StringBuilder();
     for (File next: importFiles) {
       try {
@@ -115,33 +116,32 @@ public class AdditionalsHandler {
     }
   }
 
-  public void read () {
+  private void readOnDemand () {
 
-    if (additionals == null)
+    if (additionals == null) {
       additionals = new ArrayList<Additional>();
 
-    for (AdditionalType nextType: AdditionalType.VALUES) {
-      File nextTypePath = new File (additionalsPath.getAbsolutePath(), nextType.toString().toLowerCase());
-      for (File next: nextTypePath.listFiles()) {
-        AdditionalSuffix suffix = getSuffix(next);
-        if (suffix != null) {
-        Additional additional = new Additional(next, nextType, getName(next), suffix);
-        if (additional != null)
-          getAdditionals().add(additional);
+      for (AdditionalType nextType : AdditionalType.VALUES) {
+        File nextTypePath = new File(additionalsPath.getAbsolutePath(), nextType.toString().toLowerCase());
+        for (File next : nextTypePath.listFiles()) {
+          AdditionalSuffix suffix = getSuffix(next);
+          if (suffix != null) {
+            Additional additional = new Additional(next, nextType, getName(next), suffix);
+            if (additional != null)
+              getAdditionals().add(additional);
+          }
+          else
+            LOGGER.warn("File " +
+              next.getAbsolutePath() + " has no valid suffix, ignoring");
         }
-        else
-          LOGGER.warn("File " + next.getAbsolutePath() + " has no valid suffix, ignoring");
       }
     }
   }
 
-  private void checkRead () {
-    if (additionals == null)
-      throw new IllegalStateException("Additions for " + additionalsPath.getAbsolutePath() + " were not read yet. Please call read()-method before working with additionals");
-  }
+
 
   public void remove (final Additional additional) {
-    checkRead();
+    readOnDemand();
     if (!additional.getFile().delete())
       throw new IllegalStateException("Couldn't remove file " + additional.getFile());
     additionals.remove(additional);
@@ -163,12 +163,12 @@ public class AdditionalsHandler {
   }
 
   public List <Additional> getAdditionals () {
-    checkRead();
+    readOnDemand();
     return additionals;
   }
 
   public List <Additional> getAdditionals (AdditionalType type) {
-    checkRead();
+    readOnDemand();
     List <Additional> filtered = new ArrayList<Additional>();
     for (Additional next: additionals) {
       if (next.getType().equals(type))

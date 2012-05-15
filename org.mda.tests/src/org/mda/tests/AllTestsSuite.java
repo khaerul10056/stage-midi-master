@@ -14,6 +14,7 @@ import org.mda.core.importer.TextImporterTest;
 import org.mda.editor.preview.ui.test.PreviewEditorTest;
 import org.mda.editor.preview.ui.test.PreviewEditorUiTest;
 import org.mda.export.TestExportEngine;
+import org.mda.export.TestPptExporter;
 import org.mda.google.TestGoogleContacts;
 import org.mda.navigator.ui.ContentNavigatorTest;
 import org.mda.navigator.ui.PresentationNavigatorTest;
@@ -50,11 +51,14 @@ import org.mda.transpose.TransposeTest;
   MidiFileEditorInputTest.class,
 
 
-  //Google
-  TestGoogleContacts.class,
 
   //Export
-  TestExportEngine.class
+  TestExportEngine.class,
+  TestPptExporter.class, 
+  
+  //Google
+  TestGoogleContacts.class
+
 
 }
 )
