@@ -1,4 +1,5 @@
 
+Enhancement     PPT-Export      Skip empty slides
 Enhancement     Editor          Numbers of executing for line, part
 Enhancment      Editor			Copy complete line
 Bug             Import          Recognizing chordlines: Parts with only chords should be imported as chords
@@ -21,6 +22,7 @@ Enhancement		User			import from gmail														new
 Enhancement		User			export userlist															new
 Enhancement		User			mail to group from gmail												new
 _____________________________________
+Enhancement     PPT-Export      Background-Image
 Enhancement     Editor			boolean flag on line thatLine should be added to new slide 				done
 Bug 			Presentation	if force new slide, stepping back marks the last occurence				done
 Bug             Editor			Check if song is referenced before removing								done

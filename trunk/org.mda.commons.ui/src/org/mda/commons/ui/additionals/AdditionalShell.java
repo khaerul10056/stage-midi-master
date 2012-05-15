@@ -220,7 +220,6 @@ public class AdditionalShell extends Shell {
     File forTest = new File ("test");
     Shell shell = new Shell ();
     AdditionalsHandler handler = new AdditionalsHandler(forTest);
-    handler.read();
     final String name1 = "This is a crazy song";
     final String suffix1 = "mp3";
     final String suffix2 = "midi";
@@ -230,11 +229,7 @@ public class AdditionalShell extends Shell {
     File midifile = new File (handler.getAdditionalsPath().getAbsolutePath() + "/" + AdditionalType.MIDIFILE.name().toLowerCase() +"/" + name1 + "." +  suffix2);
     midifile.createNewFile();
 
-
-
     AdditionalShell additionalshell = new AdditionalShell(shell, handler, null, true);
-
-
 
     while (!additionalshell.isDisposed()) {
       if (!shell.getDisplay().readAndDispatch()) {

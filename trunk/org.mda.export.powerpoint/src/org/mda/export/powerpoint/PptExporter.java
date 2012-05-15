@@ -1,6 +1,5 @@
 package org.mda.export.powerpoint;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -17,7 +16,10 @@ import org.apache.poi.hslf.model.Slide;
 import org.apache.poi.hslf.model.TextBox;
 import org.apache.poi.hslf.usermodel.RichTextRun;
 import org.apache.poi.hslf.usermodel.SlideShow;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Display;
+import org.mda.Utils;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
@@ -27,6 +29,8 @@ import org.mda.logging.LogFactory;
 public class PptExporter extends AbstractExporter {
 
   private final static Log LOG = LogFactory.getLogger(PptExporter.class);
+
+  private SlideShow lastExportedResult;
 
 
 
@@ -39,6 +43,7 @@ public class PptExporter extends AbstractExporter {
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setChordVisible(exportconfig.isWithChords());
+    config.setShowBackground(true);
     getCalculator().setConfig(config);
     LOG.info("Calculate size " + show.getPageSize().width + "x" + show.getPageSize().height + " from " +
         getCalculator().getConfig().getDefaultPresentationScreenSize().x + "x" + getCalculator().getConfig().getDefaultPresentationScreenSize().y );
@@ -58,6 +63,7 @@ public class PptExporter extends AbstractExporter {
     } catch (IOException e) {
       throw new ExportException("Error saving file " + exportFile.getAbsolutePath(), e);
     }
+    lastExportedResult = show;
     return exportFile;
   }
 
@@ -85,8 +91,9 @@ public class PptExporter extends AbstractExporter {
       }
     }
     else {
-      fill.setFillType(Fill.FILL_SOLID);
-      fill.setForegroundColor(Color.BLACK);
+      fill.setFillType(Fill.FILL_SHADE);
+      fill.setBackgroundColor(Utils.toAwtColor(song.getBackgroundColor()));
+      fill.setForegroundColor(Utils.toAwtColor(song.getBackgroundColor()));
     }
 
     int height = song.getItems().get(0).getHeight();
@@ -96,10 +103,13 @@ public class PptExporter extends AbstractExporter {
       txt.setText(song.getTextline(i));
 
       RichTextRun rt = txt.getTextRun().getRichTextRuns()[0];
-      rt.setFontColor(Color.WHITE);
       rt.setFontSize(song.getFont().getFontData() [0].getHeight());
       rt.setFontName("Arial");
       rt.setAlignment(TextBox.AlignLeft);
+      if (song.getForegroundColor() != null)
+        rt.setFontColor(Utils.toAwtColor(song.getForegroundColor()));
+      else
+        rt.setFontColor(Utils.toAwtColor(Display.getDefault().getSystemColor(SWT.COLOR_WHITE)));
 
       Rectangle2D rect = new Rectangle();
       rect.setRect(10, y, show.getPageSize().getWidth() - 10, song.getItems().get(0).getHeight());
@@ -109,26 +119,17 @@ public class PptExporter extends AbstractExporter {
       y += height + 10;
 
     }
-
-//    for (SlideItem nextItem: song.getItems()) {
-//      TextBox txt = new TextBox();
-//      txt.setText(nextItem.getText());
-//
-//      RichTextRun rt = txt.getTextRun().getRichTextRuns()[0];
-//      rt.setFontSize(song.getFont().getFontData() [0].getHeight() + 15);
-//      rt.setFontName("Arial Alternative");
-//      rt.setAlignment(TextBox.AlignLeft);
-//
-//      Rectangle2D rect = new Rectangle();
-//      rect.setRect(nextItem.getX(), nextItem.getY(), nextItem.getWidth(), nextItem.getHeight());
-//      txt.setAnchor(rect);
-//      newSlide.addShape(txt);
-//    }
   }
 
   @Override
   public String getSuffix () {
     return ".ppt";
   }
+
+  public SlideShow getLastExportedResult () {
+    return lastExportedResult;
+  }
+
+
 
 }

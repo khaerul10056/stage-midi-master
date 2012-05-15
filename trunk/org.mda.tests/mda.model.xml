@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <org.mda.model:MidiPlayerRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda.model="org.mda.model">
   <gallery>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Alle Schoepfung staunt und preist.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="image#dsc00129#jpg">
+    <galleryItems xsi:type="org.mda.model:MidiFile" name="Alle Schoepfung staunt und preist.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="image#05_51_24---Sunset-Worship-Background_web#jpg">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text="  " chord="D"/>

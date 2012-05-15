@@ -118,10 +118,8 @@ public class ApplicationSession {
   }
 
   public AdditionalsHandler getAdditionalsHandler () {
-    if (additionalsHandler == null) {
+    if (additionalsHandler == null)
       additionalsHandler = new AdditionalsHandler(getAdditionalsPath());
-      additionalsHandler.read();
-    }
 
     return additionalsHandler;
   }

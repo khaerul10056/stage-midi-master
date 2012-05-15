@@ -48,6 +48,10 @@ public class Utils {
     return color.getGreen() + "x" + color.getRed() + "x" + color.getBlue();
   }
 
+  public static java.awt.Color toAwtColor (final Color color) {
+    return new java.awt.Color (color.getRed(), color.getGreen(), color.getBlue());
+  }
+
   public static String createEmptyString (final int length) {
     StringBuilder builder = new StringBuilder();
     for (int i = 0; i < length; i++)
