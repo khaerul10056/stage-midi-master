@@ -44,6 +44,7 @@ public class PptExporter extends AbstractExporter {
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setChordVisible(exportconfig.isWithChords());
     config.setShowBackground(true);
+    config.setSkipEmptySlides(true);
     getCalculator().setConfig(config);
     LOG.info("Calculate size " + show.getPageSize().width + "x" + show.getPageSize().height + " from " +
         getCalculator().getConfig().getDefaultPresentationScreenSize().x + "x" + getCalculator().getConfig().getDefaultPresentationScreenSize().y );

@@ -38,6 +38,9 @@ public class SlideItem {
     this.font = font;
   }
 
+  public boolean isEmpty () {
+    return text == null || text.trim().length() == 0;
+  }
 
   public String getText () {
     return text;

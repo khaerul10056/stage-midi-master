@@ -12,6 +12,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.mda.Utils;
+import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.imagecache.ImageCache;
 
 /** dataobject containing information created for a slide,
@@ -49,8 +50,33 @@ public class Slide {
     this.font = font;
   }
 
+  /**
+   * returns if the current slide is empty.
+   * If {@linkplain IMidiFileEditorUIConfig#isSkipEmptySlides()} returns also true, than the current slide is removed
+   * @return true: current slide is empty, false: current slide is not empty
+   */
+  public boolean isEmpty () {
+    if (items.size() == 0)
+      return true;
+
+    for (Collection <SlideItem>itemList : items.values()) {
+      for (SlideItem nextIten: itemList) {
+        if (! nextIten.isEmpty())
+          return false;
+      }
+    }
+    return true;
+  }
 
 
+
+  /**
+   * adds a slideitem to the slide.
+   * Only slides containing any kind of text are added.
+   * Empty slideitems are ignored
+   *
+   * @param newItem
+   */
   public void addItem (final SlideItem newItem) {
 
     Collection<SlideItem> collection = items.get(currentLine);
@@ -58,7 +84,6 @@ public class Slide {
       collection = new ArrayList<SlideItem>();
 
     collection.add(newItem);
-
     items.put(currentLine, collection);
   }
 

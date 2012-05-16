@@ -43,6 +43,7 @@ public class StartPresentation extends AbstractHandler  {
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setChordVisible(false);
     config.setShowBackground(true);
+    config.setSkipEmptySlides(true);
     presentationContext.setCurrentSession(selectioninfo.getSession(), config, presenter.getSize());
 
     IPerspectiveDescriptor presentationPerspective = reg.findPerspectiveWithId(Util.PRESENTATION_PERSPECTIVE);

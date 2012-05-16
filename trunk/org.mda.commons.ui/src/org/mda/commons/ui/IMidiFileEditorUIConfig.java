@@ -58,6 +58,8 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
    */
   boolean isShowTitle();
 
+  boolean isSkipEmptySlides ();
+
 
 
 
