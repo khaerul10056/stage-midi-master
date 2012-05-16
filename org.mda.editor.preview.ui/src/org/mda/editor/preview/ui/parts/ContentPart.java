@@ -22,6 +22,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Widget;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
@@ -48,6 +49,8 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
   private final List<TextLine>             textLines         = new ArrayList<TextLine>();
 
   private final List<Label>                  chordLines        = new ArrayList<Label>();
+
+  private final List<Label>                  newSlideLabels = new ArrayList<Label>();
 
   private Slide                              currentSlide;
 
@@ -96,6 +99,16 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
 
   }
 
+  /**
+   * disposes all widget in a list and removes them from list afterwards
+   * @param widgets list of widgets
+   */
+  private void clearWidgetList (final Collection <? extends Widget> widgets) {
+    for (Widget next: widgets)
+      next.dispose();
+    widgets.clear();
+  }
+
   /** This method should only be called in the repaint-method to adapt size.
    * In any other cases please call setCurrentPart() which calls showPart()
    * @param part part to repaint
@@ -116,12 +129,9 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
     setCalculatePart(calculator.calculatePart(getCurrentPart(), calcPreConditions).get(0));
 
     //Dispose and clear old textwidgets and chordwidgets
-    for (TextLine nextOldLine : getTextLines())
-      nextOldLine.dispose();
-    getTextLines().clear();
-    for (Label nextOldLine : getChordLines())
-      nextOldLine.dispose();
-    getChordLines().clear();
+    clearWidgetList(getTextLines());
+    clearWidgetList(getChordLines());
+    clearWidgetList(newSlideLabels);
 
     //Initialize lines from saved part
     for (int i = 0; i < getCurrentSlide().getLineCount(); i++) {
@@ -130,7 +140,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
         continue;
 
       if (getCurrentSlide().isNewLineForced(i))
-        new Label(this, SWT.SEPARATOR | SWT.SHADOW_OUT | SWT.HORIZONTAL);
+        newSlideLabels.add(new Label(this, SWT.SEPARATOR | SWT.SHADOW_OUT | SWT.HORIZONTAL));
 
       addChordLine(getCurrentSlide().getChordline(i));
       addTextLine(getCurrentSlide().isNewLineForced(i), getCurrentSlide().getTextline(i), size);
@@ -331,9 +341,6 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
 
 
     });
-
-//    nextText.addCaretListener(this); // needs to be registered after the keylistener because in
-//                                     // keylistener we must use the current position
 
     }
     if (getTextLines().isEmpty())

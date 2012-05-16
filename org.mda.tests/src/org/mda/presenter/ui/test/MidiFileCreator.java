@@ -54,6 +54,16 @@ public class MidiFileCreator {
     return this;
   }
 
+  public MidiFileCreator lineOnNewSlide () {
+    if (currentPart == null)
+      throw new IllegalStateException("You have to add a part before adding a newline");
+
+    currentTextLine = MidiplayerFactory.eINSTANCE.createMidiFileTextLine();
+    currentTextLine.setNewSlide(true);
+    currentPart.getTextlines().add(currentTextLine);
+    return this;
+  }
+
   public MidiFileCreator text (final String text) {
     return chordAndText(null, text);
   }

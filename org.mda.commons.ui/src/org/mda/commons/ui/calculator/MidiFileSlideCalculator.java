@@ -2,6 +2,7 @@ package org.mda.commons.ui.calculator;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import mda.AbstractSessionItem;
 import mda.MidiFile;
@@ -150,6 +151,20 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     return slide;
   }
 
+  /**
+   * removes empty slides from the list of slides
+   * @param slides all slides, empty items are removed from the list
+   */
+  public void removeEmptySlides (final List <Slide> slides) {
+    Collection<Slide> emptySlides = new ArrayList<Slide>();
+    for (Slide next: slides) {
+      if (next.isEmpty())
+        emptySlides.add(next);
+    }
+
+    slides.removeAll(emptySlides);
+  }
+
   public List<Slide> calculatePart (final MidiFilePart part, final CalculatorPreCondition preCondition) {
     MidiFile midifile = (MidiFile) part.eContainer();
     init(midifile);
@@ -264,6 +279,10 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
 
     }
+
+    if (getConfig().isSkipEmptySlides())
+      removeEmptySlides(slides);
+
     return slides;
   }
 

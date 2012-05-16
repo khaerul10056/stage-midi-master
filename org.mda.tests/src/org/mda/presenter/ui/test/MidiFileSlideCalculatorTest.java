@@ -25,6 +25,32 @@ import org.mda.commons.ui.calculator.SlideType;
 
 public class MidiFileSlideCalculatorTest {
 
+
+  @Test
+  public void skipEmptySlides () {
+    MidiFileCreator creator = MidiFileCreator.create();
+    creator = creator.part(MidiFilePartType.INTRO).line().chordAndText("D", null);
+    creator = creator.part(MidiFilePartType.INTRO).line().chordAndText("D", "");
+    creator = creator.part(MidiFilePartType.INTRO).line().chordAndText("D", "Hallo");
+    MidiFile song = creator.get();
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setNewPageRespected(false);
+    config.setShowTitle(true);
+    config.setSkipEmptySlides(false);
+    config.setChordVisible(false);
+    CalculatorPreCondition preCondition = new CalculatorPreCondition();
+    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
+    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    calculator.setConfig(config);
+    List<Slide> calculate = calculator.calculate(song, preCondition);
+    Assert.assertEquals (3, calculate.size());
+
+    config.setSkipEmptySlides(true);
+    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
+    calculator.setConfig(config);
+    calculate = calculator.calculate(song, preCondition);
+    Assert.assertEquals (1, calculate.size());
+  }
   @Test
   public void showTitle () {
     final String TITLE = "Songtitle.mid";

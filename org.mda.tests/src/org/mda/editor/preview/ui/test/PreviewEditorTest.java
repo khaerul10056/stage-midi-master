@@ -47,6 +47,30 @@ public class PreviewEditorTest {
     MdaModule.getInjector().getInstance(ApplicationSession.class).load(null);
   }
 
+  @Test
+  public void removeNewSlides () {
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    creator = creator.line().chordAndText(" ", " ");
+    creator = creator.lineOnNewSlide().chordAndText("D", " ");
+    creator = creator.lineOnNewSlide().chordAndText("", "Test");
+    MidiFile midiFile = creator.get();
+    PreviewEditorContent editor = new PreviewEditorContent(shell, midiFile);
+    editor.setCurrentPart(midiFile.getParts().get(0));
+    int children = editor.getContentpanel().getChildren().length;
+
+    editor.setCurrentPart(midiFile.getParts().get(0));
+    int childrenAfter = editor.getContentpanel().getChildren().length;
+
+
+    editor.setCurrentPart(midiFile.getParts().get(0));
+    int childrenAfterAfter = editor.getContentpanel().getChildren().length;
+
+    Assert.assertEquals (children, childrenAfter);
+    Assert.assertEquals (children, childrenAfterAfter);
+
+
+  }
+
 
   @Test
   public void isLineEmpty () {

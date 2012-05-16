@@ -39,8 +39,6 @@ public class ChordHover extends Shell {
           dispose();
         }
       }
-
-
     });
 
     setVisible(true);
@@ -56,6 +54,8 @@ public class ChordHover extends Shell {
 
   public boolean isChanged () {
     if (after != null && before == null)
+      return true;
+    if (before != null && after == null)
       return true;
 
     return ! after.trim().equals(before.trim());

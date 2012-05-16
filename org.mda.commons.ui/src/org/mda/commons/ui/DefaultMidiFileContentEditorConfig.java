@@ -49,6 +49,8 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   private boolean showTitle = false;
 
+  private boolean skipEmptySlides = false;
+
   public FontDescriptor getFont () {
     if (fontsize != null)
       return new FontDescriptor(fontsize);
@@ -165,6 +167,14 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   public void setShowTitle (boolean showTitle) {
     this.showTitle = showTitle;
+  }
+
+  public boolean isSkipEmptySlides () {
+    return skipEmptySlides;
+  }
+
+  public void setSkipEmptySlides (boolean skipEmptySlides) {
+    this.skipEmptySlides = skipEmptySlides;
   }
 
 
