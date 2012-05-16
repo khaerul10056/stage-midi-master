@@ -43,7 +43,6 @@ public class PdfExporter extends AbstractExporter {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
 
-
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setChordVisible(exportconfig.isWithChords());
     config.setShowBlockType(true);
@@ -51,6 +50,7 @@ public class PdfExporter extends AbstractExporter {
     config.setShowTitle(true);
     config.setFontsize(new Integer (12));
     config.setGraphicsContext(new PDFGraphicsContext());
+    config.setOptimizeLineFilling(true);
     calculator.setConfig(config);
 
     Rectangle pagesizeA4 = PageSize.A4;

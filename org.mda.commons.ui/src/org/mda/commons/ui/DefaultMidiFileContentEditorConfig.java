@@ -35,21 +35,48 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   private IGraphicsContext graphicsContext = new SWTGraphicsContext();
 
+  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
+
+  /**
+   * configuration to define the used fontsize
+   */
   private Integer fontsize;
 
 
-  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
+
+  /**
+   * configuration if a background-picture should be shown
+   */
   private boolean showBackground;
 
+  /**
+   * configuration if the type of the current block (e.g. REFRAIN) should be
+   * shown in front of the first line of a block
+   */
   private boolean showBlockType;
 
 
+  /**
+   * configuration if newPage should lead to a new slide
+   */
   private boolean newPageRespected = true;
 
+  /**
+   * configuration if the title should be shown
+   */
   private boolean showTitle = false;
 
+  /**
+   * configuration if empty slides should be removed
+   */
   private boolean skipEmptySlides = false;
+
+  /**
+   * checks if the next line of the part can be moved to the current line
+   * so the songs need less place on a page
+   */
+  private boolean optimizeLineFilling = false;
 
   public FontDescriptor getFont () {
     if (fontsize != null)
@@ -175,6 +202,14 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   public void setSkipEmptySlides (boolean skipEmptySlides) {
     this.skipEmptySlides = skipEmptySlides;
+  }
+
+  public boolean isOptimizeLineFilling () {
+    return optimizeLineFilling;
+  }
+
+  public void setOptimizeLineFilling (boolean optimizeLineFilling) {
+    this.optimizeLineFilling = optimizeLineFilling;
   }
 
 
