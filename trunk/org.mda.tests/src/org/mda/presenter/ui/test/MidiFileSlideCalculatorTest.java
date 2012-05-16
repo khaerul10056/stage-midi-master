@@ -27,6 +27,48 @@ public class MidiFileSlideCalculatorTest {
 
 
   @Test
+  public void optimizeLineFilling () {
+    MidiFileCreator creator = MidiFileCreator.create();
+    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.line().text("This is the first line").text("still");
+    creator = creator.line().text("and this is the second line that is too long to be merged to the first line");
+
+    creator = creator.part(MidiFilePartType.VERS);
+    creator = creator.line().text("First line").text("still");
+    creator = creator.line().text("second merged");
+    MidiFile song = creator.get();
+
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setOptimizeLineFilling(false);
+    CalculatorPreCondition preCondition = new CalculatorPreCondition();
+    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
+    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    calculator.setConfig(config);
+    List<Slide> calculate = calculator.calculate(song, preCondition);
+
+    Slide firstSlide = calculate.get(0);
+    Assert.assertEquals (2, firstSlide.getItems(0).size());   //First case: second line too long, optimizing is disabled
+    Assert.assertEquals (1, firstSlide.getItems(1).size());
+
+    Slide secondSlide = calculate.get(1);
+    Assert.assertEquals (2, secondSlide.getItems(0).size());  //Second case: second line can be optimized, but optimizing is disabled
+    Assert.assertEquals (1, secondSlide.getItems(1).size());
+
+
+    config.setOptimizeLineFilling(true);
+    calculator = new MidiFileSlideCalculator();
+    calculator.setConfig(config);
+    calculate = calculator.calculate(song, preCondition);
+    firstSlide = calculate.get(0);
+    Assert.assertEquals (2, firstSlide.getItems(0).size());          //First case: second line too long, optimizing is enabled
+    Assert.assertEquals (1, firstSlide.getItems(1).size());
+
+    secondSlide = calculate.get(1);
+    Assert.assertEquals (3, secondSlide.getItems(0).size());  //Second case: second line can be optimized, optimizing is enabled
+    Assert.assertEquals (0, secondSlide.getItems(1).size());
+  }
+
+  @Test
   public void skipEmptySlides () {
     MidiFileCreator creator = MidiFileCreator.create();
     creator = creator.part(MidiFilePartType.INTRO).line().chordAndText("D", null);
