@@ -10,6 +10,7 @@ import mda.MidiPlayerRoot;
 import org.mda.additionals.AdditionalsHandler;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.transpose.FeatureActivation;
 
 
 public class ApplicationSession {
@@ -25,11 +26,18 @@ public class ApplicationSession {
   private File configFileAsFile;
 
   public static final String PROP_LASTMODELFILE = "org.mda.commons.ui.lastmodelfile";
+
+  public static final String PROP_ENABLEGRID = "org.mda.commons.ui.enableGrid";
+
   private File lastModelFile;
 
   private AdditionalsHandler additionalsHandler;
 
   private String version;
+
+  private final GlobalConfigurations globalConfs = new GlobalConfigurations();
+
+  private final FeatureActivation featureActivation = new FeatureActivation();
 
 
 
@@ -85,6 +93,7 @@ public class ApplicationSession {
       }
 
       setDefaultOnDemand(sessionProps, PROP_LASTMODELFILE, "mda.model.xml");
+      setDefaultOnDemand(sessionProps, PROP_ENABLEGRID, "false");
 
 
       //Read the modelfile that was used at last start
@@ -93,6 +102,7 @@ public class ApplicationSession {
         property = originpath;
 
       setLastModelPath(new File (property));
+      getFeatureActivation().setShowGridEnabled(Boolean.valueOf(sessionProps.getProperty(PROP_ENABLEGRID)));
 
       if (! configFileAsFile.exists())
         save(configFileAsFile);
@@ -163,6 +173,19 @@ public class ApplicationSession {
 
   public void setVersion (String version) {
     this.version = version;
+  }
+
+
+
+
+
+  public GlobalConfigurations getGlobalConfs () {
+    return globalConfs;
+  }
+
+
+  public FeatureActivation getFeatureActivation () {
+    return featureActivation;
   }
 
 

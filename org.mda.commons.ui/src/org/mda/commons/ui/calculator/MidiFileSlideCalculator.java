@@ -134,9 +134,11 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     return length + 25;
   }
 
-  private Slide newSlide (final MidiFile midifile, final MidiFilePart part, final MidiFileTextLine firstLine, final Font zoomedFont) {
+  private Slide newSlide (final MidiFile midifile, final MidiFilePart part, final MidiFileTextLine firstLine,
+                          final Font zoomedFont, final CalculatorPreCondition preCondition) {
     Slide slide = new Slide(part, firstLine, zoomedFont);
     slide.setBackgroundImage(imageFile);
+    slide.setSize(preCondition.getCalculationsize());
 
     slide.setBackgroundColor(Utils.stringToColor(midifile.getBackgroundColor(), getConfig().getDefaultBackgroundColor()));
     LOGGER.debug("set background to " + slide.getBackgroundColor());
@@ -180,7 +182,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
     testExtend = getGc().getSize("H", getConfig().getFont());
 
-    Slide slide = newSlide(midifile, part, part.getTextlines().size() > 0 ? part.getTextlines().get(0) : null, zoomedFont);
+    Slide slide = newSlide(midifile, part, part.getTextlines().size() > 0 ? part.getTextlines().get(0) : null, zoomedFont, preCondition);
     slides.add(slide);
 
     int leftPosDefault = 0;
@@ -194,8 +196,6 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     }
 
     normalizeSizeToPresentationSize(preCondition);
-
-
 
     if (getConfig().isShowBlockType()) { //show blocktype (e.g. refrain, chorus..)
       String blockType = part.getParttype().getName() + " ";
@@ -214,7 +214,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     for (MidiFileTextLine nextTextLine : part.getRefPart() != null ? part.getRefPart().getTextlines() : part.getTextlines()) {
 
       if (getConfig().isNewPageRespected() && nextTextLine.isNewSlide()) {
-        slide = newSlide(midifile, part, nextTextLine,  zoomedFont);
+        slide = newSlide(midifile, part, nextTextLine,  zoomedFont, preCondition);
         slides.add(slide);
       }
       currentX = leftPosDefault;
@@ -225,6 +225,9 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         height += testExtend.y;
       else
         height += (testExtend.y / 2);
+
+
+      List <SlideItem> itemsOfCurrentLine = new ArrayList<SlideItem>();
 
       for (MidiFileChordPart chordPart : nextTextLine.getChordParts()) {
 
@@ -252,7 +255,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
           Rectangle textRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, textExtend.x, textExtend.y);
           newTextItem = new SlideItem(textRectangle, text, SlideType.TEXT, null, newSlideForced, getConfig().getFont());
-          slide.addItem(newTextItem);
+          itemsOfCurrentLine.add(newTextItem);
         }
 
         if (chord != null && getConfig().isChordPresented()) {
@@ -261,22 +264,27 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
           Rectangle chordRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, chordExtend.x, chordExtend.y);
           SlideItem newItem = new SlideItem(chordRectangle, chord, SlideType.CHORD, newTextItem, newSlideForced, getConfig().getFont());
-          slide.addItem(newItem);
+          itemsOfCurrentLine.add(newItem);
         }
-
-
-
-
 
         currentX += biggestXExtend;
 
       }
-      currentY += getDistanceBetweenLines();
 
-      slide.newLine();
+      boolean movingToPreviousLine = isMovingCurrentItemsToPreviousLineAllowed(slide, itemsOfCurrentLine, preCondition);
+      if (movingToPreviousLine) {
+        moveCurrentItemsToPreviousLineAllowed(slide, itemsOfCurrentLine); //optimizing current line to previous line
+        slide.previousLine();
+      }
 
-      currentY = currentY + height;
+      slide.addItems(itemsOfCurrentLine);
 
+      if (! movingToPreviousLine) { //not optimizing the current line to the previous line, so prepare stepping to next line
+        currentY += height;
+        currentY += getDistanceBetweenLines();
+      }
+
+      slide.newLine(); //new line always, because if we move current items to previous line we first step back
 
     }
 
@@ -284,6 +292,64 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       removeEmptySlides(slides);
 
     return slides;
+  }
+
+  private int getBorder () {
+    return 0; //TODO make configurable
+  }
+
+  /**
+   * move the items of current line to the end of the previous line
+   * @param slide         slide
+   * @param currentItems  currenItems
+   */
+  private void moveCurrentItemsToPreviousLineAllowed (final Slide slide, final Collection <SlideItem> currentItems) {
+    SlideItem lastSlideItem = slide.getItems().get(slide.getItems().size() - 1);
+    int lastY = lastSlideItem.getY();
+    int lastX = lastSlideItem.getXMax();
+
+    for (SlideItem item: currentItems) {
+      item.setX(item.getX() - getBorder() + lastX);
+      item.setY(lastY);
+    }
+  }
+
+  /**
+   * returns if moving the items of current line to the end of the previous is allowed.
+   * This is allowed if:
+   * - a previous line exists
+   * - optimizing is enabled by config
+   * - the current line is short enough to fit at the end of the previous line
+   *
+   * @param slide         slide
+   * @param currentItems  items of current line
+   * @param preCondition  preCondition
+   * @return true/false
+   */
+  private boolean isMovingCurrentItemsToPreviousLineAllowed (final Slide slide, final List <SlideItem> currentItems, CalculatorPreCondition preCondition) {
+
+    if (! getConfig().isOptimizeLineFilling())
+      return false;
+
+    if (slide.getItems().isEmpty())
+      return false;
+
+
+    int firstX = currentItems.get(0).getX();
+    int lastXMax = currentItems.get(currentItems.size() - 1).getXMax();
+
+    int spaceAmountOfCurrentItems = lastXMax - firstX;
+
+
+    SlideItem lastSlideItem = slide.getItems().get(slide.getItems().size() - 1);
+    int xMaxOfLast = lastSlideItem.getXMax();
+
+    if (xMaxOfLast + spaceAmountOfCurrentItems > preCondition.getCalculationsize().x)
+      return false;
+
+
+    return true;
+
   }
 
   @Override

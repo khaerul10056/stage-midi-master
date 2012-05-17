@@ -58,7 +58,18 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
    */
   boolean isShowTitle();
 
+  /**
+   * returns if empty slides should be skipped
+   * @return true/false
+   */
   boolean isSkipEmptySlides ();
+
+  /**
+   * returns if lines, that fit on one line should be merged automatically
+   * to need less space on the page
+   * @return true/false
+   */
+  boolean isOptimizeLineFilling ();
 
 
 

@@ -43,6 +43,8 @@ public class Slide {
 
   private Color foregroundColor;
 
+  private Point size;
+
 
   public Slide (EObject modelRef, final EObject firstLineModelRef, final Font font) {
     this.modelRef = modelRef;
@@ -87,8 +89,17 @@ public class Slide {
     items.put(currentLine, collection);
   }
 
+  public void addItems (final Collection <SlideItem> newItems) {
+    for (SlideItem next: newItems)
+      addItem(next);
+  }
+
   public void newLine () {
     currentLine++;
+  }
+
+  public void previousLine () {
+    currentLine --;
   }
 
   public int getLineCount () {
@@ -186,14 +197,13 @@ public class Slide {
   public String toString () {
     StringBuilder builder = new StringBuilder();
 
-    builder.append("Part " + modelRef);
+    builder.append("Part " + modelRef + "\nX: " + getSize().x + "/" + getSize().y + "\n");
 
     for (SlideItem nextItem : getItems()) {
-      builder.append("- " +
-        nextItem.getText() + " / " + nextItem.getX() + " / " + nextItem.getY() + " / " + nextItem.getItemType().toString() + "\n");
+      builder.append(nextItem.toString() + "\n");
     }
 
-    return builder.toString();
+    return builder.toString() + "\n";
   }
 
   public Font getFont () {
@@ -230,6 +240,14 @@ public class Slide {
 
   public EObject getFirstLineModelRef () {
     return firstLineModelRef;
+  }
+
+  public Point getSize () {
+    return size;
+  }
+
+  public void setSize (Point size) {
+    this.size = size;
   }
 
 
