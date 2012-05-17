@@ -211,7 +211,9 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     }
 
     //Calculate current part
-    for (MidiFileTextLine nextTextLine : part.getRefPart() != null ? part.getRefPart().getTextlines() : part.getTextlines()) {
+
+    List <MidiFileTextLine> textlines = part.getRefPart() != null ? part.getRefPart().getTextlines() : part.getTextlines();
+    for (MidiFileTextLine nextTextLine : textlines ) {
 
       if (getConfig().isNewPageRespected() && nextTextLine.isNewSlide()) {
         slide = newSlide(midifile, part, nextTextLine,  zoomedFont, preCondition);
@@ -271,10 +273,13 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
       }
 
-      boolean movingToPreviousLine = isMovingCurrentItemsToPreviousLineAllowed(slide, itemsOfCurrentLine, preCondition);
-      if (movingToPreviousLine) {
-        moveCurrentItemsToPreviousLineAllowed(slide, itemsOfCurrentLine); //optimizing current line to previous line
-        slide.previousLine();
+      boolean movingToPreviousLine = false;
+      if (! nextTextLine.equals(textlines.get(0))) {
+        movingToPreviousLine = isMovingCurrentItemsToPreviousLineAllowed(slide, itemsOfCurrentLine, preCondition);
+        if (movingToPreviousLine) {
+          moveCurrentItemsToPreviousLineAllowed(slide, itemsOfCurrentLine); //optimizing current line to previous line
+          slide.previousLine();
+        }
       }
 
       slide.addItems(itemsOfCurrentLine);
@@ -344,12 +349,14 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     SlideItem lastSlideItem = slide.getItems().get(slide.getItems().size() - 1);
     int xMaxOfLast = lastSlideItem.getXMax();
 
-    if (xMaxOfLast + spaceAmountOfCurrentItems > preCondition.getCalculationsize().x)
-      return false;
-
-
-    return true;
-
+    String logtext = "";
+    for (SlideItem next: currentItems) {
+      logtext += next.getText();
+    }
+    boolean optimizing = xMaxOfLast + spaceAmountOfCurrentItems < preCondition.getCalculationsize().x;
+    LOGGER.info("Text <" + logtext + "> needs " + spaceAmountOfCurrentItems +
+                ", appending at " + xMaxOfLast + "calculcationsize is " + preCondition.getCalculationsize().x + "->optimizing=" + optimizing);
+    return optimizing;
   }
 
   @Override

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 import mda.AbstractSessionItem;
@@ -54,7 +53,7 @@ public class PdfExporter extends AbstractExporter {
     config.setShowTitle(true);
     config.setFontsize(new Integer (12));
     config.setGraphicsContext(new PDFGraphicsContext());
-    //config.setOptimizeLineFilling(true);
+    config.setOptimizeLineFilling(true);
     calculator.setConfig(config);
 
     Rectangle pagesizeA4 = PageSize.A4;
@@ -67,8 +66,8 @@ public class PdfExporter extends AbstractExporter {
     document.open();
     float x = pagesizeA4.width();
     float y = pagesizeA4.height();
-    LOGGER.info("set size to " + x + "(" + getPixel(x) + ") x" +  + y + "(" + getPixel(y) + ") ");
-    calcPreCondition.setCalculationsize(new Point(getPixel(x), getPixel(y)));
+    LOGGER.info("set size to " + x +","+ y + ")");
+    calcPreCondition.setCalculationsize(new Point ((int)x, (int)y)); //new Point(getPixel(x), getPixel(y)));
 
     for (AbstractSessionItem next: items) {
       export(document, writer, (MidiFile) next);
@@ -86,15 +85,7 @@ public class PdfExporter extends AbstractExporter {
     return exportFile;
   }
 
-  private float getCm (final int pixel) {
-    BigDecimal ergebnis = new BigDecimal (pixel).multiply(new BigDecimal(2.54)).divide(new BigDecimal (72), BigDecimal.ROUND_DOWN);
-    return ergebnis.floatValue();
-  }
 
-  private int getPixel (final float cm) {
-    BigDecimal ergebnis = new BigDecimal (cm).multiply(new BigDecimal(72)).divide(new BigDecimal (2.54), BigDecimal.ROUND_DOWN);
-    return ergebnis.intValue();
-  }
 
   private void export (final Document doc, final PdfWriter writer, final MidiFile nextItem) throws ExportException {
 
@@ -119,14 +110,11 @@ public class PdfExporter extends AbstractExporter {
     LOGGER.info("In PdfExporter: \n" + song.toString());
 
     for (SlideItem nextItem: song.getItems()) {
-
       boolean chord = nextItem.getItemType().equals(SlideType.CHORD);
-      float cmX = getCm(nextItem.getX());
-      float cmWidth = getCm(nextItem.getWidth());
-      float cmY = doc.getPageSize().height() - getCm(nextItem.getY());
-      LOGGER.info("Add text " + nextItem.getText() + " to X " + nextItem.getX() + "(" + cmX + ") " + ", Y " + nextItem.getY() + "(" + cmY + ")");
+      float y = doc.getPageSize().height() - nextItem.getY();
+      LOGGER.info("Add text <" + nextItem.getText() + "> to X " + nextItem.getX() + ", Y " + nextItem.getY());
 
-      absText(writer, nextItem.getText(), cmX, cmY, cmWidth, chord, nextItem.getFont());
+      absText(writer, nextItem.getText(), nextItem.getX(), y, nextItem.getWidth(), chord, nextItem.getFont());
     }
 
     if (applicationsession != null && applicationsession.getGlobalConfs().isShowGrid())
@@ -159,8 +147,6 @@ public class PdfExporter extends AbstractExporter {
       BaseFont bf = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED); //centralize fonthandling
       BaseFont bfBold = BaseFont.createFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252, BaseFont.EMBEDDED); //centralize fonthandling
 
-      int widthReal = bf.getWidth(text);
-      LOGGER.info(widthReal + "<->" + width);
       cb.saveState();
       cb.beginText();
       cb.moveText(x, y);
@@ -176,14 +162,6 @@ public class PdfExporter extends AbstractExporter {
       cb.showText(text);
 
       cb.endText();
-
-      cb.setLineWidth(0f);
-      cb.moveTo(x, y);
-      cb.lineTo(x + width, y);
-      cb.lineTo(x + width, y + width);
-      cb.lineTo(x, y+ + width);
-      cb.lineTo(x,y);
-      cb.stroke();
 
       cb.restoreState();
     } catch (DocumentException e) {
