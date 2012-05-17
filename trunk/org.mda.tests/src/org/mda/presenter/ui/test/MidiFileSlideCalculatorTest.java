@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import java.io.File;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import mda.MidiFile;
@@ -21,10 +22,29 @@ import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.commons.ui.calculator.SlideType;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 
 public class MidiFileSlideCalculatorTest {
 
+  private static final Log LOGGER  = LogFactory.getLogger(MidiFileSlideCalculatorTest.class);
+
+  private void checkConsistency (final Slide slide) {
+    for (int line = 0; line < slide.getLineCount(); line ++) {
+      int yOfLine = -1;
+      int xOfLine = -1;
+      Collection <SlideItem> itemsOfLine = slide.getItems(line);
+      for (SlideItem next: itemsOfLine) {
+        Assert.assertTrue(next.getText(), yOfLine == -1 || yOfLine == next.getY());
+        Assert.assertTrue (next.getText(), next.getY() < next.getYMax());
+        Assert.assertTrue (next.getText(), next.getX() < next.getXMax());
+        Assert.assertTrue (next.getText(), next.getX() >= xOfLine);
+        yOfLine = next.getY();
+        xOfLine = next.getXMax();
+      }
+    }
+  }
 
   @Test
   public void optimizeLineFilling () {
@@ -36,6 +56,7 @@ public class MidiFileSlideCalculatorTest {
     creator = creator.part(MidiFilePartType.VERS);
     creator = creator.line().text("First line").text("still");
     creator = creator.line().text("second merged");
+    creator = creator.line().text("third line, which should definitively not be merged to previous line");
     MidiFile song = creator.get();
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
@@ -49,10 +70,12 @@ public class MidiFileSlideCalculatorTest {
     Slide firstSlide = calculate.get(0);
     Assert.assertEquals (2, firstSlide.getItems(0).size());   //First case: second line too long, optimizing is disabled
     Assert.assertEquals (1, firstSlide.getItems(1).size());
+    checkConsistency(firstSlide);
 
     Slide secondSlide = calculate.get(1);
     Assert.assertEquals (2, secondSlide.getItems(0).size());  //Second case: second line can be optimized, but optimizing is disabled
     Assert.assertEquals (1, secondSlide.getItems(1).size());
+    checkConsistency(secondSlide);
 
 
     config.setOptimizeLineFilling(true);
@@ -62,10 +85,13 @@ public class MidiFileSlideCalculatorTest {
     firstSlide = calculate.get(0);
     Assert.assertEquals (2, firstSlide.getItems(0).size());          //First case: second line too long, optimizing is enabled
     Assert.assertEquals (1, firstSlide.getItems(1).size());
+    checkConsistency(firstSlide);
 
     secondSlide = calculate.get(1);
+    LOGGER.info(secondSlide.toString());
     Assert.assertEquals (3, secondSlide.getItems(0).size());  //Second case: second line can be optimized, optimizing is enabled
-    Assert.assertEquals (0, secondSlide.getItems(1).size());
+    Assert.assertEquals (1, secondSlide.getItems(1).size());
+    checkConsistency(secondSlide);
   }
 
   @Test

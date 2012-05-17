@@ -11,6 +11,8 @@ import mda.AbstractSessionItem;
 import mda.ExportConfiguration;
 import mda.MidiFile;
 import org.eclipse.swt.graphics.Point;
+import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.FontDescriptor;
@@ -38,6 +40,8 @@ public class PdfExporter extends AbstractExporter {
   private MidiFileSlideCalculator calculator       = new MidiFileSlideCalculator();
   private CalculatorPreCondition  calcPreCondition = new CalculatorPreCondition();
 
+  private ApplicationSession applicationsession = MdaModule.getInjector().getInstance(ApplicationSession.class);
+
 
   public File export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration exportconfig) throws ExportException  {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
@@ -50,7 +54,7 @@ public class PdfExporter extends AbstractExporter {
     config.setShowTitle(true);
     config.setFontsize(new Integer (12));
     config.setGraphicsContext(new PDFGraphicsContext());
-    config.setOptimizeLineFilling(true);
+    //config.setOptimizeLineFilling(true);
     calculator.setConfig(config);
 
     Rectangle pagesizeA4 = PageSize.A4;
@@ -112,6 +116,8 @@ public class PdfExporter extends AbstractExporter {
 
   private void exportSlide (final Document doc, final PdfWriter writer, Slide song) {
 
+    LOGGER.info("In PdfExporter: \n" + song.toString());
+
     for (SlideItem nextItem: song.getItems()) {
 
       boolean chord = nextItem.getItemType().equals(SlideType.CHORD);
@@ -123,6 +129,27 @@ public class PdfExporter extends AbstractExporter {
       absText(writer, nextItem.getText(), cmX, cmY, cmWidth, chord, nextItem.getFont());
     }
 
+    if (applicationsession != null && applicationsession.getGlobalConfs().isShowGrid())
+      showGrid (writer, song.getSize());
+
+
+  }
+
+  private void showGrid (PdfWriter writer, Point size) {
+    PdfContentByte cb = writer.getDirectContent();
+    cb.saveState();
+    for (int i = 0; i < size.x; i += 100) {
+      cb.moveTo(i,  0);
+      cb.lineTo(i, size.y);
+    }
+
+    for (int i = 0; i < size.y; i += 100) {
+      cb.moveTo (0, i);
+      cb.lineTo(size.x, i);
+    }
+
+    cb.stroke();
+    cb.restoreState();
 
   }
 
@@ -147,7 +174,17 @@ public class PdfExporter extends AbstractExporter {
       }
 
       cb.showText(text);
+
       cb.endText();
+
+      cb.setLineWidth(0f);
+      cb.moveTo(x, y);
+      cb.lineTo(x + width, y);
+      cb.lineTo(x + width, y + width);
+      cb.lineTo(x, y+ + width);
+      cb.lineTo(x,y);
+      cb.stroke();
+
       cb.restoreState();
     } catch (DocumentException e) {
       e.printStackTrace();

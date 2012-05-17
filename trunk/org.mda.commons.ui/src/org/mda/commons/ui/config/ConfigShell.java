@@ -23,6 +23,8 @@ public class ConfigShell extends Shell {
 
   private Spinner spnFontSize;
 
+  private Button chkEnableGrid;
+
   private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
 
@@ -42,6 +44,16 @@ public class ConfigShell extends Shell {
     if (configuration.getFontsize() != null)
       spnFontSize.setSelection(configuration.getFontsize());
     spnFontSize.setLayoutData(getContentData());
+
+    if (session.getFeatureActivation().isShowGridEnabled()) {
+      Label lblGrid = new Label (this, SWT.NONE);
+      lblGrid.setText("Grid:");
+      lblGrid.setLayoutData(getLabelData());
+
+      chkEnableGrid = new Button(this, SWT.CHECK);
+      chkEnableGrid.setSelection(session.getGlobalConfs().isShowGrid());
+      chkEnableGrid.setLayoutData(getContentData());
+    }
 
     Label lblExtender = new Label (this, SWT.NONE);
     lblExtender.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true, 2, 1));
@@ -92,6 +104,7 @@ public class ConfigShell extends Shell {
 
   protected void save () {
     configuration.setFontsize(spnFontSize.getSelection());
+    session.getGlobalConfs().setShowGrid(chkEnableGrid.getSelection());
 
     session.saveModel();
   }

@@ -11,6 +11,7 @@ import java.util.List;
 import mda.AbstractSessionItem;
 import mda.ExportConfiguration;
 import org.apache.poi.hslf.model.Fill;
+import org.apache.poi.hslf.model.Line;
 import org.apache.poi.hslf.model.Picture;
 import org.apache.poi.hslf.model.Slide;
 import org.apache.poi.hslf.model.TextBox;
@@ -19,6 +20,8 @@ import org.apache.poi.hslf.usermodel.SlideShow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
+import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 import org.mda.Utils;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.export.AbstractExporter;
@@ -31,6 +34,8 @@ public class PptExporter extends AbstractExporter {
   private final static Log LOG = LogFactory.getLogger(PptExporter.class);
 
   private SlideShow lastExportedResult;
+
+  private ApplicationSession applicationsession = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
 
 
@@ -45,6 +50,7 @@ public class PptExporter extends AbstractExporter {
     config.setChordVisible(exportconfig.isWithChords());
     config.setShowBackground(true);
     config.setSkipEmptySlides(true);
+    config.setOptimizeLineFilling(true); //TODO deaktivieren
     getCalculator().setConfig(config);
     LOG.info("Calculate size " + show.getPageSize().width + "x" + show.getPageSize().height + " from " +
         getCalculator().getConfig().getDefaultPresentationScreenSize().x + "x" + getCalculator().getConfig().getDefaultPresentationScreenSize().y );
@@ -72,6 +78,8 @@ public class PptExporter extends AbstractExporter {
 
     if (song.getItems().size() == 0)
       return;
+
+    LOG.info("In PptExporter: \n" + song.toString());
 
     Slide newSlide = show.createSlide();
 
@@ -120,6 +128,27 @@ public class PptExporter extends AbstractExporter {
       y += height + 10;
 
     }
+
+    if (applicationsession != null && applicationsession.getGlobalConfs().isShowGrid())
+      paintGrid(newSlide, song.getSize());
+
+  }
+
+  private void paintGrid (Slide newSlide, Point size) {
+    for (int i = 0; i < size.x; i += 100) {
+      Line line = new Line();
+      line.setLineStyle(Line.PEN_DOT);
+      line.setAnchor(new Rectangle (i, 0, 0, size.y));
+      newSlide.addShape(line);
+    }
+
+    for (int i = 0; i < size.y; i += 100) {
+      Line line = new Line();
+      line.setLineStyle(Line.PEN_DOT);
+      line.setAnchor(new Rectangle (0, i, size.x, 0));
+      newSlide.addShape(line);
+    }
+
   }
 
   @Override
