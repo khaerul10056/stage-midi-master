@@ -19,6 +19,7 @@ public class SlideItem {
   private final SlideItem refSlideItem;
   private final boolean newSlide;
   private final FontDescriptor font;
+  private final int indentToChord;
 
 
   /**
@@ -29,14 +30,18 @@ public class SlideItem {
    * @param refSlideItem  maybe <code>null</code> on text-items. Any chord-item holds a reference to his text-item
    * @param newSlide if a new slide is forces in this line
    */
-  public SlideItem (final Rectangle location, final String text, final SlideType itemType, final SlideItem refSlideItem, final boolean newSlide, final FontDescriptor font) {
+  public SlideItem (final Rectangle location, final String text, final SlideType itemType, final SlideItem refSlideItem, final boolean newSlide,
+                    final FontDescriptor font, final int indentToChord) {
     this.location = location;
     this.text = text;
     this.itemType = itemType;
     this.refSlideItem = refSlideItem;
     this.newSlide = newSlide;
     this.font = font;
+    this.indentToChord = indentToChord;
   }
+
+
 
   public String toString () {
     return "<" + getText() + "(" + getX() + "," + getY() + "," + getXMax() + "," + getYMax() + "-" +
@@ -134,6 +139,10 @@ public class SlideItem {
 
   public FontDescriptor getFont () {
     return font;
+  }
+
+  public int getIndentToChord () {
+    return indentToChord;
   }
 
 

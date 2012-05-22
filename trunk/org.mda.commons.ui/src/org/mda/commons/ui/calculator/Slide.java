@@ -171,6 +171,19 @@ public class Slide {
     return allItems;
   }
 
+  public List<SlideItem> getItems (final SlideType type) {
+
+    List<SlideItem> filteredItems = new ArrayList<SlideItem>();
+
+    for (Integer keys : items.keySet()) {
+      Collection<SlideItem> allItems = items.get(keys);
+      for (SlideItem next: allItems)
+        if (next.getItemType().equals(type))
+          filteredItems.add(next);
+    }
+    return filteredItems;
+  }
+
   public EObject getModelRef () {
     return modelRef;
   }
