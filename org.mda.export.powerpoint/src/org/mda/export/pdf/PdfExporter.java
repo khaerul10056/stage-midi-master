@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import mda.AbstractSessionItem;
@@ -41,6 +42,7 @@ public class PdfExporter extends AbstractExporter {
 
   private ApplicationSession applicationsession = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
+  private List <Slide> lastSlides = new ArrayList<Slide>();
 
   public File export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration exportconfig) throws ExportException  {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
@@ -96,9 +98,9 @@ public class PdfExporter extends AbstractExporter {
       throw new ExportException("Error createing new page in document " + doc.toString(), e);
     }
 
-    List<Slide> calculate = calculator.calculate(nextItem, calcPreCondition);
+    setLastSlides(calculator.calculate(nextItem, calcPreCondition));
 
-    for (Slide nextInternSlide : calculate) {
+    for (Slide nextInternSlide : getLastSlides()) {
       exportSlide(doc, writer, nextInternSlide);
     }
 
@@ -175,4 +177,20 @@ public class PdfExporter extends AbstractExporter {
   public String getSuffix () {
     return ".pdf";
   }
+
+
+
+  public List <Slide> getLastSlides () {
+    return lastSlides;
+  }
+
+
+
+  private void setLastSlides (List <Slide> lastSlides) {
+    this.lastSlides = lastSlides;
+  }
+
+
+
+
 }

@@ -14,7 +14,10 @@ import mda.MidiFileTextLine;
 import mda.MidiPlayerRoot;
 import org.eclipse.swt.graphics.Point;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mda.ApplicationSession;
+import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
@@ -30,14 +33,24 @@ public class MidiFileSlideCalculatorTest {
 
   private static final Log LOGGER  = LogFactory.getLogger(MidiFileSlideCalculatorTest.class);
 
+  private static ApplicationSession appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
+
+
+  @BeforeClass
+  public static void beforeClass () {
+    appSession.load(null);
+  }
+
+
+
   private void checkConsistency (final Slide slide) {
     for (int line = 0; line < slide.getLineCount(); line ++) {
       int yOfLine = -1;
       int xOfLine = -1;
       Collection <SlideItem> itemsOfLine = slide.getItems(line);
       for (SlideItem next: itemsOfLine) {
-        Assert.assertTrue(next.getText(), yOfLine == -1 || yOfLine == next.getY());
-        Assert.assertTrue (next.getText(), next.getY() < next.getYMax());
+        Assert.assertTrue(next.getText() + "yOfLine = " + yOfLine + ", next.getY() = " + next.getY(), yOfLine == -1 || yOfLine == next.getY());
+        Assert.assertTrue (next.getText() + "next.getY = " + next.getY() + ", next.getYMax = " + next.getYMax(), next.getY() < next.getYMax());
         Assert.assertTrue (next.getText(), next.getX() < next.getXMax());
         Assert.assertTrue (next.getText(), next.getX() >= xOfLine);
         yOfLine = next.getY();
@@ -45,6 +58,8 @@ public class MidiFileSlideCalculatorTest {
       }
     }
   }
+
+
 
   @Test
   public void optimizeLineFilling () {

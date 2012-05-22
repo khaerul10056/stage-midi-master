@@ -71,7 +71,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
       Rectangle titleRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, sizeTitle.x, sizeTitle.y);
 
-      SlideItem titleItem = new SlideItem(titleRectangle, name.toUpperCase(), SlideType.TEXT, null, false, descTitle);
+      SlideItem titleItem = new SlideItem(titleRectangle, name.toUpperCase(), SlideType.TEXT, null, false, descTitle, 0);
       slide.addItem (titleItem);
       currentY += sizeTitle.y * 2;
     }
@@ -202,10 +202,13 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       Point parttypeExtend = getGc().getSize(blockType, getConfig().getFont());
       int addToY = getOffsetChordToText(currentY, parttypeExtend);
       Point point = new Point(leftPosDefault, addToY);
-      Point zoomedPoint = calculateZoomedPoint(point, preCondition);
-      Rectangle textRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, parttypeExtend.x, parttypeExtend.y);
 
-      SlideItem newTextItem = new SlideItem(textRectangle, blockType, SlideType.TEXT, null, false, getConfig().getFont());
+      Point zoomedPoint = calculateZoomedPoint(point, preCondition);
+      Point zoomedPartTypeExtend = calculateZoomedPoint(parttypeExtend, preCondition);
+
+      Rectangle textRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, zoomedPartTypeExtend.x, zoomedPartTypeExtend.y);
+
+      SlideItem newTextItem = new SlideItem(textRectangle, blockType, SlideType.TEXT, null, false, getConfig().getFont(), 0);
       slide.addItem(newTextItem);
       leftPosDefault += longestTypeOffset;
     }
@@ -252,20 +255,24 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
         if (text != null) {
           int addToY = getOffsetChordToText(currentY, testExtend);
+          int indentToChord = currentY - addToY; //indent between chord and text
           Point point = new Point(currentX, addToY);
           Point zoomedPoint = calculateZoomedPoint(point, preCondition);
+          Point zoomedTextExtend = calculateZoomedPoint(textExtend, preCondition);
+          Point zoomedIndent = calculateZoomedPoint(new Point (indentToChord, 0), preCondition);
 
-          Rectangle textRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, textExtend.x, textExtend.y);
-          newTextItem = new SlideItem(textRectangle, text, SlideType.TEXT, null, newSlideForced, getConfig().getFont());
+          Rectangle textRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, zoomedTextExtend.x, zoomedTextExtend.y);
+          newTextItem = new SlideItem(textRectangle, text, SlideType.TEXT, null, newSlideForced, getConfig().getFont(), zoomedIndent.x);
           itemsOfCurrentLine.add(newTextItem);
         }
 
         if (chord != null && getConfig().isChordPresented()) {
           Point point = new Point (currentX, currentY);
           Point zoomedPoint = calculateZoomedPoint(point, preCondition);
+          Point zoomedChordExtend = calculateZoomedPoint(chordExtend, preCondition);
 
-          Rectangle chordRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, chordExtend.x, chordExtend.y);
-          SlideItem newItem = new SlideItem(chordRectangle, chord, SlideType.CHORD, newTextItem, newSlideForced, getConfig().getFont());
+          Rectangle chordRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, zoomedChordExtend.x, zoomedChordExtend.y);
+          SlideItem newItem = new SlideItem(chordRectangle, chord, SlideType.CHORD, newTextItem, newSlideForced, getConfig().getFont(), 0);
           itemsOfCurrentLine.add(newItem);
         }
 
@@ -308,15 +315,41 @@ public class MidiFileSlideCalculator extends SlideCalculator {
    * @param slide         slide
    * @param currentItems  currenItems
    */
-  private void moveCurrentItemsToPreviousLineAllowed (final Slide slide, final Collection <SlideItem> currentItems) {
-    SlideItem lastSlideItem = slide.getItems().get(slide.getItems().size() - 1);
-    int lastY = lastSlideItem.getY();
-    int lastX = lastSlideItem.getXMax();
+  private void moveCurrentItemsToPreviousLineAllowed (final Slide slide, final List <SlideItem> currentItems) {
+    List<SlideItem> textItems = slide.getItems(SlideType.TEXT);
+    SlideItem lastTextItem = textItems.get(textItems.size() - 1);
+    int lastX = lastTextItem.getXMax();
+    int lastY = lastTextItem.getY();
+
+    SlideItem lastChordItem = null;
+    List<SlideItem> chordItems = slide.getItems(SlideType.CHORD);
+    if (chordItems.size() > 0 ) {
+      lastChordItem = textItems.get(chordItems.size() - 1);
+      lastX = Math.max(lastX, lastChordItem.getXMax());
+    }
+
+
+    //SlideItem lastSlideItem = slide.getItems().get(slide.getItems().size() - 1);
+    int firstX = currentItems.get(0).getX();
 
     for (SlideItem item: currentItems) {
-      item.setX(item.getX() - getBorder() + lastX);
-      item.setY(lastY);
+      int newY = lastY;
+      if (item.getItemType().equals(SlideType.CHORD))
+        newY += lastTextItem.getIndentToChord();
+
+      item.setX(item.getX() - getBorder() + lastX - firstX);
+      item.setY(newY);
     }
+  }
+
+  private int getMaxX (final Collection <SlideItem> items) {
+    int maxX = 0;
+    for (SlideItem next: items) {
+      if (next.getXMax() > maxX)
+        maxX = next.getXMax();
+    }
+
+    return maxX;
   }
 
   /**
@@ -341,12 +374,13 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
 
     int firstX = currentItems.get(0).getX();
-    int lastXMax = currentItems.get(currentItems.size() - 1).getXMax();
+    int lastXMax = getMaxX(currentItems);
 
     int spaceAmountOfCurrentItems = lastXMax - firstX;
 
 
-    SlideItem lastSlideItem = slide.getItems().get(slide.getItems().size() - 1);
+    List<SlideItem> textitems = slide.getItems(SlideType.TEXT);
+    SlideItem lastSlideItem = textitems.get(textitems.size() - 1);
     int xMaxOfLast = lastSlideItem.getXMax();
 
     String logtext = "";
