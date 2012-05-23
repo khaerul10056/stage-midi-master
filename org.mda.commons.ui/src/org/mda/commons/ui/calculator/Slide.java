@@ -89,6 +89,22 @@ public class Slide {
     items.put(currentLine, collection);
   }
 
+  /**
+   * finds Items that equals the given text
+   * @param text   text to equal
+   * @return items
+   */
+  public Collection <SlideItem> findItem (final String text) {
+    Collection <SlideItem> foundItems = new ArrayList<SlideItem>();
+    for (SlideItem nextItem: getItems()) {
+      if (nextItem.getText().trim().equals(text))
+        foundItems.add(nextItem);
+    }
+
+    return foundItems;
+
+  }
+
   public void addItems (final Collection <SlideItem> newItems) {
     for (SlideItem next: newItems)
       addItem(next);

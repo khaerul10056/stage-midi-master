@@ -42,29 +42,21 @@ public class TestPdfExporter {
       Assert.assertTrue (tmpFile.delete());
   }
 
-  private void checkConsistency (final Slide slide) {
-    for (int line = 0; line < slide.getLineCount(); line ++) {
-      int yOfLine = -1;
-      int xOfLine = -1;
-      Collection <SlideItem> itemsOfLine = slide.getItems(line);
-      for (SlideItem next: itemsOfLine) {
-        //Assert.assertTrue(next.getText() + "yOfLine = " + yOfLine + ", next.getY() = " + next.getY(), yOfLine == -1 || yOfLine == next.getY());
-        //Assert.assertTrue (next.getText() + "next.getY = " + next.getY() + ", next.getYMax = " + next.getYMax(), next.getY() < next.getYMax());
-        Assert.assertTrue (next.getText() + "next.getX() = " + next.getX() + ", next.getXMax() = " + next.getXMax(), next.getX() < next.getXMax());
-        if (next.getX() > 0)
-          Assert.assertTrue (next.getText() + "next.getX() = " + next.getX() + ", xOfLine = " + xOfLine, next.getX() >= xOfLine);
-        yOfLine = next.getY();
-        xOfLine = next.getXMax();
-      }
-    }
-  }
-
   @BeforeClass
   public static void beforeClass () {
     appSession.load(null);
     appSession.getGlobalConfs().setShowGrid(true);
   }
 
+  private void assertText (final Slide slide, final String text, final int x, final int y) {
+    Collection<SlideItem> findItem = slide.findItem(text);
+    for (SlideItem next: findItem) {
+      if (next.getX() == x && next.getY() == y)
+        return;
+    }
+
+    Assert.fail ("Position " + x + "," + y + " of text <" + text + "> not found");
+  }
   @Test
   public void checkExportWithChords () {
     PdfExporter exporter = new PdfExporter();
@@ -78,12 +70,21 @@ public class TestPdfExporter {
     exporter.export(sessionitems, tmpFile, config);
 
     List<Slide> lastSlides = exporter.getLastSlides();
-    for (Slide next: lastSlides) {
-      LOG.info(next.toString());
-      checkConsistency(next);
-    }
+    Slide versSlide = lastSlides.get(1);
 
-    throw new IllegalStateException("Assertions fehlen noch");
+    final int FIRSTLINE_CHORD = 63;
+    final int FIRSTLINE_TEXT = 75;
+    LOG.info(versSlide.toString());
+
+    assertText(versSlide, "Alle", 126, FIRSTLINE_TEXT);
+    assertText(versSlide, "D", 126, FIRSTLINE_CHORD);
+    assertText(versSlide, "Schöpfung staunt und", 153, FIRSTLINE_TEXT);
+    assertText(versSlide, "G", 153, FIRSTLINE_CHORD);
+    assertText(versSlide, "preist, und", 295, FIRSTLINE_TEXT);
+    assertText(versSlide, "A", 295, FIRSTLINE_CHORD);
+    assertText(versSlide, "betet an in", 360, FIRSTLINE_TEXT);
+    assertText(versSlide, "D", 360, FIRSTLINE_CHORD);
+    assertText(versSlide, "Wahrheit und in", 429, FIRSTLINE_TEXT);
   }
 
   @Test
@@ -91,7 +92,7 @@ public class TestPdfExporter {
     PdfExporter exporter = new PdfExporter();
 
     ExportConfiguration config = MidiplayerFactory.eINSTANCE.createExportConfiguration();
-    config.setWithChords(true);
+    config.setWithChords(false);
 
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();
     sessionitems.add(appSession.getCurrentModel().getGallery().getGalleryItems().get(0));
@@ -99,12 +100,18 @@ public class TestPdfExporter {
     exporter.export(sessionitems, tmpFile, config);
 
     List<Slide> lastSlides = exporter.getLastSlides();
-    for (Slide next: lastSlides) {
-      LOG.info(next.toString());
-      checkConsistency(next);
-    }
 
-    throw new IllegalStateException("Assertions fehlen noch");
+    Slide versSlide = lastSlides.get(1);
+
+    final int FIRSTLINE_TEXT = 56;
+    LOG.info(versSlide.toString());
+
+    assertText(versSlide, "Alle", 126, FIRSTLINE_TEXT);
+    assertText(versSlide, "Schöpfung staunt und", 153, FIRSTLINE_TEXT);
+    assertText(versSlide, "preist, und", 295, FIRSTLINE_TEXT);
+    assertText(versSlide, "betet an in", 360, FIRSTLINE_TEXT);
+    assertText(versSlide, "Wahrheit und in", 429, FIRSTLINE_TEXT);
+
   }
 
 }

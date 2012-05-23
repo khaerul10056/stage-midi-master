@@ -378,7 +378,6 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
     int spaceAmountOfCurrentItems = lastXMax - firstX;
 
-
     List<SlideItem> textitems = slide.getItems(SlideType.TEXT);
     SlideItem lastSlideItem = textitems.get(textitems.size() - 1);
     int xMaxOfLast = lastSlideItem.getXMax();
@@ -388,7 +387,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       logtext += next.getText();
     }
     boolean optimizing = xMaxOfLast + spaceAmountOfCurrentItems < preCondition.getCalculationsize().x;
-    LOGGER.info("Text <" + logtext + "> needs " + spaceAmountOfCurrentItems +
+    if (LOGGER.isDebugEnabled())
+    LOGGER.debug("Text <" + logtext + "> needs " + spaceAmountOfCurrentItems +
                 ", appending at " + xMaxOfLast + "calculcationsize is " + preCondition.getCalculationsize().x + "->optimizing=" + optimizing);
     return optimizing;
   }
