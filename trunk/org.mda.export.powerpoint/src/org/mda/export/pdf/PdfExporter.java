@@ -109,12 +109,15 @@ public class PdfExporter extends AbstractExporter {
 
   private void exportSlide (final Document doc, final PdfWriter writer, Slide song) {
 
-    LOGGER.info("In PdfExporter: \n" + song.toString());
+    if (LOGGER.isDebugEnabled())
+      LOGGER.debug("In PdfExporter: \n" + song.toString());
 
     for (SlideItem nextItem: song.getItems()) {
       boolean chord = nextItem.getItemType().equals(SlideType.CHORD);
       float y = doc.getPageSize().height() - nextItem.getY();
-      LOGGER.info("Add text <" + nextItem.getText() + "> to X " + nextItem.getX() + ", Y " + nextItem.getY());
+
+      if (LOGGER.isDebugEnabled())
+        LOGGER.debug("Add text <" + nextItem.getText() + "> to X " + nextItem.getX() + ", Y " + nextItem.getY());
 
       absText(writer, nextItem.getText(), nextItem.getX(), y, nextItem.getWidth(), chord, nextItem.getFont());
     }
