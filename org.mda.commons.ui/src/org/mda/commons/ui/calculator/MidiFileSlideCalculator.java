@@ -45,7 +45,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     List<Slide> slides = new ArrayList<Slide>();
     MidiFile midifile = (MidiFile) sessionitem;
 
-    currentY = 0;
+    currentY = getConfiguredBorder();
 
     init(midifile);
 
@@ -53,6 +53,20 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       slides.addAll(calculatePart(nextPart, preCondition));
     }
     return slides;
+  }
+
+  /**
+   * returns the configured border.
+   * - Globally configured border, if exists
+   * - else API-configured border
+   *
+   * @return
+   */
+  private int getConfiguredBorder () {
+    if (appSession.getGlobalConfs().getDefaultBorder() != null)
+      return appSession.getGlobalConfs().getDefaultBorder().intValue();
+    else
+      return getConfig().getBorder();
   }
 
 
@@ -146,7 +160,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     LOGGER.debug("set foreground to " + slide.getForegroundColor());
 
     if (getConfig().isPagePerPart())
-      currentY = 0;
+      currentY = getConfiguredBorder();
     else
       currentY += testExtend.y; //between parts the should be a intend
 
@@ -185,7 +199,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     Slide slide = newSlide(midifile, part, part.getTextlines().size() > 0 ? part.getTextlines().get(0) : null, zoomedFont, preCondition);
     slides.add(slide);
 
-    int leftPosDefault = 0;
+    int leftPosDefault = getConfiguredBorder();
     //add title, if configured
     if (midifile.getParts().get(0).equals(part)) {
       currentX = leftPosDefault;
@@ -386,7 +400,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     for (SlideItem next: currentItems) {
       logtext += next.getText();
     }
-    boolean optimizing = xMaxOfLast + spaceAmountOfCurrentItems < preCondition.getCalculationsize().x;
+    boolean optimizing = xMaxOfLast + spaceAmountOfCurrentItems < preCondition.getCalculationsize().x - getConfiguredBorder();
     if (LOGGER.isDebugEnabled())
     LOGGER.debug("Text <" + logtext + "> needs " + spaceAmountOfCurrentItems +
                 ", appending at " + xMaxOfLast + "calculcationsize is " + preCondition.getCalculationsize().x + "->optimizing=" + optimizing);

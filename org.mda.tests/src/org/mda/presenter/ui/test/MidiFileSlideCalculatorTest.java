@@ -13,7 +13,6 @@ import mda.MidiFilePartType;
 import mda.MidiFileTextLine;
 import mda.MidiPlayerRoot;
 import org.eclipse.swt.graphics.Point;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
@@ -49,16 +48,57 @@ public class MidiFileSlideCalculatorTest {
       int xOfLine = -1;
       Collection <SlideItem> itemsOfLine = slide.getItems(line);
       for (SlideItem next: itemsOfLine) {
-        Assert.assertTrue(next.getText() + "yOfLine = " + yOfLine + ", next.getY() = " + next.getY(), yOfLine == -1 || yOfLine == next.getY());
-        Assert.assertTrue (next.getText() + "next.getY = " + next.getY() + ", next.getYMax = " + next.getYMax(), next.getY() < next.getYMax());
-        Assert.assertTrue (next.getText(), next.getX() < next.getXMax());
-        Assert.assertTrue (next.getText(), next.getX() >= xOfLine);
+        assertTrue(next.getText() + "yOfLine = " + yOfLine + ", next.getY() = " + next.getY(), yOfLine == -1 || yOfLine == next.getY());
+        assertTrue (next.getText() + "next.getY = " + next.getY() + ", next.getYMax = " + next.getYMax(), next.getY() < next.getYMax());
+        assertTrue (next.getText(), next.getX() < next.getXMax());
+        assertTrue (next.getText(), next.getX() >= xOfLine);
         yOfLine = next.getY();
         xOfLine = next.getXMax();
       }
     }
   }
 
+
+
+  @Test
+  public void border () {
+    final int BORDER = 60;
+    MidiFileCreator creator = MidiFileCreator.create();
+    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.line().text("This is the first refrain").text("still");
+    creator = creator.line().text("and this is the second line of the refrain");
+    creator = creator.part(MidiFilePartType.VERS);
+    creator = creator.line().text("This is the first vers").text("still");
+    MidiFile song = creator.get();
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setOptimizeLineFilling(false);
+    CalculatorPreCondition preCondition = new CalculatorPreCondition();
+    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
+    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    calculator.setConfig(config);
+    List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
+
+    config.setBorder(new Integer (BORDER));
+    List<Slide> calculateWithBorder = calculator.calculate(song, preCondition);
+
+    assertEquals (calculateWithoutBorder.size(), calculateWithBorder.size());
+    for (int i = 0; i < calculateWithBorder.size(); i++) {
+      Slide currentSlideWithoutBorder = calculateWithoutBorder.get(i);
+      Slide currentSlideWithBorder = calculateWithBorder.get(i);
+
+      assertEquals (currentSlideWithBorder.getItems().size(), currentSlideWithoutBorder.getItems().size());
+
+      for (int j = 0; j < currentSlideWithBorder.getItems().size(); j++) {
+        SlideItem nextItemWithoutBorder = currentSlideWithoutBorder.getItems().get(j);
+        SlideItem nextItemWithBorder = currentSlideWithBorder.getItems().get(j);
+        int expectedX = nextItemWithoutBorder.getX() + BORDER;
+        int expectedY = nextItemWithoutBorder.getY() + BORDER;
+
+        assertEquals (expectedX, nextItemWithBorder.getX());
+        assertEquals (expectedY, nextItemWithBorder.getY());
+      }
+    }
+  }
 
 
   @Test
@@ -83,13 +123,13 @@ public class MidiFileSlideCalculatorTest {
     List<Slide> calculate = calculator.calculate(song, preCondition);
 
     Slide firstSlide = calculate.get(0);
-    Assert.assertEquals (2, firstSlide.getItems(0).size());   //First case: second line too long, optimizing is disabled
-    Assert.assertEquals (1, firstSlide.getItems(1).size());
+    assertEquals (2, firstSlide.getItems(0).size());   //First case: second line too long, optimizing is disabled
+    assertEquals (1, firstSlide.getItems(1).size());
     checkConsistency(firstSlide);
 
     Slide secondSlide = calculate.get(1);
-    Assert.assertEquals (2, secondSlide.getItems(0).size());  //Second case: second line can be optimized, but optimizing is disabled
-    Assert.assertEquals (1, secondSlide.getItems(1).size());
+    assertEquals (2, secondSlide.getItems(0).size());  //Second case: second line can be optimized, but optimizing is disabled
+    assertEquals (1, secondSlide.getItems(1).size());
     checkConsistency(secondSlide);
 
 
@@ -98,14 +138,14 @@ public class MidiFileSlideCalculatorTest {
     calculator.setConfig(config);
     calculate = calculator.calculate(song, preCondition);
     firstSlide = calculate.get(0);
-    Assert.assertEquals (2, firstSlide.getItems(0).size());          //First case: second line too long, optimizing is enabled
-    Assert.assertEquals (1, firstSlide.getItems(1).size());
+    assertEquals (2, firstSlide.getItems(0).size());          //First case: second line too long, optimizing is enabled
+    assertEquals (1, firstSlide.getItems(1).size());
     checkConsistency(firstSlide);
 
     secondSlide = calculate.get(1);
     LOGGER.info(secondSlide.toString());
-    Assert.assertEquals (3, secondSlide.getItems(0).size());  //Second case: second line can be optimized, optimizing is enabled
-    Assert.assertEquals (1, secondSlide.getItems(1).size());
+    assertEquals (3, secondSlide.getItems(0).size());  //Second case: second line can be optimized, optimizing is enabled
+    assertEquals (1, secondSlide.getItems(1).size());
     checkConsistency(secondSlide);
   }
 
@@ -126,13 +166,13 @@ public class MidiFileSlideCalculatorTest {
     MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
     calculator.setConfig(config);
     List<Slide> calculate = calculator.calculate(song, preCondition);
-    Assert.assertEquals (3, calculate.size());
+    assertEquals (3, calculate.size());
 
     config.setSkipEmptySlides(true);
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
     calculator.setConfig(config);
     calculate = calculator.calculate(song, preCondition);
-    Assert.assertEquals (1, calculate.size());
+    assertEquals (1, calculate.size());
   }
   @Test
   public void showTitle () {
@@ -155,10 +195,10 @@ public class MidiFileSlideCalculatorTest {
 
     SlideItem item1 = calculate.get(0).getItems().get(0);
     SlideItem item2 = calculate.get(0).getItems().get(1);
-    Assert.assertEquals ("SONGTITLE", item1.getText());
-    Assert.assertEquals ("First line", item2.getText());
-    Assert.assertEquals (item1.getX(), item2.getX());
-    Assert.assertTrue (item1.getY() < item2.getY());
+    assertEquals ("SONGTITLE", item1.getText());
+    assertEquals ("First line", item2.getText());
+    assertEquals (item1.getX(), item2.getX());
+    assertTrue (item1.getY() < item2.getY());
 
   }
 
@@ -182,7 +222,7 @@ public class MidiFileSlideCalculatorTest {
     MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
     calculator.setConfig(config);
     List<Slide> calculate = calculator.calculate(song, preCondition);
-    Assert.assertEquals(1, calculate.size());
+    assertEquals(1, calculate.size());
 
     song.getParts().get(0).getTextlines().get(1).setNewSlide(true);
 
@@ -190,7 +230,7 @@ public class MidiFileSlideCalculatorTest {
 
     calculate = calculator.calculate(song, preCondition);
 
-    Assert.assertEquals(1, calculate.size());
+    assertEquals(1, calculate.size());
 
   }
 
@@ -213,14 +253,14 @@ public class MidiFileSlideCalculatorTest {
 
     MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
     List<Slide> calculate = calculator.calculate(song, preCondition);
-    Assert.assertEquals(1, calculate.size());
+    assertEquals(1, calculate.size());
 
     song.getParts().get(0).getTextlines().get(1).setNewSlide(true);
 
     calculate = calculator.calculate(song, preCondition);
-    Assert.assertEquals(2, calculate.size());
-    Assert.assertEquals (calculate.get(0).getItems().get(0).getY(), calculate.get(1).getItems().get(0).getY());
-    Assert.assertEquals (calculate.get(0).getItems().get(0).getX(), calculate.get(1).getItems().get(0).getX());
+    assertEquals(2, calculate.size());
+    assertEquals (calculate.get(0).getItems().get(0).getY(), calculate.get(1).getItems().get(0).getY());
+    assertEquals (calculate.get(0).getItems().get(0).getX(), calculate.get(1).getItems().get(0).getX());
   }
 
 
@@ -288,7 +328,7 @@ public class MidiFileSlideCalculatorTest {
     creator.line().text(TWO);
     creator.part(MidiFilePartType.ZWISCHENSPIEL).line().text(THREE);
     MidiFile song = creator.get();
-    Assert.assertEquals (2, song.getParts().size());
+    assertEquals (2, song.getParts().size());
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setChordVisible(true);
@@ -296,17 +336,17 @@ public class MidiFileSlideCalculatorTest {
     config.setFontsize(80);
 
     List<Slide> slides = calculate(song, config);
-    Assert.assertEquals (2, slides.size());
+    assertEquals (2, slides.size());
     Slide slide = slides.get(0);
     Slide slide2 = slides.get(1);
 
     SlideItem firstLineItem = slide.getItems().get(0);
     SlideItem thirdLineItem = slide2.getItems().get(0);
 
-    Assert.assertEquals (ONE, firstLineItem.getText());
-    Assert.assertEquals (THREE, thirdLineItem.getText());
+    assertEquals (ONE, firstLineItem.getText());
+    assertEquals (THREE, thirdLineItem.getText());
 
-    Assert.assertEquals (firstLineItem.getY(), thirdLineItem.getY());
+    assertEquals (firstLineItem.getY(), thirdLineItem.getY());
   }
   @Test
   public void checkWithType () {
@@ -319,7 +359,7 @@ public class MidiFileSlideCalculatorTest {
     creator.line().text(TWO);
     creator.part(MidiFilePartType.ZWISCHENSPIEL).line().text(THREE);
     MidiFile song = creator.get();
-    Assert.assertEquals (2, song.getParts().size());
+    assertEquals (2, song.getParts().size());
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setChordVisible(true);
@@ -328,7 +368,7 @@ public class MidiFileSlideCalculatorTest {
     config.setFontsize(80);
 
     List<Slide> slides = calculate(song, config);
-    Assert.assertEquals (2, slides.size());
+    assertEquals (2, slides.size());
     Slide slide = slides.get(0);
     Slide slide2 = slides.get(1);
 
@@ -339,17 +379,17 @@ public class MidiFileSlideCalculatorTest {
     SlideItem parttypeItem2 = slide2.getItems().get(0);
     SlideItem thirdLineItem = slide2.getItems().get(1);
 
-    Assert.assertEquals ("REFRAIN ", parttypeItem.getText());
-    Assert.assertEquals (ONE, firstLineItem.getText());
-    Assert.assertEquals (TWO, secondLineItem.getText());
+    assertEquals ("REFRAIN ", parttypeItem.getText());
+    assertEquals (ONE, firstLineItem.getText());
+    assertEquals (TWO, secondLineItem.getText());
 
-    Assert.assertEquals (parttypeItem.getY(), firstLineItem.getY());
-    Assert.assertTrue (chordLineItem.getY() < firstLineItem.getY());
-    Assert.assertTrue (parttypeItem.getX() + parttypeItem.getWidth() < secondLineItem.getX());
-    Assert.assertEquals(firstLineItem.getX(), secondLineItem.getX());
-    Assert.assertEquals(firstLineItem.getX(), thirdLineItem.getX());
-    Assert.assertEquals (parttypeItem.getX(), parttypeItem2.getX());
-    Assert.assertTrue (parttypeItem2.getY() > secondLineItem.getY());
+    assertEquals (parttypeItem.getY(), firstLineItem.getY());
+    assertTrue (chordLineItem.getY() < firstLineItem.getY());
+    assertTrue (parttypeItem.getX() + parttypeItem.getWidth() < secondLineItem.getX());
+    assertEquals(firstLineItem.getX(), secondLineItem.getX());
+    assertEquals(firstLineItem.getX(), thirdLineItem.getX());
+    assertEquals (parttypeItem.getX(), parttypeItem2.getX());
+    assertTrue (parttypeItem2.getY() > secondLineItem.getY());
   }
 
 

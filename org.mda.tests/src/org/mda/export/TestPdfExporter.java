@@ -46,6 +46,7 @@ public class TestPdfExporter {
   public static void beforeClass () {
     appSession.load(null);
     appSession.getGlobalConfs().setShowGrid(true);
+    appSession.getGlobalConfs().setDefaultBorder(0);
   }
 
   private void assertText (final Slide slide, final String text, final int x, final int y) {

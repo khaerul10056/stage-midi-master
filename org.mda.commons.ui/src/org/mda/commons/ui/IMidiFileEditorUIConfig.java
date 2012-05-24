@@ -71,6 +71,11 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
    */
   boolean isOptimizeLineFilling ();
 
+  /**
+   * returns the border round a slide
+   * @return border, cannot be <code>null</code>
+   */
+  Integer getBorder ();
 
 
 

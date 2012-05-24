@@ -1,5 +1,4 @@
-
-Enhancement     Editor          Numbers of executing for line, part
+Enhancement     Editor          Numbers of executing for line, part to skip multiple equal parts
 Enhancment      Editor			Copy complete line
 Bug             Import          Recognizing chordlines: Parts with only chords should be imported as chords
 
@@ -21,10 +20,10 @@ Enhancement		User			import from gmail														new
 Enhancement		User			export userlist															new
 Enhancement		User			mail to group from gmail												new
 _____________________________________
-
-Bug				Editor			Refsplitter are not removed
-Enhancement     PPT-Export      Skip empty slides
-Enhancement     PPT-Export      Background-Image
+Enhancement     Presenter		Fill line to previous line if possible           						done
+Bug				Editor			Refsplitter are not removed												done
+Enhancement     PPT-Export      Skip empty slides														done
+Enhancement     PPT-Export      Background-Image														done
 Enhancement     Editor			boolean flag on line thatLine should be added to new slide 				done
 Bug 			Presentation	if force new slide, stepping back marks the last occurence				done
 Bug             Editor			Check if song is referenced before removing								done

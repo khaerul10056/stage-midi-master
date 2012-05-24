@@ -23,6 +23,7 @@ import org.mda.presenter.ui.slide.PresentationToControllerConnectorTest;
 import org.mda.presenter.ui.test.BeamerPresenterTest;
 import org.mda.presenter.ui.test.ContentOverviewTest;
 import org.mda.presenter.ui.test.MidiFileSlideCalculatorTest;
+import org.mda.struct.MidiFileStructTest;
 import org.mda.transpose.TransposeTest;
 
 
@@ -38,6 +39,7 @@ import org.mda.transpose.TransposeTest;
   UtilsTest.class,
   TransposeTest.class,
   ContentProviderTest.class,
+  MidiFileStructTest.class,
 
   //UI
   PreviewEditorTest.class,

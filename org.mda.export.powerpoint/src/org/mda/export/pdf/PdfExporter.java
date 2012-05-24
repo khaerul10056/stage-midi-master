@@ -56,6 +56,7 @@ public class PdfExporter extends AbstractExporter {
     config.setFontsize(new Integer (12));
     config.setGraphicsContext(new PDFGraphicsContext());
     config.setOptimizeLineFilling(true);
+    config.setBorder(30);
     calculator.setConfig(config);
 
     Rectangle pagesizeA4 = PageSize.A4;

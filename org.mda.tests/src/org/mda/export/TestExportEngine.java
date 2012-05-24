@@ -102,7 +102,7 @@ public class TestExportEngine {
 
         instance.getCurrentModel().getUsers().clear();
 
-        instance.getGlobalConfs().setShowGrid(true);
+        //instance.getGlobalConfs().setShowGrid(true);
 
         //User with chords
         User firstUser = MidiPlayerService.mf.createUser();
