@@ -42,9 +42,6 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
    */
   private Integer fontsize;
 
-
-
-
   /**
    * configuration if a background-picture should be shown
    */
@@ -77,6 +74,11 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
    * so the songs need less place on a page
    */
   private boolean optimizeLineFilling = false;
+
+  /**
+   * border for the slide
+   */
+  private Integer border = null;
 
   public FontDescriptor getFont () {
     if (fontsize != null)
@@ -210,6 +212,17 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   public void setOptimizeLineFilling (boolean optimizeLineFilling) {
     this.optimizeLineFilling = optimizeLineFilling;
+  }
+
+  public Integer getBorder () {
+    if (border == null)
+      return 0;
+
+    return border;
+  }
+
+  public void setBorder (Integer border) {
+    this.border = border;
   }
 
 
