@@ -11,7 +11,7 @@ public class MidiFileStructItem {
   /**
    * E.g. the second refrain is shown as 2
    */
-  private Integer index = 1;
+  private Integer index = new Integer(1);
 
   /**
    * the times, this part is shown after itself
@@ -19,12 +19,26 @@ public class MidiFileStructItem {
   private Integer cumulation = 1;
 
   /**
-   * if the current part was shown before, the content of the current part
+   * if the current part was shown before (but not directly before), the content of the current part
    * can be skipped, and only the struct-tag is shown, e.g.
-   * REFRAIN
+   * ->REFRAIN1 ....
+   * VERS ....
+   * ->REFRAIN1
    * .........
    */
   private boolean isContentShown = true;
+
+  /**
+   * if the current part was shown directory before
+   * VERS
+   * REFRAIN 1
+   * REFRAIN 1
+   *
+   * gets to VERS
+   *         REFRAIN 2x
+   *         (REFRAIN not visible)
+   */
+  private boolean isVisible = true;
 
   private MidiFilePart part;
 
@@ -42,6 +56,26 @@ public class MidiFileStructItem {
 
   public void setIndex (Integer index) {
     this.index = index;
+  }
+
+  /**
+   * returns the tag-label to be shown for the current structitem
+   * @return label
+   */
+  public String getLabel () {
+    if (! isVisible())
+      return null;
+
+    StringBuilder builder = new StringBuilder();
+    builder.append(getType().getName());
+    if (getIndex() != null)
+      builder.append(getIndex());
+
+    if (getCumulation() != null && getCumulation().intValue() > 1) {
+      builder.append (" " + getCumulation() + "x");
+    }
+
+    return builder.toString() + " ";
   }
 
   public MidiFilePartType getType () {
@@ -67,6 +101,14 @@ public class MidiFileStructItem {
 
   public Integer getCumulation () {
     return cumulation;
+  }
+
+  public boolean isVisible () {
+    return isVisible;
+  }
+
+  public void setVisible (boolean isVisible) {
+    this.isVisible = isVisible;
   }
 
 }

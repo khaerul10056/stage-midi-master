@@ -21,6 +21,8 @@ import org.mda.additionals.Additional;
 import org.mda.commons.ui.IGraphicsContext;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.struct.MidiFileStruct;
+import org.mda.struct.MidiFileStructItem;
 
 public class MidiFileSlideCalculator extends SlideCalculator {
 
@@ -87,7 +89,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
       SlideItem titleItem = new SlideItem(titleRectangle, name.toUpperCase(), SlideType.TEXT, null, false, descTitle, 0);
       slide.addItem (titleItem);
-      currentY += sizeTitle.y * 2;
+      currentY += sizeTitle.y * 3;
     }
   }
 
@@ -134,12 +136,16 @@ public class MidiFileSlideCalculator extends SlideCalculator {
   private int getOffsetLongestPartType (final MidiFile file, final CalculatorPreCondition preCondition) {
     int length = 0;
     String longestPart = "";
+    MidiFileStruct struct = new MidiFileStruct(file);
     for (MidiFilePart nextPart: file.getParts()) {
-      Point currentOffset = getGc().getSize(nextPart.getParttype().getName(), getConfig().getFont());
-      //currentOffset = calculateZoomedPoint(currentOffset, preCondition);
-      if (currentOffset.x > length) {
-        length = currentOffset.x;
-        longestPart = nextPart.getParttype().getName();
+      String label = struct.getItem(nextPart).getLabel();
+      if (label != null) {
+        Point currentOffset = getGc().getSize(label, getConfig().getFont());
+        //currentOffset = calculateZoomedPoint(currentOffset, preCondition);
+        if (currentOffset.x > length) {
+          length = currentOffset.x;
+          longestPart = label;
+        }
       }
     }
 
@@ -185,6 +191,11 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     MidiFile midifile = (MidiFile) part.eContainer();
     init(midifile);
     List <Slide> slides = new ArrayList<Slide>();
+    MidiFileStruct struct = new MidiFileStruct(midifile);
+    MidiFileStructItem structItem = struct.getItem(part);
+
+    if (! structItem.isVisible() && getConfig().isOptimizeEqualParts())
+      return slides;
 
     //TODO centralize fonthandling
     Font font = new Font (Display.getCurrent(), "Arial Alternative", getConfig().getFont().getFontsizeAsInt(), SWT.NONE);
@@ -195,6 +206,11 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       LOGGER.debug("set font to size " + zoomedFont.getFontData() [0].height + " from " + font.getFontData() [0].height);
 
     testExtend = getGc().getSize("H", getConfig().getFont());
+    int height = testExtend.y;
+    if (getConfig().isChordPresented())
+      height += testExtend.y;
+    else
+      height += (testExtend.y / 2);
 
     Slide slide = newSlide(midifile, part, part.getTextlines().size() > 0 ? part.getTextlines().get(0) : null, zoomedFont, preCondition);
     slides.add(slide);
@@ -212,22 +228,28 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     normalizeSizeToPresentationSize(preCondition);
 
     if (getConfig().isShowBlockType()) { //show blocktype (e.g. refrain, chorus..)
-      String blockType = part.getParttype().getName() + " ";
-      Point parttypeExtend = getGc().getSize(blockType, getConfig().getFont());
-      int addToY = getOffsetChordToText(currentY, parttypeExtend);
-      Point point = new Point(leftPosDefault, addToY);
 
-      Point zoomedPoint = calculateZoomedPoint(point, preCondition);
-      Point zoomedPartTypeExtend = calculateZoomedPoint(parttypeExtend, preCondition);
+      String blockType = structItem.getLabel();
+      if (blockType != null) {
 
-      Rectangle textRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, zoomedPartTypeExtend.x, zoomedPartTypeExtend.y);
+        Point parttypeExtend = getGc().getSize(blockType, getConfig().getFont());
+        int addToY = getOffsetChordToText(currentY, parttypeExtend);
+        Point point = new Point(leftPosDefault, addToY);
 
-      SlideItem newTextItem = new SlideItem(textRectangle, blockType, SlideType.TEXT, null, false, getConfig().getFont(), 0);
-      slide.addItem(newTextItem);
+        Point zoomedPoint = calculateZoomedPoint(point, preCondition);
+        Point zoomedPartTypeExtend = calculateZoomedPoint(parttypeExtend, preCondition);
+
+        Rectangle textRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, zoomedPartTypeExtend.x, zoomedPartTypeExtend.y);
+
+        SlideItem newTextItem = new SlideItem(textRectangle, blockType, SlideType.TEXT, null, false, getConfig().getFont(), 0);
+        slide.addItem(newTextItem);
+      }
       leftPosDefault += longestTypeOffset;
     }
 
     //Calculate current part
+
+    if (! getConfig().isOptimizeEqualParts() || structItem.isContentShown()) {
 
     List <MidiFileTextLine> textlines = part.getRefPart() != null ? part.getRefPart().getTextlines() : part.getTextlines();
     for (MidiFileTextLine nextTextLine : textlines ) {
@@ -236,15 +258,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         slide = newSlide(midifile, part, nextTextLine,  zoomedFont, preCondition);
         slides.add(slide);
       }
+
       currentX = leftPosDefault;
-
-
-      int height = testExtend.y;
-      if (getConfig().isChordPresented())
-        height += testExtend.y;
-      else
-        height += (testExtend.y / 2);
-
 
       List <SlideItem> itemsOfCurrentLine = new ArrayList<SlideItem>();
 
@@ -254,6 +269,9 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
         String chord = getConfig().isChordPresented() ? chordPart.getChord(): null;
         String text = chordPart.getText();
+
+        if (text != null && text.trim().isEmpty())
+          text = null;
 
         Point textExtend = text != null ? getGc().getSize(text, getConfig().getFont()) : nullExtend;
 
@@ -306,18 +324,26 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       slide.addItems(itemsOfCurrentLine);
 
       if (! movingToPreviousLine) { //not optimizing the current line to the previous line, so prepare stepping to next line
-        currentY += height;
-        currentY += getDistanceBetweenLines();
+        stepCurrentYToNextLine(height);
       }
 
       slide.newLine(); //new line always, because if we move current items to previous line we first step back
 
     }
 
+    }
+    else
+      stepCurrentYToNextLine(height);
+
     if (getConfig().isSkipEmptySlides())
       removeEmptySlides(slides);
 
     return slides;
+  }
+
+  private void stepCurrentYToNextLine (final int height) {
+    currentY += height;
+    currentY += getDistanceBetweenLines();
   }
 
   private int getBorder () {
@@ -338,7 +364,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     SlideItem lastChordItem = null;
     List<SlideItem> chordItems = slide.getItems(SlideType.CHORD);
     if (chordItems.size() > 0 ) {
-      lastChordItem = textItems.get(chordItems.size() - 1);
+      lastChordItem = chordItems.get(chordItems.size() - 1);
       lastX = Math.max(lastX, lastChordItem.getXMax());
     }
 
@@ -386,6 +412,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     if (slide.getItems().isEmpty())
       return false;
 
+    if (currentItems.size() == 0)
+      return false;
 
     int firstX = currentItems.get(0).getX();
     int lastXMax = getMaxX(currentItems);

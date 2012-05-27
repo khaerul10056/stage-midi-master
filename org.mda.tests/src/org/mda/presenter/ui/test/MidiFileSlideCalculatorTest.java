@@ -13,6 +13,7 @@ import mda.MidiFilePartType;
 import mda.MidiFileTextLine;
 import mda.MidiPlayerRoot;
 import org.eclipse.swt.graphics.Point;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
@@ -59,6 +60,26 @@ public class MidiFileSlideCalculatorTest {
   }
 
 
+  @Test
+  public void skipEmptyText () {
+    MidiFileCreator creator = MidiFileCreator.create();
+    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.line().chordAndText("D", "                         ").chordAndText("F", "    ");
+    MidiFile song = creator.get();
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setOptimizeLineFilling(false);
+    CalculatorPreCondition preCondition = new CalculatorPreCondition();
+    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
+    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    calculator.setConfig(config);
+    List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
+    Slide firstSlide = calculateWithoutBorder.get(0);
+    LOGGER.info("->" + firstSlide.toString());
+    Assert.assertEquals (2, firstSlide.getItems().size());
+    Assert.assertEquals (SlideType.CHORD, firstSlide.getItems().get(0).getItemType());
+    Assert.assertEquals (SlideType.CHORD, firstSlide.getItems().get(1).getItemType());
+
+  }
 
   @Test
   public void border () {
