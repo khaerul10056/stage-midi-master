@@ -76,6 +76,11 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
   private boolean optimizeLineFilling = false;
 
   /**
+   * multiple occurences of same parts are not shown multiple times but are shown as e.g. REFAIN 2x or the tag without content
+   */
+  private boolean optimizeEqualParts = false;
+
+  /**
    * border for the slide
    */
   private Integer border = null;
@@ -223,6 +228,14 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   public void setBorder (Integer border) {
     this.border = border;
+  }
+
+  public boolean isOptimizeEqualParts () {
+    return optimizeEqualParts;
+  }
+
+  public void setOptimizeEqualParts (boolean optimizeEqualParts) {
+    this.optimizeEqualParts = optimizeEqualParts;
   }
 
 

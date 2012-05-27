@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import mda.AbstractSessionItem;
+import mda.Gallery;
 import mda.MidiFile;
 import mda.MidiFileChordPart;
 import mda.MidiFilePart;
@@ -499,6 +500,21 @@ public class MidiPlayerService {
     previousPart.getTextlines().addAll(currentPart.getTextlines());
     midifile.getParts().remove(currentPart);
     return previousPart;
+  }
+
+  /**
+   * find a song in the gallery
+   * @param gallery gallery
+   * @param string searchstring, contained by the name of the song
+   * @return found midifile or <code>null</code> if nothing was found
+   */
+  public static MidiFile findSong (final Gallery gallery, String string) {
+    for (AbstractSessionItem next: gallery.getGalleryItems()) {
+      if (next.getName().indexOf(string) >= 0)
+        return (MidiFile) next;
+    }
+
+    return null;
   }
 
 

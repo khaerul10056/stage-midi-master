@@ -1,5 +1,5 @@
-Enhancement     Editor          Numbers of executing for line, part to skip multiple equal parts
-Enhancment      Editor			Copy complete line
+Enhancement		PDF-Export		Bugfixes (We have a vision counting, too many indentions with chords	new
+Enhancement     Editor			Copy complete line
 Bug             Import          Recognizing chordlines: Parts with only chords should be imported as chords
 
 
@@ -20,6 +20,7 @@ Enhancement		User			import from gmail														new
 Enhancement		User			export userlist															new
 Enhancement		User			mail to group from gmail												new
 _____________________________________
+Enhancement     Editor          Numbers of executing for line, part to skip multiple equal parts        done
 Enhancement     Presenter		Fill line to previous line if possible           						done
 Bug				Editor			Refsplitter are not removed												done
 Enhancement     PPT-Export      Skip empty slides														done

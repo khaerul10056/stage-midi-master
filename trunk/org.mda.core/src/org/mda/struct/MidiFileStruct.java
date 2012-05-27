@@ -73,7 +73,7 @@ public class MidiFileStruct {
       }
 
       MidiFileStructItem newItem = new MidiFileStructItem();
-      newItem.setPart(nextPart);
+      newItem.setPart(nextPart); //the part itself, references are not resolved
       newItem.setType(nextPart.getParttype());
       newItem.setIndex(partcountsCreated.get(nextPart.getParttype())); //REFRAIN2...
       newItem.setContentShown(nextPart.getRefPart() == null);
@@ -82,10 +82,17 @@ public class MidiFileStruct {
       MidiFileStructItem lastShownItem = getLastShownItem(contentPart);
       if (lastShownItem != null) {
         newItem.setContentShown(false);
+        newItem.setVisible(false);
         lastShownItem.increaseCumulation ();
       }
 
       getItems().add(newItem);
+    }
+
+    for (MidiFileStructItem nextItem: getItems()) {
+      Integer count = partcountsCreated.get(nextItem.getType());
+      if (count == 1)
+        nextItem.setIndex(null);
     }
   }
 

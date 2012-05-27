@@ -77,6 +77,23 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
    */
   Integer getBorder ();
 
+  /**
+   * returns if parts, which are shown multiple times are optimized
+   *
+   * REFRAIN  ...
+   * VERS1    ...
+   * VERS1    ...
+   * REFRAIN  ...
+   *
+   * gets to
+   * REFRAIN  ...
+   * VERS1 2x ...
+   * REFRAIN
+   *
+   * @return true/false
+   */
+  boolean isOptimizeEqualParts ();
+
 
 
 }

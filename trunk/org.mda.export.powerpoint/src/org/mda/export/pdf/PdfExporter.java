@@ -52,10 +52,12 @@ public class PdfExporter extends AbstractExporter {
     config.setChordVisible(exportconfig.isWithChords());
     config.setShowBlockType(true);
     config.setPagePerPart(false);
+    config.setNewPageRespected(false);
     config.setShowTitle(true);
     config.setFontsize(new Integer (12));
     config.setGraphicsContext(new PDFGraphicsContext());
     config.setOptimizeLineFilling(true);
+    config.setOptimizeEqualParts(true);
     config.setBorder(30);
     calculator.setConfig(config);
 
