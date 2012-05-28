@@ -75,7 +75,7 @@ public class MidiFileStruct {
       MidiFileStructItem newItem = new MidiFileStructItem();
       newItem.setPart(nextPart); //the part itself, references are not resolved
       newItem.setType(nextPart.getParttype());
-      newItem.setIndex(partcountsCreated.get(nextPart.getParttype())); //REFRAIN2...
+      newItem.setIndex(item != null ? item.getIndex() : partcountsCreated.get(nextPart.getParttype())); //REFRAIN2...
       newItem.setContentShown(nextPart.getRefPart() == null);
 
       //.... REFRAIN 3x

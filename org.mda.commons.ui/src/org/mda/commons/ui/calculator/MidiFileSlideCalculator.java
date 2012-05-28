@@ -270,8 +270,11 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         String chord = getConfig().isChordPresented() ? chordPart.getChord(): null;
         String text = chordPart.getText();
 
-        if (text != null && text.trim().isEmpty())
-          text = null;
+        if (getConfig().isOptimizeEmptyTokens()) {
+          if (text != null && text.trim().isEmpty())
+            text = null;
+        }
+
 
         Point textExtend = text != null ? getGc().getSize(text, getConfig().getFont()) : nullExtend;
 

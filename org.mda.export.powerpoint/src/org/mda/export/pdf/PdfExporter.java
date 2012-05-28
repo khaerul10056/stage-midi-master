@@ -58,6 +58,7 @@ public class PdfExporter extends AbstractExporter {
     config.setGraphicsContext(new PDFGraphicsContext());
     config.setOptimizeLineFilling(true);
     config.setOptimizeEqualParts(true);
+    config.setOptimizeEmptyTokens(true);
     config.setBorder(30);
     calculator.setConfig(config);
 

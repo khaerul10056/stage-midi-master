@@ -3,6 +3,7 @@ package org.mda.google;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import mda.MidiPlayerRoot;
 import mda.MidiplayerFactory;
@@ -26,6 +27,8 @@ public class GoogleContactsConnector {
   public final static String feedUrl = "https://www.google.com/m8/feeds/contacts/markus.oley@gmail.com/full?max-results=1000";
 
   private GoogleService service;
+
+  private HashMap<String, URL> cachedURLS = new HashMap<String, URL>();
 
 
   public void setGoogleService (final GoogleService googleService) {
@@ -89,10 +92,15 @@ public class GoogleContactsConnector {
   }
 
   public URL getUrl (final String urlAsString) throws MalformedURLException {
-    URL url = new URL(urlAsString);
+    URL cachedURL = cachedURLS.get(urlAsString);
+    if (cachedURL == null) {
+      cachedURL = new URL(urlAsString);
+      cachedURLS.put(urlAsString, cachedURL);
+    }
 
-    LOGGER.info("get url " + System.identityHashCode(url) + "(" + urlAsString + ")");
-    return url;
+    LOGGER.info("get url " + System.identityHashCode(cachedURL) + "(" + urlAsString + ")");
+
+    return cachedURL;
   }
 
   public void importAllContacts (MidiPlayerRoot model, List<GoogleContactsDescriptor> descs) throws ServiceException, IOException {

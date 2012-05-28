@@ -29,6 +29,12 @@ public class TestPdfExporter {
 
   private static ApplicationSession appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
+  private final int X_ITEM1 = 130;
+  private final int X_ITEM2 = 157;
+  private final int X_ITEM3 = 299;
+  private final int X_ITEM4 = 364;
+  private final int X_ITEM5 = 434;
+
 
   @Before
   public void before () {
@@ -64,6 +70,7 @@ public class TestPdfExporter {
 
     ExportConfiguration config = MidiplayerFactory.eINSTANCE.createExportConfiguration();
     config.setWithChords(true);
+    appSession.getGlobalConfs().setDefaultBorder(new Integer (0));
 
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();
     sessionitems.add(appSession.getCurrentModel().getGallery().getGalleryItems().get(0));
@@ -73,19 +80,21 @@ public class TestPdfExporter {
     List<Slide> lastSlides = exporter.getLastSlides();
     Slide versSlide = lastSlides.get(1);
 
-    final int FIRSTLINE_CHORD = 63;
-    final int FIRSTLINE_TEXT = 75;
+    final int FIRSTLINE_CHORD = 74;
+    final int FIRSTLINE_TEXT = 86;
     LOG.info(versSlide.toString());
 
-    assertText(versSlide, "Alle", 126, FIRSTLINE_TEXT);
-    assertText(versSlide, "D", 126, FIRSTLINE_CHORD);
-    assertText(versSlide, "Schöpfung staunt und", 153, FIRSTLINE_TEXT);
-    assertText(versSlide, "G", 153, FIRSTLINE_CHORD);
-    assertText(versSlide, "preist, und", 295, FIRSTLINE_TEXT);
-    assertText(versSlide, "A", 295, FIRSTLINE_CHORD);
-    assertText(versSlide, "betet an in", 360, FIRSTLINE_TEXT);
-    assertText(versSlide, "D", 360, FIRSTLINE_CHORD);
-    assertText(versSlide, "Wahrheit und in", 429, FIRSTLINE_TEXT);
+
+
+    assertText(versSlide, "Alle", X_ITEM1, FIRSTLINE_TEXT);
+    assertText(versSlide, "D", X_ITEM1, FIRSTLINE_CHORD);
+    assertText(versSlide, "Schöpfung staunt und", X_ITEM2, FIRSTLINE_TEXT);
+    assertText(versSlide, "G", X_ITEM2, FIRSTLINE_CHORD);
+    assertText(versSlide, "preist, und", X_ITEM3, FIRSTLINE_TEXT);
+    assertText(versSlide, "A", X_ITEM3, FIRSTLINE_CHORD);
+    assertText(versSlide, "betet an in", X_ITEM4, FIRSTLINE_TEXT);
+    assertText(versSlide, "D", X_ITEM4, FIRSTLINE_CHORD);
+    assertText(versSlide, "Wahrheit und in", X_ITEM5, FIRSTLINE_TEXT);
   }
 
   @Test
@@ -104,14 +113,14 @@ public class TestPdfExporter {
 
     Slide versSlide = lastSlides.get(1);
 
-    final int FIRSTLINE_TEXT = 56;
+    final int FIRSTLINE_TEXT = 66;
     LOG.info(versSlide.toString());
 
-    assertText(versSlide, "Alle", 126, FIRSTLINE_TEXT);
-    assertText(versSlide, "Schöpfung staunt und", 153, FIRSTLINE_TEXT);
-    assertText(versSlide, "preist, und", 295, FIRSTLINE_TEXT);
-    assertText(versSlide, "betet an in", 360, FIRSTLINE_TEXT);
-    assertText(versSlide, "Wahrheit und in", 429, FIRSTLINE_TEXT);
+    assertText(versSlide, "Alle", X_ITEM1, FIRSTLINE_TEXT);
+    assertText(versSlide, "Schöpfung staunt und", X_ITEM2, FIRSTLINE_TEXT);
+    assertText(versSlide, "preist, und", X_ITEM3, FIRSTLINE_TEXT);
+    assertText(versSlide, "betet an in", X_ITEM4, FIRSTLINE_TEXT);
+    assertText(versSlide, "Wahrheit und in", X_ITEM5, FIRSTLINE_TEXT);
 
   }
 

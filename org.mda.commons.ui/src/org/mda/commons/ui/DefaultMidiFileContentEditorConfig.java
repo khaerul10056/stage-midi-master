@@ -81,6 +81,12 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
   private boolean optimizeEqualParts = false;
 
   /**
+   * true: empty tokens are not shown and don't need any place
+   * false: empty tokens, e.g. "    " need the place they are defined
+   */
+  private boolean optimizeEmptyTokens = false;
+
+  /**
    * border for the slide
    */
   private Integer border = null;
@@ -236,6 +242,14 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   public void setOptimizeEqualParts (boolean optimizeEqualParts) {
     this.optimizeEqualParts = optimizeEqualParts;
+  }
+
+  public boolean isOptimizeEmptyTokens () {
+    return optimizeEmptyTokens;
+  }
+
+  public void setOptimizeEmptyTokens (boolean optimizeEmptyTokens) {
+    this.optimizeEmptyTokens = optimizeEmptyTokens;
   }
 
 

@@ -44,6 +44,7 @@ public class StartPresentation extends AbstractHandler  {
     config.setChordVisible(false);
     config.setShowBackground(true);
     config.setSkipEmptySlides(true);
+    config.setOptimizeEmptyTokens(true);
     presentationContext.setCurrentSession(selectioninfo.getSession(), config, presenter.getSize());
 
     IPerspectiveDescriptor presentationPerspective = reg.findPerspectiveWithId(Util.PRESENTATION_PERSPECTIVE);

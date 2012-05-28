@@ -68,6 +68,7 @@ public class MidiFileSlideCalculatorTest {
     MidiFile song = creator.get();
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setOptimizeLineFilling(false);
+    config.setOptimizeEmptyTokens(true);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
     MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();

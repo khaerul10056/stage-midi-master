@@ -93,6 +93,13 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
    * @return true/false
    */
   boolean isOptimizeEqualParts ();
+  /**
+   * returns, if empty tokens should be shown (false) or should be set to <code>null</code>
+   * In second case they have no influence on layout at all
+   * In editors this feature should be disabled because it has negative impact on split/merge lines
+   * @return true/false
+   */
+  boolean isOptimizeEmptyTokens ();
 
 
 
