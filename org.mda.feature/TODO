@@ -1,4 +1,5 @@
-Enhancement		PDF-Export		Bugfixes (We have a vision counting, too many indentions with chords	new
+
+Enhancement		Presentation	Show special slides
 Enhancement     Editor			Copy complete line
 Bug             Import          Recognizing chordlines: Parts with only chords should be imported as chords
 
@@ -20,6 +21,12 @@ Enhancement		User			import from gmail														new
 Enhancement		User			export userlist															new
 Enhancement		User			mail to group from gmail												new
 _____________________________________
+Enhancement 	Editor			optimized look and feel 												done
+Enhancement		Editor			increased textsize														done
+Enhancement 	Editor			ChordHover: ESC doesn't change a chord									done
+Enhancement		Editor			ChordHover: preselect with history if not hovering an existing chord    done
+Enhancement		Editor			Disabled editing refs													done
+Enhancement		PDF-Export		Bugfixes (We have a vision counting, too many indentions with chords	done
 Enhancement     Editor          Numbers of executing for line, part to skip multiple equal parts        done
 Enhancement     Presenter		Fill line to previous line if possible           						done
 Bug				Editor			Refsplitter are not removed												done

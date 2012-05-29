@@ -116,6 +116,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
    * @return size */
   private Point showPart (final MidiFilePart part, final Point size) {
 
+    boolean partIsReference = part.getRefPart() != null;
 
     int currentLine = getCurrentFocusedLine();
     int currentcarePosition = getCaretOffsetOfCurrentTextField();
@@ -142,14 +143,14 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
       if (getCurrentSlide().isNewLineForced(i))
         newSlideLabels.add(new Label(this, SWT.SEPARATOR | SWT.SHADOW_OUT | SWT.HORIZONTAL));
 
-      addChordLine(getCurrentSlide().getChordline(i));
-      addTextLine(getCurrentSlide().isNewLineForced(i), getCurrentSlide().getTextline(i), size);
+      addChordLine(getCurrentSlide().getChordline(i), partIsReference);
+      addTextLine(getCurrentSlide().isNewLineForced(i), getCurrentSlide().getTextline(i), size, partIsReference);
     }
 
     //If no line is available, then default one
     if (getTextLines().size() == 0 && getChordLines().size() == 0) {
-      addChordLine("");
-      addTextLine(false, " ", size);
+      addChordLine("", partIsReference);
+      addTextLine(false, " ", size, partIsReference);
     }
 
 
@@ -219,11 +220,17 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
   }
 
 
-  private void addTextLine (final boolean newSlide, final String text, final Point size) {
+  private void addTextLine (final boolean newSlide, final String text, final Point size, final boolean readonly) {
     TextLine nextText = new TextLine(newSlide, this, SWT.SINGLE);
 
     nextText.addFocusListener(this);
     nextText.setText(text);
+    if (readonly) {
+      nextText.setEditable(false);
+      nextText.setEnabled(false);
+      nextText.setBackground(getBackground());
+    }
+
     nextText.setFont(font);
     if (listenersActive) {
     nextText.addExtendedModifyListener(new ExtendedModifyListener() {
@@ -310,7 +317,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
 
             String chord = Utils.getChordFromPosition(label.getText(), focused.getCaretOffset());
 
-            ChordHover hover = new ChordHover(focused, display2, chord);
+            ChordHover hover = new ChordHover(focused.getFont(), focused, display2, chord);
             while (!hover.isDisposed()) {
               // Check for waiting events
               if (!hover.getDisplay().readAndDispatch())
@@ -349,7 +356,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
 
   }
 
-  private void addChordLine (final String chord) {
+  private void addChordLine (final String chord, final boolean readonly) {
     Label chordLabel = new Label(this, SWT.NONE);
     chordLabel.setText(chord);
     chordLabel.setFont(font);
@@ -475,7 +482,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
 
   private void setCalculatePart (Slide calculatePart) {
     this.currentSlide = calculatePart;
-    FontData fontdata = new FontData("Monospace", 12, SWT.NONE);
+    FontData fontdata = new FontData("Monospace", 15, SWT.NONE);
     this.font = new Font(getDisplay(), fontdata);
   }
 
