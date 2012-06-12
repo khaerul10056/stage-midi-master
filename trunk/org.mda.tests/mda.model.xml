@@ -1127,20 +1127,20 @@
       </parts>
       <parts bar="30">
         <textlines>
-          <chordParts text="You lived and " chord="D "/>
-          <chordParts text="you died, and " chord="A/C# "/>
-          <chordParts text="you rose again" chord="h "/>
-          <chordParts text=" on high, " chord="A "/>
+          <chordParts text="You lived and " chord="D"/>
+          <chordParts text="you died, and " chord="A/C#"/>
+          <chordParts text="you rose again" chord="h"/>
+          <chordParts text=" on high, " chord="A"/>
         </textlines>
         <textlines>
-          <chordParts text="yo" chord="D "/>
-          <chordParts text="u opened the " chord="A/C# "/>
-          <chordParts text="way, for the wo" chord="G/H "/>
-          <chordParts text="rld to live again, hallelujah, " chord="A "/>
-          <chordParts text="for" chord="Hm "/>
-          <chordParts text=" a" chord="G "/>
-          <chordParts text="ll" chord="A "/>
-          <chordParts text=" you've done. " chord="D "/>
+          <chordParts text="yo" chord="D"/>
+          <chordParts text="u opened the " chord="A/C#"/>
+          <chordParts text="way, for the wo" chord="G/H"/>
+          <chordParts text="rld to live again, hallelujah, " chord="A"/>
+          <chordParts text="for" chord="Hm"/>
+          <chordParts text=" a" chord="G"/>
+          <chordParts text="ll" chord="A"/>
+          <chordParts text=" you've done. " chord="D"/>
         </textlines>
       </parts>
       <parts parttype="VERS" bar="44" refPart="//@gallery/@galleryItems.6/@parts.1">
@@ -1555,7 +1555,7 @@
           <chordParts text="wenn wir " chord="C"/>
           <chordParts text="rufen: &#x201e;" chord="d"/>
           <chordParts text="Zeige uns Dein " chord="Eb"/>
-          <chordParts text="Angesicht.&#x201c;  " chord="C"/>
+          <chordParts text="Angesicht.&#x201c; " chord="C"/>
         </textlines>
       </parts>
       <parts bar="29">
@@ -1567,7 +1567,10 @@
           <chordParts text="den die " chord="F"/>
           <chordParts text="ganze " chord="Bb"/>
           <chordParts text="Sch&#xf6;pfung " chord="F"/>
-          <chordParts text="preist, ater, " chord="C"/>
+          <chordParts text="preist, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Vater, " chord=""/>
           <chordParts text="Sohn und " chord="Bb"/>
           <chordParts text="heiliger " chord="F"/>
           <chordParts text="Geist, " chord="C"/>
@@ -2367,25 +2370,21 @@
       </parts>
       <parts parttype="VERS" bar="4">
         <textlines>
-          <chordParts text="We have a "/>
-          <chordParts text="vision for this nation, " chord="D"/>
+          <chordParts text="We have a vision for this nation, " chord="D"/>
         </textlines>
         <textlines>
-          <chordParts text="we share a dream for this "/>
-          <chordParts text="lan" chord="e7"/>
-          <chordParts text="d, " chord="A"/>
+          <chordParts text="we " chord="e7"/>
+          <chordParts text="share a dream for this land, " chord="A"/>
         </textlines>
         <textlines>
-          <chordParts text="We join with "/>
-          <chordParts text="angels in celebration, " chord="D"/>
+          <chordParts text="We join with angels in celebration, " chord="D"/>
         </textlines>
         <textlines>
-          <chordParts text="by "/>
-          <chordParts text="faith we s" chord="e7"/>
-          <chordParts text="peak rev" chord="/F#"/>
-          <chordParts text="ival " chord="G7"/>
-          <chordParts text="in this " chord="A"/>
-          <chordParts text="land.   " chord="D"/>
+          <chordParts text="by faith w" chord="e7"/>
+          <chordParts text="e speak " chord="/F#"/>
+          <chordParts text="reviv" chord="G7"/>
+          <chordParts text="al in th" chord="A"/>
+          <chordParts text="is land. " chord="D"/>
         </textlines>
       </parts>
       <parts bar="20">
@@ -2766,6 +2765,29 @@
           <chordParts text="follow, we're gonna follow " chord="H"/>
           <chordParts text="you." chord="F#"/>
         </textlines>
+      </parts>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:MidiFile" name="Neues Lied">
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Ein Lied " chord=""/>
+          <chordParts text="nur so " chord="A"/>
+          <chordParts text="zum ausprobieren, " chord="Ab"/>
+          <chordParts text="wie das mit dem " chord="D"/>
+          <chordParts text="Eingeben von Liedern " chord="E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="so klappt."/>
+        </textlines>
+        <textlines>
+          <chordParts text="Und noch eine Zeile, um noch mehr zu guggn"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Weil man ja wissen muss, ob das alles so passt, was man sich ausdenkt. "/>
+        </textlines>
+      </parts>
+      <parts>
+        <textlines/>
       </parts>
     </galleryItems>
   </gallery>

@@ -401,7 +401,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
       getCurrentPart().getTextlines().add(newTextLine);
 
       String chord = Utils.trimRight(getChordLines().get(i).getText());
-      String text = getTextLines().get(i).getText();
+      String text = getTextLines().get(i).getSaveableText();
       newTextLine.setNewSlide(getTextLines().get(i).isNewSlide());
 
       // if test is longer than chord then try to trim text
@@ -547,7 +547,9 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
       LOGGER.info("Merge line " +
         getCurrentFocusedLine() + " at caretposition " + getCaretOffsetOfCurrentTextField());
       int currentLine = getCurrentFocusedLine() - 1;
-      int nextpos = getTextLines().get(currentLine).getText().length();
+      int lastposChord = Utils.trimRight(getChordLines().get(currentLine).getText()).length();
+      int lasttextChord = Utils.trimRight(getTextLines().get(currentLine).getText()).length();
+      int nextpos = Math.max(lastposChord, lasttextChord);
       getEditorContent().setCurrentPart(MidiPlayerService.mergeLine(getCurrentPart(), getCurrentFocusedLine(), getCaretOffsetOfCurrentTextField()));
       TextLine previousTextLine = getTextLines().get(currentLine);
       setFocus(previousTextLine);

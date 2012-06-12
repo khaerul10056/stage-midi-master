@@ -167,7 +167,7 @@ public class PreviewEditorTest {
 
     midiFileTextLine = newPart.getTextlines().get(0);
     Assert.assertEquals ("G", midiFileTextLine.getChordParts().get(1).getChord());
-    Assert.assertEquals ("  ", midiFileTextLine.getChordParts().get(1).getText());
+    Assert.assertEquals (" ", midiFileTextLine.getChordParts().get(1).getText());
 
     for (int i = 0; i < 42; i++)
       Assert.assertTrue (contentPanel.chordToLeft());
@@ -199,7 +199,7 @@ public class PreviewEditorTest {
     ContentPart contentPanel = editor.getContentpanel();
     MidiFilePart part = contentPanel.saveToModel();
     Assert.assertEquals("D", part.getTextlines().get(0).getChordParts().get(0).getChord());
-    Assert.assertEquals("Hallo ", part.getTextlines().get(0).getChordParts().get(0).getText());
+    Assert.assertEquals("Hallo", part.getTextlines().get(0).getChordParts().get(0).getText());
   }
 
   @Test

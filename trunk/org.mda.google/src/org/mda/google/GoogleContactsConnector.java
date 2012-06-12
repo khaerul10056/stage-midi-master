@@ -24,9 +24,18 @@ public class GoogleContactsConnector {
 
   private static final Log LOGGER  = LogFactory.getLogger(GoogleContactsConnector.class);
 
-  public final static String feedUrl = "https://www.google.com/m8/feeds/contacts/markus.oley@gmail.com/full?max-results=1000";
+  public final static URL feedUrl;
 
   private GoogleService service;
+
+  static {
+    try {
+      feedUrl = new URL ("https://www.google.com/m8/feeds/contacts/markus.oley@gmail.com/full?max-results=1000");
+    }
+    catch (MalformedURLException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
   private HashMap<String, URL> cachedURLS = new HashMap<String, URL>();
 
@@ -54,8 +63,7 @@ public class GoogleContactsConnector {
 
   public static ContactGroupEntry getGroup (ContactsService myService, final String name) throws Exception {
 
-    URL feedUrlAsUrl = new URL(feedUrl);
-    ContactGroupFeed resultFeed = myService.getFeed(feedUrlAsUrl, ContactGroupFeed.class);
+    ContactGroupFeed resultFeed = myService.getFeed(feedUrl, ContactGroupFeed.class);
     List<ContactGroupEntry> entries = resultFeed.getEntries();
     for (ContactGroupEntry nextEntry : entries) {
       LOGGER.info("Group: " + nextEntry.getTitle().getPlainText());
@@ -107,7 +115,7 @@ public class GoogleContactsConnector {
 
 
     GoogleService myService = getGoogleService();
-    ContactFeed resultFeed = myService.getFeed(new URL(feedUrl), ContactFeed.class);
+    ContactFeed resultFeed = myService.getFeed(feedUrl, ContactFeed.class);
 
     for (GoogleContactsDescriptor nextDesc : descs) {
       LOGGER.info("Analyse googlecontactsdescriptor " + nextDesc);
