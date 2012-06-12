@@ -17,6 +17,8 @@ import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mockito.Mockito;
 import com.google.gdata.client.GoogleService;
+import com.google.gdata.client.Query;
+import com.google.gdata.client.maps.FeatureQuery;
 import com.google.gdata.data.contacts.ContactEntry;
 import com.google.gdata.data.contacts.ContactFeed;
 import com.google.gdata.data.contacts.ContactGroupEntry;
@@ -105,7 +107,6 @@ public class TestGoogleContacts {
 
   public GoogleService getMockedService (final String groupassignment) throws Exception {
 
-
     ContactFeed contactFeed = mock(ContactFeed.class);
     ContactEntry entry1 = createContact(NAME1, FIRSTNAME1, MAIL1, HREF1);
     entry1Changed = createContact(NAME1_CHANGED, FIRSTNAME1, MAIL1, HREF1);
@@ -127,8 +128,9 @@ public class TestGoogleContacts {
     when (group.getPlainTextContent()).thenReturn(groupassignment);
     LOGGER.info("InvalidGroup return " + group.getPlainTextContent());
 
-    GoogleService mockedService = Mockito.mock(GoogleService.class);
-    when(mockedService.getFeed(new URL(GoogleContactsConnector.feedUrl), ContactFeed.class)).thenReturn(contactFeed);
+    GoogleService mockedService = mock(GoogleService.class);
+    Query query = new FeatureQuery(GoogleContactsConnector.feedUrl);
+    when(mockedService.getFeed(query, ContactFeed.class)).thenReturn(contactFeed);
 
     URL urlHref1 = connector.getUrl(HREF1);
     URL urlHref2 = connector.getUrl(HREF2);
@@ -136,10 +138,7 @@ public class TestGoogleContacts {
     LOGGER.info("URL1 = " + System.identityHashCode(urlHref1) + "-" + urlHref1);
     LOGGER.info("URL2 = " + System.identityHashCode(urlHref2) + "-" + urlHref2);
 
-    when (mockedService.getEntry(urlHref2, ContactGroupEntry.class)).thenReturn(group);
-
-    LOGGER.info("Check " + HREF1 + ": " + System.identityHashCode(mockedService.getEntry(urlHref1, ContactGroupEntry.class)));
-    LOGGER.info("Check " + HREF2 + ": " + System.identityHashCode(mockedService.getEntry(urlHref2, ContactGroupEntry.class)));
+    when (mockedService.getEntry((URL)Mockito.any(), (Class)Mockito.any())).thenReturn(group);
 
     return mockedService;
   }

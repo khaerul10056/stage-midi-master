@@ -48,6 +48,14 @@ public class Utils {
     return color.getGreen() + "x" + color.getRed() + "x" + color.getBlue();
   }
 
+  public static String fillString (final String text, final int length) {
+    int filler = length - text.length();
+    StringBuilder builder = new StringBuilder(text);
+    for (int i = 0; i < filler; i++)
+      builder = builder.append (" ");
+    return builder.toString();
+  }
+
   public static java.awt.Color toAwtColor (final Color color) {
     return new java.awt.Color (color.getRed(), color.getGreen(), color.getBlue());
   }
@@ -214,9 +222,6 @@ public class Utils {
    * @return
    */
   public final static String trimRight (final String untrimmed) {
-    if (untrimmed.endsWith(" "))
-      return untrimmed.replaceAll("\\s+$", "") + " ";
-    else
       return untrimmed.replaceAll("\\s+$", "");
   }
   /**

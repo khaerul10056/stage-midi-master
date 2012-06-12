@@ -48,7 +48,7 @@ public class UtilsTest {
 
   @Test
   public void trimRight () {
-    Assert.assertEquals ("This is a text ", Utils.trimRight("This is a text     "));
+    Assert.assertEquals ("This is a text", Utils.trimRight("This is a text     "));
     Assert.assertEquals ("This is a text", Utils.trimRight("This is a text"));
 
   }

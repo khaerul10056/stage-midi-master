@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
+import org.mda.Utils;
 import org.mda.editor.preview.ui.PreviewEditorContent;
 import org.mda.editor.preview.ui.parts.TextLine;
 import org.mda.presenter.ui.test.MidiFileCreator;
@@ -21,8 +22,8 @@ import org.mda.presenter.ui.test.MidiFileCreator;
 public class PreviewEditorUiTest {
 
   private MidiPlayerRoot root   = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
-  private final String CHORDLINEORIGINAL = "D    G                    A       D           G               A ";
-  private final String TEXTLINEORIGINAL  = "Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist, ";
+  private final String CHORDLINEORIGINAL = "D    G                    A       D           G               A";
+  private final String TEXTLINEORIGINAL  = "Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist,";
   private static Shell shell;
   private PreviewEditorContent editor;
 
@@ -38,7 +39,7 @@ public class PreviewEditorUiTest {
     Label chord = editor.getContentpanel().getChordLines().get(0);
 
     assertEquals(CHORDLINEORIGINAL, chord.getText());
-    assertEquals(TEXTLINEORIGINAL, text.getText());
+    assertEquals(Utils.fillString(TEXTLINEORIGINAL, TextLine.TEXTLINE_LENGTH), text.getText());
 
     text.setFocus();
     text.setCaretOffset(15);
@@ -73,7 +74,7 @@ public class PreviewEditorUiTest {
     assertTrue(editor.getContentpanel().stepToNextLine()); //line 4
     text = editor.getContentpanel().getFocusedTextField();
     assertTrue(text.getText().startsWith("Du bist Gott und Du regierst"));
-    assertEquals (text.getText().length(), text.getCaretOffset());
+    assertEquals (58, text.getCaretOffset());
 
 
     //step on last line to next line (4->4)
@@ -89,7 +90,7 @@ public class PreviewEditorUiTest {
     assertTrue(editor.getContentpanel().stepToPreviousLine()); //line 3
     text = editor.getContentpanel().getFocusedTextField();
     assertTrue(text.getText().startsWith("Ehre Dir auf Deinem Thron"));
-    assertEquals (text.getText().length(), text.getCaretOffset());
+    assertEquals (58, text.getCaretOffset());
   }
 
   @BeforeClass
@@ -114,7 +115,7 @@ public class PreviewEditorUiTest {
     //split a line at the beginning of an chordpart
 
     assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
-    assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
+    assertEquals(fill(TEXTLINEORIGINAL), getText(0).getText());  //line 1
 
     getText(0).setCaretOffset(15);
     editor.getContentpanel().saveCurrentCaretSituation();
@@ -122,18 +123,22 @@ public class PreviewEditorUiTest {
     editor.getContentpanel().splitLine();
     saveAndShowRoundtrip();
 
-    assertEquals("D    G ", getChord(0).getText());
-    assertEquals("Alle Schöpfung ", getText(0).getText());  //line 1
+    assertEquals("D    G", getChord(0).getText());
+    assertEquals(fill("Alle Schöpfung"), getText(0).getText());  //line 1
 
-    assertEquals("           A       D           G               A ", getChord(1).getText());  //line 2
-    assertEquals("staunt und preist, betet an in Wahrheit und in Geist, ", getText(1).getText());
+    assertEquals("           A       D           G               A", getChord(1).getText());  //line 2
+    assertEquals(fill("staunt und preist, betet an in Wahrheit und in Geist,"), getText(1).getText());
 
+  }
+
+  public String fill (String text) {
+    return Utils.fillString(text, TextLine.TEXTLINE_LENGTH);
   }
 
   @Test
   public void splitAndMergeThirdLine () throws Exception {
-    final String TEXTLINEORIGINAL  = "Alle Schöpfung singt ein Lob, Du bist mächtig, Du bist groß. ";
-    final String CHORDLINEORIGINAL = "D    G                   A    D       G                A ";
+    final String TEXTLINEORIGINAL  = "Alle Schöpfung singt ein Lob, Du bist mächtig, Du bist groß.";
+    final String CHORDLINEORIGINAL = "D    G                   A    D       G                A";
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     editor = new PreviewEditorContent(shell, song);
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
@@ -143,7 +148,7 @@ public class PreviewEditorUiTest {
     Label chord = editor.getContentpanel().getChordLines().get(2);
 
     assertEquals(CHORDLINEORIGINAL, chord.getText());
-    assertEquals(TEXTLINEORIGINAL, text.getText());  //line 1
+    assertEquals(fill(TEXTLINEORIGINAL), text.getText());  //line 1
 
     editor.getContentpanel().setCurrentCaretPosition(15);
     editor.getContentpanel().setFocus(text);
@@ -165,7 +170,7 @@ public class PreviewEditorUiTest {
     Label chord = editor.getContentpanel().getChordLines().get(0);
 
     assertEquals(CHORDLINEORIGINAL, chord.getText());
-    assertEquals(TEXTLINEORIGINAL, text.getText());  //line 1
+    assertEquals(fill(TEXTLINEORIGINAL), text.getText());  //line 1
 
     text.setCaretOffset(34);
     editor.getContentpanel().saveCurrentCaretSituation();
@@ -178,10 +183,10 @@ public class PreviewEditorUiTest {
     Label chord2 = editor.getContentpanel().getChordLines().get(1);
     assertEquals (text2, editor.getContentpanel().getFocusedTextField());
 
-    assertEquals("D    G                    A ", chord.getText());
-    assertEquals("Alle Schöpfung staunt und preist, ", text.getText());
-    assertEquals("D           G               A ", chord2.getText());
-    assertEquals("betet an in Wahrheit und in Geist, ", text2.getText());
+    assertEquals("D    G                    A", chord.getText());
+    assertEquals(fill("Alle Schöpfung staunt und preist,"), text.getText());
+    assertEquals("D           G               A", chord2.getText());
+    assertEquals(fill("betet an in Wahrheit und in Geist,"), text2.getText());
     assertEquals (text2, editor.getContentpanel().getFocusedTextField());
     assertEquals (0, text2.getCaretOffset());
     editor.getContentpanel().mergeLine();
@@ -190,9 +195,9 @@ public class PreviewEditorUiTest {
     chord = editor.getContentpanel().getChordLines().get(0);
 
     assertEquals (text, editor.getContentpanel().getFocusedTextField());
-    assertEquals (34, editor.getContentpanel().getCaretOffsetOfCurrentTextField());
+    assertEquals (33, editor.getContentpanel().getCaretOffsetOfCurrentTextField());
     assertEquals(CHORDLINEORIGINAL, chord.getText());
-    assertEquals(TEXTLINEORIGINAL, text.getText());  //line 1
+    assertEquals(fill(TEXTLINEORIGINAL), text.getText());  //line 1
   }
 
   @Test
@@ -205,22 +210,22 @@ public class PreviewEditorUiTest {
     editor.getContentpanel().getChordLines().get(0);
 
     assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
-    assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
+    assertEquals(fill(TEXTLINEORIGINAL), getText(0).getText());  //line 1
 
     getText(0).setCaretOffset(14);
     editor.getContentpanel().saveCurrentCaretSituation();
     editor.getContentpanel().splitLine();
     assertEquals (getText(1), editor.getContentpanel().getFocusedTextField());
 
-    assertEquals("D    G ", getChord(0).getText());
-    assertEquals("Alle Schöpfung", getText(0).getText());
+    assertEquals("D    G", getChord(0).getText());
+    assertEquals(fill("Alle Schöpfung"), getText(0).getText());
 
-    assertEquals("            A       D           G               A ", getChord(1).getText());
-    assertEquals(" staunt und preist, betet an in Wahrheit und in Geist, ", getText(1).getText());
+    assertEquals("            A       D           G               A", getChord(1).getText());
+    assertEquals(fill(" staunt und preist, betet an in Wahrheit und in Geist,"), getText(1).getText());
 
     editor.getContentpanel().mergeLine();
     assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
-    assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
+    assertEquals(fill(TEXTLINEORIGINAL), getText(0).getText());  //line 1
   }
 
   private StyledText getText (final int pos) {
@@ -239,7 +244,7 @@ public class PreviewEditorUiTest {
 
     //split a line at the beginning of an chordpart
     assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
-    assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
+    assertEquals(fill(TEXTLINEORIGINAL), getText(0).getText());  //line 1
 
     getText(0).setCaretOffset(0);
     editor.getContentpanel().saveCurrentCaretSituation();
@@ -247,14 +252,14 @@ public class PreviewEditorUiTest {
     editor.getContentpanel().splitLine();
 
     assertEquals("", getChord(0).getText());
-    assertEquals("", getText(0).getText());
+    assertEquals(fill(""), getText(0).getText());
 
     assertEquals(CHORDLINEORIGINAL, getChord(1).getText());
-    assertEquals(TEXTLINEORIGINAL, getText(1).getText());  //line 1
+    assertEquals(fill(TEXTLINEORIGINAL), getText(1).getText());  //line 1
 
     editor.getContentpanel().mergeLine();
     assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
-    assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
+    assertEquals(fill(TEXTLINEORIGINAL), getText(0).getText());  //line 1
   }
 
   @Test
@@ -269,10 +274,10 @@ public class PreviewEditorUiTest {
     editor.getContentpanel().splitLine();
 
     assertEquals("", getChord(1).getText());
-    assertEquals(" ", getText(1).getText());
+    assertEquals(fill(" "), getText(1).getText());
 
     editor.getContentpanel().mergeLine();
-    assertEquals("Dies ist ein Test ", getText(0).getText());  //line 0
+    assertEquals(fill("Dies ist ein Test "), getText(0).getText());  //line 0
     assertEquals (2, editor.getContentpanel().getTextLines().size());
   }
 
@@ -287,10 +292,10 @@ public class PreviewEditorUiTest {
     editor.getContentpanel().splitLine();
 
     assertEquals("", getChord(1).getText());
-    assertEquals(" ", getText(1).getText());
+    assertEquals(fill(" "), getText(1).getText());
 
     editor.getContentpanel().mergeLine();
-    assertEquals("Dies ist ein Test ", getText(0).getText());  //line 0
+    assertEquals(fill("Dies ist ein Test "), getText(0).getText());  //line 0
     assertEquals (1, editor.getContentpanel().getTextLines().size());
   }
 
@@ -303,22 +308,22 @@ public class PreviewEditorUiTest {
     //split a line at the end of an chordpart
 
     assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
-    assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
+    assertEquals(fill(TEXTLINEORIGINAL), getText(0).getText());  //line 1
 
     getText(0).setCaretOffset(getText(0).getText().length() - 1);
     editor.getContentpanel().saveCurrentCaretSituation();
 
     editor.getContentpanel().splitLine();
 
-    assertEquals(" ", getChord(1).getText());
-    assertEquals(" ", getText(1).getText());
+    assertEquals("", getChord(1).getText());
+    assertEquals(fill(" "), getText(1).getText());
 
     assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
-    assertEquals(TEXTLINEORIGINAL.trim(), getText(0).getText());  //line 1
+    assertEquals(fill(TEXTLINEORIGINAL), getText(0).getText());  //line 1
 
     editor.getContentpanel().mergeLine();
     assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
-    assertEquals(TEXTLINEORIGINAL, getText(0).getText());  //line 1
+    assertEquals(fill(TEXTLINEORIGINAL), getText(0).getText());  //line 1
 
 
 
