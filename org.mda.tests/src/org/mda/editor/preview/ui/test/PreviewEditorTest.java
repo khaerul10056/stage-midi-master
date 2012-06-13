@@ -48,6 +48,16 @@ public class PreviewEditorTest {
   }
 
   @Test
+  public void synchronizeEmptyChordlineWhenTextWasModified () {
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    creator = creator.line().text("supertest");
+    MidiFile midiFile = creator.get();
+    PreviewEditorContent editor = new PreviewEditorContent(shell, midiFile);
+    editor.setCurrentPart(midiFile.getParts().get(0));
+    editor.getContentpanel().synchronizeChordWhenTextWasModified("t", 5, 0);
+  }
+
+  @Test
   public void removeNewSlides () {
     MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
     creator = creator.line().chordAndText(" ", " ");
@@ -237,7 +247,7 @@ public class PreviewEditorTest {
     }
     contentPanel.getTextLines().get(0).setText ("                ");
 
-    contentPanel.doModifyText(" ", 16, 0);
+    contentPanel.synchronizeChordWhenTextWasModified(" ", 16, 0);
   }
 
   @Test

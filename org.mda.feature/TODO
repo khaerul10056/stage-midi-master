@@ -1,10 +1,9 @@
 
-Bugfix			Editor          java.lang.StringIndexOutOfBoundsException: String index out of range: 71
-	at java.lang.String.substring(String.java:1934)
-	at org.mda.Utils.removeString(Utils.java:347)
-	at org.mda.editor.preview.ui.parts.ContentPart.doModifyText(ContentPart.java:185)
 
-Bugfix		 	Editor 			Del of some characters and than return copies the removed characters to nextline
+Enhancement     Editor			Merge line with nextline when DEL is pressed at end of line
+Enhancement		Editor			Clone line
+Enhancement 	Editor			Move up/down part shortcut
+Enhancement		Navigator		Clone song
 Enhancement		Presentation	Show special slides
 Enhancement     Editor			Copy complete line
 Bug             Import          Recognizing chordlines: Parts with only chords should be imported as chords
@@ -27,6 +26,12 @@ Enhancement		User			import from gmail														new
 Enhancement		User			export userlist															new
 Enhancement		User			mail to group from gmail												new
 _____________________________________
+Bugfix			Editor          java.lang.StringIndexOutOfBoundsException: String index out of range: 71
+	at java.lang.String.substring(String.java:1934)
+	at org.mda.Utils.removeString(Utils.java:347)
+	at org.mda.editor.preview.ui.parts.ContentPart.doModifyText(ContentPart.java:185)
+Bugfix		 	Editor 			Del of some characters and than return copies the removed characters to nextline
+Bugfix 			Editor			Ende doesn't step to end of text, but to end of line
 Enhancement 	Editor			Remove refresh-hopping													done
 Bugfix          Editor			Merge to lines adds an unnecessary space								done
 Enhancement 	Editor			optimized look and feel 												done

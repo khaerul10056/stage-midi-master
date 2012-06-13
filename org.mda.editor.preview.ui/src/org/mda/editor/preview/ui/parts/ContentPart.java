@@ -26,7 +26,6 @@ import org.eclipse.swt.widgets.Widget;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
-import org.mda.commons.ui.IPreviewEditorView;
 import org.mda.commons.ui.Util;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
@@ -38,7 +37,7 @@ import org.mda.editor.preview.ui.chords.ChordHover;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
-public class ContentPart extends AbstractPart implements IPreviewEditorView, FocusListener {
+public class ContentPart extends AbstractPart implements FocusListener {
 
   private static final Log                   LOGGER            = LogFactory.getLogger(ContentPart.class);
 
@@ -70,8 +69,6 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
   public ContentPart (PreviewEditorContent parent, MidiFile file) {
     super(parent);
     editorContent = parent;
-
-
 
     setCurrentPart(file.getParts().get(0));
     setLayout(new RowLayout(SWT.VERTICAL));
@@ -172,7 +169,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
     LOGGER.info("save current caret from " + before + " to " + currentCaretPosition);
   }
 
-  public void doModifyText (final String replacedText, final int start, final int length) {
+  public void synchronizeChordWhenTextWasModified (final String replacedText, final int start, final int length) {
     Label lblChordLine = getChordLines().get(getCurrentFocusedLine());
     TextLine txtTextLine = getTextLines().get(getCurrentFocusedLine());
 
@@ -181,8 +178,9 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
     LOGGER.info("Modified     : <" + start + "-" + length);
 
     String newChordLine = lblChordLine.getText();
-    if (replacedText != null && replacedText.length() > 0) { //adapt chordline
-      newChordLine = Utils.removeString(newChordLine, start, replacedText.length());
+    if (replacedText != null && replacedText.length() > 0 && newChordLine.length() > start) { //adapt chordline
+      int restOfLine = Math.min(replacedText.length(), newChordLine.length() - start);
+      newChordLine = Utils.removeString(newChordLine, start, restOfLine);
     }
 
     StringBuilder builder = new StringBuilder(newChordLine);
@@ -237,7 +235,7 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
 
       @Override
       public void modifyText (ExtendedModifyEvent arg0) {
-        doModifyText(arg0.replacedText, arg0.start, arg0.length);
+        synchronizeChordWhenTextWasModified(arg0.replacedText, arg0.start, arg0.length);
       }
     });
 
@@ -276,6 +274,8 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
       }
 
 
+
+
       @Override
       public void keyPressed (KeyEvent e) {
 
@@ -285,10 +285,22 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
           if (e.character == SWT.BS) {
             e.doit = false;
             LOGGER.info("KeyPressed : - Backspace, Merging lines" + logCaretBehaviour());
-            mergeLine();
+            mergePreviousLineWithCurrentLine();
+          }
+
+          if (e.character == SWT.DEL) {
+            e.doit = false;
+            LOGGER.info("KeyPressed : - Del at end of line, Merging lines" + logCaretBehaviour());
+            mergeCurrentLineWithNextLine();
           }
 
           saveCurrentCaretSituation(); //has to be saved after backspace is handled
+
+          if (e.keyCode == SWT.END) {
+            LOGGER.info("KeyPressed : - End of line");
+            e.doit = false;
+            stepToEndOfLine();
+          }
 
           if (e.keyCode == SWT.ARROW_DOWN) {
             LOGGER.info("KeyPressed : - Arrow down, stepping to next line");
@@ -354,6 +366,11 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
       setFocus(nextText);
     getTextLines().add(nextText);
 
+  }
+
+  private boolean isCaretAtEndOfLine () {
+    int realLength = getTextLines().get(getCurrentFocusedLine()).getText().trim().length();
+    return getCurrentCaretPosition() >= realLength;
   }
 
   private void addChordLine (final String chord, final boolean readonly) {
@@ -496,7 +513,13 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
     currentFocusedLine = textLines.indexOf(currenttext);
   }
 
-  @Override
+  public void stepToEndOfLine () {
+    int currentLine = getCurrentFocusedLine();
+    TextLine newTextLine = getTextLines().get(currentLine);
+    int newLength = newTextLine.getText().trim().length();
+    setCurrentCaretPositionInLine(newLength, currentLine);
+  }
+
   public boolean stepToNextLine () {
     int currentLine = getCurrentFocusedLine();
     if (currentLine == getTextLines().size() - 1)
@@ -509,7 +532,6 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
     return true;
   }
 
-  @Override
   public boolean stepToPreviousLine () {
     int currentLine = getCurrentFocusedLine();
     if (currentLine == 0)
@@ -529,7 +551,6 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
       return getCurrentCaretPosition();
   }
 
-  @Override
   public void splitLine () {
     LOGGER.info("Split line " +
       getCurrentFocusedLine() + " at caretposition " + getCaretOffsetOfCurrentTextField());
@@ -540,25 +561,42 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
     setFocus(newTextLine);
   }
 
-  @Override
-  public void mergeLine () {
-    if (getCurrentFocusedLine() > 0 &&
-      getCaretOffsetOfCurrentTextField() == 0) {
-      LOGGER.info("Merge line " +
-        getCurrentFocusedLine() + " at caretposition " + getCaretOffsetOfCurrentTextField());
-      int currentLine = getCurrentFocusedLine() - 1;
-      int lastposChord = Utils.trimRight(getChordLines().get(currentLine).getText()).length();
-      int lasttextChord = Utils.trimRight(getTextLines().get(currentLine).getText()).length();
-      int nextpos = Math.max(lastposChord, lasttextChord);
-      getEditorContent().setCurrentPart(MidiPlayerService.mergeLine(getCurrentPart(), getCurrentFocusedLine(), getCaretOffsetOfCurrentTextField()));
-      TextLine previousTextLine = getTextLines().get(currentLine);
-      setFocus(previousTextLine);
-      setCurrentCaretPosition(nextpos);
 
+  /**
+   * merges the previous line with the current focused line, if the current line is not the first line
+   */
+  public void mergePreviousLineWithCurrentLine () {
+    if (getCurrentFocusedLine() > 0 && getCaretOffsetOfCurrentTextField() == 0) {
+      doMergeLine(getCurrentFocusedLine());
     }
+
   }
 
-  @Override
+  /**
+   * merges the current line with the next line, if it is not the last line
+   */
+  public void mergeCurrentLineWithNextLine () {
+    if (getCurrentFocusedLine() < getTextLines().size() && isCaretAtEndOfLine())
+      doMergeLine(getCurrentFocusedLine() + 1);
+  }
+
+
+  /**
+   * merges a line to the previous line
+   * @param linenumber  the number of the line, which should be merged to the end of the previous line
+   */
+  private void doMergeLine (final int linenumber) {
+    LOGGER.info("Merge line " + linenumber + " at caretposition " + getCaretOffsetOfCurrentTextField());
+    int currentLine = linenumber - 1;
+    int lastposChord = Utils.trimRight(getChordLines().get(currentLine).getText()).length();
+    int lasttextChord = Utils.trimRight(getTextLines().get(currentLine).getText()).length();
+    int nextpos = Math.max(lastposChord, lasttextChord);
+    getEditorContent().setCurrentPart(MidiPlayerService.mergeLine(getCurrentPart(), linenumber, getCaretOffsetOfCurrentTextField()));
+    TextLine previousTextLine = getTextLines().get(currentLine);
+    setFocus(previousTextLine);
+    setCurrentCaretPosition(nextpos);
+  }
+
   public void splitPart () {
     LOGGER.info("Split part " +
       getCurrentFocusedLine() + " at caretposition " + getCaretOffsetOfCurrentTextField());
@@ -569,7 +607,6 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
     getEditorContent().redrawSlidelist();
   }
 
-  @Override
   public void mergeWithPreviousPart () {
     LOGGER.info("Merge with previous part " +
       getCurrentFocusedLine() + " at caretposition " + getCaretOffsetOfCurrentTextField());
@@ -635,7 +672,6 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
     this.currentFocusedLine = currentFocusedLine;
   }
 
-  @Override
   public boolean chordToLeft () {
     Label label = getChordLines().get(getCurrentFocusedLine());
     String chord = label.getText();
@@ -649,7 +685,6 @@ public class ContentPart extends AbstractPart implements IPreviewEditorView, Foc
       return false;
   }
 
-  @Override
   public boolean chordToRight () {
     Label label = getChordLines().get(getCurrentFocusedLine());
 

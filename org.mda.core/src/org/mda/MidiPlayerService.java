@@ -124,9 +124,6 @@ public class MidiPlayerService {
    * @param line line to merge
    * @return part */
   public final static MidiFilePart mergeLine (final MidiFilePart part, final int line, final int caretposition) {
-    if (caretposition > 0)
-      return part;
-
     MidiFileTextLine currentTextLine = part.getTextlines().get(line);
     MidiFileTextLine previousTextLine = part.getTextlines().get(line - 1);
     previousTextLine.getChordParts().addAll(currentTextLine.getChordParts());
