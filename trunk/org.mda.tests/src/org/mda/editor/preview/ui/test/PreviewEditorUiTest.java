@@ -11,6 +11,7 @@ import mda.MidiPlayerRoot;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
@@ -27,6 +28,11 @@ public class PreviewEditorUiTest {
   private static Shell shell;
   private PreviewEditorContent editor;
 
+
+  @Test
+  public void mergeCurrentLineWithNextLine () {
+    throw new IllegalStateException("Not yet implemented");
+  }
 
   @Test
   public void deleteWhenSelected () throws Exception {
@@ -47,6 +53,25 @@ public class PreviewEditorUiTest {
   }
 
 
+  @Test
+  public void stepToEndOfLine () throws Exception {
+    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    editor = new PreviewEditorContent(shell, song);
+    editor.getContentpanel().setCurrentPart(song.getParts().get(1));
+
+    //step to next line (current caretposition in nextline not out of limits)  (1->2)
+    StyledText text = editor.getContentpanel().getFocusedTextField();
+    text.setCaretOffset(3);
+
+    editor.getContentpanel().stepToEndOfLine();
+
+    int lengthOfLine = text.getText().length();
+    int trimmedLengthOfLine = text.getText().trim().length();
+
+    Assert.assertTrue ("Nothing to trim in line <" + text.getText() + ">", lengthOfLine > trimmedLengthOfLine);
+    Assert.assertEquals ("End of line not correct set in line <" + text.getText() + ">" , trimmedLengthOfLine, editor.getContentpanel().getFocusedTextField().getCaretOffset());
+
+  }
 
   @Test
   public void stepToNextAndPreviousLine () throws Exception {
@@ -189,7 +214,7 @@ public class PreviewEditorUiTest {
     assertEquals(fill("betet an in Wahrheit und in Geist,"), text2.getText());
     assertEquals (text2, editor.getContentpanel().getFocusedTextField());
     assertEquals (0, text2.getCaretOffset());
-    editor.getContentpanel().mergeLine();
+    editor.getContentpanel().mergePreviousLineWithCurrentLine();
 
     text = editor.getContentpanel().getTextLines().get(0);
     chord = editor.getContentpanel().getChordLines().get(0);
@@ -223,7 +248,7 @@ public class PreviewEditorUiTest {
     assertEquals("            A       D           G               A", getChord(1).getText());
     assertEquals(fill(" staunt und preist, betet an in Wahrheit und in Geist,"), getText(1).getText());
 
-    editor.getContentpanel().mergeLine();
+    editor.getContentpanel().mergePreviousLineWithCurrentLine();
     assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
     assertEquals(fill(TEXTLINEORIGINAL), getText(0).getText());  //line 1
   }
@@ -257,7 +282,7 @@ public class PreviewEditorUiTest {
     assertEquals(CHORDLINEORIGINAL, getChord(1).getText());
     assertEquals(fill(TEXTLINEORIGINAL), getText(1).getText());  //line 1
 
-    editor.getContentpanel().mergeLine();
+    editor.getContentpanel().mergePreviousLineWithCurrentLine();
     assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
     assertEquals(fill(TEXTLINEORIGINAL), getText(0).getText());  //line 1
   }
@@ -276,7 +301,7 @@ public class PreviewEditorUiTest {
     assertEquals("", getChord(1).getText());
     assertEquals(fill(" "), getText(1).getText());
 
-    editor.getContentpanel().mergeLine();
+    editor.getContentpanel().mergePreviousLineWithCurrentLine();
     assertEquals(fill("Dies ist ein Test "), getText(0).getText());  //line 0
     assertEquals (2, editor.getContentpanel().getTextLines().size());
   }
@@ -294,7 +319,7 @@ public class PreviewEditorUiTest {
     assertEquals("", getChord(1).getText());
     assertEquals(fill(" "), getText(1).getText());
 
-    editor.getContentpanel().mergeLine();
+    editor.getContentpanel().mergePreviousLineWithCurrentLine();
     assertEquals(fill("Dies ist ein Test "), getText(0).getText());  //line 0
     assertEquals (1, editor.getContentpanel().getTextLines().size());
   }
@@ -321,7 +346,7 @@ public class PreviewEditorUiTest {
     assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
     assertEquals(fill(TEXTLINEORIGINAL), getText(0).getText());  //line 1
 
-    editor.getContentpanel().mergeLine();
+    editor.getContentpanel().mergePreviousLineWithCurrentLine();
     assertEquals(CHORDLINEORIGINAL, getChord(0).getText());
     assertEquals(fill(TEXTLINEORIGINAL), getText(0).getText());  //line 1
 
