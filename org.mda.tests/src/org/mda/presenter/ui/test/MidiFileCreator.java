@@ -1,5 +1,6 @@
 package org.mda.presenter.ui.test;
 
+import mda.Copyright;
 import mda.MidiFile;
 import mda.MidiFileChordPart;
 import mda.MidiFilePart;
@@ -25,6 +26,22 @@ public class MidiFileCreator {
 
   public static MidiFileCreator create () {
     return new MidiFileCreator();
+  }
+
+  public MidiFileCreator copyright (final String originalTitle, final String publisher, final String publisherInland, final String writerInlandText,
+                                    final String writerMusic, final String writerText, final Integer year) {
+    Copyright copyright = MidiplayerFactory.eINSTANCE.createCopyright();
+    copyright.setOriginaltitle(originalTitle);
+    copyright.setPublisher(publisher);
+    copyright.setPublisherInland(publisherInland);
+    copyright.setWriterInlandText(writerInlandText);
+    copyright.setWriterMusic(writerMusic);
+    copyright.setWriterText(writerText);
+    if (year != null)
+     copyright.setYear(year);
+
+    midifile.setCopyright(copyright);
+    return this;
   }
 
   public MidiFileCreator part (MidiFilePartType type) {

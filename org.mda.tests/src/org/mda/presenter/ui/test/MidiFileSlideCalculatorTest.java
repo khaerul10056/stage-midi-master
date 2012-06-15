@@ -35,6 +35,9 @@ public class MidiFileSlideCalculatorTest {
 
   private static ApplicationSession appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
 
+  final String PUBLISHER = "PUBLISHER";
+  final String PUBLISHERINLAND = "PUBLISHERINLAND";
+
 
   @BeforeClass
   public static void beforeClass () {
@@ -59,10 +62,56 @@ public class MidiFileSlideCalculatorTest {
     }
   }
 
+  private int findTokens (final Slide slide) {
+    int foundTokens = 0;
+    for (SlideItem next: slide.getItems()) {
+      if (next.getText().indexOf(PUBLISHER) >= 0)
+        foundTokens ++;
+      else if (next.getText().indexOf(PUBLISHERINLAND) >= 0)
+        foundTokens ++;
+    }
+
+    return foundTokens;
+
+  }
+
   @Test
   public void copyright () {
-    throw new IllegalStateException("NYI");
+    MidiFileCreator creator = MidiFileCreator.create();
+    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.line().chordAndText("D", "                         ").chordAndText("F", "    ");
 
+    creator = creator.copyright(null, PUBLISHER, PUBLISHERINLAND, null, null, null, null);
+    MidiFile song = creator.get();
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setShowCopyright(true);
+    CalculatorPreCondition preCondition = new CalculatorPreCondition();
+    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
+    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    calculator.setConfig(config);
+    List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
+    Slide slide = calculateWithoutBorder.get(0);
+    Assert.assertEquals (2, findTokens(slide));
+  }
+
+  @Test
+  public void noCopyright () {
+    MidiFileCreator creator = MidiFileCreator.create();
+    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.line().chordAndText("D", "                         ").chordAndText("F", "    ");
+    final String PUBLISHER = "PUBLISHER";
+    final String PUBLISHERINLAND = "PUBLISHERINLAND";
+    creator = creator.copyright(null, PUBLISHER, PUBLISHERINLAND, null, null, null, null);
+    MidiFile song = creator.get();
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setShowCopyright(false);
+    CalculatorPreCondition preCondition = new CalculatorPreCondition();
+    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
+    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    calculator.setConfig(config);
+    List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
+    Slide slide = calculateWithoutBorder.get(0);
+    Assert.assertEquals (0, findTokens(slide));
   }
 
 
