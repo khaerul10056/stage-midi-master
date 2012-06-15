@@ -59,6 +59,12 @@ public class MidiFileSlideCalculatorTest {
     }
   }
 
+  @Test
+  public void copyright () {
+    throw new IllegalStateException("NYI");
+
+  }
+
 
   @Test
   public void skipEmptyText () {

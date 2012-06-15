@@ -72,6 +72,7 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
       case MidiplayerPackage.CONFIGURATION: return createConfiguration();
       case MidiplayerPackage.USER: return createUser();
       case MidiplayerPackage.EXPORT_CONFIGURATION: return createExportConfiguration();
+      case MidiplayerPackage.COPYRIGHT: return createCopyright();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -223,6 +224,16 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
   public ExportConfiguration createExportConfiguration() {
     ExportConfigurationImpl exportConfiguration = new ExportConfigurationImpl();
     return exportConfiguration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Copyright createCopyright() {
+    CopyrightImpl copyright = new CopyrightImpl();
+    return copyright;
   }
 
   /**

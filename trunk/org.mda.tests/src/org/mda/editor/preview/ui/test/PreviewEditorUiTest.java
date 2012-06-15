@@ -29,10 +29,43 @@ public class PreviewEditorUiTest {
   private PreviewEditorContent editor;
 
 
-  @Test
-  public void mergeCurrentLineWithNextLine () {
-    throw new IllegalStateException("Not yet implemented");
+  /**
+   * checks mergeCurrentLine
+   * @param expectedLines number of lines expected after merge
+   * @param focusedLine  focus this line
+   * @param caretPos   set caret at this position, -1 sets it to the end of the line
+   */
+  private void mergeCurrentLineAndCheckLines (final int expectedLines, final int focusedLine, int caretPos) {
+    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    creator = creator.line().text("The first line").line().text("The second line");
+    MidiFile midiFile = creator.get();
+    PreviewEditorContent editor = new PreviewEditorContent(shell, midiFile);
+    editor.setCurrentPart(midiFile.getParts().get(0));
+    editor.getContentpanel().setCurrentFocusedLine(focusedLine);
+
+    int length = editor.getContentpanel().getFocusedTextField().getText().length();
+    if (caretPos == -1)
+      caretPos = length;
+    editor.getContentpanel().setCurrentCaretPosition(caretPos);
+    editor.getContentpanel().mergeCurrentLineWithNextLine();
+    Assert.assertEquals (expectedLines, editor.getContentpanel().getTextLines().size());
   }
+
+  @Test
+  public void mergeCurrentLineWithNextLineNotAtEndOfLine () {
+    mergeCurrentLineAndCheckLines(2, 0, 0);
+  }
+
+  @Test
+  public void mergeCurrentLineWithNextLineAtEndOfLine () {
+    mergeCurrentLineAndCheckLines(1, 0, -1);
+  }
+
+  @Test
+  public void mergeCurrentLineWithNextLineAtLastLine () {
+    mergeCurrentLineAndCheckLines(2, 1, -1);
+  }
+
 
   @Test
   public void deleteWhenSelected () throws Exception {

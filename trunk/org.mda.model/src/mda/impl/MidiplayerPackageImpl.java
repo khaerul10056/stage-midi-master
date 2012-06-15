@@ -10,6 +10,7 @@ import mda.AbstractEvent;
 import mda.AbstractSessionItem;
 import mda.AdditionalType;
 import mda.Configuration;
+import mda.Copyright;
 import mda.ExportConfiguration;
 import mda.Gallery;
 import mda.MidiFile;
@@ -129,6 +130,13 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * @generated
    */
   private EClass exportConfigurationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass copyrightEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -330,6 +338,15 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
   }
 
 		/**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMidiFile_Copyright() {
+    return (EReference)midiFileEClass.getEStructuralFeatures().get(3);
+  }
+
+    /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -673,6 +690,78 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
     /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCopyright() {
+    return copyrightEClass;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCopyright_Originaltitle() {
+    return (EAttribute)copyrightEClass.getEStructuralFeatures().get(0);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCopyright_WriterMusic() {
+    return (EAttribute)copyrightEClass.getEStructuralFeatures().get(1);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCopyright_WriterText() {
+    return (EAttribute)copyrightEClass.getEStructuralFeatures().get(2);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCopyright_WriterInlandText() {
+    return (EAttribute)copyrightEClass.getEStructuralFeatures().get(3);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCopyright_Year() {
+    return (EAttribute)copyrightEClass.getEStructuralFeatures().get(4);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCopyright_Publisher() {
+    return (EAttribute)copyrightEClass.getEStructuralFeatures().get(5);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCopyright_PublisherInland() {
+    return (EAttribute)copyrightEClass.getEStructuralFeatures().get(6);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -741,6 +830,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     createEReference(midiFileEClass, MIDI_FILE__PARTS);
     createEAttribute(midiFileEClass, MIDI_FILE__PIC);
     createEAttribute(midiFileEClass, MIDI_FILE__KEY);
+    createEReference(midiFileEClass, MIDI_FILE__COPYRIGHT);
 
     abstractEventEClass = createEClass(ABSTRACT_EVENT);
     createEAttribute(abstractEventEClass, ABSTRACT_EVENT__AT_BAR);
@@ -789,6 +879,15 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
     exportConfigurationEClass = createEClass(EXPORT_CONFIGURATION);
     createEAttribute(exportConfigurationEClass, EXPORT_CONFIGURATION__WITH_CHORDS);
+
+    copyrightEClass = createEClass(COPYRIGHT);
+    createEAttribute(copyrightEClass, COPYRIGHT__ORIGINALTITLE);
+    createEAttribute(copyrightEClass, COPYRIGHT__WRITER_MUSIC);
+    createEAttribute(copyrightEClass, COPYRIGHT__WRITER_TEXT);
+    createEAttribute(copyrightEClass, COPYRIGHT__WRITER_INLAND_TEXT);
+    createEAttribute(copyrightEClass, COPYRIGHT__YEAR);
+    createEAttribute(copyrightEClass, COPYRIGHT__PUBLISHER);
+    createEAttribute(copyrightEClass, COPYRIGHT__PUBLISHER_INLAND);
 
     // Create enums
     midiFilePartTypeEEnum = createEEnum(MIDI_FILE_PART_TYPE);
@@ -843,6 +942,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     initEReference(getMidiFile_Parts(), this.getMidiFilePart(), null, "parts", null, 0, -1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMidiFile_Pic(), ecorePackage.getEString(), "pic", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMidiFile_Key(), ecorePackage.getEString(), "key", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMidiFile_Copyright(), this.getCopyright(), null, "copyright", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(abstractEventEClass, AbstractEvent.class, "AbstractEvent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAbstractEvent_AtBar(), ecorePackage.getEInt(), "atBar", null, 0, 1, AbstractEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -891,6 +991,15 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
     initEClass(exportConfigurationEClass, ExportConfiguration.class, "ExportConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getExportConfiguration_WithChords(), ecorePackage.getEBoolean(), "withChords", null, 0, 1, ExportConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(copyrightEClass, Copyright.class, "Copyright", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCopyright_Originaltitle(), ecorePackage.getEString(), "originaltitle", null, 0, 1, Copyright.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCopyright_WriterMusic(), ecorePackage.getEString(), "writerMusic", null, 0, 1, Copyright.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCopyright_WriterText(), ecorePackage.getEString(), "writerText", null, 0, 1, Copyright.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCopyright_WriterInlandText(), ecorePackage.getEString(), "writerInlandText", null, 0, 1, Copyright.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCopyright_Year(), ecorePackage.getEInt(), "year", null, 0, 1, Copyright.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCopyright_Publisher(), ecorePackage.getEString(), "publisher", null, 0, 1, Copyright.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCopyright_PublisherInland(), ecorePackage.getEString(), "publisherInland", null, 0, 1, Copyright.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(midiFilePartTypeEEnum, MidiFilePartType.class, "MidiFilePartType");
