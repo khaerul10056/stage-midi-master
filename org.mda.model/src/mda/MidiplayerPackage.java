@@ -235,13 +235,22 @@ public interface MidiplayerPackage extends EPackage {
 	int MIDI_FILE__KEY = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 2;
 
 		/**
+   * The feature id for the '<em><b>Copyright</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MIDI_FILE__COPYRIGHT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 3;
+
+    /**
    * The number of structural features of the '<em>Midi File</em>' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int MIDI_FILE_FEATURE_COUNT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 3;
+	int MIDI_FILE_FEATURE_COUNT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 4;
 
 	/**
    * The meta object id for the '{@link mda.impl.AbstractEventImpl <em>Abstract Event</em>}' class.
@@ -695,6 +704,88 @@ public interface MidiplayerPackage extends EPackage {
   int EXPORT_CONFIGURATION_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link mda.impl.CopyrightImpl <em>Copyright</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see mda.impl.CopyrightImpl
+   * @see mda.impl.MidiplayerPackageImpl#getCopyright()
+   * @generated
+   */
+  int COPYRIGHT = 13;
+
+    /**
+   * The feature id for the '<em><b>Originaltitle</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COPYRIGHT__ORIGINALTITLE = 0;
+
+    /**
+   * The feature id for the '<em><b>Writer Music</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COPYRIGHT__WRITER_MUSIC = 1;
+
+    /**
+   * The feature id for the '<em><b>Writer Text</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COPYRIGHT__WRITER_TEXT = 2;
+
+    /**
+   * The feature id for the '<em><b>Writer Inland Text</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COPYRIGHT__WRITER_INLAND_TEXT = 3;
+
+    /**
+   * The feature id for the '<em><b>Year</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COPYRIGHT__YEAR = 4;
+
+    /**
+   * The feature id for the '<em><b>Publisher</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COPYRIGHT__PUBLISHER = 5;
+
+    /**
+   * The feature id for the '<em><b>Publisher Inland</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COPYRIGHT__PUBLISHER_INLAND = 6;
+
+    /**
+   * The number of structural features of the '<em>Copyright</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COPYRIGHT_FEATURE_COUNT = 7;
+
+  /**
    * The meta object id for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -702,7 +793,7 @@ public interface MidiplayerPackage extends EPackage {
    * @see mda.impl.MidiplayerPackageImpl#getMidiFilePartType()
    * @generated
    */
-	int MIDI_FILE_PART_TYPE = 13;
+	int MIDI_FILE_PART_TYPE = 14;
 
 
 	/**
@@ -713,7 +804,7 @@ public interface MidiplayerPackage extends EPackage {
    * @see mda.impl.MidiplayerPackageImpl#getAdditionalType()
    * @generated
    */
-  int ADDITIONAL_TYPE = 14;
+  int ADDITIONAL_TYPE = 15;
 
 
   /**
@@ -724,7 +815,7 @@ public interface MidiplayerPackage extends EPackage {
    * @see mda.impl.MidiplayerPackageImpl#getUserType()
    * @generated
    */
-  int USER_TYPE = 15;
+  int USER_TYPE = 16;
 
 
   /**
@@ -868,6 +959,17 @@ public interface MidiplayerPackage extends EPackage {
 	EAttribute getMidiFile_Key();
 
 		/**
+   * Returns the meta object for the containment reference '{@link mda.MidiFile#getCopyright <em>Copyright</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Copyright</em>'.
+   * @see mda.MidiFile#getCopyright()
+   * @see #getMidiFile()
+   * @generated
+   */
+  EReference getMidiFile_Copyright();
+
+    /**
    * Returns the meta object for class '{@link mda.AbstractEvent <em>Abstract Event</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1276,6 +1378,93 @@ public interface MidiplayerPackage extends EPackage {
   EAttribute getExportConfiguration_WithChords();
 
     /**
+   * Returns the meta object for class '{@link mda.Copyright <em>Copyright</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Copyright</em>'.
+   * @see mda.Copyright
+   * @generated
+   */
+  EClass getCopyright();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.Copyright#getOriginaltitle <em>Originaltitle</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Originaltitle</em>'.
+   * @see mda.Copyright#getOriginaltitle()
+   * @see #getCopyright()
+   * @generated
+   */
+  EAttribute getCopyright_Originaltitle();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.Copyright#getWriterMusic <em>Writer Music</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Writer Music</em>'.
+   * @see mda.Copyright#getWriterMusic()
+   * @see #getCopyright()
+   * @generated
+   */
+  EAttribute getCopyright_WriterMusic();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.Copyright#getWriterText <em>Writer Text</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Writer Text</em>'.
+   * @see mda.Copyright#getWriterText()
+   * @see #getCopyright()
+   * @generated
+   */
+  EAttribute getCopyright_WriterText();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.Copyright#getWriterInlandText <em>Writer Inland Text</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Writer Inland Text</em>'.
+   * @see mda.Copyright#getWriterInlandText()
+   * @see #getCopyright()
+   * @generated
+   */
+  EAttribute getCopyright_WriterInlandText();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.Copyright#getYear <em>Year</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Year</em>'.
+   * @see mda.Copyright#getYear()
+   * @see #getCopyright()
+   * @generated
+   */
+  EAttribute getCopyright_Year();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.Copyright#getPublisher <em>Publisher</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Publisher</em>'.
+   * @see mda.Copyright#getPublisher()
+   * @see #getCopyright()
+   * @generated
+   */
+  EAttribute getCopyright_Publisher();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.Copyright#getPublisherInland <em>Publisher Inland</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Publisher Inland</em>'.
+   * @see mda.Copyright#getPublisherInland()
+   * @see #getCopyright()
+   * @generated
+   */
+  EAttribute getCopyright_PublisherInland();
+
+    /**
    * Returns the meta object for enum '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1438,6 +1627,14 @@ public interface MidiplayerPackage extends EPackage {
 		EAttribute MIDI_FILE__KEY = eINSTANCE.getMidiFile_Key();
 
 				/**
+     * The meta object literal for the '<em><b>Copyright</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MIDI_FILE__COPYRIGHT = eINSTANCE.getMidiFile_Copyright();
+
+        /**
      * The meta object literal for the '{@link mda.impl.AbstractEventImpl <em>Abstract Event</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1760,6 +1957,72 @@ public interface MidiplayerPackage extends EPackage {
      * @generated
      */
     EAttribute EXPORT_CONFIGURATION__WITH_CHORDS = eINSTANCE.getExportConfiguration_WithChords();
+
+        /**
+     * The meta object literal for the '{@link mda.impl.CopyrightImpl <em>Copyright</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see mda.impl.CopyrightImpl
+     * @see mda.impl.MidiplayerPackageImpl#getCopyright()
+     * @generated
+     */
+    EClass COPYRIGHT = eINSTANCE.getCopyright();
+
+        /**
+     * The meta object literal for the '<em><b>Originaltitle</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COPYRIGHT__ORIGINALTITLE = eINSTANCE.getCopyright_Originaltitle();
+
+        /**
+     * The meta object literal for the '<em><b>Writer Music</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COPYRIGHT__WRITER_MUSIC = eINSTANCE.getCopyright_WriterMusic();
+
+        /**
+     * The meta object literal for the '<em><b>Writer Text</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COPYRIGHT__WRITER_TEXT = eINSTANCE.getCopyright_WriterText();
+
+        /**
+     * The meta object literal for the '<em><b>Writer Inland Text</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COPYRIGHT__WRITER_INLAND_TEXT = eINSTANCE.getCopyright_WriterInlandText();
+
+        /**
+     * The meta object literal for the '<em><b>Year</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COPYRIGHT__YEAR = eINSTANCE.getCopyright_Year();
+
+        /**
+     * The meta object literal for the '<em><b>Publisher</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COPYRIGHT__PUBLISHER = eINSTANCE.getCopyright_Publisher();
+
+        /**
+     * The meta object literal for the '<em><b>Publisher Inland</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COPYRIGHT__PUBLISHER_INLAND = eINSTANCE.getCopyright_PublisherInland();
 
         /**
      * The meta object literal for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.

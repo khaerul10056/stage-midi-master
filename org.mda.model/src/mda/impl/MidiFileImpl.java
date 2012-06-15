@@ -8,6 +8,7 @@ package mda.impl;
 
 import java.util.Collection;
 
+import mda.Copyright;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiplayerPackage;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link mda.impl.MidiFileImpl#getParts <em>Parts</em>}</li>
  *   <li>{@link mda.impl.MidiFileImpl#getPic <em>Pic</em>}</li>
  *   <li>{@link mda.impl.MidiFileImpl#getKey <em>Key</em>}</li>
+ *   <li>{@link mda.impl.MidiFileImpl#getCopyright <em>Copyright</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,6 +85,15 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
    */
 	protected String key = KEY_EDEFAULT;
 		/**
+   * The cached value of the '{@link #getCopyright() <em>Copyright</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCopyright()
+   * @generated
+   * @ordered
+   */
+  protected Copyright copyright;
+    /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -157,6 +168,49 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
 
 		/**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Copyright getCopyright() {
+    return copyright;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetCopyright(Copyright newCopyright, NotificationChain msgs) {
+    Copyright oldCopyright = copyright;
+    copyright = newCopyright;
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE__COPYRIGHT, oldCopyright, newCopyright);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCopyright(Copyright newCopyright) {
+    if (newCopyright != copyright) {
+      NotificationChain msgs = null;
+      if (copyright != null)
+        msgs = ((InternalEObject)copyright).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MidiplayerPackage.MIDI_FILE__COPYRIGHT, null, msgs);
+      if (newCopyright != null)
+        msgs = ((InternalEObject)newCopyright).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MidiplayerPackage.MIDI_FILE__COPYRIGHT, null, msgs);
+      msgs = basicSetCopyright(newCopyright, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE__COPYRIGHT, newCopyright, newCopyright));
+  }
+
+    /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -165,6 +219,8 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
     switch (featureID) {
       case MidiplayerPackage.MIDI_FILE__PARTS:
         return ((InternalEList<?>)getParts()).basicRemove(otherEnd, msgs);
+      case MidiplayerPackage.MIDI_FILE__COPYRIGHT:
+        return basicSetCopyright(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -183,6 +239,8 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
         return getPic();
       case MidiplayerPackage.MIDI_FILE__KEY:
         return getKey();
+      case MidiplayerPackage.MIDI_FILE__COPYRIGHT:
+        return getCopyright();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -206,6 +264,9 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
       case MidiplayerPackage.MIDI_FILE__KEY:
         setKey((String)newValue);
         return;
+      case MidiplayerPackage.MIDI_FILE__COPYRIGHT:
+        setCopyright((Copyright)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -227,6 +288,9 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
       case MidiplayerPackage.MIDI_FILE__KEY:
         setKey(KEY_EDEFAULT);
         return;
+      case MidiplayerPackage.MIDI_FILE__COPYRIGHT:
+        setCopyright((Copyright)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -245,6 +309,8 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
         return PIC_EDEFAULT == null ? pic != null : !PIC_EDEFAULT.equals(pic);
       case MidiplayerPackage.MIDI_FILE__KEY:
         return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
+      case MidiplayerPackage.MIDI_FILE__COPYRIGHT:
+        return copyright != null;
     }
     return super.eIsSet(featureID);
   }

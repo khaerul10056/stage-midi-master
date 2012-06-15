@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link mda.MidiFile#getParts <em>Parts</em>}</li>
  *   <li>{@link mda.MidiFile#getPic <em>Pic</em>}</li>
  *   <li>{@link mda.MidiFile#getKey <em>Key</em>}</li>
+ *   <li>{@link mda.MidiFile#getCopyright <em>Copyright</em>}</li>
  * </ul>
  * </p>
  *
@@ -94,5 +95,31 @@ public interface MidiFile extends AbstractSessionItem {
    * @generated
    */
 	void setKey(String value);
+
+    /**
+   * Returns the value of the '<em><b>Copyright</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Copyright</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Copyright</em>' containment reference.
+   * @see #setCopyright(Copyright)
+   * @see mda.MidiplayerPackage#getMidiFile_Copyright()
+   * @model containment="true"
+   * @generated
+   */
+  Copyright getCopyright();
+
+    /**
+   * Sets the value of the '{@link mda.MidiFile#getCopyright <em>Copyright</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Copyright</em>' containment reference.
+   * @see #getCopyright()
+   * @generated
+   */
+  void setCopyright(Copyright value);
 
 } // MidiFile

@@ -65,6 +65,12 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
   private boolean showTitle = false;
 
   /**
+   * configuration if copyright-information should be shown
+   */
+  private boolean showCopyright;
+
+
+  /**
    * configuration if empty slides should be removed
    */
   private boolean skipEmptySlides = false;
@@ -90,6 +96,8 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
    * border for the slide
    */
   private Integer border = null;
+
+
 
   public FontDescriptor getFont () {
     if (fontsize != null)
@@ -250,6 +258,15 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   public void setOptimizeEmptyTokens (boolean optimizeEmptyTokens) {
     this.optimizeEmptyTokens = optimizeEmptyTokens;
+  }
+
+  @Override
+  public boolean isShowCopyright () {
+    return showCopyright;
+  }
+
+  public void setShowCopyright (boolean showCopyright) {
+    this.showCopyright = showCopyright;
   }
 
 

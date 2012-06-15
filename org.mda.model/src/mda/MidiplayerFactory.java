@@ -125,6 +125,15 @@ public interface MidiplayerFactory extends EFactory {
   ExportConfiguration createExportConfiguration();
 
   /**
+   * Returns a new object of class '<em>Copyright</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Copyright</em>'.
+   * @generated
+   */
+  Copyright createCopyright();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

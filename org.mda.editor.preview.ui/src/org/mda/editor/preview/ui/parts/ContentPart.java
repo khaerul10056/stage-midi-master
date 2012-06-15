@@ -576,7 +576,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
    * merges the current line with the next line, if it is not the last line
    */
   public void mergeCurrentLineWithNextLine () {
-    if (getCurrentFocusedLine() < getTextLines().size() && isCaretAtEndOfLine())
+    if (getCurrentFocusedLine() < getTextLines().size() - 1 && isCaretAtEndOfLine())
       doMergeLine(getCurrentFocusedLine() + 1);
   }
 

@@ -59,6 +59,12 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
   boolean isShowTitle();
 
   /**
+   * returns if copyright-information should be should at the bottom of every song
+   * @return true/false
+   */
+  boolean isShowCopyright ();
+
+  /**
    * returns if empty slides should be skipped
    * @return true/false
    */
@@ -100,6 +106,8 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
    * @return true/false
    */
   boolean isOptimizeEmptyTokens ();
+
+
 
 
 
