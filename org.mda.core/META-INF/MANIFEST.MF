@@ -6,6 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.mda,
  org.mda.additionals,
+ org.mda.copyright,
  org.mda.importer,
  org.mda.logging,
  org.mda.player,

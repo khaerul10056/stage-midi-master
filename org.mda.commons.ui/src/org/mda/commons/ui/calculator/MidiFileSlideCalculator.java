@@ -16,9 +16,11 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
+import org.mda.MidiPlayerService;
 import org.mda.Utils;
 import org.mda.additionals.Additional;
 import org.mda.commons.ui.IGraphicsContext;
+import org.mda.copyright.CopyrightSerializer;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.struct.MidiFileStruct;
@@ -42,17 +44,52 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
   private Point testExtend;
 
+  private CopyrightSerializer copyrightSerializer = new CopyrightSerializer();
+
+  private int height = -1;
+
   @Override
   public List<Slide> calculate (final AbstractSessionItem sessionitem, final CalculatorPreCondition preCondition) {
     List<Slide> slides = new ArrayList<Slide>();
     MidiFile midifile = (MidiFile) sessionitem;
+
+    if (height < 0)
+      height = preCondition.getCalculationsize().y;
 
     currentY = getConfiguredBorder();
 
     init(midifile);
 
     for (MidiFilePart nextPart : midifile.getParts()) {
-      slides.addAll(calculatePart(nextPart, preCondition));
+      List<Slide> calculatePart = calculatePart(nextPart, preCondition);
+      slides.addAll(calculatePart);
+    }
+
+    if (getConfig().isShowCopyright()) {
+      int copyrightFontsize = getConfig().getFont().getFontsizeAsInt() - 2;
+      Font font = new Font (Display.getCurrent(), "Arial Alternative", copyrightFontsize, SWT.NONE);
+      Font zoomedFont = calculateZoomedFont(font, preCondition);
+      if (LOGGER.isDebugEnabled())
+        LOGGER.debug("set font to size " + zoomedFont.getFontData() [0].height + " from " + font.getFontData() [0].height);
+
+      List<String> serialize = copyrightSerializer.serialize(midifile);
+      if (serialize.size() > 0) {
+
+        testExtend = getGc().getSize(serialize.get(0), getConfig().getFont());
+        currentX = getConfiguredBorder();
+        currentY = height - (serialize.size() * testExtend.y);
+
+        for (String nextCopyrightLine : serialize) {
+          testExtend = getGc().getSize(nextCopyrightLine, getConfig().getFont());
+          Point zoomedSize = calculateZoomedPoint(testExtend, preCondition);
+          Rectangle newRectangle = new Rectangle(currentX, currentY, zoomedSize.x, zoomedSize.y);
+          FontDescriptor fontDesc = new FontDescriptor(copyrightFontsize);
+          SlideItem titleItem = new SlideItem(newRectangle, nextCopyrightLine, SlideType.COPYRIGHT, null, false, fontDesc, 0);
+          Slide lastSlide = slides.get(slides.size() - 1);
+          lastSlide.addItem(titleItem);
+          currentY += zoomedSize.y;
+        }
+      }
     }
     return slides;
   }
@@ -72,10 +109,11 @@ public class MidiFileSlideCalculator extends SlideCalculator {
   }
 
 
+
   private void addTitle (Slide slide, final MidiFile midifile, final CalculatorPreCondition preCondition) {
     if (midifile.getName() != null && ! midifile.getName().isEmpty()) {
 
-      String name = midifile.getName().endsWith(".mid") ? midifile.getName().substring(0, midifile.getName().length() - 4) : midifile.getName();
+      String name = MidiPlayerService.getTitle(midifile);
 
       Point point = new Point (currentX, currentY);
       Point zoomedPoint = calculateZoomedPoint(point, preCondition);
@@ -112,7 +150,6 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       LOGGER.debug("Setting image to null");
       imageFile = null;
     }
-
   }
 
 
