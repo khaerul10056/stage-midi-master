@@ -40,6 +40,10 @@ public class MidiPlayerService {
   }
 
 
+  public static String getTitle (final MidiFile midifile) {
+    return midifile.getName().endsWith(".mid") ? midifile.getName().substring(0, midifile.getName().length() - 4) : midifile.getName();
+  }
+
   /**
    * removes a sessionitem itself and all references in any session, if it is referenced
    * @param rootobject   rootobject

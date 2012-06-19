@@ -1,5 +1,5 @@
 
-
+Bug				Export			Sort songs in songsheets
 Enhancement     Editor			Merge line with nextline when DEL is pressed at end of line
 Enhancement		Editor			Clone line
 Enhancement 	Editor			Move up/down part shortcut

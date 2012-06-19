@@ -1,10 +1,11 @@
 package org.mda.copyright;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import mda.Copyright;
 import mda.MidiFile;
+import org.mda.MidiPlayerService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
@@ -16,7 +17,7 @@ public class CopyrightSerializer {
   private String template = CopyrightTokenType.NAME.getId() + " " + CopyrightTokenType.ORIGINALTITLE.getId() + " " +
                             CopyrightTokenType.WRITER_TEXT.getId() + " " + CopyrightTokenType.WRITER_MUSIC.getId() + "\n" +
                             CopyrightTokenType.WRITER_INLAND_TEXT.getId() + " " + CopyrightTokenType.YEAR.getId() + " " + CopyrightTokenType.PUBLISHER.getId() + " " +
-                            CopyrightTokenType.PUBLISHER_INLAND.getId() + " genehmigtes Exemplar";
+                            CopyrightTokenType.PUBLISHER_INLAND.getId() + "\ngenehmigtes Exemplar";
 
 
   private boolean isNullOrEmpty (final String field) {
@@ -61,7 +62,7 @@ public class CopyrightSerializer {
       return template.replace(type.getId(), "");
   }
 
-  public Collection <String> serialize (final MidiFile midifile) {
+  public List <String> serialize (final MidiFile midifile) {
 
     LOGGER.info("Serializing copyright using template <" + template + ">");
 
@@ -76,12 +77,12 @@ public class CopyrightSerializer {
     if (! isNullOrEmpty(copyright.getWriterMusic()) &&
         ! isNullOrEmpty(copyright.getWriterText()) &&
         copyright.getWriterMusic().trim().equals(copyright.getWriterText().trim())) {
-      String pre = CopyrightTokenType.WRITER_MUSIC.getLabel() + " & " + CopyrightTokenType.WRITER_TEXT.getLabel() + ": " + copyright.getWriterMusic().trim();
+      String pre = CopyrightTokenType.WRITER_MUSIC.getLabel() + " & " + CopyrightTokenType.WRITER_TEXT.getLabel() + ": " + copyright.getWriterMusic().trim() + ",";
       copiedTemplate = copiedTemplate.replace(CopyrightTokenType.WRITER_MUSIC.getId(), pre) ;
       copiedTemplate = copiedTemplate.replace(CopyrightTokenType.WRITER_TEXT.getId(), "");
     }
 
-    copiedTemplate = replaceToken(copiedTemplate, CopyrightTokenType.NAME, midifile.getName());
+    copiedTemplate = replaceToken(copiedTemplate, CopyrightTokenType.NAME, MidiPlayerService.getTitle(midifile));
     copiedTemplate = replaceToken(copiedTemplate, CopyrightTokenType.ORIGINALTITLE, copyright.getOriginaltitle());
     copiedTemplate = replaceToken(copiedTemplate, CopyrightTokenType.PUBLISHER, copyright.getPublisher());
     copiedTemplate = replaceToken(copiedTemplate, CopyrightTokenType.PUBLISHER_INLAND, copyright.getPublisherInland());
@@ -92,7 +93,7 @@ public class CopyrightSerializer {
       copiedTemplate = replaceToken(copiedTemplate, CopyrightTokenType.YEAR, String.valueOf(copyright.getYear()));
 
     String[] split = copiedTemplate.split("\n");
-    Collection <String> strings = Arrays.asList(split);
+    List <String> strings = Arrays.asList(split);
 
     for (String next: strings) {
       LOGGER.info("Copyright:  <" + next + ">");

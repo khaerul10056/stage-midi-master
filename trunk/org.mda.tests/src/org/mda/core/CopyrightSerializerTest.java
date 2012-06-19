@@ -1,6 +1,7 @@
 package org.mda.core;
 
 import java.util.Collection;
+import java.util.List;
 import junit.framework.Assert;
 import mda.MidiFile;
 import mda.MidiFilePartType;
@@ -54,8 +55,10 @@ public class CopyrightSerializerTest {
     creator = creator.copyright(ORIGINALTITLE, publisher, publisherInland, writerInlandText, writerMusic, writerText, year);
     MidiFile file = creator.get();
     CopyrightSerializer serializer = new CopyrightSerializer();
-    Collection<String> serialize = serializer.serialize(file);
+    List<String> serialize = serializer.serialize(file);
     Assert.assertFalse (serialize.isEmpty());
+    Assert.assertEquals ("SONGNAME, Originaltitel: ORIGINALTITLE, Text: WRITERTEXT, Melodie: WRITERMUSIC,", serialize.get(0));
+    Assert.assertEquals ("Dt. Text: WRITERINLANDTEXT, (c) 2000, PUBLISHER, Für D,A,CH: PUBLISHERINLAND, genehmigtes Exemplar", serialize.get(1));
 
   }
 
@@ -69,8 +72,10 @@ public class CopyrightSerializerTest {
     creator = creator.copyright(ORIGINALTITLE, publisher, publisherInland, writerInlandText, writerMusic, writerMusic, year);
     MidiFile file = creator.get();
     CopyrightSerializer serializer = new CopyrightSerializer();
-    Collection<String> serialize = serializer.serialize(file);
+    List<String> serialize = serializer.serialize(file);
     Assert.assertFalse (serialize.isEmpty());
+    Assert.assertEquals ("SONGNAME, Originaltitel: ORIGINALTITLE,  Melodie & Text: WRITERMUSIC,", serialize.get(0));
+    Assert.assertEquals ("Dt. Text: WRITERINLANDTEXT, (c) 2000, PUBLISHER, Für D,A,CH: PUBLISHERINLAND, genehmigtes Exemplar", serialize.get(1));
 
   }
 

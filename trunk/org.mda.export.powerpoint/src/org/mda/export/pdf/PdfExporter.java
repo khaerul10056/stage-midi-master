@@ -59,6 +59,7 @@ public class PdfExporter extends AbstractExporter {
     config.setOptimizeLineFilling(true);
     config.setOptimizeEqualParts(true);
     config.setOptimizeEmptyTokens(true);
+    config.setShowCopyright(true);
     config.setBorder(30);
     calculator.setConfig(config);
 
@@ -117,13 +118,12 @@ public class PdfExporter extends AbstractExporter {
       LOGGER.debug("In PdfExporter: \n" + song.toString());
 
     for (SlideItem nextItem: song.getItems()) {
-      boolean chord = nextItem.getItemType().equals(SlideType.CHORD);
       float y = doc.getPageSize().height() - nextItem.getY();
 
       if (LOGGER.isDebugEnabled())
         LOGGER.debug("Add text <" + nextItem.getText() + "> to X " + nextItem.getX() + ", Y " + nextItem.getY());
 
-      absText(writer, nextItem.getText(), nextItem.getX(), y, nextItem.getWidth(), chord, nextItem.getFont());
+      absText(writer, nextItem.getText(), nextItem.getX(), y, nextItem.getWidth(), nextItem.getItemType(), nextItem.getFont());
     }
 
     if (applicationsession != null && applicationsession.getGlobalConfs().isShowGrid())
@@ -150,17 +150,20 @@ public class PdfExporter extends AbstractExporter {
 
   }
 
-  private static void absText(final PdfWriter writer, String text, float x, float y, float width, final boolean chord, FontDescriptor fontDescriptor) {
+  private static void absText(final PdfWriter writer, String text, float x, float y, float width, final SlideType slideType, FontDescriptor fontDescriptor) {
     try {
       PdfContentByte cb = writer.getDirectContent();
       BaseFont bf = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED); //centralize fonthandling
       BaseFont bfBold = BaseFont.createFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252, BaseFont.EMBEDDED); //centralize fonthandling
+      BaseFont bfOblique = BaseFont.createFont(BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252, BaseFont.EMBEDDED); //centralize fonthandling
 
       cb.saveState();
       cb.beginText();
       cb.moveText(x, y);
-      if (chord) //TODO: with fondescriptor
+      if (slideType.equals(SlideType.CHORD)) //TODO: with fondescriptor
         cb.setFontAndSize(bfBold, 10);
+      else if (slideType.equals(SlideType.COPYRIGHT))
+        cb.setFontAndSize(bfOblique, 8);
       else {
         if (fontDescriptor.isBold())
           cb.setFontAndSize(bfBold, 14);
