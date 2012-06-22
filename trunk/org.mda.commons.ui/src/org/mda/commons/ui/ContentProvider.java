@@ -2,8 +2,6 @@ package org.mda.commons.ui;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import mda.AbstractSessionItem;
 import mda.Gallery;
@@ -12,6 +10,7 @@ import mda.Session;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.mda.ApplicationSession;
+import org.mda.MidiPlayerService;
 import org.mda.commons.ui.navigator.NavigatorItem;
 
 
@@ -52,19 +51,13 @@ public class ContentProvider implements ITreeContentProvider {
 
     if (parentElement instanceof Gallery) {
       Gallery group = (Gallery) parentElement;
+
+      List <AbstractSessionItem> sortedGalleryItems = MidiPlayerService.sortedSessionItemList(group.getGalleryItems());
+
       List <NavigatorItem<AbstractSessionItem>> songs = new ArrayList<NavigatorItem<AbstractSessionItem>>();
-      for (AbstractSessionItem next: group.getGalleryItems()) {
+      for (AbstractSessionItem next: sortedGalleryItems) {
         songs.add(new NavigatorItem<AbstractSessionItem>(next, group.getGalleryItems(), group));
       }
-
-      Collections.sort(songs, new Comparator<NavigatorItem<AbstractSessionItem>>() {
-
-        @Override
-        public int compare (NavigatorItem<AbstractSessionItem> o1, NavigatorItem<AbstractSessionItem> o2) {
-          return o1.getModelElement().getName().compareTo(o2.getModelElement().getName());
-        }
-
-      });
 
       return songs.toArray();
     }
