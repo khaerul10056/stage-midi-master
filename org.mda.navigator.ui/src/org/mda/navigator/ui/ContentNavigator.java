@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import mda.AbstractSessionItem;
 import mda.ExportConfiguration;
 import mda.Gallery;
@@ -231,7 +232,8 @@ public class ContentNavigator extends ViewPart {
           ExportConfiguration conf = MidiPlayerService.mf.createExportConfiguration();
           conf.setWithChords(false);
 
-          exporter.export(gallery.getGalleryItems(), file, conf);
+          List <AbstractSessionItem> sortedGalleryItems = MidiPlayerService.sortedSessionItemList(gallery.getGalleryItems());
+          exporter.export(sortedGalleryItems, file, conf);
 
           MessageDialog.openConfirm(getSite().getShell(), "Exportfiles saved", "PDF-Exportfile saved in " + file.getAbsolutePath());
 

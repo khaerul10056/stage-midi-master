@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import mda.AbstractSessionItem;
@@ -39,6 +40,19 @@ public class MidiPlayerService {
     defaultPaths.add("/home/oleym/privat/soundOfFaith/midi"); //todo konfigurierbar machen, pro Pfad Angabe von Filetypen (.mid, .txt...)
   }
 
+
+  public static List <AbstractSessionItem> sortedSessionItemList (final List <AbstractSessionItem> unsorted) {
+    Collections.sort(unsorted, new Comparator<AbstractSessionItem>() {
+
+      @Override
+      public int compare (AbstractSessionItem o1, AbstractSessionItem o2) {
+        return o1.getName().compareTo(o2.getName());
+      }
+
+    });
+
+    return unsorted;
+  }
 
   public static String getTitle (final MidiFile midifile) {
     return midifile.getName().endsWith(".mid") ? midifile.getName().substring(0, midifile.getName().length() - 4) : midifile.getName();
