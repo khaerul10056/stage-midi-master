@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import com.google.inject.internal.Lists;
 
 public class MidiPlayerService {
 
@@ -42,7 +43,9 @@ public class MidiPlayerService {
 
 
   public static List <AbstractSessionItem> sortedSessionItemList (final List <AbstractSessionItem> unsorted) {
-    Collections.sort(unsorted, new Comparator<AbstractSessionItem>() {
+    List <AbstractSessionItem> cloned = Lists.newArrayList(unsorted);
+
+    Collections.sort(cloned, new Comparator<AbstractSessionItem>() {
 
       @Override
       public int compare (AbstractSessionItem o1, AbstractSessionItem o2) {
@@ -51,10 +54,15 @@ public class MidiPlayerService {
 
     });
 
-    return unsorted;
+    return cloned;
   }
 
   public static String getTitle (final MidiFile midifile) {
+    if (midifile == null)
+      throw new IllegalArgumentException("Parameter midifile must not be null");
+    if (midifile.getName() == null)
+      return "";
+
     return midifile.getName().endsWith(".mid") ? midifile.getName().substring(0, midifile.getName().length() - 4) : midifile.getName();
   }
 

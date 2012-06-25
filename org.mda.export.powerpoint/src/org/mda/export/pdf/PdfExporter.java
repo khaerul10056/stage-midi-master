@@ -160,7 +160,9 @@ public class PdfExporter extends AbstractExporter {
       cb.saveState();
       cb.beginText();
       cb.moveText(x, y);
-      if (slideType.equals(SlideType.CHORD)) //TODO: with fondescriptor
+      if (slideType.equals(SlideType.TITLE))
+        cb.setFontAndSize(bfBold, 18);
+      else if (slideType.equals(SlideType.CHORD)) //TODO: with fondescriptor
         cb.setFontAndSize(bfBold, 10);
       else if (slideType.equals(SlideType.COPYRIGHT))
         cb.setFontAndSize(bfOblique, 8);

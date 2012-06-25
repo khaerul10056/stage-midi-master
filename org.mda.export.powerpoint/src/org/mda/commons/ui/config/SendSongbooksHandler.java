@@ -15,7 +15,7 @@ public class SendSongbooksHandler  extends AbstractHandler{
     ExportEngine engine = new ExportEngine();
     Collection<ExportResult> exportSongbooks = engine.exportSongbooks();
     //TODO check results on errors
-    engine.mailExportedSongbooks(exportSongbooks);
+    //engine.mailExportedSongbooks(exportSongbooks); TODO enable, if sending is ok
     return null;
   }
 
