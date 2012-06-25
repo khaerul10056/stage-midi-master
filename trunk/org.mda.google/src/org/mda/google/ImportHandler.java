@@ -25,8 +25,7 @@ public class ImportHandler extends AbstractHandler {
   public Object execute(ExecutionEvent event) throws ExecutionException {
     MidiPlayerRoot currentModel = session.getCurrentModel();
     GoogleContactsConnector connector = new GoogleContactsConnector();
-    GoogleContactsDescriptor desc = new GoogleContactsDescriptor(UserType.MEMBER);
-    desc.addGroup("Sound of faith");
+    GoogleContactsDescriptor desc = new GoogleContactsDescriptor(UserType.MEMBER, "Sound of faith");
 
     List <GoogleContactsDescriptor> descriptors = new ArrayList<GoogleContactsDescriptor>();
     descriptors.add(desc);

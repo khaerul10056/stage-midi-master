@@ -125,9 +125,9 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
       Rectangle titleRectangle = new Rectangle(zoomedPoint.x, zoomedPoint.y, sizeTitle.x, sizeTitle.y);
 
-      SlideItem titleItem = new SlideItem(titleRectangle, name.toUpperCase(), SlideType.TEXT, null, false, descTitle, 0);
+      SlideItem titleItem = new SlideItem(titleRectangle, name.toUpperCase(), SlideType.TITLE, null, false, descTitle, 0);
       slide.addItem (titleItem);
-      currentY += sizeTitle.y * 3;
+      currentY += sizeTitle.y * 4;
     }
   }
 

@@ -1,75 +1,21 @@
 package org.mda.google;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
 import mda.MidiPlayerRoot;
 import mda.MidiplayerFactory;
 import mda.User;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import com.google.gdata.client.GoogleService;
-import com.google.gdata.client.contacts.ContactsService;
-import com.google.gdata.client.http.AuthSubUtil;
 import com.google.gdata.data.contacts.ContactEntry;
-import com.google.gdata.data.contacts.ContactFeed;
 import com.google.gdata.data.contacts.ContactGroupEntry;
-import com.google.gdata.data.contacts.ContactGroupFeed;
-import com.google.gdata.data.contacts.GroupMembershipInfo;
 import com.google.gdata.util.ServiceException;
 
 public class GoogleContactsConnector {
 
   private static final Log LOGGER  = LogFactory.getLogger(GoogleContactsConnector.class);
 
-  public final static URL feedUrl;
-
-  private GoogleService service;
-
-  static {
-    try {
-      feedUrl = new URL ("https://www.google.com/m8/feeds/contacts/markus.oley@gmail.com/full?max-results=1000");
-    }
-    catch (MalformedURLException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  private HashMap<String, URL> cachedURLS = new HashMap<String, URL>();
-
-
-  public void setGoogleService (final GoogleService googleService) {
-    this.service = googleService;
-  }
-
-  public GoogleService getGoogleService () throws ServiceException, IOException{
-    if (service == null) {
-      String next = "http://www.example.com/welcome.html";
-      String scope = "http://www.google.com/m8/feeds/";
-      boolean secure = false;
-      boolean session = true;
-      AuthSubUtil.getRequestUrl(next, scope, secure, session);
-      // Request the feed
-
-      ContactsService myService = new ContactsService("exampleCo");
-      myService.setUserCredentials("markus.oley@googlemail.com", "mo351977");
-      service = myService;
-    }
-
-    return service;
-  }
-
-  public static ContactGroupEntry getGroup (ContactsService myService, final String name) throws Exception {
-
-    ContactGroupFeed resultFeed = myService.getFeed(feedUrl, ContactGroupFeed.class);
-    List<ContactGroupEntry> entries = resultFeed.getEntries();
-    for (ContactGroupEntry nextEntry : entries) {
-      LOGGER.info("Group: " + nextEntry.getTitle().getPlainText());
-    }
-    return null;
-  }
+  private GoogleServiceBridge bridge = new GoogleServiceBridge();
 
   private User findByNames (final MidiPlayerRoot model, String name, String firstname) {
     for (User next : model.getUsers()) {
@@ -99,49 +45,17 @@ public class GoogleContactsConnector {
     return entry.getName().getGivenName().getValue();
   }
 
-  public URL getUrl (final String urlAsString) throws MalformedURLException {
-    URL cachedURL = cachedURLS.get(urlAsString);
-    if (cachedURL == null) {
-      cachedURL = new URL(urlAsString);
-      cachedURLS.put(urlAsString, cachedURL);
-    }
-
-    LOGGER.info("get url " + System.identityHashCode(cachedURL) + "(" + urlAsString + ")");
-
-    return cachedURL;
-  }
 
   public void importAllContacts (MidiPlayerRoot model, List<GoogleContactsDescriptor> descs) throws ServiceException, IOException {
 
 
-    GoogleService myService = getGoogleService();
-    ContactFeed resultFeed = myService.getFeed(feedUrl, ContactFeed.class);
-
     for (GoogleContactsDescriptor nextDesc : descs) {
       LOGGER.info("Analyse googlecontactsdescriptor " + nextDesc);
 
-      for (int i = 0; i < resultFeed.getEntries().size(); i++) {
-        ContactEntry entry = resultFeed.getEntries().get(i);
-        LOGGER.info("Check entry " + entry.getName().getFamilyName().getValue() + " - " + System.identityHashCode(entry));
+      ContactGroupEntry membersGroup = getBridge().findGroup(nextDesc.getGroup());
+      List <ContactEntry> contacts = getBridge().findContacts(membersGroup);
 
-        boolean groupFound = false;
-        for (GroupMembershipInfo group : entry.getGroupMembershipInfos()) {
-          String groupHref = group.getHref();
-          ContactGroupEntry newGroupEntry = myService.getEntry(getUrl(groupHref), ContactGroupEntry.class);
-          LOGGER.info("  Entry has group " + groupHref + " - " + System.identityHashCode(newGroupEntry) + " - " + newGroupEntry.getPlainTextContent());
-
-          if (nextDesc.usesGroup(newGroupEntry.getPlainTextContent())) {
-            groupFound = true;
-            break;
-          }
-          else
-            LOGGER.info("  GroupEntry " + newGroupEntry.getPlainTextContent() + " is not used (" + nextDesc + ")");
-        }
-        if (!groupFound) {
-          LOGGER.info("  Contact is not in a valid group");
-          continue;
-        }
-
+      for (ContactEntry entry: contacts) {
         User existingUser = findByNames(model, getName(entry), getFirstName(entry));
 
         if (existingUser == null) {
@@ -167,6 +81,14 @@ public class GoogleContactsConnector {
       }
 
     }
+  }
+
+  public GoogleServiceBridge getBridge () {
+    return bridge;
+  }
+
+  public void setBridge (GoogleServiceBridge bridge) {
+    this.bridge = bridge;
   }
 
 }

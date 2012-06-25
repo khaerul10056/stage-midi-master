@@ -67,7 +67,7 @@ public class MidiFileSlideCalculatorTest {
     for (SlideItem next: slide.getItems()) {
       if (next.getText().indexOf(PUBLISHER) >= 0)
         foundTokens ++;
-      else if (next.getText().indexOf(PUBLISHERINLAND) >= 0)
+      if (next.getText().indexOf(PUBLISHERINLAND) >= 0)
         foundTokens ++;
     }
 

@@ -80,8 +80,8 @@ public class TestPdfExporter {
     List<Slide> lastSlides = exporter.getLastSlides();
     Slide versSlide = lastSlides.get(1);
 
-    final int FIRSTLINE_CHORD = 74;
-    final int FIRSTLINE_TEXT = 86;
+    final int FIRSTLINE_CHORD = 84;
+    final int FIRSTLINE_TEXT = 96;
     LOG.info(versSlide.toString());
 
 
@@ -113,7 +113,7 @@ public class TestPdfExporter {
 
     Slide versSlide = lastSlides.get(1);
 
-    final int FIRSTLINE_TEXT = 66;
+    final int FIRSTLINE_TEXT = 76;
     LOG.info(versSlide.toString());
 
     assertText(versSlide, "Alle", X_ITEM1, FIRSTLINE_TEXT);
