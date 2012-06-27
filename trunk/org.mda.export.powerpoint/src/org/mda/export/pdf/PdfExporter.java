@@ -56,11 +56,11 @@ public class PdfExporter extends AbstractExporter {
     config.setShowTitle(true);
     config.setFontsize(new Integer (12));
     config.setGraphicsContext(new PDFGraphicsContext());
-    config.setOptimizeLineFilling(true);
-    config.setOptimizeEqualParts(true);
+    config.setOptimizeLineFilling(true); //TODO
+    //config.setOptimizeEqualParts(true); //TODO
     config.setOptimizeEmptyTokens(true);
     config.setShowCopyright(true);
-    config.setBorder(30);
+    config.setBorder(35);
     calculator.setConfig(config);
 
     Rectangle pagesizeA4 = PageSize.A4;
@@ -96,16 +96,20 @@ public class PdfExporter extends AbstractExporter {
 
   private void export (final Document doc, final PdfWriter writer, final MidiFile nextItem) throws ExportException {
 
-    try {
-      doc.newPage();
-    }
-    catch (DocumentException e) {
-      throw new ExportException("Error createing new page in document " + doc.toString(), e);
-    }
+
 
     setLastSlides(calculator.calculate(nextItem, calcPreCondition));
 
     for (Slide nextInternSlide : getLastSlides()) {
+
+      if (nextInternSlide.isForceNewPage())  {
+      try {
+        doc.newPage();
+      }
+      catch (DocumentException e) {
+        throw new ExportException("Error createing new page in document " + doc.toString(), e);
+      }
+      }
       exportSlide(doc, writer, nextInternSlide);
     }
 
