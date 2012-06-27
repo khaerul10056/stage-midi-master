@@ -45,11 +45,14 @@ public class Slide {
 
   private Point size;
 
+  private final boolean forceNewPage;
 
-  public Slide (EObject modelRef, final EObject firstLineModelRef, final Font font) {
+
+  public Slide (EObject modelRef, final EObject firstLineModelRef, final Font font, final boolean forceNewPage) {
     this.modelRef = modelRef;
     this.firstLineModelRef = firstLineModelRef;
     this.font = font;
+    this.forceNewPage = forceNewPage;
   }
 
   /**
@@ -277,6 +280,10 @@ public class Slide {
 
   public void setSize (Point size) {
     this.size = size;
+  }
+
+  public boolean isForceNewPage () {
+    return forceNewPage;
   }
 
 
