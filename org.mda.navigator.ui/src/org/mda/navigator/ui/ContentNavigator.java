@@ -1,5 +1,6 @@
 package org.mda.navigator.ui;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -235,7 +236,19 @@ public class ContentNavigator extends ViewPart {
           List <AbstractSessionItem> sortedGalleryItems = MidiPlayerService.sortedSessionItemList(gallery.getGalleryItems());
           exporter.export(sortedGalleryItems, file, conf);
 
-          MessageDialog.openConfirm(getSite().getShell(), "Exportfiles saved", "PDF-Exportfile saved in " + file.getAbsolutePath());
+          if (file.exists()) {
+            if (Desktop.isDesktopSupported()) {
+              Desktop.getDesktop().open(file);
+            } else {
+              System.out.println("Awt Desktop is not supported!");
+            }
+
+          } else {
+            System.out.println("File is not exists!");
+          }
+
+
+//          MessageDialog.openConfirm(getSite().getShell(), "Exportfiles saved", "PDF-Exportfile saved in " + file.getAbsolutePath());
 
 
         }

@@ -25,6 +25,8 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
    */
   private boolean                pagePerPart    = true;
 
+  private Point                  defaultPresentationScreenSize = new Point (1280, 800); //TODO make better
+
   private Color                  backgroundColor = Display.getDefault().getSystemColor(SWT.COLOR_BLACK);
 
   private Color                  foregroundColor = Display.getDefault().getSystemColor(SWT.COLOR_WHITE);
@@ -52,6 +54,8 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
    * shown in front of the first line of a block
    */
   private boolean showBlockType;
+
+  private boolean autoWrapToNewPage = true;
 
 
   /**
@@ -157,9 +161,7 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   @Override
   public Point getDefaultPresentationScreenSize () {
-    return new Point (1280, 800);  //TODO mechanism for size
-    //Rectangle bounds = Display.getCurrent().getMonitors()[0].getBounds();
-    //return new Point(bounds.width, bounds.height);
+    return defaultPresentationScreenSize;
   }
 
   @Override
@@ -268,6 +270,19 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
   public void setShowCopyright (boolean showCopyright) {
     this.showCopyright = showCopyright;
   }
+
+  public void setDefaultPresentationScreenSize (Point defaultPresentationScreenSize) {
+    this.defaultPresentationScreenSize = defaultPresentationScreenSize;
+  }
+
+  public boolean isAutoWrapToNewPage () {
+    return autoWrapToNewPage;
+  }
+
+  public void setAutoWrapToNewPage (boolean autoWrapToNewPage) {
+    this.autoWrapToNewPage = autoWrapToNewPage;
+  }
+
 
 
 
