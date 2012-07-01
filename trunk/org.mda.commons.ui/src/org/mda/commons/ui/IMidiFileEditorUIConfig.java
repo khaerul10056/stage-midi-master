@@ -107,6 +107,8 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
    */
   boolean isOptimizeEmptyTokens ();
 
+  boolean isAutoWrapToNewPage ();
+
 
 
 

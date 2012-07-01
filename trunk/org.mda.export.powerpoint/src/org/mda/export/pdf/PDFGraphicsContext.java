@@ -1,6 +1,5 @@
 package org.mda.export.pdf;
 
-import java.math.BigDecimal;
 import org.eclipse.swt.graphics.Point;
 import org.mda.commons.ui.IGraphicsContext;
 import org.mda.commons.ui.calculator.FontDescriptor;
@@ -27,7 +26,7 @@ public class PDFGraphicsContext implements IGraphicsContext {
         bf = BaseFont.createFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252, BaseFont.EMBEDDED);
       else
         bf = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED);
-      bf.setForceWidthsOutput(true);
+
     }
     catch (Exception e) {
       LOGGER.error(e.toString(), e);
@@ -35,11 +34,14 @@ public class PDFGraphicsContext implements IGraphicsContext {
     }
     float widthPoint = bf.getWidthPoint(text, fontsize);
     float heightPoint = bf.getAscentPoint(text,  fontsize);
-    return new Point(getPixel(widthPoint), getPixel(heightPoint));
+//    LOGGER.info("Text <" + text + "> calculated with points: " + widthPoint + "-" + heightPoint);
+//    LOGGER.info("Text <" + text + "> calculated with pixel : " + getPixel(widthPoint) + "-" + getPixel(heightPoint));
+//    LOGGER.info("Text <" + text + "> calculated with cm    : " + getCm(widthPoint) + "-" + getCm(heightPoint));
+    return new Point((int)widthPoint, (int)heightPoint);
   }
 
-  private int getPixel (final float point) {
-    return new BigDecimal (point).multiply(new BigDecimal (2.54)).intValue();
-  }
+
+
+
 
 }

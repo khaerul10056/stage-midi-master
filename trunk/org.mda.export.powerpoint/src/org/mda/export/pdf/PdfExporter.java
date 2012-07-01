@@ -54,8 +54,10 @@ public class PdfExporter extends AbstractExporter {
     config.setPagePerPart(false);
     config.setNewPageRespected(false);
     config.setShowTitle(true);
+    config.setChordVisible(false);
     config.setFontsize(new Integer (12));
     config.setGraphicsContext(new PDFGraphicsContext());
+
     config.setOptimizeLineFilling(true); //TODO
     //config.setOptimizeEqualParts(true); //TODO
     config.setOptimizeEmptyTokens(true);
@@ -74,7 +76,9 @@ public class PdfExporter extends AbstractExporter {
     float x = pagesizeA4.width();
     float y = pagesizeA4.height();
     LOGGER.info("set size to " + x +","+ y + ")");
-    calcPreCondition.setCalculationsize(new Point ((int)x, (int)y)); //new Point(getPixel(x), getPixel(y)));
+    Point calcSize = new Point ((int)x, (int)y);
+    calcPreCondition.setCalculationsize(calcSize);
+    config.setDefaultPresentationScreenSize(calcSize);
 
     for (AbstractSessionItem next: items) {
       export(document, writer, (MidiFile) next);
@@ -121,6 +125,8 @@ public class PdfExporter extends AbstractExporter {
     if (LOGGER.isDebugEnabled())
       LOGGER.debug("In PdfExporter: \n" + song.toString());
 
+    //absText(writer, "Dies ist ein Demotext", 20, doc.getPageSize().height() - 3, 100, SlideType.TEXT, new FontDescriptor(12));
+
     for (SlideItem nextItem: song.getItems()) {
       float y = doc.getPageSize().height() - nextItem.getY();
 
@@ -165,21 +171,34 @@ public class PdfExporter extends AbstractExporter {
       cb.beginText();
       cb.moveText(x, y);
       if (slideType.equals(SlideType.TITLE))
-        cb.setFontAndSize(bfBold, 18);
+        //cb.setFontAndSize(bfBold, 18);
+        cb.setFontAndSize(bfBold, 12);
       else if (slideType.equals(SlideType.CHORD)) //TODO: with fondescriptor
         cb.setFontAndSize(bfBold, 10);
       else if (slideType.equals(SlideType.COPYRIGHT))
         cb.setFontAndSize(bfOblique, 8);
       else {
         if (fontDescriptor.isBold())
-          cb.setFontAndSize(bfBold, 14);
+          cb.setFontAndSize(bfBold, 12);
         else
-          cb.setFontAndSize(bf, 14);
+          cb.setFontAndSize(bf, 12);
       }
 
       cb.showText(text);
-
       cb.endText();
+
+//      cb.setLineWidth(0f);
+//
+//      cb.moveTo(x, y);
+//      cb.lineTo(x+width, y);
+//      cb.lineTo(x+width, y+ fontDescriptor.getFontsize());
+//      cb.lineTo(x+width, y);
+//      cb.lineTo(x, y);
+//      cb.stroke();
+
+
+
+
 
       cb.restoreState();
     } catch (DocumentException e) {

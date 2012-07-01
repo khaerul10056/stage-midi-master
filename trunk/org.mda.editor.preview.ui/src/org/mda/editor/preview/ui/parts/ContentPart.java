@@ -122,6 +122,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
 
     calcPreConditions.setCalculationsize(size);
     config.setNewPageRespected(false);
+    config.setAutoWrapToNewPage(false);
 
     calculator.setConfig(config);
     setCalculatePart(calculator.calculatePart(getCurrentPart(), calcPreConditions).get(0));

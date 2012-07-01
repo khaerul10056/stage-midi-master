@@ -72,8 +72,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       maxY = currentY;
 
       for (String nextCopyrightLine : serialize) {
-        Point testExtend = getGc().getSize(nextCopyrightLine, getConfig().getFont());
-        Point zoomedSize = calculateZoomedPoint(testExtend, preCondition);
+        Point copyrightExtend = getGc().getSize(nextCopyrightLine, getConfig().getFont());
+        Point zoomedSize = calculateZoomedPoint(copyrightExtend, preCondition);
         Rectangle newRectangle = new Rectangle(currentX, currentY, zoomedSize.x, zoomedSize.y);
         FontDescriptor fontDesc = new FontDescriptor(copyrightFontsize);
         SlideItem titleItem = new SlideItem(newRectangle, nextCopyrightLine, SlideType.COPYRIGHT, null, false, fontDesc, 0);
@@ -100,6 +100,10 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       lastSlide.addItem(nextCopyright);
     }
     copyrightItems.clear();
+
+    for (Slide nextSlide: slides) {
+      LOGGER.info(nextSlide.toString());
+    }
 
     return slides;
   }
@@ -373,7 +377,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       if (! nextTextLine.equals(textlines.get(0))) {
         movingToPreviousLine = isMovingCurrentItemsToPreviousLineAllowed(slide, itemsOfCurrentLine, preCondition);
         if (movingToPreviousLine) {
-          moveCurrentItemsToPreviousLineAllowed(slide, itemsOfCurrentLine); //optimizing current line to previous line
+          moveCurrentItemsToPreviousLine(slide, itemsOfCurrentLine); //optimizing current line to previous line
           slide.previousLine();
         }
       }
@@ -386,7 +390,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
       slide.newLine(); //new line always, because if we move current items to previous line we first step back
 
-      if (isYOutOfPageSize(preCondition)) {
+      if (isYOutOfPageSize(preCondition) && getConfig().isAutoWrapToNewPage()) {
         slide = newSlide(midifile, part, nextTextLine,  zoomedFont, preCondition, true);
         slides.add(slide);
       }
@@ -430,11 +434,14 @@ public class MidiFileSlideCalculator extends SlideCalculator {
    * @param slide         slide
    * @param currentItems  currenItems
    */
-  private void moveCurrentItemsToPreviousLineAllowed (final Slide slide, final List <SlideItem> currentItems) {
+  private void moveCurrentItemsToPreviousLine (final Slide slide, final List <SlideItem> currentItems) {
     List<SlideItem> textItems = slide.getItems(SlideType.TEXT);
     SlideItem lastTextItem = textItems.get(textItems.size() - 1);
     int lastX = lastTextItem.getXMax();
     int lastY = lastTextItem.getY();
+
+    if (! lastTextItem.getText().endsWith(" "))
+      lastX += getGc().getSize(" ", getConfig().getFont()).x;
 
     SlideItem lastChordItem = null;
     List<SlideItem> chordItems = slide.getItems(SlideType.CHORD);
@@ -442,7 +449,6 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       lastChordItem = chordItems.get(chordItems.size() - 1);
       lastX = Math.max(lastX, lastChordItem.getXMax());
     }
-
 
     //SlideItem lastSlideItem = slide.getItems().get(slide.getItems().size() - 1);
     int firstX = currentItems.get(0).getX();

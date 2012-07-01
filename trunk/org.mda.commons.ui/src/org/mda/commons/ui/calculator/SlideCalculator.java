@@ -74,7 +74,6 @@ public abstract class SlideCalculator implements ISlideCalculator {
    * @return
    */
   protected Point calculateZoomedPoint (final Point origin, final CalculatorPreCondition preCondition) {
-
     BigDecimal zoomFactor = getZoomFactor(preCondition);
 
     BigDecimal zoomedWidth = new BigDecimal (origin.x).multiply(zoomFactor);
