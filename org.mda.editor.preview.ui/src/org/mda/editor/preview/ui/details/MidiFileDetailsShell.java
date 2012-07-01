@@ -293,7 +293,7 @@ public class MidiFileDetailsShell extends Shell {
     copyright.setWriterInlandText(! txtWriterTextInland.getText().isEmpty() ? txtWriterTextInland.getText().trim() : null);
     copyright.setWriterMusic(! txtWriterMusic.getText().isEmpty() ? txtWriterMusic.getText().trim() : null);
     copyright.setWriterText(! txtWriterText.getText().isEmpty() ? txtWriterText.getText().trim() : null);
-    copyright.setYear(! txtYear.getText().isEmpty() ? Integer.valueOf(txtYear.getText().trim()) : null);
+    copyright.setYear(! (txtYear.getText() == null && txtYear.getText().isEmpty()) ? Integer.valueOf(txtYear.getText().trim()) : null);
   }
 
   private void addLabel (final String labeltext) {

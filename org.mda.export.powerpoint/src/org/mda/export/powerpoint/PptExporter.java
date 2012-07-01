@@ -50,7 +50,7 @@ public class PptExporter extends AbstractExporter {
     config.setChordVisible(exportconfig.isWithChords());
     config.setShowBackground(true);
     config.setSkipEmptySlides(true);
-    config.setOptimizeLineFilling(true); //TODO deaktivieren
+    config.setOptimizeLineFilling(false);
     getCalculator().setConfig(config);
     LOG.info("Calculate size " + show.getPageSize().width + "x" + show.getPageSize().height + " from " +
         getCalculator().getConfig().getDefaultPresentationScreenSize().x + "x" + getCalculator().getConfig().getDefaultPresentationScreenSize().y );
