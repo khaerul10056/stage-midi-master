@@ -425,9 +425,6 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     currentY += getDistanceBetweenLines();
   }
 
-  private int getBorder () {
-    return 0; //TODO make configurable
-  }
 
   /**
    * move the items of current line to the end of the previous line
@@ -450,7 +447,6 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       lastX = Math.max(lastX, lastChordItem.getXMax());
     }
 
-    //SlideItem lastSlideItem = slide.getItems().get(slide.getItems().size() - 1);
     int firstX = currentItems.get(0).getX();
 
     for (SlideItem item: currentItems) {
@@ -458,7 +454,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       if (item.getItemType().equals(SlideType.CHORD))
         newY += lastTextItem.getIndentToChord();
 
-      item.setX(item.getX() - getBorder() + lastX - firstX);
+      item.setX(item.getX() + lastX - firstX);
       item.setY(newY);
     }
   }
