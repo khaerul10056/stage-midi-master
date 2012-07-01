@@ -53,6 +53,12 @@ public class PresentationContext {
     LOGGER.info("set current session " + currentSession.getName() + " at presentationcontext calculation finished");
   }
 
+  public void selectItem (final AbstractSessionItem item) {
+    for (IPresentationController next: registeredControllers) {
+      next.toItem(item);
+    }
+  }
+
   public void closePresentationSession () {
     LOGGER.info("Closing presentationsession");
     this.currentSession = null;
@@ -68,13 +74,16 @@ public class PresentationContext {
     for (int i = 0; i < registeredControllers.size(); i++) {
       if (registeredControllers.get(i).getClass().equals(controller.getClass())) {
         registeredControllers.set(i, controller);
+        LOGGER.info("Replaced Controller on index " + i);
         replaced = true;
         break;
       }
     }
 
-    if (! replaced)
+    if (! replaced) {
       registeredControllers.add(controller);
+      LOGGER.info("Added new controller");
+    }
 
     LOGGER.info("Controllers: " + registeredControllers);
   }

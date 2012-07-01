@@ -18,10 +18,14 @@ public class PresentationToControllerConnector implements IPartListener {
 
   public PresentationToControllerConnector (IPresentationView view) {
     this.view = view;
+    for (IPresentationController controller : presentationContext.getRegisteredControllers()) {
+      controller.connect(view);
+    }
   }
 
   @Override
   public void partOpened (IWorkbenchPart arg0) {
+    LOGGER.info("partOpened " + arg0.getClass().getName());
 
 
   }
@@ -46,11 +50,6 @@ public class PresentationToControllerConnector implements IPartListener {
   @Override
   public void partActivated (IWorkbenchPart arg0) {
     LOGGER.info("partActivated " + arg0.getClass().getName());
-    if (arg0.getClass().getName().equals("org.mda.navigator.ui.PresentationNavigator")) {
-      for (IPresentationController controller : presentationContext.getRegisteredControllers()) {
-        controller.connect(view);
-      }
-    }
   }
 
 }
