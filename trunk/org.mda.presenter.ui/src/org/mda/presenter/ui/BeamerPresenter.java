@@ -1,7 +1,6 @@
 package org.mda.presenter.ui;
 
 import java.io.File;
-import java.util.logging.Logger;
 import mda.AbstractSessionItem;
 import mda.Session;
 import org.eclipse.swt.SWT;
@@ -20,13 +19,15 @@ import org.mda.ApplicationSession;
 import org.mda.MdaModule;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.slide.IPresentationView;
 import org.mda.presenter.ui.slide.PresentationToControllerConnector;
 
 
 public class BeamerPresenter extends Shell implements IPresentationView {
 
-  private static final Logger LOGGER  = Logger.getLogger(BeamerPresenter.class.getName());
+  private static final Log LOGGER  = LogFactory.getLogger(BeamerPresenter.class);
 
   private PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
   private ApplicationSession applicationSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
@@ -51,6 +52,7 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
   public BeamerPresenter (Display display, Session session, final boolean onTop, IPartService service) {
     super (display, onTop ? SWT.ON_TOP: SWT.NONE);
+
     this.service = service;
 
     Monitor preferredMonitor = getPreferredExternalMonitor(display);
@@ -67,7 +69,6 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     for (Shell shell: Display.getCurrent().getShells()) {
       LOGGER.info ("Shell " + shell.getText() + "-" + shell.getBounds());
     }
-
     setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
 

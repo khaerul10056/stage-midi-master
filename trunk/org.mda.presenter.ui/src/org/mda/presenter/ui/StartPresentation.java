@@ -52,7 +52,7 @@ public class StartPresentation extends AbstractHandler  {
     activeWorkbenchWindow.getActivePage().setPerspective(presentationPerspective);
 
     if (selectioninfo.getItem() != null)
-      globalkeycontroller.toItem(selectioninfo.getItem());
+      presentationContext.selectItem(selectioninfo.getItem());
 
     presenter.addDisposeListener(new DisposeListener() {
 
