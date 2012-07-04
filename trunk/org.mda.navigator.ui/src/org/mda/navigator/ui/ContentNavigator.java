@@ -97,7 +97,6 @@ public class ContentNavigator extends ViewPart {
 
   private MenuItem itemStart;
 
-  private MenuItem itemPreview;
 
   TreeViewer getTreeViewer () {
     return treviewer;
@@ -135,28 +134,6 @@ public class ContentNavigator extends ViewPart {
     final Menu menu = new Menu (tree);
 
 
-    itemPreview = new MenuItem(menu, SWT.PUSH);
-    itemPreview.setText("Preview...");
-    itemPreview.addSelectionListener(new SelectionAdapter() {
-      public void widgetSelected (org.eclipse.swt.events.SelectionEvent e) {
-        SelectionInfo selectioninfo = getSessionFromSelection(e);
-
-        if (selectioninfo != null) {
-          selectioninfo.setPreview(true);
-          IWorkbench workbench = getSite().getWorkbenchWindow().getWorkbench();
-          ICommandService cmdService = (ICommandService) workbench.getService(ICommandService.class);
-          Command cmd = cmdService.getCommand("org.mda.presenter.ui.commands.startPresentation");
-          ExecutionEvent event = new ExecutionEvent(cmd, new HashMap<String, String>(), this, selectioninfo);
-          try {
-            cmd.executeWithChecks(event);
-          }
-          catch (Exception e1) {
-              LOGGER.error(e1.getLocalizedMessage(), e1);
-          }
-        }
-      }
-    });
-
     itemStart = new MenuItem(menu, SWT.PUSH);
     itemStart.setText("Run...");
     itemStart.addSelectionListener(new SelectionAdapter() {
@@ -165,7 +142,6 @@ public class ContentNavigator extends ViewPart {
         SelectionInfo selectioninfo = getSessionFromSelection(e);
 
         if (selectioninfo != null) {
-          selectioninfo.setPreview(false);
           IWorkbench workbench = getSite().getWorkbenchWindow().getWorkbench();
           ICommandService cmdService = (ICommandService) workbench.getService(ICommandService.class);
           Command cmd = cmdService.getCommand("org.mda.presenter.ui.commands.startPresentation");
@@ -507,7 +483,6 @@ public class ContentNavigator extends ViewPart {
           boolean currentItemIsNavigatorItemInSession = currentItemIsNavigatorItem  && selectedNavigatorItem.getMother() instanceof Session;
           boolean currentItemIsSessionGroup = selectedObject instanceof SessionGroup;
 
-          itemPreview.setEnabled(currentItemIsNavigatorItemInSession);
           itemStart.setEnabled(currentItemIsNavigatorItemInSession);
           itemPowerpoint.setEnabled(currentItemIsSession);
           itemAdd.setEnabled(currentItemIsSession || currentItemIsGallery || currentItemIsSessionGroup);

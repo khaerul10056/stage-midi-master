@@ -15,6 +15,7 @@ import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.imagecache.ImageCache;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.ui.slide.IPresentationView;
 import org.mda.presenter.ui.slide.NavigationRefreshAction;
 
 
@@ -38,6 +39,8 @@ public class PresentationContext {
 
 
   private final List <IPresentationController> registeredControllers = new ArrayList<IPresentationController>();
+
+  private final List <IPresentationView> registeredViews = new ArrayList<IPresentationView>();
 
   public Session getCurrentSession () {
     return currentSession;
@@ -66,6 +69,20 @@ public class PresentationContext {
     calcPreCondition = null;
     slidesPerItem = null;
     imagecache.clear();
+
+    for (IPresentationView nextView: getRegisteredViews()) {
+      nextView.end();
+    }
+  }
+
+  public void deregisterController (final Class <? extends IPresentationController> clazz) {
+    for (int i = 0; i < registeredControllers.size(); i++) {
+      if (registeredControllers.get(i).getClass().equals(clazz)) {
+        registeredControllers.remove(i);
+        LOGGER.info("Deregistered controller " + clazz.getName());
+        return;
+      }
+    }
   }
 
   public void registerController (final IPresentationController controller) {
@@ -88,8 +105,43 @@ public class PresentationContext {
     LOGGER.info("Controllers: " + registeredControllers);
   }
 
+
+  public void deregisterView (final Class<? extends IPresentationView> clazz) {
+    for (int i = 0; i < registeredViews.size(); i++) {
+      if (registeredViews.get(i).getClass().equals(clazz)) {
+        LOGGER.info("Deregistered view " + clazz.getName());
+        registeredViews.remove(i);
+        return;
+      }
+    }
+  }
+
+  public void registerView (final IPresentationView view) {
+    LOGGER.info("Register view " + view.getClass().getName());
+    boolean replaced = false;
+    for (int i = 0; i < registeredViews.size(); i++) {
+      if (registeredViews.get(i).getClass().equals(view.getClass())) {
+        registeredViews.set(i, view);
+        LOGGER.info("Replaced view on index " + i + " " + view.getClass());
+        replaced = true;
+        break;
+      }
+    }
+
+    if (! replaced) {
+      registeredViews.add(view);
+      LOGGER.info("Added new view " + view.getClass());
+    }
+
+    LOGGER.info("Controllers: " + registeredControllers);
+  }
+
   public Collection <IPresentationController> getRegisteredControllers () {
     return registeredControllers;
+  }
+
+  public Collection <IPresentationView> getRegisteredViews () {
+    return registeredViews;
   }
 
   public int getCurrentSessionItemIndex () {
@@ -174,17 +226,28 @@ public class PresentationContext {
 
   public boolean toItem (AbstractSessionItem item, boolean toEnd) {
     AbstractSessionItem[] array = slidesPerItem.keySet().toArray(new AbstractSessionItem [slidesPerItem.size()]);
+    boolean itemFound = false;
+
     for (int i = 0; i < array.length; i++) {
       if (array [i].equals(item)) {
         currentSessionItemIndex = i;
         int lastIndex = slidesPerItem.get(item).size() - 1;
         currentSlideIndex = toEnd ? lastIndex : 0;
         LOGGER.info("To item " + currentSessionItemIndex + ", " + currentSlideIndex);
-        return true;
+        itemFound = true;
       }
     }
+
     LOGGER.info("To item (not found)");
-    return false;
+
+    if (itemFound) {
+      for (IPresentationView nextView : getRegisteredViews()) {
+        LOGGER.info("Dispatch toItem to " + nextView.getClass().getName() + "-" + System.identityHashCode(nextView));
+        if (!nextView.toItem(item))
+          itemFound = false;
+      }
+    }
+    return itemFound;
   }
 
   public SpecialSlide getSpecialSlide () {

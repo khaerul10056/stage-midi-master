@@ -11,7 +11,6 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.IPartService;
 import org.eclipse.ui.part.ViewPart;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
@@ -20,7 +19,6 @@ import org.mda.commons.ui.calculator.Slide;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.slide.IPresentationView;
-import org.mda.presenter.ui.slide.PresentationToControllerConnector;
 
 
 public class ContentOverview extends ViewPart implements IPresentationView{
@@ -41,12 +39,7 @@ public class ContentOverview extends ViewPart implements IPresentationView{
     LOGGER.info("create Part ContentOverview");
     this.root = arg0;
     root.setLayout(new GridLayout(4, false));
-    if (getSite() != null) {
-      PresentationToControllerConnector presentationToControllerConnector = new PresentationToControllerConnector(this);
-      IPartService partservice = (IPartService) getSite().getService(IPartService.class);
-      LOGGER.info("Establishing partlistener " + System.identityHashCode(presentationToControllerConnector) + " at partservice " + System.identityHashCode(partservice));
-      partservice.addPartListener(presentationToControllerConnector);
-    }
+    presentationContext.registerView(this);
   }
 
   public List <ContentOverviewPanel> getPreviewParts () {
