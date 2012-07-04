@@ -22,7 +22,6 @@ import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.slide.IPresentationView;
-import org.mda.presenter.ui.slide.PresentationToControllerConnector;
 
 
 public class BeamerPresenter extends Shell implements IPresentationView {
@@ -35,7 +34,6 @@ public class BeamerPresenter extends Shell implements IPresentationView {
   private Image currentShownImage = null;
   private File currentShownImageAsFile;
 
-  private PresentationToControllerConnector connectorcontroller;
 
   private IPartService service;
 
@@ -71,12 +69,6 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     }
     setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
-
-    if (service != null) {
-      connectorcontroller = new PresentationToControllerConnector(this);
-      service.addPartListener(connectorcontroller);
-    }
-
     open();
     setFocus();
 
@@ -90,6 +82,7 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
       @Override
       public void paintControl (PaintEvent e) {
+        LOGGER.info("BeamerPresenter.paintControl called");
         Font font = getFont();
         e.gc.setFont(font);
 
@@ -156,11 +149,6 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     redraw();
   }
 
-  public void dispose () {
-    if (service != null)
-      service.removePartListener(connectorcontroller);
-    super.dispose();
-  }
 
   public Slide getCurrentSlide () {
     return presentationContext.getCurrentSlide();

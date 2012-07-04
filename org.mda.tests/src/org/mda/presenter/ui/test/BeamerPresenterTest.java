@@ -55,7 +55,8 @@ public class BeamerPresenterTest {
     //Collection <IPresentationController> controllers = new ArrayList<IPresentationController>();
     presenter = new BeamerPresenter(Display.getDefault(), session, false, null);
     controller = new DefaultPresentationController();
-    controller.connect(presenter);
+    presentationContext.registerController(controller);
+    presentationContext.registerView(presenter);
 
     presenter.redraw();
     firstSong = (MidiFile) session.getItems().get(0);

@@ -30,6 +30,7 @@ public class ApplicationSession {
   public static final String PROP_ENABLEGRID = "org.mda.commons.ui.enableGrid";
 
   public static final String PROP_SHOWWHITESPACES = "org.mda.commons.ui.showWhitespaces";
+  public static final String PROP_PRESENTATIONALWAYSONTOP = "org.mda.commons.ui.presentationAlwaysOnTop";
   private File lastModelFile;
 
   private AdditionalsHandler additionalsHandler;
@@ -96,6 +97,7 @@ public class ApplicationSession {
       setDefaultOnDemand(sessionProps, PROP_LASTMODELFILE, "mda.model.xml");
       setDefaultOnDemand(sessionProps, PROP_ENABLEGRID, "false");
       setDefaultOnDemand(sessionProps, PROP_SHOWWHITESPACES, "false");
+      setDefaultOnDemand(sessionProps, PROP_PRESENTATIONALWAYSONTOP, "true");
 
 
       //Read the modelfile that was used at last start
@@ -106,6 +108,7 @@ public class ApplicationSession {
       setLastModelPath(new File (property));
       getFeatureActivation().setShowGridEnabled(Boolean.valueOf(sessionProps.getProperty(PROP_ENABLEGRID)));
       getFeatureActivation().setShowWhitespaces(Boolean.valueOf(sessionProps.getProperty(PROP_SHOWWHITESPACES)));
+      getFeatureActivation().setPresentationAlwaysOnTop(Boolean.valueOf(sessionProps.getProperty(PROP_PRESENTATIONALWAYSONTOP)));
 
       if (! configFileAsFile.exists())
         save(configFileAsFile);

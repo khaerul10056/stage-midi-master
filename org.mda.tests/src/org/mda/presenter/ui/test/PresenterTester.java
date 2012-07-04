@@ -27,6 +27,8 @@ public class PresenterTester extends Shell {
 
   final List <Point> sizes = new ArrayList<Point>();
 
+  private PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
+
   public PresenterTester () {
     setLayout(new GridLayout());
     sizes.add(new Point (1400, 1050));
@@ -85,7 +87,8 @@ public class PresenterTester extends Shell {
         presentationContext.registerController(globalKeyRegPresentationController);
 
         BeamerPresenter beamerPresenter = new BeamerPresenter(Display.getCurrent(), currentSession, false, null);
-        globalKeyRegPresentationController.connect(beamerPresenter);
+        presentationContext.registerController(globalKeyRegPresentationController);
+        presentationContext.registerView(beamerPresenter);
 
         beamerPresenter.addDisposeListener(new DisposeListener() {
 
