@@ -2,7 +2,6 @@ package org.mda.export;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import mda.AbstractSessionItem;
 import mda.ExportConfiguration;
@@ -16,6 +15,7 @@ import org.mda.ApplicationSession;
 import org.mda.MdaModule;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
+import org.mda.commons.ui.calculator.SlideType;
 import org.mda.export.pdf.PdfExporter;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -28,13 +28,6 @@ public class TestPdfExporter {
   private File tmpFile = new File ("tmp/export.pdf");
 
   private static ApplicationSession appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
-
-  private final int X_ITEM1 = 130;
-  private final int X_ITEM2 = 157;
-  private final int X_ITEM3 = 299;
-  private final int X_ITEM4 = 364;
-  private final int X_ITEM5 = 434;
-
 
   @Before
   public void before () {
@@ -55,14 +48,13 @@ public class TestPdfExporter {
     appSession.getGlobalConfs().setDefaultBorder(0);
   }
 
-  private void assertText (final Slide slide, final String text, final int x, final int y) {
-    Collection<SlideItem> findItem = slide.findItem(text);
-    for (SlideItem next: findItem) {
-      if (next.getX() == x && next.getY() == y)
-        return;
-    }
+  private SlideItem findItem (final Slide slide, final String text, final int ordinal) {
 
-    Assert.fail ("Position " + x + "," + y + " of text <" + text + "> not found");
+    List<SlideItem> findItem = slide.findItem(text);
+    if (findItem.size() > ordinal)
+      return findItem.get(ordinal);
+    else
+      return null;
   }
   @Test
   public void checkExportWithChords () {
@@ -80,21 +72,23 @@ public class TestPdfExporter {
     List<Slide> lastSlides = exporter.getLastSlides();
     Slide versSlide = lastSlides.get(1);
 
-    final int FIRSTLINE_CHORD = 84;
-    final int FIRSTLINE_TEXT = 96;
     LOG.info(versSlide.toString());
 
+    SlideItem alleItem = findItem(versSlide, "Alle", 0);
+    Assert.assertEquals (SlideType.TEXT, alleItem.getItemType());
+    SlideItem firstChord = findItem(versSlide, "D", 0);
+    Assert.assertEquals (SlideType.CHORD, firstChord.getItemType());
 
+    Assert.assertTrue ("Text and chord overlap", firstChord.getYMax() < alleItem.getY());
 
-    assertText(versSlide, "Alle", X_ITEM1, FIRSTLINE_TEXT);
-    assertText(versSlide, "D", X_ITEM1, FIRSTLINE_CHORD);
-    assertText(versSlide, "Schöpfung staunt und", X_ITEM2, FIRSTLINE_TEXT);
-    assertText(versSlide, "G", X_ITEM2, FIRSTLINE_CHORD);
-    assertText(versSlide, "preist, und", X_ITEM3, FIRSTLINE_TEXT);
-    assertText(versSlide, "A", X_ITEM3, FIRSTLINE_CHORD);
-    assertText(versSlide, "betet an in", X_ITEM4, FIRSTLINE_TEXT);
-    assertText(versSlide, "D", X_ITEM4, FIRSTLINE_CHORD);
-    assertText(versSlide, "Wahrheit und in", X_ITEM5, FIRSTLINE_TEXT);
+    SlideItem schoepfungItem = findItem(versSlide, "Schöpfung staunt und", 0);
+    SlideItem secondChord = findItem(versSlide, "D", 0);
+
+    Assert.assertEquals (alleItem.getXMax(), schoepfungItem.getX());
+
+    Assert.assertEquals (alleItem.getY(), schoepfungItem.getY());
+    Assert.assertEquals (firstChord.getY(), secondChord.getY());
+
   }
 
   @Test
@@ -113,14 +107,20 @@ public class TestPdfExporter {
 
     Slide versSlide = lastSlides.get(1);
 
-    final int FIRSTLINE_TEXT = 76;
     LOG.info(versSlide.toString());
 
-    assertText(versSlide, "Alle", X_ITEM1, FIRSTLINE_TEXT);
-    assertText(versSlide, "Schöpfung staunt und", X_ITEM2, FIRSTLINE_TEXT);
-    assertText(versSlide, "preist, und", X_ITEM3, FIRSTLINE_TEXT);
-    assertText(versSlide, "betet an in", X_ITEM4, FIRSTLINE_TEXT);
-    assertText(versSlide, "Wahrheit und in", X_ITEM5, FIRSTLINE_TEXT);
+    SlideItem alleItem = findItem(versSlide, "Alle", 0);
+    Assert.assertEquals (SlideType.TEXT, alleItem.getItemType());
+    SlideItem firstChord = findItem(versSlide, "D", 0);
+    SlideItem schoepfungItem = findItem(versSlide, "Schöpfung staunt und", 0);
+    SlideItem secondChord = findItem(versSlide, "D", 0);
+    Assert.assertNull (firstChord);
+    Assert.assertNull (secondChord);
+
+    Assert.assertEquals (alleItem.getXMax(), schoepfungItem.getX());
+    Assert.assertEquals (alleItem.getY(), schoepfungItem.getY());
+
+
 
   }
 

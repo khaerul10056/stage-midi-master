@@ -5,6 +5,7 @@ import mda.MidiFilePartType;
 import mda.Session;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Shell;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,6 +27,11 @@ public class ContentOverviewTest {
   public void setup () {
     presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
     instance = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  }
+
+  @After
+  public void tearDown () {
+    presentationContext.clear();
   }
 
   @Test

@@ -97,8 +97,8 @@ public class Slide {
    * @param text   text to equal
    * @return items
    */
-  public Collection <SlideItem> findItem (final String text) {
-    Collection <SlideItem> foundItems = new ArrayList<SlideItem>();
+  public List <SlideItem> findItem (final String text) {
+    List <SlideItem> foundItems = new ArrayList<SlideItem>();
     for (SlideItem nextItem: getItems()) {
       if (nextItem.getText().trim().equals(text.trim()))
         foundItems.add(nextItem);

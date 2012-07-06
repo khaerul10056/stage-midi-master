@@ -52,8 +52,7 @@ public class BeamerPresenterTest {
   public void before () {
     presentationContext.setCurrentSession(session, new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
 
-    //Collection <IPresentationController> controllers = new ArrayList<IPresentationController>();
-    presenter = new BeamerPresenter(Display.getDefault(), session, false, null);
+    presenter = new BeamerPresenter(Display.getDefault(), session, false);
     controller = new DefaultPresentationController();
     presentationContext.registerController(controller);
     presentationContext.registerView(presenter);

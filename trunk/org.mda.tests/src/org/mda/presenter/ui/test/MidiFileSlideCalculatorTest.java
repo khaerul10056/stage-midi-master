@@ -373,10 +373,12 @@ public class MidiFileSlideCalculatorTest {
     MidiFilePart midiFilePart = song.getParts().get(1);
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setAutoWrapToNewPage(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
     MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    calculator.setConfig(config);
     Slide calculatePart = calculator.calculatePart(midiFilePart, preCondition).get(0);
 
     assertEquals(midiFilePart.getTextlines().size(), calculatePart.getLineCount());
@@ -442,6 +444,7 @@ public class MidiFileSlideCalculatorTest {
     config.setChordVisible(true);
     config.setShowBlockType(true);
     config.setPagePerPart(false);
+    config.setAutoWrapToNewPage(false);
     config.setFontsize(80);
 
     List<Slide> slides = calculate(song, config);

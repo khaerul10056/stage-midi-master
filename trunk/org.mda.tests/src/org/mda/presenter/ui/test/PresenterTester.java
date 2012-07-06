@@ -25,9 +25,7 @@ import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
 
 public class PresenterTester extends Shell {
 
-  final List <Point> sizes = new ArrayList<Point>();
-
-  private PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
+  private final List <Point> sizes = new ArrayList<Point>();
 
   public PresenterTester () {
     setLayout(new GridLayout());
@@ -86,7 +84,7 @@ public class PresenterTester extends Shell {
         final GlobalKeyRegistryPresentationController globalKeyRegPresentationController = new GlobalKeyRegistryPresentationController(getDisplay());
         presentationContext.registerController(globalKeyRegPresentationController);
 
-        BeamerPresenter beamerPresenter = new BeamerPresenter(Display.getCurrent(), currentSession, false, null);
+        BeamerPresenter beamerPresenter = new BeamerPresenter(Display.getCurrent(), currentSession, false);
         presentationContext.registerController(globalKeyRegPresentationController);
         presentationContext.registerView(beamerPresenter);
 
