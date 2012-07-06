@@ -55,6 +55,9 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
    */
   private boolean showBlockType;
 
+  /**
+   * start a new page automatically if text is out of border of the page
+   */
   private boolean autoWrapToNewPage = true;
 
 

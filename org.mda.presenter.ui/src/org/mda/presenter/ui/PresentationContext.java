@@ -46,6 +46,16 @@ public class PresentationContext {
     return currentSession;
   }
 
+
+  /**
+   * clears all registered objects, used for tests
+   */
+  public void clear () {
+    registeredControllers.clear();
+    registeredViews.clear();
+    slidesPerItem.clear();
+  }
+
   public void setCurrentSession (Session currentSession, final IMidiFileEditorUIConfig config, Point size) {
     LOGGER.info("set current session " + currentSession.getName() + " at presentationcontext");
     this.currentSession = currentSession;

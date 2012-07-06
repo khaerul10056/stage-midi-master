@@ -54,7 +54,6 @@ public class PdfExporter extends AbstractExporter {
     config.setPagePerPart(false);
     config.setNewPageRespected(false);
     config.setShowTitle(true);
-    config.setChordVisible(false);
     config.setFontsize(new Integer (12));
     config.setGraphicsContext(new PDFGraphicsContext());
 

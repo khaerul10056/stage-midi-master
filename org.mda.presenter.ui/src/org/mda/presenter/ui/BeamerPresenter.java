@@ -14,7 +14,6 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IPartService;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
 import org.mda.commons.ui.calculator.Slide;
@@ -35,9 +34,6 @@ public class BeamerPresenter extends Shell implements IPresentationView {
   private File currentShownImageAsFile;
 
 
-  private IPartService service;
-
-
   private Monitor getPreferredExternalMonitor (Display display) {
     for (Monitor nextMonitor: display.getMonitors()) {
       if (! nextMonitor.equals(Display.getCurrent().getPrimaryMonitor()))
@@ -48,10 +44,8 @@ public class BeamerPresenter extends Shell implements IPresentationView {
 
   }
 
-  public BeamerPresenter (Display display, Session session, final boolean onTop, IPartService service) {
+  public BeamerPresenter (Display display, Session session, final boolean onTop) {
     super (display, onTop ? SWT.ON_TOP: SWT.NONE);
-
-    this.service = service;
 
     Monitor preferredMonitor = getPreferredExternalMonitor(display);
     if (! preferredMonitor.equals(Display.getCurrent().getPrimaryMonitor())) {
