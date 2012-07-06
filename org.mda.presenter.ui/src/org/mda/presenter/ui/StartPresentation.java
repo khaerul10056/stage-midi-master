@@ -34,7 +34,9 @@ public class StartPresentation extends AbstractHandler  {
     final IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
     final IPerspectiveRegistry reg = activeWorkbenchWindow.getWorkbench().getPerspectiveRegistry();
 
-    LOGGER.info("Starting presentation of selection " + selectioninfo.getSession().getName() + "-" + selectioninfo.getItem().getName());
+
+    LOGGER.info("Starting presentation of selection " + selectioninfo.getSession().getName());
+    LOGGER.info("Selected first element " + (selectioninfo.getItem() != null ? selectioninfo.getItem().getName() : "<NONE>"));
 
     //Register global controller
     final GlobalKeyRegistryPresentationController globalkeycontroller = new GlobalKeyRegistryPresentationController(activeWorkbenchWindow.getShell().getDisplay());
