@@ -1,4 +1,4 @@
-
+Bug             Additionals     When selecting a foregroundcolor selection of backgroundimage is canceled new
 Enhancement     ExportConfig per User overwrites global configuration
 Enhancement     Editor			Merge line with nextline when DEL is pressed at end of line
 Enhancement		Editor			Clone line

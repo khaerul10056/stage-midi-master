@@ -10,6 +10,7 @@ import mda.AbstractSessionItem;
 import mda.ExportConfiguration;
 import mda.Gallery;
 import mda.MidiFile;
+import mda.MidiplayerFactory;
 import mda.Session;
 import mda.impl.MidiFileImpl;
 import mda.impl.SessionImpl;
@@ -108,6 +109,12 @@ public class ContentNavigator extends ViewPart {
   }
 
 
+  private Session createPseudoSession (final Gallery gallery) {
+    Session pseudoSession = MidiplayerFactory.eINSTANCE.createSession();
+    pseudoSession.getItems().addAll(MidiPlayerService.sortedSessionItemList(gallery.getGalleryItems()));
+    return pseudoSession;
+  }
+
   public SelectionInfo getSessionFromSelection (final SelectionEvent e) {
     Object object = Util.getStructuredSelection(treviewer.getSelection());
     LOGGER.info("Selected " + object);
@@ -121,10 +128,15 @@ public class ContentNavigator extends ViewPart {
 
       if (item.getMother() instanceof Session)
         session = (Session) item.getMother();
-
+      else
+      if (item.getMother() instanceof Gallery)
+        session = createPseudoSession((Gallery) item.getMother());
     }
     else if (object instanceof Session) {
       session = (Session)object;
+    } else if (object instanceof Gallery) {
+      Gallery gallery = (Gallery) object;
+      session = createPseudoSession(gallery);
     }
 
     return new SelectionInfo(session, selectedItem);
@@ -480,10 +492,10 @@ public class ContentNavigator extends ViewPart {
           boolean currentItemIsGallery = selectedObject instanceof Gallery;
 
           boolean currentItemIsNavigatorItem = selectedNavigatorItem != null;
-          boolean currentItemIsNavigatorItemInSession = currentItemIsNavigatorItem  && selectedNavigatorItem.getMother() instanceof Session;
+//          boolean currentItemIsNavigatorItemInSession = currentItemIsNavigatorItem  && selectedNavigatorItem.getMother() instanceof Session;
           boolean currentItemIsSessionGroup = selectedObject instanceof SessionGroup;
 
-          itemStart.setEnabled(currentItemIsNavigatorItemInSession);
+          itemStart.setEnabled(currentItemIsSession || currentItemIsGallery || currentItemIsNavigatorItem);
           itemPowerpoint.setEnabled(currentItemIsSession);
           itemAdd.setEnabled(currentItemIsSession || currentItemIsGallery || currentItemIsSessionGroup);
           itemRemove.setEnabled(currentItemIsNavigatorItem || currentItemIsSession);
