@@ -25,7 +25,6 @@ public class DefaultPresentationController implements IPresentationController {
   }
 
 
-
   public boolean nextSlide () {
     NavigationRefreshAction done = presentationContext.nextSlide();
     refreshViews(done);

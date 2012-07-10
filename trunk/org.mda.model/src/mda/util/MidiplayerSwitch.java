@@ -154,15 +154,15 @@ public class MidiplayerSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MidiplayerPackage.EXPORT_CONFIGURATION: {
-        ExportConfiguration exportConfiguration = (ExportConfiguration)theEObject;
-        T result = caseExportConfiguration(exportConfiguration);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case MidiplayerPackage.COPYRIGHT: {
         Copyright copyright = (Copyright)theEObject;
         T result = caseCopyright(copyright);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MidiplayerPackage.PRESENTATION_SCHEME: {
+        PresentationScheme presentationScheme = (PresentationScheme)theEObject;
+        T result = casePresentationScheme(presentationScheme);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -351,21 +351,6 @@ public class MidiplayerSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Export Configuration</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Export Configuration</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseExportConfiguration(ExportConfiguration object) {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Copyright</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -377,6 +362,21 @@ public class MidiplayerSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseCopyright(Copyright object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Presentation Scheme</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Presentation Scheme</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePresentationScheme(PresentationScheme object) {
     return null;
   }
 

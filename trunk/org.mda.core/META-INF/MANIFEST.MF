@@ -14,7 +14,7 @@ Export-Package: org.mda,
  org.mda.transpose
 Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf;bundle-version="2.6.0";visibility:=reexport,
+ org.eclipse.emf;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;bundle-version="2.5.0";visibility:=reexport,
  org.mda.model;bundle-version="1.0.0";visibility:=reexport,
  com.google.inject;bundle-version="2.0.0";visibility:=reexport,

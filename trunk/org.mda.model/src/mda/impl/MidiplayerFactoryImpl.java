@@ -71,8 +71,8 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
       case MidiplayerPackage.MIDI_FILE_CHORD_PART: return createMidiFileChordPart();
       case MidiplayerPackage.CONFIGURATION: return createConfiguration();
       case MidiplayerPackage.USER: return createUser();
-      case MidiplayerPackage.EXPORT_CONFIGURATION: return createExportConfiguration();
       case MidiplayerPackage.COPYRIGHT: return createCopyright();
+      case MidiplayerPackage.PRESENTATION_SCHEME: return createPresentationScheme();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -221,9 +221,9 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExportConfiguration createExportConfiguration() {
-    ExportConfigurationImpl exportConfiguration = new ExportConfigurationImpl();
-    return exportConfiguration;
+  public Copyright createCopyright() {
+    CopyrightImpl copyright = new CopyrightImpl();
+    return copyright;
   }
 
   /**
@@ -231,9 +231,9 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
    * <!-- end-user-doc -->
    * @generated
    */
-  public Copyright createCopyright() {
-    CopyrightImpl copyright = new CopyrightImpl();
-    return copyright;
+  public PresentationScheme createPresentationScheme() {
+    PresentationSchemeImpl presentationScheme = new PresentationSchemeImpl();
+    return presentationScheme;
   }
 
   /**

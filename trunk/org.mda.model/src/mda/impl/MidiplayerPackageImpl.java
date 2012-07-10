@@ -11,7 +11,6 @@ import mda.AbstractSessionItem;
 import mda.AdditionalType;
 import mda.Configuration;
 import mda.Copyright;
-import mda.ExportConfiguration;
 import mda.Gallery;
 import mda.MidiFile;
 import mda.MidiFileChordPart;
@@ -21,9 +20,9 @@ import mda.MidiFileTextLine;
 import mda.MidiPlayerRoot;
 import mda.MidiplayerFactory;
 import mda.MidiplayerPackage;
+import mda.PresentationScheme;
 import mda.Session;
 import mda.TextPresentationEvent;
-
 import mda.User;
 import mda.UserType;
 import org.eclipse.emf.ecore.EAttribute;
@@ -129,14 +128,14 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass exportConfigurationEClass = null;
+  private EClass copyrightEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass copyrightEClass = null;
+  private EClass presentationSchemeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -519,6 +518,15 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
   /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMidiPlayerRoot_Presentationschemes() {
+    return (EReference)midiPlayerRootEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -630,17 +638,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getUser_ExportConfiguration() {
-    return (EReference)userEClass.getEStructuralFeatures().get(1);
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EAttribute getUser_Name() {
-    return (EAttribute)userEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)userEClass.getEStructuralFeatures().get(1);
   }
 
     /**
@@ -649,7 +648,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * @generated
    */
   public EAttribute getUser_Firstname() {
-    return (EAttribute)userEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)userEClass.getEStructuralFeatures().get(2);
   }
 
     /**
@@ -658,7 +657,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * @generated
    */
   public EAttribute getUser_Type() {
-    return (EAttribute)userEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)userEClass.getEStructuralFeatures().get(3);
   }
 
     /**
@@ -667,7 +666,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * @generated
    */
   public EAttribute getUser_SendSongbook() {
-    return (EAttribute)userEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)userEClass.getEStructuralFeatures().get(4);
   }
 
     /**
@@ -675,8 +674,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getExportConfiguration() {
-    return exportConfigurationEClass;
+  public EReference getUser_Presentationschemes() {
+    return (EReference)userEClass.getEStructuralFeatures().get(5);
   }
 
     /**
@@ -684,8 +683,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getExportConfiguration_WithChords() {
-    return (EAttribute)exportConfigurationEClass.getEStructuralFeatures().get(0);
+  public EAttribute getUser_DefaultPresentationType() {
+    return (EAttribute)userEClass.getEStructuralFeatures().get(6);
   }
 
     /**
@@ -758,6 +757,123 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    */
   public EAttribute getCopyright_PublisherInland() {
     return (EAttribute)copyrightEClass.getEStructuralFeatures().get(6);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPresentationScheme() {
+    return presentationSchemeEClass;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_Name() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(0);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_ShowBackground() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(1);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_ShowBlockType() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(2);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_PagePerPart() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(3);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_NewPageRespected() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(4);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_ShowTitle() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(5);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_ShowCopyright() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(6);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_SkipEmptySlides() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(7);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_OptimizeLineFilling() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(8);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_OptimizeEqualParts() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(9);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_OptimizeEmptyTokens() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(10);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_Border() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(11);
   }
 
     /**
@@ -856,6 +972,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     createEReference(midiPlayerRootEClass, MIDI_PLAYER_ROOT__SESSIONS);
     createEReference(midiPlayerRootEClass, MIDI_PLAYER_ROOT__CONFIG);
     createEReference(midiPlayerRootEClass, MIDI_PLAYER_ROOT__USERS);
+    createEReference(midiPlayerRootEClass, MIDI_PLAYER_ROOT__PRESENTATIONSCHEMES);
 
     midiFileChordPartEClass = createEClass(MIDI_FILE_CHORD_PART);
     createEAttribute(midiFileChordPartEClass, MIDI_FILE_CHORD_PART__TEXT);
@@ -871,14 +988,12 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
     userEClass = createEClass(USER);
     createEAttribute(userEClass, USER__MAIL);
-    createEReference(userEClass, USER__EXPORT_CONFIGURATION);
     createEAttribute(userEClass, USER__NAME);
     createEAttribute(userEClass, USER__FIRSTNAME);
     createEAttribute(userEClass, USER__TYPE);
     createEAttribute(userEClass, USER__SEND_SONGBOOK);
-
-    exportConfigurationEClass = createEClass(EXPORT_CONFIGURATION);
-    createEAttribute(exportConfigurationEClass, EXPORT_CONFIGURATION__WITH_CHORDS);
+    createEReference(userEClass, USER__PRESENTATIONSCHEMES);
+    createEAttribute(userEClass, USER__DEFAULT_PRESENTATION_TYPE);
 
     copyrightEClass = createEClass(COPYRIGHT);
     createEAttribute(copyrightEClass, COPYRIGHT__ORIGINALTITLE);
@@ -888,6 +1003,20 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     createEAttribute(copyrightEClass, COPYRIGHT__YEAR);
     createEAttribute(copyrightEClass, COPYRIGHT__PUBLISHER);
     createEAttribute(copyrightEClass, COPYRIGHT__PUBLISHER_INLAND);
+
+    presentationSchemeEClass = createEClass(PRESENTATION_SCHEME);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__NAME);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__SHOW_BACKGROUND);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__SHOW_BLOCK_TYPE);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__PAGE_PER_PART);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__NEW_PAGE_RESPECTED);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__SHOW_TITLE);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__SHOW_COPYRIGHT);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__SKIP_EMPTY_SLIDES);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__OPTIMIZE_LINE_FILLING);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__OPTIMIZE_EQUAL_PARTS);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__OPTIMIZE_EMPTY_TOKENS);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__BORDER);
 
     // Create enums
     midiFilePartTypeEEnum = createEEnum(MIDI_FILE_PART_TYPE);
@@ -968,6 +1097,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     initEReference(getMidiPlayerRoot_Sessions(), this.getSession(), null, "sessions", null, 0, -1, MidiPlayerRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMidiPlayerRoot_Config(), this.getConfiguration(), null, "config", null, 0, 1, MidiPlayerRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMidiPlayerRoot_Users(), this.getUser(), null, "users", null, 0, -1, MidiPlayerRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMidiPlayerRoot_Presentationschemes(), this.getPresentationScheme(), null, "presentationschemes", null, 0, -1, MidiPlayerRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(midiFileChordPartEClass, MidiFileChordPart.class, "MidiFileChordPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMidiFileChordPart_Text(), ecorePackage.getEString(), "text", null, 0, 1, MidiFileChordPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -983,14 +1113,12 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
     initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUser_Mail(), ecorePackage.getEString(), "mail", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getUser_ExportConfiguration(), this.getExportConfiguration(), null, "exportConfiguration", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getUser_Name(), ecorePackage.getEString(), "name", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getUser_Firstname(), ecorePackage.getEString(), "firstname", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getUser_Type(), this.getUserType(), "type", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getUser_SendSongbook(), ecorePackage.getEBoolean(), "sendSongbook", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(exportConfigurationEClass, ExportConfiguration.class, "ExportConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getExportConfiguration_WithChords(), ecorePackage.getEBoolean(), "withChords", null, 0, 1, ExportConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getUser_Presentationschemes(), this.getPresentationScheme(), null, "presentationschemes", null, 0, -1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getUser_DefaultPresentationType(), ecorePackage.getEString(), "defaultPresentationType", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(copyrightEClass, Copyright.class, "Copyright", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCopyright_Originaltitle(), ecorePackage.getEString(), "originaltitle", null, 0, 1, Copyright.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1000,6 +1128,20 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     initEAttribute(getCopyright_Year(), ecorePackage.getEInt(), "year", null, 0, 1, Copyright.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getCopyright_Publisher(), ecorePackage.getEString(), "publisher", null, 0, 1, Copyright.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getCopyright_PublisherInland(), ecorePackage.getEString(), "publisherInland", null, 0, 1, Copyright.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(presentationSchemeEClass, PresentationScheme.class, "PresentationScheme", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPresentationScheme_Name(), ecorePackage.getEString(), "name", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPresentationScheme_ShowBackground(), ecorePackage.getEBooleanObject(), "showBackground", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPresentationScheme_ShowBlockType(), ecorePackage.getEBooleanObject(), "showBlockType", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPresentationScheme_PagePerPart(), ecorePackage.getEBooleanObject(), "pagePerPart", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPresentationScheme_NewPageRespected(), ecorePackage.getEBooleanObject(), "newPageRespected", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPresentationScheme_ShowTitle(), ecorePackage.getEBooleanObject(), "showTitle", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPresentationScheme_ShowCopyright(), ecorePackage.getEBooleanObject(), "showCopyright", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPresentationScheme_SkipEmptySlides(), ecorePackage.getEBooleanObject(), "skipEmptySlides", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPresentationScheme_OptimizeLineFilling(), ecorePackage.getEBooleanObject(), "optimizeLineFilling", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPresentationScheme_OptimizeEqualParts(), ecorePackage.getEBooleanObject(), "optimizeEqualParts", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPresentationScheme_OptimizeEmptyTokens(), ecorePackage.getEBooleanObject(), "optimizeEmptyTokens", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPresentationScheme_Border(), ecorePackage.getEIntegerObject(), "border", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(midiFilePartTypeEEnum, MidiFilePartType.class, "MidiFilePartType");

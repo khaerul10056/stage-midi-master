@@ -81,6 +81,7 @@ public class ContentOverviewPanel extends Composite  {
     LOGGER.debug("set Size of preview-part to " + width + "x" + height);
 
 
+    
 
     setBackground(config.getDefaultBackgroundColor());
     setForeground(config.getDefaultForegroundColor());

@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mda.MidiPlayerRoot#getSessions <em>Sessions</em>}</li>
  *   <li>{@link mda.MidiPlayerRoot#getConfig <em>Config</em>}</li>
  *   <li>{@link mda.MidiPlayerRoot#getUsers <em>Users</em>}</li>
+ *   <li>{@link mda.MidiPlayerRoot#getPresentationschemes <em>Presentationschemes</em>}</li>
  * </ul>
  * </p>
  *
@@ -113,5 +114,21 @@ public interface MidiPlayerRoot extends EObject {
    * @generated
    */
   EList<User> getUsers();
+
+  /**
+   * Returns the value of the '<em><b>Presentationschemes</b></em>' containment reference list.
+   * The list contents are of type {@link mda.PresentationScheme}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Presentationschemes</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Presentationschemes</em>' containment reference list.
+   * @see mda.MidiplayerPackage#getMidiPlayerRoot_Presentationschemes()
+   * @model containment="true"
+   * @generated
+   */
+  EList<PresentationScheme> getPresentationschemes();
 
 } // MidiPlayerRoot

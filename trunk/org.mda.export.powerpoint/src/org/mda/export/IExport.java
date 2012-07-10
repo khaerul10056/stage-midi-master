@@ -3,7 +3,7 @@ package org.mda.export;
 import java.io.File;
 import java.util.Collection;
 import mda.AbstractSessionItem;
-import mda.ExportConfiguration;
+import org.mda.commons.ui.IMidiFileEditorUIConfig;
 
 
 public interface IExport {
@@ -17,7 +17,7 @@ public interface IExport {
     * @return exportfile or <code>null</code> if an error occured
     * @throws Exception
     */
-   File export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration config) throws ExportException;
+   File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig config) throws ExportException;
 
    /**
     * gets the suffix for this export

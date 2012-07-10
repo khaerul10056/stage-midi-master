@@ -4,10 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import mda.AbstractSessionItem;
-import mda.ExportConfiguration;
 import mda.MidiFile;
 import mda.MidiFilePartType;
-import mda.MidiplayerFactory;
 import org.apache.poi.hslf.model.TextBox;
 import org.apache.poi.hslf.usermodel.SlideShow;
 import org.eclipse.swt.SWT;
@@ -21,6 +19,7 @@ import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
 import org.mda.Utils;
+import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.export.powerpoint.PptExporter;
 import org.mda.presenter.ui.test.MidiFileCreator;
 
@@ -68,8 +67,9 @@ public class TestPptExporter {
 
     PptExporter exporter = new PptExporter();
 
-    ExportConfiguration config = MidiplayerFactory.eINSTANCE.createExportConfiguration();
-    config.setWithChords(false);
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setChordVisible(false);
+    config.setShowBackground(true);
 
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();
     sessionitems.add(file);
@@ -98,8 +98,10 @@ public class TestPptExporter {
 
       PptExporter exporter = new PptExporter();
 
-      ExportConfiguration config = MidiplayerFactory.eINSTANCE.createExportConfiguration();
-      config.setWithChords(false);
+      DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+      config.setChordVisible(false);
+      config.setShowBackground(true);
+
 
       List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();
       sessionitems.add(file);
@@ -128,8 +130,9 @@ public class TestPptExporter {
     file.setBackgroundColor(colorBlackAsString);
     java.awt.Color colorBlackAsAwt = Utils.toAwtColor(colorBlack);
 
-    ExportConfiguration config = MidiplayerFactory.eINSTANCE.createExportConfiguration();
-    config.setWithChords(false);
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setChordVisible(false);
+
 
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();
     sessionitems.add(file);
