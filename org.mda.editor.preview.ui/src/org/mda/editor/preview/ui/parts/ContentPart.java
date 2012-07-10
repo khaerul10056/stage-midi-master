@@ -16,6 +16,8 @@ import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
@@ -85,6 +87,17 @@ public class ContentPart extends AbstractPart implements FocusListener {
           size = showPart(getCurrentPart(), size);
         setSize(size);
       }
+    });
+
+    addMouseListener(new MouseAdapter() {
+
+      @Override
+      public void mouseDown (MouseEvent arg0) {
+        
+        System.out.println ("Hallo");
+
+      }
+
     });
   }
 

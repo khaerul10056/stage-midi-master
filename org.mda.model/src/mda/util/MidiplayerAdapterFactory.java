@@ -120,12 +120,12 @@ public class MidiplayerAdapterFactory extends AdapterFactoryImpl {
         return createUserAdapter();
       }
       @Override
-      public Adapter caseExportConfiguration(ExportConfiguration object) {
-        return createExportConfigurationAdapter();
-      }
-      @Override
       public Adapter caseCopyright(Copyright object) {
         return createCopyrightAdapter();
+      }
+      @Override
+      public Adapter casePresentationScheme(PresentationScheme object) {
+        return createPresentationSchemeAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -316,20 +316,6 @@ public class MidiplayerAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link mda.ExportConfiguration <em>Export Configuration</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see mda.ExportConfiguration
-   * @generated
-   */
-  public Adapter createExportConfigurationAdapter() {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link mda.Copyright <em>Copyright</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -340,6 +326,20 @@ public class MidiplayerAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createCopyrightAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link mda.PresentationScheme <em>Presentation Scheme</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see mda.PresentationScheme
+   * @generated
+   */
+  public Adapter createPresentationSchemeAdapter() {
     return null;
   }
 

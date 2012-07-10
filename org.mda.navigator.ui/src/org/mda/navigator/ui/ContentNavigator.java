@@ -7,7 +7,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import mda.AbstractSessionItem;
-import mda.ExportConfiguration;
 import mda.Gallery;
 import mda.MidiFile;
 import mda.MidiplayerFactory;
@@ -52,6 +51,7 @@ import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 import org.mda.SelectionInfo;
 import org.mda.commons.ui.ContentProvider;
+import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.LabelProvider;
 import org.mda.commons.ui.MidiFileEditorInput;
 import org.mda.commons.ui.NewSessionPanel;
@@ -59,6 +59,8 @@ import org.mda.commons.ui.NewSongPanel;
 import org.mda.commons.ui.SessionGroup;
 import org.mda.commons.ui.SongSelectorPanel;
 import org.mda.commons.ui.Util;
+import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
+import org.mda.commons.ui.calculator.configurator.PresentationType;
 import org.mda.commons.ui.imports.ImportShell;
 import org.mda.commons.ui.navigator.NavigatorItem;
 import org.mda.export.ExportException;
@@ -179,8 +181,12 @@ public class ContentNavigator extends ViewPart {
         try {
           File file = new File (appSession.getExportPath().getAbsolutePath() + File.separator + session.getName() + ".ppt");
 
-          ExportConfiguration conf = MidiPlayerService.mf.createExportConfiguration();
-          conf.setWithChords(false);
+//          ExportConfiguration conf = MidiPlayerService.mf.createExportConfiguration();
+//          conf.setWithChords(false);
+
+          PresentationConfigurator configurator = new PresentationConfigurator();
+          IMidiFileEditorUIConfig conf = configurator.configure(null, appSession.getCurrentModel(), PresentationType.PPT);
+
           exporter.export(session.getItems(), file, conf);
 
           MessageDialog.openConfirm(getSite().getShell(), "Exportfiles saved", "Powerpoint-Exportfile saved in " + file.getAbsolutePath());
@@ -218,8 +224,10 @@ public class ContentNavigator extends ViewPart {
         org.mda.export.pdf.PdfExporter exporter = new org.mda.export.pdf.PdfExporter();
         try {
           File file = new File (appSession.getExportPath().getAbsolutePath() + File.separator + "songsheets.pdf");
-          ExportConfiguration conf = MidiPlayerService.mf.createExportConfiguration();
-          conf.setWithChords(false);
+
+          PresentationConfigurator configurator = new PresentationConfigurator();
+          IMidiFileEditorUIConfig conf = configurator.configure(null,  appSession.getCurrentModel(), PresentationType.PDF);
+
 
           List <AbstractSessionItem> sortedGalleryItems = MidiPlayerService.sortedSessionItemList(gallery.getGalleryItems());
           exporter.export(sortedGalleryItems, file, conf);
@@ -393,7 +401,7 @@ public class ContentNavigator extends ViewPart {
 
     Object firstElement = selection.getFirstElement();
 
-    treviewer.setInput(appSession);
+    treviewer.setInput(appSession.getCurrentModel());
     treviewer.expandAll();
     if (firstElement != null) {
       selection = new StructuredSelection(firstElement);

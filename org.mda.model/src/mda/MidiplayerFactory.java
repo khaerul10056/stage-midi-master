@@ -116,15 +116,6 @@ public interface MidiplayerFactory extends EFactory {
   User createUser();
 
   /**
-   * Returns a new object of class '<em>Export Configuration</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Export Configuration</em>'.
-   * @generated
-   */
-  ExportConfiguration createExportConfiguration();
-
-  /**
    * Returns a new object of class '<em>Copyright</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -132,6 +123,15 @@ public interface MidiplayerFactory extends EFactory {
    * @generated
    */
   Copyright createCopyright();
+
+  /**
+   * Returns a new object of class '<em>Presentation Scheme</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Presentation Scheme</em>'.
+   * @generated
+   */
+  PresentationScheme createPresentationScheme();
 
   /**
    * Returns the package supported by this factory.

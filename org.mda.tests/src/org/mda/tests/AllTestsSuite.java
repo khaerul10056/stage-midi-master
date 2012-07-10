@@ -5,6 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.mda.commons.ui.ContentProviderTest;
 import org.mda.commons.ui.MidiFileEditorInputTest;
+import org.mda.commons.ui.calculator.configurator.PresentationConfiguratorTest;
 import org.mda.core.ApplicationSessionTest;
 import org.mda.core.ChordTest;
 import org.mda.core.MidiPlayerServiceTest;
@@ -39,6 +40,7 @@ import org.mda.transpose.TransposeTest;
   TransposeTest.class,
   ContentProviderTest.class,
   MidiFileStructTest.class,
+  PresentationConfiguratorTest.class,
 
   //UI
   PreviewEditorTest.class,

@@ -7,6 +7,8 @@ import mda.AbstractSessionItem;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -98,10 +100,23 @@ public class ContentOverview extends ViewPart implements IPresentationView{
       calcPreCondition.setCalculationsize(size);
       List<Slide> slides = calculator.calculate(item, calcPreCondition);
       for (Slide slide: slides) {
-        ContentOverviewPanel overviewPanel = new ContentOverviewPanel(root, (MidiFilePart) slide.getModelRef(), slide, config);
+        final ContentOverviewPanel overviewPanel = new ContentOverviewPanel(root, (MidiFilePart) slide.getModelRef(), slide, config);
         overviewPanel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
         overviewPanel.setSize(size);
         overviewPanel.redraw();
+        overviewPanel.addMouseListener(new MouseAdapter() {
+
+          @Override
+          public void mouseDown (MouseEvent e) {
+            ContentOverviewPanel currentPanel = (ContentOverviewPanel) e.widget;
+            presentationContext.toPart(currentPanel.getCurrentPart());
+            System.out.println ("MouseDown from " + e.widget + "(" + e.widget.getClass() + ")");
+
+          }
+
+
+        });
+
         previewParts.add(overviewPanel);
       }
     }

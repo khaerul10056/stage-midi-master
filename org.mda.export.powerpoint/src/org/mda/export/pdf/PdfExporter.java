@@ -8,12 +8,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import mda.AbstractSessionItem;
-import mda.ExportConfiguration;
 import mda.MidiFile;
 import org.eclipse.swt.graphics.Point;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
+import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.FontDescriptor;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
@@ -44,24 +43,24 @@ public class PdfExporter extends AbstractExporter {
 
   private List <Slide> lastSlides = new ArrayList<Slide>();
 
-  public File export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration exportconfig) throws ExportException  {
+  public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig config) throws ExportException  {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
 
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(exportconfig.isWithChords());
-    config.setShowBlockType(true);
-    config.setPagePerPart(false);
-    config.setNewPageRespected(false);
-    config.setShowTitle(true);
-    config.setFontsize(new Integer (12));
-    config.setGraphicsContext(new PDFGraphicsContext());
-
-    config.setOptimizeLineFilling(true); //TODO
-    //config.setOptimizeEqualParts(true); //TODO
-    config.setOptimizeEmptyTokens(true);
-    config.setShowCopyright(true);
-    config.setBorder(35);
+//DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+//    config.setChordVisible(exportconfig.isWithChords());
+//    config.setShowBlockType(true);
+//    config.setPagePerPart(false);
+//    config.setNewPageRespected(false);
+//    config.setShowTitle(true);
+//    config.setFontsize(new Integer (12));
+//    config.setGraphicsContext(new PDFGraphicsContext());
+//
+//    config.setOptimizeLineFilling(true); //TODO
+//    //config.setOptimizeEqualParts(true); //TODO
+//    config.setOptimizeEmptyTokens(true);
+//    config.setShowCopyright(true);
+//    config.setBorder(35);
     calculator.setConfig(config);
 
     Rectangle pagesizeA4 = PageSize.A4;

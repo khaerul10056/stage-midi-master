@@ -43,9 +43,6 @@ public class ApplicationSession {
 
 
 
-
-
-
   public MidiPlayerRoot getCurrentModel () {
     return playerroot;
   }

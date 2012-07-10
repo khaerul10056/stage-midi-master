@@ -109,6 +109,8 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
 
   boolean isAutoWrapToNewPage ();
 
+  void setDefaultPresentationScreenSize (Point calcSize);
+
 
 
 

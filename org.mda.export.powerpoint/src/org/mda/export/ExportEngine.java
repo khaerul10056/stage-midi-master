@@ -22,7 +22,9 @@ import mda.MidiPlayerRoot;
 import mda.User;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
-import org.mda.MidiPlayerService;
+import org.mda.commons.ui.IMidiFileEditorUIConfig;
+import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
+import org.mda.commons.ui.calculator.configurator.PresentationType;
 import org.mda.export.pdf.PdfExporter;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -63,11 +65,11 @@ public class ExportEngine {
       ExportResult exportResult = new ExportResult();
       try {
 
-        if (nextUser.getExportConfiguration() == null)
-          nextUser.setExportConfiguration(MidiPlayerService.mf.createExportConfiguration());
-
         if (nextUser.isSendSongbook()) {
-          exportFile = exporter.export(currentModel.getGallery().getGalleryItems(), exportFile, nextUser.getExportConfiguration());
+          PresentationConfigurator configurator = new PresentationConfigurator();
+          PresentationType type = nextUser.getDefaultPresentationType() != null ? PresentationType.valueOf(nextUser.getDefaultPresentationType()) : PresentationType.PDF;
+          IMidiFileEditorUIConfig config = configurator.configure(nextUser, appSession.getCurrentModel(), type);
+          exportFile = exporter.export(currentModel.getGallery().getGalleryItems(), exportFile, config);
           exportResult.setUser(nextUser);
           exportResult.setExportFile(exportFile);
           results.add(exportResult);

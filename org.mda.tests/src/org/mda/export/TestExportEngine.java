@@ -3,7 +3,6 @@ package org.mda.export;
 import java.io.File;
 import java.util.List;
 import mda.AbstractSessionItem;
-import mda.ExportConfiguration;
 import mda.MidiPlayerRoot;
 import mda.User;
 import org.junit.Assert;
@@ -83,65 +82,5 @@ public class TestExportEngine {
     return newUser;
   }
 
-  /**
-   * export the gallery of a modelfile
-   * @param args
-   */
-  public static void main (String[] args) {
-
-    final String model = args [0];
-
-    if (model != null && model.length() > 0) {
-      File modelFile = new File (model);
-      if (modelFile.exists()) {
-        LOGGER.info("Exporting file " + modelFile.getAbsolutePath());
-
-        ApplicationSession instance = MdaModule.getInjector().getInstance(ApplicationSession.class);
-        instance.load(modelFile.getAbsolutePath());
-        instance.getCurrentModel().getConfig().setPdfExportPath("tmp/export");
-
-        instance.getCurrentModel().getUsers().clear();
-
-        //instance.getGlobalConfs().setShowGrid(true);
-
-        //User with chords
-        User firstUser = MidiPlayerService.mf.createUser();
-        firstUser.setName("WithChords");
-        ExportConfiguration conf1  = MidiPlayerService.mf.createExportConfiguration();
-        conf1.setWithChords(true);
-        firstUser.setSendSongbook(true);
-        firstUser.setExportConfiguration(conf1);
-
-      //User with chords
-        User secondUser = MidiPlayerService.mf.createUser();
-        secondUser.setName("WithoutChords");
-        ExportConfiguration conf2  = MidiPlayerService.mf.createExportConfiguration();
-        conf2.setWithChords(false);
-        secondUser.setSendSongbook(true);
-        secondUser.setExportConfiguration(conf2);
-
-        instance.getCurrentModel().getUsers().add(firstUser);
-        instance.getCurrentModel().getUsers().add(secondUser);
-
-
-
-        ExportEngine engine = new ExportEngine();
-        List<ExportResult> exportSongbooks2 = engine.exportSongbooks();
-        for (ExportResult nextResult: exportSongbooks2) {
-          LOGGER.info("-" + nextResult.getUser().getName() + " " + nextResult.getUser().getFirstname());
-          LOGGER.info("-" + nextResult.getExportFile());
-          LOGGER.info("-" + (nextResult.getException() != null ? nextResult.getException().getLocalizedMessage(): "null"));
-        }
-
-      }
-      else
-        LOGGER.error("Model " + modelFile.getAbsolutePath() + " doesn't exist");
-
-    }
-    else
-      LOGGER.error("No model applied");
-
-
-  }
 
 }

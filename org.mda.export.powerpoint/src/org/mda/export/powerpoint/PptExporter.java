@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import mda.AbstractSessionItem;
-import mda.ExportConfiguration;
 import org.apache.poi.hslf.model.Fill;
 import org.apache.poi.hslf.model.Line;
 import org.apache.poi.hslf.model.Picture;
@@ -23,7 +22,7 @@ import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
 import org.mda.Utils;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
+import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
 import org.mda.logging.Log;
@@ -39,18 +38,18 @@ public class PptExporter extends AbstractExporter {
 
 
 
-  public File export (final Collection<AbstractSessionItem> items, final File exportFile, final ExportConfiguration exportconfig) throws ExportException {
+  public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig config) throws ExportException {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
 
     SlideShow show = new SlideShow();
     show.setPageSize(new Dimension(getCalculator().getConfig().getDefaultPresentationScreenSize().x, getCalculator().getConfig().getDefaultPresentationScreenSize().y));
 
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(exportconfig.isWithChords());
-    config.setShowBackground(true);
-    config.setSkipEmptySlides(true);
-    config.setOptimizeLineFilling(false);
+//    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+//    config.setChordVisible(exportconfig.isWithChords());
+//    config.setShowBackground(true);
+//    config.setSkipEmptySlides(true);
+//    config.setOptimizeLineFilling(false);
     getCalculator().setConfig(config);
     LOG.info("Calculate size " + show.getPageSize().width + "x" + show.getPageSize().height + " from " +
         getCalculator().getConfig().getDefaultPresentationScreenSize().x + "x" + getCalculator().getConfig().getDefaultPresentationScreenSize().y );

@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import mda.AbstractSessionItem;
-import mda.ExportConfiguration;
-import mda.MidiplayerFactory;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,6 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
+import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.commons.ui.calculator.SlideType;
@@ -60,8 +59,8 @@ public class TestPdfExporter {
   public void checkExportWithChords () {
     PdfExporter exporter = new PdfExporter();
 
-    ExportConfiguration config = MidiplayerFactory.eINSTANCE.createExportConfiguration();
-    config.setWithChords(true);
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setChordVisible(true);
     appSession.getGlobalConfs().setDefaultBorder(new Integer (0));
 
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();
@@ -95,11 +94,11 @@ public class TestPdfExporter {
   public void checkExportWithoutChords () {
     PdfExporter exporter = new PdfExporter();
 
-    ExportConfiguration config = MidiplayerFactory.eINSTANCE.createExportConfiguration();
-    config.setWithChords(false);
-
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();
     sessionitems.add(appSession.getCurrentModel().getGallery().getGalleryItems().get(0));
+
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setChordVisible(false);
 
     exporter.export(sessionitems, tmpFile, config);
 

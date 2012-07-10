@@ -484,13 +484,22 @@ public interface MidiplayerPackage extends EPackage {
   int MIDI_PLAYER_ROOT__USERS = 3;
 
   /**
+   * The feature id for the '<em><b>Presentationschemes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MIDI_PLAYER_ROOT__PRESENTATIONSCHEMES = 4;
+
+  /**
    * The number of structural features of the '<em>Midi Player Root</em>' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int MIDI_PLAYER_ROOT_FEATURE_COUNT = 4;
+	int MIDI_PLAYER_ROOT_FEATURE_COUNT = 5;
 
 	/**
    * The meta object id for the '{@link mda.impl.MidiFileChordPartImpl <em>Midi File Chord Part</em>}' class.
@@ -622,22 +631,13 @@ public interface MidiplayerPackage extends EPackage {
   int USER__MAIL = 0;
 
     /**
-   * The feature id for the '<em><b>Export Configuration</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int USER__EXPORT_CONFIGURATION = 1;
-
-    /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int USER__NAME = 2;
+  int USER__NAME = 1;
 
     /**
    * The feature id for the '<em><b>Firstname</b></em>' attribute.
@@ -646,7 +646,7 @@ public interface MidiplayerPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int USER__FIRSTNAME = 3;
+  int USER__FIRSTNAME = 2;
 
     /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -655,7 +655,7 @@ public interface MidiplayerPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int USER__TYPE = 4;
+  int USER__TYPE = 3;
 
     /**
    * The feature id for the '<em><b>Send Songbook</b></em>' attribute.
@@ -664,7 +664,25 @@ public interface MidiplayerPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int USER__SEND_SONGBOOK = 5;
+  int USER__SEND_SONGBOOK = 4;
+
+    /**
+   * The feature id for the '<em><b>Presentationschemes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int USER__PRESENTATIONSCHEMES = 5;
+
+    /**
+   * The feature id for the '<em><b>Default Presentation Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int USER__DEFAULT_PRESENTATION_TYPE = 6;
 
     /**
    * The number of structural features of the '<em>User</em>' class.
@@ -673,37 +691,9 @@ public interface MidiplayerPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int USER_FEATURE_COUNT = 6;
+  int USER_FEATURE_COUNT = 7;
 
     /**
-   * The meta object id for the '{@link mda.impl.ExportConfigurationImpl <em>Export Configuration</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see mda.impl.ExportConfigurationImpl
-   * @see mda.impl.MidiplayerPackageImpl#getExportConfiguration()
-   * @generated
-   */
-  int EXPORT_CONFIGURATION = 12;
-
-    /**
-   * The feature id for the '<em><b>With Chords</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPORT_CONFIGURATION__WITH_CHORDS = 0;
-
-    /**
-   * The number of structural features of the '<em>Export Configuration</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPORT_CONFIGURATION_FEATURE_COUNT = 1;
-
-  /**
    * The meta object id for the '{@link mda.impl.CopyrightImpl <em>Copyright</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -711,7 +701,7 @@ public interface MidiplayerPackage extends EPackage {
    * @see mda.impl.MidiplayerPackageImpl#getCopyright()
    * @generated
    */
-  int COPYRIGHT = 13;
+  int COPYRIGHT = 12;
 
     /**
    * The feature id for the '<em><b>Originaltitle</b></em>' attribute.
@@ -784,6 +774,133 @@ public interface MidiplayerPackage extends EPackage {
    * @ordered
    */
   int COPYRIGHT_FEATURE_COUNT = 7;
+
+  /**
+   * The meta object id for the '{@link mda.impl.PresentationSchemeImpl <em>Presentation Scheme</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see mda.impl.PresentationSchemeImpl
+   * @see mda.impl.MidiplayerPackageImpl#getPresentationScheme()
+   * @generated
+   */
+  int PRESENTATION_SCHEME = 13;
+
+    /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__NAME = 0;
+
+    /**
+   * The feature id for the '<em><b>Show Background</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__SHOW_BACKGROUND = 1;
+
+    /**
+   * The feature id for the '<em><b>Show Block Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__SHOW_BLOCK_TYPE = 2;
+
+    /**
+   * The feature id for the '<em><b>Page Per Part</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__PAGE_PER_PART = 3;
+
+    /**
+   * The feature id for the '<em><b>New Page Respected</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__NEW_PAGE_RESPECTED = 4;
+
+    /**
+   * The feature id for the '<em><b>Show Title</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__SHOW_TITLE = 5;
+
+    /**
+   * The feature id for the '<em><b>Show Copyright</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__SHOW_COPYRIGHT = 6;
+
+    /**
+   * The feature id for the '<em><b>Skip Empty Slides</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__SKIP_EMPTY_SLIDES = 7;
+
+    /**
+   * The feature id for the '<em><b>Optimize Line Filling</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__OPTIMIZE_LINE_FILLING = 8;
+
+    /**
+   * The feature id for the '<em><b>Optimize Equal Parts</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__OPTIMIZE_EQUAL_PARTS = 9;
+
+    /**
+   * The feature id for the '<em><b>Optimize Empty Tokens</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__OPTIMIZE_EMPTY_TOKENS = 10;
+
+    /**
+   * The feature id for the '<em><b>Border</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__BORDER = 11;
+
+    /**
+   * The number of structural features of the '<em>Presentation Scheme</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME_FEATURE_COUNT = 12;
 
   /**
    * The meta object id for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
@@ -1173,6 +1290,17 @@ public interface MidiplayerPackage extends EPackage {
   EReference getMidiPlayerRoot_Users();
 
   /**
+   * Returns the meta object for the containment reference list '{@link mda.MidiPlayerRoot#getPresentationschemes <em>Presentationschemes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Presentationschemes</em>'.
+   * @see mda.MidiPlayerRoot#getPresentationschemes()
+   * @see #getMidiPlayerRoot()
+   * @generated
+   */
+  EReference getMidiPlayerRoot_Presentationschemes();
+
+  /**
    * Returns the meta object for class '{@link mda.MidiFileChordPart <em>Midi File Chord Part</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1302,17 +1430,6 @@ public interface MidiplayerPackage extends EPackage {
   EAttribute getUser_Mail();
 
     /**
-   * Returns the meta object for the containment reference '{@link mda.User#getExportConfiguration <em>Export Configuration</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Export Configuration</em>'.
-   * @see mda.User#getExportConfiguration()
-   * @see #getUser()
-   * @generated
-   */
-  EReference getUser_ExportConfiguration();
-
-    /**
    * Returns the meta object for the attribute '{@link mda.User#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1357,25 +1474,26 @@ public interface MidiplayerPackage extends EPackage {
   EAttribute getUser_SendSongbook();
 
     /**
-   * Returns the meta object for class '{@link mda.ExportConfiguration <em>Export Configuration</em>}'.
+   * Returns the meta object for the containment reference list '{@link mda.User#getPresentationschemes <em>Presentationschemes</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Export Configuration</em>'.
-   * @see mda.ExportConfiguration
+   * @return the meta object for the containment reference list '<em>Presentationschemes</em>'.
+   * @see mda.User#getPresentationschemes()
+   * @see #getUser()
    * @generated
    */
-  EClass getExportConfiguration();
+  EReference getUser_Presentationschemes();
 
     /**
-   * Returns the meta object for the attribute '{@link mda.ExportConfiguration#isWithChords <em>With Chords</em>}'.
+   * Returns the meta object for the attribute '{@link mda.User#getDefaultPresentationType <em>Default Presentation Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>With Chords</em>'.
-   * @see mda.ExportConfiguration#isWithChords()
-   * @see #getExportConfiguration()
+   * @return the meta object for the attribute '<em>Default Presentation Type</em>'.
+   * @see mda.User#getDefaultPresentationType()
+   * @see #getUser()
    * @generated
    */
-  EAttribute getExportConfiguration_WithChords();
+  EAttribute getUser_DefaultPresentationType();
 
     /**
    * Returns the meta object for class '{@link mda.Copyright <em>Copyright</em>}'.
@@ -1463,6 +1581,148 @@ public interface MidiplayerPackage extends EPackage {
    * @generated
    */
   EAttribute getCopyright_PublisherInland();
+
+    /**
+   * Returns the meta object for class '{@link mda.PresentationScheme <em>Presentation Scheme</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Presentation Scheme</em>'.
+   * @see mda.PresentationScheme
+   * @generated
+   */
+  EClass getPresentationScheme();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see mda.PresentationScheme#getName()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_Name();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getShowBackground <em>Show Background</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Show Background</em>'.
+   * @see mda.PresentationScheme#getShowBackground()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_ShowBackground();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getShowBlockType <em>Show Block Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Show Block Type</em>'.
+   * @see mda.PresentationScheme#getShowBlockType()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_ShowBlockType();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getPagePerPart <em>Page Per Part</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Page Per Part</em>'.
+   * @see mda.PresentationScheme#getPagePerPart()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_PagePerPart();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getNewPageRespected <em>New Page Respected</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>New Page Respected</em>'.
+   * @see mda.PresentationScheme#getNewPageRespected()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_NewPageRespected();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getShowTitle <em>Show Title</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Show Title</em>'.
+   * @see mda.PresentationScheme#getShowTitle()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_ShowTitle();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getShowCopyright <em>Show Copyright</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Show Copyright</em>'.
+   * @see mda.PresentationScheme#getShowCopyright()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_ShowCopyright();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getSkipEmptySlides <em>Skip Empty Slides</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Skip Empty Slides</em>'.
+   * @see mda.PresentationScheme#getSkipEmptySlides()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_SkipEmptySlides();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getOptimizeLineFilling <em>Optimize Line Filling</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Optimize Line Filling</em>'.
+   * @see mda.PresentationScheme#getOptimizeLineFilling()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_OptimizeLineFilling();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getOptimizeEqualParts <em>Optimize Equal Parts</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Optimize Equal Parts</em>'.
+   * @see mda.PresentationScheme#getOptimizeEqualParts()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_OptimizeEqualParts();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getOptimizeEmptyTokens <em>Optimize Empty Tokens</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Optimize Empty Tokens</em>'.
+   * @see mda.PresentationScheme#getOptimizeEmptyTokens()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_OptimizeEmptyTokens();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getBorder <em>Border</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Border</em>'.
+   * @see mda.PresentationScheme#getBorder()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_Border();
 
     /**
    * Returns the meta object for enum '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}'.
@@ -1799,6 +2059,14 @@ public interface MidiplayerPackage extends EPackage {
     EReference MIDI_PLAYER_ROOT__USERS = eINSTANCE.getMidiPlayerRoot_Users();
 
     /**
+     * The meta object literal for the '<em><b>Presentationschemes</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MIDI_PLAYER_ROOT__PRESENTATIONSCHEMES = eINSTANCE.getMidiPlayerRoot_Presentationschemes();
+
+    /**
      * The meta object literal for the '{@link mda.impl.MidiFileChordPartImpl <em>Midi File Chord Part</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1901,14 +2169,6 @@ public interface MidiplayerPackage extends EPackage {
     EAttribute USER__MAIL = eINSTANCE.getUser_Mail();
 
         /**
-     * The meta object literal for the '<em><b>Export Configuration</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference USER__EXPORT_CONFIGURATION = eINSTANCE.getUser_ExportConfiguration();
-
-        /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1941,22 +2201,20 @@ public interface MidiplayerPackage extends EPackage {
     EAttribute USER__SEND_SONGBOOK = eINSTANCE.getUser_SendSongbook();
 
         /**
-     * The meta object literal for the '{@link mda.impl.ExportConfigurationImpl <em>Export Configuration</em>}' class.
+     * The meta object literal for the '<em><b>Presentationschemes</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see mda.impl.ExportConfigurationImpl
-     * @see mda.impl.MidiplayerPackageImpl#getExportConfiguration()
      * @generated
      */
-    EClass EXPORT_CONFIGURATION = eINSTANCE.getExportConfiguration();
+    EReference USER__PRESENTATIONSCHEMES = eINSTANCE.getUser_Presentationschemes();
 
         /**
-     * The meta object literal for the '<em><b>With Chords</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Default Presentation Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute EXPORT_CONFIGURATION__WITH_CHORDS = eINSTANCE.getExportConfiguration_WithChords();
+    EAttribute USER__DEFAULT_PRESENTATION_TYPE = eINSTANCE.getUser_DefaultPresentationType();
 
         /**
      * The meta object literal for the '{@link mda.impl.CopyrightImpl <em>Copyright</em>}' class.
@@ -2023,6 +2281,112 @@ public interface MidiplayerPackage extends EPackage {
      * @generated
      */
     EAttribute COPYRIGHT__PUBLISHER_INLAND = eINSTANCE.getCopyright_PublisherInland();
+
+        /**
+     * The meta object literal for the '{@link mda.impl.PresentationSchemeImpl <em>Presentation Scheme</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see mda.impl.PresentationSchemeImpl
+     * @see mda.impl.MidiplayerPackageImpl#getPresentationScheme()
+     * @generated
+     */
+    EClass PRESENTATION_SCHEME = eINSTANCE.getPresentationScheme();
+
+        /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__NAME = eINSTANCE.getPresentationScheme_Name();
+
+        /**
+     * The meta object literal for the '<em><b>Show Background</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__SHOW_BACKGROUND = eINSTANCE.getPresentationScheme_ShowBackground();
+
+        /**
+     * The meta object literal for the '<em><b>Show Block Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__SHOW_BLOCK_TYPE = eINSTANCE.getPresentationScheme_ShowBlockType();
+
+        /**
+     * The meta object literal for the '<em><b>Page Per Part</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__PAGE_PER_PART = eINSTANCE.getPresentationScheme_PagePerPart();
+
+        /**
+     * The meta object literal for the '<em><b>New Page Respected</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__NEW_PAGE_RESPECTED = eINSTANCE.getPresentationScheme_NewPageRespected();
+
+        /**
+     * The meta object literal for the '<em><b>Show Title</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__SHOW_TITLE = eINSTANCE.getPresentationScheme_ShowTitle();
+
+        /**
+     * The meta object literal for the '<em><b>Show Copyright</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__SHOW_COPYRIGHT = eINSTANCE.getPresentationScheme_ShowCopyright();
+
+        /**
+     * The meta object literal for the '<em><b>Skip Empty Slides</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__SKIP_EMPTY_SLIDES = eINSTANCE.getPresentationScheme_SkipEmptySlides();
+
+        /**
+     * The meta object literal for the '<em><b>Optimize Line Filling</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__OPTIMIZE_LINE_FILLING = eINSTANCE.getPresentationScheme_OptimizeLineFilling();
+
+        /**
+     * The meta object literal for the '<em><b>Optimize Equal Parts</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__OPTIMIZE_EQUAL_PARTS = eINSTANCE.getPresentationScheme_OptimizeEqualParts();
+
+        /**
+     * The meta object literal for the '<em><b>Optimize Empty Tokens</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__OPTIMIZE_EMPTY_TOKENS = eINSTANCE.getPresentationScheme_OptimizeEmptyTokens();
+
+        /**
+     * The meta object literal for the '<em><b>Border</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__BORDER = eINSTANCE.getPresentationScheme_Border();
 
         /**
      * The meta object literal for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.

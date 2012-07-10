@@ -6,6 +6,7 @@
  */
 package mda;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -17,11 +18,12 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link mda.User#getMail <em>Mail</em>}</li>
- *   <li>{@link mda.User#getExportConfiguration <em>Export Configuration</em>}</li>
  *   <li>{@link mda.User#getName <em>Name</em>}</li>
  *   <li>{@link mda.User#getFirstname <em>Firstname</em>}</li>
  *   <li>{@link mda.User#getType <em>Type</em>}</li>
  *   <li>{@link mda.User#isSendSongbook <em>Send Songbook</em>}</li>
+ *   <li>{@link mda.User#getPresentationschemes <em>Presentationschemes</em>}</li>
+ *   <li>{@link mda.User#getDefaultPresentationType <em>Default Presentation Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,32 +57,6 @@ public interface User extends EObject {
    * @generated
    */
   void setMail(String value);
-
-  /**
-   * Returns the value of the '<em><b>Export Configuration</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Export Configuration</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Export Configuration</em>' containment reference.
-   * @see #setExportConfiguration(ExportConfiguration)
-   * @see mda.MidiplayerPackage#getUser_ExportConfiguration()
-   * @model containment="true"
-   * @generated
-   */
-  ExportConfiguration getExportConfiguration();
-
-  /**
-   * Sets the value of the '{@link mda.User#getExportConfiguration <em>Export Configuration</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Export Configuration</em>' containment reference.
-   * @see #getExportConfiguration()
-   * @generated
-   */
-  void setExportConfiguration(ExportConfiguration value);
 
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -188,5 +164,47 @@ public interface User extends EObject {
    * @generated
    */
   void setSendSongbook(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Presentationschemes</b></em>' containment reference list.
+   * The list contents are of type {@link mda.PresentationScheme}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Presentationschemes</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Presentationschemes</em>' containment reference list.
+   * @see mda.MidiplayerPackage#getUser_Presentationschemes()
+   * @model containment="true"
+   * @generated
+   */
+  EList<PresentationScheme> getPresentationschemes();
+
+  /**
+   * Returns the value of the '<em><b>Default Presentation Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Default Presentation Type</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Default Presentation Type</em>' attribute.
+   * @see #setDefaultPresentationType(String)
+   * @see mda.MidiplayerPackage#getUser_DefaultPresentationType()
+   * @model
+   * @generated
+   */
+  String getDefaultPresentationType();
+
+  /**
+   * Sets the value of the '{@link mda.User#getDefaultPresentationType <em>Default Presentation Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Default Presentation Type</em>' attribute.
+   * @see #getDefaultPresentationType()
+   * @generated
+   */
+  void setDefaultPresentationType(String value);
 
 } // User
