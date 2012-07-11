@@ -35,12 +35,17 @@ public class ContentOverviewTest {
   }
 
   @Test
+  public void testToPart () {
+    throw new IllegalStateException("TODO");
+  }
+
+  @Test
   public void testContentOverview () throws Exception {
     instance.load(null);
     presentationContext.setCurrentSession(instance.getCurrentModel().getSessions().get(0), new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
     ContentOverview overview = new ContentOverview();
     overview.createPartControl(new Shell());
-    overview.toItem(presentationContext.getCurrentSession().getItems().get(0));
+    overview.refresh();
     Assert.assertTrue (overview.getPreviewParts().get(0).isSelected());
 
   }
@@ -62,8 +67,6 @@ public class ContentOverviewTest {
 
     ContentOverview overview = new ContentOverview();
     overview.createPartControl(new Shell());
-    overview.toItem(song);
-
     overview.refresh();
 
     Assert.assertTrue (overview.getPreviewParts().get(0).isSelected());
@@ -103,10 +106,10 @@ public class ContentOverviewTest {
     session.getItems().add(song2);
 
     presentationContext.setCurrentSession(session, new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
+    presentationContext.setCurrentSessionItemIndex(1);
 
     ContentOverview overview = new ContentOverview();
     overview.createPartControl(new Shell());
-    overview.toItem(song2);
     presentationContext.nextSong();
     overview.refresh();
 

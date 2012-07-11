@@ -71,7 +71,9 @@ public class ApplicationSession {
 
     File path = null;
     if (path == null)
-      path = new File ("");
+      path = new File (System.getProperty("user.dir"));
+
+    LOGGER.info("Setting current path to " + path);
 
     if (sessionProps.isEmpty()) {
 
