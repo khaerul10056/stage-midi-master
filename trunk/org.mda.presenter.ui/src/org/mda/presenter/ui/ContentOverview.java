@@ -48,10 +48,6 @@ public class ContentOverview extends ViewPart implements IPresentationView{
     return previewParts;
   }
 
-
-
-
-
   @Override
   public void setFocus () {
     // TODO Auto-generated method stub
@@ -70,61 +66,56 @@ public class ContentOverview extends ViewPart implements IPresentationView{
 
     if (currentItem == null || ! currentItem.equals(presentationContext.getCurrentSessionItem())) {
       currentItem = presentationContext.getCurrentSessionItem();
-      toItem(currentItem);
+      for (ContentOverviewPanel oldPanel : previewParts)
+        oldPanel.dispose();
+      previewParts.clear();
+
+      if (currentItem instanceof MidiFile) {
+        MidiFile file = (MidiFile) currentItem;
+
+        Point size = new Point (320, 240);
+        MidiFileSlideCalculator calculator = (MidiFileSlideCalculator) getCalculator(MidiFileSlideCalculator.class);
+        CalculatorPreCondition calcPreCondition = new CalculatorPreCondition();
+        DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+        calculator.setConfig(config);
+        calcPreCondition.setCalculationsize(size);
+        List<Slide> slides = calculator.calculate(currentItem, calcPreCondition);
+        for (Slide slide: slides) {
+          final ContentOverviewPanel overviewPanel = new ContentOverviewPanel(root, (MidiFilePart) slide.getModelRef(), slide, config);
+          overviewPanel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+          overviewPanel.setSize(size);
+          overviewPanel.redraw();
+          overviewPanel.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseDown (MouseEvent e) {
+              ContentOverviewPanel currentPanel = (ContentOverviewPanel) e.widget;
+              presentationContext.toPart(currentPanel.getCurrentPart());
+              System.out.println ("MouseDown from " + e.widget + "(" + e.widget.getClass() + ")");
+
+            }
+
+
+          });
+
+          previewParts.add(overviewPanel);
+        }
+      }
+
+      root.layout(true, true);
+      refresh();
+
+
     }
 
-    LOGGER.info("refreshSelection called");
+    LOGGER.info("refreshSelection called for " + presentationContext.getCurrentSlide().getTextline(0));
     for (ContentOverviewPanel oldPanel : previewParts) {
       oldPanel.setSelected(oldPanel.getCurrentSlide().isSameSlide(presentationContext.getCurrentSlide()));
+      LOGGER.info("- set Selected " + oldPanel.isSelected() + "-" + oldPanel.getCurrentSlide().getTextline(0));
     }
+    LOGGER.info("after refreshSelection");
 
   }
 
-
-
-  @Override
-  public boolean toItem (AbstractSessionItem item) {
-
-    for (ContentOverviewPanel oldPanel : previewParts)
-      oldPanel.dispose();
-    previewParts.clear();
-
-    if (item instanceof MidiFile) {
-      MidiFile file = (MidiFile) item;
-
-      Point size = new Point (320, 240);
-      MidiFileSlideCalculator calculator = (MidiFileSlideCalculator) getCalculator(MidiFileSlideCalculator.class);
-      CalculatorPreCondition calcPreCondition = new CalculatorPreCondition();
-      DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-      calculator.setConfig(config);
-      calcPreCondition.setCalculationsize(size);
-      List<Slide> slides = calculator.calculate(item, calcPreCondition);
-      for (Slide slide: slides) {
-        final ContentOverviewPanel overviewPanel = new ContentOverviewPanel(root, (MidiFilePart) slide.getModelRef(), slide, config);
-        overviewPanel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
-        overviewPanel.setSize(size);
-        overviewPanel.redraw();
-        overviewPanel.addMouseListener(new MouseAdapter() {
-
-          @Override
-          public void mouseDown (MouseEvent e) {
-            ContentOverviewPanel currentPanel = (ContentOverviewPanel) e.widget;
-            presentationContext.toPart(currentPanel.getCurrentPart());
-            System.out.println ("MouseDown from " + e.widget + "(" + e.widget.getClass() + ")");
-
-          }
-
-
-        });
-
-        previewParts.add(overviewPanel);
-      }
-    }
-
-    root.layout(true, true);
-    refresh();
-
-    return false;
-  }
 
 }

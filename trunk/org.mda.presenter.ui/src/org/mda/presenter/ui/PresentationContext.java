@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import mda.AbstractSessionItem;
-import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.Session;
 import org.eclipse.swt.graphics.Point;
@@ -156,6 +155,10 @@ public class PresentationContext {
     return registeredViews;
   }
 
+  public void setCurrentSessionItemIndex (final int newSessionItemIndex) {
+    this.currentSessionItemIndex = newSessionItemIndex;
+  }
+
   public int getCurrentSessionItemIndex () {
     return currentSessionItemIndex;
   }
@@ -238,21 +241,31 @@ public class PresentationContext {
 
   public boolean toPart (final MidiFilePart part) {
     AbstractSessionItem[] array = slidesPerItem.keySet().toArray(new AbstractSessionItem [slidesPerItem.size()]);
+
+    boolean itemFound = false;
+
     for (int i = 0; i < array.length; i++) {
       AbstractSessionItem nextItem = array [i];
-      if (nextItem instanceof MidiFile) {
-        MidiFile file = (MidiFile) nextItem;
-        for (MidiFilePart nextPart : file.getParts()) {
-          if (nextPart == part) {
-            currentSessionItemIndex = i;
-            currentSlideIndex = file.getParts().indexOf(nextPart);
-            return true;
-          }
+
+      List<Slide> list = slidesPerItem.get(nextItem);
+      for (Slide nextSlide: list) {
+        if (nextSlide.getModelRef() == part) {
+          currentSessionItemIndex = i;
+          currentSlideIndex = list.indexOf(nextSlide);
+          itemFound = true;
         }
       }
     }
 
-    return false;
+    if (itemFound) {
+      for (IPresentationView nextView : getRegisteredViews()) {
+        LOGGER.info("Dispatch toItem to " + nextView.getClass().getName() + "-" + System.identityHashCode(nextView));
+        nextView.refresh();
+      }
+    }
+    return itemFound;
+
+
   }
 
   public boolean toItem (AbstractSessionItem item, boolean toEnd) {
@@ -269,13 +282,10 @@ public class PresentationContext {
       }
     }
 
-    LOGGER.info("To item (not found)");
-
     if (itemFound) {
       for (IPresentationView nextView : getRegisteredViews()) {
         LOGGER.info("Dispatch toItem to " + nextView.getClass().getName() + "-" + System.identityHashCode(nextView));
-        if (!nextView.toItem(item))
-          itemFound = false;
+        nextView.refresh();
       }
     }
     return itemFound;
