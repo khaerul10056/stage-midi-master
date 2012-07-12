@@ -9,6 +9,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
 import org.mda.MdaModule;
+import org.mda.Utils;
 import org.mda.commons.ui.calculator.FontDescriptor;
 import org.mda.commons.ui.calculator.SWTGraphicsContext;
 
@@ -138,16 +139,16 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
     return editable;
   }
 
-  public void setBackgroundColor (Color black) {
-    this.backgroundColor = black;
+  public void setBackgroundColor (String backgroundColor) {
+    this.backgroundColor = Utils.stringToColor(backgroundColor, null);
   }
 
   public Color getDefaultBackgroundColor () {
     return backgroundColor;
   }
 
-  public void setForegroundColor (Color white) {
-    this.foregroundColor = white;
+  public void setForegroundColor (String foregroundColor) {
+    this.foregroundColor = Utils.stringToColor(foregroundColor, null);
   }
 
   public Color getDefaultForegroundColor () {

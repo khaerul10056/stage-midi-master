@@ -42,4 +42,37 @@ public class FontDescriptor {
     this.bold = bold;
   }
 
+  @Override
+  public int hashCode () {
+    final int prime = 31;
+    int result = 1;
+    result = prime *
+      result + (bold ? 1231 : 1237);
+    result = prime *
+      result + ((fontsize == null) ? 0 : fontsize.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals (Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    FontDescriptor other = (FontDescriptor) obj;
+    if (bold != other.bold)
+      return false;
+    if (fontsize == null) {
+      if (other.fontsize != null)
+        return false;
+    }
+    else if (!fontsize.equals(other.fontsize))
+      return false;
+    return true;
+  }
+
+
+
 }

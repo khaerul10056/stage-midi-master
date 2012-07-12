@@ -112,7 +112,4 @@ public interface IMidiFileEditorUIConfig extends IMidiFileEditorConfig{
   void setDefaultPresentationScreenSize (Point calcSize);
 
 
-
-
-
 }

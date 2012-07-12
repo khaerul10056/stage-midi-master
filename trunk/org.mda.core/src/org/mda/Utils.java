@@ -67,12 +67,19 @@ public class Utils {
     return builder.toString();
   }
   public static Color stringToColor (final String colorAsString, final Color defaultColor) {
-    if (colorAsString == null)
+    if (colorAsString == null) {
+      if (defaultColor == null)
+        throw new IllegalStateException("Color " + colorAsString + " is null and defaultcolor is null");
+
       return defaultColor;
+    }
 
     String [] colors = colorAsString.split("x");
-    if (colors.length != 3)
+    if (colors.length != 3) {
+      if (defaultColor == null)
+        throw new IllegalStateException("Color " + colorAsString + " is not usable (no gradients) and defaultcolor is null");
       return defaultColor;
+    }
 
     int green = Integer.parseInt(colors [0]);
     int red = Integer.parseInt(colors [1]);

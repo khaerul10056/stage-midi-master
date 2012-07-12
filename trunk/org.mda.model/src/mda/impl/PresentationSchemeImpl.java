@@ -35,6 +35,9 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link mda.impl.PresentationSchemeImpl#getOptimizeEqualParts <em>Optimize Equal Parts</em>}</li>
  *   <li>{@link mda.impl.PresentationSchemeImpl#getOptimizeEmptyTokens <em>Optimize Empty Tokens</em>}</li>
  *   <li>{@link mda.impl.PresentationSchemeImpl#getBorder <em>Border</em>}</li>
+ *   <li>{@link mda.impl.PresentationSchemeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link mda.impl.PresentationSchemeImpl#getBackgroundColor <em>Background Color</em>}</li>
+ *   <li>{@link mda.impl.PresentationSchemeImpl#getForegroundColor <em>Foreground Color</em>}</li>
  * </ul>
  * </p>
  *
@@ -280,6 +283,66 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * @ordered
    */
   protected Integer border = BORDER_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected static final String TYPE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected String type = TYPE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getBackgroundColor() <em>Background Color</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBackgroundColor()
+   * @generated
+   * @ordered
+   */
+  protected static final String BACKGROUND_COLOR_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getBackgroundColor() <em>Background Color</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBackgroundColor()
+   * @generated
+   * @ordered
+   */
+  protected String backgroundColor = BACKGROUND_COLOR_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getForegroundColor() <em>Foreground Color</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getForegroundColor()
+   * @generated
+   * @ordered
+   */
+  protected static final String FOREGROUND_COLOR_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getForegroundColor() <em>Foreground Color</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getForegroundColor()
+   * @generated
+   * @ordered
+   */
+  protected String foregroundColor = FOREGROUND_COLOR_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -557,6 +620,69 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getType() {
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(String newType) {
+    String oldType = type;
+    type = newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.PRESENTATION_SCHEME__TYPE, oldType, type));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getBackgroundColor() {
+    return backgroundColor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setBackgroundColor(String newBackgroundColor) {
+    String oldBackgroundColor = backgroundColor;
+    backgroundColor = newBackgroundColor;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.PRESENTATION_SCHEME__BACKGROUND_COLOR, oldBackgroundColor, backgroundColor));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getForegroundColor() {
+    return foregroundColor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setForegroundColor(String newForegroundColor) {
+    String oldForegroundColor = foregroundColor;
+    foregroundColor = newForegroundColor;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.PRESENTATION_SCHEME__FOREGROUND_COLOR, oldForegroundColor, foregroundColor));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
@@ -584,6 +710,12 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
         return getOptimizeEmptyTokens();
       case MidiplayerPackage.PRESENTATION_SCHEME__BORDER:
         return getBorder();
+      case MidiplayerPackage.PRESENTATION_SCHEME__TYPE:
+        return getType();
+      case MidiplayerPackage.PRESENTATION_SCHEME__BACKGROUND_COLOR:
+        return getBackgroundColor();
+      case MidiplayerPackage.PRESENTATION_SCHEME__FOREGROUND_COLOR:
+        return getForegroundColor();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -631,6 +763,15 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
         return;
       case MidiplayerPackage.PRESENTATION_SCHEME__BORDER:
         setBorder((Integer)newValue);
+        return;
+      case MidiplayerPackage.PRESENTATION_SCHEME__TYPE:
+        setType((String)newValue);
+        return;
+      case MidiplayerPackage.PRESENTATION_SCHEME__BACKGROUND_COLOR:
+        setBackgroundColor((String)newValue);
+        return;
+      case MidiplayerPackage.PRESENTATION_SCHEME__FOREGROUND_COLOR:
+        setForegroundColor((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -680,6 +821,15 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
       case MidiplayerPackage.PRESENTATION_SCHEME__BORDER:
         setBorder(BORDER_EDEFAULT);
         return;
+      case MidiplayerPackage.PRESENTATION_SCHEME__TYPE:
+        setType(TYPE_EDEFAULT);
+        return;
+      case MidiplayerPackage.PRESENTATION_SCHEME__BACKGROUND_COLOR:
+        setBackgroundColor(BACKGROUND_COLOR_EDEFAULT);
+        return;
+      case MidiplayerPackage.PRESENTATION_SCHEME__FOREGROUND_COLOR:
+        setForegroundColor(FOREGROUND_COLOR_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -716,6 +866,12 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
         return OPTIMIZE_EMPTY_TOKENS_EDEFAULT == null ? optimizeEmptyTokens != null : !OPTIMIZE_EMPTY_TOKENS_EDEFAULT.equals(optimizeEmptyTokens);
       case MidiplayerPackage.PRESENTATION_SCHEME__BORDER:
         return BORDER_EDEFAULT == null ? border != null : !BORDER_EDEFAULT.equals(border);
+      case MidiplayerPackage.PRESENTATION_SCHEME__TYPE:
+        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+      case MidiplayerPackage.PRESENTATION_SCHEME__BACKGROUND_COLOR:
+        return BACKGROUND_COLOR_EDEFAULT == null ? backgroundColor != null : !BACKGROUND_COLOR_EDEFAULT.equals(backgroundColor);
+      case MidiplayerPackage.PRESENTATION_SCHEME__FOREGROUND_COLOR:
+        return FOREGROUND_COLOR_EDEFAULT == null ? foregroundColor != null : !FOREGROUND_COLOR_EDEFAULT.equals(foregroundColor);
     }
     return super.eIsSet(featureID);
   }
@@ -754,6 +910,12 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
     result.append(optimizeEmptyTokens);
     result.append(", border: ");
     result.append(border);
+    result.append(", type: ");
+    result.append(type);
+    result.append(", backgroundColor: ");
+    result.append(backgroundColor);
+    result.append(", foregroundColor: ");
+    result.append(foregroundColor);
     result.append(')');
     return result.toString();
   }

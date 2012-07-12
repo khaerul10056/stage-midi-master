@@ -894,13 +894,40 @@ public interface MidiplayerPackage extends EPackage {
   int PRESENTATION_SCHEME__BORDER = 11;
 
     /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__TYPE = 12;
+
+    /**
+   * The feature id for the '<em><b>Background Color</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__BACKGROUND_COLOR = 13;
+
+    /**
+   * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRESENTATION_SCHEME__FOREGROUND_COLOR = 14;
+
+    /**
    * The number of structural features of the '<em>Presentation Scheme</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRESENTATION_SCHEME_FEATURE_COUNT = 12;
+  int PRESENTATION_SCHEME_FEATURE_COUNT = 15;
 
   /**
    * The meta object id for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
@@ -1725,6 +1752,39 @@ public interface MidiplayerPackage extends EPackage {
   EAttribute getPresentationScheme_Border();
 
     /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see mda.PresentationScheme#getType()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_Type();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getBackgroundColor <em>Background Color</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Background Color</em>'.
+   * @see mda.PresentationScheme#getBackgroundColor()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_BackgroundColor();
+
+    /**
+   * Returns the meta object for the attribute '{@link mda.PresentationScheme#getForegroundColor <em>Foreground Color</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Foreground Color</em>'.
+   * @see mda.PresentationScheme#getForegroundColor()
+   * @see #getPresentationScheme()
+   * @generated
+   */
+  EAttribute getPresentationScheme_ForegroundColor();
+
+    /**
    * Returns the meta object for enum '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2387,6 +2447,30 @@ public interface MidiplayerPackage extends EPackage {
      * @generated
      */
     EAttribute PRESENTATION_SCHEME__BORDER = eINSTANCE.getPresentationScheme_Border();
+
+        /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__TYPE = eINSTANCE.getPresentationScheme_Type();
+
+        /**
+     * The meta object literal for the '<em><b>Background Color</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__BACKGROUND_COLOR = eINSTANCE.getPresentationScheme_BackgroundColor();
+
+        /**
+     * The meta object literal for the '<em><b>Foreground Color</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRESENTATION_SCHEME__FOREGROUND_COLOR = eINSTANCE.getPresentationScheme_ForegroundColor();
 
         /**
      * The meta object literal for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
