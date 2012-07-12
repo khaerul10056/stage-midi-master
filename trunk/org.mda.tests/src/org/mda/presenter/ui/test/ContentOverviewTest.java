@@ -35,11 +35,6 @@ public class ContentOverviewTest {
   }
 
   @Test
-  public void testToPart () {
-    throw new IllegalStateException("TODO");
-  }
-
-  @Test
   public void testContentOverview () throws Exception {
     instance.load(null);
     presentationContext.setCurrentSession(instance.getCurrentModel().getSessions().get(0), new DefaultMidiFileContentEditorConfig(), new Point (400, 200));

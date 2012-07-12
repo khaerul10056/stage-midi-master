@@ -52,9 +52,13 @@ public class PresentationContext {
    * clears all registered objects, used for tests
    */
   public void clear () {
+    currentSessionItemIndex = 0;
+    currentSlideIndex = 0;
+    currentSession = null;
     registeredControllers.clear();
     registeredViews.clear();
-    slidesPerItem.clear();
+    if (slidesPerItem != null)
+      slidesPerItem.clear();
   }
 
   public void setCurrentSession (Session currentSession, final IMidiFileEditorUIConfig config, Point size) {

@@ -20,6 +20,7 @@ import org.mda.export.TestPptExporter;
 import org.mda.google.TestGoogleContacts;
 import org.mda.navigator.ui.ContentNavigatorTest;
 import org.mda.navigator.ui.PresentationNavigatorTest;
+import org.mda.presenter.ui.PresentationContextTest;
 import org.mda.presenter.ui.test.BeamerPresenterTest;
 import org.mda.presenter.ui.test.ContentOverviewTest;
 import org.mda.presenter.ui.test.MidiFileSlideCalculatorTest;
@@ -52,6 +53,7 @@ import org.mda.transpose.TransposeTest;
   PresentationNavigatorTest.class,
   ContentOverviewTest.class,
   MidiFileEditorInputTest.class,
+  PresentationContextTest.class,
 
 
 
