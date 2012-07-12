@@ -28,6 +28,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mda.PresentationScheme#getOptimizeEqualParts <em>Optimize Equal Parts</em>}</li>
  *   <li>{@link mda.PresentationScheme#getOptimizeEmptyTokens <em>Optimize Empty Tokens</em>}</li>
  *   <li>{@link mda.PresentationScheme#getBorder <em>Border</em>}</li>
+ *   <li>{@link mda.PresentationScheme#getType <em>Type</em>}</li>
+ *   <li>{@link mda.PresentationScheme#getBackgroundColor <em>Background Color</em>}</li>
+ *   <li>{@link mda.PresentationScheme#getForegroundColor <em>Foreground Color</em>}</li>
  * </ul>
  * </p>
  *
@@ -347,5 +350,83 @@ public interface PresentationScheme extends EObject {
    * @generated
    */
   void setBorder(Integer value);
+
+  /**
+   * Returns the value of the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Type</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Type</em>' attribute.
+   * @see #setType(String)
+   * @see mda.MidiplayerPackage#getPresentationScheme_Type()
+   * @model
+   * @generated
+   */
+  String getType();
+
+  /**
+   * Sets the value of the '{@link mda.PresentationScheme#getType <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Type</em>' attribute.
+   * @see #getType()
+   * @generated
+   */
+  void setType(String value);
+
+  /**
+   * Returns the value of the '<em><b>Background Color</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Background Color</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Background Color</em>' attribute.
+   * @see #setBackgroundColor(String)
+   * @see mda.MidiplayerPackage#getPresentationScheme_BackgroundColor()
+   * @model
+   * @generated
+   */
+  String getBackgroundColor();
+
+  /**
+   * Sets the value of the '{@link mda.PresentationScheme#getBackgroundColor <em>Background Color</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Background Color</em>' attribute.
+   * @see #getBackgroundColor()
+   * @generated
+   */
+  void setBackgroundColor(String value);
+
+  /**
+   * Returns the value of the '<em><b>Foreground Color</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Foreground Color</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Foreground Color</em>' attribute.
+   * @see #setForegroundColor(String)
+   * @see mda.MidiplayerPackage#getPresentationScheme_ForegroundColor()
+   * @model
+   * @generated
+   */
+  String getForegroundColor();
+
+  /**
+   * Sets the value of the '{@link mda.PresentationScheme#getForegroundColor <em>Foreground Color</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Foreground Color</em>' attribute.
+   * @see #getForegroundColor()
+   * @generated
+   */
+  void setForegroundColor(String value);
 
 } // PresentationScheme

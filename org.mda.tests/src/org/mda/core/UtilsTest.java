@@ -27,9 +27,17 @@ public class UtilsTest {
   public void stringToColor () {
     Color defaultColor = new Color (Display.getCurrent(), 0, 0, 0);
     Assert.assertEquals (new Color (Display.getCurrent(), 100, 50, 75), Utils.stringToColor("50x100x75", null));
-    Assert.assertNull (Utils.stringToColor(null, null));
-    Assert.assertNull (Utils.stringToColor("ruetzl", null));
     Assert.assertEquals (defaultColor, Utils.stringToColor("ruetzl", defaultColor));
+  }
+
+  @Test(expected=IllegalStateException.class)
+  public void stringToColorBothNull () {
+    Utils.stringToColor(null, null);
+  }
+
+  @Test(expected=IllegalStateException.class)
+  public void stringToColorInvalidAndDefaultNull () {
+    Assert.assertNull (Utils.stringToColor("ruetzl", null));
   }
 
   @Test

@@ -878,6 +878,33 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
     /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_Type() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(12);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_BackgroundColor() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(13);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPresentationScheme_ForegroundColor() {
+    return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(14);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -1017,6 +1044,9 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__OPTIMIZE_EQUAL_PARTS);
     createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__OPTIMIZE_EMPTY_TOKENS);
     createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__BORDER);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__TYPE);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__BACKGROUND_COLOR);
+    createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__FOREGROUND_COLOR);
 
     // Create enums
     midiFilePartTypeEEnum = createEEnum(MIDI_FILE_PART_TYPE);
@@ -1142,6 +1172,9 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
     initEAttribute(getPresentationScheme_OptimizeEqualParts(), ecorePackage.getEBooleanObject(), "optimizeEqualParts", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPresentationScheme_OptimizeEmptyTokens(), ecorePackage.getEBooleanObject(), "optimizeEmptyTokens", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPresentationScheme_Border(), ecorePackage.getEIntegerObject(), "border", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPresentationScheme_Type(), ecorePackage.getEString(), "type", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPresentationScheme_BackgroundColor(), ecorePackage.getEString(), "backgroundColor", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPresentationScheme_ForegroundColor(), ecorePackage.getEString(), "foregroundColor", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(midiFilePartTypeEEnum, MidiFilePartType.class, "MidiFilePartType");
