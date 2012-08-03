@@ -11,7 +11,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.mda.editor.preview.ui.PreviewEditorContent;
+import org.mda.editor.preview.ui.PreviewEditorComposite;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
@@ -22,7 +22,7 @@ public class SlideItemPanel extends Composite  {
 
   private MidiFilePart part;
 
-  private PreviewEditorContent content;
+  private PreviewEditorComposite editorComposite;
 
   private Button btnName;
 
@@ -83,12 +83,12 @@ public class SlideItemPanel extends Composite  {
     return part;
   }
 
-  public void setContent (PreviewEditorContent content) {
-    this.content = content;
+  public void setContent (PreviewEditorComposite content) {
+    this.editorComposite = content;
   }
 
-  public PreviewEditorContent getContent () {
-    return content;
+  public PreviewEditorComposite getContent () {
+    return editorComposite;
   }
 
   private void setBtnName (Button btnName) {

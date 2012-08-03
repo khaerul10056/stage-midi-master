@@ -2,29 +2,35 @@ package org.mda.editor.preview.ui.parts;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mda.MidiFile;
 import mda.MidiFilePart;
+
+import org.eclipse.e4.core.di.annotations.Creatable;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.mda.editor.preview.ui.AbstractPart;
+import org.mda.editor.preview.ui.PreviewEditorComposite;
 import org.mda.editor.preview.ui.StepTypeColorInfo;
 import org.mda.editor.preview.ui.StepTypeColorer;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
-
+@Creatable
 public class SlideListPart extends AbstractPart  {
 
   private static final Log LOGGER  = LogFactory.getLogger(SlideListPart.class);
 
   private final List <SlideItemPanel> slideItems = new ArrayList<SlideItemPanel>();
 
-  public SlideListPart (Composite parent) {
-    super(parent);
-
-    setLayout(new GridLayout(1, true));
+  public Composite build  (PreviewEditorComposite parent) {
+	comp = new Composite(parent.getComp(), SWT.NONE);
+	comp.setLayout(new GridLayout());
+	setEditorComposite(parent);
+    return comp;
   }
 
 
@@ -45,8 +51,12 @@ public class SlideListPart extends AbstractPart  {
   }
 
   public void setMidifile (final MidiFile file) {
+	  if (file == null)
+		  return;
+	  
     boolean fileChanged = getMidifile() == null || ! file.equals(getMidifile());
     super.setMidifile(file);
+    
 
     //remove old items
     for (SlideItemPanel nextPanel: getSlideItems()) {
@@ -56,21 +66,20 @@ public class SlideListPart extends AbstractPart  {
 
     //add new items
     for (MidiFilePart nextPart: file.getParts()) {
-      SlideItemPanel nextPanel = new SlideItemPanel(this);
+      SlideItemPanel nextPanel = new SlideItemPanel(comp);
       nextPanel.setModelPart(nextPart);
-      nextPanel.setContent(getEditorContent());
+      nextPanel.setContent(getEditorComposite());
 
       GridData data = new GridData();
-      data.widthHint = 130;
-      data.heightHint = 50;
-      data.horizontalAlignment = GridData.HORIZONTAL_ALIGN_FILL;
+      data.minimumWidth = 130;
+      data.minimumHeight = 50;
+      data.horizontalAlignment = GridData.FILL_HORIZONTAL;
       data.grabExcessHorizontalSpace = true;
       nextPanel.setLayoutData(data);
       String excerpt = "";
       if (nextPart.getTextlines().size() > 0 && nextPart.getTextlines().get(0).getChordParts().size() > 0)
          excerpt = nextPart.getTextlines().get(0).getChordParts().get(0).getText();
       LOGGER.info("Add part " + nextPart.getParttype() + "(" + excerpt + ") to partlist");
-
       getSlideItems().add(nextPanel);
     }
 
@@ -80,17 +89,10 @@ public class SlideListPart extends AbstractPart  {
     resetColors();
 
     getSlideItems().get(0).select();
+    
+    comp.layout(false,  true);
 
-    for (SlideItemPanel panel: getSlideItems()) {
-      panel.getShell().layout();
-    }
-    getShell().layout();
-
-
-
-
-    Display.getCurrent().update();
-
+    
   }
 
   public List <SlideItemPanel> getSlideItems () {

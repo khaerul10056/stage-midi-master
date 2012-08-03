@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
+
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
+import javax.inject.Inject;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.Multipart;
@@ -18,10 +20,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+
 import mda.MidiPlayerRoot;
 import mda.User;
+
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
 import org.mda.commons.ui.calculator.configurator.PresentationType;
@@ -29,15 +33,21 @@ import org.mda.export.pdf.PdfExporter;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
-
+@Creatable
 public class ExportEngine {
 
-  private ApplicationSession  appSession =  MdaModule.getInjector().getInstance(ApplicationSession.class);;
+  @Inject
+  private ApplicationSession appSession;
+  
+  @Inject
+  private PdfExporter pdfexporter; //TODO implement other formats
+  
+  
 
   private final static Log LOG = LogFactory.getLogger(ExportEngine.class);
 
   private IExport getExporter (final User user) {
-    return new PdfExporter ();
+    return pdfexporter;
   }
 
   private File getFile (User nextUser, IExport export) {
@@ -61,11 +71,12 @@ public class ExportEngine {
     for (User nextUser: currentModel.getUsers()) {
       IExport exporter = getExporter(nextUser);
       File exportFile = getFile(nextUser, exporter);
-      LOG.info("Exporting file " + exportFile.getAbsolutePath() + " for user " + nextUser.getName() + " " + nextUser.getFirstname());
+      
       ExportResult exportResult = new ExportResult();
       try {
 
         if (nextUser.isSendSongbook()) {
+          LOG.info("Exporting file " + exportFile.getAbsolutePath() + " for user " + nextUser.getName() + " " + nextUser.getFirstname());
           PresentationConfigurator configurator = new PresentationConfigurator();
           PresentationType type = nextUser.getDefaultPresentationType() != null ? PresentationType.valueOf(nextUser.getDefaultPresentationType()) : PresentationType.PDF;
           IMidiFileEditorUIConfig config = configurator.configure(nextUser, appSession.getCurrentModel(), type);
@@ -74,6 +85,8 @@ public class ExportEngine {
           exportResult.setExportFile(exportFile);
           results.add(exportResult);
         }
+        else
+        	LOG.info("User " + nextUser.getName() + " is configured to get no songbooks");
 
       }
       catch (ExportException e) {

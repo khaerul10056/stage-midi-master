@@ -1,5 +1,6 @@
 package org.mda.presenter.ui.test;
 
+import javax.inject.Inject;
 import mda.MidiFile;
 import mda.MidiFilePartType;
 import mda.Session;
@@ -10,23 +11,29 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.presenter.ui.ContentOverview;
-import org.mda.presenter.ui.MdaPresenterModule;
 import org.mda.presenter.ui.PresentationContext;
+import org.mda.tests.StandaloneInjector;
 
 
 public class ContentOverviewTest {
 
+  @Inject
   private PresentationContext presentationContext;
+  
+  @Inject
   private ApplicationSession instance;
+  
+  @Inject
+  private ContentOverview overview;
 
   @Before
   public void setup () {
-    presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
-    instance = MdaModule.getInjector().getInstance(ApplicationSession.class);
+      StandaloneInjector.inject(this);
+//    presentationContext = new PresentationContext();
+//    instance = new ApplicationSession();
   }
 
   @After
@@ -38,8 +45,7 @@ public class ContentOverviewTest {
   public void testContentOverview () throws Exception {
     instance.load(null);
     presentationContext.setCurrentSession(instance.getCurrentModel().getSessions().get(0), new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
-    ContentOverview overview = new ContentOverview();
-    overview.createPartControl(new Shell());
+    overview.build(new Shell());
     overview.refresh();
     Assert.assertTrue (overview.getPreviewParts().get(0).isSelected());
 
@@ -61,7 +67,7 @@ public class ContentOverviewTest {
     presentationContext.setCurrentSession(session, new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
 
     ContentOverview overview = new ContentOverview();
-    overview.createPartControl(new Shell());
+    overview.build(new Shell());
     overview.refresh();
 
     Assert.assertTrue (overview.getPreviewParts().get(0).isSelected());
@@ -104,7 +110,7 @@ public class ContentOverviewTest {
     presentationContext.setCurrentSessionItemIndex(1);
 
     ContentOverview overview = new ContentOverview();
-    overview.createPartControl(new Shell());
+    overview.build(new Shell());
     presentationContext.nextSong();
     overview.refresh();
 

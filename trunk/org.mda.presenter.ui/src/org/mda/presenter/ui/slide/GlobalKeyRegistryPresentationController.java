@@ -1,20 +1,21 @@
 package org.mda.presenter.ui.slide;
 
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.mda.presenter.ui.DefaultPresentationController;
 
+@Creatable
 public class GlobalKeyRegistryPresentationController extends DefaultPresentationController {
 
   private Display  display;
 
   private Listener listener;
-  boolean toggled = false;
 
-  public GlobalKeyRegistryPresentationController (final Display display) {
-    this.display = display;
+  public GlobalKeyRegistryPresentationController () {
+    this.display = Display.getCurrent();
     this.listener = createListener();
     this.display.addFilter(SWT.KeyDown, listener);
   }
@@ -40,19 +41,20 @@ public class GlobalKeyRegistryPresentationController extends DefaultPresentation
           nextSong();
 
         if (e.character == 'w') {
-          toggled = ! toggled;
-          toggleWhite(toggled);
+          toggleWhite();
         }
 
         if (e.character == 'b') {
-          toggled = ! toggled;
-          toggleBlack(toggled);
+          toggleBlack();
         }
 
         if (e.character == 't') {
-          toggled = ! toggled;
-          toggleOnlyBackground(toggled);
+          toggleOnlyBackground();
         }
+        
+        if (e.character == 'n') {
+            toggleNormalize();
+          }
       }
     };
   }

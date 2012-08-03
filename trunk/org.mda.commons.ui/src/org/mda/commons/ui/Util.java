@@ -4,6 +4,11 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Monitor;
+import org.eclipse.swt.widgets.Shell;
 
 
 
@@ -16,6 +21,16 @@ public class Util {
 
   public final static String PRESENTATION_PERSPECTIVE = "org.mda.application.presentationperspective";
 
+  
+  public static void centreShell (final Composite shell) {
+	    Display display = Display.getDefault();
+	    Monitor primary = display.getPrimaryMonitor();
+	    Rectangle bounds = primary.getBounds();
+	    Rectangle rect = shell.getBounds();
+	    int x = bounds.x + (bounds.width - rect.width) / 2;
+	    int y = bounds.y + (bounds.height - rect.height) / 2;
+	    shell.setLocation(x,y);
+  }
 
   public static Object getStructuredSelection (ISelection selection) {
     if (selection instanceof IStructuredSelection) {

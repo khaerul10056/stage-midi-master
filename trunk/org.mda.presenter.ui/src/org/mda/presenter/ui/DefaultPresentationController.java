@@ -1,17 +1,22 @@
 package org.mda.presenter.ui;
 
+import javax.inject.Inject;
+
 import mda.AbstractSessionItem;
+
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.slide.IPresentationView;
 import org.mda.presenter.ui.slide.NavigationRefreshAction;
 
-
+@Creatable
 public class DefaultPresentationController implements IPresentationController {
 
   private static final Log LOGGER  = LogFactory.getLogger(DefaultPresentationController.class);
 
-  private PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
+  @Inject
+  private PresentationContext  presentationContext;
 
 
 
@@ -69,30 +74,23 @@ public class DefaultPresentationController implements IPresentationController {
     return done;
   }
 
-  public void toggleBlack (boolean isSelected) {
-    if (isSelected)
-      presentationContext.setSpecialSlide(SpecialSlide.BLACK);
-    else
-      presentationContext.setSpecialSlide(SpecialSlide.NONE);
-
+  public void toggleBlack () {
+    presentationContext.setSpecialSlide(SpecialSlide.BLACK);
+    refreshViews(NavigationRefreshAction.REFRESH_VIEW);
+  }
+  
+  public void toggleNormalize () {
+    presentationContext.setSpecialSlide(SpecialSlide.NONE);
     refreshViews(NavigationRefreshAction.REFRESH_VIEW);
   }
 
-  public void toggleWhite (boolean isSelected) {
-    if (isSelected)
-      presentationContext.setSpecialSlide(SpecialSlide.WHITE);
-    else
-      presentationContext.setSpecialSlide(SpecialSlide.NONE);
-
+  public void toggleWhite () {
+    presentationContext.setSpecialSlide(SpecialSlide.WHITE);
     refreshViews(NavigationRefreshAction.REFRESH_VIEW);
   }
 
-  public void toggleOnlyBackground (boolean isSelected) {
-    if (isSelected)
-      presentationContext.setSpecialSlide(SpecialSlide.WITHOUT_TEXT);
-    else
-      presentationContext.setSpecialSlide(SpecialSlide.NONE);
-
+  public void toggleOnlyBackground () {
+    presentationContext.setSpecialSlide(SpecialSlide.WITHOUT_TEXT);
     refreshViews(NavigationRefreshAction.REFRESH_VIEW);
   }
 

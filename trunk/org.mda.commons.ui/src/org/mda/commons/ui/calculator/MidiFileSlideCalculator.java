@@ -4,18 +4,22 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import javax.inject.Inject;
+
 import mda.AbstractSessionItem;
 import mda.MidiFile;
 import mda.MidiFileChordPart;
 import mda.MidiFilePart;
 import mda.MidiFileTextLine;
+
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
 import org.mda.additionals.Additional;
@@ -26,6 +30,8 @@ import org.mda.logging.LogFactory;
 import org.mda.struct.MidiFileStruct;
 import org.mda.struct.MidiFileStructItem;
 
+
+@Creatable
 public class MidiFileSlideCalculator extends SlideCalculator {
 
   private static final Log LOGGER  = LogFactory.getLogger(MidiFileSlideCalculator.class);
@@ -38,7 +44,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
   private Point nullExtend = new Point (0,0);
 
-  private ApplicationSession  appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  @Inject
+  private ApplicationSession  appSession;
 
   private CopyrightSerializer copyrightSerializer = new CopyrightSerializer();
 

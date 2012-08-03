@@ -16,10 +16,8 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.presenter.ui.BeamerPresenter;
-import org.mda.presenter.ui.MdaPresenterModule;
 import org.mda.presenter.ui.PresentationContext;
 import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
 
@@ -55,7 +53,7 @@ public class PresenterTester extends Shell {
     final Button btnOK = new Button(this, SWT.NONE);
     btnOK.setText("Show");
 
-    ApplicationSession appsession = MdaModule.getInjector().getInstance(ApplicationSession.class);
+    ApplicationSession appsession = new ApplicationSession();
     appsession.load("../org.mda.core.test/testdata/testmodel.conf");
 
     final MidiPlayerRoot root = appsession.getCurrentModel();
@@ -78,17 +76,18 @@ public class PresenterTester extends Shell {
         config.setShowBackground(chkWithBackground.getSelection());
         config.setShowBlockType(chkWithBlocktypes.getSelection());
 
-        PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
+        PresentationContext  presentationContext = new PresentationContext();
         presentationContext.setCurrentSession(currentSession, config, size);
 
-        final GlobalKeyRegistryPresentationController globalKeyRegPresentationController = new GlobalKeyRegistryPresentationController(getDisplay());
+        final GlobalKeyRegistryPresentationController globalKeyRegPresentationController = new GlobalKeyRegistryPresentationController();
         presentationContext.registerController(globalKeyRegPresentationController);
 
-        BeamerPresenter beamerPresenter = new BeamerPresenter(Display.getCurrent(), currentSession, false);
+        BeamerPresenter beamerPresenter = new BeamerPresenter(); 
+        beamerPresenter.build(Display.getCurrent(), currentSession, false);
         presentationContext.registerController(globalKeyRegPresentationController);
         presentationContext.registerView(beamerPresenter);
 
-        beamerPresenter.addDisposeListener(new DisposeListener() {
+        beamerPresenter.getShell().addDisposeListener(new DisposeListener() {
 
           @Override
           public void widgetDisposed (DisposeEvent arg0) {

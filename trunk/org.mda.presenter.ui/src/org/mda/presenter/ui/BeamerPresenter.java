@@ -1,8 +1,13 @@
 package org.mda.presenter.ui;
 
 import java.io.File;
+
+import javax.inject.Inject;
+
 import mda.AbstractSessionItem;
 import mda.Session;
+
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
@@ -15,7 +20,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.logging.Log;
@@ -23,15 +27,21 @@ import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.slide.IPresentationView;
 
 
-public class BeamerPresenter extends Shell implements IPresentationView {
+@Creatable
+public class BeamerPresenter implements IPresentationView {
 
   private static final Log LOGGER  = LogFactory.getLogger(BeamerPresenter.class);
 
-  private PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
-  private ApplicationSession applicationSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  @Inject
+  private PresentationContext  presentationContext;
+  
+  @Inject
+  private ApplicationSession applicationSession;
 
   private Image currentShownImage = null;
   private File currentShownImageAsFile;
+
+  private Shell shell;
 
 
   private Monitor getPreferredExternalMonitor (Display display) {
@@ -43,51 +53,48 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     return display.getPrimaryMonitor();
 
   }
+  
+  public Shell getShell () {
+	  return shell;
+  }
 
-  public BeamerPresenter (Display display, Session session, final boolean onTop) {
-    super (display, onTop ? SWT.ON_TOP: SWT.NONE);
+  public Shell build (Display display, Session session, final boolean onTop) {
+	shell = new Shell (display, onTop ? SWT.ON_TOP: SWT.NONE);
 
     Monitor preferredMonitor = getPreferredExternalMonitor(display);
     if (! preferredMonitor.equals(Display.getCurrent().getPrimaryMonitor())) {
       Rectangle bounds = getPreferredExternalMonitor(display).getBounds();
       LOGGER.info("Set beamer-size to " + bounds.width + "x" + bounds.height);
-      setBounds(bounds);
+      shell.setBounds(bounds);
       //1400x1050 =0,75   ->preview: 770x262 = 0,34
     }
 
     LOGGER.info("Bounds of Display: " + Display.getCurrent().getBounds());
     LOGGER.info("ClientArea of Display: " + Display.getCurrent().getClientArea());
 
-    for (Shell shell: Display.getCurrent().getShells()) {
-      LOGGER.info ("Shell " + shell.getText() + "-" + shell.getBounds());
-    }
-    setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
+    shell.setBackground(shell.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
-    open();
-    setFocus();
+    shell.open();
+    shell.setFocus();
 
-
-
-    addPaintListener(new PaintListener() {
-
-
-
-
-
+    shell.addPaintListener(new PaintListener() {
       @Override
       public void paintControl (PaintEvent e) {
+    	  if (shell.isDisposed())
+    		  return;
+    	  
         LOGGER.info("BeamerPresenter.paintControl called");
-        Font font = getFont();
+        Font font = shell.getFont();
         e.gc.setFont(font);
 
         if (presentationContext.getSpecialSlide() == SpecialSlide.BLACK) {
-          e.gc.setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
+          e.gc.setBackground(shell.getDisplay().getSystemColor(SWT.COLOR_BLACK));
           e.gc.fillRectangle(e.gc.getClipping());
           return;
         }
 
         if (presentationContext.getSpecialSlide() == SpecialSlide.WHITE) {
-          e.gc.setBackground(getDisplay().getSystemColor(SWT.COLOR_WHITE));
+          e.gc.setBackground(shell.getDisplay().getSystemColor(SWT.COLOR_WHITE));
           e.gc.fillRectangle(e.gc.getClipping());
           return;
         }
@@ -95,17 +102,17 @@ public class BeamerPresenter extends Shell implements IPresentationView {
         if (presentationContext.getCurrentSlide().getBackgroundImageFile() != null) {
           if (currentShownImage == null ||
               ! currentShownImageAsFile.equals(getCurrentSlide().getBackgroundImageFile()) ||   //image has changed
-              currentShownImage.getBounds().width != getBounds().width ||                       // size has changed
-              currentShownImage.getBounds().height != getBounds().height) {
-            LOGGER.info("Repaint background image: " + (currentShownImage != null ? currentShownImage.getBounds() : "<null>") +  getBounds());
-            setBackgroundImage(getCurrentSlide().getBackgroundImage(getSize()));
-            currentShownImage = getBackgroundImage();
+              currentShownImage.getBounds().width != shell.getBounds().width ||                       // size has changed
+              currentShownImage.getBounds().height != shell.getBounds().height) {
+            LOGGER.info("Repaint background image: " + (currentShownImage != null ? currentShownImage.getBounds() : "<null>") +  shell.getBounds());
+            shell.setBackgroundImage(getCurrentSlide().getBackgroundImage(shell.getSize()));
+            currentShownImage = shell.getBackgroundImage();
             currentShownImageAsFile = getCurrentSlide().getBackgroundImageFile();
           }
         }
         else {
-          setBackgroundImage(null);
-          setBackground(getCurrentSlide().getBackgroundColor());
+          shell.setBackgroundImage(null);
+          shell.setBackground(getCurrentSlide().getBackgroundColor());
           currentShownImage = null;
           currentShownImageAsFile = null;
         }
@@ -140,7 +147,8 @@ public class BeamerPresenter extends Shell implements IPresentationView {
       }
     });
 
-    redraw();
+    shell.redraw();
+    return shell;
   }
 
 
@@ -148,24 +156,20 @@ public class BeamerPresenter extends Shell implements IPresentationView {
     return presentationContext.getCurrentSlide();
   }
 
-  protected void checkSubclass () {
-    /* Do nothing - Subclassing is allowed */
-  }
-
   @Override
   public void end () {
-    dispose();
+	  shell.dispose();
   }
 
   public boolean toItem (AbstractSessionItem item) {
-    redraw();
+    shell.redraw();
     return true;
   }
 
 
   @Override
   public void refresh () {
-    redraw();
+	  shell.redraw();
   }
 
    public AbstractSessionItem getCurrentSessionItem () {

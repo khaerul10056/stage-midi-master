@@ -1,78 +1,71 @@
 package org.mda.presenter.ui;
 
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
+import javax.inject.Inject;
+
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.e4.core.di.annotations.Creatable;
+import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
-import org.eclipse.ui.IPerspectiveDescriptor;
-import org.eclipse.ui.IPerspectiveRegistry;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
-import org.mda.SelectionInfo;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
-import org.mda.commons.ui.Util;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
 
-
-public class StartPresentation extends AbstractHandler  {
+@Creatable
+public class StartPresentation   {
 
   private static final Log LOGGER  = LogFactory.getLogger(StartPresentation.class);
 
-  private PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
-  private ApplicationSession applicationSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  @Inject
+  private PresentationContext  presentationContext;
+  
+  @Inject
+  private ApplicationSession applicationSession;
+  
+  @Inject
+  private BeamerPresenter beamerpresenter;
+  
+  @Inject
+  private GlobalKeyRegistryPresentationController globalkeycontroller;
+  
+  @Inject
+  private RunSessionShell runsessionshell;
+  
+  
 
-  @Override
-  public Object execute (ExecutionEvent event) throws ExecutionException {
-    SelectionInfo selectioninfo = (SelectionInfo) event.getApplicationContext();
-
-    final IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-    final IPerspectiveRegistry reg = activeWorkbenchWindow.getWorkbench().getPerspectiveRegistry();
-
-
-    LOGGER.info("Starting presentation of selection " + selectioninfo.getSession().getName());
-    LOGGER.info("Selected first element " + (selectioninfo.getItem() != null ? selectioninfo.getItem().getName() : "<NONE>"));
+  @Execute
+  public Object execute (Shell parentShell) throws ExecutionException {
+    LOGGER.info("Starting presentation of selection " + applicationSession.getCurrentSession().getName());
 
     //Register global controller
-    final GlobalKeyRegistryPresentationController globalkeycontroller = new GlobalKeyRegistryPresentationController(activeWorkbenchWindow.getShell().getDisplay());
     presentationContext.registerController(globalkeycontroller);
 
-    final BeamerPresenter presenter = new BeamerPresenter(activeWorkbenchWindow.getShell().getDisplay(), selectioninfo.getSession(), applicationSession.getFeatureActivation().isPresentationAlwaysOnTop());
+    beamerpresenter.build(parentShell.getDisplay(), applicationSession.getCurrentSession(), applicationSession.getFeatureActivation().isPresentationAlwaysOnTop());
+    
+    
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setChordVisible(false);
     config.setShowBackground(true);
     config.setSkipEmptySlides(true);
     config.setOptimizeEmptyTokens(true);
-    presentationContext.setCurrentSession(selectioninfo.getSession(), config, presenter.getSize());
-    presentationContext.registerView(presenter);
+    presentationContext.setCurrentSession(applicationSession.getCurrentSession(), config, beamerpresenter.getShell().getSize());
+    presentationContext.registerView(beamerpresenter);
 
-    IPerspectiveDescriptor presentationPerspective = reg.findPerspectiveWithId(Util.PRESENTATION_PERSPECTIVE);
-    LOGGER.info("Set perspective " + presentationPerspective.getId());
-    activeWorkbenchWindow.getActivePage().setPerspective(presentationPerspective);
-
-    if (selectioninfo.getItem() != null)
-      presentationContext.selectItem(selectioninfo.getItem());
-
-    presenter.addDisposeListener(new DisposeListener() {
-
-      @Override
-      public void widgetDisposed (DisposeEvent arg0) {
-        globalkeycontroller.close();
-
-        if (activeWorkbenchWindow != null && activeWorkbenchWindow.getActivePage() != null)
-          activeWorkbenchWindow.getActivePage().setPerspective(reg.findPerspectiveWithId(Util.ADMIN_PERSPECTIVE));
-        presentationContext.deregisterView(presenter.getClass());
-        presentationContext.closePresentationSession();
-
-      }
-    });
-
-    presenter.setEnabled(true);
-
+    beamerpresenter.getShell().setEnabled(true);
+    
+    runsessionshell.build(parentShell);
+    runsessionshell.getShell().addDisposeListener(new DisposeListener() {
+		
+		@Override
+		public void widgetDisposed(DisposeEvent e) {
+			beamerpresenter.getShell().dispose();
+			
+		}
+	});
+    
     return null;
   }
 

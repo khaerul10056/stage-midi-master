@@ -1,6 +1,10 @@
 package org.mda.commons.ui.config;
 
+import javax.inject.Inject;
+
 import mda.Configuration;
+
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -13,55 +17,59 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Spinner;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 
 
-public class ConfigShell extends Shell {
-
-  private Configuration configuration;
-
+@Creatable
+public class ConfigShellBuilder  {
 
   private Spinner spnFontSize;
 
   private Button chkEnableGrid;
 
-  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  @Inject
+  private ApplicationSession session;
+  
+  
+  public Configuration getConfiguration () {
+	  return session.getConfig();
+  }
+  
+  public Shell build (final Shell mother) {
+	Shell configShell = new Shell (mother); 
+    configShell.setSize(500, 700);
 
-
-
-  public ConfigShell (final Shell shell, final Configuration configuration) {
-    this.configuration = configuration;
-    setSize(500, 700);
-
-    setLayout(new GridLayout(2, false));
+    configShell.setLayout(new GridLayout(2, false));
 
     //Fontsize
-    Label lblFontsize = new Label (this, SWT.NONE);
+    Label lblFontsize = new Label (configShell, SWT.NONE);
     lblFontsize.setText("Fontsize:");
     lblFontsize.setLayoutData(getLabelData());
+    
+    Configuration configuration = session.getConfig();
 
-    spnFontSize = new Spinner(this, SWT.NONE);
+    spnFontSize = new Spinner(configShell, SWT.NONE);
     if (configuration.getFontsize() != null)
       spnFontSize.setSelection(configuration.getFontsize());
     spnFontSize.setLayoutData(getContentData());
 
     if (session.getFeatureActivation().isShowGridEnabled()) {
-      Label lblGrid = new Label (this, SWT.NONE);
+      Label lblGrid = new Label (configShell, SWT.NONE);
       lblGrid.setText("Grid:");
       lblGrid.setLayoutData(getLabelData());
 
-      chkEnableGrid = new Button(this, SWT.CHECK);
+      chkEnableGrid = new Button(configShell, SWT.CHECK);
       chkEnableGrid.setSelection(session.getGlobalConfs().isShowGrid());
       chkEnableGrid.setLayoutData(getContentData());
     }
 
-    Label lblExtender = new Label (this, SWT.NONE);
+    Label lblExtender = new Label (configShell, SWT.NONE);
     lblExtender.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true, 2, 1));
 
 
-    createButtonPanel(this);
+    createButtonPanel(configShell);
 
-    open ();
+    configShell.open ();
+    return configShell;
   }
 
 
@@ -73,7 +81,7 @@ public class ConfigShell extends Shell {
     return new GridData(SWT.FILL, SWT.FILL, false, false);
   }
 
-  private void createButtonPanel (Composite composite) {
+  private void createButtonPanel (final Composite composite) {
     Composite buttonPanel = new Composite(composite, SWT.NONE);
     buttonPanel.setLayout(new RowLayout(SWT.HORIZONTAL));
     Button btnOk = new Button(buttonPanel, SWT.NONE);
@@ -82,28 +90,22 @@ public class ConfigShell extends Shell {
       @Override
       public void widgetSelected (SelectionEvent arg0) {
         save ();
-
-        dispose();
-
+        composite.dispose();
       }
     });
 
     Button btnCancel = new Button(buttonPanel, SWT.NONE);
     btnCancel.setText("Cancel");
     btnCancel.addSelectionListener(new SelectionAdapter() {
-
       @Override
       public void widgetSelected (SelectionEvent arg0) {
-
-        dispose();
+        composite.dispose();
       }
-
     });
-
   }
 
   protected void save () {
-    configuration.setFontsize(spnFontSize.getSelection());
+    getConfiguration().setFontsize(spnFontSize.getSelection());
     session.getGlobalConfs().setShowGrid(chkEnableGrid.getSelection());
 
     session.saveModel();

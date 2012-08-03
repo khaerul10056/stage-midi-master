@@ -6,14 +6,13 @@ import mda.User;
 import mda.UserType;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.commons.ui.user.UserShell;
 
 
 public class UserShellTester {
   /** @param args */
   public static void main (String[] args) throws Exception {
-    ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
+    ApplicationSession session = new ApplicationSession();
     session.load(null);
     MidiPlayerRoot model = session.getCurrentModel();
 
@@ -26,7 +25,7 @@ public class UserShellTester {
 
 
     Shell shell = new Shell();
-    UserShell additionalshell = new UserShell(shell);
+    UserShell additionalshell = new UserShell(shell, session);
 
     while (!additionalshell.isDisposed()) {
       if (!shell.getDisplay().readAndDispatch()) {

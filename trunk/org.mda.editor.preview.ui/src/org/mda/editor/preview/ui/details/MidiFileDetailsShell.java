@@ -1,5 +1,6 @@
 package org.mda.editor.preview.ui.details;
 
+import javax.inject.Inject;
 import mda.AdditionalType;
 import mda.Copyright;
 import mda.MidiFile;
@@ -22,7 +23,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
 import org.mda.additionals.Additional;
@@ -62,7 +62,8 @@ public class MidiFileDetailsShell extends Shell {
   private Color defaultBackground = Display.getCurrent().getSystemColor(SWT.COLOR_BLACK);
   private Color defaultForeground = Display.getCurrent().getSystemColor(SWT.COLOR_WHITE);
 
-  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  @Inject
+  private ApplicationSession session;
 
   private AdditionalsHandler additionalHandler = session.getAdditionalsHandler();
 

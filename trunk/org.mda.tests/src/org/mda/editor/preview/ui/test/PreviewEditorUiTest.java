@@ -3,20 +3,23 @@ package org.mda.editor.preview.ui.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
 import java.io.File;
+
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiFilePartType;
 import mda.MidiPlayerRoot;
+
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
-import org.mda.editor.preview.ui.PreviewEditorContent;
+import org.mda.editor.preview.ui.PreviewEditorComposite;
 import org.mda.editor.preview.ui.parts.TextLine;
 import org.mda.presenter.ui.test.MidiFileCreator;
 
@@ -26,7 +29,9 @@ public class PreviewEditorUiTest {
   private final String CHORDLINEORIGINAL = "D    G                    A       D           G               A";
   private final String TEXTLINEORIGINAL  = "Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist,";
   private static Shell shell;
-  private PreviewEditorContent editor;
+  private PreviewEditorComposite editor;
+  
+  private static ApplicationSession applicationSession;
 
 
   /**
@@ -39,7 +44,10 @@ public class PreviewEditorUiTest {
     MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
     creator = creator.line().text("The first line").line().text("The second line");
     MidiFile midiFile = creator.get();
-    PreviewEditorContent editor = new PreviewEditorContent(shell, midiFile);
+    
+    applicationSession.setCurrentMidifile(midiFile);  
+    editor.build(shell);
+    
     editor.setCurrentPart(midiFile.getParts().get(0));
     editor.getContentpanel().setCurrentFocusedLine(focusedLine);
 
@@ -70,12 +78,15 @@ public class PreviewEditorUiTest {
   @Test
   public void deleteWhenSelected () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);  
+    editor.build(shell);
+    
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //split a line at the beginning of an chordpart
     StyledText text = editor.getContentpanel().getTextLines().get(0);
-    Label chord = editor.getContentpanel().getChordLines().get(0);
+    StyledText chord = editor.getContentpanel().getChordLines().get(0);
 
     assertEquals(CHORDLINEORIGINAL, chord.getText());
     assertEquals(Utils.fillString(TEXTLINEORIGINAL, TextLine.TEXTLINE_LENGTH), text.getText());
@@ -89,7 +100,10 @@ public class PreviewEditorUiTest {
   @Test
   public void stepToEndOfLine () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);  
+    editor.build(shell);
+    
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //step to next line (current caretposition in nextline not out of limits)  (1->2)
@@ -109,7 +123,10 @@ public class PreviewEditorUiTest {
   @Test
   public void stepToNextAndPreviousLine () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);  
+    editor.build(shell);
+    
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //step to next line (current caretposition in nextline not out of limits)  (1->2)
@@ -166,7 +183,10 @@ public class PreviewEditorUiTest {
   @Test
   public void splitAndMergeMiddleOfLinePart () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);  
+    editor.build(shell);
+    
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
     saveAndShowRoundtrip();
 
@@ -198,12 +218,15 @@ public class PreviewEditorUiTest {
     final String TEXTLINEORIGINAL  = "Alle Schöpfung singt ein Lob, Du bist mächtig, Du bist groß.";
     final String CHORDLINEORIGINAL = "D    G                   A    D       G                A";
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);  
+    editor.build(shell);
+    
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //split a line at the beginning of an chordpart
     TextLine text = editor.getContentpanel().getTextLines().get(2);
-    Label chord = editor.getContentpanel().getChordLines().get(2);
+    StyledText chord = editor.getContentpanel().getChordLines().get(2);
 
     assertEquals(CHORDLINEORIGINAL, chord.getText());
     assertEquals(fill(TEXTLINEORIGINAL), text.getText());  //line 1
@@ -220,12 +243,15 @@ public class PreviewEditorUiTest {
   @Test
   public void splitLineEndOfChordpart () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);  
+    editor.build(shell);
+    
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //split a line at the beginning of an chordpart
     StyledText text = editor.getContentpanel().getTextLines().get(0);
-    Label chord = editor.getContentpanel().getChordLines().get(0);
+    StyledText chord = editor.getContentpanel().getChordLines().get(0);
 
     assertEquals(CHORDLINEORIGINAL, chord.getText());
     assertEquals(fill(TEXTLINEORIGINAL), text.getText());  //line 1
@@ -238,7 +264,7 @@ public class PreviewEditorUiTest {
     text = editor.getContentpanel().getTextLines().get(0);
     chord = editor.getContentpanel().getChordLines().get(0);
     StyledText text2 = editor.getContentpanel().getTextLines().get(1);
-    Label chord2 = editor.getContentpanel().getChordLines().get(1);
+    StyledText chord2 = editor.getContentpanel().getChordLines().get(1);
     assertEquals (text2, editor.getContentpanel().getFocusedTextField());
 
     assertEquals("D    G                    A", chord.getText());
@@ -261,7 +287,10 @@ public class PreviewEditorUiTest {
   @Test
   public void splitLineMidChordpart () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);  
+    editor.build(shell);
+    
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //split a line at the beginning of an chordpart
@@ -290,14 +319,17 @@ public class PreviewEditorUiTest {
     return editor.getContentpanel().getTextLines().get(pos);
   }
 
-  private Label getChord (final int pos) {
+  private StyledText getChord (final int pos) {
     return editor.getContentpanel().getChordLines().get(pos);
   }
 
   @Test
   public void splitAndMergeLineAtHome () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);  
+    editor.build(shell);
+    
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //split a line at the beginning of an chordpart
@@ -325,7 +357,10 @@ public class PreviewEditorUiTest {
     MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS);
     creator =  creator.line().chordAndText("H", "Dies ist ein Test");
     MidiFile song = creator.line().chordAndText("H", "another line").get();
-    editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);  
+    editor.build(shell);
+    
     editor.getContentpanel().setCurrentPart(song.getParts().get(0));
     getText(0).setCaretOffset(17); //To end of line
     editor.getContentpanel().saveCurrentCaretSituation();
@@ -343,7 +378,10 @@ public class PreviewEditorUiTest {
   public void splitAndMergeAtEndOfLastLine () throws Exception {
     MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS);
     MidiFile song =  creator.line().chordAndText("H", "Dies ist ein Test").get();
-    editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);  
+    editor.build(shell);
+    
     editor.getContentpanel().setCurrentPart(song.getParts().get(0));
     getText(0).setCaretOffset(17); //To end of line
     editor.getContentpanel().saveCurrentCaretSituation();
@@ -360,7 +398,10 @@ public class PreviewEditorUiTest {
   @Test
   public void splitAndMergeLineAtPreEnd () throws Exception {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);  
+    editor.build(shell);
+    
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
 
     //split a line at the end of an chordpart

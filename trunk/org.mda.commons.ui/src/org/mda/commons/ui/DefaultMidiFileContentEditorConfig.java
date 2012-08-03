@@ -2,16 +2,20 @@ package org.mda.commons.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
+
 import mda.MidiFilePartType;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.Utils;
 import org.mda.commons.ui.calculator.FontDescriptor;
 import org.mda.commons.ui.calculator.SWTGraphicsContext;
+
 
 public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConfig {
 
@@ -38,7 +42,8 @@ public class DefaultMidiFileContentEditorConfig implements IMidiFileEditorUIConf
 
   private IGraphicsContext graphicsContext = new SWTGraphicsContext();
 
-  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  @Inject
+  private ApplicationSession session;
 
   /**
    * configuration to define the used fontsize

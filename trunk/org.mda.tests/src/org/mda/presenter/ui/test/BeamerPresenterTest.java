@@ -15,12 +15,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.presenter.ui.BeamerPresenter;
 import org.mda.presenter.ui.DefaultPresentationController;
-import org.mda.presenter.ui.MdaPresenterModule;
 import org.mda.presenter.ui.PresentationContext;
 import org.mda.presenter.ui.SpecialSlide;
 
@@ -43,21 +41,22 @@ public class BeamerPresenterTest {
   @BeforeClass
   public static void beforeClass () {
     session = root.getSessions().get(0);
-    presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
-    MdaModule.getInjector().getInstance(ApplicationSession.class).load(null);
-
+    presentationContext = new PresentationContext();
+    ApplicationSession session = new ApplicationSession(); 
+    session.load(null);
   }
 
   @Before
   public void before () {
     presentationContext.setCurrentSession(session, new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
 
-    presenter = new BeamerPresenter(Display.getDefault(), session, false);
+    presenter = new BeamerPresenter(); 
+    presenter.build(Display.getDefault(), session, false);
     controller = new DefaultPresentationController();
     presentationContext.registerController(controller);
     presentationContext.registerView(presenter);
 
-    presenter.redraw();
+    presenter.getShell().redraw();
     firstSong = (MidiFile) session.getItems().get(0);
     secondSong = (MidiFile) session.getItems().get(1);
     lastSong = (MidiFile) session.getItems().get(session.getItems().size() - 1);
@@ -135,35 +134,35 @@ public class BeamerPresenterTest {
 
   @Test
   public void toggleBlack () {
-    controller.toggleBlack(false);
+    controller.toggleNormalize();
     Assert.assertEquals (SpecialSlide.NONE, presentationContext.getSpecialSlide());
-    controller.toggleBlack(true);
+    controller.toggleBlack();
     Assert.assertEquals (SpecialSlide.BLACK, presentationContext.getSpecialSlide());
-    controller.toggleBlack(false);
+    controller.toggleNormalize();
     Assert.assertEquals (SpecialSlide.NONE, presentationContext.getSpecialSlide());
     controller.end();
-    Assert.assertTrue(presenter.isDisposed());
+    Assert.assertTrue(presenter.getShell().isDisposed());
   }
 
 
   @Test
   public void toggleWhite () {
-    controller.toggleWhite(false);
+    controller.toggleNormalize();
     Assert.assertEquals (SpecialSlide.NONE, presentationContext.getSpecialSlide());
-    controller.toggleWhite(true);
+    controller.toggleWhite();
     Assert.assertEquals (SpecialSlide.WHITE, presentationContext.getSpecialSlide());
-    controller.toggleWhite(false);
+    controller.toggleNormalize();
     Assert.assertEquals (SpecialSlide.NONE, presentationContext.getSpecialSlide());
     controller.end();
   }
 
   @Test
   public void toggleOnlyBackground () {
-    controller.toggleOnlyBackground(false);
+    controller.toggleNormalize();
     Assert.assertEquals (SpecialSlide.NONE, presentationContext.getSpecialSlide());
-    controller.toggleOnlyBackground(true);
+    controller.toggleOnlyBackground();
     Assert.assertEquals (SpecialSlide.WITHOUT_TEXT, presentationContext.getSpecialSlide());
-    controller.toggleOnlyBackground(false);
+    controller.toggleNormalize();
     Assert.assertEquals (SpecialSlide.NONE, presentationContext.getSpecialSlide());
     controller.end();
   }

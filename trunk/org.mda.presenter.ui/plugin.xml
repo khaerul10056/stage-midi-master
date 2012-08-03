@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-
-<extension
-         point="org.eclipse.ui.commands">
-      <command
-            defaultHandler="org.mda.presenter.ui.StartPresentation"
-            id="org.mda.presenter.ui.commands.startPresentation"
-            name="Start presentation">
-      </command>
-   </extension>
-<extension name="Presentation"
-         point="org.eclipse.ui.views">
-      <view
-            class="org.mda.presenter.ui.ContentOverview"
-            id="org.mda.presenter.ui.contentoverview"
-            name="Preview"
-            restorable="true">
-      </view>
-   </extension>
-   </plugin>
+ <extension id="id" point="org.eclipse.e4.workbench.model">
+        <fragment uri="fragment.e4xmi"></fragment>
+      </extension>
+</plugin>

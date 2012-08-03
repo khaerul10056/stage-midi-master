@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import com.google.inject.internal.Lists;
 
 public class MidiPlayerService {
 
@@ -43,7 +42,8 @@ public class MidiPlayerService {
 
 
   public static List <AbstractSessionItem> sortedSessionItemList (final List <AbstractSessionItem> unsorted) {
-    List <AbstractSessionItem> cloned = Lists.newArrayList(unsorted);
+    List <AbstractSessionItem> cloned = new ArrayList <AbstractSessionItem> (); 
+    cloned.addAll(unsorted);
 
     Collections.sort(cloned, new Comparator<AbstractSessionItem>() {
 

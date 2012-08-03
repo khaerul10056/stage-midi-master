@@ -1,17 +1,26 @@
+ 
 package org.mda.commons.ui.commands;
 
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.e4.core.di.annotations.Execute;
+import org.eclipse.e4.ui.workbench.IWorkbench;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
-
-public class ExitHandler extends AbstractHandler {
-
-  @Override
-  public Object execute(ExecutionEvent event) throws ExecutionException {
-    HandlerUtil.getActiveWorkbenchWindow(event).close();
-    return null;
+/**
+ * Handler to exit the application
+ * @author mao
+ */
+public class ExitHandler {
+  
+  /**
+   * logger
+   */
+  private static final Log LOGGER  = LogFactory.getLogger(ExitHandler.class);
+  
+  @Execute
+  public void execute(IWorkbench workbench) {
+    LOGGER.info("Exit workspace");
+    workbench.close();
   }
-
+		
 }

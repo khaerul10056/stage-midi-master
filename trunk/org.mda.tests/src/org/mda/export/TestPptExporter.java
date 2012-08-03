@@ -17,7 +17,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.Utils;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.export.powerpoint.PptExporter;
@@ -28,7 +27,7 @@ public class TestPptExporter {
 
   private File tmpFile = new File ("tmp/export.ppt");
 
-  private static ApplicationSession appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  private static ApplicationSession appSession = new ApplicationSession();
 
 
   @BeforeClass

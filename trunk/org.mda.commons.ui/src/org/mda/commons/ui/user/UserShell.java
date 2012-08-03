@@ -1,5 +1,7 @@
 package org.mda.commons.ui.user;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import mda.User;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -18,12 +20,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 
 
 public class UserShell extends Shell{
 
-  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  
+  private ApplicationSession session;
 
 
   private Text txtFamilyName;
@@ -41,10 +43,13 @@ public class UserShell extends Shell{
   private Button chkWithChords;
 
 
-  public UserShell (final Shell shell) {
+  @Inject
+  public UserShell (final Shell shell, ApplicationSession session) {
     setSize(800, 700);
+    this.session = session;
 
     setLayout(new GridLayout(2, false));
+    setText("Edit users...");
 
     tblUsers = new Table(this, SWT.NONE);
     tblUsers.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));

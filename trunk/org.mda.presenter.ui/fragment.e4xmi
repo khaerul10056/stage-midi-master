@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_aKxBUNsOEeGddIlX7Js6XA">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_cou4kNsOEeGddIlX7Js6XA" featurename="children" parentElementId="org.mda.commons.ui.toolbar.main" positionInList="">
+    <elements xsi:type="menu:DirectToolItem" xmi:id="_jRNBYNsOEeGddIlX7Js6XA" elementId="org.mda.commons.ui.toolbarcontribution.runsession" label="Run" contributionURI="bundleclass://org.mda.presenter.ui/org.mda.presenter.ui.StartPresentation"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_aZnjYNsTEeGddIlX7Js6XA" featurename="children" parentElementId="org.mda.commons.ui.menu.session">
+    <elements xsi:type="menu:DirectMenuItem" xmi:id="_qFBsUNsTEeGddIlX7Js6XA" elementId="org.mda.commons.ui.menu.session.run" label="Run..." contributionURI="bundleclass://org.mda.presenter.ui/org.mda.presenter.ui.StartPresentation"/>
+  </fragments>
+</fragment:ModelFragments>

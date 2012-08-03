@@ -3,13 +3,18 @@ package org.mda.editor.preview.ui.parts;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import mda.MidiFile;
+
+import javax.inject.Inject;
+
 import mda.MidiFileChordPart;
 import mda.MidiFilePart;
 import mda.MidiFileTextLine;
+
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ExtendedModifyEvent;
 import org.eclipse.swt.custom.ExtendedModifyListener;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.FocusEvent;
@@ -23,7 +28,7 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.RowLayout;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Widget;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
@@ -34,11 +39,12 @@ import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.editor.preview.ui.AbstractPart;
-import org.mda.editor.preview.ui.PreviewEditorContent;
+import org.mda.editor.preview.ui.PreviewEditorComposite;
 import org.mda.editor.preview.ui.chords.ChordHover;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
+@Creatable
 public class ContentPart extends AbstractPart implements FocusListener {
 
   private static final Log                   LOGGER            = LogFactory.getLogger(ContentPart.class);
@@ -49,47 +55,46 @@ public class ContentPart extends AbstractPart implements FocusListener {
 
   private final List<TextLine>             textLines         = new ArrayList<TextLine>();
 
-  private final List<Label>                  chordLines        = new ArrayList<Label>();
+  private final List<StyledText>                  chordLines        = new ArrayList<StyledText>();
 
-  private final List<Label>                  newSlideLabels = new ArrayList<Label>();
+  private final List<StyledText>                  newSlideStyledTexts = new ArrayList<StyledText>();
 
   private Slide                              currentSlide;
 
   private Font                               font;
 
-  private MidiFileSlideCalculator            calculator        = new MidiFileSlideCalculator();
+  @Inject
+  private MidiFileSlideCalculator            calculator;
 
   private int                                currentCaretPosition;
 
   private int                                currentFocusedLine;
 
-  private PreviewEditorContent               editorContent;
 
   public static boolean listenersActive = true;
 
 
-  public ContentPart (PreviewEditorContent parent, MidiFile file) {
-    super(parent);
-    editorContent = parent;
+  public Composite build (PreviewEditorComposite parent) {
+	comp = new Composite(parent.getComp(), SWT.NONE);
+    setEditorComposite(parent);
 
-    setCurrentPart(file.getParts().get(0));
-    setLayout(new RowLayout(SWT.VERTICAL));
-    getShell().addControlListener(new ControlAdapter() {
+    comp.setLayout(new RowLayout(SWT.VERTICAL));
+    comp.getShell().addControlListener(new ControlAdapter() {
 
       /** Sent when the size (width, height) of a control changes.
        * The default behavior is to do nothing.
        * @param e an event containing information about the resize */
       public void controlResized (ControlEvent e) {
-        Rectangle rect = getShell().getClientArea();
+        Rectangle rect = comp.getShell().getClientArea();
         Point size = new Point(rect.width, rect.height);
         if (size.x > 0 &&
           size.y > 0)
           size = showPart(getCurrentPart(), size);
-        setSize(size);
+        comp.setSize(size);
       }
     });
 
-    addMouseListener(new MouseAdapter() {
+    comp.addMouseListener(new MouseAdapter() {
 
       @Override
       public void mouseDown (MouseEvent arg0) {
@@ -99,11 +104,13 @@ public class ContentPart extends AbstractPart implements FocusListener {
       }
 
     });
+    
+    return comp;
   }
 
   public void setCurrentPart (MidiFilePart currentPart) {
     super.setCurrentPart(currentPart);
-    showPart(currentPart, getSize());
+    showPart(currentPart, comp.getSize());
     setCurrentFocusedLine(0);
     setCurrentCaretPosition(0); //initialize position again
 
@@ -125,6 +132,9 @@ public class ContentPart extends AbstractPart implements FocusListener {
    * @param size size
    * @return size */
   private Point showPart (final MidiFilePart part, final Point size) {
+	  
+	  if (part == null)
+		  return size; 
 
     boolean partIsReference = part.getRefPart() != null;
 
@@ -143,7 +153,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
     //Dispose and clear old textwidgets and chordwidgets
     clearWidgetList(getTextLines());
     clearWidgetList(getChordLines());
-    clearWidgetList(newSlideLabels);
+    clearWidgetList(newSlideStyledTexts);
 
     //Initialize lines from saved part
     for (int i = 0; i < getCurrentSlide().getLineCount(); i++) {
@@ -152,7 +162,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
         continue;
 
       if (getCurrentSlide().isNewLineForced(i))
-        newSlideLabels.add(new Label(this, SWT.SEPARATOR | SWT.SHADOW_OUT | SWT.HORIZONTAL));
+        newSlideStyledTexts.add(new StyledText(comp, SWT.SEPARATOR | SWT.SHADOW_OUT | SWT.HORIZONTAL));
 
       addChordLine(getCurrentSlide().getChordline(i), partIsReference);
       addTextLine(getCurrentSlide().isNewLineForced(i), getCurrentSlide().getTextline(i), size, partIsReference);
@@ -165,7 +175,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
     }
 
 
-    layout();
+    comp.layout();
 
     //focus last focused position
     if (currentLine >= 0 && currentLine < getTextLines().size()) {
@@ -184,7 +194,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
   }
 
   public void synchronizeChordWhenTextWasModified (final String replacedText, final int start, final int length) {
-    Label lblChordLine = getChordLines().get(getCurrentFocusedLine());
+    StyledText lblChordLine = getChordLines().get(getCurrentFocusedLine());
     TextLine txtTextLine = getTextLines().get(getCurrentFocusedLine());
 
     LOGGER.info("PreModifyText:\n<" + lblChordLine.getText() + ">\n<" + txtTextLine.getText() + ">" + logCaretBehaviour());
@@ -233,14 +243,14 @@ public class ContentPart extends AbstractPart implements FocusListener {
 
 
   private void addTextLine (final boolean newSlide, final String text, final Point size, final boolean readonly) {
-    TextLine nextText = new TextLine(newSlide, this, SWT.SINGLE);
+    TextLine nextText = new TextLine(newSlide, comp, SWT.SINGLE);
 
     nextText.addFocusListener(this);
     nextText.setText(text);
     if (readonly) {
       nextText.setEditable(false);
       nextText.setEnabled(false);
-      nextText.setBackground(getBackground());
+      nextText.setBackground(comp.getBackground());
     }
 
     nextText.setFont(font);
@@ -335,7 +345,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
             TextLine focused = getTextLines().get(getCurrentFocusedLine());
             Point caretLocation = focused.getCaret().getLocation();
 
-            Label label = getChordLines().get(getCurrentFocusedLine());
+            StyledText label = getChordLines().get(getCurrentFocusedLine());
 
             Point display2 = focused.toDisplay(1, 1);
             display2.x += caretLocation.x;
@@ -360,7 +370,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
           saveToModel();
           showPart(getCurrentPart(), size);
 
-          editorContent.getPreviewpanel().setCurrentPart(getCurrentPart());
+          getEditorComposite().getPreviewpanel().setCurrentPart(getCurrentPart());
 
           LOGGER.info("KeyPressed end : " + logCaretBehaviour());
           LOGGER.info("doit was set to " + e.doit);
@@ -388,15 +398,15 @@ public class ContentPart extends AbstractPart implements FocusListener {
   }
 
   private void addChordLine (final String chord, final boolean readonly) {
-    Label chordLabel = new Label(this, SWT.NONE);
-    chordLabel.setText(chord);
-    chordLabel.setFont(font);
-    chordLabel.setEnabled(false);
-    getChordLines().add(chordLabel);
+    StyledText chordStyledText = new StyledText(comp, SWT.NONE);
+    chordStyledText.setText(chord);
+    chordStyledText.setEnabled(false);
+    chordStyledText.setFont(font);
+    getChordLines().add(chordStyledText);
 
   }
 
-  public boolean editChord (final Label chordline, final TextLine textline, final int offset, final String newCharacter, String before) {
+  public boolean editChord (final StyledText chordline, final TextLine textline, final int offset, final String newCharacter, String before) {
     StringBuilder builder = new StringBuilder(chordline.getText());
     if (before.length() > 0) {
       for (int i = offset; i < (offset + before.length()); i++)
@@ -497,7 +507,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
     return getCurrentPart();
   }
 
-  public Label getFocusedChordLine () {
+  public StyledText getFocusedChordLine () {
     if (getCurrentFocusedLine() < 0)
       return null;
     return getChordLines().get(getCurrentFocusedLine());
@@ -513,8 +523,13 @@ public class ContentPart extends AbstractPart implements FocusListener {
 
   private void setCalculatePart (Slide calculatePart) {
     this.currentSlide = calculatePart;
-    FontData fontdata = new FontData("Monospace", 15, SWT.NONE);
-    this.font = new Font(getDisplay(), fontdata);
+    FontData fontdata = new FontData("DejaVu Sans Mono", 15, SWT.NONE);
+    this.font = new Font(comp.getDisplay(), fontdata);
+    
+    LOGGER.info("Set font to " + font.getFontData() [0].getName());
+    
+    
+    
   }
 
   public Slide getCurrentSlide () {
@@ -605,7 +620,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
     int lastposChord = Utils.trimRight(getChordLines().get(currentLine).getText()).length();
     int lasttextChord = Utils.trimRight(getTextLines().get(currentLine).getText()).length();
     int nextpos = Math.max(lastposChord, lasttextChord);
-    getEditorContent().setCurrentPart(MidiPlayerService.mergeLine(getCurrentPart(), linenumber, getCaretOffsetOfCurrentTextField()));
+    getEditorComposite().setCurrentPart(MidiPlayerService.mergeLine(getCurrentPart(), linenumber, getCaretOffsetOfCurrentTextField()));
     TextLine previousTextLine = getTextLines().get(currentLine);
     setFocus(previousTextLine);
     setCurrentCaretPosition(nextpos);
@@ -615,24 +630,24 @@ public class ContentPart extends AbstractPart implements FocusListener {
     LOGGER.info("Split part " +
       getCurrentFocusedLine() + " at caretposition " + getCaretOffsetOfCurrentTextField());
     int currentLine = getCurrentFocusedLine() - 1;
-    getEditorContent().setCurrentPart(MidiPlayerService.splitPart(getMidifile(), getCurrentPart(), getCurrentFocusedLine()));
+    getEditorComposite().setCurrentPart(MidiPlayerService.splitPart(getMidifile(), getCurrentPart(), getCurrentFocusedLine()));
     TextLine newTextLine = getTextLines().get(currentLine);
     setFocus(newTextLine);
-    getEditorContent().redrawSlidelist();
+    getEditorComposite().redrawSlidelist();
   }
 
   public void mergeWithPreviousPart () {
     LOGGER.info("Merge with previous part " +
       getCurrentFocusedLine() + " at caretposition " + getCaretOffsetOfCurrentTextField());
     int currentLine = 0;
-    getEditorContent().setCurrentPart(MidiPlayerService.mergeWithPreviousPart(getMidifile(), getCurrentPart()));
+    getEditorComposite().setCurrentPart(MidiPlayerService.mergeWithPreviousPart(getMidifile(), getCurrentPart()));
     TextLine newTextLine = getTextLines().get(currentLine);
     setFocus(newTextLine);
-    getEditorContent().redrawSlidelist();
+    getEditorComposite().redrawSlidelist();
 
   }
 
-  public List<Label> getChordLines () {
+  public List<StyledText> getChordLines () {
     return chordLines;
   }
 
@@ -687,7 +702,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
   }
 
   public boolean chordToLeft () {
-    Label label = getChordLines().get(getCurrentFocusedLine());
+    StyledText label = getChordLines().get(getCurrentFocusedLine());
     String chord = label.getText();
     if (Character.isWhitespace(chord.charAt(getCurrentCaretPosition()))) {
       StringBuilder builder = new StringBuilder(chord);
@@ -700,7 +715,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
   }
 
   public boolean chordToRight () {
-    Label label = getChordLines().get(getCurrentFocusedLine());
+    StyledText label = getChordLines().get(getCurrentFocusedLine());
 
     String chord = label.getText();
     StringBuilder builder = new StringBuilder(chord);

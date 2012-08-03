@@ -1,9 +1,11 @@
 package org.mda.editor.preview.ui.test;
 
 import static junit.framework.Assert.assertEquals;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import junit.framework.Assert;
 import mda.MidiFile;
 import mda.MidiFileChordPart;
@@ -11,21 +13,20 @@ import mda.MidiFilePart;
 import mda.MidiFilePartType;
 import mda.MidiFileTextLine;
 import mda.MidiPlayerRoot;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ExtendedModifyListener;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.calculator.Slide;
-import org.mda.editor.preview.ui.PreviewEditorContent;
+import org.mda.editor.preview.ui.PreviewEditorComposite;
 import org.mda.editor.preview.ui.parts.ContentPart;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -40,11 +41,22 @@ public class PreviewEditorTest {
 
   private static final Log LOGGER  = LogFactory.getLogger(PreviewEditorTest.class);
 
+private static PreviewEditorComposite editor;
+
+private static ApplicationSession applicationSession;
+  
+  
+  
+  
+
 
   @BeforeClass
   public static void setUp () {
     shell = new Shell();
-    MdaModule.getInjector().getInstance(ApplicationSession.class).load(null);
+    applicationSession = new ApplicationSession();
+    applicationSession.load(null);
+    editor = new PreviewEditorComposite();
+    
   }
 
   @Test
@@ -52,7 +64,11 @@ public class PreviewEditorTest {
     MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
     creator = creator.line().text("supertest");
     MidiFile midiFile = creator.get();
-    PreviewEditorContent editor = new PreviewEditorContent(shell, midiFile);
+    
+    applicationSession.setCurrentMidifile(midiFile);
+    editor.build(shell);
+    
+    
     editor.setCurrentPart(midiFile.getParts().get(0));
     editor.getContentpanel().synchronizeChordWhenTextWasModified("t", 5, 0);
   }
@@ -64,16 +80,19 @@ public class PreviewEditorTest {
     creator = creator.lineOnNewSlide().chordAndText("D", " ");
     creator = creator.lineOnNewSlide().chordAndText("", "Test");
     MidiFile midiFile = creator.get();
-    PreviewEditorContent editor = new PreviewEditorContent(shell, midiFile);
+    
+    applicationSession.setCurrentMidifile(midiFile);
+    editor.build(shell);
+    
     editor.setCurrentPart(midiFile.getParts().get(0));
-    int children = editor.getContentpanel().getChildren().length;
+    int children = editor.getContentpanel().getComp().getChildren().length;
 
     editor.setCurrentPart(midiFile.getParts().get(0));
-    int childrenAfter = editor.getContentpanel().getChildren().length;
+    int childrenAfter = editor.getContentpanel().getComp().getChildren().length;
 
 
     editor.setCurrentPart(midiFile.getParts().get(0));
-    int childrenAfterAfter = editor.getContentpanel().getChildren().length;
+    int childrenAfterAfter = editor.getContentpanel().getComp().getChildren().length;
 
     Assert.assertEquals (children, childrenAfter);
     Assert.assertEquals (children, childrenAfterAfter);
@@ -89,7 +108,10 @@ public class PreviewEditorTest {
     creator = creator.line().chordAndText("D", " ");
     creator = creator.line().chordAndText("", "Test");
     MidiFile midiFile = creator.get();
-    PreviewEditorContent editor = new PreviewEditorContent(shell, midiFile);
+    
+    applicationSession.setCurrentMidifile(midiFile);
+    editor.build(shell);
+    
     editor.setCurrentPart(midiFile.getParts().get(0));
     Assert.assertTrue (editor.getContentpanel().isLineEmpty(0));
     Assert.assertFalse (editor.getContentpanel().isLineEmpty(1));
@@ -106,7 +128,9 @@ public class PreviewEditorTest {
     creator = creator.line().chordAndText("D", "and only one line");
     MidiFile midiFile = creator.get();
 
-    PreviewEditorContent editor = new PreviewEditorContent(shell, midiFile);
+    applicationSession.setCurrentMidifile(midiFile);
+    editor.build(shell);
+    
     editor.setCurrentPart(midiFile.getParts().get(0));
     logEditorContent(editor.getContentpanel());
 
@@ -128,7 +152,9 @@ public class PreviewEditorTest {
     creator = creator.line().chordAndText("D", "and only one line");
     MidiFile midiFile = creator.get();
 
-    PreviewEditorContent editor = new PreviewEditorContent(shell, midiFile);
+    applicationSession.setCurrentMidifile(midiFile);
+    editor.build(shell);
+    
     editor.setCurrentPart(midiFile.getParts().get(0));
     logEditorContent(editor.getContentpanel());
 
@@ -149,7 +175,9 @@ public class PreviewEditorTest {
   public void newSong () {
     MidiFile song = MidiFileCreator.create().get();
 
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    applicationSession.setCurrentMidifile(song);
+    editor.build(shell);
+    
     ContentPart contentPanel = editor.getContentpanel();
     assertEquals (1, contentPanel.getTextLines().size());
   }
@@ -157,7 +185,10 @@ public class PreviewEditorTest {
   @Test
   public void moveChords () {
     MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", "Alle ").chordAndText("G", "Schoepfung staunt und").get();
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);
+    editor.build(shell);
+    
     ContentPart contentPanel = editor.getContentpanel();
 
     LOGGER.info(MidiPlayerService.toString(song.getParts().get(0)));
@@ -195,7 +226,9 @@ public class PreviewEditorTest {
     //create an empty line
     MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).get();
 
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    applicationSession.setCurrentMidifile(song);
+    editor.build(shell);
+    
     ContentPart contentPanel = editor.getContentpanel();
     Assert.assertEquals (1, contentPanel.getTextLines().size());
     Assert.assertEquals (1, contentPanel.getChordLines().size());
@@ -205,7 +238,10 @@ public class PreviewEditorTest {
   @Test
   public void trim () {
     MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D    ", "Hallo    ").get();
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);
+    editor.build(shell);
+    
     ContentPart contentPanel = editor.getContentpanel();
     MidiFilePart part = contentPanel.saveToModel();
     Assert.assertEquals("D", part.getTextlines().get(0).getChordParts().get(0).getChord());
@@ -215,7 +251,10 @@ public class PreviewEditorTest {
   @Test
   public void donttrim () {
     MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", "Hallo    ").chordAndText("D", " ").get();
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);
+    editor.build(shell);
+    
     ContentPart contentPanel = editor.getContentpanel();
     MidiFilePart part = contentPanel.saveToModel();
     Assert.assertEquals("D", part.getTextlines().get(0).getChordParts().get(0).getChord());
@@ -238,7 +277,9 @@ public class PreviewEditorTest {
      */
     ContentPart.listenersActive = false;
 
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    applicationSession.setCurrentMidifile(song);
+    editor.build(shell);
+    
     ContentPart contentPanel = editor.getContentpanel();
     contentPanel.getChordLines().get(0).setText("D G A G  D G A   ");
     Listener[] listeners = contentPanel.getTextLines().get(0).getListeners(SWT.Modify);
@@ -260,7 +301,8 @@ public class PreviewEditorTest {
     MidiFile song = part.get();
     song.getParts().get(0).getTextlines().get(2).setNewSlide(true);
 
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    editor.build(shell);
+    applicationSession.setCurrentMidifile(song);
     ContentPart contentPanel = editor.getContentpanel();
     MidiFilePart saveToModel = contentPanel.saveToModel();
     Assert.assertTrue ("newSlide is not saved", saveToModel.getTextlines().get(2).isNewSlide());
@@ -271,7 +313,9 @@ public class PreviewEditorTest {
   public void chordlineLongerAsTextLIne () {
     MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", "This is a").chordAndText("Ab", "").get();
 
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    applicationSession.setCurrentMidifile(song);
+    editor.build(shell);
+    
     ContentPart contentPanel = editor.getContentpanel();
     MidiFilePart saveToModel = contentPanel.saveToModel();
     MidiFileChordPart midiFileChordPart = saveToModel.getTextlines().get(0).getChordParts().get(1);
@@ -281,7 +325,10 @@ public class PreviewEditorTest {
   @Test
   public void editChordAfterText () {
     MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", "Hello").chordAndText("D", "  ").get();
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);
+    editor.build(shell);
+    
     ContentPart contentPanel = editor.getContentpanel();
     contentPanel.setCurrentPart(song.getParts().get(0));
     contentPanel.setCurrentCaretPositionInLine(5, 0);
@@ -301,7 +348,10 @@ public class PreviewEditorTest {
   @Test
   public void editChordInNewChordline () {
     MidiFile song = MidiFileCreator.create().part(MidiFilePartType.VERS).line().text("This is new textline").get();
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);
+    editor.build(shell);
+    
     ContentPart contentPanel = editor.getContentpanel();
     contentPanel.setCurrentPart(song.getParts().get(0));
 
@@ -314,7 +364,10 @@ public class PreviewEditorTest {
   @Test
   public void editChord () {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);
+    editor.build(shell);
+    
     ContentPart contentPanel = editor.getContentpanel();
     contentPanel.setCurrentPart(song.getParts().get(1));
     contentPanel.setCurrentFocusedLine(0);
@@ -329,7 +382,10 @@ public class PreviewEditorTest {
   @Test
   public void saveToModel () {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);
+    editor.build(shell);
+    
     MidiFile old = EcoreUtil.copy(song);
 
     //initialize model, because it is trimmed
@@ -362,7 +418,10 @@ public class PreviewEditorTest {
   public void zoom () {
 
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);
+    editor.build(shell);
+    
     shell.setSize(new Point (800, 1600));
     editor.getContentpanel().setCurrentPart(song.getParts().get(0));
 
@@ -380,7 +439,10 @@ public class PreviewEditorTest {
   public void stepToPart () throws Exception {
 
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    PreviewEditorContent editor = new PreviewEditorContent(shell, song);
+    
+    applicationSession.setCurrentMidifile(song);
+    editor.build(shell);
+    
 
     int i = 0;
     try {
@@ -395,7 +457,7 @@ public class PreviewEditorTest {
       throw new RuntimeException("Error at index " + i + ":" , e);
     }
 
-    editor.dispose();
+    editor.getComp().dispose();
   }
 
 
@@ -406,7 +468,7 @@ public class PreviewEditorTest {
 
     assertEquals (chords.size(), texts.size());
 
-    for (Label nextLabel: contentPart.getChordLines()) {
+    for (StyledText nextLabel: contentPart.getChordLines()) {
       chords.add(nextLabel.getText());
     }
 

@@ -3,26 +3,29 @@ package org.mda.google;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
+
 import mda.MidiPlayerRoot;
 import mda.UserType;
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
+
+import org.eclipse.e4.core.di.annotations.Execute;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+
 import com.google.gdata.util.ServiceException;
 
 
-public class ImportHandler extends AbstractHandler {
+public class ImportHandler {
 
   private static final Log LOGGER  = LogFactory.getLogger(ImportHandler.class);
 
-  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  @Inject
+  private ApplicationSession session;
 
-  @Override
-  public Object execute(ExecutionEvent event) throws ExecutionException {
+  @Execute
+  public Object execute() {
     MidiPlayerRoot currentModel = session.getCurrentModel();
     GoogleContactsConnector connector = new GoogleContactsConnector();
     GoogleContactsDescriptor desc = new GoogleContactsDescriptor(UserType.MEMBER, "Sound of faith");
