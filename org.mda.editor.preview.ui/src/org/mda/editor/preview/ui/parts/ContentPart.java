@@ -340,7 +340,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
             LOGGER.info("KeyPressed : - CR, splitting line");
             splitLine();
           }
-          else if (e.keyCode == SWT.CTRL) {
+          else if (e.keyCode == SWT.F1) {
             e.doit = false;
             TextLine focused = getTextLines().get(getCurrentFocusedLine());
             Point caretLocation = focused.getCaret().getLocation();

@@ -11,6 +11,9 @@ import static org.mda.Utils.ICON_REMOVE_PART;
 import static org.mda.Utils.ICON_SPLIT_PART;
 import static org.mda.Utils.ICON_TRANSPOSE;
 import static org.mda.Utils.loadImageFromProject;
+
+import javax.inject.Inject;
+
 import mda.MidiFilePart;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
@@ -52,6 +55,12 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
   private Button btnPartDetails;
 
   private Button btnNewSlideToggle;
+  
+  @Inject
+  private MidiFileDetailsShell detailsshell;
+  
+  @Inject
+  private MidiPartDetailsShell partdetailsshell;
 
 
   public Composite build  (PreviewEditorComposite parent) {
@@ -159,8 +168,8 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
       getEditorComposite().redrawSlidelist();
     }
     if (arg0.widget.equals(btnSongDetails)) {
-      MidiFileDetailsShell details = new MidiFileDetailsShell(comp.getShell(), getMidifile());
-      details.addDisposeListener(new DisposeListener() {
+      detailsshell.build(comp.getShell(), getMidifile());
+      detailsshell.getShell().addDisposeListener(new DisposeListener() {
 
         @Override
         public void widgetDisposed (DisposeEvent arg0) {
@@ -173,8 +182,8 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
     }
 
     if (arg0.widget.equals(btnPartDetails)) {
-      MidiPartDetailsShell details = new MidiPartDetailsShell(comp.getShell(), getCurrentPart());
-      details.addDisposeListener(new DisposeListener() {
+      partdetailsshell.build(comp.getShell(), getCurrentPart());
+      partdetailsshell.getShell().addDisposeListener(new DisposeListener() {
 
         @Override
         public void widgetDisposed (DisposeEvent arg0) {

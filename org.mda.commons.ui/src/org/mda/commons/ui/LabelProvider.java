@@ -4,10 +4,10 @@ import static org.mda.Utils.ICON_SESSION;
 import static org.mda.Utils.ICON_SONG;
 import static org.mda.Utils.loadImageFromProject;
 import mda.AbstractSessionItem;
-import mda.Gallery;
 import mda.MidiFile;
 import mda.MidiPlayerRoot;
 import mda.Session;
+
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
@@ -72,12 +72,6 @@ public class LabelProvider implements ILabelProvider {
       String lastURIFragment = root.eResource().getURI().lastSegment();
       return lastURIFragment + "(" + completeURI + ")";
     }
-
-    if (element instanceof SessionGroup)
-      return "Sessions";
-
-    if (element instanceof Gallery)
-      return "Gallery";
 
     if (element instanceof AbstractSessionItem) {
       return ((AbstractSessionItem) element).getName().replaceAll(".mid", "");

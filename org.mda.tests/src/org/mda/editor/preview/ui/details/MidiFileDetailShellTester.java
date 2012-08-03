@@ -15,9 +15,10 @@ public class MidiFileDetailShellTester {
     session.load(null);
     Shell shell = new Shell();
     final MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
-    MidiFileDetailsShell additionalshell = new MidiFileDetailsShell(shell, (MidiFile) root.getGallery().getGalleryItems().get(0));
+    MidiFileDetailsShell additionalshell = new MidiFileDetailsShell(); 
+    additionalshell.build(shell, (MidiFile) root.getGallery().getGalleryItems().get(0));
 
-    while (!additionalshell.isDisposed()) {
+    while (!additionalshell.getShell().isDisposed()) {
       if (!shell.getDisplay().readAndDispatch()) {
         shell.getDisplay().sleep();
       }

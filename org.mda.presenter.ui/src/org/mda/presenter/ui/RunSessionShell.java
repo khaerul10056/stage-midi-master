@@ -139,8 +139,7 @@ public class RunSessionShell {
 		treModel = new List(shell, SWT.NONE);
 	    treModel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true));
 	    final ListViewer treviewer = new ListViewer(treModel);
-	    ContentProvider contentprovider = new ContentProvider();
-	    treviewer.setContentProvider(contentprovider);
+	    treviewer.setContentProvider(new ContentProvider());
 	    treviewer.setLabelProvider(new LabelProvider());
 	    treviewer.setInput(presentationContext.getCurrentSession());
 	    treviewer.addSelectionChangedListener(new ISelectionChangedListener() {

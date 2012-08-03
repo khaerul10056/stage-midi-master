@@ -41,6 +41,9 @@ public class PreviewEditorPart {
 
 	@Inject
 	public void setSelection(Composite composite, @Optional @Named(IServiceConstants.ACTIVE_SELECTION) NavigatorItem<MidiFile> midifile) {
+		if (midifile == null || appSession.getCurrentSession().getItems().size() == 0)
+			return;
+		
 		appSession.setCurrentMidifile(midifile != null && midifile.getModelElement() != null ? midifile.getModelElement() : null);
 		
 		if (appSession.getCurrentMidifile() == null)

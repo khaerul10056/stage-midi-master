@@ -78,8 +78,6 @@ public class PreviewPart extends AbstractPart {
 
       @Override
       public void paintControl (PaintEvent e) {
-    	  if (comp.isDisposed())
-    		  return;
         LOGGER.info("paintControl was called " + e.x + "-" + e.y + "-" + e.width + "-" + e.height + "-" + e.count);
 
         Point newSize = comp.getSize();
@@ -134,8 +132,8 @@ public class PreviewPart extends AbstractPart {
   }
 
   public void setBackgroundImage(Image newImage) {
-    if (currentShownImage != null)
-      currentShownImage.dispose();
+    /**if (currentShownImage != null)
+      currentShownImage.dispose();**/
     comp.setBackgroundImage(newImage);
   }
 

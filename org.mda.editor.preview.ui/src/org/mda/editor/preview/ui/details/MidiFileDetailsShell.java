@@ -1,9 +1,12 @@
 package org.mda.editor.preview.ui.details;
 
 import javax.inject.Inject;
+
 import mda.AdditionalType;
 import mda.Copyright;
 import mda.MidiFile;
+
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -31,8 +34,8 @@ import org.mda.commons.ui.additionals.AdditionalShell;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
-
-public class MidiFileDetailsShell extends Shell {
+@Creatable
+public class MidiFileDetailsShell  {
 
   private MidiFile midifile;
 
@@ -52,6 +55,8 @@ public class MidiFileDetailsShell extends Shell {
   private Text txtPublisher;
 
   private Text txtPublisherInland;
+  
+  private Shell shell;
 
   private static final Log LOGGER  = LogFactory.getLogger(MidiFileDetailsShell.class);
 
@@ -65,8 +70,7 @@ public class MidiFileDetailsShell extends Shell {
   @Inject
   private ApplicationSession session;
 
-  private AdditionalsHandler additionalHandler = session.getAdditionalsHandler();
-
+  
   private Label colorLabelForeground;
 
   private Label colorLabelBackground;
@@ -75,6 +79,14 @@ public class MidiFileDetailsShell extends Shell {
 
   private GridData getLabelData () {
     return new GridData(SWT.BEGINNING, SWT.CENTER, false, false);
+  }
+  
+  private AdditionalsHandler getAdditionalHandler () {
+	  return session.getAdditionalsHandler();
+  }
+  
+  public Shell getShell () {
+	  return shell;
   }
 
   private GridData getContentData (final boolean fillHorizontal) {
@@ -91,26 +103,27 @@ public class MidiFileDetailsShell extends Shell {
 
   private void refreshData () {
     if (midifile.getPic() != null) {
-      Additional findByKey = additionalHandler.findByKey(midifile.getPic());
+      Additional findByKey = getAdditionalHandler().findByKey(midifile.getPic());
       if (findByKey != null)
         lblPicture.setBackgroundImage(findByKey.getImageScaled(PREVIEW_WIDTH, PREVIEW_HEIGHT));
     }
   }
 
-  public MidiFileDetailsShell (final Shell shell, final MidiFile midifile) {
+  public Shell build (final Shell mother, final MidiFile midifile) {
     this.midifile = midifile;
-    setSize(800, 700);
-    setText("Details of song " + midifile.getName());
+    this.shell = new Shell (mother); 
+    shell.setSize(800, 700);
+    shell.setText("Details of song " + midifile.getName());
 
-    setLayout(new GridLayout(2, false));
+    shell.setLayout(new GridLayout(2, false));
 
     //BackgroundImage
-    Label lblPictureText = new Label (this, SWT.NONE);
+    Label lblPictureText = new Label (shell, SWT.NONE);
     lblPictureText.setText("Background-Image:");
     lblPictureText.setLayoutData(getLabelData());
 
-    lblPicture = new Label (this, SWT.NONE);
-    lblPicture.setBackground(getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
+    lblPicture = new Label (shell, SWT.NONE);
+    lblPicture.setBackground(shell.getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
 
     refreshData();
 
@@ -118,14 +131,14 @@ public class MidiFileDetailsShell extends Shell {
 
       @Override
       public void mouseDoubleClick (MouseEvent e) {
-        final AdditionalShell shell = new AdditionalShell(getShell(), additionalHandler, AdditionalType.IMAGE, true);
-        shell.addDisposeListener(new DisposeListener() {
+        final AdditionalShell additionalshell = new AdditionalShell(shell, getAdditionalHandler(), AdditionalType.IMAGE, true);
+        additionalshell.addDisposeListener(new DisposeListener() {
 
 
 
           @Override
           public void widgetDisposed (DisposeEvent arg0) {
-            additional = shell.getSelected();
+            additional = additionalshell.getSelected();
             if (additional == null) {
               LOGGER.info("Set picture of file " + midifile.getName() + " to <null>");
               midifile.setPic(null);
@@ -147,7 +160,7 @@ public class MidiFileDetailsShell extends Shell {
     //Background-Color
     // Use a label full of spaces to show the color
     addLabel ("Background-Color:");
-    colorLabelBackground = new Label(this, SWT.NONE);
+    colorLabelBackground = new Label(shell, SWT.NONE);
     colorLabelBackground.setText("                              ");
     colorLabelBackground.setLayoutData(getColorContentData());
 
@@ -157,7 +170,7 @@ public class MidiFileDetailsShell extends Shell {
       @Override
       public void mouseDoubleClick (MouseEvent e) {
         // Create the color-change dialog
-        ColorDialog dlg = new ColorDialog(getShell());
+        ColorDialog dlg = new ColorDialog(shell);
 
         // Set the selected color in the dialog from
         // user's selected color
@@ -180,7 +193,7 @@ public class MidiFileDetailsShell extends Shell {
 
     //Foreground-Color
     addLabel("Foreground-Color:");
-    colorLabelForeground = new Label(this, SWT.NONE);
+    colorLabelForeground = new Label(shell, SWT.NONE);
     colorLabelForeground.setText("                              ");
     colorLabelForeground.setBackground(Utils.stringToColor(midifile.getForegroundColor(), defaultForeground));
     colorLabelForeground.setLayoutData(getColorContentData());
@@ -189,7 +202,7 @@ public class MidiFileDetailsShell extends Shell {
       @Override
       public void mouseDoubleClick (MouseEvent e) {
         // Create the color-change dialog
-        ColorDialog dlg = new ColorDialog(getShell());
+        ColorDialog dlg = new ColorDialog(shell);
 
         // Set the selected color in the dialog from
         // user's selected color
@@ -215,47 +228,48 @@ public class MidiFileDetailsShell extends Shell {
     });
 
     addLabel("Original title:");
-    txtOriginaltitle = new Text (this, SWT.NONE);
+    txtOriginaltitle = new Text (shell, SWT.NONE);
     txtOriginaltitle.setText(midifile.getCopyright() != null && midifile.getCopyright().getOriginaltitle() != null ? midifile.getCopyright().getOriginaltitle() : "" );
     txtOriginaltitle.setLayoutData(getContentData(true));
 
     addLabel ("Writer music:");
-    txtWriterMusic = new Text (this, SWT.NONE);
+    txtWriterMusic = new Text (shell, SWT.NONE);
     txtWriterMusic.setText(midifile.getCopyright() != null && midifile.getCopyright().getWriterMusic() != null ? midifile.getCopyright().getWriterMusic() : "" );
     txtWriterMusic.setLayoutData(getContentData(true));
 
     addLabel ("Writer text:");
-    txtWriterText = new Text (this, SWT.NONE);
+    txtWriterText = new Text (shell, SWT.NONE);
     txtWriterText.setText(midifile.getCopyright() != null && midifile.getCopyright().getWriterText() != null ? midifile.getCopyright().getWriterText() : "" );
     txtWriterText.setLayoutData(getContentData(true));
 
     addLabel ("Writer text inland:");
-    txtWriterTextInland = new Text (this, SWT.NONE);
+    txtWriterTextInland = new Text (shell, SWT.NONE);
     txtWriterTextInland.setText(midifile.getCopyright() != null && midifile.getCopyright().getWriterInlandText() != null ? midifile.getCopyright().getWriterInlandText() : "" );
     txtWriterTextInland.setLayoutData(getContentData(true));
 
     addLabel ("Year of publication:");
-    txtYear = new Text (this, SWT.NONE);
+    txtYear = new Text (shell, SWT.NONE);
     txtYear.setText(midifile.getCopyright() != null && midifile.getCopyright().getYear() > 0 ? String.valueOf(midifile.getCopyright().getYear()) : "" );
     txtYear.setLayoutData(getContentData(true));
 
     addLabel ("Publisher:");
-    txtPublisher = new Text (this, SWT.NONE);
+    txtPublisher = new Text (shell, SWT.NONE);
     txtPublisher.setText(midifile.getCopyright() != null && midifile.getCopyright().getPublisher() != null ? midifile.getCopyright().getPublisher() : "" );
     txtPublisher.setLayoutData(getContentData(true));
 
     addLabel ("Publisher inland:");
-    txtPublisherInland = new Text (this, SWT.NONE);
+    txtPublisherInland = new Text (shell, SWT.NONE);
     txtPublisherInland.setText(midifile.getCopyright() != null && midifile.getCopyright().getPublisherInland() != null ? midifile.getCopyright().getPublisherInland() : "");
     txtPublisherInland.setLayoutData(getContentData(true));
 
     buildButtons();
 
-    open ();
+    shell.open ();
+    return shell;
   }
 
   private void buildButtons () {
-    Composite btnComp = new Composite(this, SWT.NONE);
+    Composite btnComp = new Composite(shell, SWT.NONE);
     btnComp.setLayout(new RowLayout(SWT.HORIZONTAL));
     btnComp.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2 , 1));
 
@@ -265,7 +279,7 @@ public class MidiFileDetailsShell extends Shell {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
         save ();
-        dispose();
+        shell.dispose();
 
       }
     });
@@ -274,7 +288,7 @@ public class MidiFileDetailsShell extends Shell {
     btnCancel.setText("Cancel");
     btnCancel.addSelectionListener(new SelectionAdapter() {
       public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-        dispose();
+    	  shell.dispose();
       }
     });
   }
@@ -301,7 +315,7 @@ public class MidiFileDetailsShell extends Shell {
   }
 
   private void addLabel (final String labeltext) {
-    Label lblForeground = new Label (this, SWT.NONE);
+    Label lblForeground = new Label (shell, SWT.NONE);
     lblForeground.setText(labeltext);
     lblForeground.setLayoutData(getLabelData());
   }

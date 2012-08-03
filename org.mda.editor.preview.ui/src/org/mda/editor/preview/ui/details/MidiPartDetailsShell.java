@@ -2,6 +2,8 @@ package org.mda.editor.preview.ui.details;
 
 import mda.MidiFilePart;
 import mda.MidiFilePartType;
+
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -15,14 +17,20 @@ import org.eclipse.swt.widgets.Shell;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
-
-public class MidiPartDetailsShell extends Shell {
+@Creatable
+public class MidiPartDetailsShell {
 
   private MidiFilePart midifile;
 
   private Combo cmbType;
 
   private static final Log LOGGER  = LogFactory.getLogger(MidiFileDetailsShell.class);
+
+  private Shell shell;
+  
+  public Shell getShell () {
+	  return shell;
+  }
 
 
   private GridData getLabelData () {
@@ -33,19 +41,20 @@ public class MidiPartDetailsShell extends Shell {
     return new GridData(SWT.FILL, SWT.FILL, false, false);
   }
 
-  public MidiPartDetailsShell (final Shell shell, final MidiFilePart part) {
+  public Shell build (final Shell mother, final MidiFilePart part) {
     this.midifile = part;
-    setSize(500, 700);
-    setText("Details of part " + part.getParttype());
+    shell = new Shell (mother);
+    shell.setSize(500, 700);
+    shell.setText("Details of part " + part.getParttype());
 
-    setLayout(new GridLayout(2, false));
+    shell.setLayout(new GridLayout(2, false));
 
     //BackgroundImage
-    Label lblPictureText = new Label (this, SWT.NONE);
+    Label lblPictureText = new Label (shell, SWT.NONE);
     lblPictureText.setText("Type:");
     lblPictureText.setLayoutData(getLabelData());
 
-    cmbType = new Combo(this, SWT.NONE);
+    cmbType = new Combo(shell, SWT.NONE);
     GridData cd = getContentData();
     cmbType.setLayoutData(cd);
 
@@ -65,9 +74,8 @@ public class MidiPartDetailsShell extends Shell {
       }
     });
 
-
-
-    open ();
+    shell.open ();
+    return shell;
   }
 
   protected void checkSubclass () {

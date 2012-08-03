@@ -17,11 +17,7 @@ import org.mda.commons.ui.navigator.NavigatorItem;
 public class ContentProvider implements ITreeContentProvider {
 
 
-  public ContentProvider () {
-
-  }
-
-  @Override
+    @Override
   public void dispose () {
     // TODO Auto-generated method stub
 
@@ -46,7 +42,7 @@ public class ContentProvider implements ITreeContentProvider {
 
     if (parentElement instanceof MidiPlayerRoot) {
       MidiPlayerRoot root = (MidiPlayerRoot) parentElement;
-      return new Object [] {root.getGallery(), new SessionGroup(root)};
+      return new Object [] {root.getGallery()};
     }
 
     if (parentElement instanceof Gallery) {
@@ -60,11 +56,6 @@ public class ContentProvider implements ITreeContentProvider {
       }
 
       return songs.toArray();
-    }
-
-    if (parentElement instanceof SessionGroup) {
-      SessionGroup session = (SessionGroup) parentElement;
-      return session.getRoot().getSessions().toArray();
     }
 
     if (parentElement instanceof Session) {
@@ -92,7 +83,7 @@ public class ContentProvider implements ITreeContentProvider {
 
   @Override
   public boolean hasChildren (Object element) {
-    return element instanceof MidiPlayerRoot || element instanceof Gallery || element instanceof SessionGroup || element instanceof Session;
+    return element instanceof MidiPlayerRoot || element instanceof Gallery || element instanceof Session;
   }
 
 }
