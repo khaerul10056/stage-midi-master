@@ -2,6 +2,7 @@ package org.mda.commons.ui.imports;
 
 import java.util.Arrays;
 import java.util.List;
+import javax.inject.Inject;
 import mda.MidiFile;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -15,7 +16,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 import org.mda.importer.DefaultTextImporterConfig;
 import org.mda.importer.TextImporterService;
@@ -27,7 +27,8 @@ import org.mda.logging.LogFactory;
  * @author oleym */
 public class ImportShell extends Shell {
 
-  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  @Inject
+  private ApplicationSession session;
 
   private Button             btnCancel;
   private Button             btnOk;

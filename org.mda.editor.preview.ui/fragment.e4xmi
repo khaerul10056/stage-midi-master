@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmi:id="_8lIdINHhEeGaZZybiWImTQ">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_-zUL8NHhEeGaZZybiWImTQ" featurename="children" parentElementId="org.mda.commons.ui.partstack.right">
+    <elements xsi:type="basic:Part" xmi:id="_PHGjgNHiEeGaZZybiWImTQ" elementId="org.mda.commons.ui.partstack.right" contributionURI="bundleclass://org.mda.editor.preview.ui/org.mda.editor.preview.ui.PreviewEditorPart" label="Edit"/>
+  </fragments>
+</fragment:ModelFragments>

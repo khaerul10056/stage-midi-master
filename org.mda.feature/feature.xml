@@ -22,19 +22,33 @@
       <import plugin="org.eclipse.emf" version="2.6.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.5.0" match="greaterOrEqual"/>
       <import plugin="org.mda.model" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="com.google.inject" version="2.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ui"/>
-      <import plugin="org.mda.core" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface" version="3.7.0" match="greaterOrEqual"/>
+      <import plugin="javax.inject" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.e4.core.contexts" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.e4.core.di" version="1.1.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.resources" version="3.7.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.e4.ui.css.swt"/>
+      <import plugin="org.eclipse.e4.ui.workbench.renderers.swt"/>
+      <import plugin="org.eclipse.e4.ui.workbench.swt"/>
+      <import plugin="org.mda.core" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.swt" version="3.100.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface" version="3.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.workbench" version="3.103.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.e4.ui.workbench" version="0.10.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.e4.ui.di"/>
       <import plugin="org.mda.commons.ui" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.eclipse.ui.editors" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.mda.presenter.ui" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ui" version="3.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.e4.ui.model.workbench" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.e4.ui.services" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.e4.ui.bindings" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.e4.ui.di" version="0.10.1" match="greaterOrEqual"/>
       <import plugin="org.mda.export.powerpoint" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.jface" version="3.7.0" match="greaterOrEqual"/>
-      <import plugin="org.aopalliance" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.swt" version="3.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.commands" version="3.6.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.e4.core.di.extensions" version="0.11.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

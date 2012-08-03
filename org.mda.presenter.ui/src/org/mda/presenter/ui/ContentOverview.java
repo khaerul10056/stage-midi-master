@@ -1,11 +1,15 @@
 package org.mda.presenter.ui;
 
-import static org.mda.commons.ui.calculator.CalculatorRegistry.getCalculator;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
+
 import mda.AbstractSessionItem;
 import mda.MidiFile;
 import mda.MidiFilePart;
+
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
@@ -13,7 +17,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.part.ViewPart;
+import org.eclipse.swt.widgets.Display;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
@@ -22,43 +26,45 @@ import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.slide.IPresentationView;
 
-
-public class ContentOverview extends ViewPart implements IPresentationView{
+@Creatable
+public class ContentOverview  implements IPresentationView{
 
   private static final Log LOGGER  = LogFactory.getLogger(ContentOverview.class);
 
-  private PresentationContext  presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
+  @Inject
+  private PresentationContext  presentationContext;
+  
+  @Inject
+  private MidiFileSlideCalculator calculator; 
 
   private List<ContentOverviewPanel> previewParts = new ArrayList<ContentOverviewPanel>();
 
-  private Composite root;
+  private Composite comp;
 
   private AbstractSessionItem currentItem;
 
 
-  @Override
-  public void createPartControl (Composite arg0) {
+  public Composite build (Composite mother) {
     LOGGER.info("create Part ContentOverview");
-    this.root = arg0;
-    root.setLayout(new GridLayout(4, false));
+    comp = new Composite(mother, SWT.NONE);
+    comp.setLayout(new GridLayout(4, false));
     presentationContext.registerView(this);
+    return comp;
   }
 
   public List <ContentOverviewPanel> getPreviewParts () {
     return previewParts;
   }
-
-  @Override
-  public void setFocus () {
-    // TODO Auto-generated method stub
-
+  
+  public Composite getComp () {
+	  return comp;
   }
 
 
 
   @Override
   public void end () {
-    dispose();
+    comp.dispose();
   }
 
   @Override
@@ -74,16 +80,19 @@ public class ContentOverview extends ViewPart implements IPresentationView{
         MidiFile file = (MidiFile) currentItem;
 
         Point size = new Point (320, 240);
-        MidiFileSlideCalculator calculator = (MidiFileSlideCalculator) getCalculator(MidiFileSlideCalculator.class);
         CalculatorPreCondition calcPreCondition = new CalculatorPreCondition();
         DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
         calculator.setConfig(config);
         calcPreCondition.setCalculationsize(size);
         List<Slide> slides = calculator.calculate(currentItem, calcPreCondition);
         for (Slide slide: slides) {
-          final ContentOverviewPanel overviewPanel = new ContentOverviewPanel(root, (MidiFilePart) slide.getModelRef(), slide, config);
-          overviewPanel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+          final ContentOverviewPanel overviewPanel = new ContentOverviewPanel(comp, (MidiFilePart) slide.getModelRef(), slide, config);
+          GridData gd = new GridData(SWT.FILL, SWT.FILL, false, false);
+          gd.heightHint = size.y; 
+          gd.widthHint = size.x;
           overviewPanel.setSize(size);
+          overviewPanel.setLayoutData(gd);
+          overviewPanel.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_CYAN));
           overviewPanel.redraw();
           overviewPanel.addMouseListener(new MouseAdapter() {
 
@@ -102,8 +111,7 @@ public class ContentOverview extends ViewPart implements IPresentationView{
         }
       }
 
-      root.layout(true, true);
-      refresh();
+      comp.layout(false, true);
 
 
     }

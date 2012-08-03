@@ -7,11 +7,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import javax.inject.Inject;
+
 import mda.AbstractSessionItem;
 import mda.MidiFile;
+
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.graphics.Point;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
+import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.FontDescriptor;
@@ -23,6 +28,7 @@ import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.PageSize;
@@ -32,35 +38,42 @@ import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfWriter;
 
 
+@Creatable
 public class PdfExporter extends AbstractExporter {
 
   private static final Log LOGGER  = LogFactory.getLogger(PdfExporter.class);
 
-  private MidiFileSlideCalculator calculator       = new MidiFileSlideCalculator();
-  private CalculatorPreCondition  calcPreCondition = new CalculatorPreCondition();
+  @Inject
+  private MidiFileSlideCalculator calculator;
+  
+  @Inject
+  private CalculatorPreCondition  calcPreCondition;
 
-  private ApplicationSession applicationsession = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  @Inject
+  private ApplicationSession applicationsession;
 
   private List <Slide> lastSlides = new ArrayList<Slide>();
 
-  public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig config) throws ExportException  {
+  public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig config2) throws ExportException  {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
 
-//DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-//    config.setChordVisible(exportconfig.isWithChords());
-//    config.setShowBlockType(true);
-//    config.setPagePerPart(false);
-//    config.setNewPageRespected(false);
-//    config.setShowTitle(true);
-//    config.setFontsize(new Integer (12));
-//    config.setGraphicsContext(new PDFGraphicsContext());
-//
-//    config.setOptimizeLineFilling(true); //TODO
-//    //config.setOptimizeEqualParts(true); //TODO
-//    config.setOptimizeEmptyTokens(true);
-//    config.setShowCopyright(true);
-//    config.setBorder(35);
+    
+    //TODO Generalize to config2
+    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    config.setChordVisible(true);
+    config.setShowBlockType(true);
+    config.setPagePerPart(false);
+    config.setNewPageRespected(false);
+    config.setShowTitle(true);
+    config.setFontsize(new Integer (12));
+    config.setGraphicsContext(new PDFGraphicsContext());
+
+    config.setOptimizeLineFilling(true); //TODO
+    //config.setOptimizeEqualParts(true); //TODO
+    config.setOptimizeEmptyTokens(true);
+    config.setShowCopyright(true);
+    config.setBorder(35);
     calculator.setConfig(config);
 
     Rectangle pagesizeA4 = PageSize.A4;

@@ -8,7 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
@@ -17,7 +16,7 @@ import org.mda.commons.ui.IMidiFileEditorUIConfig;
 public class PresentationConfiguratorTest {
 
   private PresentationConfigurator  configurator;
-  private static ApplicationSession appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  private static ApplicationSession appSession = new ApplicationSession();
 
   @Before
   public void setup () {

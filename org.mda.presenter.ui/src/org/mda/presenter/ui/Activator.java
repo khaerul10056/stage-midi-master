@@ -4,8 +4,6 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.osgi.framework.BundleContext;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -33,8 +31,6 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		LOGGER.info("Starting bundle " + getClass().getName() + "-" +  context.getBundle().getSymbolicName());
-		Injector injector = Guice.createInjector(new MdaPresenterModule());
-    injector.injectMembers(this);
 		plugin = this;
 	}
 

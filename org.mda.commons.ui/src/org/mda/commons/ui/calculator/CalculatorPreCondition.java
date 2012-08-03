@@ -1,8 +1,10 @@
 package org.mda.commons.ui.calculator;
 
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.graphics.Point;
 
 
+@Creatable
 public class CalculatorPreCondition {
 
   /**

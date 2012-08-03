@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import com.google.gdata.data.PlainTextConstruct;
@@ -52,7 +51,7 @@ public class TestGoogleContacts {
 
   @BeforeClass
   public static void beforeClass () {
-    session = MdaModule.getInjector().getInstance(ApplicationSession.class);
+    session = new ApplicationSession();
     session.load(null);
     currentModel = session.getCurrentModel();
   }

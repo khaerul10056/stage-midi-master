@@ -4,21 +4,21 @@ import java.io.File;
 import mda.MidiPlayerRoot;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
-import org.mda.commons.ui.config.ConfigShell;
+import org.mda.commons.ui.config.ConfigShellBuilder;
 
 
 public class ConfigShellTester {
   /** @param args */
   public static void main (String[] args) throws Exception {
-    ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
+    ApplicationSession session = new ApplicationSession();
     session.load(null);
     Shell shell = new Shell();
     final MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));
-    ConfigShell additionalshell = new ConfigShell(shell, root.getConfig());
+    ConfigShellBuilder additionalshell = new ConfigShellBuilder();
+    Shell configShell = additionalshell.build(shell);
 
-    while (!additionalshell.isDisposed()) {
+    while (!configShell.isDisposed()) {
       if (!shell.getDisplay().readAndDispatch()) {
         shell.getDisplay().sleep();
       }

@@ -17,7 +17,6 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
@@ -33,7 +32,7 @@ public class MidiFileSlideCalculatorTest {
 
   private static final Log LOGGER  = LogFactory.getLogger(MidiFileSlideCalculatorTest.class);
 
-  private static ApplicationSession appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  private static ApplicationSession appSession = new ApplicationSession();
 
   final String PUBLISHER = "PUBLISHER";
   final String PUBLISHERINLAND = "PUBLISHERINLAND";

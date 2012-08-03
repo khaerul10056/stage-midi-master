@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-  <extension
-         point="org.eclipse.ui.commands">
-      <command
-            defaultHandler="org.mda.google.ImportHandler"
-            id="org.mda.google.Import"
-            name="Importuser">
-      </command>
-   </extension>
-   <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution locationURI="menu:org.eclipse.ui.main.menu">
-         <menu id="fileUser"
-               label="User">
-            <command 	commandId="org.mda.google.Import"
-                  		label="Import users from google..."
-                  		style="push"
-                  		tooltip="Import users from google...">
-            </command>
-         </menu>
-      </menuContribution>
-   </extension>
+ <extension id="id" point="org.eclipse.e4.workbench.model">
+        <fragment uri="fragment.e4xmi"></fragment>
+      </extension>
 </plugin>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_z2tB8M8DEeGoa5x03UtTdg">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_HfcjIM8EEeGoa5x03UtTdg" featurename="children" parentElementId="org.mda.application.menu.file" positionInList="0">
+    <elements xsi:type="menu:DirectMenuItem" xmi:id="_QT73kM8EEeGoa5x03UtTdg" elementId="org.mda.application.menu.songbook" label="SendSongbooks" tooltip="" contributionURI="bundleclass://org.mda.export.powerpoint/org.mda.commons.ui.config.SendSongbooksHandler"/>
+  </fragments>
+</fragment:ModelFragments>

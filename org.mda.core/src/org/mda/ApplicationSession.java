@@ -5,16 +5,26 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
+
+import javax.inject.Singleton;
+
 import mda.Configuration;
+import mda.MidiFile;
+import mda.MidiFilePart;
+import mda.MidiFilePartType;
 import mda.MidiPlayerRoot;
+import mda.Session;
+
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.mda.additionals.AdditionalsHandler;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.transpose.FeatureActivation;
 
 
+@Singleton
+@Creatable
 public class ApplicationSession {
-
 
   private static final Log LOGGER  = LogFactory.getLogger(ApplicationSession.class);
 
@@ -40,7 +50,16 @@ public class ApplicationSession {
   private final GlobalConfigurations globalConfs = new GlobalConfigurations();
 
   private final FeatureActivation featureActivation = new FeatureActivation();
+  
+  private Session currentSession;
+  
+  private MidiFile currentMidifile;
+  
 
+  
+  public Configuration getConfig () {
+	  return getCurrentModel().getConfig();
+  }
 
 
   public MidiPlayerRoot getCurrentModel () {
@@ -59,6 +78,8 @@ public class ApplicationSession {
       confPath.mkdirs();
     return confPath;
   }
+  
+  
 
 
   private void setDefaultOnDemand (final Properties properties, final String key, final String defaultValue) {
@@ -108,6 +129,9 @@ public class ApplicationSession {
       getFeatureActivation().setShowGridEnabled(Boolean.valueOf(sessionProps.getProperty(PROP_ENABLEGRID)));
       getFeatureActivation().setShowWhitespaces(Boolean.valueOf(sessionProps.getProperty(PROP_SHOWWHITESPACES)));
       getFeatureActivation().setPresentationAlwaysOnTop(Boolean.valueOf(sessionProps.getProperty(PROP_PRESENTATIONALWAYSONTOP)));
+      
+      //TODO set last active session 
+      setCurrentSession(getCurrentModel().getSessions().get(0));
 
       if (! configFileAsFile.exists())
         save(configFileAsFile);
@@ -192,6 +216,32 @@ public class ApplicationSession {
   public FeatureActivation getFeatureActivation () {
     return featureActivation;
   }
+
+
+  public Session getCurrentSession () {
+    return currentSession;
+  }
+
+
+  public void setCurrentSession (Session currentSession) {
+    this.currentSession = currentSession;
+  }
+
+
+public MidiFile getCurrentMidifile() {
+	return currentMidifile;
+}
+
+
+public void setCurrentMidifile(MidiFile currentMidifile) {
+	this.currentMidifile = currentMidifile;
+    if (currentMidifile != null && currentMidifile.getParts().size() == 0) { 
+        MidiFilePart part = MidiPlayerService.mf.createMidiFilePart();
+        part.setParttype(MidiFilePartType.VERS);
+        currentMidifile.getParts().add(part);
+      }
+
+}
 
 
 

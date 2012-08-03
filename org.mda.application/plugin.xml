@@ -31,7 +31,7 @@
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
-            application="org.mda.application.application"
+            application="org.eclipse.e4.ui.workbench.swt.E4Application"
             name="MIDI Driven Application">
          <property
                name="windowImages"
@@ -40,6 +40,18 @@
          <property
                name="appName"
                value="MIDI Driven Application">
+         </property>
+         <property
+               name="applicationXMI"
+               value="org.mda.commons.ui/Application.e4xmi">
+         </property>
+         <!--<property
+               name="applicationCSS"
+               value="platform:/plugin/org.mda.commons.ui/css/blue-gradient.css">
+         </property>-->
+         <property
+               name="lifeCycleURI"
+               value="bundleclass://org.mda.application/org.mda.application.Application">
          </property>
       </product>
    </extension>

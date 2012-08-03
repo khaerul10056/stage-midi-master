@@ -6,21 +6,25 @@ import mda.MidiPlayerRoot;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
-import org.mda.editor.preview.ui.PreviewEditorContent;
+import org.mda.editor.preview.ui.PreviewEditorComposite;
 
 public class PreviewEditorTester extends Shell {
 
 
   private final MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("../org.mda.core.test/testdata/testmodel.conf"));
-  private PreviewEditorContent editor;
+  private PreviewEditorComposite editor;
 
   public PreviewEditorTester () {
     super ();
     setText("Preview editor tester");
     setLayout(new FillLayout());
-    setEditor(new PreviewEditorContent(this, (MidiFile) root.getGallery().getGalleryItems().get(0)));
-    //open();
+    ApplicationSession applicationSession = new ApplicationSession();
+    applicationSession.load(null);
+    applicationSession.setCurrentMidifile((MidiFile) root.getGallery().getGalleryItems().get(0));
+    editor.build(this);
+    
   }
 
   @Override
@@ -38,11 +42,11 @@ public class PreviewEditorTester extends Shell {
     }
   }
 
-  public PreviewEditorContent getEditor () {
+  public PreviewEditorComposite getEditor () {
     return editor;
   }
 
-  public void setEditor (PreviewEditorContent editor) {
+  public void setEditor (PreviewEditorComposite editor) {
     this.editor = editor;
   }
 

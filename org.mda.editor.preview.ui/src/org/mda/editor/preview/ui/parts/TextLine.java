@@ -3,7 +3,6 @@ package org.mda.editor.preview.ui.parts;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.Utils;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -13,7 +12,7 @@ public class TextLine extends StyledText{
 
   public final static int TEXTLINE_LENGTH = 80;
 
-  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  private ApplicationSession session = new ApplicationSession();
 
   private static final Log LOGGER  = LogFactory.getLogger(TextLine.class);
 

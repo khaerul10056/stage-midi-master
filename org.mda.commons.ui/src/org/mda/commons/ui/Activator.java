@@ -1,17 +1,14 @@
 package org.mda.commons.ui;
 
 import java.io.IOException;
+import javax.inject.Inject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.osgi.framework.BundleContext;
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
 
 public class Activator extends AbstractUIPlugin {
 
@@ -40,8 +37,10 @@ public class Activator extends AbstractUIPlugin {
     super.start(context);
 
     LOGGER.info("Starting bundle " + PLUGIN_ID);
-    Injector injector = Guice.createInjector(new MdaModule());
-    injector.injectMembers(this);
+    //TODO
+//    MdaModule.getInjector().in
+//    Injector injector = Guice.createInjector(new MdaModule());
+//    injector.injectMembers(this);
 
     plugin = this;
   }

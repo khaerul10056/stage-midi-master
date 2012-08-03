@@ -9,7 +9,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.calculator.Slide;
 
@@ -21,9 +20,9 @@ public class PresentationContextTest {
 
   @Before
   public void setup () {
-    presentationContext = MdaPresenterModule.getInjector().getInstance(PresentationContext.class);
+    presentationContext = new PresentationContext();
     presentationContext.clear();
-    instance = MdaModule.getInjector().getInstance(ApplicationSession.class);
+    instance = new ApplicationSession();
   }
 
   @After

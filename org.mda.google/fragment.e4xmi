@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_DSJZQNGWEeGQsvIUFnm5DA">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_OgngANGaEeGQsvIUFnm5DA" featurename="children" parentElementId="org.mda.commons.ui.menu.user">
+    <elements xsi:type="menu:DirectMenuItem" xmi:id="_UeTmcNGaEeGQsvIUFnm5DA" elementId="org.mda.application.menu.importUser" label="Import from Google..." contributionURI="bundleclass://org.mda.google/org.mda.google.ImportHandler"/>
+  </fragments>
+</fragment:ModelFragments>

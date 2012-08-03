@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
@@ -26,7 +25,7 @@ public class TestPdfExporter {
 
   private File tmpFile = new File ("tmp/export.pdf");
 
-  private static ApplicationSession appSession = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  private static ApplicationSession appSession = new ApplicationSession();
 
   @Before
   public void before () {

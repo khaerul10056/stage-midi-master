@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.mda</groupId>
+	<artifactId>mda</artifactId>
+	<version>0.9.0-SNAPSHOT</version>
+
+
+	<packaging>pom</packaging>
+
+	<properties>
+		<tycho-version>0.15.0</tycho-version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>juno</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/juno</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<!-- Plugin to enable tycho -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+
+			<!-- Plugin for target platform -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<resolver>p2</resolver>
+					<pomDependencies>consider</pomDependencies>
+					<enviroments>
+						<enviroment>
+							<os>lin32</os>
+							<ws>lin32</ws>
+							<arch>x86</arch>
+						</enviroment>
+					</enviroments>
+				</configuration>
+			</plugin>
+
+			<!-- Plugin for source plugin generation -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>plugin-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Plugin for running tests -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho-version}</version>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<modules>
+		<module>org.mda.model</module>
+		<module>org.mda.core</module>
+	</modules>
+
+</project>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ASCII"?>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_4yFSMM0TEeG6YYlJ-b_dpA" elementId="org.mda.application.application">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_ZsRnINsREeGddIlX7Js6XA" elementId="org.mda.commons.ui.trimmedwindow.0" label="MDA">
+    <children xsi:type="advanced:PerspectiveStack" xmi:id="_-aYf8M3uEeGENvdVhUHUNw" elementId="org.mda.commons.ui.perspectivestack.0">
+      <children xsi:type="advanced:Perspective" xmi:id="_FyOQMM3vEeGENvdVhUHUNw" elementId="org.mda.commons.ui.perspective.admin" label="Administration">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_Ks6okM3vEeGENvdVhUHUNw" elementId="org.mda.commons.ui.partsashcontainer.0" horizontal="true">
+          <children xsi:type="basic:PartStack" xmi:id="_cenvoM3vEeGENvdVhUHUNw" elementId="org.mda.commons.ui.partstack.left" containerData="30" selectedElement="_M34EQM3vEeGENvdVhUHUNw">
+            <children xsi:type="basic:Part" xmi:id="_M34EQM3vEeGENvdVhUHUNw" elementId="org.mda.commons.ui.part.sessionoverview" contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.SessionOverviewPart" label="Session Overview"/>
+          </children>
+          <children xsi:type="basic:PartStack" xmi:id="_duuFkM3vEeGENvdVhUHUNw" elementId="org.mda.commons.ui.partstack.right" containerData="70"/>
+        </children>
+      </children>
+    </children>
+    <handlers xmi:id="_msmWsM0XEeG6YYlJ-b_dpA" elementId="org.mda.application.handler.0" contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.commands.ExitHandler"/>
+    <mainMenu xmi:id="_uphRUM0UEeG6YYlJ-b_dpA" elementId="org.mda.application.menu.0">
+      <children xsi:type="menu:Menu" xmi:id="_v5S3IM0UEeG6YYlJ-b_dpA" elementId="org.mda.application.menu.file" label="General">
+        <children xsi:type="menu:DirectMenuItem" xmi:id="_WuBJ0NGbEeGQsvIUFnm5DA" elementId="org.mda.commons.ui.directmenuitem.config" label="Configuration..." contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.config.ConfigHandler"/>
+        <children xsi:type="menu:DirectMenuItem" xmi:id="_KcFy0M01EeG6YYlJ-b_dpA" elementId="org.mda.commons.ui.directmenuitem.0" label="Exit" contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.commands.ExitHandler"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_sG22oNsSEeGddIlX7Js6XA" elementId="org.mda.commons.ui.menu.session" label="Session"/>
+      <children xsi:type="menu:Menu" xmi:id="_iW5DsNGWEeGQsvIUFnm5DA" elementId="org.mda.commons.ui.menu.user" label="User">
+        <children xsi:type="menu:DirectMenuItem" xmi:id="_yX0wsNGWEeGQsvIUFnm5DA" elementId="org.mda.commons.ui.directmenuitem.0" label="Edit..." contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.user.UserHandler"/>
+      </children>
+    </mainMenu>
+    <trimBars xmi:id="_cVV7INsREeGddIlX7Js6XA" elementId="org.mda.commons.ui.trimbar.0">
+      <children xsi:type="menu:ToolBar" xmi:id="_drzXwNsREeGddIlX7Js6XA" elementId="org.mda.commons.ui.toolbar.main"/>
+    </trimBars>
+  </children>
+  <addons xmi:id="_4yFSMc0TEeG6YYlJ-b_dpA" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
+  <addons xmi:id="_4yFSMs0TEeG6YYlJ-b_dpA" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
+  <addons xmi:id="_4yFSM80TEeG6YYlJ-b_dpA" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
+  <addons xmi:id="_4yFSNM0TEeG6YYlJ-b_dpA" elementId="org.eclipse.e4.ui.workbench.commands.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.CommandProcessingAddon"/>
+  <addons xmi:id="_4yFSNc0TEeG6YYlJ-b_dpA" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
+  <addons xmi:id="_4yFSNs0TEeG6YYlJ-b_dpA" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
+</application:Application>

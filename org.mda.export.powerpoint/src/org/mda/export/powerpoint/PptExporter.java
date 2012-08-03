@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import javax.inject.Inject;
 import mda.AbstractSessionItem;
 import org.apache.poi.hslf.model.Fill;
 import org.apache.poi.hslf.model.Line;
@@ -20,7 +21,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.Utils;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.export.AbstractExporter;
@@ -34,7 +34,8 @@ public class PptExporter extends AbstractExporter {
 
   private SlideShow lastExportedResult;
 
-  private ApplicationSession applicationsession = MdaModule.getInjector().getInstance(ApplicationSession.class);
+  @Inject
+  private ApplicationSession applicationsession;
 
 
 

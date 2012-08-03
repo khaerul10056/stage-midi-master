@@ -10,6 +10,7 @@ import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
 
+
 public class CopyrightSerializer {
 
   private static final Log LOGGER  = LogFactory.getLogger(CopyrightSerializer.class);

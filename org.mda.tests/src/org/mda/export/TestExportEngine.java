@@ -9,7 +9,6 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
 import org.mda.logging.Log;
@@ -29,7 +28,7 @@ public class TestExportEngine {
     final String MAIL1 = "markus.oley@t-online.de";
     final String NOTSONGBOOKUSER = "NOTSONGBOOKUSER";
 
-    ApplicationSession instance = MdaModule.getInjector().getInstance(ApplicationSession.class);
+    ApplicationSession instance = new ApplicationSession();
     instance.load(null);
     instance.getCurrentModel().getConfig().setPdfExportPath("tmp/export");
     File path = new File ("tmp/export");

@@ -1,60 +1,47 @@
 package org.mda.application;
 
-import org.eclipse.equinox.app.IApplication;
-import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.PlatformUI;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
+import java.util.Locale;
+
+import javax.inject.Inject;
+
+import org.eclipse.e4.ui.workbench.lifecycle.PostContextCreate;
 import org.mda.ApplicationSession;
-import org.mda.MdaModule;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
 /**
- * This class controls all aspects of the application's execution
+ * This class controls all aspects of the application's lifecycle, 
+ * it is registered in plugin.xml
  */
-public class Application implements IApplication {
+public class Application {
 
   private static final Log LOGGER  = LogFactory.getLogger(Application.class);
 
-  private ApplicationSession session = MdaModule.getInjector().getInstance(ApplicationSession.class);
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
-	 */
-	public Object start(IApplicationContext context) throws Exception {
-
+  @Inject
+  private ApplicationSession session;
+  
+  
+  
+  
+  @PostContextCreate
+  public void initializeSession () {
 	  
     session.load(null);
-
     session.setVersion(Activator.getDefault().getVersion());
+    
+    logFonts();
+  }
+  
+  private void logFonts () {
+	  LOGGER.info("All registered fonts:");
+	  GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	    Font[] fonts = e.getAllFonts(); // Get the fonts
+	    for (Font f : fonts) {
+	      LOGGER.info("-" + f.getFontName() + "-" + f.getFamily() + "-" + f.getFamily(Locale.getDefault()));
+	    }
+  }
 
-		Display display = PlatformUI.createDisplay();
-		try {
-			int returnCode = PlatformUI.createAndRunWorkbench(display, new ApplicationWorkbenchAdvisor());
-			if (returnCode == PlatformUI.RETURN_RESTART)
-				return IApplication.EXIT_RESTART;
-			else
-				return IApplication.EXIT_OK;
-		} finally {
-			display.dispose();
-		}
 
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.equinox.app.IApplication#stop()
-	 */
-	public void stop() {
-		if (!PlatformUI.isWorkbenchRunning())
-			return;
-		final IWorkbench workbench = PlatformUI.getWorkbench();
-		final Display display = workbench.getDisplay();
-		display.syncExec(new Runnable() {
-			public void run() {
-				if (!display.isDisposed())
-					workbench.close();
-			}
-		});
-	}
 }

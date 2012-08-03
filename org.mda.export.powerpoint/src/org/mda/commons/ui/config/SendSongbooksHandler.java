@@ -1,22 +1,23 @@
 package org.mda.commons.ui.config;
 
 import java.util.Collection;
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
+
+import javax.inject.Inject;
+
+import org.eclipse.e4.core.di.annotations.Execute;
 import org.mda.export.ExportEngine;
 import org.mda.export.ExportResult;
 
 
-public class SendSongbooksHandler  extends AbstractHandler{
+public class SendSongbooksHandler {
+  
+  @Inject
+  ExportEngine engine;
 
-  @Override
-  public Object execute (ExecutionEvent arg0) throws ExecutionException {
-    ExportEngine engine = new ExportEngine();
+  @Execute
+  public void execute (ExportEngine engine) {
     Collection<ExportResult> exportSongbooks = engine.exportSongbooks();
-    //TODO check results on errors
-    //engine.mailExportedSongbooks(exportSongbooks); TODO enable, if sending is ok
-    return null;
+    //engine.mailExportedSongbooks(exportSongbooks); TODO enable, if sending is OK 
   }
 
 }

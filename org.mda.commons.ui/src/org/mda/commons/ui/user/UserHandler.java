@@ -1,18 +1,17 @@
 package org.mda.commons.ui.user;
 
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.handlers.HandlerUtil;
+import org.mda.ApplicationSession;
 
 
-public class UserHandler extends AbstractHandler{
+public class UserHandler {
 
-  @Override
-  public Object execute (ExecutionEvent arg0) throws ExecutionException {
-    Shell parentShell = HandlerUtil.getActiveWorkbenchWindow(arg0).getShell();
-    new UserShell(parentShell);
+  @Execute
+  public Object execute (Shell parentShell, ApplicationSession session) throws ExecutionException {
+    new UserShell(parentShell, session);
+    
     return null;
   }
 
