@@ -51,8 +51,14 @@ public class ApplicationSession {
 
   private final FeatureActivation featureActivation = new FeatureActivation();
   
+  /**
+   * currently edited session
+   */
   private Session currentSession;
   
+  /**
+   * currently edited midifile
+   */
   private MidiFile currentMidifile;
   
 

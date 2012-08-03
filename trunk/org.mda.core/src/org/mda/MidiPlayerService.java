@@ -540,6 +540,20 @@ public class MidiPlayerService {
     return null;
   }
 
+  /**
+   * creates a new session  
+   * @param currentModel model 
+   * @param name  name of the new model
+   */
+	public static Session createSession(MidiPlayerRoot currentModel, String name) {
+		
+		Session newSession = mf.createSession(); 
+		newSession.setName(name);
+		currentModel.getSessions().add(newSession);
+		
+		return newSession;
+
+	}
 
 
 }

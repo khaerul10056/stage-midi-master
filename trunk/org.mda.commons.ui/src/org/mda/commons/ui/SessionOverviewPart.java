@@ -2,9 +2,16 @@
 package org.mda.commons.ui;
 
 import javax.inject.Inject;
+import javax.inject.Named;
+
+import mda.AbstractSessionItem;
+import mda.MidiFile;
+import mda.Session;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
+import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -20,7 +27,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Tree;
 import org.mda.ApplicationSession;
-import org.mda.commons.ui.find.FindPanel;
+import org.mda.commons.ui.find.SearchEnginePanel;
+import org.mda.commons.ui.navigator.NavigatorItem;
 
 @Creatable
 public class SessionOverviewPart {
@@ -29,8 +37,11 @@ public class SessionOverviewPart {
   
   private ApplicationSession appSession;
   
-  @Inject
   private ESelectionService selectionService;
+
+private TreeViewer treviewer;
+
+private Label lblDetails;
 
   
   private GridData getGd (Integer verticalIndent) {
@@ -44,7 +55,8 @@ public class SessionOverviewPart {
   }
   
 	@Inject
-	public SessionOverviewPart(final Composite comp, final ApplicationSession session) {
+	public SessionOverviewPart(final Composite comp, final ApplicationSession session, final ESelectionService selectionService) {
+		this.selectionService = selectionService;
 	  appSession = session;
 	  comp.setLayout(new GridLayout(2, false));
 	  
@@ -61,8 +73,8 @@ public class SessionOverviewPart {
 	  
 	  //Details
 	  
-	  Label lblDetails = new Label (comp, SWT.None); 
-    lblDetails.setText("Session irgendwas");
+	  lblDetails = new Label (comp, SWT.None); 
+    lblDetails.setText("");
     Font font = lblDetails.getFont(); 
     lblDetails.setFont(new Font(font.getDevice(), "Arial", 18, SWT.BOLD));
     GridData gd2 = getGd(30);
@@ -76,21 +88,21 @@ public class SessionOverviewPart {
     gdLabel.grabExcessHorizontalSpace = false;
     GridData gdContent = getGd(null);
 	  
-	  Label lblName = new Label (comp, SWT.None); 
-    lblName.setText("Location:");
-    lblName.setLayoutData(gdLabel);
-    
-    Label lblNameData = new Label (comp, SWT.None); 
-    lblNameData.setText("Petrikirche Kulmbach");
-    lblNameData.setLayoutData(gdContent);
-    
-	  Label lblWhen = new Label (comp, SWT.None); 
-    lblWhen.setText("Date:");
-    lblWhen.setLayoutData(gdLabel);
-    
-    Label lblWhenData = new Label (comp, SWT.None); 
-    lblWhenData.setText("20.08.2012");
-    lblWhenData.setLayoutData(gdContent);
+//	  Label lblName = new Label (comp, SWT.None); 
+//    lblName.setText("Location:");
+//    lblName.setLayoutData(gdLabel);
+//    
+//    Label lblNameData = new Label (comp, SWT.None); 
+//    lblNameData.setText("Petrikirche Kulmbach");
+//    lblNameData.setLayoutData(gdContent);
+//    
+//	  Label lblWhen = new Label (comp, SWT.None); 
+//    lblWhen.setText("Date:");
+//    lblWhen.setLayoutData(gdLabel);
+//    
+//    Label lblWhenData = new Label (comp, SWT.None); 
+//    lblWhenData.setText("20.08.2012");
+//    lblWhenData.setLayoutData(gdContent);
 	  
     
     //Items
@@ -100,10 +112,12 @@ public class SessionOverviewPart {
 	  
 	  final Tree treModel = new Tree(comp, SWT.NONE);
     treModel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
-    TreeViewer treviewer = new TreeViewer(treModel);
+    treviewer = new TreeViewer(treModel);
     treviewer.setContentProvider(new ContentProvider());
     treviewer.setLabelProvider(new LabelProvider());
-    appSession.setCurrentSession(appSession.getCurrentModel().getSessions().get(0)); //TODO wegmachen
+    
+    selectionService.setSelection(appSession.getCurrentModel().getSessions().get(0)); //TODO read last edited session
+    
     treviewer.setInput(appSession.getCurrentSession());
     treviewer.addSelectionChangedListener(new ISelectionChangedListener() {
 		
@@ -118,8 +132,8 @@ public class SessionOverviewPart {
     treModel.addKeyListener(new KeyAdapter() {
 		  public void keyPressed(KeyEvent e) {
 			  
-			  if (e.character == ' ') {
-			    FindPanel panel = new FindPanel(comp.getShell(), treModel);
+			  if (e.keyCode == SWT.CTRL && e.character == ' ') {
+			    
 			  }
 			  
 		  }
@@ -132,6 +146,14 @@ public class SessionOverviewPart {
 	@Focus
 	public void onFocus() {
 		//TODO Your code here
+	}
+	
+	@Inject
+	public void setSession(Composite composite, @Optional @Named(IServiceConstants.ACTIVE_SELECTION) Session session) {
+		if (session != null) {
+		  treviewer.setInput(session);
+		  lblDetails.setText(session.getName());
+		}
 	}
 	
 	
