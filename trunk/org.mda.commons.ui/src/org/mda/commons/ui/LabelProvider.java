@@ -11,7 +11,6 @@ import mda.Session;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
-import org.mda.commons.ui.navigator.NavigatorItem;
 import org.mda.find.SearchResult;
 
 
@@ -50,10 +49,6 @@ public class LabelProvider implements ILabelProvider {
 		element = result.getEobject();
 	}
 		 
-
-    if (element instanceof NavigatorItem)
-      element = ((NavigatorItem<?>) element).getModelElement();
-
     if (element instanceof MidiFile) {
       return loadImageFromProject(ICON_SONG);
     }
@@ -72,9 +67,6 @@ public class LabelProvider implements ILabelProvider {
 			element = result.getEobject();
 		}
 	  
-    if (element instanceof NavigatorItem)
-      element = ((NavigatorItem) element).getModelElement();
-
     if (element instanceof String)
       return element.toString();
 

@@ -2,9 +2,9 @@
 package org.mda.commons.ui;
 
 import mda.MidiFile;
+import mda.Session;
 
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.mda.ApplicationSession;
@@ -17,7 +17,7 @@ public class SearchEngineHandler {
 	
 	
 	@Execute
-	public void execute(final ApplicationSession appsession, final SearchEnginePanel searchenginepanel, final ESelectionService selectionService) {
+	public void execute(final ApplicationSession appsession, final SearchEnginePanel searchenginepanel) {
 		searchenginepanel.build();
 		searchenginepanel.getShell().addDisposeListener(new DisposeListener() {
 			
@@ -27,9 +27,10 @@ public class SearchEngineHandler {
 				
 				if (activeSearchResult != null) {
 					if (activeSearchResult.getEobject() instanceof MidiFile) {
-						MidiPlayerService.addSong(appsession.getCurrentSession(), (MidiFile) activeSearchResult.getEobject());
+						Session addSong = MidiPlayerService.addSong(appsession.getCurrentSession(), (MidiFile) activeSearchResult.getEobject());
+						
+						appsession.getModelEvents().setCurrentModelElement(Session.class, addSong);
 					}
-					selectionService.setSelection(appsession.getCurrentSession());
 				}
 			}
 		});

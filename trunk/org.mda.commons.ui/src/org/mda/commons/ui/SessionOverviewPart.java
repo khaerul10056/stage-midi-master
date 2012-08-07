@@ -3,17 +3,26 @@ package org.mda.commons.ui;
 
 import javax.inject.Inject;
 
-import mda.AbstractSessionItem;
 import mda.MidiFile;
 import mda.Session;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DragSource;
+import org.eclipse.swt.dnd.DragSourceAdapter;
+import org.eclipse.swt.dnd.DragSourceEvent;
+import org.eclipse.swt.dnd.DropTarget;
+import org.eclipse.swt.dnd.DropTargetAdapter;
+import org.eclipse.swt.dnd.DropTargetEvent;
+import org.eclipse.swt.dnd.TextTransfer;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -21,7 +30,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Tree;
 import org.mda.ApplicationSession;
-import org.mda.commons.ui.navigator.NavigatorItem;
+import org.mda.MidiPlayerService;
 import org.mda.listeners.IModelElementReloadListener;
 
 @Creatable
@@ -108,6 +117,41 @@ public class SessionOverviewPart {
     treviewer.setContentProvider(new ContentProvider());
     treviewer.setLabelProvider(new LabelProvider());
     
+    DragSource ds = new DragSource(treModel, DND.DROP_MOVE);
+    ds.setTransfer(new Transfer[] { TextTransfer.getInstance() });
+    ds.addDragListener(new DragSourceAdapter() {
+      public void dragSetData(DragSourceEvent event) {
+    	  IStructuredSelection selection = (IStructuredSelection) treviewer.getSelection();
+    	  EObject selectedObject = (EObject) selection.getFirstElement();
+    	  int from = appSession.getCurrentSession().getItems().indexOf(selectedObject);
+    	  event.data = Integer.toString(from);
+      }
+    });
+    
+    
+    // Create the drop target on the button
+    DropTarget dt = new DropTarget(treModel, DND.DROP_MOVE);
+    dt.setTransfer(new Transfer[] { TextTransfer.getInstance() });
+    dt.addDropListener(new DropTargetAdapter() {
+      public void drop(DropTargetEvent event) {
+    	  
+    	  int from = Integer.parseInt(((String)event.data));
+    	  
+
+    	  int to = -1;
+    	  for (int i = 0; i < treModel.getItemCount(); i++) {
+    		  if (treModel.getItem(i).equals(event.item)) {
+    			  to = i;
+    			  break;
+    		  }
+    	  }
+    	  to++;
+    	  
+    	  
+    	  MidiPlayerService.moveSessionItem (appSession.getCurrentSession(), from, to);
+    	  appSession.getModelEvents().setCurrentModelElement(Session.class, appSession.getCurrentSession());
+      }
+    });
     
     
     treviewer.setInput(appSession.getCurrentSession());
@@ -115,9 +159,8 @@ public class SessionOverviewPart {
 		
 		@Override
 		public void selectionChanged(SelectionChangedEvent event) {
-			IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-			NavigatorItem<AbstractSessionItem> item = ((NavigatorItem<AbstractSessionItem>) selection.getFirstElement());
-			appSession.setCurrentMidifile((MidiFile) item.getModelElement());
+			IStructuredSelection structuredSelection = (IStructuredSelection) event.getSelection();
+			appSession.setCurrentMidifile((MidiFile) structuredSelection.getFirstElement());
 		}
 	});
     

@@ -19,7 +19,6 @@ import org.eclipse.swt.widgets.ToolItem;
 import org.mda.commons.ui.ContentProvider;
 import org.mda.commons.ui.LabelProvider;
 import org.mda.commons.ui.Util;
-import org.mda.commons.ui.navigator.NavigatorItem;
 
 @Creatable
 public class RunSessionShell {
@@ -146,11 +145,8 @@ public class RunSessionShell {
 
 	      @Override
 	      public void selectionChanged (SelectionChangedEvent arg0) {
-	        NavigatorItem <AbstractSessionItem> item = (NavigatorItem<AbstractSessionItem>) Util.getStructuredSelection(treviewer.getSelection());
-	        if (item != null) {
-	          AbstractSessionItem selectSessionItem = item.getModelElement();
-	          controller.toItem(selectSessionItem);
-	        }
+	        AbstractSessionItem item = (AbstractSessionItem) Util.getStructuredSelection(treviewer.getSelection());
+	          controller.toItem(item);
 	      }
 	    });
 		

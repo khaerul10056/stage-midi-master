@@ -482,9 +482,9 @@ public class MidiPlayerService {
     return lines;
   }
 
-  public static void addSong (Session session, MidiFile selectedSong) {
+  public static Session addSong (Session session, MidiFile selectedSong) {
     session.getItems().add(selectedSong);
-
+    return session;
   }
 
   public static MidiFilePart splitPart (MidiFile midiFile, MidiFilePart midiFilePart, int caretOffsetOfCurrentTextField) {
@@ -553,6 +553,18 @@ public class MidiPlayerService {
 		
 		return newSession;
 
+	}
+
+	public static void moveSessionItem(Session currentSession, int from, int to) {
+   	  int max = currentSession.getItems().size();
+	  if (from < 0 || to < 0 || from > max || to > max)
+	     return;
+	  
+	  AbstractSessionItem copyItem = currentSession.getItems().get(from);
+	  AbstractSessionItem dummy = mf.createMidiFile();
+	  currentSession.getItems().set(from, dummy);
+	  currentSession.getItems().add(to, copyItem);
+	  currentSession.getItems().remove(dummy);
 	}
 
 
