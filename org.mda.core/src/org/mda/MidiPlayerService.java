@@ -482,8 +482,8 @@ public class MidiPlayerService {
     return lines;
   }
 
-  public static void addSong (Session session, Collection<MidiFile> selectedSongs) {
-    session.getItems().addAll(selectedSongs);
+  public static void addSong (Session session, MidiFile selectedSong) {
+    session.getItems().add(selectedSong);
 
   }
 

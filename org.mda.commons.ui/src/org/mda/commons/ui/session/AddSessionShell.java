@@ -5,7 +5,6 @@ import javax.inject.Inject;
 import mda.Session;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
-import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -22,10 +21,6 @@ public class AddSessionShell {
 	
 	@Inject
 	private ApplicationSession appsession;
-	
-	@Inject
-	private ESelectionService selectionService;
-	
 	
 	private final String DEFAULT = "<new session>";
 	
@@ -49,7 +44,7 @@ public class AddSessionShell {
 				if (e.character == SWT.CR && txtName.getText().compareTo(DEFAULT) != 0) {
 					Session createdSession = MidiPlayerService.createSession (appsession.getCurrentModel(), txtName.getText());
 					appsession.setCurrentSession(createdSession);
-					selectionService.setSelection(createdSession);
+					appsession.getModelEvents().setCurrentModelElement(Session.class, createdSession);
 					getShell().dispose();
 				}
 			}

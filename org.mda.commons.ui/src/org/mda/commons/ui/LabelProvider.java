@@ -12,6 +12,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 import org.mda.commons.ui.navigator.NavigatorItem;
+import org.mda.find.SearchResult;
 
 
 public class LabelProvider implements ILabelProvider {
@@ -43,6 +44,12 @@ public class LabelProvider implements ILabelProvider {
 
   @Override
   public Image getImage (Object element) {
+	  
+	if (element instanceof SearchResult) {
+		SearchResult result = (SearchResult) element;
+		element = result.getEobject();
+	}
+		 
 
     if (element instanceof NavigatorItem)
       element = ((NavigatorItem<?>) element).getModelElement();
@@ -60,6 +67,11 @@ public class LabelProvider implements ILabelProvider {
 
   @Override
   public String getText (Object element) {
+	  if (element instanceof SearchResult) {
+			SearchResult result = (SearchResult) element;
+			element = result.getEobject();
+		}
+	  
     if (element instanceof NavigatorItem)
       element = ((NavigatorItem) element).getModelElement();
 
