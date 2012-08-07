@@ -3,8 +3,10 @@ package org.mda.editor.preview.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import mda.AbstractSessionItem;
 import mda.MidiFilePart;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
@@ -37,13 +39,14 @@ public class PreviewEditorComposite {
   private ButtonPanelPart buttonpanel;
 
   @Inject
-  private ApplicationSession session;
+  private ApplicationSession applicationsession;
 
 private Composite comp;
 
 public Composite getComp () {
 	return comp;
 }
+
 
 public boolean isBuilt () {
 	return comp != null;
@@ -80,7 +83,7 @@ public boolean isBuilt () {
 
 	public void redrawSlidelist() {
 		for (AbstractPart nextPart : editorParts) {
-			nextPart.setMidifile(session.getCurrentMidifile());
+			nextPart.setMidifile(applicationsession.getCurrentMidifile());
 		}
 
 		comp.getShell().getDisplay().asyncExec(new Runnable() {

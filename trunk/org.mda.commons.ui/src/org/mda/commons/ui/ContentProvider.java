@@ -31,6 +31,9 @@ public class ContentProvider implements ITreeContentProvider {
 
   @Override
   public Object[] getElements (Object parentElement) {
+	  
+	if (parentElement instanceof List)
+		return ((List) parentElement).toArray();
 
     if (parentElement instanceof ApplicationSession) {
       ApplicationSession session = (ApplicationSession) parentElement;

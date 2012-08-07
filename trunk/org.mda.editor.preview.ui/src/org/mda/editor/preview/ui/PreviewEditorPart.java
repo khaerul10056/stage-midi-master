@@ -1,5 +1,6 @@
 package org.mda.editor.preview.ui;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -17,6 +18,7 @@ import org.mda.ApplicationSession;
 import org.mda.commons.ui.LabelProvider;
 import org.mda.commons.ui.MidiFileEditorInput;
 import org.mda.commons.ui.navigator.NavigatorItem;
+import org.mda.listeners.IModelElementReloadListener;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
@@ -38,27 +40,33 @@ public class PreviewEditorPart {
 	@Inject
 	private MDirtyable dirtyable;
 	
-
-	@Inject
-	public void setSelection(Composite composite, @Optional @Named(IServiceConstants.ACTIVE_SELECTION) NavigatorItem<MidiFile> midifile) {
-		if (midifile == null || appSession.getCurrentSession().getItems().size() == 0)
-			return;
-		
-		appSession.setCurrentMidifile(midifile != null && midifile.getModelElement() != null ? midifile.getModelElement() : null);
-		
-		if (appSession.getCurrentMidifile() == null)
-			appSession.setCurrentMidifile((MidiFile) appSession.getCurrentSession().getItems().get(0));
-		
-		if (! previewEditorContent.isBuilt()) {
-		  previewEditorContent.build(composite);
-  		  composite.setLayout(new GridLayout());
-		  previewEditorContent.getComp().setLayoutData(new GridData(SWT.FILL, SWT.FILL,  true, true));
-		}
-		
-		previewEditorContent.redrawSlidelist();
-		dirtyable.setDirty(false);
-
+	
+	@PostConstruct
+	public void postConstruct (final Composite composite) {
+		appSession.getModelEvents().addReloadListener(new IModelElementReloadListener() {
+			
+			@Override
+			public void reload(Object newObject, Object oldObject) {
+				MidiFile newMidiFile = (MidiFile) newObject;
+				
+				if (! previewEditorContent.isBuilt()) {
+				  previewEditorContent.build(composite);
+		  		  composite.setLayout(new GridLayout());
+				  previewEditorContent.getComp().setLayoutData(new GridData(SWT.FILL, SWT.FILL,  true, true));
+				}
+				
+				previewEditorContent.redrawSlidelist();
+				dirtyable.setDirty(false);
+			}
+			
+			@Override
+			public Class<? extends Object> isRelevant() {
+				return MidiFile.class;
+			}
+		});
 	}
+
+	
 
 	// @Override
 	// public void doSave (IProgressMonitor monitor) {

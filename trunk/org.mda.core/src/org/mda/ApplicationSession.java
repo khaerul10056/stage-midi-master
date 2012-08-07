@@ -10,13 +10,12 @@ import javax.inject.Singleton;
 
 import mda.Configuration;
 import mda.MidiFile;
-import mda.MidiFilePart;
-import mda.MidiFilePartType;
 import mda.MidiPlayerRoot;
 import mda.Session;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.mda.additionals.AdditionalsHandler;
+import org.mda.listeners.ModelEvents;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.transpose.FeatureActivation;
@@ -29,6 +28,8 @@ public class ApplicationSession {
   private static final Log LOGGER  = LogFactory.getLogger(ApplicationSession.class);
 
   private Properties sessionProps = new Properties();
+  
+  
 
 
   private MidiPlayerRoot playerroot;
@@ -51,15 +52,14 @@ public class ApplicationSession {
 
   private final FeatureActivation featureActivation = new FeatureActivation();
   
-  /**
-   * currently edited session
-   */
-  private Session currentSession;
+  private ModelEvents modelEvents = new ModelEvents();
+ 
   
-  /**
-   * currently edited midifile
-   */
-  private MidiFile currentMidifile;
+  public ModelEvents getModelEvents () {
+	  return modelEvents;
+  }
+  
+  
   
 
   
@@ -136,9 +136,6 @@ public class ApplicationSession {
       getFeatureActivation().setShowWhitespaces(Boolean.valueOf(sessionProps.getProperty(PROP_SHOWWHITESPACES)));
       getFeatureActivation().setPresentationAlwaysOnTop(Boolean.valueOf(sessionProps.getProperty(PROP_PRESENTATIONALWAYSONTOP)));
       
-      //TODO set last active session 
-      setCurrentSession(getCurrentModel().getSessions().get(0));
-
       if (! configFileAsFile.exists())
         save(configFileAsFile);
     }
@@ -225,28 +222,22 @@ public class ApplicationSession {
 
 
   public Session getCurrentSession () {
-    return currentSession;
+    return (Session) getModelEvents().getCurrentModelElement(Session.class);
   }
 
 
   public void setCurrentSession (Session currentSession) {
-    this.currentSession = currentSession;
+    getModelEvents().setCurrentModelElement(Session.class, currentSession);
   }
 
 
 public MidiFile getCurrentMidifile() {
-	return currentMidifile;
+	return (MidiFile) getModelEvents().getCurrentModelElement(MidiFile.class);
 }
 
 
 public void setCurrentMidifile(MidiFile currentMidifile) {
-	this.currentMidifile = currentMidifile;
-    if (currentMidifile != null && currentMidifile.getParts().size() == 0) { 
-        MidiFilePart part = MidiPlayerService.mf.createMidiFilePart();
-        part.setParttype(MidiFilePartType.VERS);
-        currentMidifile.getParts().add(part);
-      }
-
+	getModelEvents().setCurrentModelElement(MidiFile.class, currentMidifile);
 }
 
 
