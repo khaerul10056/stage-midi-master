@@ -2,14 +2,11 @@ package org.mda.editor.preview.ui;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import mda.MidiFile;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
-import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
-import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -17,7 +14,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.mda.ApplicationSession;
 import org.mda.commons.ui.LabelProvider;
 import org.mda.commons.ui.MidiFileEditorInput;
-import org.mda.commons.ui.navigator.NavigatorItem;
 import org.mda.listeners.IModelElementReloadListener;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;

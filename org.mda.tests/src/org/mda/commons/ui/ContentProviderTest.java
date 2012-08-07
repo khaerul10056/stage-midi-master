@@ -4,18 +4,18 @@ import mda.AbstractSessionItem;
 import mda.Gallery;
 import mda.MidiFile;
 import mda.Session;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
-import org.mda.commons.ui.navigator.NavigatorItem;
 import org.mda.presenter.ui.test.MidiFileCreator;
 
 
 public class ContentProviderTest {
 
   private String getName (final Object object) {
-    NavigatorItem item = (NavigatorItem) object;
-    return ((AbstractSessionItem) item.getModelElement()).getName();
+    AbstractSessionItem item = (AbstractSessionItem) object;
+    return item.getName();
   }
   @Test
   public void sorting () {

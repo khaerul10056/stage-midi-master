@@ -2,8 +2,11 @@ package org.mda.commons.ui;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 import javax.inject.Singleton;
+
 import mda.MidiFile;
+
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
@@ -16,7 +19,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.mda.ApplicationSession;
-import org.mda.commons.ui.navigator.NavigatorItem;
 
 
 public class SongSelectorPanel extends Shell {
@@ -50,10 +52,8 @@ public class SongSelectorPanel extends Shell {
       public void widgetSelected(SelectionEvent e) {
         IStructuredSelection selection = (IStructuredSelection) tableviewer.getSelection();
         for (Object next : selection.toArray()) {
-          if (next instanceof NavigatorItem) {
-            NavigatorItem<?> item = (NavigatorItem<?>) next;
-            if (item.getModelElement() instanceof MidiFile)
-              selectedfiles.add((MidiFile) item.getModelElement());
+          if (next instanceof MidiFile) {
+              selectedfiles.add((MidiFile) next);
           }
         }
         dispose();
