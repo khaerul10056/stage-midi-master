@@ -21,13 +21,14 @@ import org.mda.Utils;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.export.powerpoint.PptExporter;
 import org.mda.presenter.ui.test.MidiFileCreator;
+import org.mda.tests.StandaloneInjector;
 
 
 public class TestPptExporter {
 
   private File tmpFile = new File ("tmp/export.ppt");
 
-  private static ApplicationSession appSession = new ApplicationSession();
+  private static ApplicationSession appSession = StandaloneInjector.getInstance(ApplicationSession.class);
 
 
   @BeforeClass
@@ -48,6 +49,9 @@ public class TestPptExporter {
   }
 
 
+  private PptExporter getExporter () {
+	  return StandaloneInjector.getInstance(PptExporter.class);
+  }
 
   @Test
   public void testBackgroundImage () {
@@ -64,7 +68,7 @@ public class TestPptExporter {
 
     java.awt.Color colorBlackAsAwt = Utils.toAwtColor(colorBlack);
 
-    PptExporter exporter = new PptExporter();
+    PptExporter exporter = getExporter();
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setChordVisible(false);
@@ -94,8 +98,7 @@ public class TestPptExporter {
       Color colorWhite = Display.getDefault().getSystemColor(SWT.COLOR_WHITE);
       java.awt.Color colorWhiteAsAwt = Utils.toAwtColor(colorWhite);
 
-
-      PptExporter exporter = new PptExporter();
+      PptExporter exporter = getExporter();
 
       DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
       config.setChordVisible(false);
@@ -123,7 +126,7 @@ public class TestPptExporter {
     creator = creator.chordAndText("D", "This is a test").chordAndText("E", "once more");
     MidiFile file = creator.get();
 
-    PptExporter exporter = new PptExporter();
+    PptExporter exporter = getExporter();
     Color colorBlack = Display.getDefault().getSystemColor(SWT.COLOR_BLACK);
     String colorBlackAsString = Utils.colorToString(colorBlack);
     file.setBackgroundColor(colorBlackAsString);
@@ -131,7 +134,6 @@ public class TestPptExporter {
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setChordVisible(false);
-
 
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();
     sessionitems.add(file);

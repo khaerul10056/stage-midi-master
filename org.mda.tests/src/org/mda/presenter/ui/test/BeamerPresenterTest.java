@@ -3,11 +3,14 @@ package org.mda.presenter.ui.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
 import java.io.File;
+
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiPlayerRoot;
 import mda.Session;
+
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import org.junit.Assert;
@@ -21,6 +24,7 @@ import org.mda.presenter.ui.BeamerPresenter;
 import org.mda.presenter.ui.DefaultPresentationController;
 import org.mda.presenter.ui.PresentationContext;
 import org.mda.presenter.ui.SpecialSlide;
+import org.mda.tests.StandaloneInjector;
 
 
 public class BeamerPresenterTest {
@@ -36,23 +40,24 @@ public class BeamerPresenterTest {
   private MidiFilePart preLastPartOfLastSong;
   private MidiFilePart firstPartOfLastSong;
   private MidiFile prelastSong;
-  private static PresentationContext presentationContext;
+  private static PresentationContext presentationContext = StandaloneInjector.getInstance(PresentationContext.class);
+  private static ApplicationSession appsession = StandaloneInjector.getInstance(ApplicationSession.class);
+  private static DefaultMidiFileContentEditorConfig config = StandaloneInjector.getInstance(DefaultMidiFileContentEditorConfig.class);
+  
 
   @BeforeClass
   public static void beforeClass () {
     session = root.getSessions().get(0);
-    presentationContext = new PresentationContext();
-    ApplicationSession session = new ApplicationSession(); 
-    session.load(null);
+    appsession.load(null);
   }
 
   @Before
   public void before () {
-    presentationContext.setCurrentSession(session, new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
+    presentationContext.setCurrentSession(session, config, new Point (400, 200));
 
-    presenter = new BeamerPresenter(); 
+    presenter = StandaloneInjector.getInstance(BeamerPresenter.class); 
     presenter.build(Display.getDefault(), session, false);
-    controller = new DefaultPresentationController();
+    controller = StandaloneInjector.getInstance(DefaultPresentationController.class);
     presentationContext.registerController(controller);
     presentationContext.registerView(presenter);
 

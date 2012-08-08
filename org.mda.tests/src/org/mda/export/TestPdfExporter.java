@@ -17,6 +17,7 @@ import org.mda.commons.ui.calculator.SlideType;
 import org.mda.export.pdf.PdfExporter;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.tests.StandaloneInjector;
 
 
 public class TestPdfExporter {
@@ -25,7 +26,7 @@ public class TestPdfExporter {
 
   private File tmpFile = new File ("tmp/export.pdf");
 
-  private static ApplicationSession appSession = new ApplicationSession();
+  private static ApplicationSession appSession = StandaloneInjector.getInstance(ApplicationSession.class);
 
   @Before
   public void before () {
@@ -54,9 +55,13 @@ public class TestPdfExporter {
     else
       return null;
   }
+  
+  private PdfExporter getExporter () {
+	  return StandaloneInjector.getInstance(PdfExporter.class);
+  }
   @Test
   public void checkExportWithChords () {
-    PdfExporter exporter = new PdfExporter();
+    PdfExporter exporter = getExporter();
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
     config.setChordVisible(true);
@@ -91,7 +96,7 @@ public class TestPdfExporter {
 
   @Test
   public void checkExportWithoutChords () {
-    PdfExporter exporter = new PdfExporter();
+    PdfExporter exporter = getExporter();
 
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();
     sessionitems.add(appSession.getCurrentModel().getGallery().getGalleryItems().get(0));

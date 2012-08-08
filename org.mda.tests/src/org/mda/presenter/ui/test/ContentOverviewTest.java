@@ -1,14 +1,13 @@
 package org.mda.presenter.ui.test;
 
-import javax.inject.Inject;
 import mda.MidiFile;
 import mda.MidiFilePartType;
 import mda.Session;
+
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
@@ -20,21 +19,9 @@ import org.mda.tests.StandaloneInjector;
 
 public class ContentOverviewTest {
 
-  @Inject
-  private PresentationContext presentationContext;
-  
-  @Inject
-  private ApplicationSession instance;
-  
-  @Inject
-  private ContentOverview overview;
-
-  @Before
-  public void setup () {
-      StandaloneInjector.inject(this);
-//    presentationContext = new PresentationContext();
-//    instance = new ApplicationSession();
-  }
+  private PresentationContext presentationContext = StandaloneInjector.getInstance(PresentationContext.class);
+  private ApplicationSession instance = StandaloneInjector.getInstance(ApplicationSession.class);
+  private ContentOverview overview = StandaloneInjector.getInstance(ContentOverview.class);
 
   @After
   public void tearDown () {
@@ -49,6 +36,10 @@ public class ContentOverviewTest {
     overview.refresh();
     Assert.assertTrue (overview.getPreviewParts().get(0).isSelected());
 
+  }
+  
+  private ContentOverview getContentOverview () {
+	  return StandaloneInjector.getInstance(ContentOverview.class);
   }
 
   @Test
@@ -66,7 +57,7 @@ public class ContentOverviewTest {
 
     presentationContext.setCurrentSession(session, new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
 
-    ContentOverview overview = new ContentOverview();
+    ContentOverview overview = getContentOverview();
     overview.build(new Shell());
     overview.refresh();
 
@@ -109,7 +100,7 @@ public class ContentOverviewTest {
     presentationContext.setCurrentSession(session, new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
     presentationContext.setCurrentSessionItemIndex(1);
 
-    ContentOverview overview = new ContentOverview();
+    ContentOverview overview = getContentOverview();
     overview.build(new Shell());
     presentationContext.nextSong();
     overview.refresh();

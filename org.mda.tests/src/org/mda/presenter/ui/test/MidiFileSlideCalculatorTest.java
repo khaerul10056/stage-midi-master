@@ -26,13 +26,14 @@ import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.commons.ui.calculator.SlideType;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.tests.StandaloneInjector;
 
 
 public class MidiFileSlideCalculatorTest {
 
   private static final Log LOGGER  = LogFactory.getLogger(MidiFileSlideCalculatorTest.class);
 
-  private static ApplicationSession appSession = new ApplicationSession();
+  private static ApplicationSession appSession = StandaloneInjector.getInstance(ApplicationSession.class);
 
   final String PUBLISHER = "PUBLISHER";
   final String PUBLISHERINLAND = "PUBLISHERINLAND";
@@ -73,6 +74,10 @@ public class MidiFileSlideCalculatorTest {
     return foundTokens;
 
   }
+  
+  private MidiFileSlideCalculator getCalculator () {
+	  return StandaloneInjector.getInstance(MidiFileSlideCalculator.class);
+  }
 
   @Test
   public void copyright () {
@@ -86,7 +91,7 @@ public class MidiFileSlideCalculatorTest {
     config.setShowCopyright(true);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    MidiFileSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
     Slide slide = calculateWithoutBorder.get(0);
@@ -106,7 +111,7 @@ public class MidiFileSlideCalculatorTest {
     config.setShowCopyright(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    MidiFileSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
     Slide slide = calculateWithoutBorder.get(0);
@@ -125,7 +130,7 @@ public class MidiFileSlideCalculatorTest {
     config.setOptimizeEmptyTokens(true);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    MidiFileSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
     Slide firstSlide = calculateWithoutBorder.get(0);
@@ -150,7 +155,7 @@ public class MidiFileSlideCalculatorTest {
     config.setOptimizeLineFilling(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    MidiFileSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
 
@@ -194,7 +199,7 @@ public class MidiFileSlideCalculatorTest {
     config.setOptimizeLineFilling(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    MidiFileSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculate = calculator.calculate(song, preCondition);
 
@@ -210,7 +215,7 @@ public class MidiFileSlideCalculatorTest {
 
 
     config.setOptimizeLineFilling(true);
-    calculator = new MidiFileSlideCalculator();
+    calculator = getCalculator();
     calculator.setConfig(config);
     calculate = calculator.calculate(song, preCondition);
     firstSlide = calculate.get(0);
@@ -239,7 +244,7 @@ public class MidiFileSlideCalculatorTest {
     config.setChordVisible(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    MidiFileSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculate = calculator.calculate(song, preCondition);
     assertEquals (3, calculate.size());
@@ -265,7 +270,7 @@ public class MidiFileSlideCalculatorTest {
     config.setShowTitle(true);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    MidiFileSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculate = calculator.calculate(song, preCondition);
 
@@ -295,7 +300,7 @@ public class MidiFileSlideCalculatorTest {
     config.setNewPageRespected(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    MidiFileSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculate = calculator.calculate(song, preCondition);
     assertEquals(1, calculate.size());
@@ -327,7 +332,7 @@ public class MidiFileSlideCalculatorTest {
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    MidiFileSlideCalculator calculator = getCalculator();
     List<Slide> calculate = calculator.calculate(song, preCondition);
     assertEquals(1, calculate.size());
 
@@ -347,7 +352,7 @@ public class MidiFileSlideCalculatorTest {
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    MidiFileSlideCalculator calculator = getCalculator();
     Slide calculatePart = calculator.calculatePart(song.getParts().get(0), preCondition).get(0);
     assertEquals (1, calculatePart.getTextline(0).length());
   }
@@ -359,7 +364,7 @@ public class MidiFileSlideCalculatorTest {
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    MidiFileSlideCalculator calculator = getCalculator();
     Slide calculatePart = calculator.calculatePart(song.getParts().get(0), preCondition).get(0);
     assertEquals (2, calculatePart.getTextline(0).length());
   }
@@ -376,7 +381,7 @@ public class MidiFileSlideCalculatorTest {
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    MidiFileSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     Slide calculatePart = calculator.calculatePart(midiFilePart, preCondition).get(0);
 
@@ -390,7 +395,7 @@ public class MidiFileSlideCalculatorTest {
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    MidiFileSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     return calculator.calculate(part, preCondition);
   }
@@ -557,7 +562,7 @@ public class MidiFileSlideCalculatorTest {
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
-    MidiFileSlideCalculator calculator = new MidiFileSlideCalculator();
+    MidiFileSlideCalculator calculator = getCalculator();
     Slide slideFullScreen = calculator.calculatePart(midiFilePart, preCondition).get(0);
 
 
