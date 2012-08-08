@@ -11,18 +11,18 @@ import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.calculator.Slide;
+import org.mda.tests.StandaloneInjector;
 
 
 public class PresentationContextTest {
 
-  private PresentationContext presentationContext;
-  private ApplicationSession instance;
+  private PresentationContext presentationContext = StandaloneInjector.getInstance(PresentationContext.class);
+  private ApplicationSession appsession = StandaloneInjector.getInstance(ApplicationSession.class);
+  
 
   @Before
   public void setup () {
-    presentationContext = new PresentationContext();
     presentationContext.clear();
-    instance = new ApplicationSession();
   }
 
   @After
@@ -32,12 +32,12 @@ public class PresentationContextTest {
 
   @Test
   public void testToPart () {
-    instance.load(null);
+    appsession.load(null);
 
-    MidiFile currentFile = (MidiFile) instance.getCurrentModel().getSessions().get(0).getItems().get(0);
+    MidiFile currentFile = (MidiFile) appsession.getCurrentModel().getSessions().get(0).getItems().get(0);
     MidiFilePart part1 = currentFile.getParts().get(0);
     MidiFilePart part2 = currentFile.getParts().get(1);
-    presentationContext.setCurrentSession(instance.getCurrentModel().getSessions().get(0), new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
+    presentationContext.setCurrentSession(appsession.getCurrentModel().getSessions().get(0), new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
     presentationContext.setCurrentSessionItemIndex(0);
 
     Slide slide = presentationContext.getCurrentSlide();

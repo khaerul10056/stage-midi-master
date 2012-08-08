@@ -46,10 +46,11 @@ public class SearchEnginePanel  {
 	}
 	
 	public Shell build () {
+		
 		activeSearchResult = null;
 		shell = new Shell (Display.getCurrent().getActiveShell(), SWT.NO_TRIM | SWT.ON_TOP);
-		shell.setSize(700, 400);
-		shell.setLocation(new Point (20, 120));
+		shell.setSize(400, 200);
+		shell.setLocation(appsession.getUiState().getPositionSearcher().x, appsession.getUiState().getPositionSearcher().y);
 		
 		shell.setLayout(new GridLayout());
 		

@@ -29,10 +29,7 @@ public class ApplicationSession {
 
   private Properties sessionProps = new Properties();
   
-  
-
-
-  private MidiPlayerRoot playerroot;
+  private MidiPlayerRoot model;
 
   private File configFileAsFile;
 
@@ -53,7 +50,13 @@ public class ApplicationSession {
   private final FeatureActivation featureActivation = new FeatureActivation();
   
   private ModelEvents modelEvents = new ModelEvents();
+  
+  private UIState uistate = new UIState ();
  
+  
+  public UIState getUiState () {
+	  return uistate;
+  }
   
   public ModelEvents getModelEvents () {
 	  return modelEvents;
@@ -69,7 +72,7 @@ public class ApplicationSession {
 
 
   public MidiPlayerRoot getCurrentModel () {
-    return playerroot;
+    return model;
   }
 
 
@@ -156,7 +159,7 @@ public class ApplicationSession {
   }
 
   public File getExportPath () {
-    return new File (playerroot.getConfig().getPdfExportPath());
+    return new File (model.getConfig().getPdfExportPath());
   }
 
   public AdditionalsHandler getAdditionalsHandler () {
@@ -167,7 +170,7 @@ public class ApplicationSession {
   }
 
   public File getAdditionalsPath () {
-    return new File (playerroot.getConfig().getAdditionalsPath());
+    return new File (model.getConfig().getAdditionalsPath());
   }
 
 
@@ -182,11 +185,11 @@ public class ApplicationSession {
 
     this.lastModelFile = lastModelPath;
     LOGGER.info ("Loading model " + lastModelPath.getAbsolutePath());
-    playerroot = MidiPlayerService.loadRootObject(lastModelPath);
-    if (playerroot.getConfig() == null)
-      playerroot.setConfig(MidiPlayerService.mf.createConfiguration());
+    model = MidiPlayerService.loadRootObject(lastModelPath);
+    if (model.getConfig() == null)
+      model.setConfig(MidiPlayerService.mf.createConfiguration());
 
-    Configuration config = playerroot.getConfig();
+    Configuration config = model.getConfig();
     if (config.getPdfExportPath() == null)
       config.setPdfExportPath("exportFiles");
     if (config.getAdditionalsPath() == null)
@@ -194,7 +197,7 @@ public class ApplicationSession {
   }
 
   public void saveModel () {
-    MidiPlayerService.saveRootObject(playerroot);
+    MidiPlayerService.saveRootObject(model);
   }
 
 

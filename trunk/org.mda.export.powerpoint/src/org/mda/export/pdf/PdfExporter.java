@@ -61,7 +61,7 @@ public class PdfExporter extends AbstractExporter {
     
     //TODO Generalize to config2
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(true);
+    config.setChordVisible(config2.isChordPresented());
     config.setShowBlockType(true);
     config.setPagePerPart(false);
     config.setNewPageRespected(false);

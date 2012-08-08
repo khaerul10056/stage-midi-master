@@ -1,9 +1,10 @@
 package org.mda.tests;
 
 import javax.inject.Singleton;
+
 import org.mda.ApplicationSession;
-import org.mda.presenter.ui.ContentOverview;
 import org.mda.presenter.ui.PresentationContext;
+
 import com.google.inject.Binder;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -26,13 +27,18 @@ public class StandaloneInjector {
     public void configure (Binder binder) {
       binder.bind(ApplicationSession.class).in(Singleton.class);
       binder.bind(PresentationContext.class).in(Singleton.class);
-      binder.bind(ContentOverview.class).in(Singleton.class);
     }
   }
   
   public static void inject (final Object object) {
     injector.injectMembers(object);
   }
+  
+  public static <T> T getInstance(Class<T> type) {
+	  return injector.getInstance(type);
+  }
+  
+  
   
 
 }

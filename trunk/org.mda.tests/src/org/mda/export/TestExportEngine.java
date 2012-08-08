@@ -2,25 +2,25 @@ package org.mda.export;
 
 import java.io.File;
 import java.util.List;
+
 import mda.AbstractSessionItem;
 import mda.MidiPlayerRoot;
 import mda.User;
+
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
-import org.mda.logging.Log;
-import org.mda.logging.LogFactory;
+import org.mda.tests.StandaloneInjector;
 
 
 public class TestExportEngine {
 
   private static List<ExportResult> exportSongbooks;
 
-  private static final Log LOGGER  = LogFactory.getLogger(TestExportEngine.class);
-
+  
   @Test
   public void exportSongbooks () {
 
@@ -28,15 +28,15 @@ public class TestExportEngine {
     final String MAIL1 = "markus.oley@t-online.de";
     final String NOTSONGBOOKUSER = "NOTSONGBOOKUSER";
 
-    ApplicationSession instance = new ApplicationSession();
-    instance.load(null);
-    instance.getCurrentModel().getConfig().setPdfExportPath("tmp/export");
+    ApplicationSession appsession = StandaloneInjector.getInstance(ApplicationSession.class);
+    appsession.load(null);
+    appsession.getCurrentModel().getConfig().setPdfExportPath("tmp/export");
     File path = new File ("tmp/export");
     if (path.exists())
       Utils.deleteDirectory(path);
     Assert.assertTrue (path.mkdirs());
 
-    MidiPlayerRoot model = instance.getCurrentModel();
+    MidiPlayerRoot model = appsession.getCurrentModel();
     model.getUsers().clear();
     List<AbstractSessionItem> subList = model.getGallery().getGalleryItems().subList(3, model.getGallery().getGalleryItems().size() - 1);
     model.getGallery().getGalleryItems().removeAll(subList);
@@ -47,7 +47,7 @@ public class TestExportEngine {
     model.getUsers().add(user2);
     Assert.assertEquals (4, model.getGallery().getGalleryItems().size()); //Precondition-check
 
-    ExportEngine engine = new ExportEngine();
+    ExportEngine engine = StandaloneInjector.getInstance(ExportEngine.class);
 
     exportSongbooks = engine.exportSongbooks();
 
