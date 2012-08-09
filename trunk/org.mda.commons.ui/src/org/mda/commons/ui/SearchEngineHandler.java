@@ -27,7 +27,7 @@ public class SearchEngineHandler {
 				
 				if (activeSearchResult != null) {
 					if (activeSearchResult.getEobject() instanceof MidiFile) {
-						Session addSong = MidiPlayerService.addSong(appsession.getCurrentSession(), (MidiFile) activeSearchResult.getEobject());
+						Session addSong = MidiPlayerService.addSessionItem(appsession.getCurrentSession(), (MidiFile) activeSearchResult.getEobject());
 						
 						appsession.getModelEvents().setCurrentModelElement(Session.class, addSong);
 					}

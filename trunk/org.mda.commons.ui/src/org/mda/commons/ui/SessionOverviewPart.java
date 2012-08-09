@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import javax.inject.Inject;
 
+import mda.AbstractSessionItem;
 import mda.MidiFile;
 import mda.Session;
 
@@ -104,7 +105,10 @@ private EHandlerService handlerservice;
 		
 		@Override
 		public void widgetSelected(SelectionEvent e) {
-			// TODO Auto-generated method stub
+			IStructuredSelection structSelection = (IStructuredSelection) treviewer.getSelection();
+			AbstractSessionItem item = (AbstractSessionItem) structSelection.getFirstElement();
+			Session removedSession = MidiPlayerService.removeSessionItem(appSession.getCurrentSession(), item);
+			appSession.getModelEvents().setCurrentModelElement(Session.class, removedSession);
 			
 		}
 		
