@@ -482,9 +482,14 @@ public class MidiPlayerService {
     return lines;
   }
 
-  public static Session addSong (Session session, MidiFile selectedSong) {
+  public static Session addSessionItem (Session session, AbstractSessionItem selectedSong) {
     session.getItems().add(selectedSong);
     return session;
+  }
+  
+  public static Session removeSessionItem (Session session, AbstractSessionItem selectedSong) {
+	  session.getItems().remove(selectedSong);
+	  return session;
   }
 
   public static MidiFilePart splitPart (MidiFile midiFile, MidiFilePart midiFilePart, int caretOffsetOfCurrentTextField) {
