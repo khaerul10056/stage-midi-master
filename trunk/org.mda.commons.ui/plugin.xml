@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension id="org.mda.commons.ui.fullscreenprocessor" point="org.eclipse.e4.workbench.model">
+      <processor beforefragment="false"
+            class=" org.mda.commons.ui.FullScreenProcessor">
+      </processor>
+</extension>
+</plugin>

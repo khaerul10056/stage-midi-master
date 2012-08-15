@@ -24,10 +24,8 @@ public class Application {
   
   
   
-  
   @PostContextCreate
   public void initializeSession () {
-	  
     session.load(null);
     session.setVersion(Activator.getDefault().getVersion());
     
