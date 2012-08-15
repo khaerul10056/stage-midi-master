@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 import org.mda.ApplicationSession;
+import org.mda.commons.ui.Util;
 
 
 public class UserShell extends Shell{
@@ -46,6 +47,7 @@ public class UserShell extends Shell{
   @Inject
   public UserShell (final Shell shell, ApplicationSession session) {
     setSize(800, 700);
+    Util.centreShell(this);
     this.session = session;
 
     setLayout(new GridLayout(2, false));
