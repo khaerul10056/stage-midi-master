@@ -3,4 +3,10 @@
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_HfcjIM8EEeGoa5x03UtTdg" featurename="children" parentElementId="org.mda.application.menu.file" positionInList="0">
     <elements xsi:type="menu:DirectMenuItem" xmi:id="_QT73kM8EEeGoa5x03UtTdg" elementId="org.mda.application.menu.songbook" label="SendSongbooks" tooltip="" contributionURI="bundleclass://org.mda.export.powerpoint/org.mda.commons.ui.config.SendSongbooksHandler"/>
   </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_riWRkOfaEeGJ357Q6THRgw" featurename="children" parentElementId="org.mda.commons.ui.menu.export">
+    <elements xsi:type="menu:DirectMenuItem" xmi:id="_9cN2IOfaEeGJ357Q6THRgw" elementId="org.mda.commons.ui.menu.export.ppt" label="Export powerpoint" contributionURI="bundleclass://org.mda.export.powerpoint/org.mda.export.ExportPptSessionHandler"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_P2pxIOfbEeGJ357Q6THRgw" featurename="children" parentElementId="org.mda.commons.ui.menu.export">
+    <elements xsi:type="menu:DirectMenuItem" xmi:id="_VW01IOfbEeGJ357Q6THRgw" elementId="org.mda.commons.ui.menu.export.pdf" label="Export pdf" contributionURI="bundleclass://org.mda.export.powerpoint/org.mda.export.ExportPdfSessionHandler"/>
+  </fragments>
 </fragment:ModelFragments>

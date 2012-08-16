@@ -17,6 +17,7 @@ import org.apache.poi.hslf.model.Slide;
 import org.apache.poi.hslf.model.TextBox;
 import org.apache.poi.hslf.usermodel.RichTextRun;
 import org.apache.poi.hslf.usermodel.SlideShow;
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
@@ -28,6 +29,7 @@ import org.mda.export.ExportException;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
+@Creatable
 public class PptExporter extends AbstractExporter {
 
   private final static Log LOG = LogFactory.getLogger(PptExporter.class);
