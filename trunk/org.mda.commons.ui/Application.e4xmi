@@ -20,6 +20,7 @@
       <children xsi:type="menu:Menu" xmi:id="_sG22oNsSEeGddIlX7Js6XA" elementId="org.mda.commons.ui.menu.session" label="Session">
         <children xsi:type="menu:DirectMenuItem" xmi:id="_NmWh4N2oEeGWOKClsbjThQ" elementId="org.mda.commons.ui.directmenuitem.selectsession" label="Select session..." contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.session.SelectSessionHandler"/>
         <children xsi:type="menu:DirectMenuItem" xmi:id="_-48DgN2tEeGWOKClsbjThQ" elementId="org.mda.commons.ui.directmenuitem.addsession" label="New session..." contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.session.AddSessionHandler"/>
+        <children xsi:type="menu:Menu" xmi:id="_VILKkOfaEeGJ357Q6THRgw" elementId="org.mda.commons.ui.menu.export" label="Export"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_iW5DsNGWEeGQsvIUFnm5DA" elementId="org.mda.commons.ui.menu.user" label="User">
         <children xsi:type="menu:DirectMenuItem" xmi:id="_yX0wsNGWEeGQsvIUFnm5DA" elementId="org.mda.commons.ui.directmenuitem.0" label="Edit..." contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.user.UserHandler"/>

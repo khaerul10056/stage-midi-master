@@ -43,6 +43,10 @@ public class Utils {
   public static final String ICON_TRANSPOSE = "transpose.gif";
 
   public static final String ICON_PARTPROPERTIES = "partproperties.gif";
+  
+  public static String removeWhitespaces (final String before) {
+	  return before.replaceAll("\\s","");
+  }
 
   public static String colorToString (final Color color) {
     return color.getGreen() + "x" + color.getRed() + "x" + color.getBlue();
