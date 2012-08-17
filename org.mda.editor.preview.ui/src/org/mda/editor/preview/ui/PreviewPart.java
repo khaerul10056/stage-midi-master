@@ -97,6 +97,9 @@ public class PreviewPart extends AbstractPart {
         Font font = comp.getFont();
         e.gc.setFont(font);
         e.gc.setForeground(getCurrentSlide().getForegroundColor());
+        
+        if (currentShownImage != null && currentShownImage.isDisposed())
+        	return;
 
         if (getCurrentSlide().getBackgroundImageFile() != null) {
           if (currentShownImage == null ||

@@ -1,5 +1,7 @@
 package org.mda.transpose;
 
+import mda.Session;
+
 
 /**
  * Contains features that can be enabled/disabled by properties in file
@@ -14,6 +16,8 @@ public class FeatureActivation {
   private boolean showWhitespaces;
 
   private boolean presentationAlwaysOnTop;
+  
+  private Session startWithSession;
 
   public boolean isShowGridEnabled () {
     return showGridEnabled;
@@ -38,5 +42,13 @@ public class FeatureActivation {
   public void setPresentationAlwaysOnTop (boolean presentationAlwaysOnTop) {
     this.presentationAlwaysOnTop = presentationAlwaysOnTop;
   }
+
+public Session getRunSession() {
+	return startWithSession;
+}
+
+public void setRunSession(Session runSession) {
+	this.startWithSession = runSession;
+}
 
 }

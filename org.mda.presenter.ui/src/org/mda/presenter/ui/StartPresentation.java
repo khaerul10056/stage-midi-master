@@ -1,8 +1,12 @@
 package org.mda.presenter.ui;
 
+import java.util.HashMap;
+
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.ParameterizedCommand;
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.swt.events.DisposeEvent;
@@ -10,6 +14,7 @@ import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
+import org.mda.commons.ui.Util;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
@@ -34,7 +39,16 @@ public class StartPresentation   {
   @Inject
   private RunSessionShell runsessionshell;
   
-  
+    
+//	//Run a special session at startup
+//	if (appSession.getFeatureActivation().getRunSession() != null) {
+//		
+//		appSession.getFeatureActivation().setRunSession(null);
+//		ParameterizedCommand myCommand = commandservice.createCommand("org.mda.commons.ui.command.searchengine", new HashMap());
+//		Object result = handlerservice.executeHandler(myCommand);
+//		
+//	}
+
 
   @Execute
   public Object execute (Shell parentShell) throws ExecutionException {
@@ -55,6 +69,7 @@ public class StartPresentation   {
     presentationContext.registerView(beamerpresenter);
 
     beamerpresenter.getShell().setEnabled(true);
+    Util.centreShell(beamerpresenter.getShell());
     
     runsessionshell.build(parentShell);
     runsessionshell.getShell().addDisposeListener(new DisposeListener() {

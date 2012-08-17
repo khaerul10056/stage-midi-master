@@ -47,6 +47,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Tree;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
+import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
 import org.mda.listeners.IModelElementReloadListener;
 
 @Creatable
@@ -56,6 +57,7 @@ public class SessionOverviewPart {
   
   private ApplicationSession appSession;
   
+   
   private TreeViewer treviewer;
 
   private Label lblDetails;
@@ -272,9 +274,11 @@ private EHandlerService handlerservice;
     
 	}
 	
+	
 	@Focus
 	public void onFocus() {
-		//TODO Your code here
+
+		
 	}
 	
 }
