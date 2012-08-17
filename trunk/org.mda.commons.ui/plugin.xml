@@ -5,5 +5,8 @@
       <processor beforefragment="false"
             class=" org.mda.commons.ui.FullScreenProcessor">
       </processor>
+      <processor beforefragment="false"
+            class=" org.mda.commons.ui.RunSessionProcessor">
+      </processor>
 </extension>
 </plugin>

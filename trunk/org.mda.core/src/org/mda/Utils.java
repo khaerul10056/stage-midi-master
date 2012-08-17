@@ -41,6 +41,14 @@ public class Utils {
 
   public static final String ICON_PROPERTIES = "properties.gif";
   public static final String ICON_TRANSPOSE = "transpose.gif";
+  public static final String ICON_NEXT = "next.png";
+  public static final String ICON_PREVIOUS = "previous.png";
+  public static final String ICON_NEXT_SONG = "folder_next.png";
+  public static final String ICON_PREVIOUS_SONG = "folder_previous.png";
+  public static final String ICON_WHITE_BACKGROUND = "white.png";
+  public static final String ICON_BLACK_BACKGROUND = "black.png";
+  public static final String ICON_IMAGE_BACKGROUND = "image.png";
+  public static final String ICON_NORMAL_BACKGROUND = "normal.png";
 
   public static final String ICON_PARTPROPERTIES = "partproperties.gif";
   

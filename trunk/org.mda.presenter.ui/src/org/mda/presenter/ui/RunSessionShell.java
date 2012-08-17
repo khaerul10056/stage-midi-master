@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
+import org.mda.Utils;
 import org.mda.commons.ui.ContentProvider;
 import org.mda.commons.ui.LabelProvider;
 import org.mda.commons.ui.Util;
@@ -45,6 +46,7 @@ public class RunSessionShell {
 	    
 	    ToolItem btnPrevSong = new ToolItem(toolbar, SWT.PUSH);
 	    btnPrevSong.setText("Prev song");
+	    btnPrevSong.setImage(Utils.loadImageFromProject(Utils.ICON_PREVIOUS_SONG));
 	    btnPrevSong.addSelectionListener(new SelectionAdapter() {
 	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	        getController().previousSong();
@@ -53,6 +55,7 @@ public class RunSessionShell {
 
 	    ToolItem btnNextSong = new ToolItem(toolbar, SWT.PUSH);
 	    btnNextSong.setText("Next song");
+	    btnNextSong.setImage(Utils.loadImageFromProject(Utils.ICON_NEXT_SONG));
 	    btnNextSong.addSelectionListener(new SelectionAdapter() {
 	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	        getController().nextSong ();
@@ -61,6 +64,7 @@ public class RunSessionShell {
 
 	    ToolItem btnPrev = new ToolItem(toolbar, SWT.PUSH);
 	    btnPrev.setText("Prev slide");
+	    btnPrev.setImage(Utils.loadImageFromProject(Utils.ICON_PREVIOUS));
 	    btnPrev.addSelectionListener(new SelectionAdapter() {
 	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	        getController().previousSlide();
@@ -69,6 +73,7 @@ public class RunSessionShell {
 
 	    ToolItem btnNext = new ToolItem(toolbar, SWT.PUSH);
 	    btnNext.setText("Next slide");
+	    btnNext.setImage(Utils.loadImageFromProject(Utils.ICON_NEXT));
 	    btnNext.addSelectionListener(new SelectionAdapter() {
 	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	        getController().nextSlide();
@@ -76,9 +81,13 @@ public class RunSessionShell {
 	    });
 	    
 	    
-
-	    final ToolItem btnBlack = new ToolItem(toolbar, SWT.RADIO);
+	    final ToolItem btnNormal = new ToolItem(toolbar, SWT.RADIO);
+	    btnNormal.setText("Normal");
+	    btnNormal.setImage(Utils.loadImageFromProject(Utils.ICON_NORMAL_BACKGROUND));
+	    
+	    final ToolItem btnBlack = new ToolItem(toolbar, SWT.RADIO );
 	    btnBlack.setText("Black");
+	    btnBlack.setImage(Utils.loadImageFromProject(Utils.ICON_BLACK_BACKGROUND));
 	    btnBlack.addSelectionListener(new SelectionAdapter() {
 	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	        getController().toggleBlack ();
@@ -87,6 +96,7 @@ public class RunSessionShell {
 
 	    final ToolItem btnWhite = new ToolItem(toolbar, SWT.RADIO);
 	    btnWhite.setText("White");
+	    btnWhite.setImage(Utils.loadImageFromProject(Utils.ICON_WHITE_BACKGROUND));
 	    btnWhite.addSelectionListener(new SelectionAdapter() {
 	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	        getController().toggleWhite();
@@ -95,23 +105,24 @@ public class RunSessionShell {
 
 	    final ToolItem btnBackground = new ToolItem(toolbar, SWT.RADIO);
 	    btnBackground.setText("Background");
+	    btnBackground.setImage(Utils.loadImageFromProject(Utils.ICON_IMAGE_BACKGROUND));
 	    btnBackground.addSelectionListener(new SelectionAdapter() {
 	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	        getController().toggleOnlyBackground();
 	      }
 	    });
 	    
-	    final ToolItem btnNormal = new ToolItem(toolbar, SWT.RADIO);
-	    btnNormal.setText("Normal");
+	    
 	    btnNormal.addSelectionListener(new SelectionAdapter() {
-	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-	        getController().toggleNormalize();
-	        btnBackground.setSelection(false); 
-	        btnWhite.setSelection(false);
-	        btnBlack.setSelection(false);
-	        btnNormal.setSelection(false);
-	      }
-	    });
+		      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+		        getController().toggleNormalize();
+		        btnBackground.setSelection(false); 
+		        btnWhite.setSelection(false);
+		        btnBlack.setSelection(false);
+		        btnNormal.setSelection(false);
+		      }
+		    });
+	    
 
 	    ToolItem btnDefaultSite = new ToolItem(toolbar, SWT.PUSH);
 	    btnDefaultSite.setText("Default slide");
