@@ -2,7 +2,10 @@ package org.mda.commons.ui.calculator.configurator;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
 import mda.MidiPlayerRoot;
 import mda.PresentationScheme;
 import mda.User;
@@ -17,8 +20,8 @@ import org.mda.logging.LogFactory;
 public class PresentationConfigurator {
 
   private static final Log LOGGER  = LogFactory.getLogger(PresentationConfigurator.class);
-
-
+  
+  private PresentationConfigDefaults defaults = new PresentationConfigDefaults();
 
   public IMidiFileEditorUIConfig configure (final User user, final MidiPlayerRoot root, final PresentationType currentType) {
     if (root == null)
@@ -28,10 +31,22 @@ public class PresentationConfigurator {
       throw new IllegalArgumentException("parameter currentType must not be null");
 
     DefaultMidiFileContentEditorConfig defaultConfig = new DefaultMidiFileContentEditorConfig();
-    overwriteConfiguration(defaultConfig, root.getPresentationschemes(), currentType);
+    
+    overwriteConfiguration(defaultConfig, defaults.getAllDefaultSchemes(), currentType);  //programmatic defaults
+    
+    overwriteConfiguration(defaultConfig, root.getPresentationschemes(), currentType); //generally configured values
+    
     if (user != null)
-      overwriteConfiguration(defaultConfig, user.getPresentationschemes(), currentType);
+      overwriteConfiguration(defaultConfig, user.getPresentationschemes(), currentType); //per user configured values
     return defaultConfig;
+  }
+  
+  public List <String> getPresentationTypes () {
+	  ArrayList<String> types = new ArrayList<String>();
+	  for (PresentationType next: PresentationType.values()) {
+		  types.add(next.name());
+	  }
+	  return types;
   }
 
   /**
@@ -40,7 +55,7 @@ public class PresentationConfigurator {
    * @param type type to find
    * @return scheme or <code>null</code> if no scheme was found
    */
-  private PresentationScheme findScheme (Collection <PresentationScheme> schemes, final PresentationType type ) {
+  public PresentationScheme findScheme (Collection <PresentationScheme> schemes, final PresentationType type ) {
     for (PresentationScheme nextScheme: schemes) {
       if (nextScheme.getType().equals(type.name()))
         return nextScheme;

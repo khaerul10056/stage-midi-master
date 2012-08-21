@@ -41,297 +41,297 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class MidiFilePartImpl extends EObjectImpl implements MidiFilePart {
 	/**
-   * The cached value of the '{@link #getTextlines() <em>Textlines</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTextlines() <em>Textlines</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see #getTextlines()
-   * @generated
-   * @ordered
-   */
+	 * @see #getTextlines()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList<MidiFileTextLine> textlines;
 
 	/**
-   * The default value of the '{@link #getParttype() <em>Parttype</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getParttype() <em>Parttype</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see #getParttype()
-   * @generated
-   * @ordered
-   */
+	 * @see #getParttype()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final MidiFilePartType PARTTYPE_EDEFAULT = MidiFilePartType.REFRAIN;
 
 	/**
-   * The cached value of the '{@link #getParttype() <em>Parttype</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getParttype() <em>Parttype</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see #getParttype()
-   * @generated
-   * @ordered
-   */
+	 * @see #getParttype()
+	 * @generated
+	 * @ordered
+	 */
 	protected MidiFilePartType parttype = PARTTYPE_EDEFAULT;
 
 	/**
-   * The default value of the '{@link #getBar() <em>Bar</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getBar() <em>Bar</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBar()
-   * @generated
-   * @ordered
-   */
+	 * @see #getBar()
+	 * @generated
+	 * @ordered
+	 */
   protected static final int BAR_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getBar() <em>Bar</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getBar() <em>Bar</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBar()
-   * @generated
-   * @ordered
-   */
+	 * @see #getBar()
+	 * @generated
+	 * @ordered
+	 */
   protected int bar = BAR_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getRefPart() <em>Ref Part</em>}' reference.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRefPart() <em>Ref Part</em>}' reference.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRefPart()
-   * @generated
-   * @ordered
-   */
+	 * @see #getRefPart()
+	 * @generated
+	 * @ordered
+	 */
   protected MidiFilePart refPart;
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	protected MidiFilePartImpl() {
-    super();
-  }
+		super();
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-    return MidiplayerPackage.Literals.MIDI_FILE_PART;
-  }
+		return MidiplayerPackage.Literals.MIDI_FILE_PART;
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	public EList<MidiFileTextLine> getTextlines() {
-    if (textlines == null) {
-      textlines = new EObjectContainmentEList<MidiFileTextLine>(MidiFileTextLine.class, this, MidiplayerPackage.MIDI_FILE_PART__TEXTLINES);
-    }
-    return textlines;
-  }
+		if (textlines == null) {
+			textlines = new EObjectContainmentEList<MidiFileTextLine>(MidiFileTextLine.class, this, MidiplayerPackage.MIDI_FILE_PART__TEXTLINES);
+		}
+		return textlines;
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	public MidiFilePartType getParttype() {
-    return parttype;
-  }
+		return parttype;
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	public void setParttype(MidiFilePartType newParttype) {
-    MidiFilePartType oldParttype = parttype;
-    parttype = newParttype == null ? PARTTYPE_EDEFAULT : newParttype;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE_PART__PARTTYPE, oldParttype, parttype));
-  }
+		MidiFilePartType oldParttype = parttype;
+		parttype = newParttype == null ? PARTTYPE_EDEFAULT : newParttype;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE_PART__PARTTYPE, oldParttype, parttype));
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public int getBar() {
-    return bar;
-  }
+		return bar;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setBar(int newBar) {
-    int oldBar = bar;
-    bar = newBar;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE_PART__BAR, oldBar, bar));
-  }
+		int oldBar = bar;
+		bar = newBar;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE_PART__BAR, oldBar, bar));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public MidiFilePart getRefPart() {
-    if (refPart != null && refPart.eIsProxy()) {
-      InternalEObject oldRefPart = (InternalEObject)refPart;
-      refPart = (MidiFilePart)eResolveProxy(oldRefPart);
-      if (refPart != oldRefPart) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MidiplayerPackage.MIDI_FILE_PART__REF_PART, oldRefPart, refPart));
-      }
-    }
-    return refPart;
-  }
+		if (refPart != null && refPart.eIsProxy()) {
+			InternalEObject oldRefPart = (InternalEObject)refPart;
+			refPart = (MidiFilePart)eResolveProxy(oldRefPart);
+			if (refPart != oldRefPart) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MidiplayerPackage.MIDI_FILE_PART__REF_PART, oldRefPart, refPart));
+			}
+		}
+		return refPart;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public MidiFilePart basicGetRefPart() {
-    return refPart;
-  }
+		return refPart;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setRefPart(MidiFilePart newRefPart) {
-    MidiFilePart oldRefPart = refPart;
-    refPart = newRefPart;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE_PART__REF_PART, oldRefPart, refPart));
-  }
+		MidiFilePart oldRefPart = refPart;
+		refPart = newRefPart;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE_PART__REF_PART, oldRefPart, refPart));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-      case MidiplayerPackage.MIDI_FILE_PART__TEXTLINES:
-        return ((InternalEList<?>)getTextlines()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case MidiplayerPackage.MIDI_FILE_PART__TEXTLINES:
+				return ((InternalEList<?>)getTextlines()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-      case MidiplayerPackage.MIDI_FILE_PART__TEXTLINES:
-        return getTextlines();
-      case MidiplayerPackage.MIDI_FILE_PART__PARTTYPE:
-        return getParttype();
-      case MidiplayerPackage.MIDI_FILE_PART__BAR:
-        return getBar();
-      case MidiplayerPackage.MIDI_FILE_PART__REF_PART:
-        if (resolve) return getRefPart();
-        return basicGetRefPart();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+		switch (featureID) {
+			case MidiplayerPackage.MIDI_FILE_PART__TEXTLINES:
+				return getTextlines();
+			case MidiplayerPackage.MIDI_FILE_PART__PARTTYPE:
+				return getParttype();
+			case MidiplayerPackage.MIDI_FILE_PART__BAR:
+				return getBar();
+			case MidiplayerPackage.MIDI_FILE_PART__REF_PART:
+				if (resolve) return getRefPart();
+				return basicGetRefPart();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-      case MidiplayerPackage.MIDI_FILE_PART__TEXTLINES:
-        getTextlines().clear();
-        getTextlines().addAll((Collection<? extends MidiFileTextLine>)newValue);
-        return;
-      case MidiplayerPackage.MIDI_FILE_PART__PARTTYPE:
-        setParttype((MidiFilePartType)newValue);
-        return;
-      case MidiplayerPackage.MIDI_FILE_PART__BAR:
-        setBar((Integer)newValue);
-        return;
-      case MidiplayerPackage.MIDI_FILE_PART__REF_PART:
-        setRefPart((MidiFilePart)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+		switch (featureID) {
+			case MidiplayerPackage.MIDI_FILE_PART__TEXTLINES:
+				getTextlines().clear();
+				getTextlines().addAll((Collection<? extends MidiFileTextLine>)newValue);
+				return;
+			case MidiplayerPackage.MIDI_FILE_PART__PARTTYPE:
+				setParttype((MidiFilePartType)newValue);
+				return;
+			case MidiplayerPackage.MIDI_FILE_PART__BAR:
+				setBar((Integer)newValue);
+				return;
+			case MidiplayerPackage.MIDI_FILE_PART__REF_PART:
+				setRefPart((MidiFilePart)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-    switch (featureID) {
-      case MidiplayerPackage.MIDI_FILE_PART__TEXTLINES:
-        getTextlines().clear();
-        return;
-      case MidiplayerPackage.MIDI_FILE_PART__PARTTYPE:
-        setParttype(PARTTYPE_EDEFAULT);
-        return;
-      case MidiplayerPackage.MIDI_FILE_PART__BAR:
-        setBar(BAR_EDEFAULT);
-        return;
-      case MidiplayerPackage.MIDI_FILE_PART__REF_PART:
-        setRefPart((MidiFilePart)null);
-        return;
-    }
-    super.eUnset(featureID);
-  }
+		switch (featureID) {
+			case MidiplayerPackage.MIDI_FILE_PART__TEXTLINES:
+				getTextlines().clear();
+				return;
+			case MidiplayerPackage.MIDI_FILE_PART__PARTTYPE:
+				setParttype(PARTTYPE_EDEFAULT);
+				return;
+			case MidiplayerPackage.MIDI_FILE_PART__BAR:
+				setBar(BAR_EDEFAULT);
+				return;
+			case MidiplayerPackage.MIDI_FILE_PART__REF_PART:
+				setRefPart((MidiFilePart)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-    switch (featureID) {
-      case MidiplayerPackage.MIDI_FILE_PART__TEXTLINES:
-        return textlines != null && !textlines.isEmpty();
-      case MidiplayerPackage.MIDI_FILE_PART__PARTTYPE:
-        return parttype != PARTTYPE_EDEFAULT;
-      case MidiplayerPackage.MIDI_FILE_PART__BAR:
-        return bar != BAR_EDEFAULT;
-      case MidiplayerPackage.MIDI_FILE_PART__REF_PART:
-        return refPart != null;
-    }
-    return super.eIsSet(featureID);
-  }
+		switch (featureID) {
+			case MidiplayerPackage.MIDI_FILE_PART__TEXTLINES:
+				return textlines != null && !textlines.isEmpty();
+			case MidiplayerPackage.MIDI_FILE_PART__PARTTYPE:
+				return parttype != PARTTYPE_EDEFAULT;
+			case MidiplayerPackage.MIDI_FILE_PART__BAR:
+				return bar != BAR_EDEFAULT;
+			case MidiplayerPackage.MIDI_FILE_PART__REF_PART:
+				return refPart != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	public String toString() {
-    if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (parttype: ");
-    result.append(parttype);
-    result.append(", bar: ");
-    result.append(bar);
-    result.append(')');
-    return result.toString();
-  }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (parttype: ");
+		result.append(parttype);
+		result.append(", bar: ");
+		result.append(bar);
+		result.append(')');
+		return result.toString();
+	}
 
 } //MidiFilePartImpl

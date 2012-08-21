@@ -25,6 +25,10 @@ public class GlobalKeyRegistryPresentationController extends DefaultPresentation
 
       @Override
       public void handleEvent (Event e) {
+    	  
+    	if (e.doit == false)
+    		return;
+    	
         if (e.character == SWT.ESC)
           end();
 
@@ -55,6 +59,8 @@ public class GlobalKeyRegistryPresentationController extends DefaultPresentation
         if (e.character == 'n') {
             toggleNormalize();
           }
+        
+        e.doit = false;
       }
     };
   }

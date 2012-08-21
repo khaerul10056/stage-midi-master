@@ -23,244 +23,244 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum AdditionalType implements Enumerator {
   /**
-   * The '<em><b>IMAGE</b></em>' literal object.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>IMAGE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #IMAGE_VALUE
-   * @generated
-   * @ordered
-   */
+	 * @see #IMAGE_VALUE
+	 * @generated
+	 * @ordered
+	 */
   IMAGE(0, "IMAGE", "IMAGE"),
 
   /**
-   * The '<em><b>VIDEO</b></em>' literal object.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>VIDEO</b></em>' literal object.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #VIDEO_VALUE
-   * @generated
-   * @ordered
-   */
+	 * @see #VIDEO_VALUE
+	 * @generated
+	 * @ordered
+	 */
   VIDEO(1, "VIDEO", "VIDEO"),
 
   /**
-   * The '<em><b>MIDIFILE</b></em>' literal object.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>MIDIFILE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #MIDIFILE_VALUE
-   * @generated
-   * @ordered
-   */
+	 * @see #MIDIFILE_VALUE
+	 * @generated
+	 * @ordered
+	 */
   MIDIFILE(2, "MIDIFILE", "MIDIFILE"),
 
   /**
-   * The '<em><b>AUDIO</b></em>' literal object.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>AUDIO</b></em>' literal object.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #AUDIO_VALUE
-   * @generated
-   * @ordered
-   */
+	 * @see #AUDIO_VALUE
+	 * @generated
+	 * @ordered
+	 */
   AUDIO(3, "AUDIO", "AUDIO");
 
   /**
-   * The '<em><b>IMAGE</b></em>' literal value.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>IMAGE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>IMAGE</b></em>' literal object isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @see #IMAGE
-   * @model
-   * @generated
-   * @ordered
-   */
+	 * @see #IMAGE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
   public static final int IMAGE_VALUE = 0;
 
   /**
-   * The '<em><b>VIDEO</b></em>' literal value.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>VIDEO</b></em>' literal value.
+	 * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>VIDEO</b></em>' literal object isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @see #VIDEO
-   * @model
-   * @generated
-   * @ordered
-   */
+	 * @see #VIDEO
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
   public static final int VIDEO_VALUE = 1;
 
   /**
-   * The '<em><b>MIDIFILE</b></em>' literal value.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>MIDIFILE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>MIDIFILE</b></em>' literal object isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @see #MIDIFILE
-   * @model
-   * @generated
-   * @ordered
-   */
+	 * @see #MIDIFILE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
   public static final int MIDIFILE_VALUE = 2;
 
   /**
-   * The '<em><b>AUDIO</b></em>' literal value.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>AUDIO</b></em>' literal value.
+	 * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>AUDIO</b></em>' literal object isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @see #AUDIO
-   * @model
-   * @generated
-   * @ordered
-   */
+	 * @see #AUDIO
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
   public static final int AUDIO_VALUE = 3;
 
   /**
-   * An array of all the '<em><b>Additional Type</b></em>' enumerators.
-   * <!-- begin-user-doc -->
+	 * An array of all the '<em><b>Additional Type</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private static final AdditionalType[] VALUES_ARRAY =
     new AdditionalType[] {
-      IMAGE,
-      VIDEO,
-      MIDIFILE,
-      AUDIO,
-    };
+			IMAGE,
+			VIDEO,
+			MIDIFILE,
+			AUDIO,
+		};
 
   /**
-   * A public read-only list of all the '<em><b>Additional Type</b></em>' enumerators.
-   * <!-- begin-user-doc -->
+	 * A public read-only list of all the '<em><b>Additional Type</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public static final List<AdditionalType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>Additional Type</b></em>' literal with the specified literal value.
-   * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Additional Type</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public static AdditionalType get(String literal) {
-    for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-      AdditionalType result = VALUES_ARRAY[i];
-      if (result.toString().equals(literal)) {
-        return result;
-      }
-    }
-    return null;
-  }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			AdditionalType result = VALUES_ARRAY[i];
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
   /**
-   * Returns the '<em><b>Additional Type</b></em>' literal with the specified name.
-   * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Additional Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public static AdditionalType getByName(String name) {
-    for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-      AdditionalType result = VALUES_ARRAY[i];
-      if (result.getName().equals(name)) {
-        return result;
-      }
-    }
-    return null;
-  }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			AdditionalType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
   /**
-   * Returns the '<em><b>Additional Type</b></em>' literal with the specified integer value.
-   * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Additional Type</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public static AdditionalType get(int value) {
-    switch (value) {
-      case IMAGE_VALUE: return IMAGE;
-      case VIDEO_VALUE: return VIDEO;
-      case MIDIFILE_VALUE: return MIDIFILE;
-      case AUDIO_VALUE: return AUDIO;
-    }
-    return null;
-  }
+		switch (value) {
+			case IMAGE_VALUE: return IMAGE;
+			case VIDEO_VALUE: return VIDEO;
+			case MIDIFILE_VALUE: return MIDIFILE;
+			case AUDIO_VALUE: return AUDIO;
+		}
+		return null;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private final int value;
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private final String name;
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private final String literal;
 
   /**
-   * Only this class can construct instances.
-   * <!-- begin-user-doc -->
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private AdditionalType(int value, String name, String literal) {
-    this.value = value;
-    this.name = name;
-    this.literal = literal;
-  }
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public int getValue() {
-    return value;
-  }
+	  return value;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public String getName() {
-    return name;
-  }
+	  return name;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public String getLiteral() {
-    return literal;
-  }
+	  return literal;
+	}
 
   /**
-   * Returns the literal value of the enumerator, which is its string representation.
-   * <!-- begin-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public String toString() {
-    return literal;
-  }
+		return literal;
+	}
   
 } //AdditionalType

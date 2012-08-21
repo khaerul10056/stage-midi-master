@@ -51,30 +51,17 @@ public class PdfExporter extends AbstractExporter {
 
   @Inject
   private ApplicationSession applicationsession;
-
+  
   private List <Slide> lastSlides = new ArrayList<Slide>();
 
-  public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig config2) throws ExportException  {
+  public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig config) throws ExportException  {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
-
     
-    //TODO Generalize to config2
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(config2.isChordPresented());
-    config.setShowBlockType(true);
-    config.setPagePerPart(false);
-    config.setNewPageRespected(false);
-    config.setShowTitle(true);
-    config.setFontsize(new Integer (12));
-    config.setGraphicsContext(new PDFGraphicsContext());
-
-    config.setOptimizeLineFilling(true); //TODO
-    //config.setOptimizeEqualParts(true); //TODO
-    config.setOptimizeEmptyTokens(true);
-    config.setShowCopyright(true);
-    config.setBorder(35);
-    calculator.setConfig(config);
+    DefaultMidiFileContentEditorConfig configImpl = (DefaultMidiFileContentEditorConfig) config;
+    configImpl.setFontsize(new Integer (12));
+    configImpl.setGraphicsContext(new PDFGraphicsContext());
+    calculator.setConfig(configImpl);
 
     Rectangle pagesizeA4 = PageSize.A4;
     Document document = new Document(PageSize.A4);
