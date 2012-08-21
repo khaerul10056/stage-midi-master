@@ -1,8 +1,9 @@
 package org.mda.commons.ui.user;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
 import mda.User;
+
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;

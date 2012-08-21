@@ -19,10 +19,15 @@ import org.eclipse.swt.widgets.ToolItem;
 import org.mda.Utils;
 import org.mda.commons.ui.ContentProvider;
 import org.mda.commons.ui.LabelProvider;
+import org.mda.commons.ui.MonitorManager;
 import org.mda.commons.ui.Util;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 @Creatable
 public class RunSessionShell {
+	
+	private static final Log LOGGER  = LogFactory.getLogger(RunSessionShell.class);
 	
 	@Inject
 	private PresentationContext presentationContext;
@@ -37,6 +42,9 @@ public class RunSessionShell {
 	
 	@Inject
 	private DefaultPresentationController controller;
+	
+	@Inject
+	private MonitorManager monitorManager;
 
 	private ToolBar toolbar;
 	
@@ -136,15 +144,15 @@ public class RunSessionShell {
 	}
 	
 	public Shell build (final Shell parent) {
-		shell = new Shell (parent, SWT.NONE); 
-		shell.setBounds(parent.getBounds());
+		shell = new Shell (parent, SWT.NONE);
+		shell.setBounds(monitorManager.getPrimaryMonitor().getBounds());
+		LOGGER.info("Build RunSessionShell at " + shell.getBounds());
 		
 		presentationContext.registerController(getController());
 
 		//Toolbar
 		
 		ToolBar toolbar = buildToolBar(shell);
-		
 		
 		treModel = new List(shell, SWT.NONE);
 	    treModel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true));

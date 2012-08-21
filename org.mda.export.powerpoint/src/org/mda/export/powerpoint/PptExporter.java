@@ -8,8 +8,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+
 import javax.inject.Inject;
+
 import mda.AbstractSessionItem;
+
 import org.apache.poi.hslf.model.Fill;
 import org.apache.poi.hslf.model.Line;
 import org.apache.poi.hslf.model.Picture;
@@ -48,11 +51,6 @@ public class PptExporter extends AbstractExporter {
     SlideShow show = new SlideShow();
     show.setPageSize(new Dimension(getCalculator().getConfig().getDefaultPresentationScreenSize().x, getCalculator().getConfig().getDefaultPresentationScreenSize().y));
 
-//    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-//    config.setChordVisible(exportconfig.isWithChords());
-//    config.setShowBackground(true);
-//    config.setSkipEmptySlides(true);
-//    config.setOptimizeLineFilling(false);
     getCalculator().setConfig(config);
     LOG.info("Calculate size " + show.getPageSize().width + "x" + show.getPageSize().height + " from " +
         getCalculator().getConfig().getDefaultPresentationScreenSize().x + "x" + getCalculator().getConfig().getDefaultPresentationScreenSize().y );

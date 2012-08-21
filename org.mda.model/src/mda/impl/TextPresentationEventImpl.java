@@ -33,104 +33,104 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class TextPresentationEventImpl extends AbstractEventImpl implements TextPresentationEvent {
 	/**
-   * The cached value of the '{@link #getParts() <em>Parts</em>}' reference list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getParts() <em>Parts</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see #getParts()
-   * @generated
-   * @ordered
-   */
+	 * @see #getParts()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList<MidiFilePart> parts;
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	protected TextPresentationEventImpl() {
-    super();
-  }
+		super();
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-    return MidiplayerPackage.Literals.TEXT_PRESENTATION_EVENT;
-  }
+		return MidiplayerPackage.Literals.TEXT_PRESENTATION_EVENT;
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	public EList<MidiFilePart> getParts() {
-    if (parts == null) {
-      parts = new EObjectResolvingEList<MidiFilePart>(MidiFilePart.class, this, MidiplayerPackage.TEXT_PRESENTATION_EVENT__PARTS);
-    }
-    return parts;
-  }
+		if (parts == null) {
+			parts = new EObjectResolvingEList<MidiFilePart>(MidiFilePart.class, this, MidiplayerPackage.TEXT_PRESENTATION_EVENT__PARTS);
+		}
+		return parts;
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-      case MidiplayerPackage.TEXT_PRESENTATION_EVENT__PARTS:
-        return getParts();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+		switch (featureID) {
+			case MidiplayerPackage.TEXT_PRESENTATION_EVENT__PARTS:
+				return getParts();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-      case MidiplayerPackage.TEXT_PRESENTATION_EVENT__PARTS:
-        getParts().clear();
-        getParts().addAll((Collection<? extends MidiFilePart>)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+		switch (featureID) {
+			case MidiplayerPackage.TEXT_PRESENTATION_EVENT__PARTS:
+				getParts().clear();
+				getParts().addAll((Collection<? extends MidiFilePart>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-    switch (featureID) {
-      case MidiplayerPackage.TEXT_PRESENTATION_EVENT__PARTS:
-        getParts().clear();
-        return;
-    }
-    super.eUnset(featureID);
-  }
+		switch (featureID) {
+			case MidiplayerPackage.TEXT_PRESENTATION_EVENT__PARTS:
+				getParts().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-    switch (featureID) {
-      case MidiplayerPackage.TEXT_PRESENTATION_EVENT__PARTS:
-        return parts != null && !parts.isEmpty();
-    }
-    return super.eIsSet(featureID);
-  }
+		switch (featureID) {
+			case MidiplayerPackage.TEXT_PRESENTATION_EVENT__PARTS:
+				return parts != null && !parts.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //TextPresentationEventImpl

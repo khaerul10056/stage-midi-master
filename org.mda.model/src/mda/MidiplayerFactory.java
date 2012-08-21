@@ -18,128 +18,128 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface MidiplayerFactory extends EFactory {
 	/**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
 	MidiplayerFactory eINSTANCE = mda.impl.MidiplayerFactoryImpl.init();
 
 	/**
-   * Returns a new object of class '<em>Session</em>'.
-   * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Session</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Session</em>'.
-   * @generated
-   */
+	 * @return a new object of class '<em>Session</em>'.
+	 * @generated
+	 */
 	Session createSession();
 
 	/**
-   * Returns a new object of class '<em>Midi File</em>'.
-   * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Midi File</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Midi File</em>'.
-   * @generated
-   */
+	 * @return a new object of class '<em>Midi File</em>'.
+	 * @generated
+	 */
 	MidiFile createMidiFile();
 
 	/**
-   * Returns a new object of class '<em>Text Presentation Event</em>'.
-   * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Text Presentation Event</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Text Presentation Event</em>'.
-   * @generated
-   */
+	 * @return a new object of class '<em>Text Presentation Event</em>'.
+	 * @generated
+	 */
 	TextPresentationEvent createTextPresentationEvent();
 
 	/**
-   * Returns a new object of class '<em>Midi File Part</em>'.
-   * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Midi File Part</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Midi File Part</em>'.
-   * @generated
-   */
+	 * @return a new object of class '<em>Midi File Part</em>'.
+	 * @generated
+	 */
 	MidiFilePart createMidiFilePart();
 
 	/**
-   * Returns a new object of class '<em>Midi File Text Line</em>'.
-   * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Midi File Text Line</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Midi File Text Line</em>'.
-   * @generated
-   */
+	 * @return a new object of class '<em>Midi File Text Line</em>'.
+	 * @generated
+	 */
 	MidiFileTextLine createMidiFileTextLine();
 
 	/**
-   * Returns a new object of class '<em>Gallery</em>'.
-   * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Gallery</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Gallery</em>'.
-   * @generated
-   */
+	 * @return a new object of class '<em>Gallery</em>'.
+	 * @generated
+	 */
 	Gallery createGallery();
 
 	/**
-   * Returns a new object of class '<em>Midi Player Root</em>'.
-   * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Midi Player Root</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Midi Player Root</em>'.
-   * @generated
-   */
+	 * @return a new object of class '<em>Midi Player Root</em>'.
+	 * @generated
+	 */
 	MidiPlayerRoot createMidiPlayerRoot();
 
 	/**
-   * Returns a new object of class '<em>Midi File Chord Part</em>'.
-   * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Midi File Chord Part</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Midi File Chord Part</em>'.
-   * @generated
-   */
+	 * @return a new object of class '<em>Midi File Chord Part</em>'.
+	 * @generated
+	 */
 	MidiFileChordPart createMidiFileChordPart();
 
 	/**
-   * Returns a new object of class '<em>Configuration</em>'.
-   * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Configuration</em>'.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Configuration</em>'.
-   * @generated
-   */
+	 * @return a new object of class '<em>Configuration</em>'.
+	 * @generated
+	 */
   Configuration createConfiguration();
 
   /**
-   * Returns a new object of class '<em>User</em>'.
-   * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>User</em>'.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>User</em>'.
-   * @generated
-   */
+	 * @return a new object of class '<em>User</em>'.
+	 * @generated
+	 */
   User createUser();
 
   /**
-   * Returns a new object of class '<em>Copyright</em>'.
-   * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Copyright</em>'.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Copyright</em>'.
-   * @generated
-   */
+	 * @return a new object of class '<em>Copyright</em>'.
+	 * @generated
+	 */
   Copyright createCopyright();
 
   /**
-   * Returns a new object of class '<em>Presentation Scheme</em>'.
-   * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Presentation Scheme</em>'.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Presentation Scheme</em>'.
-   * @generated
-   */
+	 * @return a new object of class '<em>Presentation Scheme</em>'.
+	 * @generated
+	 */
   PresentationScheme createPresentationScheme();
 
   /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
 	MidiplayerPackage getMidiplayerPackage();
 
 } //MidiplayerFactory

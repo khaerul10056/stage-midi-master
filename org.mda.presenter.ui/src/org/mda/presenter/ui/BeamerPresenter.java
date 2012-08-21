@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
+import org.mda.commons.ui.MonitorManager;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.logging.Log;
@@ -40,37 +41,21 @@ public class BeamerPresenter implements IPresentationView {
 
   private Image currentShownImage = null;
   private File currentShownImageAsFile;
+  
+  @Inject
+  private MonitorManager monitormanager;
 
   private Shell shell;
 
 
-  private Monitor getPreferredExternalMonitor (Display display) {
-    for (Monitor nextMonitor: display.getMonitors()) {
-      if (! nextMonitor.equals(Display.getCurrent().getPrimaryMonitor()))
-        return nextMonitor;
-    }
-
-    return display.getPrimaryMonitor();
-
-  }
-  
   public Shell getShell () {
 	  return shell;
   }
 
   public Shell build (Display display, Session session, final boolean onTop) {
-	shell = new Shell (display, onTop ? SWT.ON_TOP: SWT.NONE);
-
-    Monitor preferredMonitor = getPreferredExternalMonitor(display);
-    if (! preferredMonitor.equals(Display.getCurrent().getPrimaryMonitor())) {
-      Rectangle bounds = getPreferredExternalMonitor(display).getBounds();
-      LOGGER.info("Set beamer-size to " + bounds.width + "x" + bounds.height);
-      shell.setBounds(bounds);
-      //1400x1050 =0,75   ->preview: 770x262 = 0,34
-    }
-
-    LOGGER.info("Bounds of Display: " + Display.getCurrent().getBounds());
-    LOGGER.info("ClientArea of Display: " + Display.getCurrent().getClientArea());
+	shell = new Shell (onTop ? SWT.ON_TOP: SWT.NONE);
+	LOGGER.info(monitormanager.toString());
+	shell.setBounds(monitormanager.getBeamerOrPreviewBounds());
 
     shell.setBackground(shell.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 

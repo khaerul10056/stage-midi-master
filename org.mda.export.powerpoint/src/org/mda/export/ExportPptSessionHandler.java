@@ -13,7 +13,9 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.Utils;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
+import org.mda.commons.ui.IMidiFileEditorUIConfig;
+import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
+import org.mda.commons.ui.calculator.configurator.PresentationType;
 import org.mda.export.powerpoint.PptExporter;
 
 public class ExportPptSessionHandler {
@@ -23,11 +25,11 @@ public class ExportPptSessionHandler {
 	
 	@Execute
 	public void execute(Shell mother, ApplicationSession session) {
-		DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+		PresentationConfigurator configurator = new PresentationConfigurator(); 
+		IMidiFileEditorUIConfig config = configurator.configure(null, session.getCurrentModel(), PresentationType.PPT);
 		Session currentSession = (Session) session.getModelEvents().getCurrentModelElement(Session.class);
 		String name = Utils.removeWhitespaces(currentSession.getName());
 		File exportPath = new File (session.getExportPath(), name + ".ppt");
-		config.setShowBackground(true);
 		File export = exporter.export(currentSession.getItems(), exportPath, config);
 		
 		int style = SWT.ICON_INFORMATION |SWT.OK;

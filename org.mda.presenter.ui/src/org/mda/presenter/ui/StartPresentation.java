@@ -11,10 +11,14 @@ import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
+import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.Util;
+import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
+import org.mda.commons.ui.calculator.configurator.PresentationType;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
@@ -38,8 +42,9 @@ public class StartPresentation   {
   
   @Inject
   private RunSessionShell runsessionshell;
+
   
-    
+  
 //	//Run a special session at startup
 //	if (appSession.getFeatureActivation().getRunSession() != null) {
 //		
@@ -57,19 +62,15 @@ public class StartPresentation   {
     //Register global controller
     presentationContext.registerController(globalkeycontroller);
 
-    beamerpresenter.build(parentShell.getDisplay(), applicationSession.getCurrentSession(), applicationSession.getFeatureActivation().isPresentationAlwaysOnTop());
+    beamerpresenter.build(Display.getCurrent(), applicationSession.getCurrentSession(), applicationSession.getFeatureActivation().isPresentationAlwaysOnTop());
     
+    PresentationConfigurator configurator = new PresentationConfigurator();
+    IMidiFileEditorUIConfig config = configurator.configure(null, applicationSession.getCurrentModel(), PresentationType.SCREEN);
     
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(false);
-    config.setShowBackground(true);
-    config.setSkipEmptySlides(true);
-    config.setOptimizeEmptyTokens(true);
     presentationContext.setCurrentSession(applicationSession.getCurrentSession(), config, beamerpresenter.getShell().getSize());
     presentationContext.registerView(beamerpresenter);
 
     beamerpresenter.getShell().setEnabled(true);
-    Util.centreShell(beamerpresenter.getShell());
     
     runsessionshell.build(parentShell);
     runsessionshell.getShell().addDisposeListener(new DisposeListener() {

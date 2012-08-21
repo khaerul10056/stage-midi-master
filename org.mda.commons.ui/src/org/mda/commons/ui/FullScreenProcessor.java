@@ -17,17 +17,18 @@ public class FullScreenProcessor {
 
 	@Inject
 	private MApplication application;
+	
+	@Inject
+	private MonitorManager monitormanager;
 
 	@Execute
 	public void execute() {
 		MWindow mainwindow = application.getChildren().get(0);
-		Rectangle bounds = Display.getCurrent().getBounds();
+		Rectangle bounds = monitormanager.getPrimaryMonitor().getBounds();
 		mainwindow.setX(bounds.x);
 		mainwindow.setY(bounds.y);
 		mainwindow.setHeight(bounds.height);
 		mainwindow.setWidth(bounds.width);
-		System.out.println("Hallo");
-
 	}
 
 }
