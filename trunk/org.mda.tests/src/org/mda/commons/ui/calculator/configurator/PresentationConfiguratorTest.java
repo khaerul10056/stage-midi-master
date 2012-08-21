@@ -17,6 +17,7 @@ public class PresentationConfiguratorTest {
 
   private PresentationConfigurator  configurator;
   private static ApplicationSession appSession = new ApplicationSession();
+  private PresentationConfigDefaults defaults = new PresentationConfigDefaults();
 
   @Before
   public void setup () {
@@ -47,10 +48,17 @@ public class PresentationConfiguratorTest {
     Assert.assertEquals (compareConfig.isOptimizeEmptyTokens(), config.isOptimizeEmptyTokens());
     Assert.assertEquals (compareConfig.isAutoWrapToNewPage(), config.isAutoWrapToNewPage());
   }
+  
+  private DefaultMidiFileContentEditorConfig createDefault (PresentationType type) {
+	  DefaultMidiFileContentEditorConfig defaultConfig = new DefaultMidiFileContentEditorConfig();
+	  
+	  configurator.overwriteConfiguration(defaultConfig, defaults.getAllDefaultSchemes(), type);
+	  return defaultConfig;
+  }
 
   @Test
   public void dontOverwriteDefault () {
-    DefaultMidiFileContentEditorConfig defaultConfig = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFileContentEditorConfig defaultConfig = createDefault(PresentationType.PDF);
     IMidiFileEditorUIConfig configuredConfig = configurator.configure(null, appSession.getCurrentModel(), PresentationType.PDF);
 
     checkConfiguration( configuredConfig, defaultConfig);
@@ -64,7 +72,7 @@ public class PresentationConfiguratorTest {
   public void overwriteWithGeneric () {
     appSession.getCurrentModel();
 
-    DefaultMidiFileContentEditorConfig defaultConfig = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFileContentEditorConfig defaultConfig = createDefault(PresentationType.PDF);
 
     //Case 2: Generic scheme is for another presentationtype
     PresentationScheme genericSchema = MidiPlayerService.mf.createPresentationScheme();
@@ -80,7 +88,7 @@ public class PresentationConfiguratorTest {
     checkConfiguration( configuredConfig, defaultConfig);
 
     //Case 3: Generic scheme is for this presentationtype
-    DefaultMidiFileContentEditorConfig overwrittenGenericExpected = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFileContentEditorConfig overwrittenGenericExpected  = createDefault(PresentationType.PPT);
     overwrittenGenericExpected.setBackgroundColor(getColorString(SWT.COLOR_BLUE));
     overwrittenGenericExpected.setForegroundColor(getColorString(SWT.COLOR_YELLOW));
     overwrittenGenericExpected.setShowBackground(genericSchema.getShowBackground());
@@ -94,7 +102,7 @@ public class PresentationConfiguratorTest {
     appSession.getCurrentModel().getUsers().clear();
     User newUser = MidiPlayerService.mf.createUser();
 
-    DefaultMidiFileContentEditorConfig defaultConfig = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFileContentEditorConfig defaultConfig  = createDefault(PresentationType.PDF);
 
     //Case 2: Generic scheme is for another presentationtype
     PresentationScheme genericSchema = MidiPlayerService.mf.createPresentationScheme();
@@ -110,7 +118,7 @@ public class PresentationConfiguratorTest {
     checkConfiguration( configuredConfig, defaultConfig);
 
     //Case 3: Generic scheme is for this presentationtype
-    DefaultMidiFileContentEditorConfig overwrittenGenericExpected = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFileContentEditorConfig overwrittenGenericExpected  = createDefault(PresentationType.PPT);
     overwrittenGenericExpected.setBorder (genericSchema.getBorder());
     overwrittenGenericExpected.setOptimizeEmptyTokens(genericSchema.getOptimizeEmptyTokens());
     overwrittenGenericExpected.setNewPageRespected(genericSchema.getNewPageRespected());
@@ -125,7 +133,7 @@ public class PresentationConfiguratorTest {
     appSession.getCurrentModel().getUsers().clear();
     User newUser = MidiPlayerService.mf.createUser();
 
-    DefaultMidiFileContentEditorConfig defaultConfig = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFileContentEditorConfig defaultConfig = createDefault(PresentationType.PDF);
 
     PresentationScheme genericSchema = MidiPlayerService.mf.createPresentationScheme();
     genericSchema.setType(PresentationType.PDF.name());
@@ -146,7 +154,7 @@ public class PresentationConfiguratorTest {
     newUser.getPresentationschemes().add(userSchema);
     appSession.getCurrentModel().getUsers().add(newUser);
 
-    DefaultMidiFileContentEditorConfig overwrittenGenericExpected = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFileContentEditorConfig overwrittenGenericExpected  = createDefault(PresentationType.PDF);
     overwrittenGenericExpected.setBorder (genericSchema.getBorder());
     overwrittenGenericExpected.setOptimizeEmptyTokens(genericSchema.getOptimizeEmptyTokens());
     overwrittenGenericExpected.setNewPageRespected(genericSchema.getNewPageRespected());

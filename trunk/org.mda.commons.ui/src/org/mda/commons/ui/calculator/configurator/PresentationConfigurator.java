@@ -65,7 +65,7 @@ public class PresentationConfigurator {
 
   }
 
-  private IMidiFileEditorUIConfig overwriteConfiguration (DefaultMidiFileContentEditorConfig originalConfig,
+  public IMidiFileEditorUIConfig overwriteConfiguration (DefaultMidiFileContentEditorConfig originalConfig,
                                                           Collection <PresentationScheme> schemes,
                                                           final PresentationType type) {
 
