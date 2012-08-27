@@ -9,7 +9,11 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.ShellEvent;
+import org.eclipse.swt.events.ShellListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.List;
@@ -146,7 +150,23 @@ public class RunSessionShell {
 	public Shell build (final Shell parent) {
 		shell = new Shell (parent, SWT.NONE);
 		shell.setBounds(monitorManager.getPrimaryMonitor().getBounds());
-		LOGGER.info("Build RunSessionShell at " + shell.getBounds());
+		LOGGER.info("Build RunSessionShell at " + shell.getBounds() + "(parent: " + parent.getBounds() + ")");
+		
+		shell.addControlListener(new ControlListener() {
+			
+			@Override
+			public void controlResized(ControlEvent e) {
+				System.out.println ("Resized: " + e.data);
+				
+				
+			}
+			
+			@Override
+			public void controlMoved(ControlEvent e) {
+				System.out.println ("Moved: " + e.data);
+				
+			}
+		});
 		
 		presentationContext.registerController(getController());
 
@@ -177,6 +197,8 @@ public class RunSessionShell {
 		shell.setVisible(true);
 		shell.setFocus();
 		
+		LOGGER.info("Build RunSessionShell at " + shell.getBounds() + "(parent: " + parent.getBounds() + ")");
+		shell.setBounds(monitorManager.getPrimaryMonitor().getBounds());
 		overview.refresh();
 		
 		return shell;

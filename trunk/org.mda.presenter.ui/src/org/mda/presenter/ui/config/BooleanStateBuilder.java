@@ -1,6 +1,8 @@
 package org.mda.presenter.ui.config;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
+import java.util.Collection;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
@@ -10,20 +12,21 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 
-@Creatable
-public class BooleanStateBuilder {
+
+public class BooleanStateBuilder extends AbstractDefaultableWidget implements IDefaultableWidget {
 	
-	private Boolean thisvalue;
 	private Button btnChecked;
-	private Boolean defaultvalue;
 	
-	Composite build (final Composite parent, final String label) {
+	private final Composite comp;
+	
+	BooleanStateBuilder (final Composite parent, final String label, String featureID) {
+		super.setFeatureId(featureID);
 		
-		Composite comp = new Composite(parent, SWT.NONE);
-		comp.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_BLUE));
-		comp.setLayout(new FillLayout(SWT.HORIZONTAL));
+		comp = new Composite(parent, SWT.NONE);
+		getComp().setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_BLUE));
+		getComp().setLayout(new FillLayout(SWT.HORIZONTAL));
 		
-		Label lbl = new Label (comp, SWT.NONE);
+		Label lbl = new Label (getComp(), SWT.NONE);
 		lbl.setText(label);
 		lbl.addMouseListener(new MouseAdapter() {
 			@Override
@@ -31,48 +34,43 @@ public class BooleanStateBuilder {
 				toggleDefaultState();
 			}
 		});
-		btnChecked = new Button (comp, SWT.CHECK);
-		setupDefaultState();
-		
-		
-		return comp;
+		btnChecked = new Button (getComp(), SWT.CHECK);
 	}
 	
 	public void setupDefaultState () {
-		if (getThisvalue() == null) {
+		if (isDefault()) {
 			btnChecked.setEnabled(false);
+			btnChecked.setSelection(false);
 		} else  {
 			btnChecked.setEnabled(true);
+			btnChecked.setSelection((Boolean) getValue());
 		}
-		
-		
 	}
 	
 	public void toggleDefaultState () {
-		if (getThisvalue() == null) {
-			setThisvalue(Boolean.valueOf(! getDefaultvalue().booleanValue()));
-		}
-		else {
-			setThisvalue(null);
-		}
-		
+		super.toggleDefault();
 		setupDefaultState();
 	}
 
-	public Boolean getDefaultvalue() {
-		return defaultvalue;
+	
+	
+	@Override
+	public void load(EObject object, Collection<? extends EObject> defaultObject) {
+		super.load(object, defaultObject);
+        setupDefaultState();		
 	}
 
-	public void setDefaultvalue(Boolean defaultvalue) {
-		this.defaultvalue = defaultvalue;
+	@Override
+	public void save() {
+		saveImpl(btnChecked.getSelection());
 	}
 
-	public Boolean getThisvalue() {
-		return thisvalue;
+	public Composite getComp() {
+		return comp;
 	}
 
-	public void setThisvalue(Boolean thisvalue) {
-		this.thisvalue = thisvalue;
-	}
+	
+
+	
 
 }

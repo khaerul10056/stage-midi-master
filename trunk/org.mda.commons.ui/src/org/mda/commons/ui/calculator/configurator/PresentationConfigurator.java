@@ -11,6 +11,7 @@ import mda.PresentationScheme;
 import mda.User;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.logging.Log;
@@ -22,6 +23,30 @@ public class PresentationConfigurator {
   private static final Log LOGGER  = LogFactory.getLogger(PresentationConfigurator.class);
   
   private PresentationConfigDefaults defaults = new PresentationConfigDefaults();
+  
+  public Collection <PresentationScheme> getParents (final User user, final MidiPlayerRoot root, final PresentationScheme current) {
+	  
+	  if (current == null)
+		  throw new IllegalArgumentException("current must not be <code>null</code>");
+	  
+	  Collection <PresentationScheme> parent = new ArrayList<PresentationScheme>();
+	  
+	  PresentationScheme foundAsUserScheme = user != null ? findSchemeByIdentity(user.getPresentationschemes(), current): null;
+	  PresentationScheme foundAsGlobalScheme = findSchemeByIdentity(root.getPresentationschemes(), current);
+	  
+	  PresentationScheme defaultedGlobalScheme = findSchemeByType(root.getPresentationschemes(), PresentationType.valueOf(current.getType()));
+	  PresentationScheme defaultedDefaultScheme = findSchemeByType(defaults.getAllDefaultSchemes(), PresentationType.valueOf(current.getType()));
+	  
+	  if (foundAsUserScheme != null) {
+		  parent.add(defaultedGlobalScheme);
+		  parent.add(defaultedDefaultScheme);
+	  }
+	  
+	  if (foundAsGlobalScheme != null)
+		  parent.add(defaultedDefaultScheme);
+	  
+	  return parent;
+  }
 
   public IMidiFileEditorUIConfig configure (final User user, final MidiPlayerRoot root, final PresentationType currentType) {
     if (root == null)
@@ -48,6 +73,19 @@ public class PresentationConfigurator {
 	  }
 	  return types;
   }
+  
+  
+  public PresentationScheme createScheme (final User user, final MidiPlayerRoot root, final PresentationType currentType) {
+	  PresentationScheme newScheme = MidiPlayerService.mf.createPresentationScheme();
+	  newScheme.setType(currentType.name());
+	  if (user != null)
+		  user.getPresentationschemes().add(newScheme);
+	  else
+		  root.getPresentationschemes().add(newScheme);
+	  
+	  return newScheme;
+  }
+  
 
   /**
    * finds the scheme from a number of schemes by type
@@ -55,7 +93,7 @@ public class PresentationConfigurator {
    * @param type type to find
    * @return scheme or <code>null</code> if no scheme was found
    */
-  public PresentationScheme findScheme (Collection <PresentationScheme> schemes, final PresentationType type ) {
+  public PresentationScheme findSchemeByType (Collection <PresentationScheme> schemes, final PresentationType type ) {
     for (PresentationScheme nextScheme: schemes) {
       if (nextScheme.getType().equals(type.name()))
         return nextScheme;
@@ -64,12 +102,22 @@ public class PresentationConfigurator {
     return null;
 
   }
+  
+  public PresentationScheme findSchemeByIdentity (Collection <PresentationScheme> schemes, final PresentationScheme scheme ) {
+	    for (PresentationScheme nextScheme: schemes) {
+	      if (nextScheme == scheme)
+	        return nextScheme;
+	    }
+
+	    return null;
+
+	  }
 
   public IMidiFileEditorUIConfig overwriteConfiguration (DefaultMidiFileContentEditorConfig originalConfig,
                                                           Collection <PresentationScheme> schemes,
                                                           final PresentationType type) {
 
-    PresentationScheme fittingScheme = findScheme(schemes, type);
+    PresentationScheme fittingScheme = findSchemeByType(schemes, type);
     if (fittingScheme != null) {
 
       for (EObject nextAttribute: fittingScheme.eClass().eContents()) {

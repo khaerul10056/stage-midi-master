@@ -1,5 +1,7 @@
 package org.mda.presenter.ui.config;
 
+import java.io.ObjectInputStream.GetField;
+import java.util.Collection;
 import java.util.HashMap;
 
 import javax.inject.Inject;
@@ -10,11 +12,9 @@ import mda.User;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.commons.ui.Util;
@@ -27,13 +27,15 @@ public class PresentationSchemaEditorBuilder {
 	
 	private PresentationConfigurator configurator = new PresentationConfigurator();
 	
-	@Inject
-	private BooleanStateBuilder booleanstate;
 	
 	@Inject
 	private ApplicationSession appsession;
 	
 	private PresentationScheme currentScheme;
+	
+	private Collection <PresentationScheme> parentSchemes;
+	
+	private HashMap<String, IDefaultableWidget> comps = new HashMap<String, IDefaultableWidget>();
 
 	private Combo combo;
 	
@@ -43,11 +45,17 @@ public class PresentationSchemaEditorBuilder {
 		PresentationType type = PresentationType.valueOf(item);
 		
 		if (user != null)
-			currentScheme = configurator.findScheme(user.getPresentationschemes(), type);
+			currentScheme = configurator.findSchemeByType(user.getPresentationschemes(), type);
 		else
-			currentScheme = configurator.findScheme(appsession.getCurrentModel().getPresentationschemes(), type);
+			currentScheme = configurator.findSchemeByType(appsession.getCurrentModel().getPresentationschemes(), type);
+		
+		if (currentScheme == null) {
+			currentScheme = configurator.createScheme(user, appsession.getCurrentModel(), type);
+		}
+		
+		parentSchemes = configurator.getParents(user, appsession.getCurrentModel(), currentScheme);
 	}
-
+	
 	public Shell build(Shell shell, User user) {
 		this.user = user;
 		
@@ -70,48 +78,44 @@ public class PresentationSchemaEditorBuilder {
 			}
 		});
 		combo.select(0);
+		changeType();
 		
+		addBooleanState(editorShell, "Show background:", "showBackground", 30);
+		addBooleanState(editorShell, "Show block type:", "showBlockType", null);
+		addBooleanState(editorShell, "Show block type:", "pagePerPart", null);
+		addBooleanState(editorShell, "Use manual new side marks:", "newPageRespected", null);
+		addBooleanState(editorShell, "Show title:", "showTitle", null);
+		addBooleanState(editorShell, "Show copyright:", "showCopyright", null);
+		addBooleanState(editorShell, "Skip empty slides:", "skipEmptySlides", null);
+		addBooleanState(editorShell, "Optimize line filling:", "optimizeLineFilling", null);
+		addBooleanState(editorShell, "Optimize equal parts:", "optimizeEqualParts", null);
+		addBooleanState(editorShell, "Optimize empty tokens:" , "optimizeEmptyTokens", null);
 		
-		Composite showBackgroundState = booleanstate.build(editorShell, "Show background:");
-		showBackgroundState.setLayoutData(getGridData(30));
-		
-		Composite showBlocktype = booleanstate.build(editorShell, "Show block type:");
-		showBlocktype.setLayoutData(getGridData(null));
-		
-		Composite pagePerPart = booleanstate.build(editorShell, "Page per Part:");
-		pagePerPart.setLayoutData(getGridData(null));
-		
-		Composite newPageRespected = booleanstate.build(editorShell, "Use manual new side marks:");
-		newPageRespected.setLayoutData(getGridData(null));
-		
-		Composite showTitle = booleanstate.build(editorShell, "Show title:");
-		showTitle.setLayoutData(getGridData(null));
-		
-		Composite showCopyright = booleanstate.build(editorShell, "Show copyright:");
-		showCopyright.setLayoutData(getGridData(null));
-		
-		Composite skipEmptySlides = booleanstate.build(editorShell, "Skip empty slides:");
-		skipEmptySlides.setLayoutData(getGridData(null));
-		
-		Composite optimizeLineFilling = booleanstate.build(editorShell, "Optimize line filling:");
-		optimizeLineFilling.setLayoutData(getGridData(null));
-		
-		Composite optimizeEqualParts = booleanstate.build(editorShell, "Optimize equal parts:");
-		optimizeEqualParts.setLayoutData(getGridData(null));
-		
-		Composite optimizeEmptyTokens = booleanstate.build(editorShell, "Optimize empty tokens:");
-		optimizeEmptyTokens.setLayoutData(getGridData(null));
 		
 		/** Integer getBorder();
-		  String getType();
 		  String getBackgroundColor();
 		  String getForegroundColor();**/
 		
 
 		
-		
+		load();
 		editorShell.open();
 		return editorShell;
+	}
+	
+	public void load () {
+		
+		for (String nextID: comps.keySet()) {
+			IDefaultableWidget widget = comps.get(nextID);
+			widget.load(currentScheme, parentSchemes);
+		}
+		
+	}
+	
+	public void addBooleanState (final Shell shell, String label, String id, Integer border) {
+		BooleanStateBuilder state = new BooleanStateBuilder(shell, label, id);
+		state.getComp().setLayoutData(getGridData(border));
+		comps.put(id, state);
 	}
 	
 	private GridData getGridData (Integer verticalIndent) {

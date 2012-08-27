@@ -59,19 +59,17 @@ public class StartPresentation   {
   public Object execute (Shell parentShell) throws ExecutionException {
     LOGGER.info("Starting presentation of selection " + applicationSession.getCurrentSession().getName());
 
-    //Register global controller
-    presentationContext.registerController(globalkeycontroller);
 
     beamerpresenter.build(Display.getCurrent(), applicationSession.getCurrentSession(), applicationSession.getFeatureActivation().isPresentationAlwaysOnTop());
+    beamerpresenter.getShell().setEnabled(true);
     
     PresentationConfigurator configurator = new PresentationConfigurator();
     IMidiFileEditorUIConfig config = configurator.configure(null, applicationSession.getCurrentModel(), PresentationType.SCREEN);
     
     presentationContext.setCurrentSession(applicationSession.getCurrentSession(), config, beamerpresenter.getShell().getSize());
     presentationContext.registerView(beamerpresenter);
+    presentationContext.registerController(globalkeycontroller);    //Register global controller
 
-    beamerpresenter.getShell().setEnabled(true);
-    
     runsessionshell.build(parentShell);
     runsessionshell.getShell().addDisposeListener(new DisposeListener() {
 		
