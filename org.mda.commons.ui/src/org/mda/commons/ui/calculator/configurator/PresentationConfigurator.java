@@ -146,12 +146,12 @@ public class PresentationConfigurator {
                 throw new IllegalStateException(e);
               }
             }
-            else
-              LOGGER.info("Method " + nextMethod.getName() + " doesn't fit methodname " + methodname);
+            else if (LOGGER.isDebugEnabled())
+              LOGGER.debug("Method " + nextMethod.getName() + " doesn't fit methodname " + methodname);
           }
 
         }
-        else
+        else if (LOGGER.isDebugEnabled())
           LOGGER.info("content " + nextAttribute + " is not attribute");
 
 

@@ -241,7 +241,7 @@ public class MidiFileSlideCalculatorTest {
     config.setNewPageRespected(false);
     config.setShowTitle(true);
     config.setSkipEmptySlides(false);
-    config.setChordVisible(false);
+    config.setShowChords(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
     MidiFileSlideCalculator calculator = getCalculator();
@@ -414,7 +414,7 @@ public class MidiFileSlideCalculatorTest {
     assertEquals (2, song.getParts().size());
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(true);
+    config.setShowChords(true);
     config.setPagePerPart(true);
     config.setFontsize(80);
 
@@ -445,7 +445,7 @@ public class MidiFileSlideCalculatorTest {
     assertEquals (2, song.getParts().size());
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(true);
+    config.setShowChords(true);
     config.setShowBlockType(true);
     config.setPagePerPart(false);
     config.setAutoWrapToNewPage(false);
@@ -489,7 +489,7 @@ public class MidiFileSlideCalculatorTest {
     MidiFile song = creator.get();
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(true);
+    config.setShowChords(true);
     config.setFontsize(80);
 
     Slide slide = calculate(song, config).get(0);
@@ -528,7 +528,7 @@ public class MidiFileSlideCalculatorTest {
     MidiFile song = creator.get();
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(false);
+    config.setShowChords(false);
     config.setFontsize(80);
     Slide slide = calculate(song, config).get(0);
     System.out.println (slide);

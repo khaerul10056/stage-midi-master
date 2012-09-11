@@ -930,13 +930,22 @@ public interface MidiplayerPackage extends EPackage {
 	int PRESENTATION_SCHEME__SHOW_CHORDS = 15;
 
 				/**
+	 * The feature id for the '<em><b>Auto Wrap To New Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE = 16;
+
+				/**
 	 * The number of structural features of the '<em>Presentation Scheme</em>' class.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  int PRESENTATION_SCHEME_FEATURE_COUNT = 16;
+  int PRESENTATION_SCHEME_FEATURE_COUNT = 17;
 
   /**
 	 * The meta object id for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
@@ -1805,6 +1814,17 @@ public interface MidiplayerPackage extends EPackage {
 	EAttribute getPresentationScheme_ShowChords();
 
 				/**
+	 * Returns the meta object for the attribute '{@link mda.PresentationScheme#getAutoWrapToNewPage <em>Auto Wrap To New Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Auto Wrap To New Page</em>'.
+	 * @see mda.PresentationScheme#getAutoWrapToNewPage()
+	 * @see #getPresentationScheme()
+	 * @generated
+	 */
+	EAttribute getPresentationScheme_AutoWrapToNewPage();
+
+				/**
 	 * Returns the meta object for enum '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2499,6 +2519,14 @@ public interface MidiplayerPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PRESENTATION_SCHEME__SHOW_CHORDS = eINSTANCE.getPresentationScheme_ShowChords();
+
+								/**
+		 * The meta object literal for the '<em><b>Auto Wrap To New Page</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE = eINSTANCE.getPresentationScheme_AutoWrapToNewPage();
 
 								/**
 		 * The meta object literal for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.

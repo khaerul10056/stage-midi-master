@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link mda.impl.PresentationSchemeImpl#getBackgroundColor <em>Background Color</em>}</li>
  *   <li>{@link mda.impl.PresentationSchemeImpl#getForegroundColor <em>Foreground Color</em>}</li>
  *   <li>{@link mda.impl.PresentationSchemeImpl#getShowChords <em>Show Chords</em>}</li>
+ *   <li>{@link mda.impl.PresentationSchemeImpl#getAutoWrapToNewPage <em>Auto Wrap To New Page</em>}</li>
  * </ul>
  * </p>
  *
@@ -364,6 +365,26 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
 	 * @ordered
 	 */
 	protected Boolean showChords = SHOW_CHORDS_EDEFAULT;
+
+		/**
+	 * The default value of the '{@link #getAutoWrapToNewPage() <em>Auto Wrap To New Page</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAutoWrapToNewPage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Boolean AUTO_WRAP_TO_NEW_PAGE_EDEFAULT = null;
+
+		/**
+	 * The cached value of the '{@link #getAutoWrapToNewPage() <em>Auto Wrap To New Page</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAutoWrapToNewPage()
+	 * @generated
+	 * @ordered
+	 */
+	protected Boolean autoWrapToNewPage = AUTO_WRAP_TO_NEW_PAGE_EDEFAULT;
 
 		/**
 	 * <!-- begin-user-doc -->
@@ -722,6 +743,27 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
 
 		/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Boolean getAutoWrapToNewPage() {
+		return autoWrapToNewPage;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAutoWrapToNewPage(Boolean newAutoWrapToNewPage) {
+		Boolean oldAutoWrapToNewPage = autoWrapToNewPage;
+		autoWrapToNewPage = newAutoWrapToNewPage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE, oldAutoWrapToNewPage, autoWrapToNewPage));
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -760,6 +802,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
 				return getForegroundColor();
 			case MidiplayerPackage.PRESENTATION_SCHEME__SHOW_CHORDS:
 				return getShowChords();
+			case MidiplayerPackage.PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE:
+				return getAutoWrapToNewPage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -819,6 +863,9 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
 				return;
 			case MidiplayerPackage.PRESENTATION_SCHEME__SHOW_CHORDS:
 				setShowChords((Boolean)newValue);
+				return;
+			case MidiplayerPackage.PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE:
+				setAutoWrapToNewPage((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -880,6 +927,9 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
 			case MidiplayerPackage.PRESENTATION_SCHEME__SHOW_CHORDS:
 				setShowChords(SHOW_CHORDS_EDEFAULT);
 				return;
+			case MidiplayerPackage.PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE:
+				setAutoWrapToNewPage(AUTO_WRAP_TO_NEW_PAGE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -924,6 +974,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
 				return FOREGROUND_COLOR_EDEFAULT == null ? foregroundColor != null : !FOREGROUND_COLOR_EDEFAULT.equals(foregroundColor);
 			case MidiplayerPackage.PRESENTATION_SCHEME__SHOW_CHORDS:
 				return SHOW_CHORDS_EDEFAULT == null ? showChords != null : !SHOW_CHORDS_EDEFAULT.equals(showChords);
+			case MidiplayerPackage.PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE:
+				return AUTO_WRAP_TO_NEW_PAGE_EDEFAULT == null ? autoWrapToNewPage != null : !AUTO_WRAP_TO_NEW_PAGE_EDEFAULT.equals(autoWrapToNewPage);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -970,6 +1022,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
 		result.append(foregroundColor);
 		result.append(", showChords: ");
 		result.append(showChords);
+		result.append(", autoWrapToNewPage: ");
+		result.append(autoWrapToNewPage);
 		result.append(')');
 		return result.toString();
 	}

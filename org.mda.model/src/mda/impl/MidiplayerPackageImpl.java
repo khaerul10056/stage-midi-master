@@ -917,6 +917,15 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPresentationScheme_AutoWrapToNewPage() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(16);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getMidiFilePartType() {
 		return midiFilePartTypeEEnum;
 	}
@@ -1057,6 +1066,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 		createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__BACKGROUND_COLOR);
 		createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__FOREGROUND_COLOR);
 		createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__SHOW_CHORDS);
+		createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE);
 
 		// Create enums
 		midiFilePartTypeEEnum = createEEnum(MIDI_FILE_PART_TYPE);
@@ -1186,6 +1196,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 		initEAttribute(getPresentationScheme_BackgroundColor(), ecorePackage.getEString(), "backgroundColor", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPresentationScheme_ForegroundColor(), ecorePackage.getEString(), "foregroundColor", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPresentationScheme_ShowChords(), ecorePackage.getEBooleanObject(), "showChords", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPresentationScheme_AutoWrapToNewPage(), ecorePackage.getEBooleanObject(), "autoWrapToNewPage", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(midiFilePartTypeEEnum, MidiFilePartType.class, "MidiFilePartType");
