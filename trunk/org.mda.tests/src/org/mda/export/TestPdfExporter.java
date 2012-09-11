@@ -64,7 +64,7 @@ public class TestPdfExporter {
     PdfExporter exporter = getExporter();
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(true);
+    config.setShowChords(true);
     appSession.getGlobalConfs().setDefaultBorder(new Integer (0));
 
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();
@@ -102,7 +102,7 @@ public class TestPdfExporter {
     sessionitems.add(appSession.getCurrentModel().getGallery().getGalleryItems().get(0));
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(false);
+    config.setShowChords(false);
 
     exporter.export(sessionitems, tmpFile, config);
 

@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mda.PresentationScheme#getBackgroundColor <em>Background Color</em>}</li>
  *   <li>{@link mda.PresentationScheme#getForegroundColor <em>Foreground Color</em>}</li>
  *   <li>{@link mda.PresentationScheme#getShowChords <em>Show Chords</em>}</li>
+ *   <li>{@link mda.PresentationScheme#getAutoWrapToNewPage <em>Auto Wrap To New Page</em>}</li>
  * </ul>
  * </p>
  *
@@ -455,5 +456,31 @@ public interface PresentationScheme extends EObject {
 	 * @generated
 	 */
 	void setShowChords(Boolean value);
+
+		/**
+	 * Returns the value of the '<em><b>Auto Wrap To New Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Auto Wrap To New Page</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Auto Wrap To New Page</em>' attribute.
+	 * @see #setAutoWrapToNewPage(Boolean)
+	 * @see mda.MidiplayerPackage#getPresentationScheme_AutoWrapToNewPage()
+	 * @model
+	 * @generated
+	 */
+	Boolean getAutoWrapToNewPage();
+
+		/**
+	 * Sets the value of the '{@link mda.PresentationScheme#getAutoWrapToNewPage <em>Auto Wrap To New Page</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Auto Wrap To New Page</em>' attribute.
+	 * @see #getAutoWrapToNewPage()
+	 * @generated
+	 */
+	void setAutoWrapToNewPage(Boolean value);
 
 } // PresentationScheme

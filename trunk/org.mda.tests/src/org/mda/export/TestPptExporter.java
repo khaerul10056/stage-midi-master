@@ -71,7 +71,7 @@ public class TestPptExporter {
     PptExporter exporter = getExporter();
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(false);
+    config.setShowChords(false);
     config.setShowBackground(true);
 
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();
@@ -101,7 +101,7 @@ public class TestPptExporter {
       PptExporter exporter = getExporter();
 
       DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-      config.setChordVisible(false);
+      config.setShowChords(false);
       config.setShowBackground(true);
 
 
@@ -133,7 +133,7 @@ public class TestPptExporter {
     java.awt.Color colorBlackAsAwt = Utils.toAwtColor(colorBlack);
 
     DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-    config.setChordVisible(false);
+    config.setShowChords(false);
 
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();
     sessionitems.add(file);

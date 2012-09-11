@@ -72,7 +72,7 @@ public class PresenterTester extends Shell {
         Session currentSession = root.getSessions().get(cmbSession.getSelectionIndex());
 
         DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-        config.setChordVisible(chkWithChords.getSelection());
+        config.setShowChords(chkWithChords.getSelection());
         config.setShowBackground(chkWithBackground.getSelection());
         config.setShowBlockType(chkWithBlocktypes.getSelection());
 

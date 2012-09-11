@@ -48,9 +48,9 @@ public class PresentationConfigDefaults {
 	private PresentationScheme createPdfScheme () {
 		PresentationScheme scheme = MidiPlayerService.mf.createPresentationScheme();
 		
-		scheme.setBackgroundColor(Utils.colorToString(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE)));
+		scheme.setBackgroundColor(Utils.colorToString(Display.getDefault().getSystemColor(SWT.COLOR_WHITE)));
 		scheme.setBorder(new Integer (35));
-		scheme.setForegroundColor(Utils.colorToString(Display.getCurrent().getSystemColor(SWT.COLOR_BLACK)));
+		scheme.setForegroundColor(Utils.colorToString(Display.getDefault().getSystemColor(SWT.COLOR_BLACK)));
 		scheme.setNewPageRespected(Boolean.FALSE);
 		scheme.setOptimizeEmptyTokens(Boolean.TRUE);
 		scheme.setOptimizeEqualParts(Boolean.TRUE);
@@ -70,9 +70,9 @@ public class PresentationConfigDefaults {
 	private PresentationScheme createPptScheme () {
 		PresentationScheme scheme = MidiPlayerService.mf.createPresentationScheme();
 		
-		scheme.setBackgroundColor(Utils.colorToString(Display.getCurrent().getSystemColor(SWT.COLOR_BLACK)));
+		scheme.setBackgroundColor(Utils.colorToString(Display.getDefault().getSystemColor(SWT.COLOR_BLACK)));
 		scheme.setBorder(new Integer (10));
-		scheme.setForegroundColor(Utils.colorToString(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE)));
+		scheme.setForegroundColor(Utils.colorToString(Display.getDefault().getSystemColor(SWT.COLOR_WHITE)));
 		scheme.setNewPageRespected(Boolean.TRUE);
 		scheme.setOptimizeEmptyTokens(Boolean.TRUE);
 		scheme.setOptimizeEqualParts(Boolean.FALSE);
