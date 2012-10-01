@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="ASCII"?>
-<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_aKxBUNsOEeGddIlX7Js6XA">
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_aKxBUNsOEeGddIlX7Js6XA">
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_cou4kNsOEeGddIlX7Js6XA" featurename="children" parentElementId="org.mda.commons.ui.toolbar.main" positionInList="">
     <elements xsi:type="menu:DirectToolItem" xmi:id="_jRNBYNsOEeGddIlX7Js6XA" elementId="org.mda.commons.ui.toolbarcontribution.runsession" label="Run" contributionURI="bundleclass://org.mda.presenter.ui/org.mda.presenter.ui.StartPresentation"/>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_aZnjYNsTEeGddIlX7Js6XA" featurename="children" parentElementId="org.mda.commons.ui.menu.session">
     <elements xsi:type="menu:DirectMenuItem" xmi:id="_qFBsUNsTEeGddIlX7Js6XA" elementId="org.mda.commons.ui.menu.session.run" label="Run..." contributionURI="bundleclass://org.mda.presenter.ui/org.mda.presenter.ui.StartPresentation"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_lGHdwAHgEeKq7_ligx7iKQ" featurename="handlers" parentElementId="org.mda.commons.ui.trimmedwindow.0">
+    <elements xsi:type="commands:Handler" xmi:id="_sXbIMAHgEeKq7_ligx7iKQ" elementId="org.mda.presenter.ui.handler.startpresentation" contributionURI="bundleclass://org.mda.presenter.ui/org.mda.presenter.ui.StartPresentation" command="_5QLjUAHgEeKq7_ligx7iKQ"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_z2jzQAHgEeKq7_ligx7iKQ" featurename="commands" parentElementId="org.mda.application.application">
+    <elements xsi:type="commands:Command" xmi:id="_5QLjUAHgEeKq7_ligx7iKQ" elementId="org.mda.presenter.ui.command.startpresentation" commandName="Start presentation"/>
   </fragments>
 </fragment:ModelFragments>

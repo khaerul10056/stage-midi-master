@@ -90,6 +90,7 @@ public boolean isBuilt () {
 
 			@Override
 			public void run() {
+				if (!comp.isVisible() && !comp.getParent().getShell().isDisposed())
 				comp.getParent().getShell().layout(true, true);
 			}
 

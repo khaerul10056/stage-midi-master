@@ -21,6 +21,7 @@ public class DefaultPresentationController implements IPresentationController {
 
 
   public void end () {
+	LOGGER.info("End called");
     presentationContext.closePresentationSession();
   }
 

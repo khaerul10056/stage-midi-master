@@ -47,7 +47,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Tree;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
-import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
 import org.mda.listeners.IModelElementReloadListener;
 
 @Creatable
@@ -134,6 +133,18 @@ private EHandlerService handlerservice;
 	  
   }
   
+  
+  private void handleStartupSession (final ApplicationSession session, final EHandlerService handlerservice, final ECommandService commandservice) {
+	  if (session.getFeatureActivation().isStartupSessionConfigured()) {
+		ParameterizedCommand myCommand = commandservice.createCommand("org.mda.presenter.ui.command.startpresentation", new HashMap());
+		
+		//set runsession as active session
+		session.setCurrentSession(session.getFeatureActivation().getRunSession());
+		
+		Object result = handlerservice.executeHandler(myCommand);
+	  }
+  }
+  
 	@Inject
 	public SessionOverviewPart(final Composite comp, final ApplicationSession session, final EHandlerService handlerservice, 
 			final ECommandService commandservice) {
@@ -141,18 +152,11 @@ private EHandlerService handlerservice;
 	  appSession = session;
 	this.handlerservice = handlerservice;
 	this.commandservice = commandservice;
-	  comp.setLayout(new GridLayout(2, false));
+	
+	handleStartupSession(session, handlerservice, commandservice);
+	
+	comp.setLayout(new GridLayout(2, false));
 	  
-	  //Searchfield
-//	  Text txt = new Text (comp, SWT.NONE);
-//	  txt.setText(suchtextDefault); 
-//	  txt.selectAll();
-//	  txt.setFocus();
-//	  
-//	  GridData gd = getGd(20); 
-//	  gd.horizontalIndent = 20;
-//	  gd.horizontalSpan = 2;
-//	  txt.setLayoutData(gd);
 	  
 	  //Details
 	  
@@ -267,7 +271,9 @@ private EHandlerService handlerservice;
 		}
 	});
     
-    appSession.getModelEvents().setCurrentModelElement(Session.class, appSession.getCurrentModel().getSessions().get(0));	//TODO read last edited session
+    
+    if (appSession.getCurrentModel() != null)
+      appSession.getModelEvents().setCurrentModelElement(Session.class, appSession.getCurrentModel().getSessions().get(0));	//TODO read last edited session
     
     
     treModel.setFocus();

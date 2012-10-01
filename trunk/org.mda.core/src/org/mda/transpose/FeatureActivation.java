@@ -47,6 +47,10 @@ public Session getRunSession() {
 	return startWithSession;
 }
 
+public boolean isStartupSessionConfigured () {
+	return startWithSession != null;
+}
+
 public void setRunSession(Session runSession) {
 	this.startWithSession = runSession;
 }

@@ -11,15 +11,16 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.ControlListener;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.ShellEvent;
-import org.eclipse.swt.events.ShellListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
+import org.mda.ApplicationSession;
 import org.mda.Utils;
 import org.mda.commons.ui.ContentProvider;
 import org.mda.commons.ui.LabelProvider;
@@ -27,9 +28,10 @@ import org.mda.commons.ui.MonitorManager;
 import org.mda.commons.ui.Util;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.ui.slide.IPresentationView;
 
 @Creatable
-public class RunSessionShell {
+public class RunSessionShell implements IPresentationView {
 	
 	private static final Log LOGGER  = LogFactory.getLogger(RunSessionShell.class);
 	
@@ -51,6 +53,11 @@ public class RunSessionShell {
 	private MonitorManager monitorManager;
 
 	private ToolBar toolbar;
+	
+	@Inject
+	ApplicationSession appSession;
+	
+	
 	
 	
 	private ToolBar buildToolBar (final Shell shell) {
@@ -148,9 +155,11 @@ public class RunSessionShell {
 	}
 	
 	public Shell build (final Shell parent) {
-		shell = new Shell (parent, SWT.NONE);
+		shell = new Shell (parent, SWT.ON_TOP);
 		shell.setBounds(monitorManager.getPrimaryMonitor().getBounds());
 		LOGGER.info("Build RunSessionShell at " + shell.getBounds() + "(parent: " + parent.getBounds() + ")");
+		
+		presentationContext.registerView(this);
 		
 		shell.addControlListener(new ControlListener() {
 			
@@ -187,7 +196,7 @@ public class RunSessionShell {
 	        AbstractSessionItem item = (AbstractSessionItem) Util.getStructuredSelection(treviewer.getSelection());
 	          controller.toItem(item);
 	      }
-	    });
+	    });	
 		
 		shell.setLayout(new GridLayout(2, false));
 		
@@ -195,7 +204,22 @@ public class RunSessionShell {
 		overview.getComp().setLayoutData(new GridData(SWT.FILL, SWT.FILL,  true, true));
 		
 		shell.setVisible(true);
-		shell.setFocus();
+		treModel.select(0);
+		LOGGER.info("Set focus in tremodel: " + treModel.setFocus());
+		treModel.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				LOGGER.info("tremodel lost focus to " + e.toString());
+				
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+			
+				
+			}
+		});
 		
 		LOGGER.info("Build RunSessionShell at " + shell.getBounds() + "(parent: " + parent.getBounds() + ")");
 		shell.setBounds(monitorManager.getPrimaryMonitor().getBounds());
@@ -211,6 +235,16 @@ public class RunSessionShell {
 	private DefaultPresentationController getController () {
 	    return controller;
 	  }
+
+	@Override
+	public void end() {
+		getShell().dispose();
+		
+	}
+
+	@Override
+	public void refresh() {
+	}
 	
 
 }

@@ -39,6 +39,9 @@ public class PreviewEditorPart {
 	
 	@PostConstruct
 	public void postConstruct (final Composite composite) {
+		if (appSession.getFeatureActivation().isStartupSessionConfigured())
+			return;
+		
 		appSession.getModelEvents().addReloadListener(new IModelElementReloadListener() {
 			
 			@Override
@@ -52,6 +55,7 @@ public class PreviewEditorPart {
 				}
 				
 				previewEditorContent.redrawSlidelist();
+				previewEditorContent.getComp().getParent().getShell().layout(true, true);
 				dirtyable.setDirty(false);
 			}
 			

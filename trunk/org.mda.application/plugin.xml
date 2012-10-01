@@ -19,10 +19,10 @@
                name="applicationXMI"
                value="org.mda.commons.ui/Application.e4xmi">
          </property>
-         <property
+         <!--<property
                name="applicationCSS"
                value="platform:/plugin/org.mda.commons.ui/css/default.css">
-         </property>
+         </property>-->
          <property
                name="lifeCycleURI"
                value="bundleclass://org.mda.application/org.mda.application.Application">

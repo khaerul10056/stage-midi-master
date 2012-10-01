@@ -24,7 +24,7 @@ public class MidiPartDetailsShell {
 
   private Combo cmbType;
 
-  private static final Log LOGGER  = LogFactory.getLogger(MidiFileDetailsShell.class);
+  private static final Log LOGGER  = LogFactory.getLogger(MidiPartDetailsShell.class);
 
   private Shell shell;
   

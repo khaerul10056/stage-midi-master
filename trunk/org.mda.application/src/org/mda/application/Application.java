@@ -5,20 +5,15 @@ import java.awt.GraphicsEnvironment;
 import java.util.Locale;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import mda.Session;
 
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.workbench.lifecycle.PostContextCreate;
-import org.eclipse.e4.ui.workbench.lifecycle.ProcessAdditions;
-import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.Utils;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.ui.StartPresentation;
 
 /**
  * This class controls all aspects of the application's lifecycle, 
@@ -34,14 +29,17 @@ public class Application {
   
   @PostContextCreate
   public void initializeSession () {
+	LOGGER.debug("initializeSession called");
     session.load(null);
     session.setVersion(Activator.getDefault().getVersion());
     
     logFonts();
+    runPresentationOnStartup();
+    
   }
   
-  @ProcessAdditions
-  public void runPresentationOnStartup (StartPresentation startpresentationDirectly,  @Named(IServiceConstants.ACTIVE_SHELL) Shell activeShell) {
+  public void runPresentationOnStartup () {
+	  LOGGER.info("runPresentationOnStartup");
 	  String[] applicationArgs = Platform.getApplicationArgs();
 		
 		for (int i = 0; i  < applicationArgs.length; i++) {
@@ -52,27 +50,28 @@ public class Application {
 					String sessionArg = applicationArgs [i +1];
 					String sessionTrimmed = Utils.removeWhitespaces(sessionArg);
 					
+					String existingSessions = "";
+					
 					for (Session nextSession: session.getCurrentModel().getSessions()) {
 						String found = Utils.removeWhitespaces(nextSession.getName());
 						if (found.equals(sessionTrimmed)) {
 							LOGGER.info("Starting with session " + sessionTrimmed);
-							session.setCurrentSession(nextSession);
-//							try {
-//								startpresentationDirectly.execute(Display.getDefault().getActiveShell());
-//							} catch (ExecutionException e) {
-//								e.printStackTrace();
-//							}
-							//ParameterizedCommand myCommand = commandservice.createCommand("org.mda.commons.ui.command.searchengine", new HashMap());
-							//Object result = handlerservice.executeHandler(myCommand);
+							session.getFeatureActivation().setRunSession(nextSession);
 							return;
 						}
+						else {
+							if (! existingSessions.isEmpty())
+								existingSessions+=",";
+							
+							existingSessions+=found;
+						}
 					}
+					
+					if (session.getFeatureActivation().getRunSession() == null)
+						throw new IllegalArgumentException("Could not find session <" + sessionArg + "> in current model. Existing session: <" + existingSessions + ">");
 				}
 			}
-			
 		}
-		
-	  
   }
   
   private void logFonts () {
