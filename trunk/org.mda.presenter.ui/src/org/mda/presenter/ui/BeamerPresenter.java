@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.commons.ui.MonitorManager;
+import org.mda.commons.ui.Util;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.logging.Log;
@@ -56,6 +57,7 @@ public class BeamerPresenter implements IPresentationView {
 	shell = new Shell (onTop ? SWT.ON_TOP: SWT.NONE);
 	LOGGER.info(monitormanager.toString());
 	shell.setBounds(monitormanager.getBeamerOrPreviewBounds());
+    Util.disableEscOnComponent(shell);
 
     shell.setBackground(shell.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 

@@ -304,6 +304,9 @@ public class ContentPart extends AbstractPart implements FocusListener {
       public void keyPressed (KeyEvent e) {
 
         try {
+        	
+          if (e.character == SWT.ESC)
+        	  e.doit = false;
 
           LOGGER.info("KeyPressed : " + Util.logEvent(e) + logCaretBehaviour());
           if (e.character == SWT.BS) {

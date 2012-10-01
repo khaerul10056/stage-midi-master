@@ -1,14 +1,19 @@
 package org.mda.presenter.ui.slide;
 
+
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.DefaultPresentationController;
 
 @Creatable
 public class GlobalKeyRegistryPresentationController extends DefaultPresentationController {
+	
+	private static final Log LOGGER  = LogFactory.getLogger(GlobalKeyRegistryPresentationController.class);
 
   private Display  display;
 
@@ -30,7 +35,7 @@ public class GlobalKeyRegistryPresentationController extends DefaultPresentation
     		return;
     	
         if (e.character == SWT.ESC)
-          end();
+          e.doit = false;
 
         if (e.keyCode == SWT.ARROW_RIGHT && e.stateMask == SWT.NONE)
           nextSlide();
