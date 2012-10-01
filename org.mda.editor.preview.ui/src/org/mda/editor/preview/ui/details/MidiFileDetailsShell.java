@@ -294,8 +294,8 @@ public class MidiFileDetailsShell  {
   }
 
   protected void save () {
-    midifile.setBackgroundColor(! colorLabelBackground.getBackground().equals(defaultBackground) ? Utils.colorToString(colorLabelForeground.getBackground()) : null);
-    midifile.setForegroundColor(! colorLabelForeground.getBackground().equals(defaultForeground) ? Utils.colorToString(colorLabelForeground.getForeground()) : null);
+    midifile.setBackgroundColor(! colorLabelBackground.getBackground().equals(defaultBackground) ? Utils.colorToString(colorLabelBackground.getBackground()) : null);
+    midifile.setForegroundColor(! colorLabelForeground.getBackground().equals(defaultForeground) ? Utils.colorToString(colorLabelForeground.getBackground()) : null);
     midifile.setPic(additional != null ? additional.getKey() : null);
 
     if (midifile.getCopyright() == null)
