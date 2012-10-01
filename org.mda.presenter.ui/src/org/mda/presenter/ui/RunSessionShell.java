@@ -9,10 +9,10 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -62,6 +62,7 @@ public class RunSessionShell implements IPresentationView {
 	
 	private ToolBar buildToolBar (final Shell shell) {
 		toolbar = new ToolBar(shell, SWT.FLAT | SWT.WRAP | SWT.RIGHT);
+		Util.disableEscOnComponent(toolbar);
 	    
 	    ToolItem btnPrevSong = new ToolItem(toolbar, SWT.PUSH);
 	    btnPrevSong.setText("Prev song");
@@ -156,26 +157,26 @@ public class RunSessionShell implements IPresentationView {
 	
 	public Shell build (final Shell parent) {
 		shell = new Shell (parent, SWT.ON_TOP);
+		Util.disableEscOnComponent(shell);
 		shell.setBounds(monitorManager.getPrimaryMonitor().getBounds());
+		shell.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.character == SWT.ESC)
+					e.doit = false;
+			}
+		});
+		
 		LOGGER.info("Build RunSessionShell at " + shell.getBounds() + "(parent: " + parent.getBounds() + ")");
 		
 		presentationContext.registerView(this);
-		
-		shell.addControlListener(new ControlListener() {
-			
-			@Override
-			public void controlResized(ControlEvent e) {
-				System.out.println ("Resized: " + e.data);
-				
-				
-			}
-			
-			@Override
-			public void controlMoved(ControlEvent e) {
-				System.out.println ("Moved: " + e.data);
-				
-			}
-		});
 		
 		presentationContext.registerController(getController());
 
@@ -184,6 +185,7 @@ public class RunSessionShell implements IPresentationView {
 		ToolBar toolbar = buildToolBar(shell);
 		
 		treModel = new List(shell, SWT.NONE);
+		
 	    treModel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true));
 	    final ListViewer treviewer = new ListViewer(treModel);
 	    treviewer.setContentProvider(new ContentProvider());
@@ -196,7 +198,11 @@ public class RunSessionShell implements IPresentationView {
 	        AbstractSessionItem item = (AbstractSessionItem) Util.getStructuredSelection(treviewer.getSelection());
 	          controller.toItem(item);
 	      }
-	    });	
+	    });
+	    
+	    Util.disableEscOnComponent(treModel);
+	    Util.disableEscOnComponent(treviewer.getControl());
+	    Util.disableEscOnComponent(treModel.getParent());
 		
 		shell.setLayout(new GridLayout(2, false));
 		

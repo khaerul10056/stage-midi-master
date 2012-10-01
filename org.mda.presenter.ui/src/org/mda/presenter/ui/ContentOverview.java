@@ -19,6 +19,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
+import org.mda.commons.ui.Util;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
 import org.mda.commons.ui.calculator.Slide;
@@ -48,6 +49,7 @@ public class ContentOverview  implements IPresentationView{
     LOGGER.info("create Part ContentOverview");
     comp = new Composite(mother, SWT.NONE);
     comp.setLayout(new GridLayout(4, false));
+    Util.disableEscOnComponent(comp);
     presentationContext.registerView(this);
     return comp;
   }

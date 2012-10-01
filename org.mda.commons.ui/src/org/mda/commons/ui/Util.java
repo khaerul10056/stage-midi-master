@@ -3,13 +3,21 @@ package org.mda.commons.ui;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Monitor;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Widget;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 
 
@@ -21,7 +29,19 @@ public class Util {
   public final static String ADMIN_PERSPECTIVE = "org.mda.application.adminperspective";
 
   public final static String PRESENTATION_PERSPECTIVE = "org.mda.application.presentationperspective";
+  
+  private static final Log LOGGER            = LogFactory.getLogger(Util.class);
 
+  
+  public static void disableEscOnComponent (final Control widget) {
+		widget.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.character == SWT.ESC)
+					e.doit = false;
+			}
+		});
+	}
   
   public static Point getLocationOnScreenAfterWidget (final Control widget) {
 	  Point point = widget.toDisplay(0,0);

@@ -13,6 +13,7 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
+import org.mda.commons.ui.Util;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
@@ -79,9 +80,7 @@ public class ContentOverviewPanel extends Composite  {
 
     //TODO check bounds of presentation display
     LOGGER.debug("set Size of preview-part to " + width + "x" + height);
-
-
-    
+    Util.disableEscOnComponent(this);
 
     setBackground(config.getDefaultBackgroundColor());
     setForeground(config.getDefaultForegroundColor());
