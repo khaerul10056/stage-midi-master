@@ -27,7 +27,7 @@ import org.mda.transpose.TransposeService;
 public class TransposeShell extends Shell {
 
   private MidiFile midifile;
-  private Combo cmbFrom;
+  Combo cmbFrom;
   private Combo cmbTo;
   private ComboViewer viewer1;
   private ComboViewer viewer2;

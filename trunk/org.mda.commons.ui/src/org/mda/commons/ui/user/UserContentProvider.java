@@ -1,25 +1,16 @@
 package org.mda.commons.ui.user;
 
 import mda.MidiPlayerRoot;
+
 import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.Viewer;
 
 
+/**
+ * content provider to show all users
+ * @author mao
+ *
+ */
 public class UserContentProvider extends ArrayContentProvider {
-
-
-
-
-
-  @Override
-  public void dispose () {
-  }
-
-  @Override
-  public void inputChanged (Viewer viewer, Object oldInput, Object newInput) {
-    // TODO Auto-generated method stub
-
-  }
 
   @Override
   public Object[] getElements (Object parentElement) {

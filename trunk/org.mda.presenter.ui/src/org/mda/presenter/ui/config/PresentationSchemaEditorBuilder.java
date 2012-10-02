@@ -1,6 +1,5 @@
 package org.mda.presenter.ui.config;
 
-import java.io.ObjectInputStream.GetField;
 import java.util.Collection;
 import java.util.HashMap;
 

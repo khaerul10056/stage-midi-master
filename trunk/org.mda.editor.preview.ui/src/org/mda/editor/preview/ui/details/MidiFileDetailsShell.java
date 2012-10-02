@@ -39,22 +39,22 @@ public class MidiFileDetailsShell  {
 
   private MidiFile midifile;
 
-  private Label lblPicture;
+  Label lblPicture;
 
   //copyright-infos
-  private Text txtOriginaltitle;
+  Text txtOriginaltitle;
 
-  private Text txtWriterMusic;
+  Text txtWriterMusic;
 
-  private Text txtWriterText;
+  Text txtWriterText;
 
-  private Text txtWriterTextInland;
+  Text txtWriterTextInland;
 
-  private Text txtYear;
+  Text txtYear;
 
-  private Text txtPublisher;
+  Text txtPublisher;
 
-  private Text txtPublisherInland;
+  Text txtPublisherInland;
   
   private Shell shell;
 

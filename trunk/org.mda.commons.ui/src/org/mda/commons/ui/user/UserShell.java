@@ -9,8 +9,6 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyAdapter;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -32,19 +30,19 @@ public class UserShell extends Shell{
   private ApplicationSession session;
 
 
-  private Text txtFamilyName;
+  Text txtFamilyName;
 
-  private Text txtFirstName;
+  Text txtFirstName;
 
-  private Text txtMail;
+  Text txtMail;
 
-  private Table tblUsers;
+  Table tblUsers;
 
-  private TableViewer tblUsersViewer;
+  TableViewer tblUsersViewer;
 
-  private User currentUser;
+  User currentUser;
 
-  private Button chkWithChords;
+  Button chkWithChords;
 
 
   @Inject
@@ -98,7 +96,7 @@ public class UserShell extends Shell{
     return new GridData(SWT.FILL, SWT.FILL, true, true);
   }
 
-  private void refreshDetails () {
+  void refreshDetails () {
     StructuredSelection structSelection = (StructuredSelection) tblUsersViewer.getSelection();
     currentUser = (User) structSelection.getFirstElement();
 
