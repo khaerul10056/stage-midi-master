@@ -34,8 +34,14 @@ public class GlobalKeyRegistryPresentationController extends DefaultPresentation
     	if (e.doit == false)
     		return;
     	
+    	
+    		 
+    	
         if (e.character == SWT.ESC)
           e.doit = false;
+        
+        if (e.keyCode == SWT.F4 && e.stateMask == SWT.ALT)
+      	  end();
 
         if (e.keyCode == SWT.ARROW_RIGHT && e.stateMask == SWT.NONE)
           nextSlide();
