@@ -58,16 +58,11 @@ public class TestExportEngine {
     Assert.assertEquals (USER1, exportSongbooks.get(0).getUser().getName());
     Assert.assertEquals ("songbook_" + USER1 + ".pdf", exportSongbooks.get(0).getExportFile().getName());
 
+    //TODO
+    //ExportEngine engine = new ExportEngine();
+    //engine.mailExportedSongbooks(exportSongbooks);
 
 
-  }
-
-  @Test@Ignore //Mock the mailing
-  public void checkMail () {
-    Assert.assertNotNull ("Test exportSongbooks must run before", exportSongbooks);
-
-    ExportEngine engine = new ExportEngine();
-    engine.mailExportedSongbooks(exportSongbooks);
 
 
   }
