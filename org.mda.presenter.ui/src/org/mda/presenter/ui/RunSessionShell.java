@@ -11,8 +11,6 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -159,20 +157,6 @@ public class RunSessionShell implements IPresentationView {
 		shell = new Shell (parent, SWT.ON_TOP);
 		Util.disableEscOnComponent(shell);
 		shell.setBounds(monitorManager.getPrimaryMonitor().getBounds());
-		shell.addKeyListener(new KeyListener() {
-			
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.character == SWT.ESC)
-					e.doit = false;
-			}
-		});
 		
 		LOGGER.info("Build RunSessionShell at " + shell.getBounds() + "(parent: " + parent.getBounds() + ")");
 		
@@ -197,12 +181,13 @@ public class RunSessionShell implements IPresentationView {
 	      public void selectionChanged (SelectionChangedEvent arg0) {
 	        AbstractSessionItem item = (AbstractSessionItem) Util.getStructuredSelection(treviewer.getSelection());
 	          controller.toItem(item);
+	          overview.getComp().setFocus();
 	      }
 	    });
 	    
-	    Util.disableEscOnComponent(treModel);
-	    Util.disableEscOnComponent(treviewer.getControl());
-	    Util.disableEscOnComponent(treModel.getParent());
+	    Util.disableEscOnComponent(treModel); //TODO doesn't work correct
+	    
+	    
 		
 		shell.setLayout(new GridLayout(2, false));
 		
@@ -244,12 +229,15 @@ public class RunSessionShell implements IPresentationView {
 
 	@Override
 	public void end() {
+		
 		getShell().dispose();
 		
 	}
 
 	@Override
 	public void refresh() {
+		treModel.select(presentationContext.getCurrentSessionItemIndex());
+		overview.getComp().setFocus();
 	}
 	
 

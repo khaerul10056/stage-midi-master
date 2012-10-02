@@ -33,12 +33,15 @@ public class Util {
   private static final Log LOGGER            = LogFactory.getLogger(Util.class);
 
   
-  public static void disableEscOnComponent (final Control widget) {
-		widget.addKeyListener(new KeyAdapter() {
+  public static void disableEscOnComponent (final Control control) {
+		control.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.ESC)
 					e.doit = false;
+				
+				if (e.keyCode == SWT.F4 && e.stateMask == SWT.ALT)
+			      	  control.getShell().dispose();
 			}
 		});
 	}
