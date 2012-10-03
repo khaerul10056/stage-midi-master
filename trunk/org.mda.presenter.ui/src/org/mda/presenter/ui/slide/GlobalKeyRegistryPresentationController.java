@@ -22,7 +22,11 @@ public class GlobalKeyRegistryPresentationController extends DefaultPresentation
   public GlobalKeyRegistryPresentationController () {
     this.display = Display.getCurrent();
     this.listener = createListener();
-    this.display.addFilter(SWT.KeyDown, listener);
+    
+  }
+  
+  public void open () {
+	  this.display.addFilter(SWT.KeyDown, listener);  
   }
 
   private Listener createListener () {
