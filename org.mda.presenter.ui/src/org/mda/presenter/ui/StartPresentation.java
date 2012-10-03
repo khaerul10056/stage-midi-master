@@ -56,12 +56,17 @@ public class StartPresentation   {
     presentationContext.setCurrentSession(applicationSession.getCurrentSession(), config, beamerpresenter.getShell().getSize());
     presentationContext.registerView(beamerpresenter);
     presentationContext.registerController(globalkeycontroller);    //Register global controller
+    
+    globalkeycontroller.open();
 
     runsessionshell.build(parentShell);
     runsessionshell.getShell().addDisposeListener(new DisposeListener() {
 		
 		@Override
 		public void widgetDisposed(DisposeEvent e) {
+			
+			globalkeycontroller.close();
+			
 			beamerpresenter.getShell().dispose();
 			
 			if (applicationSession.getFeatureActivation().isStartupSessionConfigured()) {
