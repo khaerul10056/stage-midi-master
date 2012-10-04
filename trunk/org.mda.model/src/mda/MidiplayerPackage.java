@@ -603,13 +603,22 @@ public interface MidiplayerPackage extends EPackage {
   int CONFIGURATION__FONTSIZE = 5;
 
     /**
+	 * The feature id for the '<em><b>Mailtext</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION__MAILTEXT = 6;
+
+				/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  int CONFIGURATION_FEATURE_COUNT = 6;
+  int CONFIGURATION_FEATURE_COUNT = 7;
 
   /**
 	 * The meta object id for the '{@link mda.impl.UserImpl <em>User</em>}' class.
@@ -1454,6 +1463,17 @@ public interface MidiplayerPackage extends EPackage {
   EAttribute getConfiguration_Fontsize();
 
     /**
+	 * Returns the meta object for the attribute '{@link mda.Configuration#getMailtext <em>Mailtext</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mailtext</em>'.
+	 * @see mda.Configuration#getMailtext()
+	 * @see #getConfiguration()
+	 * @generated
+	 */
+	EAttribute getConfiguration_Mailtext();
+
+				/**
 	 * Returns the meta object for class '{@link mda.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2251,6 +2271,14 @@ public interface MidiplayerPackage extends EPackage {
     EAttribute CONFIGURATION__FONTSIZE = eINSTANCE.getConfiguration_Fontsize();
 
         /**
+		 * The meta object literal for the '<em><b>Mailtext</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONFIGURATION__MAILTEXT = eINSTANCE.getConfiguration_Mailtext();
+
+								/**
 		 * The meta object literal for the '{@link mda.impl.UserImpl <em>User</em>}' class.
 		 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

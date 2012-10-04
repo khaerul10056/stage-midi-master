@@ -617,6 +617,15 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
     /**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConfiguration_Mailtext() {
+		return (EAttribute)configurationEClass.getEStructuralFeatures().get(6);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -1030,6 +1039,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 		createEAttribute(configurationEClass, CONFIGURATION__PDF_EXPORT_PATH);
 		createEAttribute(configurationEClass, CONFIGURATION__ADDITIONALS_PATH);
 		createEAttribute(configurationEClass, CONFIGURATION__FONTSIZE);
+		createEAttribute(configurationEClass, CONFIGURATION__MAILTEXT);
 
 		userEClass = createEClass(USER);
 		createEAttribute(userEClass, USER__MAIL);
@@ -1160,6 +1170,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 		initEAttribute(getConfiguration_PdfExportPath(), ecorePackage.getEString(), "pdfExportPath", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfiguration_AdditionalsPath(), ecorePackage.getEString(), "additionalsPath", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfiguration_Fontsize(), ecorePackage.getEIntegerObject(), "fontsize", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfiguration_Mailtext(), ecorePackage.getEString(), "mailtext", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUser_Mail(), ecorePackage.getEString(), "mail", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

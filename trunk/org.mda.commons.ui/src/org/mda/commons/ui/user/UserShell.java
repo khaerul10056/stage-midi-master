@@ -35,7 +35,7 @@ public class UserShell extends Shell{
   Text txtFirstName;
 
   Text txtMail;
-
+  
   Table tblUsers;
 
   TableViewer tblUsersViewer;
@@ -43,6 +43,8 @@ public class UserShell extends Shell{
   User currentUser;
 
   Button chkWithChords;
+  
+  Button chkSendSongbooks;
 
 
   @Inject
@@ -107,7 +109,8 @@ public class UserShell extends Shell{
     txtFamilyName.setText(currentUser != null ? currentUser.getName(): "");
     txtFirstName.setText(currentUser != null ? currentUser.getFirstname(): "");
     txtMail.setText(currentUser != null ? currentUser.getMail(): "");
-    //chkWithChords.setSelection(currentUser != null ? currentUser.is)
+    chkSendSongbooks.setEnabled(currentUser != null); 
+    chkSendSongbooks.setSelection(currentUser != null && currentUser.isSendSongbook());
   }
 
   private Composite createDetailsPanel () {
@@ -137,6 +140,11 @@ public class UserShell extends Shell{
     lblChords.setText("Chords:");
     lblChords.setLayoutData(getLabelData());
     chkWithChords = new Button(comp, SWT.CHECK);
+    
+    Label lblSend = new Label (comp, SWT.NONE);
+    lblSend.setText("Send songbook:");
+    lblSend.setLayoutData(getLabelData());
+    chkSendSongbooks = new Button(comp, SWT.CHECK);
 
 
     Label lblGap = new Label(comp, SWT.NONE);
@@ -158,9 +166,7 @@ public class UserShell extends Shell{
       @Override
       public void widgetSelected (SelectionEvent arg0) {
         save ();
-
         dispose();
-
       }
     });
 
@@ -170,18 +176,18 @@ public class UserShell extends Shell{
 
       @Override
       public void widgetSelected (SelectionEvent arg0) {
-
         dispose();
       }
-
     });
 
   }
 
   protected void save () {
-    //TODO
-
-    session.saveModel();
+    currentUser.setFirstname(txtFirstName.getText());
+    currentUser.setName(txtFamilyName.getText()); 
+    currentUser.setSendSongbook(chkSendSongbooks.getSelection());
+    
+    //TODO presentations...
   }
 
 
