@@ -320,9 +320,6 @@ public class MidiFileDetailsShell  {
     lblForeground.setLayoutData(getLabelData());
   }
 
-  protected void checkSubclass () {
-    /* Do nothing - Subclassing is allowed */
-  }
-
+  
 
 }

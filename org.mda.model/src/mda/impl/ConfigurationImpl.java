@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link mda.impl.ConfigurationImpl#getPdfExportPath <em>Pdf Export Path</em>}</li>
  *   <li>{@link mda.impl.ConfigurationImpl#getAdditionalsPath <em>Additionals Path</em>}</li>
  *   <li>{@link mda.impl.ConfigurationImpl#getFontsize <em>Fontsize</em>}</li>
+ *   <li>{@link mda.impl.ConfigurationImpl#getMailtext <em>Mailtext</em>}</li>
  * </ul>
  * </p>
  *
@@ -148,6 +149,26 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
   protected Integer fontsize = FONTSIZE_EDEFAULT;
 
     /**
+	 * The default value of the '{@link #getMailtext() <em>Mailtext</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMailtext()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MAILTEXT_EDEFAULT = null;
+
+				/**
+	 * The cached value of the '{@link #getMailtext() <em>Mailtext</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMailtext()
+	 * @generated
+	 * @ordered
+	 */
+	protected String mailtext = MAILTEXT_EDEFAULT;
+
+				/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
@@ -311,6 +332,27 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 
     /**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getMailtext() {
+		return mailtext;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMailtext(String newMailtext) {
+		String oldMailtext = mailtext;
+		mailtext = newMailtext;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__MAILTEXT, oldMailtext, mailtext));
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -330,6 +372,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 				return getAdditionalsPath();
 			case MidiplayerPackage.CONFIGURATION__FONTSIZE:
 				return getFontsize();
+			case MidiplayerPackage.CONFIGURATION__MAILTEXT:
+				return getMailtext();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -359,6 +403,9 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 				return;
 			case MidiplayerPackage.CONFIGURATION__FONTSIZE:
 				setFontsize((Integer)newValue);
+				return;
+			case MidiplayerPackage.CONFIGURATION__MAILTEXT:
+				setMailtext((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -390,6 +437,9 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 			case MidiplayerPackage.CONFIGURATION__FONTSIZE:
 				setFontsize(FONTSIZE_EDEFAULT);
 				return;
+			case MidiplayerPackage.CONFIGURATION__MAILTEXT:
+				setMailtext(MAILTEXT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -414,6 +464,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 				return ADDITIONALS_PATH_EDEFAULT == null ? additionalsPath != null : !ADDITIONALS_PATH_EDEFAULT.equals(additionalsPath);
 			case MidiplayerPackage.CONFIGURATION__FONTSIZE:
 				return FONTSIZE_EDEFAULT == null ? fontsize != null : !FONTSIZE_EDEFAULT.equals(fontsize);
+			case MidiplayerPackage.CONFIGURATION__MAILTEXT:
+				return MAILTEXT_EDEFAULT == null ? mailtext != null : !MAILTEXT_EDEFAULT.equals(mailtext);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -438,6 +490,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 		result.append(additionalsPath);
 		result.append(", fontsize: ");
 		result.append(fontsize);
+		result.append(", mailtext: ");
+		result.append(mailtext);
 		result.append(')');
 		return result.toString();
 	}

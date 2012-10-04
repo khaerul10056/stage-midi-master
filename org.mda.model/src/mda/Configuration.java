@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mda.Configuration#getPdfExportPath <em>Pdf Export Path</em>}</li>
  *   <li>{@link mda.Configuration#getAdditionalsPath <em>Additionals Path</em>}</li>
  *   <li>{@link mda.Configuration#getFontsize <em>Fontsize</em>}</li>
+ *   <li>{@link mda.Configuration#getMailtext <em>Mailtext</em>}</li>
  * </ul>
  * </p>
  *
@@ -185,5 +186,31 @@ public interface Configuration extends EObject {
 	 * @generated
 	 */
   void setFontsize(Integer value);
+
+				/**
+	 * Returns the value of the '<em><b>Mailtext</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mailtext</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mailtext</em>' attribute.
+	 * @see #setMailtext(String)
+	 * @see mda.MidiplayerPackage#getConfiguration_Mailtext()
+	 * @model
+	 * @generated
+	 */
+	String getMailtext();
+
+				/**
+	 * Sets the value of the '{@link mda.Configuration#getMailtext <em>Mailtext</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mailtext</em>' attribute.
+	 * @see #getMailtext()
+	 * @generated
+	 */
+	void setMailtext(String value);
 
 } // Configuration

@@ -105,14 +105,14 @@ public class ExportEngine {
    * mails the exported songbooks
    * @param results
    */
-  public void mailExportedSongbooks (Collection <ExportResult> results) {
+  public void mailExportedSongbooks (Collection <ExportResult> results, final String text) {
 
     for (ExportResult nextResult: results) {
       try {
    // Get system properties
       Properties props = System.getProperties();
 
-      Authenticator authenticator = new Authenticator("oleys@gmx.de", "mo351977");
+      Authenticator authenticator = new Authenticator("oleys@gmx.de", "Momopomo351977");
       props.put("mail.smtp.host", "mail.gmx.net");
       props.put("mail.smtp.auth", "true");
 
@@ -123,7 +123,7 @@ public class ExportEngine {
       BodyPart messageBodyPart = new MimeBodyPart();
 
       // Fill the message
-      messageBodyPart.setText("...gibts anbei");
+      messageBodyPart.setText(text);
       Multipart multipart = new MimeMultipart();
       multipart.addBodyPart(messageBodyPart);
 

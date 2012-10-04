@@ -1,23 +1,19 @@
 package org.mda.commons.ui.config;
 
-import java.util.Collection;
-
 import javax.inject.Inject;
 
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.mda.export.ExportEngine;
-import org.mda.export.ExportResult;
+import org.eclipse.swt.widgets.Shell;
 
 
 public class SendSongbooksHandler {
   
   @Inject
-  ExportEngine engine;
+  SendSongbooksShell sendSongbooksShell;
 
   @Execute
-  public void execute (ExportEngine engine) {
-    Collection<ExportResult> exportSongbooks = engine.exportSongbooks();
-    //engine.mailExportedSongbooks(exportSongbooks); TODO enable, if sending is OK 
+  public void execute (Shell mother) {
+    sendSongbooksShell.build(mother);  
   }
 
 }
