@@ -13,13 +13,5 @@
       </editor>
    </extension>
 
-   <!--<extension point="org.eclipse.ui.commands">
-      <command
-            defaultHandler="org.mda.editor.preview.ui.OpenPreviewEditorHandler"
-            id="org.mda.commons.ui.navigator.openprevieweditorhandler"
-            name="Open preview editor">
-      </command>
-   </extension>-->
-
 
 </plugin>

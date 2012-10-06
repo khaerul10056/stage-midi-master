@@ -19,14 +19,16 @@ public class ChordHover extends Shell {
   protected void checkSubclass () {
   }
 
-  private Text txtChord;
+  Text txtChord;
 
   private final String before;
   private String after;
+  private String preselection;
 
   public ChordHover (final Font font, final StyledText styledText, Point point, final String preseletion) {
     super (SWT.NONE);
     this.before = preseletion;
+    this.preselection = preseletion;
 
     setSize(120, 40);
     setLocation(point.x,point.y - getSize().y);
@@ -45,14 +47,12 @@ public class ChordHover extends Shell {
 
       public void keyReleased (final KeyEvent event) {
         if (event.keyCode == SWT.CR) {
-          after = txtChord.getText();
-          history = after;
+          save();
           dispose();
         }
 
         if (event.keyCode == SWT.ESC) {
-          after = preseletion;
-          history = after;
+          dontsave();      
           dispose();
         }
       }
@@ -60,13 +60,16 @@ public class ChordHover extends Shell {
 
     setVisible(true);
     txtChord.setFocus();
-
-    while (!isDisposed()) {
-      if (!getDisplay().readAndDispatch()) {
-        getDisplay().sleep();
-      }
-    }
-
+  }
+  
+  public void save () {
+	 after = txtChord.getText();
+     history = after;
+  }
+  
+  public void dontsave () {
+	    after = preselection;
+        history = after;
   }
 
   public boolean isChanged () {

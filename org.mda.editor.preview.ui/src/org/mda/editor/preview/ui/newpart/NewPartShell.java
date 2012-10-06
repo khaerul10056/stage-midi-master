@@ -26,9 +26,9 @@ public class NewPartShell extends Shell implements SelectionListener {
 
   private MidiFilePart addAfter;
 
-  private List <Button> buttonsDefault = new ArrayList<Button>();
+   List <Button> buttonsDefault = new ArrayList<Button>();
 
-  private List <Button> buttonsReference = new ArrayList<Button>();
+  List <Button> buttonsReference = new ArrayList<Button>();
 
   private List <MidiFilePart> partReferences = new ArrayList<MidiFilePart>();
 
