@@ -18,8 +18,11 @@ import org.mda.core.MidiPlayerServiceTest;
 import org.mda.core.UtilsTest;
 import org.mda.core.additionals.TestAdditionalsHandler;
 import org.mda.core.importer.TextImporterTest;
+import org.mda.editor.preview.ui.StepTypeColorerTest;
+import org.mda.editor.preview.ui.chords.ChordHoverTest;
 import org.mda.editor.preview.ui.details.MidiFileDetailsShellTest;
 import org.mda.editor.preview.ui.details.MidiPartDetailsShellTest;
+import org.mda.editor.preview.ui.newpart.NewPartShellTest;
 import org.mda.editor.preview.ui.test.PreviewEditorTest;
 import org.mda.editor.preview.ui.test.PreviewEditorUiTest;
 import org.mda.export.TestExportEngine;
@@ -53,6 +56,11 @@ import org.mda.transpose.TransposeTest;
   //UI
   PreviewEditorTest.class,
   PreviewEditorUiTest.class,
+  
+  NewPartShellTest.class,
+  StepTypeColorerTest.class,
+  
+  ChordHoverTest.class,
 
   BeamerPresenterTest.class,
   MidiFileSlideCalculatorTest.class,
