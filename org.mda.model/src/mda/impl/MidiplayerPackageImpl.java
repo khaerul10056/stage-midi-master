@@ -65,20 +65,6 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass abstractEventEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass textPresentationEventEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass midiFilePartEClass = null;
 
 	/**
@@ -346,42 +332,6 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	}
 
     /**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAbstractEvent() {
-		return abstractEventEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAbstractEvent_AtBar() {
-		return (EAttribute)abstractEventEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTextPresentationEvent() {
-		return textPresentationEventEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTextPresentationEvent_Parts() {
-		return (EReference)textPresentationEventEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1038,12 +988,6 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 		createEAttribute(midiFileEClass, MIDI_FILE__KEY);
 		createEReference(midiFileEClass, MIDI_FILE__COPYRIGHT);
 
-		abstractEventEClass = createEClass(ABSTRACT_EVENT);
-		createEAttribute(abstractEventEClass, ABSTRACT_EVENT__AT_BAR);
-
-		textPresentationEventEClass = createEClass(TEXT_PRESENTATION_EVENT);
-		createEReference(textPresentationEventEClass, TEXT_PRESENTATION_EVENT__PARTS);
-
 		midiFilePartEClass = createEClass(MIDI_FILE_PART);
 		createEReference(midiFilePartEClass, MIDI_FILE_PART__TEXTLINES);
 		createEAttribute(midiFilePartEClass, MIDI_FILE_PART__PARTTYPE);
@@ -1153,7 +1097,6 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
 		// Add supertypes to classes
 		midiFileEClass.getESuperTypes().add(this.getAbstractSessionItem());
-		textPresentationEventEClass.getESuperTypes().add(this.getAbstractEvent());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(sessionEClass, Session.class, "Session", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1172,12 +1115,6 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 		initEAttribute(getMidiFile_Pic(), ecorePackage.getEString(), "pic", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMidiFile_Key(), ecorePackage.getEString(), "key", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMidiFile_Copyright(), this.getCopyright(), null, "copyright", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(abstractEventEClass, AbstractEvent.class, "AbstractEvent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractEvent_AtBar(), ecorePackage.getEInt(), "atBar", null, 0, 1, AbstractEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(textPresentationEventEClass, TextPresentationEvent.class, "TextPresentationEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTextPresentationEvent_Parts(), this.getMidiFilePart(), null, "parts", null, 0, -1, TextPresentationEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(midiFilePartEClass, MidiFilePart.class, "MidiFilePart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMidiFilePart_Textlines(), this.getMidiFileTextLine(), null, "textlines", null, 0, -1, MidiFilePart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

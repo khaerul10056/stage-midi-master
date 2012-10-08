@@ -21,13 +21,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="copyright" eType="#//Copyright"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractEvent" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="atBar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TextPresentationEvent" eSuperTypes="#//AbstractEvent">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
-        eType="#//MidiFilePart"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MidiFilePart">
     <eStructuralFeatures xsi:type="ecore:EReference" name="textlines" upperBound="-1"
         eType="#//MidiFileTextLine" containment="true"/>

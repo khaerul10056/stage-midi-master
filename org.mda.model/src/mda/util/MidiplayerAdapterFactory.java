@@ -84,14 +84,6 @@ public class MidiplayerAdapterFactory extends AdapterFactoryImpl {
 				return createMidiFileAdapter();
 			}
 			@Override
-			public Adapter caseAbstractEvent(AbstractEvent object) {
-				return createAbstractEventAdapter();
-			}
-			@Override
-			public Adapter caseTextPresentationEvent(TextPresentationEvent object) {
-				return createTextPresentationEventAdapter();
-			}
-			@Override
 			public Adapter caseMidiFilePart(MidiFilePart object) {
 				return createMidiFilePartAdapter();
 			}
@@ -186,34 +178,6 @@ public class MidiplayerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMidiFileAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link mda.AbstractEvent <em>Abstract Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see mda.AbstractEvent
-	 * @generated
-	 */
-	public Adapter createAbstractEventAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link mda.TextPresentationEvent <em>Text Presentation Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see mda.TextPresentationEvent
-	 * @generated
-	 */
-	public Adapter createTextPresentationEventAdapter() {
 		return null;
 	}
 

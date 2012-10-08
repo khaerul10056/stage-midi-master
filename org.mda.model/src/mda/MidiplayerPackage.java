@@ -253,71 +253,6 @@ public interface MidiplayerPackage extends EPackage {
 	int MIDI_FILE_FEATURE_COUNT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link mda.impl.AbstractEventImpl <em>Abstract Event</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see mda.impl.AbstractEventImpl
-	 * @see mda.impl.MidiplayerPackageImpl#getAbstractEvent()
-	 * @generated
-	 */
-	int ABSTRACT_EVENT = 3;
-
-	/**
-	 * The feature id for the '<em><b>At Bar</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_EVENT__AT_BAR = 0;
-
-	/**
-	 * The number of structural features of the '<em>Abstract Event</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_EVENT_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link mda.impl.TextPresentationEventImpl <em>Text Presentation Event</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see mda.impl.TextPresentationEventImpl
-	 * @see mda.impl.MidiplayerPackageImpl#getTextPresentationEvent()
-	 * @generated
-	 */
-	int TEXT_PRESENTATION_EVENT = 4;
-
-	/**
-	 * The feature id for the '<em><b>At Bar</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_PRESENTATION_EVENT__AT_BAR = ABSTRACT_EVENT__AT_BAR;
-
-	/**
-	 * The feature id for the '<em><b>Parts</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_PRESENTATION_EVENT__PARTS = ABSTRACT_EVENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Text Presentation Event</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_PRESENTATION_EVENT_FEATURE_COUNT = ABSTRACT_EVENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The meta object id for the '{@link mda.impl.MidiFilePartImpl <em>Midi File Part</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -325,7 +260,7 @@ public interface MidiplayerPackage extends EPackage {
 	 * @see mda.impl.MidiplayerPackageImpl#getMidiFilePart()
 	 * @generated
 	 */
-	int MIDI_FILE_PART = 5;
+	int MIDI_FILE_PART = 3;
 
 	/**
 	 * The feature id for the '<em><b>Textlines</b></em>' containment reference list.
@@ -380,7 +315,7 @@ public interface MidiplayerPackage extends EPackage {
 	 * @see mda.impl.MidiplayerPackageImpl#getMidiFileTextLine()
 	 * @generated
 	 */
-	int MIDI_FILE_TEXT_LINE = 6;
+	int MIDI_FILE_TEXT_LINE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Chord Parts</b></em>' containment reference list.
@@ -417,7 +352,7 @@ public interface MidiplayerPackage extends EPackage {
 	 * @see mda.impl.MidiplayerPackageImpl#getGallery()
 	 * @generated
 	 */
-	int GALLERY = 7;
+	int GALLERY = 5;
 
 	/**
 	 * The feature id for the '<em><b>Gallery Items</b></em>' containment reference list.
@@ -445,7 +380,7 @@ public interface MidiplayerPackage extends EPackage {
 	 * @see mda.impl.MidiplayerPackageImpl#getMidiPlayerRoot()
 	 * @generated
 	 */
-	int MIDI_PLAYER_ROOT = 8;
+	int MIDI_PLAYER_ROOT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Gallery</b></em>' containment reference.
@@ -509,7 +444,7 @@ public interface MidiplayerPackage extends EPackage {
 	 * @see mda.impl.MidiplayerPackageImpl#getMidiFileChordPart()
 	 * @generated
 	 */
-	int MIDI_FILE_CHORD_PART = 9;
+	int MIDI_FILE_CHORD_PART = 7;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -546,7 +481,7 @@ public interface MidiplayerPackage extends EPackage {
 	 * @see mda.impl.MidiplayerPackageImpl#getConfiguration()
 	 * @generated
 	 */
-  int CONFIGURATION = 10;
+  int CONFIGURATION = 8;
 
   /**
 	 * The feature id for the '<em><b>Screen ID Presentation</b></em>' attribute.
@@ -664,7 +599,7 @@ public interface MidiplayerPackage extends EPackage {
 	 * @see mda.impl.MidiplayerPackageImpl#getUser()
 	 * @generated
 	 */
-  int USER = 11;
+  int USER = 9;
 
     /**
 	 * The feature id for the '<em><b>Mail</b></em>' attribute.
@@ -746,7 +681,7 @@ public interface MidiplayerPackage extends EPackage {
 	 * @see mda.impl.MidiplayerPackageImpl#getCopyright()
 	 * @generated
 	 */
-  int COPYRIGHT = 12;
+  int COPYRIGHT = 10;
 
     /**
 	 * The feature id for the '<em><b>Originaltitle</b></em>' attribute.
@@ -828,7 +763,7 @@ public interface MidiplayerPackage extends EPackage {
 	 * @see mda.impl.MidiplayerPackageImpl#getPresentationScheme()
 	 * @generated
 	 */
-  int PRESENTATION_SCHEME = 13;
+  int PRESENTATION_SCHEME = 11;
 
     /**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1000,7 +935,7 @@ public interface MidiplayerPackage extends EPackage {
 	 * @see mda.impl.MidiplayerPackageImpl#getMidiFilePartType()
 	 * @generated
 	 */
-	int MIDI_FILE_PART_TYPE = 14;
+	int MIDI_FILE_PART_TYPE = 12;
 
 
 	/**
@@ -1011,7 +946,7 @@ public interface MidiplayerPackage extends EPackage {
 	 * @see mda.impl.MidiplayerPackageImpl#getAdditionalType()
 	 * @generated
 	 */
-  int ADDITIONAL_TYPE = 15;
+  int ADDITIONAL_TYPE = 13;
 
 
   /**
@@ -1022,7 +957,7 @@ public interface MidiplayerPackage extends EPackage {
 	 * @see mda.impl.MidiplayerPackageImpl#getUserType()
 	 * @generated
 	 */
-  int USER_TYPE = 16;
+  int USER_TYPE = 14;
 
 
   /**
@@ -1177,48 +1112,6 @@ public interface MidiplayerPackage extends EPackage {
   EReference getMidiFile_Copyright();
 
     /**
-	 * Returns the meta object for class '{@link mda.AbstractEvent <em>Abstract Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Abstract Event</em>'.
-	 * @see mda.AbstractEvent
-	 * @generated
-	 */
-	EClass getAbstractEvent();
-
-	/**
-	 * Returns the meta object for the attribute '{@link mda.AbstractEvent#getAtBar <em>At Bar</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>At Bar</em>'.
-	 * @see mda.AbstractEvent#getAtBar()
-	 * @see #getAbstractEvent()
-	 * @generated
-	 */
-	EAttribute getAbstractEvent_AtBar();
-
-	/**
-	 * Returns the meta object for class '{@link mda.TextPresentationEvent <em>Text Presentation Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Text Presentation Event</em>'.
-	 * @see mda.TextPresentationEvent
-	 * @generated
-	 */
-	EClass getTextPresentationEvent();
-
-	/**
-	 * Returns the meta object for the reference list '{@link mda.TextPresentationEvent#getParts <em>Parts</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Parts</em>'.
-	 * @see mda.TextPresentationEvent#getParts()
-	 * @see #getTextPresentationEvent()
-	 * @generated
-	 */
-	EReference getTextPresentationEvent_Parts();
-
-	/**
 	 * Returns the meta object for class '{@link mda.MidiFilePart <em>Midi File Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2095,42 +1988,6 @@ public interface MidiplayerPackage extends EPackage {
     EReference MIDI_FILE__COPYRIGHT = eINSTANCE.getMidiFile_Copyright();
 
         /**
-		 * The meta object literal for the '{@link mda.impl.AbstractEventImpl <em>Abstract Event</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see mda.impl.AbstractEventImpl
-		 * @see mda.impl.MidiplayerPackageImpl#getAbstractEvent()
-		 * @generated
-		 */
-		EClass ABSTRACT_EVENT = eINSTANCE.getAbstractEvent();
-
-		/**
-		 * The meta object literal for the '<em><b>At Bar</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ABSTRACT_EVENT__AT_BAR = eINSTANCE.getAbstractEvent_AtBar();
-
-		/**
-		 * The meta object literal for the '{@link mda.impl.TextPresentationEventImpl <em>Text Presentation Event</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see mda.impl.TextPresentationEventImpl
-		 * @see mda.impl.MidiplayerPackageImpl#getTextPresentationEvent()
-		 * @generated
-		 */
-		EClass TEXT_PRESENTATION_EVENT = eINSTANCE.getTextPresentationEvent();
-
-		/**
-		 * The meta object literal for the '<em><b>Parts</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEXT_PRESENTATION_EVENT__PARTS = eINSTANCE.getTextPresentationEvent_Parts();
-
-		/**
 		 * The meta object literal for the '{@link mda.impl.MidiFilePartImpl <em>Midi File Part</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
