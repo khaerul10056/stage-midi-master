@@ -620,8 +620,44 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConfiguration_Mailtext() {
+	public EAttribute getConfiguration_MailtextSendSongbook() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(6);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConfiguration_MailserverUrl() {
+		return (EAttribute)configurationEClass.getEStructuralFeatures().get(7);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConfiguration_MailserverUser() {
+		return (EAttribute)configurationEClass.getEStructuralFeatures().get(8);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConfiguration_MailserverPassword() {
+		return (EAttribute)configurationEClass.getEStructuralFeatures().get(9);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConfiguration_MailsubjectSendSongbook() {
+		return (EAttribute)configurationEClass.getEStructuralFeatures().get(10);
 	}
 
 				/**
@@ -1039,7 +1075,11 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 		createEAttribute(configurationEClass, CONFIGURATION__PDF_EXPORT_PATH);
 		createEAttribute(configurationEClass, CONFIGURATION__ADDITIONALS_PATH);
 		createEAttribute(configurationEClass, CONFIGURATION__FONTSIZE);
-		createEAttribute(configurationEClass, CONFIGURATION__MAILTEXT);
+		createEAttribute(configurationEClass, CONFIGURATION__MAILTEXT_SEND_SONGBOOK);
+		createEAttribute(configurationEClass, CONFIGURATION__MAILSERVER_URL);
+		createEAttribute(configurationEClass, CONFIGURATION__MAILSERVER_USER);
+		createEAttribute(configurationEClass, CONFIGURATION__MAILSERVER_PASSWORD);
+		createEAttribute(configurationEClass, CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK);
 
 		userEClass = createEClass(USER);
 		createEAttribute(userEClass, USER__MAIL);
@@ -1170,7 +1210,11 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 		initEAttribute(getConfiguration_PdfExportPath(), ecorePackage.getEString(), "pdfExportPath", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfiguration_AdditionalsPath(), ecorePackage.getEString(), "additionalsPath", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfiguration_Fontsize(), ecorePackage.getEIntegerObject(), "fontsize", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getConfiguration_Mailtext(), ecorePackage.getEString(), "mailtext", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfiguration_MailtextSendSongbook(), ecorePackage.getEString(), "mailtextSendSongbook", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfiguration_MailserverUrl(), ecorePackage.getEString(), "mailserverUrl", "", 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfiguration_MailserverUser(), ecorePackage.getEString(), "mailserverUser", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfiguration_MailserverPassword(), ecorePackage.getEString(), "mailserverPassword", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfiguration_MailsubjectSendSongbook(), ecorePackage.getEString(), "mailsubjectSendSongbook", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUser_Mail(), ecorePackage.getEString(), "mail", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

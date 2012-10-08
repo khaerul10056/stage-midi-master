@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Spinner;
+import org.eclipse.swt.widgets.Text;
 import org.mda.ApplicationSession;
 
 
@@ -25,6 +26,12 @@ public class ConfigShellBuilder  {
   private Spinner spnFontSize;
 
   private Button chkEnableGrid;
+  
+  private Text txtMailserverUrl;
+  
+  private Text txtMailserverUser;
+  
+  private Text txtMailserverPassword;
 
   @Inject
   private ApplicationSession session;
@@ -61,6 +68,30 @@ public class ConfigShellBuilder  {
       chkEnableGrid.setSelection(session.getGlobalConfs().isShowGrid());
       chkEnableGrid.setLayoutData(getContentData());
     }
+    
+    Label lblMailserverUrl = new Label (configShell, SWT.NONE);
+    lblMailserverUrl.setText("Mailserver URL:");
+    lblMailserverUrl.setLayoutData(getLabelData());
+    
+    txtMailserverUrl = new Text(configShell, SWT.NONE);
+    txtMailserverUrl.setText(configuration.getMailserverUrl() != null ? configuration.getMailserverUrl() : "");
+    txtMailserverUrl.setLayoutData(getContentData());
+    
+    Label lblMailserverUser = new Label (configShell, SWT.NONE);
+    lblMailserverUser.setText("Mailserver User:");
+    lblMailserverUser.setLayoutData(getLabelData());
+    
+    txtMailserverUser = new Text(configShell, SWT.NONE);
+    txtMailserverUser.setText(configuration.getMailserverUser() != null ? configuration.getMailserverUser() : "");
+    txtMailserverUser.setLayoutData(getContentData());
+    
+    Label lblMailserverPassword = new Label (configShell, SWT.NONE);
+    lblMailserverPassword.setText("Mailserver Password:");
+    lblMailserverPassword.setLayoutData(getLabelData());
+    
+    txtMailserverPassword = new Text(configShell, SWT.PASSWORD);
+    txtMailserverPassword.setText(configuration.getMailserverPassword() != null ? configuration.getMailserverPassword() : "");
+    txtMailserverPassword.setLayoutData(getContentData());
 
     Label lblExtender = new Label (configShell, SWT.NONE);
     lblExtender.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true, 2, 1));
@@ -106,6 +137,9 @@ public class ConfigShellBuilder  {
 
   protected void save () {
     getConfiguration().setFontsize(spnFontSize.getSelection());
+    getConfiguration().setMailserverUrl(txtMailserverUrl.getText());
+    getConfiguration().setMailserverUser(txtMailserverUser.getText());
+    getConfiguration().setMailserverPassword(txtMailserverPassword.getText());
     session.getGlobalConfs().setShowGrid(chkEnableGrid.getSelection());
 
     session.saveModel();

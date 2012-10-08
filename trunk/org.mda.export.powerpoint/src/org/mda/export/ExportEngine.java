@@ -21,6 +21,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import mda.Configuration;
 import mda.MidiPlayerRoot;
 import mda.User;
 
@@ -100,20 +101,24 @@ public class ExportEngine {
     }
     return results;
   }
+  
+  private Configuration getConfiguration () {
+	  return appSession.getCurrentModel().getConfig();
+  }
 
   /**
    * mails the exported songbooks
    * @param results
    */
-  public void mailExportedSongbooks (Collection <ExportResult> results, final String text) {
+  public void mailExportedSongbooks (Collection <ExportResult> results) {
 
     for (ExportResult nextResult: results) {
       try {
    // Get system properties
       Properties props = System.getProperties();
 
-      Authenticator authenticator = new Authenticator("oleys@gmx.de", "Momopomo351977");
-      props.put("mail.smtp.host", "mail.gmx.net");
+      Authenticator authenticator = new Authenticator(getConfiguration().getMailserverUser(), getConfiguration().getMailserverPassword());
+      props.put("mail.smtp.host", getConfiguration().getMailserverUrl());
       props.put("mail.smtp.auth", "true");
 
       Session session = Session.getDefaultInstance(props, authenticator);
@@ -123,7 +128,7 @@ public class ExportEngine {
       BodyPart messageBodyPart = new MimeBodyPart();
 
       // Fill the message
-      messageBodyPart.setText(text);
+      messageBodyPart.setText(getConfiguration().getMailtextSendSongbook());
       Multipart multipart = new MimeMultipart();
       multipart.addBodyPart(messageBodyPart);
 
@@ -135,9 +140,9 @@ public class ExportEngine {
       multipart.addBodyPart(attachmentPart);
 
       MimeMessage message = new MimeMessage(session);
-      message.setFrom(new InternetAddress("oleys@gmx.de"));
+      message.setFrom(new InternetAddress(getConfiguration().getMailserverUser()));
       message.addRecipient(Message.RecipientType.TO, new InternetAddress(nextResult.getUser().getMail()));
-      message.setSubject("Neueste Version des Songbooks");
+      message.setSubject(getConfiguration().getMailsubjectSendSongbook());
       message.setContent(multipart);
 
       // Send message
