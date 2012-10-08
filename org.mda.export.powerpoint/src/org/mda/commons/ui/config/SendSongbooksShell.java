@@ -3,6 +3,7 @@ package org.mda.commons.ui.config;
 import java.util.Collection;
 
 import javax.inject.Inject;
+import javax.mail.MessagingException;
 
 import mda.Configuration;
 import mda.User;
@@ -20,6 +21,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.mda.ApplicationSession;
+import org.mda.commons.ui.UIHandler;
 import org.mda.export.ExportEngine;
 import org.mda.export.ExportResult;
 import org.mda.logging.Log;
@@ -41,6 +43,9 @@ public class SendSongbooksShell {
 	  
 	  @Inject
 	  ExportEngine engine;
+	  
+	  @Inject
+	  UIHandler uihandler;
 
 	  
 	  private GridData getLabelData () {
@@ -124,7 +129,11 @@ public class SendSongbooksShell {
 	    	getConfiguration().setMailtextSendSongbook(txtMailtext.getText());
 	    	getConfiguration().setMailsubjectSendSongbook(txtMailsubject.getText());
     	    Collection<ExportResult> exportSongbooks = engine.exportSongbooks();
-	    	engine.mailExportedSongbooks(exportSongbooks);  
+	    	try {
+				engine.mailExportedSongbooks(exportSongbooks);
+			} catch (MessagingException e1) {
+				uihandler.showMessageBox(getShell(), SWT.ERROR, "Error sending mails");
+			}  
 	        shell.dispose();
 	      }
 	    });

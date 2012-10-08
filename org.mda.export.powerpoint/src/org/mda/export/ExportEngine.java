@@ -12,6 +12,7 @@ import javax.activation.FileDataSource;
 import javax.inject.Inject;
 import javax.mail.BodyPart;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -43,6 +44,8 @@ public class ExportEngine {
   @Inject
   private PdfExporter pdfexporter; //TODO implement other formats
   
+  @Inject
+  private MailingAdapter mailingAdapter;
   
 
   private final static Log LOG = LogFactory.getLogger(ExportEngine.class);
@@ -109,13 +112,20 @@ public class ExportEngine {
   /**
    * mails the exported songbooks
    * @param results
+ * @throws MessagingException 
    */
-  public void mailExportedSongbooks (Collection <ExportResult> results) {
+  public void mailExportedSongbooks (Collection <ExportResult> results) throws MessagingException {
+	  
+	if (getConfiguration().getMailserverUser() == null || getConfiguration().getMailserverUrl() == null || getConfiguration().getMailserverPassword() == null)
+      throw new MessagingException("Please configure mailserver, user and password before trying to send mails");
+	  
+	Collection <Message> messages = new ArrayList<Message>();
 
     for (ExportResult nextResult: results) {
-      try {
    // Get system properties
       Properties props = System.getProperties();
+      
+      
 
       Authenticator authenticator = new Authenticator(getConfiguration().getMailserverUser(), getConfiguration().getMailserverPassword());
       props.put("mail.smtp.host", getConfiguration().getMailserverUrl());
@@ -126,9 +136,10 @@ public class ExportEngine {
 
    // Create the message part
       BodyPart messageBodyPart = new MimeBodyPart();
-
+      
+      
       // Fill the message
-      messageBodyPart.setText(getConfiguration().getMailtextSendSongbook());
+      messageBodyPart.setText(getConfiguration().getMailtextSendSongbook() != null ? getConfiguration().getMailtextSendSongbook() : "");
       Multipart multipart = new MimeMultipart();
       multipart.addBodyPart(messageBodyPart);
 
@@ -138,19 +149,21 @@ public class ExportEngine {
       attachmentPart.setDataHandler(new DataHandler(source));
       attachmentPart.setFileName(nextResult.getExportFile().getName());
       multipart.addBodyPart(attachmentPart);
+      
+      
 
       MimeMessage message = new MimeMessage(session);
       message.setFrom(new InternetAddress(getConfiguration().getMailserverUser()));
       message.addRecipient(Message.RecipientType.TO, new InternetAddress(nextResult.getUser().getMail()));
-      message.setSubject(getConfiguration().getMailsubjectSendSongbook());
+      message.setSubject(getConfiguration().getMailsubjectSendSongbook() != null ? getConfiguration().getMailsubjectSendSongbook() : "");
       message.setContent(multipart);
 
       // Send message
-      Transport.send(message);
-      } catch (Exception e) {
-        LOG.error("Error sending mail to " + nextResult.getUser().getMail() + ":", e);
-      }
+      messages.add(message);
+      
     }
+    
+    mailingAdapter.mail(messages);
 
   }
 
