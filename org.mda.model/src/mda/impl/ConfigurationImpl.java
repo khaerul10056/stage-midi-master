@@ -31,7 +31,11 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link mda.impl.ConfigurationImpl#getPdfExportPath <em>Pdf Export Path</em>}</li>
  *   <li>{@link mda.impl.ConfigurationImpl#getAdditionalsPath <em>Additionals Path</em>}</li>
  *   <li>{@link mda.impl.ConfigurationImpl#getFontsize <em>Fontsize</em>}</li>
- *   <li>{@link mda.impl.ConfigurationImpl#getMailtext <em>Mailtext</em>}</li>
+ *   <li>{@link mda.impl.ConfigurationImpl#getMailtextSendSongbook <em>Mailtext Send Songbook</em>}</li>
+ *   <li>{@link mda.impl.ConfigurationImpl#getMailserverUrl <em>Mailserver Url</em>}</li>
+ *   <li>{@link mda.impl.ConfigurationImpl#getMailserverUser <em>Mailserver User</em>}</li>
+ *   <li>{@link mda.impl.ConfigurationImpl#getMailserverPassword <em>Mailserver Password</em>}</li>
+ *   <li>{@link mda.impl.ConfigurationImpl#getMailsubjectSendSongbook <em>Mailsubject Send Songbook</em>}</li>
  * </ul>
  * </p>
  *
@@ -149,24 +153,104 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
   protected Integer fontsize = FONTSIZE_EDEFAULT;
 
     /**
-	 * The default value of the '{@link #getMailtext() <em>Mailtext</em>}' attribute.
+	 * The default value of the '{@link #getMailtextSendSongbook() <em>Mailtext Send Songbook</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMailtext()
+	 * @see #getMailtextSendSongbook()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String MAILTEXT_EDEFAULT = null;
+	protected static final String MAILTEXT_SEND_SONGBOOK_EDEFAULT = null;
 
 				/**
-	 * The cached value of the '{@link #getMailtext() <em>Mailtext</em>}' attribute.
+	 * The cached value of the '{@link #getMailtextSendSongbook() <em>Mailtext Send Songbook</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMailtext()
+	 * @see #getMailtextSendSongbook()
 	 * @generated
 	 * @ordered
 	 */
-	protected String mailtext = MAILTEXT_EDEFAULT;
+	protected String mailtextSendSongbook = MAILTEXT_SEND_SONGBOOK_EDEFAULT;
+
+				/**
+	 * The default value of the '{@link #getMailserverUrl() <em>Mailserver Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMailserverUrl()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MAILSERVER_URL_EDEFAULT = "";
+
+				/**
+	 * The cached value of the '{@link #getMailserverUrl() <em>Mailserver Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMailserverUrl()
+	 * @generated
+	 * @ordered
+	 */
+	protected String mailserverUrl = MAILSERVER_URL_EDEFAULT;
+
+				/**
+	 * The default value of the '{@link #getMailserverUser() <em>Mailserver User</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMailserverUser()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MAILSERVER_USER_EDEFAULT = null;
+
+				/**
+	 * The cached value of the '{@link #getMailserverUser() <em>Mailserver User</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMailserverUser()
+	 * @generated
+	 * @ordered
+	 */
+	protected String mailserverUser = MAILSERVER_USER_EDEFAULT;
+
+				/**
+	 * The default value of the '{@link #getMailserverPassword() <em>Mailserver Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMailserverPassword()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MAILSERVER_PASSWORD_EDEFAULT = null;
+
+				/**
+	 * The cached value of the '{@link #getMailserverPassword() <em>Mailserver Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMailserverPassword()
+	 * @generated
+	 * @ordered
+	 */
+	protected String mailserverPassword = MAILSERVER_PASSWORD_EDEFAULT;
+
+				/**
+	 * The default value of the '{@link #getMailsubjectSendSongbook() <em>Mailsubject Send Songbook</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMailsubjectSendSongbook()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MAILSUBJECT_SEND_SONGBOOK_EDEFAULT = null;
+
+				/**
+	 * The cached value of the '{@link #getMailsubjectSendSongbook() <em>Mailsubject Send Songbook</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMailsubjectSendSongbook()
+	 * @generated
+	 * @ordered
+	 */
+	protected String mailsubjectSendSongbook = MAILSUBJECT_SEND_SONGBOOK_EDEFAULT;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -335,8 +419,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getMailtext() {
-		return mailtext;
+	public String getMailtextSendSongbook() {
+		return mailtextSendSongbook;
 	}
 
 				/**
@@ -344,11 +428,95 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMailtext(String newMailtext) {
-		String oldMailtext = mailtext;
-		mailtext = newMailtext;
+	public void setMailtextSendSongbook(String newMailtextSendSongbook) {
+		String oldMailtextSendSongbook = mailtextSendSongbook;
+		mailtextSendSongbook = newMailtextSendSongbook;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__MAILTEXT, oldMailtext, mailtext));
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__MAILTEXT_SEND_SONGBOOK, oldMailtextSendSongbook, mailtextSendSongbook));
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getMailserverUrl() {
+		return mailserverUrl;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMailserverUrl(String newMailserverUrl) {
+		String oldMailserverUrl = mailserverUrl;
+		mailserverUrl = newMailserverUrl;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__MAILSERVER_URL, oldMailserverUrl, mailserverUrl));
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getMailserverUser() {
+		return mailserverUser;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMailserverUser(String newMailserverUser) {
+		String oldMailserverUser = mailserverUser;
+		mailserverUser = newMailserverUser;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__MAILSERVER_USER, oldMailserverUser, mailserverUser));
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getMailserverPassword() {
+		return mailserverPassword;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMailserverPassword(String newMailserverPassword) {
+		String oldMailserverPassword = mailserverPassword;
+		mailserverPassword = newMailserverPassword;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__MAILSERVER_PASSWORD, oldMailserverPassword, mailserverPassword));
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getMailsubjectSendSongbook() {
+		return mailsubjectSendSongbook;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMailsubjectSendSongbook(String newMailsubjectSendSongbook) {
+		String oldMailsubjectSendSongbook = mailsubjectSendSongbook;
+		mailsubjectSendSongbook = newMailsubjectSendSongbook;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK, oldMailsubjectSendSongbook, mailsubjectSendSongbook));
 	}
 
 				/**
@@ -372,8 +540,16 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 				return getAdditionalsPath();
 			case MidiplayerPackage.CONFIGURATION__FONTSIZE:
 				return getFontsize();
-			case MidiplayerPackage.CONFIGURATION__MAILTEXT:
-				return getMailtext();
+			case MidiplayerPackage.CONFIGURATION__MAILTEXT_SEND_SONGBOOK:
+				return getMailtextSendSongbook();
+			case MidiplayerPackage.CONFIGURATION__MAILSERVER_URL:
+				return getMailserverUrl();
+			case MidiplayerPackage.CONFIGURATION__MAILSERVER_USER:
+				return getMailserverUser();
+			case MidiplayerPackage.CONFIGURATION__MAILSERVER_PASSWORD:
+				return getMailserverPassword();
+			case MidiplayerPackage.CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK:
+				return getMailsubjectSendSongbook();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -404,8 +580,20 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 			case MidiplayerPackage.CONFIGURATION__FONTSIZE:
 				setFontsize((Integer)newValue);
 				return;
-			case MidiplayerPackage.CONFIGURATION__MAILTEXT:
-				setMailtext((String)newValue);
+			case MidiplayerPackage.CONFIGURATION__MAILTEXT_SEND_SONGBOOK:
+				setMailtextSendSongbook((String)newValue);
+				return;
+			case MidiplayerPackage.CONFIGURATION__MAILSERVER_URL:
+				setMailserverUrl((String)newValue);
+				return;
+			case MidiplayerPackage.CONFIGURATION__MAILSERVER_USER:
+				setMailserverUser((String)newValue);
+				return;
+			case MidiplayerPackage.CONFIGURATION__MAILSERVER_PASSWORD:
+				setMailserverPassword((String)newValue);
+				return;
+			case MidiplayerPackage.CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK:
+				setMailsubjectSendSongbook((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -437,8 +625,20 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 			case MidiplayerPackage.CONFIGURATION__FONTSIZE:
 				setFontsize(FONTSIZE_EDEFAULT);
 				return;
-			case MidiplayerPackage.CONFIGURATION__MAILTEXT:
-				setMailtext(MAILTEXT_EDEFAULT);
+			case MidiplayerPackage.CONFIGURATION__MAILTEXT_SEND_SONGBOOK:
+				setMailtextSendSongbook(MAILTEXT_SEND_SONGBOOK_EDEFAULT);
+				return;
+			case MidiplayerPackage.CONFIGURATION__MAILSERVER_URL:
+				setMailserverUrl(MAILSERVER_URL_EDEFAULT);
+				return;
+			case MidiplayerPackage.CONFIGURATION__MAILSERVER_USER:
+				setMailserverUser(MAILSERVER_USER_EDEFAULT);
+				return;
+			case MidiplayerPackage.CONFIGURATION__MAILSERVER_PASSWORD:
+				setMailserverPassword(MAILSERVER_PASSWORD_EDEFAULT);
+				return;
+			case MidiplayerPackage.CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK:
+				setMailsubjectSendSongbook(MAILSUBJECT_SEND_SONGBOOK_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -464,8 +664,16 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 				return ADDITIONALS_PATH_EDEFAULT == null ? additionalsPath != null : !ADDITIONALS_PATH_EDEFAULT.equals(additionalsPath);
 			case MidiplayerPackage.CONFIGURATION__FONTSIZE:
 				return FONTSIZE_EDEFAULT == null ? fontsize != null : !FONTSIZE_EDEFAULT.equals(fontsize);
-			case MidiplayerPackage.CONFIGURATION__MAILTEXT:
-				return MAILTEXT_EDEFAULT == null ? mailtext != null : !MAILTEXT_EDEFAULT.equals(mailtext);
+			case MidiplayerPackage.CONFIGURATION__MAILTEXT_SEND_SONGBOOK:
+				return MAILTEXT_SEND_SONGBOOK_EDEFAULT == null ? mailtextSendSongbook != null : !MAILTEXT_SEND_SONGBOOK_EDEFAULT.equals(mailtextSendSongbook);
+			case MidiplayerPackage.CONFIGURATION__MAILSERVER_URL:
+				return MAILSERVER_URL_EDEFAULT == null ? mailserverUrl != null : !MAILSERVER_URL_EDEFAULT.equals(mailserverUrl);
+			case MidiplayerPackage.CONFIGURATION__MAILSERVER_USER:
+				return MAILSERVER_USER_EDEFAULT == null ? mailserverUser != null : !MAILSERVER_USER_EDEFAULT.equals(mailserverUser);
+			case MidiplayerPackage.CONFIGURATION__MAILSERVER_PASSWORD:
+				return MAILSERVER_PASSWORD_EDEFAULT == null ? mailserverPassword != null : !MAILSERVER_PASSWORD_EDEFAULT.equals(mailserverPassword);
+			case MidiplayerPackage.CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK:
+				return MAILSUBJECT_SEND_SONGBOOK_EDEFAULT == null ? mailsubjectSendSongbook != null : !MAILSUBJECT_SEND_SONGBOOK_EDEFAULT.equals(mailsubjectSendSongbook);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -490,8 +698,16 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 		result.append(additionalsPath);
 		result.append(", fontsize: ");
 		result.append(fontsize);
-		result.append(", mailtext: ");
-		result.append(mailtext);
+		result.append(", mailtextSendSongbook: ");
+		result.append(mailtextSendSongbook);
+		result.append(", mailserverUrl: ");
+		result.append(mailserverUrl);
+		result.append(", mailserverUser: ");
+		result.append(mailserverUser);
+		result.append(", mailserverPassword: ");
+		result.append(mailserverPassword);
+		result.append(", mailsubjectSendSongbook: ");
+		result.append(mailsubjectSendSongbook);
 		result.append(')');
 		return result.toString();
 	}

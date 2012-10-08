@@ -603,13 +603,49 @@ public interface MidiplayerPackage extends EPackage {
   int CONFIGURATION__FONTSIZE = 5;
 
     /**
-	 * The feature id for the '<em><b>Mailtext</b></em>' attribute.
+	 * The feature id for the '<em><b>Mailtext Send Songbook</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION__MAILTEXT = 6;
+	int CONFIGURATION__MAILTEXT_SEND_SONGBOOK = 6;
+
+				/**
+	 * The feature id for the '<em><b>Mailserver Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION__MAILSERVER_URL = 7;
+
+				/**
+	 * The feature id for the '<em><b>Mailserver User</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION__MAILSERVER_USER = 8;
+
+				/**
+	 * The feature id for the '<em><b>Mailserver Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION__MAILSERVER_PASSWORD = 9;
+
+				/**
+	 * The feature id for the '<em><b>Mailsubject Send Songbook</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK = 10;
 
 				/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -618,7 +654,7 @@ public interface MidiplayerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-  int CONFIGURATION_FEATURE_COUNT = 7;
+  int CONFIGURATION_FEATURE_COUNT = 11;
 
   /**
 	 * The meta object id for the '{@link mda.impl.UserImpl <em>User</em>}' class.
@@ -1463,15 +1499,59 @@ public interface MidiplayerPackage extends EPackage {
   EAttribute getConfiguration_Fontsize();
 
     /**
-	 * Returns the meta object for the attribute '{@link mda.Configuration#getMailtext <em>Mailtext</em>}'.
+	 * Returns the meta object for the attribute '{@link mda.Configuration#getMailtextSendSongbook <em>Mailtext Send Songbook</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mailtext</em>'.
-	 * @see mda.Configuration#getMailtext()
+	 * @return the meta object for the attribute '<em>Mailtext Send Songbook</em>'.
+	 * @see mda.Configuration#getMailtextSendSongbook()
 	 * @see #getConfiguration()
 	 * @generated
 	 */
-	EAttribute getConfiguration_Mailtext();
+	EAttribute getConfiguration_MailtextSendSongbook();
+
+				/**
+	 * Returns the meta object for the attribute '{@link mda.Configuration#getMailserverUrl <em>Mailserver Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mailserver Url</em>'.
+	 * @see mda.Configuration#getMailserverUrl()
+	 * @see #getConfiguration()
+	 * @generated
+	 */
+	EAttribute getConfiguration_MailserverUrl();
+
+				/**
+	 * Returns the meta object for the attribute '{@link mda.Configuration#getMailserverUser <em>Mailserver User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mailserver User</em>'.
+	 * @see mda.Configuration#getMailserverUser()
+	 * @see #getConfiguration()
+	 * @generated
+	 */
+	EAttribute getConfiguration_MailserverUser();
+
+				/**
+	 * Returns the meta object for the attribute '{@link mda.Configuration#getMailserverPassword <em>Mailserver Password</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mailserver Password</em>'.
+	 * @see mda.Configuration#getMailserverPassword()
+	 * @see #getConfiguration()
+	 * @generated
+	 */
+	EAttribute getConfiguration_MailserverPassword();
+
+				/**
+	 * Returns the meta object for the attribute '{@link mda.Configuration#getMailsubjectSendSongbook <em>Mailsubject Send Songbook</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mailsubject Send Songbook</em>'.
+	 * @see mda.Configuration#getMailsubjectSendSongbook()
+	 * @see #getConfiguration()
+	 * @generated
+	 */
+	EAttribute getConfiguration_MailsubjectSendSongbook();
 
 				/**
 	 * Returns the meta object for class '{@link mda.User <em>User</em>}'.
@@ -2271,12 +2351,44 @@ public interface MidiplayerPackage extends EPackage {
     EAttribute CONFIGURATION__FONTSIZE = eINSTANCE.getConfiguration_Fontsize();
 
         /**
-		 * The meta object literal for the '<em><b>Mailtext</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Mailtext Send Songbook</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CONFIGURATION__MAILTEXT = eINSTANCE.getConfiguration_Mailtext();
+		EAttribute CONFIGURATION__MAILTEXT_SEND_SONGBOOK = eINSTANCE.getConfiguration_MailtextSendSongbook();
+
+								/**
+		 * The meta object literal for the '<em><b>Mailserver Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONFIGURATION__MAILSERVER_URL = eINSTANCE.getConfiguration_MailserverUrl();
+
+								/**
+		 * The meta object literal for the '<em><b>Mailserver User</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONFIGURATION__MAILSERVER_USER = eINSTANCE.getConfiguration_MailserverUser();
+
+								/**
+		 * The meta object literal for the '<em><b>Mailserver Password</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONFIGURATION__MAILSERVER_PASSWORD = eINSTANCE.getConfiguration_MailserverPassword();
+
+								/**
+		 * The meta object literal for the '<em><b>Mailsubject Send Songbook</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK = eINSTANCE.getConfiguration_MailsubjectSendSongbook();
 
 								/**
 		 * The meta object literal for the '{@link mda.impl.UserImpl <em>User</em>}' class.

@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.inject.Inject;
 
+import mda.Configuration;
 import mda.User;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
@@ -28,6 +29,8 @@ import org.mda.logging.LogFactory;
 public class SendSongbooksShell {
 	
 	  Text txtMailtext;
+	  
+	  Text txtMailsubject;
 
 	  private Shell shell;
 
@@ -53,6 +56,10 @@ public class SendSongbooksShell {
 	    gd.verticalIndent = 10;
 	    return gd;
 	  }
+	  
+	  private Configuration getConfiguration () {
+		  return session.getCurrentModel().getConfig();
+	  }
 
 	 public Shell build (final Shell mother) {
 	    this.shell = new Shell (mother); 
@@ -62,15 +69,28 @@ public class SendSongbooksShell {
 
 	    //BackgroundImage
 	    Label lblPictureText = new Label (shell, SWT.NONE);
-	    lblPictureText.setText("Mailtext:");
+	    lblPictureText.setText("Text:");
 	    lblPictureText.setLayoutData(getLabelData());
 
 	    txtMailtext = new Text (shell, SWT.MULTI);
 	    GridData gd = getContentData(true); 
 	    gd.grabExcessVerticalSpace = true;
 	    txtMailtext.setLayoutData(gd);
-	    if (session.getCurrentModel().getConfig().getMailtext() != null)
-	      txtMailtext.setText(session.getCurrentModel().getConfig().getMailtext());
+	    if (session.getCurrentModel().getConfig().getMailtextSendSongbook() != null)
+	      txtMailtext.setText(getConfiguration().getMailtextSendSongbook() != null ? getConfiguration().getMailtextSendSongbook() : "");
+	    
+	    
+	    Label lblMailSubject = new Label (shell, SWT.NONE);
+	    lblMailSubject.setText("Subject:");
+	    lblMailSubject.setLayoutData(getLabelData());
+
+	    txtMailsubject = new Text (shell, SWT.MULTI);
+	    gd = getContentData(true); 
+	    gd.grabExcessVerticalSpace = true;
+	    txtMailsubject.setLayoutData(gd);
+	    if (session.getCurrentModel().getConfig().getMailtextSendSongbook() != null)
+	      txtMailsubject.setText(getConfiguration().getMailsubjectSendSongbook() != null ? getConfiguration().getMailsubjectSendSongbook() : "");
+	    
 	    
 	    Label lblInfo = new Label (shell, SWT.NONE);
 	    String sendTo = "Sending songbook to:\n";
@@ -101,9 +121,10 @@ public class SendSongbooksShell {
 	    btnOk.setText("Send");
 	    btnOk.addSelectionListener(new SelectionAdapter() {
 	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-	    	session.getCurrentModel().getConfig().setMailtext(txtMailtext.getText());
+	    	getConfiguration().setMailtextSendSongbook(txtMailtext.getText());
+	    	getConfiguration().setMailsubjectSendSongbook(txtMailsubject.getText());
     	    Collection<ExportResult> exportSongbooks = engine.exportSongbooks();
-	    	engine.mailExportedSongbooks(exportSongbooks, session.getCurrentModel().getConfig().getMailtext());  
+	    	engine.mailExportedSongbooks(exportSongbooks);  
 	        shell.dispose();
 	      }
 	    });
