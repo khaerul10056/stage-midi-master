@@ -3,6 +3,7 @@ package org.mda.tests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
+import org.mda.application.ApplicationTest;
 import org.mda.commons.ui.ContentProviderTest;
 import org.mda.commons.ui.MidiFileEditorInputTest;
 import org.mda.commons.ui.SessionsContentProviderTest;
@@ -27,7 +28,6 @@ import org.mda.editor.preview.ui.newpart.NewPartShellTest;
 import org.mda.editor.preview.ui.test.PreviewEditorTest;
 import org.mda.editor.preview.ui.test.PreviewEditorUiTest;
 import org.mda.export.ExportPdfSessionHandlerTest;
-import org.mda.export.ExportPptSessionHandler;
 import org.mda.export.ExportPptSessionHandlerTest;
 import org.mda.export.TestExportEngine;
 import org.mda.export.TestPdfExporter;
@@ -45,6 +45,9 @@ import org.mda.transpose.TransposeTest;
 @RunWith(Suite.class)
 @SuiteClasses (  {
 
+  //Application
+  ApplicationTest.class,
+	
   //Core
   TextImporterTest.class,
   ChordTest.class,
