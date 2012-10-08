@@ -99,19 +99,6 @@ public class MidiplayerSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MidiplayerPackage.ABSTRACT_EVENT: {
-				AbstractEvent abstractEvent = (AbstractEvent)theEObject;
-				T result = caseAbstractEvent(abstractEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MidiplayerPackage.TEXT_PRESENTATION_EVENT: {
-				TextPresentationEvent textPresentationEvent = (TextPresentationEvent)theEObject;
-				T result = caseTextPresentationEvent(textPresentationEvent);
-				if (result == null) result = caseAbstractEvent(textPresentationEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MidiplayerPackage.MIDI_FILE_PART: {
 				MidiFilePart midiFilePart = (MidiFilePart)theEObject;
 				T result = caseMidiFilePart(midiFilePart);
@@ -212,36 +199,6 @@ public class MidiplayerSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMidiFile(MidiFile object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Event</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAbstractEvent(AbstractEvent object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Text Presentation Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Text Presentation Event</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTextPresentationEvent(TextPresentationEvent object) {
 		return null;
 	}
 

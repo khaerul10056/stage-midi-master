@@ -63,7 +63,6 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 		switch (eClass.getClassifierID()) {
 			case MidiplayerPackage.SESSION: return createSession();
 			case MidiplayerPackage.MIDI_FILE: return createMidiFile();
-			case MidiplayerPackage.TEXT_PRESENTATION_EVENT: return createTextPresentationEvent();
 			case MidiplayerPackage.MIDI_FILE_PART: return createMidiFilePart();
 			case MidiplayerPackage.MIDI_FILE_TEXT_LINE: return createMidiFileTextLine();
 			case MidiplayerPackage.GALLERY: return createGallery();
@@ -134,16 +133,6 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	public MidiFile createMidiFile() {
 		MidiFileImpl midiFile = new MidiFileImpl();
 		return midiFile;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TextPresentationEvent createTextPresentationEvent() {
-		TextPresentationEventImpl textPresentationEvent = new TextPresentationEventImpl();
-		return textPresentationEvent;
 	}
 
 	/**

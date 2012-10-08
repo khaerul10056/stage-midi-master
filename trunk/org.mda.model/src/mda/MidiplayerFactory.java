@@ -44,15 +44,6 @@ public interface MidiplayerFactory extends EFactory {
 	MidiFile createMidiFile();
 
 	/**
-	 * Returns a new object of class '<em>Text Presentation Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Text Presentation Event</em>'.
-	 * @generated
-	 */
-	TextPresentationEvent createTextPresentationEvent();
-
-	/**
 	 * Returns a new object of class '<em>Midi File Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
