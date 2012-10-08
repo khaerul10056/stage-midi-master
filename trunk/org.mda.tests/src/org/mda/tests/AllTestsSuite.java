@@ -6,6 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 import org.mda.commons.ui.ContentProviderTest;
 import org.mda.commons.ui.MidiFileEditorInputTest;
 import org.mda.commons.ui.SessionsContentProviderTest;
+import org.mda.commons.ui.additionals.AdditionalShellTest;
 import org.mda.commons.ui.calculator.configurator.PresentationConfiguratorTest;
 import org.mda.commons.ui.imports.ImportShellTest;
 import org.mda.commons.ui.transpose.TransposeShellTest;
@@ -25,6 +26,9 @@ import org.mda.editor.preview.ui.details.MidiPartDetailsShellTest;
 import org.mda.editor.preview.ui.newpart.NewPartShellTest;
 import org.mda.editor.preview.ui.test.PreviewEditorTest;
 import org.mda.editor.preview.ui.test.PreviewEditorUiTest;
+import org.mda.export.ExportPdfSessionHandlerTest;
+import org.mda.export.ExportPptSessionHandler;
+import org.mda.export.ExportPptSessionHandlerTest;
 import org.mda.export.TestExportEngine;
 import org.mda.export.TestPdfExporter;
 import org.mda.export.TestPptExporter;
@@ -54,6 +58,7 @@ import org.mda.transpose.TransposeTest;
   PresentationConfiguratorTest.class,
 
   //UI
+  AdditionalShellTest.class,
   PreviewEditorTest.class,
   PreviewEditorUiTest.class,
   
@@ -71,6 +76,9 @@ import org.mda.transpose.TransposeTest;
   SessionsContentProviderTest.class,
   UserContentProviderTest.class,
   UserLabelProviderTest.class,
+  
+  ExportPdfSessionHandlerTest.class,
+  ExportPptSessionHandlerTest.class,
   
   ImportShellTest.class,
   TransposeShellTest.class,

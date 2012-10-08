@@ -32,8 +32,8 @@ public class AdditionalShell extends Shell {
 
   private AdditionalsHandler handler;
 
-  private Combo cmbType;
-  private List lstItems;
+  Combo cmbType;
+  List lstItems;
 
   private AdditionalType currentType = AdditionalType.IMAGE;
 

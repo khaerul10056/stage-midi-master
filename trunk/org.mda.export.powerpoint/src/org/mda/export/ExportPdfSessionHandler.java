@@ -12,19 +12,21 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.Utils;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
-import org.mda.commons.ui.calculator.CalculatorPreCondition;
-import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
+import org.mda.commons.ui.UIHandler;
 import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
 import org.mda.commons.ui.calculator.configurator.PresentationType;
 import org.mda.export.pdf.PdfExporter;
-import org.mda.export.powerpoint.PptExporter;
 
 public class ExportPdfSessionHandler {
 	
 	@Inject
 	private PdfExporter exporter;
+	
+	MessageBox messageBox;
+	
+	@Inject
+	UIHandler uihandler;
 	
 	
 	@Execute
@@ -38,9 +40,8 @@ public class ExportPdfSessionHandler {
 		File export = exporter.export(currentSession.getItems(), exportPath, config);
 		
 		int style = SWT.ICON_INFORMATION |SWT.OK;
-	    MessageBox messageBox = new MessageBox(mother, style);
-	    messageBox.setMessage("Session " + currentSession.getName() + " was exported to " + export.getAbsolutePath());
-	    messageBox.open();
+		String text = "Session " + currentSession.getName() + " was exported to " + export.getAbsolutePath();
+		messageBox = uihandler.showMessageBox(mother, style, text);
 
 	}
 

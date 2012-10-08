@@ -3,6 +3,8 @@ package org.mda.export;
 import java.io.File;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import mda.AbstractSessionItem;
 import mda.MidiPlayerRoot;
 import mda.User;
@@ -22,7 +24,7 @@ public class TestExportEngine {
 
   
   @Test
-  public void exportSongbooks () {
+  public void exportSongbooks () throws MessagingException {
 
     final String USER1 = "USER1";
     final String MAIL1 = "markus.oley@t-online.de";
@@ -35,7 +37,7 @@ public class TestExportEngine {
     if (path.exists())
       Utils.deleteDirectory(path);
     Assert.assertTrue (path.mkdirs());
-
+    
     MidiPlayerRoot model = appsession.getCurrentModel();
     model.getUsers().clear();
     List<AbstractSessionItem> subList = model.getGallery().getGalleryItems().subList(3, model.getGallery().getGalleryItems().size() - 1);
@@ -46,6 +48,11 @@ public class TestExportEngine {
     User user2 = createUser(NOTSONGBOOKUSER,null, false);
     model.getUsers().add(user2);
     Assert.assertEquals (4, model.getGallery().getGalleryItems().size()); //Precondition-check
+    
+    model.getConfig().setMailserverUrl("MAILSERVERURL"); 
+    model.getConfig().setMailserverPassword("PASSWORD"); 
+    model.getConfig().setMailserverUser("USER");
+
 
     ExportEngine engine = StandaloneInjector.getInstance(ExportEngine.class);
 
@@ -57,13 +64,17 @@ public class TestExportEngine {
     Assert.assertTrue (exportSongbooks.get(0).getExportFile().exists());
     Assert.assertEquals (USER1, exportSongbooks.get(0).getUser().getName());
     Assert.assertEquals ("songbook_" + USER1 + ".pdf", exportSongbooks.get(0).getExportFile().getName());
+    
 
-    //TODO
-    //ExportEngine engine = new ExportEngine();
-    //engine.mailExportedSongbooks(exportSongbooks);
-
-
-
+    engine.mailExportedSongbooks(exportSongbooks);
+    
+    model.getConfig().setMailserverUrl(null);
+    try {
+    engine.mailExportedSongbooks(exportSongbooks);
+    Assert.fail ("Messaging Exception expected");
+    } catch (MessagingException e) {
+    	
+    }
 
   }
 
