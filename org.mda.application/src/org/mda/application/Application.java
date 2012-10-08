@@ -34,13 +34,14 @@ public class Application {
     session.setVersion(Activator.getDefault().getVersion());
     
     logFonts();
-    runPresentationOnStartup();
+    String[] applicationArgs = Platform.getApplicationArgs();
+    runPresentationOnStartup(applicationArgs);
     
   }
   
-  public void runPresentationOnStartup () {
+  public void runPresentationOnStartup (String[] applicationArgs) {
 	  LOGGER.info("runPresentationOnStartup");
-	  String[] applicationArgs = Platform.getApplicationArgs();
+	  
 		
 		for (int i = 0; i  < applicationArgs.length; i++) {
 			String nextArg = applicationArgs [i]; 
@@ -54,7 +55,7 @@ public class Application {
 					
 					for (Session nextSession: session.getCurrentModel().getSessions()) {
 						String found = Utils.removeWhitespaces(nextSession.getName());
-						if (found.equals(sessionTrimmed)) {
+						if (found.equalsIgnoreCase(sessionTrimmed)) {
 							LOGGER.info("Starting with session " + sessionTrimmed);
 							session.getFeatureActivation().setRunSession(nextSession);
 							return;
@@ -74,7 +75,7 @@ public class Application {
 		}
   }
   
-  private void logFonts () {
+  public void logFonts () {
 	  LOGGER.info("All registered fonts:");
 	  GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
 	    Font[] fonts = e.getAllFonts(); // Get the fonts
