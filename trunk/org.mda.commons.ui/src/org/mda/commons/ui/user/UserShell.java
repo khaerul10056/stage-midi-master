@@ -1,5 +1,8 @@
 package org.mda.commons.ui.user;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.inject.Inject;
 
 import mda.User;
@@ -11,6 +14,7 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
@@ -18,10 +22,12 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 import org.mda.ApplicationSession;
 import org.mda.commons.ui.Util;
+import org.mda.commons.ui.util.UIUtils;
 
 
 public class UserShell extends Shell{
@@ -29,12 +35,9 @@ public class UserShell extends Shell{
   
   private ApplicationSession session;
 
+  private Collection <IUserTab> userTabs = new ArrayList<IUserTab>();
 
-  Text txtFamilyName;
-
-  Text txtFirstName;
-
-  Text txtMail;
+  
   
   Table tblUsers;
 
@@ -42,9 +45,8 @@ public class UserShell extends Shell{
 
   User currentUser;
 
-  Button chkWithChords;
   
-  Button chkSendSongbooks;
+  
 
 
   @Inject
@@ -52,12 +54,18 @@ public class UserShell extends Shell{
     setSize(800, 700);
     Util.centreShell(this);
     this.session = session;
+    
+    userTabs.add(new UserGeneralTab());
 
     setLayout(new GridLayout(2, false));
     setText("Edit users...");
 
     tblUsers = new Table(this, SWT.NONE);
-    tblUsers.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+    GridData gdTable = UIUtils.getLabelData(); 
+    gdTable.grabExcessVerticalSpace = true;
+    gdTable.verticalAlignment = SWT.FILL;
+    gdTable.widthHint = 250;
+    tblUsers.setLayoutData(gdTable);
     tblUsersViewer = new TableViewer(tblUsers);
     tblUsersViewer.setContentProvider(new UserContentProvider());
     tblUsersViewer.setLabelProvider(new UserLabelProvider());
@@ -86,79 +94,42 @@ public class UserShell extends Shell{
     open ();
   }
 
-  private GridData getLabelData () {
-    return new GridData(SWT.BEGINNING, SWT.CENTER, false, false);
-  }
-
-  private GridData getContentData () {
-    return new GridData(SWT.FILL, SWT.FILL, true, false);
-  }
-
-  private GridData getGapData () {
-    return new GridData(SWT.FILL, SWT.FILL, true, true);
-  }
+  
 
   void refreshDetails () {
     StructuredSelection structSelection = (StructuredSelection) tblUsersViewer.getSelection();
     currentUser = (User) structSelection.getFirstElement();
+    
+    for (IUserTab nextTab: userTabs) {
+    	nextTab.load(currentUser);
+    }
 
-    txtFamilyName.setEnabled(currentUser != null);
-    txtFirstName.setEnabled(currentUser != null);
-    txtMail.setEnabled(currentUser != null);
-    chkWithChords.setEnabled(currentUser != null);
-    txtFamilyName.setText(currentUser != null ? currentUser.getName(): "");
-    txtFirstName.setText(currentUser != null ? currentUser.getFirstname(): "");
-    txtMail.setText(currentUser != null ? currentUser.getMail(): "");
-    chkSendSongbooks.setEnabled(currentUser != null); 
-    chkSendSongbooks.setSelection(currentUser != null && currentUser.isSendSongbook());
+    
   }
 
   private Composite createDetailsPanel () {
-    Composite comp = new Composite(this, SWT.NONE);
-    comp.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
-    comp.setLayout(new GridLayout(2, false));
+		Composite detailComp = new Composite(this, SWT.NONE);
+		detailComp.setLayoutData(UIUtils.getContentData());
+		detailComp.setLayout(new GridLayout(1, false));
+		
+		TabFolder folder = new TabFolder(detailComp, SWT.NONE);
+		GridData gdTabFolder = UIUtils.getContentData();
+		gdTabFolder.grabExcessVerticalSpace = true;
+		gdTabFolder.grabExcessHorizontalSpace = true;
+		folder.setLayoutData(gdTabFolder);
+		
+		for (IUserTab nextTab : userTabs) {
+			nextTab.build(folder);
+		}
 
-    Label lblFamilyName = new Label (comp, SWT.NONE);
-    lblFamilyName.setText("Name:");
-    lblFamilyName.setLayoutData(getLabelData());
-    txtFamilyName = new Text (comp, SWT.NONE);
-    txtFamilyName.setLayoutData(getContentData());
+    createButtonPanel(detailComp);
 
-    Label lblFirstname = new Label (comp, SWT.NONE);
-    lblFirstname.setText("First name:");
-    lblFirstname.setLayoutData(getLabelData());
-    txtFirstName = new Text (comp, SWT.NONE);
-    txtFirstName.setLayoutData(getContentData());
-
-    Label lblMail = new Label (comp, SWT.NONE);
-    lblMail.setText("E-Mail:");
-    lblMail.setLayoutData(getLabelData());
-    txtMail = new Text (comp, SWT.NONE);
-    txtMail.setLayoutData(getContentData());
-
-    Label lblChords = new Label (comp, SWT.NONE);
-    lblChords.setText("Chords:");
-    lblChords.setLayoutData(getLabelData());
-    chkWithChords = new Button(comp, SWT.CHECK);
-    
-    Label lblSend = new Label (comp, SWT.NONE);
-    lblSend.setText("Send songbook:");
-    lblSend.setLayoutData(getLabelData());
-    chkSendSongbooks = new Button(comp, SWT.CHECK);
-
-
-    Label lblGap = new Label(comp, SWT.NONE);
-    lblGap.setLayoutData(getGapData());
-    lblGap = new Label(comp, SWT.NONE);
-    lblGap.setLayoutData(getGapData());
-
-    createButtonPanel(comp);
-
-    return comp;
+    return detailComp;
   }
 
   private void createButtonPanel (Composite composite) {
     Composite buttonPanel = new Composite(composite, SWT.NONE);
+    buttonPanel.setLayoutData(UIUtils.getLabelData());
     buttonPanel.setLayout(new RowLayout(SWT.HORIZONTAL));
     Button btnOk = new Button(buttonPanel, SWT.NONE);
     btnOk.setText("Ok");
@@ -183,11 +154,9 @@ public class UserShell extends Shell{
   }
 
   protected void save () {
-    currentUser.setFirstname(txtFirstName.getText());
-    currentUser.setName(txtFamilyName.getText()); 
-    currentUser.setSendSongbook(chkSendSongbooks.getSelection());
-    
-    //TODO presentations...
+	  for (IUserTab nextTab: userTabs) {
+	    	nextTab.save(currentUser);
+	    }
   }
 
 
