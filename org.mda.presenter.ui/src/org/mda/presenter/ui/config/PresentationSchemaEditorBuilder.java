@@ -14,9 +14,9 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
-import org.mda.commons.ui.Util;
 import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
 import org.mda.commons.ui.calculator.configurator.PresentationType;
 
@@ -55,15 +55,12 @@ public class PresentationSchemaEditorBuilder {
 		parentSchemes = configurator.getParents(user, appsession.getCurrentModel(), currentScheme);
 	}
 	
-	public Shell build(Shell shell, User user) {
+	public Composite build(Shell shell, User user) {
 		this.user = user;
 		
-		Shell editorShell = new Shell (shell);
+		Composite editorShell = new Composite(shell, SWT.NONE);
 		
 		editorShell.setLayout(new GridLayout(1, false));
-		editorShell.setSize(600, 800);
-		Util.centreShell(editorShell);
-		editorShell.setText("Edit schemas");
 		
 		combo = new Combo(editorShell, SWT.NONE);
 		combo.setLayoutData(getGridData(20));
@@ -95,10 +92,7 @@ public class PresentationSchemaEditorBuilder {
 		  String getBackgroundColor();
 		  String getForegroundColor();**/
 		
-
 		
-		load();
-		editorShell.open();
 		return editorShell;
 	}
 	
@@ -111,7 +105,7 @@ public class PresentationSchemaEditorBuilder {
 		
 	}
 	
-	public void addBooleanState (final Shell shell, String label, String id, Integer border) {
+	public void addBooleanState (final Composite shell, String label, String id, Integer border) {
 		BooleanStateBuilder state = new BooleanStateBuilder(shell, label, id);
 		state.getComp().setLayoutData(getGridData(border));
 		comps.put(id, state);
