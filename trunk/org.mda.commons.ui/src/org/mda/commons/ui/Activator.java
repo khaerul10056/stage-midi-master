@@ -6,6 +6,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.mda.ApplicationSession;
+import org.mda.commons.ui.user.UserGeneralTab;
+import org.mda.commons.ui.user.UserTabExt;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.osgi.framework.BundleContext;
@@ -37,12 +39,10 @@ public class Activator extends AbstractUIPlugin {
     super.start(context);
 
     LOGGER.info("Starting bundle " + PLUGIN_ID);
-    //TODO
-//    MdaModule.getInjector().in
-//    Injector injector = Guice.createInjector(new MdaModule());
-//    injector.injectMembers(this);
-
     plugin = this;
+    
+    UserTabExt.registerUserTab(UserGeneralTab.class);
+    
   }
 
   /*
@@ -50,6 +50,9 @@ public class Activator extends AbstractUIPlugin {
    * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
    */
   public void stop(BundleContext context) throws Exception {
+	  
+	UserTabExt.deregisterUserTab(UserGeneralTab.class);
+	
     plugin = null;
     super.stop(context);
   }

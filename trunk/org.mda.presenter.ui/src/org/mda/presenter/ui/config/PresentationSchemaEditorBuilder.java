@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import mda.PresentationScheme;
 import mda.User;
 
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -15,11 +16,11 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
 import org.mda.commons.ui.calculator.configurator.PresentationType;
 
+@Creatable
 public class PresentationSchemaEditorBuilder {
 	
 	private User user;
@@ -53,9 +54,10 @@ public class PresentationSchemaEditorBuilder {
 		}
 		
 		parentSchemes = configurator.getParents(user, appsession.getCurrentModel(), currentScheme);
+		
 	}
 	
-	public Composite build(Shell shell, User user) {
+	public Composite build(Composite shell, final User user) {
 		this.user = user;
 		
 		Composite editorShell = new Composite(shell, SWT.NONE);
@@ -69,8 +71,7 @@ public class PresentationSchemaEditorBuilder {
 			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-						changeType();
-				
+						load(user);
 			}
 		});
 		combo.select(0);
@@ -78,7 +79,7 @@ public class PresentationSchemaEditorBuilder {
 		
 		addBooleanState(editorShell, "Show background:", "showBackground", 30);
 		addBooleanState(editorShell, "Show block type:", "showBlockType", null);
-		addBooleanState(editorShell, "Show block type:", "pagePerPart", null);
+		addBooleanState(editorShell, "Page per part:", "pagePerPart", null);
 		addBooleanState(editorShell, "Use manual new side marks:", "newPageRespected", null);
 		addBooleanState(editorShell, "Show title:", "showTitle", null);
 		addBooleanState(editorShell, "Show copyright:", "showCopyright", null);
@@ -96,13 +97,17 @@ public class PresentationSchemaEditorBuilder {
 		return editorShell;
 	}
 	
-	public void load () {
+	public void load (final User user) {
+		this.user = user; 
+		changeType();
 		
-		for (String nextID: comps.keySet()) {
-			IDefaultableWidget widget = comps.get(nextID);
+		for (IDefaultableWidget widget: comps.values())
 			widget.load(currentScheme, parentSchemes);
-		}
-		
+	}
+	
+	public void save (final User user) {
+		for (IDefaultableWidget widget: comps.values())
+			widget.save();
 	}
 	
 	public void addBooleanState (final Composite shell, String label, String id, Integer border) {

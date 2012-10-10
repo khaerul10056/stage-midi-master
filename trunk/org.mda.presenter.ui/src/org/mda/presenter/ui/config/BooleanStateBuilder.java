@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Label;
 public class BooleanStateBuilder extends AbstractDefaultableWidget implements IDefaultableWidget {
 	
 	private Button btnChecked;
+	private Label lblDefaultState;
 	
 	private final Composite comp;
 	
@@ -35,15 +36,18 @@ public class BooleanStateBuilder extends AbstractDefaultableWidget implements ID
 			}
 		});
 		btnChecked = new Button (getComp(), SWT.CHECK);
+		lblDefaultState = new Label (getComp(), SWT.NONE);
 	}
 	
 	public void setupDefaultState () {
 		if (isDefault()) {
 			btnChecked.setEnabled(false);
 			btnChecked.setSelection(false);
+			lblDefaultState.setText("Default = " + getDefaultValue());
 		} else  {
 			btnChecked.setEnabled(true);
 			btnChecked.setSelection((Boolean) getValue());
+			lblDefaultState.setText("");
 		}
 	}
 	

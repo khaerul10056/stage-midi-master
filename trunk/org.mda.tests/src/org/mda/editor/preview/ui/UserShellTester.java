@@ -1,21 +1,33 @@
 package org.mda.editor.preview.ui;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import mda.MidiPlayerRoot;
 import mda.MidiplayerFactory;
 import mda.User;
 import mda.UserType;
+
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
+import org.mda.commons.ui.user.IUserTab;
+import org.mda.commons.ui.user.UserGeneralTab;
 import org.mda.commons.ui.user.UserShell;
+import org.mda.presenter.ui.config.UserPresentationConfigTab;
+import org.mda.tests.StandaloneInjector;
 
 
 public class UserShellTester {
   /** @param args */
   public static void main (String[] args) throws Exception {
-    ApplicationSession session = new ApplicationSession();
+    ApplicationSession session = StandaloneInjector.getInstance(ApplicationSession.class);
     session.load(null);
     MidiPlayerRoot model = session.getCurrentModel();
-
+    
+    Collection <IUserTab> userTabs = new ArrayList<IUserTab>(); 
+    userTabs.add(StandaloneInjector.getInstance(UserGeneralTab.class));
+    userTabs.add(StandaloneInjector.getInstance(UserPresentationConfigTab.class));
+    
     if (model.getUsers().size() == 0) {
       model.getUsers().add (UserShellTester.createUser("Name1", "Vorname1", UserType.FRIEND, "vorname1.name1@provider.de"));
       model.getUsers().add (UserShellTester.createUser("Name2", "Vorname2", UserType.MEMBER, "vorname2.name2@provider.de"));
@@ -25,7 +37,7 @@ public class UserShellTester {
 
 
     Shell shell = new Shell();
-    UserShell additionalshell = new UserShell(shell, session);
+    UserShell additionalshell = new UserShell(shell, session, userTabs);
 
     while (!additionalshell.isDisposed()) {
       if (!shell.getDisplay().readAndDispatch()) {

@@ -4,6 +4,7 @@ import java.awt.Component;
 
 import mda.User;
 
+import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -15,6 +16,7 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.mda.commons.ui.util.UIUtils;
 
+@Creatable
 public class UserGeneralTab implements IUserTab {
 
 	Text txtFamilyName;

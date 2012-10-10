@@ -59,7 +59,10 @@ public abstract class AbstractDefaultableWidget implements IDefaultableWidget {
 	}
 	
 	public void saveImpl (Object object) {
-		eobject.eSet(getFeature(), object);
+		if (isDefault())
+			eobject.eUnset(getFeature());
+		else
+		  eobject.eSet(getFeature(), object);
 	}
 
 	

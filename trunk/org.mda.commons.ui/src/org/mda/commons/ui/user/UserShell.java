@@ -1,6 +1,5 @@
 package org.mda.commons.ui.user;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.inject.Inject;
@@ -14,17 +13,14 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.Text;
 import org.mda.ApplicationSession;
 import org.mda.commons.ui.Util;
 import org.mda.commons.ui.util.UIUtils;
@@ -35,7 +31,7 @@ public class UserShell extends Shell{
   
   private ApplicationSession session;
 
-  private Collection <IUserTab> userTabs = new ArrayList<IUserTab>();
+  private Collection <IUserTab> userTabs;
 
   
   
@@ -47,15 +43,15 @@ public class UserShell extends Shell{
 
   
   
+  
 
 
   @Inject
-  public UserShell (final Shell shell, ApplicationSession session) {
+  public UserShell (final Shell shell, ApplicationSession session, Collection <IUserTab> userTabs) {
     setSize(800, 700);
     Util.centreShell(this);
     this.session = session;
-    
-    userTabs.add(new UserGeneralTab());
+    this.userTabs = userTabs;
 
     setLayout(new GridLayout(2, false));
     setText("Edit users...");
