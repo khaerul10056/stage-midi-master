@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Text;
 public class StringStateBuilder extends AbstractDefaultableWidget implements IDefaultableWidget {
 	
 	private Text txtValue;
+	private Label lblDefaultInfo;
 	
 	private final Composite comp;
 	
@@ -34,15 +35,19 @@ public class StringStateBuilder extends AbstractDefaultableWidget implements IDe
 			}
 		});
 		txtValue = new Text(getComp(), SWT.CHECK);
+		lblDefaultInfo = new Label (getComp(), SWT.NONE);
+		
 	}
 	
 	public void setupDefaultState () {
 		if (isDefault()) {
 			txtValue.setEnabled(false);
 			txtValue.setText("");
+			lblDefaultInfo.setText("Default is " + getDefaultValue());
 		} else  {
 			txtValue.setEnabled(true);
 			txtValue.setText(toString(getValue()));
+			lblDefaultInfo.setText("");
 		}
 	}
 	

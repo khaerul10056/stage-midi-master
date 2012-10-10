@@ -1,8 +1,10 @@
 package org.mda.presenter.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.mda.commons.ui.user.UserTabExt;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.ui.config.UserPresentationConfigTab;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -32,6 +34,8 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		LOGGER.info("Starting bundle " + getClass().getName() + "-" +  context.getBundle().getSymbolicName());
 		plugin = this;
+		
+		UserTabExt.registerUserTab(UserPresentationConfigTab.class);
 	}
 
 	/*
@@ -39,6 +43,9 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext context) throws Exception {
+		
+		UserTabExt.deregisterUserTab(UserPresentationConfigTab.class);
+		
 		plugin = null;
 		super.stop(context);
 	}
