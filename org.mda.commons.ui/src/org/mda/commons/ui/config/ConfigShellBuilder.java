@@ -13,11 +13,13 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 import org.mda.ApplicationSession;
+import org.mda.commons.ui.util.UIUtils;
 
 
 @Creatable
@@ -32,6 +34,7 @@ public class ConfigShellBuilder  {
   private Text txtMailserverUser;
   
   private Text txtMailserverPassword;
+  
 
   @Inject
   private ApplicationSession session;
@@ -41,61 +44,70 @@ public class ConfigShellBuilder  {
 	  return session.getConfig();
   }
   
+  
+  
   public Shell build (final Shell mother) {
-	Shell configShell = new Shell (mother); 
-    configShell.setSize(500, 700);
-
-    configShell.setLayout(new GridLayout(2, false));
+	Shell configShell = new Shell (mother);
+	configShell.setText("Global configurations");
+    configShell.setSize(600, 600);
+    configShell.setLayout(UIUtils.createLayout(2, 20));
 
     //Fontsize
     Label lblFontsize = new Label (configShell, SWT.NONE);
     lblFontsize.setText("Fontsize:");
-    lblFontsize.setLayoutData(getLabelData());
+    lblFontsize.setLayoutData(UIUtils.getLabelData());
     
     Configuration configuration = session.getConfig();
 
     spnFontSize = new Spinner(configShell, SWT.NONE);
     if (configuration.getFontsize() != null)
       spnFontSize.setSelection(configuration.getFontsize());
-    spnFontSize.setLayoutData(getContentData());
+    spnFontSize.setLayoutData(UIUtils.getContentData());
 
     if (session.getFeatureActivation().isShowGridEnabled()) {
       Label lblGrid = new Label (configShell, SWT.NONE);
       lblGrid.setText("Grid:");
-      lblGrid.setLayoutData(getLabelData());
+      lblGrid.setLayoutData(UIUtils.getLabelData());
 
       chkEnableGrid = new Button(configShell, SWT.CHECK);
       chkEnableGrid.setSelection(session.getGlobalConfs().isShowGrid());
-      chkEnableGrid.setLayoutData(getContentData());
+      chkEnableGrid.setLayoutData(UIUtils.getContentData());
     }
     
-    Label lblMailserverUrl = new Label (configShell, SWT.NONE);
+    Group mailgroup = new Group(configShell, SWT.SHADOW_IN);
+    mailgroup.setText("Mail");
+    mailgroup.setLayoutData(UIUtils.getContentData(2));
+    mailgroup.setLayout(UIUtils.createLayout(2, 10));
+    
+    Label lblMailserverUrl = new Label (mailgroup, SWT.NONE);
     lblMailserverUrl.setText("Mailserver URL:");
-    lblMailserverUrl.setLayoutData(getLabelData());
+    lblMailserverUrl.setLayoutData(UIUtils.getLabelData());
     
-    txtMailserverUrl = new Text(configShell, SWT.NONE);
+    txtMailserverUrl = new Text(mailgroup, SWT.NONE);
     txtMailserverUrl.setText(configuration.getMailserverUrl() != null ? configuration.getMailserverUrl() : "");
-    txtMailserverUrl.setLayoutData(getContentData());
+    txtMailserverUrl.setLayoutData(UIUtils.getContentData());
     
-    Label lblMailserverUser = new Label (configShell, SWT.NONE);
+    Label lblMailserverUser = new Label (mailgroup, SWT.NONE);
     lblMailserverUser.setText("Mailserver User:");
-    lblMailserverUser.setLayoutData(getLabelData());
+    lblMailserverUser.setLayoutData(UIUtils.getLabelData());
     
-    txtMailserverUser = new Text(configShell, SWT.NONE);
+    txtMailserverUser = new Text(mailgroup, SWT.NONE);
     txtMailserverUser.setText(configuration.getMailserverUser() != null ? configuration.getMailserverUser() : "");
-    txtMailserverUser.setLayoutData(getContentData());
+    txtMailserverUser.setLayoutData(UIUtils.getContentData());
     
-    Label lblMailserverPassword = new Label (configShell, SWT.NONE);
+    Label lblMailserverPassword = new Label (mailgroup, SWT.NONE);
     lblMailserverPassword.setText("Mailserver Password:");
-    lblMailserverPassword.setLayoutData(getLabelData());
+    lblMailserverPassword.setLayoutData(UIUtils.getLabelData());
     
-    txtMailserverPassword = new Text(configShell, SWT.PASSWORD);
+    txtMailserverPassword = new Text(mailgroup, SWT.PASSWORD);
     txtMailserverPassword.setText(configuration.getMailserverPassword() != null ? configuration.getMailserverPassword() : "");
-    txtMailserverPassword.setLayoutData(getContentData());
+    txtMailserverPassword.setLayoutData(UIUtils.getContentData());
 
     Label lblExtender = new Label (configShell, SWT.NONE);
     lblExtender.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true, 2, 1));
 
+    Label lblBorder = new Label (configShell, SWT.SEPARATOR | SWT.HORIZONTAL);
+	lblBorder.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 
     createButtonPanel(configShell);
 
@@ -104,32 +116,29 @@ public class ConfigShellBuilder  {
   }
 
 
-  private GridData getLabelData () {
-    return new GridData(SWT.BEGINNING, SWT.CENTER, false, false);
-  }
-
-  private GridData getContentData () {
-    return new GridData(SWT.FILL, SWT.FILL, false, false);
-  }
 
   private void createButtonPanel (final Composite composite) {
     Composite buttonPanel = new Composite(composite, SWT.NONE);
-    buttonPanel.setLayout(new RowLayout(SWT.HORIZONTAL));
-    Button btnOk = new Button(buttonPanel, SWT.NONE);
-    btnOk.setText("Ok");
-    btnOk.addSelectionListener(new SelectionAdapter() {
-      @Override
-      public void widgetSelected (SelectionEvent arg0) {
-        save ();
-        composite.dispose();
-      }
-    });
+    RowLayout buttonLayout = new RowLayout(SWT.HORIZONTAL);
+    buttonLayout.spacing = 10;
+    buttonPanel.setLayout(buttonLayout);
+    buttonPanel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false, 2, 1));
 
     Button btnCancel = new Button(buttonPanel, SWT.NONE);
     btnCancel.setText("Cancel");
     btnCancel.addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected (SelectionEvent arg0) {
+        composite.dispose();
+      }
+    });
+    
+    Button btnOk = new Button(buttonPanel, SWT.NONE);
+    btnOk.setText("Ok");
+    btnOk.addSelectionListener(new SelectionAdapter() {
+      @Override
+      public void widgetSelected (SelectionEvent arg0) {
+        save ();
         composite.dispose();
       }
     });

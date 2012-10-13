@@ -19,10 +19,10 @@ public class UserPresentationConfigTab implements IUserTab{
 	PresentationSchemaEditorBuilder presentationschemaeditorBuilder;
 
 	@Override
-	public Component build(TabFolder shell) {
+	public Component build(TabFolder shell, final User user) {
 		TabItem item = new TabItem (shell, SWT.NULL);
 		item.setText ("Presentation");
-		item.setControl(presentationschemaeditorBuilder.build(shell, null));
+		item.setControl(presentationschemaeditorBuilder.build(shell, user));
 		return null;
 	}
 

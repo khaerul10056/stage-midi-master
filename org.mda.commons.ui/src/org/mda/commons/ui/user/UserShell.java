@@ -48,12 +48,12 @@ public class UserShell extends Shell{
 
   @Inject
   public UserShell (final Shell shell, ApplicationSession session, Collection <IUserTab> userTabs) {
-    setSize(800, 700);
+    setSize(940, 560);
     Util.centreShell(this);
     this.session = session;
     this.userTabs = userTabs;
 
-    setLayout(new GridLayout(2, false));
+    setLayout(UIUtils.createLayout(2, 20));
     setText("Edit users...");
 
     tblUsers = new Table(this, SWT.NONE);
@@ -76,17 +76,9 @@ public class UserShell extends Shell{
       }
     });
 
-
     createDetailsPanel();
-
     tblUsers.setSelection(0);
-
     refreshDetails();
-
-
-
-
-
     open ();
   }
 
@@ -115,7 +107,7 @@ public class UserShell extends Shell{
 		folder.setLayoutData(gdTabFolder);
 		
 		for (IUserTab nextTab : userTabs) {
-			nextTab.build(folder);
+			nextTab.build(folder, currentUser);
 		}
 
     createButtonPanel(detailComp);
@@ -125,24 +117,26 @@ public class UserShell extends Shell{
 
   private void createButtonPanel (Composite composite) {
     Composite buttonPanel = new Composite(composite, SWT.NONE);
-    buttonPanel.setLayoutData(UIUtils.getLabelData());
+    GridData gdButtons = new GridData(SWT.RIGHT,  SWT.CENTER, true, false);
+    gdButtons.horizontalIndent = 10;
+    buttonPanel.setLayoutData(gdButtons);
     buttonPanel.setLayout(new RowLayout(SWT.HORIZONTAL));
+
+    Button btnCancel = new Button(buttonPanel, SWT.NONE);
+    btnCancel.setText("Cancel");
+    btnCancel.addSelectionListener(new SelectionAdapter() {
+      @Override
+      public void widgetSelected (SelectionEvent arg0) {
+        dispose();
+      }
+    });
+    
     Button btnOk = new Button(buttonPanel, SWT.NONE);
     btnOk.setText("Ok");
     btnOk.addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected (SelectionEvent arg0) {
         save ();
-        dispose();
-      }
-    });
-
-    Button btnCancel = new Button(buttonPanel, SWT.NONE);
-    btnCancel.setText("Cancel");
-    btnCancel.addSelectionListener(new SelectionAdapter() {
-
-      @Override
-      public void widgetSelected (SelectionEvent arg0) {
         dispose();
       }
     });
