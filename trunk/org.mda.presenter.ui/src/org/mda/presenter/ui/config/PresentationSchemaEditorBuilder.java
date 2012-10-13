@@ -67,15 +67,6 @@ public class PresentationSchemaEditorBuilder {
 		combo = new Combo(editorShell, SWT.NONE);
 		combo.setLayoutData(getGridData(20));
 		combo.setItems(configurator.getPresentationTypes().toArray(new String [configurator.getPresentationTypes().size()]));
-		combo.addSelectionListener(new SelectionAdapter() {
-			
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-						load(user);
-			}
-		});
-		combo.select(0);
-		changeType();
 		
 		addBooleanState(editorShell, "Show background:", "showBackground", 30);
 		addBooleanState(editorShell, "Show block type:", "showBlockType", null);
@@ -92,6 +83,18 @@ public class PresentationSchemaEditorBuilder {
 		/** Integer getBorder();
 		  String getBackgroundColor();
 		  String getForegroundColor();**/
+		
+		
+		//must be done AFTER initializing components
+		combo.addSelectionListener(new SelectionAdapter() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+						load(user);
+			}
+		});
+		combo.select(0);
+		load(user);
 		
 		
 		return editorShell;

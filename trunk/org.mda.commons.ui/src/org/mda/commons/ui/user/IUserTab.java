@@ -8,7 +8,7 @@ import org.eclipse.swt.widgets.TabFolder;
 
 public interface IUserTab {
 	
-	Component build (final TabFolder shell);
+	Component build (final TabFolder shell, final User user);
 	
 	void save (final User user);
 	

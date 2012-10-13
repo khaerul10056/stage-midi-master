@@ -28,7 +28,7 @@ public class UserGeneralTab implements IUserTab {
 	Button chkSendSongbooks;
 
 	@Override
-	public Component build(TabFolder shell) {
+	public Component build(TabFolder shell, final User user) {
 		TabItem item = new TabItem (shell, SWT.NULL);
 		item.setText ("General");
 		Composite comp = new Composite(shell, SWT.NONE);

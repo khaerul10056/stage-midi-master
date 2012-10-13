@@ -13,7 +13,8 @@ Export-Package: org.mda.commons.ui,
  org.mda.commons.ui.imagecache,
  org.mda.commons.ui.imports,
  org.mda.commons.ui.transpose,
- org.mda.commons.ui.user
+ org.mda.commons.ui.user,
+ org.mda.commons.ui.util
 Require-Bundle: org.eclipse.core.resources,
  org.eclipse.e4.core.di,
  org.mda.model,

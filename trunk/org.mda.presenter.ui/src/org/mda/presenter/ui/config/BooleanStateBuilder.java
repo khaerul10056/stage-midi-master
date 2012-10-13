@@ -32,22 +32,22 @@ public class BooleanStateBuilder extends AbstractDefaultableWidget implements ID
 		lbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				toggleDefaultState();
+			  toggleDefaultState();
 			}
 		});
 		btnChecked = new Button (getComp(), SWT.CHECK);
-		lblDefaultState = new Label (getComp(), SWT.NONE);
+ 	    lblDefaultState = new Label (getComp(), SWT.NONE);
 	}
 	
 	public void setupDefaultState () {
 		if (isDefault()) {
 			btnChecked.setEnabled(false);
 			btnChecked.setSelection(false);
-			lblDefaultState.setText("Default = " + getDefaultValue());
+ 		    lblDefaultState.setText("Default = " + getDefaultValue());
 		} else  {
 			btnChecked.setEnabled(true);
 			btnChecked.setSelection((Boolean) getValue());
-			lblDefaultState.setText("");
+			  lblDefaultState.setText("");
 		}
 	}
 	

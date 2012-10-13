@@ -26,6 +26,7 @@ public abstract class AbstractDefaultableWidget implements IDefaultableWidget {
 		return ! eobject.eIsSet(getFeature());
 	}
 	
+	
 	public Object getDefaultValue () {
 		for (EObject scheme: defaultobjects) {
 			EStructuralFeature feature = getFeature();
