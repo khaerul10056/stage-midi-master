@@ -120,6 +120,7 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Session createSession() {
 		SessionImpl session = new SessionImpl();
 		return session;
@@ -130,6 +131,7 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MidiFile createMidiFile() {
 		MidiFileImpl midiFile = new MidiFileImpl();
 		return midiFile;
@@ -140,6 +142,7 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MidiFilePart createMidiFilePart() {
 		MidiFilePartImpl midiFilePart = new MidiFilePartImpl();
 		return midiFilePart;
@@ -150,6 +153,7 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MidiFileTextLine createMidiFileTextLine() {
 		MidiFileTextLineImpl midiFileTextLine = new MidiFileTextLineImpl();
 		return midiFileTextLine;
@@ -160,6 +164,7 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Gallery createGallery() {
 		GalleryImpl gallery = new GalleryImpl();
 		return gallery;
@@ -170,6 +175,7 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MidiPlayerRoot createMidiPlayerRoot() {
 		MidiPlayerRootImpl midiPlayerRoot = new MidiPlayerRootImpl();
 		return midiPlayerRoot;
@@ -180,6 +186,7 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MidiFileChordPart createMidiFileChordPart() {
 		MidiFileChordPartImpl midiFileChordPart = new MidiFileChordPartImpl();
 		return midiFileChordPart;
@@ -190,7 +197,8 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Configuration createConfiguration() {
+  @Override
+public Configuration createConfiguration() {
 		ConfigurationImpl configuration = new ConfigurationImpl();
 		return configuration;
 	}
@@ -200,7 +208,8 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public User createUser() {
+  @Override
+public User createUser() {
 		UserImpl user = new UserImpl();
 		return user;
 	}
@@ -210,7 +219,8 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Copyright createCopyright() {
+  @Override
+public Copyright createCopyright() {
 		CopyrightImpl copyright = new CopyrightImpl();
 		return copyright;
 	}
@@ -220,7 +230,8 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public PresentationScheme createPresentationScheme() {
+  @Override
+public PresentationScheme createPresentationScheme() {
 		PresentationSchemeImpl presentationScheme = new PresentationSchemeImpl();
 		return presentationScheme;
 	}
@@ -290,6 +301,7 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MidiplayerPackage getMidiplayerPackage() {
 		return (MidiplayerPackage)getEPackage();
 	}

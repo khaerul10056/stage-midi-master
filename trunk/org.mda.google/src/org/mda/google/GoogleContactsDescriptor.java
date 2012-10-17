@@ -16,7 +16,8 @@ public class GoogleContactsDescriptor {
 
 
 
-  public String toString () {
+  @Override
+public String toString () {
     StringBuilder builder = new StringBuilder();
     builder.append("GoogleContactsDescriptor " + getUsertype().getName() + ":<" + group + ">");
     return builder.toString();

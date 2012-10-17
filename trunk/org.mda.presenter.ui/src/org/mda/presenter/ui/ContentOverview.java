@@ -79,8 +79,6 @@ public class ContentOverview  implements IPresentationView{
       previewParts.clear();
 
       if (currentItem instanceof MidiFile) {
-        MidiFile file = (MidiFile) currentItem;
-
         Point size = new Point (320, 240);
         CalculatorPreCondition calcPreCondition = new CalculatorPreCondition();
         DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();

@@ -45,7 +45,8 @@ public class ChordHover extends Shell {
     txtChord.selectAll();
     txtChord.addKeyListener(new KeyAdapter() {
 
-      public void keyReleased (final KeyEvent event) {
+      @Override
+	public void keyReleased (final KeyEvent event) {
         if (event.keyCode == SWT.CR) {
           save();
           dispose();

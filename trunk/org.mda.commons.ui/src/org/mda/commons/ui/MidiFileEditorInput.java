@@ -31,7 +31,6 @@ public class MidiFileEditorInput implements IEditorInput {
 
   @Override
   public boolean exists () {
-    // TODO Auto-generated method stub
     return false;
   }
 

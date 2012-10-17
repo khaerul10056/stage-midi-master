@@ -211,7 +211,8 @@ private EHandlerService handlerservice;
     DragSource ds = new DragSource(treModel, DND.DROP_MOVE);
     ds.setTransfer(new Transfer[] { TextTransfer.getInstance() });
     ds.addDragListener(new DragSourceAdapter() {
-      public void dragSetData(DragSourceEvent event) {
+      @Override
+	public void dragSetData(DragSourceEvent event) {
     	  IStructuredSelection selection = (IStructuredSelection) treviewer.getSelection();
     	  EObject selectedObject = (EObject) selection.getFirstElement();
     	  int from = appSession.getCurrentSession().getItems().indexOf(selectedObject);
@@ -225,7 +226,8 @@ private EHandlerService handlerservice;
     DropTarget dt = new DropTarget(treModel, DND.DROP_MOVE);
     dt.setTransfer(new Transfer[] { TextTransfer.getInstance() });
     dt.addDropListener(new DropTargetAdapter() {
-      public void drop(DropTargetEvent event) {
+      @Override
+	public void drop(DropTargetEvent event) {
     	  
     	  int from = Integer.parseInt(((String)event.data));
     	  

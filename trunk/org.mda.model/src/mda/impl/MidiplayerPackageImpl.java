@@ -6,7 +6,6 @@
  */
 package mda.impl;
 
-import mda.AbstractEvent;
 import mda.AbstractSessionItem;
 import mda.AdditionalType;
 import mda.Configuration;
@@ -22,7 +21,6 @@ import mda.MidiplayerFactory;
 import mda.MidiplayerPackage;
 import mda.PresentationScheme;
 import mda.Session;
-import mda.TextPresentationEvent;
 import mda.User;
 import mda.UserType;
 import org.eclipse.emf.ecore.EAttribute;
@@ -210,6 +208,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSession() {
 		return sessionEClass;
 	}
@@ -219,6 +218,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSession_Name() {
 		return (EAttribute)sessionEClass.getEStructuralFeatures().get(0);
 	}
@@ -228,6 +228,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSession_Items() {
 		return (EReference)sessionEClass.getEStructuralFeatures().get(1);
 	}
@@ -237,6 +238,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSession_Defaultpath() {
 		return (EAttribute)sessionEClass.getEStructuralFeatures().get(2);
 	}
@@ -246,6 +248,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAbstractSessionItem() {
 		return abstractSessionItemEClass;
 	}
@@ -255,6 +258,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractSessionItem_Name() {
 		return (EAttribute)abstractSessionItemEClass.getEStructuralFeatures().get(0);
 	}
@@ -264,6 +268,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractSessionItem_Path() {
 		return (EAttribute)abstractSessionItemEClass.getEStructuralFeatures().get(1);
 	}
@@ -273,7 +278,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getAbstractSessionItem_BackgroundColor() {
+  @Override
+public EAttribute getAbstractSessionItem_BackgroundColor() {
 		return (EAttribute)abstractSessionItemEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -282,7 +288,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getAbstractSessionItem_ForegroundColor() {
+  @Override
+public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return (EAttribute)abstractSessionItemEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -291,6 +298,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMidiFile() {
 		return midiFileEClass;
 	}
@@ -300,7 +308,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getMidiFile_Parts() {
+  @Override
+public EReference getMidiFile_Parts() {
 		return (EReference)midiFileEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -309,7 +318,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getMidiFile_Pic() {
+  @Override
+public EAttribute getMidiFile_Pic() {
 		return (EAttribute)midiFileEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -318,6 +328,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMidiFile_Key() {
 		return (EAttribute)midiFileEClass.getEStructuralFeatures().get(2);
 	}
@@ -327,7 +338,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getMidiFile_Copyright() {
+  @Override
+public EReference getMidiFile_Copyright() {
 		return (EReference)midiFileEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -336,6 +348,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMidiFilePart() {
 		return midiFilePartEClass;
 	}
@@ -345,6 +358,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMidiFilePart_Textlines() {
 		return (EReference)midiFilePartEClass.getEStructuralFeatures().get(0);
 	}
@@ -354,6 +368,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMidiFilePart_Parttype() {
 		return (EAttribute)midiFilePartEClass.getEStructuralFeatures().get(1);
 	}
@@ -363,7 +378,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getMidiFilePart_Bar() {
+  @Override
+public EAttribute getMidiFilePart_Bar() {
 		return (EAttribute)midiFilePartEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -372,7 +388,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getMidiFilePart_RefPart() {
+  @Override
+public EReference getMidiFilePart_RefPart() {
 		return (EReference)midiFilePartEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -381,6 +398,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMidiFileTextLine() {
 		return midiFileTextLineEClass;
 	}
@@ -390,6 +408,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMidiFileTextLine_ChordParts() {
 		return (EReference)midiFileTextLineEClass.getEStructuralFeatures().get(0);
 	}
@@ -399,7 +418,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getMidiFileTextLine_NewSlide() {
+  @Override
+public EAttribute getMidiFileTextLine_NewSlide() {
 		return (EAttribute)midiFileTextLineEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -408,6 +428,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGallery() {
 		return galleryEClass;
 	}
@@ -417,6 +438,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGallery_GalleryItems() {
 		return (EReference)galleryEClass.getEStructuralFeatures().get(0);
 	}
@@ -426,6 +448,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMidiPlayerRoot() {
 		return midiPlayerRootEClass;
 	}
@@ -435,6 +458,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMidiPlayerRoot_Gallery() {
 		return (EReference)midiPlayerRootEClass.getEStructuralFeatures().get(0);
 	}
@@ -444,6 +468,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMidiPlayerRoot_Sessions() {
 		return (EReference)midiPlayerRootEClass.getEStructuralFeatures().get(1);
 	}
@@ -453,7 +478,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getMidiPlayerRoot_Config() {
+  @Override
+public EReference getMidiPlayerRoot_Config() {
 		return (EReference)midiPlayerRootEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -462,7 +488,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getMidiPlayerRoot_Users() {
+  @Override
+public EReference getMidiPlayerRoot_Users() {
 		return (EReference)midiPlayerRootEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -471,7 +498,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getMidiPlayerRoot_Presentationschemes() {
+  @Override
+public EReference getMidiPlayerRoot_Presentationschemes() {
 		return (EReference)midiPlayerRootEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -480,6 +508,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMidiFileChordPart() {
 		return midiFileChordPartEClass;
 	}
@@ -489,6 +518,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMidiFileChordPart_Text() {
 		return (EAttribute)midiFileChordPartEClass.getEStructuralFeatures().get(0);
 	}
@@ -498,6 +528,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMidiFileChordPart_Chord() {
 		return (EAttribute)midiFileChordPartEClass.getEStructuralFeatures().get(1);
 	}
@@ -507,7 +538,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getConfiguration() {
+  @Override
+public EClass getConfiguration() {
 		return configurationEClass;
 	}
 
@@ -516,7 +548,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getConfiguration_ScreenIDPresentation() {
+  @Override
+public EAttribute getConfiguration_ScreenIDPresentation() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -525,7 +558,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getConfiguration_ScreenIDAdmin() {
+  @Override
+public EAttribute getConfiguration_ScreenIDAdmin() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -534,7 +568,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getConfiguration_LastSession() {
+  @Override
+public EReference getConfiguration_LastSession() {
 		return (EReference)configurationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -543,6 +578,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConfiguration_PdfExportPath() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(3);
 	}
@@ -552,7 +588,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getConfiguration_AdditionalsPath() {
+  @Override
+public EAttribute getConfiguration_AdditionalsPath() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -561,7 +598,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getConfiguration_Fontsize() {
+  @Override
+public EAttribute getConfiguration_Fontsize() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -570,6 +608,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConfiguration_MailtextSendSongbook() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(6);
 	}
@@ -579,6 +618,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConfiguration_MailserverUrl() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(7);
 	}
@@ -588,6 +628,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConfiguration_MailserverUser() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(8);
 	}
@@ -597,6 +638,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConfiguration_MailserverPassword() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(9);
 	}
@@ -606,6 +648,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConfiguration_MailsubjectSendSongbook() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(10);
 	}
@@ -615,7 +658,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getUser() {
+  @Override
+public EClass getUser() {
 		return userEClass;
 	}
 
@@ -624,7 +668,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getUser_Mail() {
+  @Override
+public EAttribute getUser_Mail() {
 		return (EAttribute)userEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -633,7 +678,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getUser_Name() {
+  @Override
+public EAttribute getUser_Name() {
 		return (EAttribute)userEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -642,7 +688,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getUser_Firstname() {
+  @Override
+public EAttribute getUser_Firstname() {
 		return (EAttribute)userEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -651,7 +698,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getUser_Type() {
+  @Override
+public EAttribute getUser_Type() {
 		return (EAttribute)userEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -660,7 +708,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getUser_SendSongbook() {
+  @Override
+public EAttribute getUser_SendSongbook() {
 		return (EAttribute)userEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -669,7 +718,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getUser_Presentationschemes() {
+  @Override
+public EReference getUser_Presentationschemes() {
 		return (EReference)userEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -678,7 +728,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getUser_DefaultPresentationType() {
+  @Override
+public EAttribute getUser_DefaultPresentationType() {
 		return (EAttribute)userEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -687,7 +738,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getCopyright() {
+  @Override
+public EClass getCopyright() {
 		return copyrightEClass;
 	}
 
@@ -696,7 +748,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getCopyright_Originaltitle() {
+  @Override
+public EAttribute getCopyright_Originaltitle() {
 		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -705,7 +758,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getCopyright_WriterMusic() {
+  @Override
+public EAttribute getCopyright_WriterMusic() {
 		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -714,7 +768,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getCopyright_WriterText() {
+  @Override
+public EAttribute getCopyright_WriterText() {
 		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -723,7 +778,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getCopyright_WriterInlandText() {
+  @Override
+public EAttribute getCopyright_WriterInlandText() {
 		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -732,7 +788,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getCopyright_Year() {
+  @Override
+public EAttribute getCopyright_Year() {
 		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -741,7 +798,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getCopyright_Publisher() {
+  @Override
+public EAttribute getCopyright_Publisher() {
 		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -750,7 +808,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getCopyright_PublisherInland() {
+  @Override
+public EAttribute getCopyright_PublisherInland() {
 		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -759,7 +818,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getPresentationScheme() {
+  @Override
+public EClass getPresentationScheme() {
 		return presentationSchemeEClass;
 	}
 
@@ -768,7 +828,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_Name() {
+  @Override
+public EAttribute getPresentationScheme_Name() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -777,7 +838,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_ShowBackground() {
+  @Override
+public EAttribute getPresentationScheme_ShowBackground() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -786,7 +848,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_ShowBlockType() {
+  @Override
+public EAttribute getPresentationScheme_ShowBlockType() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -795,7 +858,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_PagePerPart() {
+  @Override
+public EAttribute getPresentationScheme_PagePerPart() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -804,7 +868,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_NewPageRespected() {
+  @Override
+public EAttribute getPresentationScheme_NewPageRespected() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -813,7 +878,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_ShowTitle() {
+  @Override
+public EAttribute getPresentationScheme_ShowTitle() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -822,7 +888,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_ShowCopyright() {
+  @Override
+public EAttribute getPresentationScheme_ShowCopyright() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -831,7 +898,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_SkipEmptySlides() {
+  @Override
+public EAttribute getPresentationScheme_SkipEmptySlides() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -840,7 +908,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_OptimizeLineFilling() {
+  @Override
+public EAttribute getPresentationScheme_OptimizeLineFilling() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -849,7 +918,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_OptimizeEqualParts() {
+  @Override
+public EAttribute getPresentationScheme_OptimizeEqualParts() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -858,7 +928,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_OptimizeEmptyTokens() {
+  @Override
+public EAttribute getPresentationScheme_OptimizeEmptyTokens() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -867,7 +938,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_Border() {
+  @Override
+public EAttribute getPresentationScheme_Border() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -876,7 +948,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_Type() {
+  @Override
+public EAttribute getPresentationScheme_Type() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -885,7 +958,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_BackgroundColor() {
+  @Override
+public EAttribute getPresentationScheme_BackgroundColor() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -894,7 +968,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getPresentationScheme_ForegroundColor() {
+  @Override
+public EAttribute getPresentationScheme_ForegroundColor() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(14);
 	}
 
@@ -903,6 +978,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPresentationScheme_ShowChords() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(15);
 	}
@@ -912,6 +988,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPresentationScheme_AutoWrapToNewPage() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(16);
 	}
@@ -921,6 +998,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getMidiFilePartType() {
 		return midiFilePartTypeEEnum;
 	}
@@ -930,7 +1008,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EEnum getAdditionalType() {
+  @Override
+public EEnum getAdditionalType() {
 		return additionalTypeEEnum;
 	}
 
@@ -939,7 +1018,8 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EEnum getUserType() {
+  @Override
+public EEnum getUserType() {
 		return userTypeEEnum;
 	}
 
@@ -948,6 +1028,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MidiplayerFactory getMidiplayerFactory() {
 		return (MidiplayerFactory)getEFactoryInstance();
 	}

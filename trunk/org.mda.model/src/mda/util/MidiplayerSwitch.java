@@ -7,7 +7,6 @@
 package mda.util;
 
 import mda.*;
-import mda.AbstractEvent;
 import mda.AbstractSessionItem;
 import mda.Configuration;
 import mda.Gallery;
@@ -18,7 +17,6 @@ import mda.MidiFileTextLine;
 import mda.MidiPlayerRoot;
 import mda.MidiplayerPackage;
 import mda.Session;
-import mda.TextPresentationEvent;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;

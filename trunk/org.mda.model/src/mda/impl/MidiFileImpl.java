@@ -117,7 +117,8 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<MidiFilePart> getParts() {
+  @Override
+public EList<MidiFilePart> getParts() {
 		if (parts == null) {
 			parts = new EObjectContainmentEList<MidiFilePart>(MidiFilePart.class, this, MidiplayerPackage.MIDI_FILE__PARTS);
 		}
@@ -129,7 +130,8 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getPic() {
+  @Override
+public String getPic() {
 		return pic;
 	}
 
@@ -138,7 +140,8 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setPic(String newPic) {
+  @Override
+public void setPic(String newPic) {
 		String oldPic = pic;
 		pic = newPic;
 		if (eNotificationRequired())
@@ -150,6 +153,7 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getKey() {
 		return key;
 	}
@@ -159,6 +163,7 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKey(String newKey) {
 		String oldKey = key;
 		key = newKey;
@@ -171,7 +176,8 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Copyright getCopyright() {
+  @Override
+public Copyright getCopyright() {
 		return copyright;
 	}
 
@@ -195,7 +201,8 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setCopyright(Copyright newCopyright) {
+  @Override
+public void setCopyright(Copyright newCopyright) {
 		if (newCopyright != copyright) {
 			NotificationChain msgs = null;
 			if (copyright != null)

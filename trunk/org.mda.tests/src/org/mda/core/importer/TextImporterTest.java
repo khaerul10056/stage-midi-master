@@ -79,15 +79,19 @@ public class TextImporterTest {
 	 */
 	private List<String> loadFile(final String filename) throws IOException {
 		List<String> lines = new ArrayList<String>();
+
 		BufferedReader reader = new BufferedReader(new FileReader(filename));
+		try {
+			String nextLine = null;
+			do {
+				nextLine = reader.readLine();
+				if (nextLine != null)
+					lines.add(nextLine);
 
-		String nextLine = null;
-		do {
-			nextLine = reader.readLine();
-			if (nextLine != null)
-				lines.add(nextLine);
-
-		} while (nextLine != null);
+			} while (nextLine != null);
+		} finally {
+			reader.close();
+		}
 
 		return lines;
 	}

@@ -90,6 +90,7 @@ public class MidiFileTextLineImpl extends EObjectImpl implements MidiFileTextLin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<MidiFileChordPart> getChordParts() {
 		if (chordParts == null) {
 			chordParts = new EObjectContainmentEList<MidiFileChordPart>(MidiFileChordPart.class, this, MidiplayerPackage.MIDI_FILE_TEXT_LINE__CHORD_PARTS);
@@ -102,7 +103,8 @@ public class MidiFileTextLineImpl extends EObjectImpl implements MidiFileTextLin
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isNewSlide() {
+  @Override
+public boolean isNewSlide() {
 		return newSlide;
 	}
 
@@ -111,7 +113,8 @@ public class MidiFileTextLineImpl extends EObjectImpl implements MidiFileTextLin
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setNewSlide(boolean newNewSlide) {
+  @Override
+public void setNewSlide(boolean newNewSlide) {
 		boolean oldNewSlide = newSlide;
 		newSlide = newNewSlide;
 		if (eNotificationRequired())

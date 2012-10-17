@@ -22,11 +22,13 @@ public abstract class AbstractDefaultableWidget implements IDefaultableWidget {
    		  eobject.eSet(getFeature(), null);
 	}
 	
+	@Override
 	public boolean isDefault () {
 		return ! eobject.eIsSet(getFeature());
 	}
 	
 	
+	@Override
 	public Object getDefaultValue () {
 		for (EObject scheme: defaultobjects) {
 			EStructuralFeature feature = getFeature();
@@ -49,6 +51,7 @@ public abstract class AbstractDefaultableWidget implements IDefaultableWidget {
 		return featureId;
 	}
 
+	@Override
 	public void setFeatureId(String featureID) {
 		this.featureId = featureID;
 	}

@@ -226,7 +226,8 @@ public class Slide {
   }
 
 
-  public String toString () {
+  @Override
+public String toString () {
     StringBuilder builder = new StringBuilder();
 
     builder.append("Part " + modelRef + "\nX: " + getSize().x + "/" + getSize().y + "\n");

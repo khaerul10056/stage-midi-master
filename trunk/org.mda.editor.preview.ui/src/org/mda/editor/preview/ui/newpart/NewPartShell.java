@@ -105,7 +105,8 @@ public class NewPartShell extends Shell implements SelectionListener {
     open ();
   }
 
-  protected void checkSubclass () {
+  @Override
+protected void checkSubclass () {
     /* Do nothing - Subclassing is allowed */
   }
 

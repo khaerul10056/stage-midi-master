@@ -27,7 +27,8 @@ public class TextLine extends StyledText{
     return newSlide;
   }
 
-  public void setText (String text) {
+  @Override
+public void setText (String text) {
 
     if (session != null && session.getFeatureActivation().isShowWhitespaces()) {
       text = text.replaceAll(" ", "#");

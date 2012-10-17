@@ -1,8 +1,6 @@
  
 package org.mda.commons.ui;
 
-import javax.inject.Inject;
-
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.mda.ApplicationSession;
 

@@ -195,7 +195,8 @@ public class UserImpl extends EObjectImpl implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getMail() {
+  @Override
+public String getMail() {
 		return mail;
 	}
 
@@ -204,7 +205,8 @@ public class UserImpl extends EObjectImpl implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setMail(String newMail) {
+  @Override
+public void setMail(String newMail) {
 		String oldMail = mail;
 		mail = newMail;
 		if (eNotificationRequired())
@@ -216,7 +218,8 @@ public class UserImpl extends EObjectImpl implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getName() {
+  @Override
+public String getName() {
 		return name;
 	}
 
@@ -225,7 +228,8 @@ public class UserImpl extends EObjectImpl implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setName(String newName) {
+  @Override
+public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
@@ -237,7 +241,8 @@ public class UserImpl extends EObjectImpl implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getFirstname() {
+  @Override
+public String getFirstname() {
 		return firstname;
 	}
 
@@ -246,7 +251,8 @@ public class UserImpl extends EObjectImpl implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setFirstname(String newFirstname) {
+  @Override
+public void setFirstname(String newFirstname) {
 		String oldFirstname = firstname;
 		firstname = newFirstname;
 		if (eNotificationRequired())
@@ -258,7 +264,8 @@ public class UserImpl extends EObjectImpl implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public UserType getType() {
+  @Override
+public UserType getType() {
 		return type;
 	}
 
@@ -267,7 +274,8 @@ public class UserImpl extends EObjectImpl implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setType(UserType newType) {
+  @Override
+public void setType(UserType newType) {
 		UserType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
@@ -279,7 +287,8 @@ public class UserImpl extends EObjectImpl implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean isSendSongbook() {
+  @Override
+public boolean isSendSongbook() {
 		return sendSongbook;
 	}
 
@@ -288,7 +297,8 @@ public class UserImpl extends EObjectImpl implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setSendSongbook(boolean newSendSongbook) {
+  @Override
+public void setSendSongbook(boolean newSendSongbook) {
 		boolean oldSendSongbook = sendSongbook;
 		sendSongbook = newSendSongbook;
 		if (eNotificationRequired())
@@ -300,7 +310,8 @@ public class UserImpl extends EObjectImpl implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<PresentationScheme> getPresentationschemes() {
+  @Override
+public EList<PresentationScheme> getPresentationschemes() {
 		if (presentationschemes == null) {
 			presentationschemes = new EObjectContainmentEList<PresentationScheme>(PresentationScheme.class, this, MidiplayerPackage.USER__PRESENTATIONSCHEMES);
 		}
@@ -312,7 +323,8 @@ public class UserImpl extends EObjectImpl implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getDefaultPresentationType() {
+  @Override
+public String getDefaultPresentationType() {
 		return defaultPresentationType;
 	}
 
@@ -321,7 +333,8 @@ public class UserImpl extends EObjectImpl implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setDefaultPresentationType(String newDefaultPresentationType) {
+  @Override
+public void setDefaultPresentationType(String newDefaultPresentationType) {
 		String oldDefaultPresentationType = defaultPresentationType;
 		defaultPresentationType = newDefaultPresentationType;
 		if (eNotificationRequired())

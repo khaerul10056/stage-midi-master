@@ -84,7 +84,8 @@ public class ContentPart extends AbstractPart implements FocusListener {
       /** Sent when the size (width, height) of a control changes.
        * The default behavior is to do nothing.
        * @param e an event containing information about the resize */
-      public void controlResized (ControlEvent e) {
+      @Override
+	public void controlResized (ControlEvent e) {
         Rectangle rect = comp.getShell().getClientArea();
         Point size = new Point(rect.width, rect.height);
         if (size.x > 0 &&
@@ -108,7 +109,8 @@ public class ContentPart extends AbstractPart implements FocusListener {
     return comp;
   }
 
-  public void setCurrentPart (MidiFilePart currentPart) {
+  @Override
+public void setCurrentPart (MidiFilePart currentPart) {
     super.setCurrentPart(currentPart);
     showPart(currentPart, comp.getSize());
     setCurrentFocusedLine(0);
@@ -373,7 +375,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
           saveToModel();
           showPart(getCurrentPart(), size);
 
-          getEditorComposite().getPreviewpanel().setCurrentPart(getCurrentPart());
+          //getEditorComposite().getPreviewpanel().setCurrentPart(getCurrentPart());
 
           LOGGER.info("KeyPressed end : " + logCaretBehaviour());
           LOGGER.info("doit was set to " + e.doit);

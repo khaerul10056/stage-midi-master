@@ -137,6 +137,7 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -146,6 +147,7 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -158,6 +160,7 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPath() {
 		return path;
 	}
@@ -167,6 +170,7 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPath(String newPath) {
 		String oldPath = path;
 		path = newPath;
@@ -179,7 +183,8 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getBackgroundColor() {
+  @Override
+public String getBackgroundColor() {
 		return backgroundColor;
 	}
 
@@ -188,7 +193,8 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setBackgroundColor(String newBackgroundColor) {
+  @Override
+public void setBackgroundColor(String newBackgroundColor) {
 		String oldBackgroundColor = backgroundColor;
 		backgroundColor = newBackgroundColor;
 		if (eNotificationRequired())
@@ -200,7 +206,8 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getForegroundColor() {
+  @Override
+public String getForegroundColor() {
 		return foregroundColor;
 	}
 
@@ -209,7 +216,8 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setForegroundColor(String newForegroundColor) {
+  @Override
+public void setForegroundColor(String newForegroundColor) {
 		String oldForegroundColor = foregroundColor;
 		foregroundColor = newForegroundColor;
 		if (eNotificationRequired())

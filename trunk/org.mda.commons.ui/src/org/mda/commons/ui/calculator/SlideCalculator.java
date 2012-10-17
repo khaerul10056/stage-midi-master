@@ -22,7 +22,8 @@ public abstract class SlideCalculator implements ISlideCalculator {
    * set Configuration
    * @param config
    */
-  public void setConfig (IMidiFileEditorUIConfig config) {
+  @Override
+public void setConfig (IMidiFileEditorUIConfig config) {
     this.config = config;
   }
 

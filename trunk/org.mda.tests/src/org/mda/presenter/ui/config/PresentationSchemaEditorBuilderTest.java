@@ -5,7 +5,6 @@ import mda.User;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
-import org.junit.Assert;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.tests.StandaloneInjector;
@@ -16,7 +15,6 @@ public class PresentationSchemaEditorBuilderTest {
 	public void buildWithoutUser () {
 		ApplicationSession session = StandaloneInjector.getInstance(ApplicationSession.class);
 	    session.load(null);
-	    MidiPlayerRoot model = session.getCurrentModel();
 	    
 	    Shell shell = new Shell();
 	    PresentationSchemaEditorBuilder builder = StandaloneInjector.getInstance(PresentationSchemaEditorBuilder.class); 

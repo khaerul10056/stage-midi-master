@@ -393,7 +393,6 @@ public class PreviewEditorTest extends AbstractEditorTest {
     for (i = 0; i < editor.getSlidelistpanel().getSlideItems().size(); i++) {
       editor.getSlidelistpanel().getSlideItems().get(i).select();
       Slide currentSlide = editor.getContentpanel().getCurrentSlide();
-      assertEquals (song.getParts().get(i), editor.getPreviewpanel().getCurrentSlide().getModelRef());
       assertEquals (song.getParts().get(i), currentSlide.getModelRef());
     }
     } catch (Exception e) {

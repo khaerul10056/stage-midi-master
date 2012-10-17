@@ -18,7 +18,8 @@ public class PDFGraphicsContext implements IGraphicsContext {
    * @param text
    * @return
    */
-  public Point getSize (String text, final FontDescriptor font) {
+  @Override
+public Point getSize (String text, final FontDescriptor font) {
     BaseFont bf;
     int fontsize = font.getFontsizeAsInt();
     try {
