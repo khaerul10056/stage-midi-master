@@ -62,7 +62,8 @@ public class AdditionalShell extends Shell {
     Button btnImport = new Button(btnComp, SWT.NONE);
     btnImport.setText("Import");
     btnImport.addSelectionListener(new SelectionAdapter() {
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+      @Override
+	public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         FileDialog dialog = new FileDialog(getShell(), SWT.MULTI);
         dialog.open();
 
@@ -89,7 +90,8 @@ public class AdditionalShell extends Shell {
       btnSelect.setText("Select");
       btnSelect.addSelectionListener(new SelectionAdapter() {
 
-        public void widgetSelected (org.eclipse.swt.events.SelectionEvent e) {
+        @Override
+		public void widgetSelected (org.eclipse.swt.events.SelectionEvent e) {
           if (viewer.getSelection() != null && viewer.getSelection() instanceof IStructuredSelection) {
             IStructuredSelection structSelection = (IStructuredSelection) viewer.getSelection();
             if (structSelection.getFirstElement() != null && structSelection.getFirstElement() instanceof Additional)
@@ -104,7 +106,8 @@ public class AdditionalShell extends Shell {
     Button btnRemove = new Button (btnComp, SWT.NONE);
     btnRemove.setText("Remove");
     btnRemove.addSelectionListener(new SelectionAdapter () {
-      public void widgetSelected (org.eclipse.swt.events.SelectionEvent e) {
+      @Override
+	public void widgetSelected (org.eclipse.swt.events.SelectionEvent e) {
         if (viewer.getSelection() != null && viewer.getSelection() instanceof IStructuredSelection) {
           IStructuredSelection structSelection = (IStructuredSelection) viewer.getSelection();
           if (structSelection.getFirstElement() != null && structSelection.getFirstElement() instanceof Additional) {
@@ -121,7 +124,8 @@ public class AdditionalShell extends Shell {
     Button btnCancel = new Button(btnComp, SWT.NONE);
     btnCancel.setText("Cancel");
     btnCancel.addSelectionListener(new SelectionAdapter() {
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+      @Override
+	public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
         dispose();
       }
     });

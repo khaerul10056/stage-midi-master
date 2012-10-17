@@ -23,7 +23,8 @@ import org.mda.export.IExport;
 public class WordExporter implements IExport {
 
 
-  public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig exportConf) throws ExportException {
+  @Override
+public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig exportConf) throws ExportException {
 
 //    POIFSFileSystem fs = new POIFSFileSystem();
 //    HWPFDocument document = new HWPFDocument(fs);

@@ -35,7 +35,8 @@ public class Activator extends AbstractUIPlugin {
    * (non-Javadoc)
    * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
    */
-  public void start(BundleContext context) throws Exception {
+  @Override
+public void start(BundleContext context) throws Exception {
     super.start(context);
 
     LOGGER.info("Starting bundle " + PLUGIN_ID);
@@ -49,7 +50,8 @@ public class Activator extends AbstractUIPlugin {
    * (non-Javadoc)
    * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
    */
-  public void stop(BundleContext context) throws Exception {
+  @Override
+public void stop(BundleContext context) throws Exception {
 	  
 	UserTabExt.deregisterUserTab(UserGeneralTab.class);
 	

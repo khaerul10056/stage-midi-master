@@ -13,7 +13,6 @@ import mda.Session;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.graphics.Point;
-import org.mda.ApplicationSession;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;

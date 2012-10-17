@@ -10,8 +10,6 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Display;
@@ -68,7 +66,8 @@ public class SearchEnginePanel  {
 	    treviewer.setLabelProvider(new LabelProvider());
 		
 		txt.addKeyListener(new KeyAdapter() {
-			  public void keyReleased(KeyEvent e) {
+			  @Override
+			public void keyReleased(KeyEvent e) {
 				  
 				  if (e.character == SWT.ESC) {
 					  shell.dispose();
@@ -85,7 +84,8 @@ public class SearchEnginePanel  {
 		  });
 		
 		treModel.addKeyListener(new KeyAdapter () {
-			 public void keyReleased(KeyEvent e) {
+			 @Override
+			public void keyReleased(KeyEvent e) {
 				  if (e.character == SWT.CR) {
 					  IStructuredSelection selection = (IStructuredSelection) treviewer.getSelection();
 					  activeSearchResult = (SearchResult) selection.getFirstElement();

@@ -43,7 +43,8 @@ public class SlideItem {
 
 
 
-  public String toString () {
+  @Override
+public String toString () {
     return "<" + getText() + "> (" + getX() + "," + getY() + "," + getXMax() + "," + getYMax() + "-" +
           getWidth() + "-" + getHeight() + "-" + getItemType().toString() + "- Fontsize " + font.getFontsizeAsInt() + ")";
   }

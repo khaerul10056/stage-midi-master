@@ -276,7 +276,8 @@ public class MidiFileDetailsShell  {
     Button btnOk = new Button(btnComp, SWT.NONE);
     btnOk.setText("Save");
     btnOk.addSelectionListener(new SelectionAdapter() {
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+      @Override
+	public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 
         save ();
         shell.dispose();
@@ -287,7 +288,8 @@ public class MidiFileDetailsShell  {
     Button btnCancel = new Button(btnComp, SWT.NONE);
     btnCancel.setText("Cancel");
     btnCancel.addSelectionListener(new SelectionAdapter() {
-      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+      @Override
+	public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
     	  shell.dispose();
       }
     });

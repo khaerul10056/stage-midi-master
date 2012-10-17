@@ -124,6 +124,7 @@ public class MidiFilePartImpl extends EObjectImpl implements MidiFilePart {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<MidiFileTextLine> getTextlines() {
 		if (textlines == null) {
 			textlines = new EObjectContainmentEList<MidiFileTextLine>(MidiFileTextLine.class, this, MidiplayerPackage.MIDI_FILE_PART__TEXTLINES);
@@ -136,6 +137,7 @@ public class MidiFilePartImpl extends EObjectImpl implements MidiFilePart {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MidiFilePartType getParttype() {
 		return parttype;
 	}
@@ -145,6 +147,7 @@ public class MidiFilePartImpl extends EObjectImpl implements MidiFilePart {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParttype(MidiFilePartType newParttype) {
 		MidiFilePartType oldParttype = parttype;
 		parttype = newParttype == null ? PARTTYPE_EDEFAULT : newParttype;
@@ -157,7 +160,8 @@ public class MidiFilePartImpl extends EObjectImpl implements MidiFilePart {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public int getBar() {
+  @Override
+public int getBar() {
 		return bar;
 	}
 
@@ -166,7 +170,8 @@ public class MidiFilePartImpl extends EObjectImpl implements MidiFilePart {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setBar(int newBar) {
+  @Override
+public void setBar(int newBar) {
 		int oldBar = bar;
 		bar = newBar;
 		if (eNotificationRequired())
@@ -178,7 +183,8 @@ public class MidiFilePartImpl extends EObjectImpl implements MidiFilePart {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public MidiFilePart getRefPart() {
+  @Override
+public MidiFilePart getRefPart() {
 		if (refPart != null && refPart.eIsProxy()) {
 			InternalEObject oldRefPart = (InternalEObject)refPart;
 			refPart = (MidiFilePart)eResolveProxy(oldRefPart);
@@ -204,7 +210,8 @@ public class MidiFilePartImpl extends EObjectImpl implements MidiFilePart {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setRefPart(MidiFilePart newRefPart) {
+  @Override
+public void setRefPart(MidiFilePart newRefPart) {
 		MidiFilePart oldRefPart = refPart;
 		refPart = newRefPart;
 		if (eNotificationRequired())

@@ -80,7 +80,8 @@ public class DefaultMidiFileContentEditorConfig extends PresentationSchemeImpl i
     this.graphicsContext = graphicsContext;
   }
   
-  public void setDefaultPresentationScreenSize (Point defaultPresentationScreenSize) {
+  @Override
+public void setDefaultPresentationScreenSize (Point defaultPresentationScreenSize) {
 	    this.defaultPresentationScreenSize = defaultPresentationScreenSize;
 	  }
   
@@ -128,23 +129,28 @@ public class DefaultMidiFileContentEditorConfig extends PresentationSchemeImpl i
     return getShowTitle() != null ? getShowTitle().booleanValue() : false; 
   }
 
-  public boolean isSkipEmptySlides () {
+  @Override
+public boolean isSkipEmptySlides () {
     return getSkipEmptySlides() != null ? getSkipEmptySlides().booleanValue() : false;
   }
 
-  public boolean isOptimizeLineFilling () {
+  @Override
+public boolean isOptimizeLineFilling () {
     return getOptimizeLineFilling() != null ? getOptimizeLineFilling().booleanValue() : false;
   }
   
-  public Integer getBorder () {
+  @Override
+public Integer getBorder () {
     return super.getBorder() != null ? super.getBorder() : 0;
   }
 
-  public boolean isOptimizeEqualParts () {
+  @Override
+public boolean isOptimizeEqualParts () {
     return getOptimizeEqualParts() != null ? getOptimizeEqualParts().booleanValue() : false;
   }
 
-  public boolean isOptimizeEmptyTokens () {
+  @Override
+public boolean isOptimizeEmptyTokens () {
     return getOptimizeEmptyTokens() != null ? getOptimizeEmptyTokens().booleanValue() : false;
   }
 
@@ -153,7 +159,8 @@ public class DefaultMidiFileContentEditorConfig extends PresentationSchemeImpl i
     return getShowCopyright() != null ? getShowCopyright().booleanValue(): false;
   }
 
-  public boolean isAutoWrapToNewPage () {
+  @Override
+public boolean isAutoWrapToNewPage () {
     return getAutoWrapToNewPage() != null ? getAutoWrapToNewPage().booleanValue() : false;
   }
 

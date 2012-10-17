@@ -18,6 +18,7 @@ import org.apache.poi.hslf.model.Line;
 import org.apache.poi.hslf.model.Picture;
 import org.apache.poi.hslf.model.Slide;
 import org.apache.poi.hslf.model.TextBox;
+import org.apache.poi.hslf.model.TextShape;
 import org.apache.poi.hslf.usermodel.RichTextRun;
 import org.apache.poi.hslf.usermodel.SlideShow;
 import org.eclipse.e4.core.di.annotations.Creatable;
@@ -44,7 +45,8 @@ public class PptExporter extends AbstractExporter {
 
 
 
-  public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig config) throws ExportException {
+  @Override
+public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig config) throws ExportException {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
 
@@ -114,7 +116,7 @@ public class PptExporter extends AbstractExporter {
       RichTextRun rt = txt.getTextRun().getRichTextRuns()[0];
       rt.setFontSize(song.getFont().getFontData() [0].getHeight());
       rt.setFontName("Arial");
-      rt.setAlignment(TextBox.AlignLeft);
+      rt.setAlignment(TextShape.AlignLeft);
       if (song.getForegroundColor() != null)
         rt.setFontColor(Utils.toAwtColor(song.getForegroundColor()));
       else

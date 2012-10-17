@@ -79,6 +79,7 @@ public class StringStateBuilder extends AbstractDefaultableWidget implements IDe
 		return comp;
 	}
 	
+	@Override
 	public void saveImpl (Object object) {
 		
 		Object newObject = null;

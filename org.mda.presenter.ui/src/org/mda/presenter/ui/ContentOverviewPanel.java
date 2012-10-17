@@ -66,7 +66,8 @@ public class ContentOverviewPanel extends Composite  {
     return size1 == null || ((size1.x != size2.x) || (size1.y != size2.y));
   }
 
-  public void setSize (final int weight, final int height) {
+  @Override
+public void setSize (final int weight, final int height) {
 
     super.setSize(weight, height);
     LOGGER.debug("set size of Contentoverviewpanel to " + getSize().x + "x" + getSize().y);
@@ -169,7 +170,8 @@ public class ContentOverviewPanel extends Composite  {
   /**
    * this preview must have a fixed size (1/4 of display for each direction
    */
-  public Point computeSize(int wHint, int hHint, boolean bool) {
+  @Override
+public Point computeSize(int wHint, int hHint, boolean bool) {
     int x = (getParent().getSize().x / 4) - 5;
     Point newSize = new Point(x, calculateWeight3to4(x));
 

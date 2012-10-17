@@ -200,7 +200,8 @@ public class CopyrightImpl extends EObjectImpl implements Copyright {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getOriginaltitle() {
+  @Override
+public String getOriginaltitle() {
 		return originaltitle;
 	}
 
@@ -209,7 +210,8 @@ public class CopyrightImpl extends EObjectImpl implements Copyright {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setOriginaltitle(String newOriginaltitle) {
+  @Override
+public void setOriginaltitle(String newOriginaltitle) {
 		String oldOriginaltitle = originaltitle;
 		originaltitle = newOriginaltitle;
 		if (eNotificationRequired())
@@ -221,7 +223,8 @@ public class CopyrightImpl extends EObjectImpl implements Copyright {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getWriterMusic() {
+  @Override
+public String getWriterMusic() {
 		return writerMusic;
 	}
 
@@ -230,7 +233,8 @@ public class CopyrightImpl extends EObjectImpl implements Copyright {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setWriterMusic(String newWriterMusic) {
+  @Override
+public void setWriterMusic(String newWriterMusic) {
 		String oldWriterMusic = writerMusic;
 		writerMusic = newWriterMusic;
 		if (eNotificationRequired())
@@ -242,7 +246,8 @@ public class CopyrightImpl extends EObjectImpl implements Copyright {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getWriterText() {
+  @Override
+public String getWriterText() {
 		return writerText;
 	}
 
@@ -251,7 +256,8 @@ public class CopyrightImpl extends EObjectImpl implements Copyright {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setWriterText(String newWriterText) {
+  @Override
+public void setWriterText(String newWriterText) {
 		String oldWriterText = writerText;
 		writerText = newWriterText;
 		if (eNotificationRequired())
@@ -263,7 +269,8 @@ public class CopyrightImpl extends EObjectImpl implements Copyright {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getWriterInlandText() {
+  @Override
+public String getWriterInlandText() {
 		return writerInlandText;
 	}
 
@@ -272,7 +279,8 @@ public class CopyrightImpl extends EObjectImpl implements Copyright {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setWriterInlandText(String newWriterInlandText) {
+  @Override
+public void setWriterInlandText(String newWriterInlandText) {
 		String oldWriterInlandText = writerInlandText;
 		writerInlandText = newWriterInlandText;
 		if (eNotificationRequired())
@@ -284,7 +292,8 @@ public class CopyrightImpl extends EObjectImpl implements Copyright {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public int getYear() {
+  @Override
+public int getYear() {
 		return year;
 	}
 
@@ -293,7 +302,8 @@ public class CopyrightImpl extends EObjectImpl implements Copyright {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setYear(int newYear) {
+  @Override
+public void setYear(int newYear) {
 		int oldYear = year;
 		year = newYear;
 		if (eNotificationRequired())
@@ -305,7 +315,8 @@ public class CopyrightImpl extends EObjectImpl implements Copyright {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getPublisher() {
+  @Override
+public String getPublisher() {
 		return publisher;
 	}
 
@@ -314,7 +325,8 @@ public class CopyrightImpl extends EObjectImpl implements Copyright {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setPublisher(String newPublisher) {
+  @Override
+public void setPublisher(String newPublisher) {
 		String oldPublisher = publisher;
 		publisher = newPublisher;
 		if (eNotificationRequired())
@@ -326,7 +338,8 @@ public class CopyrightImpl extends EObjectImpl implements Copyright {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getPublisherInland() {
+  @Override
+public String getPublisherInland() {
 		return publisherInland;
 	}
 
@@ -335,7 +348,8 @@ public class CopyrightImpl extends EObjectImpl implements Copyright {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setPublisherInland(String newPublisherInland) {
+  @Override
+public void setPublisherInland(String newPublisherInland) {
 		String oldPublisherInland = publisherInland;
 		publisherInland = newPublisherInland;
 		if (eNotificationRequired())

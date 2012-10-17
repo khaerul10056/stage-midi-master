@@ -276,7 +276,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getScreenIDPresentation() {
+  @Override
+public String getScreenIDPresentation() {
 		return screenIDPresentation;
 	}
 
@@ -285,7 +286,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setScreenIDPresentation(String newScreenIDPresentation) {
+  @Override
+public void setScreenIDPresentation(String newScreenIDPresentation) {
 		String oldScreenIDPresentation = screenIDPresentation;
 		screenIDPresentation = newScreenIDPresentation;
 		if (eNotificationRequired())
@@ -297,7 +299,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getScreenIDAdmin() {
+  @Override
+public String getScreenIDAdmin() {
 		return screenIDAdmin;
 	}
 
@@ -306,7 +309,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setScreenIDAdmin(String newScreenIDAdmin) {
+  @Override
+public void setScreenIDAdmin(String newScreenIDAdmin) {
 		String oldScreenIDAdmin = screenIDAdmin;
 		screenIDAdmin = newScreenIDAdmin;
 		if (eNotificationRequired())
@@ -318,7 +322,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Session getLastSession() {
+  @Override
+public Session getLastSession() {
 		if (lastSession != null && lastSession.eIsProxy()) {
 			InternalEObject oldLastSession = (InternalEObject)lastSession;
 			lastSession = (Session)eResolveProxy(oldLastSession);
@@ -344,7 +349,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setLastSession(Session newLastSession) {
+  @Override
+public void setLastSession(Session newLastSession) {
 		Session oldLastSession = lastSession;
 		lastSession = newLastSession;
 		if (eNotificationRequired())
@@ -356,6 +362,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPdfExportPath() {
 		return pdfExportPath;
 	}
@@ -365,6 +372,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPdfExportPath(String newPdfExportPath) {
 		String oldPdfExportPath = pdfExportPath;
 		pdfExportPath = newPdfExportPath;
@@ -377,7 +385,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getAdditionalsPath() {
+  @Override
+public String getAdditionalsPath() {
 		return additionalsPath;
 	}
 
@@ -386,7 +395,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setAdditionalsPath(String newAdditionalsPath) {
+  @Override
+public void setAdditionalsPath(String newAdditionalsPath) {
 		String oldAdditionalsPath = additionalsPath;
 		additionalsPath = newAdditionalsPath;
 		if (eNotificationRequired())
@@ -398,7 +408,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Integer getFontsize() {
+  @Override
+public Integer getFontsize() {
 		return fontsize;
 	}
 
@@ -407,7 +418,8 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setFontsize(Integer newFontsize) {
+  @Override
+public void setFontsize(Integer newFontsize) {
 		Integer oldFontsize = fontsize;
 		fontsize = newFontsize;
 		if (eNotificationRequired())
@@ -419,6 +431,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMailtextSendSongbook() {
 		return mailtextSendSongbook;
 	}
@@ -428,6 +441,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMailtextSendSongbook(String newMailtextSendSongbook) {
 		String oldMailtextSendSongbook = mailtextSendSongbook;
 		mailtextSendSongbook = newMailtextSendSongbook;
@@ -440,6 +454,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMailserverUrl() {
 		return mailserverUrl;
 	}
@@ -449,6 +464,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMailserverUrl(String newMailserverUrl) {
 		String oldMailserverUrl = mailserverUrl;
 		mailserverUrl = newMailserverUrl;
@@ -461,6 +477,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMailserverUser() {
 		return mailserverUser;
 	}
@@ -470,6 +487,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMailserverUser(String newMailserverUser) {
 		String oldMailserverUser = mailserverUser;
 		mailserverUser = newMailserverUser;
@@ -482,6 +500,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMailserverPassword() {
 		return mailserverPassword;
 	}
@@ -491,6 +510,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMailserverPassword(String newMailserverPassword) {
 		String oldMailserverPassword = mailserverPassword;
 		mailserverPassword = newMailserverPassword;
@@ -503,6 +523,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMailsubjectSendSongbook() {
 		return mailsubjectSendSongbook;
 	}
@@ -512,6 +533,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMailsubjectSendSongbook(String newMailsubjectSendSongbook) {
 		String oldMailsubjectSendSongbook = mailsubjectSendSongbook;
 		mailsubjectSendSongbook = newMailsubjectSendSongbook;

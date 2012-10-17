@@ -95,6 +95,7 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getText() {
 		return text;
 	}
@@ -104,6 +105,7 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setText(String newText) {
 		String oldText = text;
 		text = newText;
@@ -116,6 +118,7 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getChord() {
 		return chord;
 	}
@@ -125,6 +128,7 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setChord(String newChord) {
 		String oldChord = chord;
 		chord = newChord;

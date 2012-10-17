@@ -410,7 +410,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getName() {
+  @Override
+public String getName() {
 		return name;
 	}
 
@@ -419,7 +420,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setName(String newName) {
+  @Override
+public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
@@ -431,7 +433,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Boolean getShowBackground() {
+  @Override
+public Boolean getShowBackground() {
 		return showBackground;
 	}
 
@@ -440,7 +443,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setShowBackground(Boolean newShowBackground) {
+  @Override
+public void setShowBackground(Boolean newShowBackground) {
 		Boolean oldShowBackground = showBackground;
 		showBackground = newShowBackground;
 		if (eNotificationRequired())
@@ -452,7 +456,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Boolean getShowBlockType() {
+  @Override
+public Boolean getShowBlockType() {
 		return showBlockType;
 	}
 
@@ -461,7 +466,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setShowBlockType(Boolean newShowBlockType) {
+  @Override
+public void setShowBlockType(Boolean newShowBlockType) {
 		Boolean oldShowBlockType = showBlockType;
 		showBlockType = newShowBlockType;
 		if (eNotificationRequired())
@@ -473,7 +479,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Boolean getPagePerPart() {
+  @Override
+public Boolean getPagePerPart() {
 		return pagePerPart;
 	}
 
@@ -482,7 +489,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setPagePerPart(Boolean newPagePerPart) {
+  @Override
+public void setPagePerPart(Boolean newPagePerPart) {
 		Boolean oldPagePerPart = pagePerPart;
 		pagePerPart = newPagePerPart;
 		if (eNotificationRequired())
@@ -494,7 +502,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Boolean getNewPageRespected() {
+  @Override
+public Boolean getNewPageRespected() {
 		return newPageRespected;
 	}
 
@@ -503,7 +512,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setNewPageRespected(Boolean newNewPageRespected) {
+  @Override
+public void setNewPageRespected(Boolean newNewPageRespected) {
 		Boolean oldNewPageRespected = newPageRespected;
 		newPageRespected = newNewPageRespected;
 		if (eNotificationRequired())
@@ -515,7 +525,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Boolean getShowTitle() {
+  @Override
+public Boolean getShowTitle() {
 		return showTitle;
 	}
 
@@ -524,7 +535,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setShowTitle(Boolean newShowTitle) {
+  @Override
+public void setShowTitle(Boolean newShowTitle) {
 		Boolean oldShowTitle = showTitle;
 		showTitle = newShowTitle;
 		if (eNotificationRequired())
@@ -536,7 +548,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Boolean getShowCopyright() {
+  @Override
+public Boolean getShowCopyright() {
 		return showCopyright;
 	}
 
@@ -545,7 +558,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setShowCopyright(Boolean newShowCopyright) {
+  @Override
+public void setShowCopyright(Boolean newShowCopyright) {
 		Boolean oldShowCopyright = showCopyright;
 		showCopyright = newShowCopyright;
 		if (eNotificationRequired())
@@ -557,7 +571,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Boolean getSkipEmptySlides() {
+  @Override
+public Boolean getSkipEmptySlides() {
 		return skipEmptySlides;
 	}
 
@@ -566,7 +581,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setSkipEmptySlides(Boolean newSkipEmptySlides) {
+  @Override
+public void setSkipEmptySlides(Boolean newSkipEmptySlides) {
 		Boolean oldSkipEmptySlides = skipEmptySlides;
 		skipEmptySlides = newSkipEmptySlides;
 		if (eNotificationRequired())
@@ -578,7 +594,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Boolean getOptimizeLineFilling() {
+  @Override
+public Boolean getOptimizeLineFilling() {
 		return optimizeLineFilling;
 	}
 
@@ -587,7 +604,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setOptimizeLineFilling(Boolean newOptimizeLineFilling) {
+  @Override
+public void setOptimizeLineFilling(Boolean newOptimizeLineFilling) {
 		Boolean oldOptimizeLineFilling = optimizeLineFilling;
 		optimizeLineFilling = newOptimizeLineFilling;
 		if (eNotificationRequired())
@@ -599,7 +617,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Boolean getOptimizeEqualParts() {
+  @Override
+public Boolean getOptimizeEqualParts() {
 		return optimizeEqualParts;
 	}
 
@@ -608,7 +627,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setOptimizeEqualParts(Boolean newOptimizeEqualParts) {
+  @Override
+public void setOptimizeEqualParts(Boolean newOptimizeEqualParts) {
 		Boolean oldOptimizeEqualParts = optimizeEqualParts;
 		optimizeEqualParts = newOptimizeEqualParts;
 		if (eNotificationRequired())
@@ -620,7 +640,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Boolean getOptimizeEmptyTokens() {
+  @Override
+public Boolean getOptimizeEmptyTokens() {
 		return optimizeEmptyTokens;
 	}
 
@@ -629,7 +650,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setOptimizeEmptyTokens(Boolean newOptimizeEmptyTokens) {
+  @Override
+public void setOptimizeEmptyTokens(Boolean newOptimizeEmptyTokens) {
 		Boolean oldOptimizeEmptyTokens = optimizeEmptyTokens;
 		optimizeEmptyTokens = newOptimizeEmptyTokens;
 		if (eNotificationRequired())
@@ -641,7 +663,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Integer getBorder() {
+  @Override
+public Integer getBorder() {
 		return border;
 	}
 
@@ -650,7 +673,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setBorder(Integer newBorder) {
+  @Override
+public void setBorder(Integer newBorder) {
 		Integer oldBorder = border;
 		border = newBorder;
 		if (eNotificationRequired())
@@ -662,7 +686,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getType() {
+  @Override
+public String getType() {
 		return type;
 	}
 
@@ -671,7 +696,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setType(String newType) {
+  @Override
+public void setType(String newType) {
 		String oldType = type;
 		type = newType;
 		if (eNotificationRequired())
@@ -683,7 +709,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getBackgroundColor() {
+  @Override
+public String getBackgroundColor() {
 		return backgroundColor;
 	}
 
@@ -692,7 +719,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setBackgroundColor(String newBackgroundColor) {
+  @Override
+public void setBackgroundColor(String newBackgroundColor) {
 		String oldBackgroundColor = backgroundColor;
 		backgroundColor = newBackgroundColor;
 		if (eNotificationRequired())
@@ -704,7 +732,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getForegroundColor() {
+  @Override
+public String getForegroundColor() {
 		return foregroundColor;
 	}
 
@@ -713,7 +742,8 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setForegroundColor(String newForegroundColor) {
+  @Override
+public void setForegroundColor(String newForegroundColor) {
 		String oldForegroundColor = foregroundColor;
 		foregroundColor = newForegroundColor;
 		if (eNotificationRequired())
@@ -725,6 +755,7 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Boolean getShowChords() {
 		return showChords;
 	}
@@ -734,6 +765,7 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShowChords(Boolean newShowChords) {
 		Boolean oldShowChords = showChords;
 		showChords = newShowChords;
@@ -746,6 +778,7 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Boolean getAutoWrapToNewPage() {
 		return autoWrapToNewPage;
 	}
@@ -755,6 +788,7 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAutoWrapToNewPage(Boolean newAutoWrapToNewPage) {
 		Boolean oldAutoWrapToNewPage = autoWrapToNewPage;
 		autoWrapToNewPage = newAutoWrapToNewPage;

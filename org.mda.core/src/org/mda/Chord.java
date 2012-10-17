@@ -111,7 +111,8 @@ public final class Chord {
     return main;
   }
 
-  public String toString () {
+  @Override
+public String toString () {
 
     StringBuilder builder = new StringBuilder();
     builder.append (isMinor() ? getMain().toString().toLowerCase() : getMain().toString());

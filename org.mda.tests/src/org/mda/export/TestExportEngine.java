@@ -10,7 +10,6 @@ import mda.MidiPlayerRoot;
 import mda.User;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;

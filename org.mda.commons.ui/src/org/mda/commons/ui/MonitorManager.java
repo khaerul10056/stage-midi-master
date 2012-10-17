@@ -52,6 +52,7 @@ public class MonitorManager {
 		
 	}
 	
+	@Override
 	public String toString () {
 		StringBuilder builder = new StringBuilder(); 
 		builder.append ("Primary monitor       : " + (getPrimaryMonitor() != null ? getPrimaryMonitor().getBounds(): "<null>\n"));

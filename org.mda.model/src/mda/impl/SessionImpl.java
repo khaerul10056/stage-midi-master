@@ -109,6 +109,7 @@ public class SessionImpl extends EObjectImpl implements Session {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -118,6 +119,7 @@ public class SessionImpl extends EObjectImpl implements Session {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -130,6 +132,7 @@ public class SessionImpl extends EObjectImpl implements Session {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AbstractSessionItem> getItems() {
 		if (items == null) {
 			items = new EObjectResolvingEList<AbstractSessionItem>(AbstractSessionItem.class, this, MidiplayerPackage.SESSION__ITEMS);
@@ -142,6 +145,7 @@ public class SessionImpl extends EObjectImpl implements Session {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDefaultpath() {
 		return defaultpath;
 	}
@@ -151,6 +155,7 @@ public class SessionImpl extends EObjectImpl implements Session {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultpath(String newDefaultpath) {
 		String oldDefaultpath = defaultpath;
 		defaultpath = newDefaultpath;

@@ -36,7 +36,8 @@ public class Additional {
 
   }
 
-  public boolean equals (final Object object) {
+  @Override
+public boolean equals (final Object object) {
 
     if (object == this)
       return true;
@@ -101,7 +102,8 @@ public class Additional {
     return file;
   }
 
-  public String toString () {
+  @Override
+public String toString () {
     return name + "." + suffix.name().toLowerCase();
   }
 

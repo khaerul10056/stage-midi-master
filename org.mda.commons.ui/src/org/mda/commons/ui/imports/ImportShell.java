@@ -105,7 +105,8 @@ public class ImportShell extends Shell {
 
   }
 
-  protected void checkSubclass () {
+  @Override
+protected void checkSubclass () {
     /* Do nothing - Subclassing is allowed */
   }
 

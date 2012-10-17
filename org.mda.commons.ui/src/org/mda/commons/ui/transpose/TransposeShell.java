@@ -1,12 +1,12 @@
 package org.mda.commons.ui.transpose;
 
 import mda.MidiFile;
+
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.MidiPlayerService;
+import org.mda.commons.ui.util.UIUtils;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.transpose.InvalidChordException;
@@ -47,15 +48,15 @@ public class TransposeShell extends Shell {
 
     Label lblSong= new Label (this, SWT.NONE);
     lblSong.setText("Song:");
-    lblSong.setLayoutData(getLabelData());
+    lblSong.setLayoutData(UIUtils.getLabelData());
 
     Label lblSongName = new Label (this, SWT.NONE);
     lblSongName.setText(file.getName());
-    lblSongName.setLayoutData(getLabelData());
+    lblSongName.setLayoutData(UIUtils.getLabelData());
 
     Label lblFrom = new Label (this, SWT.NONE);
     lblFrom.setText("From key:");
-    lblFrom.setLayoutData(getLabelData());
+    lblFrom.setLayoutData(UIUtils.getLabelData());
 
     cmbFrom = new Combo(this, SWT.NONE);
     viewer1 = new ComboViewer(cmbFrom);
@@ -66,7 +67,7 @@ public class TransposeShell extends Shell {
 
     Label lblTo = new Label (this, SWT.NONE);
     lblTo.setText("To key:");
-    lblTo.setLayoutData(getLabelData());
+    lblTo.setLayoutData(UIUtils.getLabelData());
 
     cmbTo = new Combo (this, SWT.NONE);
     viewer2 = new ComboViewer(cmbTo);
@@ -141,17 +142,13 @@ public class TransposeShell extends Shell {
 
   }
 
-  private GridData getLabelData () {
-    return new GridData(SWT.BEGINNING, SWT.CENTER, false, false);
-  }
+  
 
-  private GridData getContentData () {
-    return new GridData(SWT.FILL, SWT.FILL, false, false);
-  }
+  
 
 
-
-  protected void checkSubclass () {
+  @Override
+protected void checkSubclass () {
     /* Do nothing - Subclassing is allowed */
   }
 

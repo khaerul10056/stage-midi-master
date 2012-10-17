@@ -125,7 +125,8 @@ public class SendSongbooksShell {
 	    Button btnOk = new Button(btnComp, SWT.NONE);
 	    btnOk.setText("Send");
 	    btnOk.addSelectionListener(new SelectionAdapter() {
-	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+	      @Override
+		public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	    	getConfiguration().setMailtextSendSongbook(txtMailtext.getText());
 	    	getConfiguration().setMailsubjectSendSongbook(txtMailsubject.getText());
     	    Collection<ExportResult> exportSongbooks = engine.exportSongbooks();
@@ -141,7 +142,8 @@ public class SendSongbooksShell {
 	    Button btnCancel = new Button(btnComp, SWT.NONE);
 	    btnCancel.setText("Cancel");
 	    btnCancel.addSelectionListener(new SelectionAdapter() {
-	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+	      @Override
+		public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	    	  shell.dispose();
 	      }
 	    });

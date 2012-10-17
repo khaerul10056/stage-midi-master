@@ -54,7 +54,8 @@ public class PdfExporter extends AbstractExporter {
   
   private List <Slide> lastSlides = new ArrayList<Slide>();
 
-  public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig config) throws ExportException  {
+  @Override
+public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig config) throws ExportException  {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
     

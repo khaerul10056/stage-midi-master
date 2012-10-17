@@ -150,7 +150,8 @@ public class UserShell extends Shell{
   }
 
 
-  protected void checkSubclass () {
+  @Override
+protected void checkSubclass () {
     /* Do nothing - Subclassing is allowed */
   }
 

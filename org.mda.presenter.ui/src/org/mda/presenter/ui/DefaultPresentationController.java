@@ -20,18 +20,21 @@ public class DefaultPresentationController implements IPresentationController {
 
 
 
-  public void end () {
+  @Override
+public void end () {
 	LOGGER.info("End called");
     presentationContext.closePresentationSession();
   }
 
-  public boolean toItem (final AbstractSessionItem sessionItem) {
+  @Override
+public boolean toItem (final AbstractSessionItem sessionItem) {
     boolean done = presentationContext.toItem(sessionItem, false);
     return done;
   }
 
 
-  public boolean nextSlide () {
+  @Override
+public boolean nextSlide () {
     NavigationRefreshAction done = presentationContext.nextSlide();
     refreshViews(done);
     return done != NavigationRefreshAction.NONE;
@@ -55,7 +58,8 @@ public class DefaultPresentationController implements IPresentationController {
     }
   }
 
-  public boolean previousSlide () {
+  @Override
+public boolean previousSlide () {
     NavigationRefreshAction done = presentationContext.previousSlide();
     refreshViews(done);
     return done != NavigationRefreshAction.NONE;

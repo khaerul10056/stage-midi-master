@@ -173,8 +173,8 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
         @Override
         public void widgetDisposed (DisposeEvent arg0) {
-          if (getCurrentPart() != null)
-            getEditorComposite().getPreviewpanel().setCurrentPart(getCurrentPart());
+          //if (getCurrentPart() != null)
+            //getEditorComposite().getPreviewpanel().setCurrentPart(getCurrentPart());
 
         }
       });

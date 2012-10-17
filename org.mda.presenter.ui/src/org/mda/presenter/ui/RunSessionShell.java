@@ -66,7 +66,8 @@ public class RunSessionShell implements IPresentationView {
 	    btnPrevSong.setText("Prev song");
 	    btnPrevSong.setImage(Utils.loadImageFromProject(Utils.ICON_PREVIOUS_SONG));
 	    btnPrevSong.addSelectionListener(new SelectionAdapter() {
-	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+	      @Override
+		public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	        getController().previousSong();
 	      }
 	    });
@@ -75,7 +76,8 @@ public class RunSessionShell implements IPresentationView {
 	    btnNextSong.setText("Next song");
 	    btnNextSong.setImage(Utils.loadImageFromProject(Utils.ICON_NEXT_SONG));
 	    btnNextSong.addSelectionListener(new SelectionAdapter() {
-	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+	      @Override
+		public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	        getController().nextSong ();
 	      }
 	    });
@@ -84,7 +86,8 @@ public class RunSessionShell implements IPresentationView {
 	    btnPrev.setText("Prev slide");
 	    btnPrev.setImage(Utils.loadImageFromProject(Utils.ICON_PREVIOUS));
 	    btnPrev.addSelectionListener(new SelectionAdapter() {
-	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+	      @Override
+		public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	        getController().previousSlide();
 	      }
 	    });
@@ -93,7 +96,8 @@ public class RunSessionShell implements IPresentationView {
 	    btnNext.setText("Next slide");
 	    btnNext.setImage(Utils.loadImageFromProject(Utils.ICON_NEXT));
 	    btnNext.addSelectionListener(new SelectionAdapter() {
-	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+	      @Override
+		public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	        getController().nextSlide();
 	      }
 	    });
@@ -107,7 +111,8 @@ public class RunSessionShell implements IPresentationView {
 	    btnBlack.setText("Black");
 	    btnBlack.setImage(Utils.loadImageFromProject(Utils.ICON_BLACK_BACKGROUND));
 	    btnBlack.addSelectionListener(new SelectionAdapter() {
-	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+	      @Override
+		public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	        getController().toggleBlack ();
 	      }
 	    });
@@ -116,7 +121,8 @@ public class RunSessionShell implements IPresentationView {
 	    btnWhite.setText("White");
 	    btnWhite.setImage(Utils.loadImageFromProject(Utils.ICON_WHITE_BACKGROUND));
 	    btnWhite.addSelectionListener(new SelectionAdapter() {
-	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+	      @Override
+		public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	        getController().toggleWhite();
 	      }
 	    });
@@ -125,14 +131,16 @@ public class RunSessionShell implements IPresentationView {
 	    btnBackground.setText("Background");
 	    btnBackground.setImage(Utils.loadImageFromProject(Utils.ICON_IMAGE_BACKGROUND));
 	    btnBackground.addSelectionListener(new SelectionAdapter() {
-	      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+	      @Override
+		public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 	        getController().toggleOnlyBackground();
 	      }
 	    });
 	    
 	    
 	    btnNormal.addSelectionListener(new SelectionAdapter() {
-		      public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+		      @Override
+			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 		        getController().toggleNormalize();
 		        btnBackground.setSelection(false); 
 		        btnWhite.setSelection(false);

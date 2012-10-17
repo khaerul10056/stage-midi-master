@@ -122,6 +122,7 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Gallery getGallery() {
 		return gallery;
 	}
@@ -146,6 +147,7 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGallery(Gallery newGallery) {
 		if (newGallery != gallery) {
 			NotificationChain msgs = null;
@@ -165,6 +167,7 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Session> getSessions() {
 		if (sessions == null) {
 			sessions = new EObjectContainmentEList<Session>(Session.class, this, MidiplayerPackage.MIDI_PLAYER_ROOT__SESSIONS);
@@ -177,7 +180,8 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Configuration getConfig() {
+  @Override
+public Configuration getConfig() {
 		return config;
 	}
 
@@ -201,7 +205,8 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setConfig(Configuration newConfig) {
+  @Override
+public void setConfig(Configuration newConfig) {
 		if (newConfig != config) {
 			NotificationChain msgs = null;
 			if (config != null)
@@ -220,7 +225,8 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<User> getUsers() {
+  @Override
+public EList<User> getUsers() {
 		if (users == null) {
 			users = new EObjectContainmentEList<User>(User.class, this, MidiplayerPackage.MIDI_PLAYER_ROOT__USERS);
 		}
@@ -232,7 +238,8 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList<PresentationScheme> getPresentationschemes() {
+  @Override
+public EList<PresentationScheme> getPresentationschemes() {
 		if (presentationschemes == null) {
 			presentationschemes = new EObjectContainmentEList<PresentationScheme>(PresentationScheme.class, this, MidiplayerPackage.MIDI_PLAYER_ROOT__PRESENTATIONSCHEMES);
 		}

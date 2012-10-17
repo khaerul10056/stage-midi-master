@@ -14,17 +14,12 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.mda.logging.Log;
-import org.mda.logging.LogFactory;
 
 @Creatable
 public class MidiPartDetailsShell {
 
-  private MidiFilePart midifile;
 
   private Combo cmbType;
-
-  private static final Log LOGGER  = LogFactory.getLogger(MidiPartDetailsShell.class);
 
   private Shell shell;
   
@@ -42,7 +37,6 @@ public class MidiPartDetailsShell {
   }
 
   public Shell build (final Shell mother, final MidiFilePart part) {
-    this.midifile = part;
     shell = new Shell (mother);
     shell.setSize(500, 700);
     shell.setText("Details of part " + part.getParttype());

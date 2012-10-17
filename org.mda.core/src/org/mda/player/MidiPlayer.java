@@ -57,12 +57,14 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 
 	private MidiDevice midiDevice;
 
+	@Override
 	public void update(LineEvent event) {
 		if (event.getType() == LineEvent.Type.STOP) {
 			// TODO
 		}
 	}
 
+	@Override
 	public void meta(MetaMessage message) {
 		if (message.getType() == 47) { // 47 is end of track
 			// TODO
@@ -106,6 +108,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 
 	}
 
+	@Override
 	public void addMidiPlayerListener(final MidiPlayerListener listener) {
 		listeners.add(listener);
 	}
@@ -146,6 +149,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 
 	}
 
+	@Override
 	public void run() {
 		if (isSessionListEmpty())
 			return;
@@ -230,6 +234,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 		return sequencer;
 	}
 
+	@Override
 	public boolean isRunning() {
 		return running;
 	}
@@ -249,11 +254,13 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 		}
 	}
 
+	@Override
 	public boolean isSessionListEmpty() {
 		return getCurrentSession() == null
 				|| getCurrentSession().getItems().size() == 0;
 	}
 
+	@Override
 	public Session getCurrentSession() {
 
 		if (getRoot().getConfig() != null
@@ -266,6 +273,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 		return getRoot().getSessions().get(0);
 	}
 
+	@Override
 	public void init(MidiPlayerRoot root) throws MidiUnavailableException {
 		this.setRoot(root);
 		Info[] midiDeviceInfo = MidiSystem.getMidiDeviceInfo();
@@ -328,6 +336,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 		start();
 	}
 
+	@Override
 	public String getNameOf(int index) {
 		if (isSessionListEmpty() || getCurrentSongIndex() < 0)
 			return "";
@@ -337,10 +346,12 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 
 	}
 
+	@Override
 	public String getCurrentName() {
 		return getNameOf(getCurrentSongIndex());
 	}
 
+	@Override
 	public String getCurrentPositionInSong() {
 		if (getSequencer() != null && getSequencer().getSequence() != null) {
 		  String currentPosition = "" + getCurrentBar() + "/" + currentTick;
@@ -353,6 +364,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 
 	}
 
+	@Override
 	public int getCurrentTick() {
 		if (getSequencer() != null && getSequencer().getSequence() != null) {
 			if (getSequencer().getSequence().getDivisionType() == Sequence.PPQ) {
@@ -374,6 +386,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 		return bar * 4 * getSequencer().getSequence().getResolution();
 	}
 
+	@Override
 	public int getCurrentBar() {
 		if (getSequencer() != null && getSequencer().getSequence() != null) {
 			if (getSequencer().getSequence().getDivisionType() == Sequence.PPQ) {
@@ -432,6 +445,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 		}
 	}
 
+	@Override
 	public MidiFile getCurrentMidifile() {
 		AbstractSessionItem sessionItem = getCurrentSession().getItems().get(
 				getCurrentSongIndex());
@@ -441,6 +455,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 			return null;
 	}
 
+	@Override
 	public void setCurrentSession(final Session session) {
 
 		getRoot().getConfig().setLastSession(session);
@@ -450,6 +465,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 
 	}
 
+	@Override
 	public void setCurrentSong(int currentPosition) {
 		if (getCurrentSession().getItems().size() == 0)
 			return;
@@ -462,6 +478,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 
 	}
 
+	@Override
 	public int getCurrentSongIndex() {
 		return currentSongIndex;
 	}
@@ -480,6 +497,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 		thread = null;
 	}
 
+	@Override
 	public void open() {
 		try {
 
@@ -510,10 +528,12 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener,
 
 	}
 
+	@Override
 	public void setLoopFrom(int gotoBar) {
 		this.loopFrom = gotoBar;
 	}
 
+	@Override
 	public void setLoopTo(int i) {
 		this.loopTo = i;
 	}

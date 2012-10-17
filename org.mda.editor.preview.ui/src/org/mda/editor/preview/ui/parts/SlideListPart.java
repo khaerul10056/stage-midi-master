@@ -11,7 +11,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.mda.editor.preview.ui.AbstractPart;
 import org.mda.editor.preview.ui.PreviewEditorComposite;
 import org.mda.editor.preview.ui.StepTypeColorInfo;
@@ -45,12 +44,14 @@ public class SlideListPart extends AbstractPart  {
     }
   }
 
-  public void setCurrentPart (MidiFilePart currentPart) {
+  @Override
+public void setCurrentPart (MidiFilePart currentPart) {
     super.setCurrentPart(currentPart);
     resetColors();
   }
 
-  public void setMidifile (final MidiFile file) {
+  @Override
+public void setMidifile (final MidiFile file) {
 	  if (file == null)
 		  return;
 	  
