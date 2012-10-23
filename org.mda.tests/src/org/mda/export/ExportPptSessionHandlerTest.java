@@ -20,7 +20,7 @@ public class ExportPptSessionHandlerTest {
 		 ExportPptSessionHandler handler = StandaloneInjector.getInstance(ExportPptSessionHandler.class);
 		 handler.execute(shell,  session);
 		 
-		 Assert.assertNotNull (handler.messagebox);
+		 Assert.assertNotNull (handler.handler.lastShownMessageBox);
 		 shell.dispose();
 
 		

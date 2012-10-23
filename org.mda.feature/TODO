@@ -1,5 +1,6 @@
-Bug             Additionals     When selecting a foregroundcolor selection of backgroundimage is canceled new
+Bug             Presentation	Equal parts may be layouted in different ways
 
+Bug             Additionals     When selecting a foregroundcolor selection of backgroundimage is canceled new
 Enhancement     Editor			Merge line with nextline when DEL is pressed at end of line
 Enhancement		Editor			Clone line
 Enhancement 	Editor			Move up/down part shortcut
@@ -7,8 +8,6 @@ Enhancement		Navigator		Clone song
 Enhancement		Presentation	Show special slides
 Enhancement     Editor			Copy complete line
 Bug             Import          Recognizing chordlines: Parts with only chords should be imported as chords
-
-
 Enhancement     Additionals             Create mp3/wav-cd
                         ffmpeg -i "Alle Schoepfung staunt und preist.mp3" "Alle Schoepfung staunt und preist.wav"
                         mkisofs -o [OUTPUTFILE] [PATH] -hfs-volid HFS_VOLID -joliet-long
@@ -25,6 +24,8 @@ Enhancement		Editor			selection of navigator doesn't change while changing slide
 Enhancement		User			import from gmail														new
 Enhancement		User			export userlist															new
 Enhancement		User			mail to group from gmail												new
+Enhancement 	Session			add data like date, location, customer									new
+Enhancement 	Customer		add customer-handling (analogue user-handling)							new
 _____________________________________
 Enhancement     ExportConfig per User overwrites global configuration
 Bug				Export			Sort songs in songsheets

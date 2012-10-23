@@ -10,7 +10,6 @@ import mda.Session;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.program.Program;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.Utils;
@@ -28,7 +27,6 @@ public class ExportPptSessionHandler {
 	@Inject
 	UIHandler handler;
 	
-	MessageBox messagebox;
 	
 	@Execute
 	public void execute(Shell mother, ApplicationSession session) {
@@ -41,7 +39,7 @@ public class ExportPptSessionHandler {
 		
 		int style = SWT.ICON_INFORMATION |SWT.OK;
 		String text = "Session " + currentSession.getName() + " was exported to " + export.getAbsolutePath();
-		messagebox = handler.showMessageBox(mother, style, text);
+		handler.showMessageBox(mother, style, text);
 		Program.launch(export.getAbsolutePath());
 	}
 

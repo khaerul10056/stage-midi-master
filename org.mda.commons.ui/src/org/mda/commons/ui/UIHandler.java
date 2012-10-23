@@ -7,11 +7,13 @@ import org.eclipse.swt.widgets.Shell;
 @Creatable
 public class UIHandler {
 	
-	public MessageBox showMessageBox (final Shell mother, final int style, final String text) {
+	public MessageBox lastShownMessageBox;
+	
+	public int showMessageBox (final Shell mother, final int style, final String text) {
 		MessageBox messageBox = new MessageBox(mother, style);
 	    messageBox.setMessage(text);
-	    messageBox.open();
-	    return messageBox;
+	    lastShownMessageBox = messageBox;
+	    return messageBox.open();
 	}
 
 }

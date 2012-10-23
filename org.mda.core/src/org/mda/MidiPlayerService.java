@@ -482,8 +482,13 @@ public class MidiPlayerService {
     return lines;
   }
 
-  public static Session addSessionItem (Session session, AbstractSessionItem selectedSong) {
-    session.getItems().add(selectedSong);
+  public static Session addSessionItem (Session session, AbstractSessionItem afterItem, AbstractSessionItem selectedSong) {
+	  
+	if (session.getItems().contains(selectedSong))
+		session.getItems().remove(selectedSong);
+	  
+	int selectionIndex = session.getItems().indexOf(afterItem);
+    session.getItems().add(selectionIndex + 1, selectedSong);
     return session;
   }
   
@@ -543,6 +548,18 @@ public class MidiPlayerService {
     }
 
     return null;
+  }
+  
+  /**
+   * creates a new song
+   * @param name  title of the song
+   * @return songobject
+   */
+  public static MidiFile createSong (final MidiPlayerRoot playerroot, final String name) {
+	  MidiFile createMidiFile = mf.createMidiFile();
+	  createMidiFile.setName(name);
+	  playerroot.getGallery().getGalleryItems().add(createMidiFile);
+	  return createMidiFile;	  
   }
 
   /**
