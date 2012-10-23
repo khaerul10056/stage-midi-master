@@ -1,6 +1,7 @@
  
 package org.mda.commons.ui;
 
+import mda.AbstractSessionItem;
 import mda.MidiFile;
 import mda.Session;
 
@@ -27,9 +28,9 @@ public class SearchEngineHandler {
 				
 				if (activeSearchResult != null) {
 					if (activeSearchResult.getEobject() instanceof MidiFile) {
-						Session addSong = MidiPlayerService.addSessionItem(appsession.getCurrentSession(), (MidiFile) activeSearchResult.getEobject());
-						
-						appsession.getModelEvents().setCurrentModelElement(Session.class, addSong);
+						AbstractSessionItem selectedItem = appsession.getCurrentMidifile();
+						Session sessionWithAddedSong = MidiPlayerService.addSessionItem(appsession.getCurrentSession(), selectedItem, (MidiFile) activeSearchResult.getEobject());
+						appsession.getModelEvents().setCurrentModelElement(Session.class, sessionWithAddedSong);
 					}
 				}
 			}

@@ -24,6 +24,8 @@ import org.mda.commons.ui.util.UIUtils;
 @Creatable
 public class ConfigShellBuilder  {
 
+  private Label lblFile;
+  
   private Spinner spnFontSize;
 
   private Button chkEnableGrid;
@@ -50,6 +52,11 @@ public class ConfigShellBuilder  {
 	configShell.setText("Global configurations");
     configShell.setSize(600, 600);
     configShell.setLayout(UIUtils.createLayout(2, 20));
+    
+    lblFile = new Label (configShell, SWT.NONE);
+    lblFile.setLayoutData(UIUtils.getContentData(2));
+    lblFile.setText("File: " + session.getCurrentModel().eResource().getURI().toFileString());
+    
 
     //Fontsize
     Label lblFontsize = new Label (configShell, SWT.NONE);
