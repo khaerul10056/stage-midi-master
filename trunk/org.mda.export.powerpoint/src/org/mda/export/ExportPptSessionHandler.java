@@ -40,7 +40,7 @@ public class ExportPptSessionHandler {
 		int style = SWT.ICON_INFORMATION |SWT.OK;
 		String text = "Session " + currentSession.getName() + " was exported to " + export.getAbsolutePath();
 		handler.showMessageBox(mother, style, text);
-		Program.launch(export.getAbsolutePath());
+		handler.launchProgram(export);
 	}
 
 }
