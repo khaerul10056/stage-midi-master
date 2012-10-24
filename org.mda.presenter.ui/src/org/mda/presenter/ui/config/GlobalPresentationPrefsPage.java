@@ -27,6 +27,8 @@ public class GlobalPresentationPrefsPage extends PreferencePage implements IWork
 
 	@Override
 	public boolean performOk() {
+		if (editorBuilder == null)
+			return true ;
 		editorBuilder.save(null);
 		return true;
 	}

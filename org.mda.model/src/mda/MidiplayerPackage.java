@@ -583,13 +583,22 @@ public interface MidiplayerPackage extends EPackage {
 	int CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK = 10;
 
 				/**
+	 * The feature id for the '<em><b>Mididevice</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION__MIDIDEVICE = 11;
+
+				/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  int CONFIGURATION_FEATURE_COUNT = 11;
+  int CONFIGURATION_FEATURE_COUNT = 12;
 
   /**
 	 * The meta object id for the '{@link mda.impl.UserImpl <em>User</em>}' class.
@@ -1447,6 +1456,17 @@ public interface MidiplayerPackage extends EPackage {
 	EAttribute getConfiguration_MailsubjectSendSongbook();
 
 				/**
+	 * Returns the meta object for the attribute '{@link mda.Configuration#getMididevice <em>Mididevice</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mididevice</em>'.
+	 * @see mda.Configuration#getMididevice()
+	 * @see #getConfiguration()
+	 * @generated
+	 */
+	EAttribute getConfiguration_Mididevice();
+
+				/**
 	 * Returns the meta object for class '{@link mda.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2246,6 +2266,14 @@ public interface MidiplayerPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK = eINSTANCE.getConfiguration_MailsubjectSendSongbook();
+
+								/**
+		 * The meta object literal for the '<em><b>Mididevice</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONFIGURATION__MIDIDEVICE = eINSTANCE.getConfiguration_Mididevice();
 
 								/**
 		 * The meta object literal for the '{@link mda.impl.UserImpl <em>User</em>}' class.

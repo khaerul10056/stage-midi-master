@@ -4,15 +4,13 @@
  <extension id="id" point="org.eclipse.e4.workbench.model">
         <fragment uri="fragment.e4xmi"></fragment>
       </extension>
-      
-      
       <extension
-      id="org.mda.presenter.ui"
+      id="mda.globalpresentations.preference"
       name="Global presentation configurations"
       point="org.eclipse.ui.preferencePages">
    <page
          class="org.mda.presenter.ui.config.GlobalPresentationPrefsPage"
-         id="org.mda.presenter.ui"
+         id="mda.globalpresentations.preferencepage"
          name="Global presentation configurations">
    </page>
 </extension>

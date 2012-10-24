@@ -7,12 +7,12 @@
       </processor>
 </extension>
 <extension
-      id="mda.preferences.commons"
+      id="mda.general.preference"
       name="Commons Preferences"
       point="org.eclipse.ui.preferencePages">
    <page
          class="org.mda.commons.ui.config.GeneralPreferencePage"
-         id="org.mda.commons.ui"
+         id="mda.general.preferencepage"
          name="General">
    </page>
 </extension> 

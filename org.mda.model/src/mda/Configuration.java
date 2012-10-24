@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mda.Configuration#getMailserverUser <em>Mailserver User</em>}</li>
  *   <li>{@link mda.Configuration#getMailserverPassword <em>Mailserver Password</em>}</li>
  *   <li>{@link mda.Configuration#getMailsubjectSendSongbook <em>Mailsubject Send Songbook</em>}</li>
+ *   <li>{@link mda.Configuration#getMididevice <em>Mididevice</em>}</li>
  * </ul>
  * </p>
  *
@@ -321,5 +322,32 @@ public interface Configuration extends EObject {
 	 * @generated
 	 */
 	void setMailsubjectSendSongbook(String value);
+
+				/**
+	 * Returns the value of the '<em><b>Mididevice</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mididevice</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mididevice</em>' attribute.
+	 * @see #setMididevice(String)
+	 * @see mda.MidiplayerPackage#getConfiguration_Mididevice()
+	 * @model default=""
+	 * @generated
+	 */
+	String getMididevice();
+
+				/**
+	 * Sets the value of the '{@link mda.Configuration#getMididevice <em>Mididevice</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mididevice</em>' attribute.
+	 * @see #getMididevice()
+	 * @generated
+	 */
+	void setMididevice(String value);
 
 } // Configuration

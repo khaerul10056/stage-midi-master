@@ -33,6 +33,8 @@ import org.mda.export.TestExportEngine;
 import org.mda.export.TestPdfExporter;
 import org.mda.export.TestPptExporter;
 import org.mda.google.TestGoogleContacts;
+import org.mda.midi.MidiInfoTest;
+import org.mda.midi.ui.MidiDeviceContentProviderTest;
 import org.mda.presenter.ui.PresentationContextTest;
 import org.mda.presenter.ui.config.PresentationSchemaEditorBuilderTest;
 import org.mda.presenter.ui.test.BeamerPresenterTest;
@@ -90,6 +92,9 @@ import org.mda.transpose.TransposeTest;
   MidiPartDetailsShellTest.class,
   PresentationSchemaEditorBuilderTest.class,
 
+  //Midi 
+  MidiDeviceContentProviderTest.class, 
+  MidiInfoTest.class,
 
 
   //Export

@@ -655,6 +655,15 @@ public EAttribute getConfiguration_Fontsize() {
 
 				/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConfiguration_Mididevice() {
+		return (EAttribute)configurationEClass.getEStructuralFeatures().get(11);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -1105,6 +1114,7 @@ public EEnum getUserType() {
 		createEAttribute(configurationEClass, CONFIGURATION__MAILSERVER_USER);
 		createEAttribute(configurationEClass, CONFIGURATION__MAILSERVER_PASSWORD);
 		createEAttribute(configurationEClass, CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK);
+		createEAttribute(configurationEClass, CONFIGURATION__MIDIDEVICE);
 
 		userEClass = createEClass(USER);
 		createEAttribute(userEClass, USER__MAIL);
@@ -1233,6 +1243,7 @@ public EEnum getUserType() {
 		initEAttribute(getConfiguration_MailserverUser(), ecorePackage.getEString(), "mailserverUser", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfiguration_MailserverPassword(), ecorePackage.getEString(), "mailserverPassword", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfiguration_MailsubjectSendSongbook(), ecorePackage.getEString(), "mailsubjectSendSongbook", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfiguration_Mididevice(), ecorePackage.getEString(), "mididevice", "", 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUser_Mail(), ecorePackage.getEString(), "mail", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link mda.impl.ConfigurationImpl#getMailserverUser <em>Mailserver User</em>}</li>
  *   <li>{@link mda.impl.ConfigurationImpl#getMailserverPassword <em>Mailserver Password</em>}</li>
  *   <li>{@link mda.impl.ConfigurationImpl#getMailsubjectSendSongbook <em>Mailsubject Send Songbook</em>}</li>
+ *   <li>{@link mda.impl.ConfigurationImpl#getMididevice <em>Mididevice</em>}</li>
  * </ul>
  * </p>
  *
@@ -251,6 +252,26 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 * @ordered
 	 */
 	protected String mailsubjectSendSongbook = MAILSUBJECT_SEND_SONGBOOK_EDEFAULT;
+
+				/**
+	 * The default value of the '{@link #getMididevice() <em>Mididevice</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMididevice()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MIDIDEVICE_EDEFAULT = "";
+
+				/**
+	 * The cached value of the '{@link #getMididevice() <em>Mididevice</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMididevice()
+	 * @generated
+	 * @ordered
+	 */
+	protected String mididevice = MIDIDEVICE_EDEFAULT;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -543,6 +564,27 @@ public void setFontsize(Integer newFontsize) {
 
 				/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getMididevice() {
+		return mididevice;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMididevice(String newMididevice) {
+		String oldMididevice = mididevice;
+		mididevice = newMididevice;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__MIDIDEVICE, oldMididevice, mididevice));
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -572,6 +614,8 @@ public void setFontsize(Integer newFontsize) {
 				return getMailserverPassword();
 			case MidiplayerPackage.CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK:
 				return getMailsubjectSendSongbook();
+			case MidiplayerPackage.CONFIGURATION__MIDIDEVICE:
+				return getMididevice();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -616,6 +660,9 @@ public void setFontsize(Integer newFontsize) {
 				return;
 			case MidiplayerPackage.CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK:
 				setMailsubjectSendSongbook((String)newValue);
+				return;
+			case MidiplayerPackage.CONFIGURATION__MIDIDEVICE:
+				setMididevice((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -662,6 +709,9 @@ public void setFontsize(Integer newFontsize) {
 			case MidiplayerPackage.CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK:
 				setMailsubjectSendSongbook(MAILSUBJECT_SEND_SONGBOOK_EDEFAULT);
 				return;
+			case MidiplayerPackage.CONFIGURATION__MIDIDEVICE:
+				setMididevice(MIDIDEVICE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -696,6 +746,8 @@ public void setFontsize(Integer newFontsize) {
 				return MAILSERVER_PASSWORD_EDEFAULT == null ? mailserverPassword != null : !MAILSERVER_PASSWORD_EDEFAULT.equals(mailserverPassword);
 			case MidiplayerPackage.CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK:
 				return MAILSUBJECT_SEND_SONGBOOK_EDEFAULT == null ? mailsubjectSendSongbook != null : !MAILSUBJECT_SEND_SONGBOOK_EDEFAULT.equals(mailsubjectSendSongbook);
+			case MidiplayerPackage.CONFIGURATION__MIDIDEVICE:
+				return MIDIDEVICE_EDEFAULT == null ? mididevice != null : !MIDIDEVICE_EDEFAULT.equals(mididevice);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -730,6 +782,8 @@ public void setFontsize(Integer newFontsize) {
 		result.append(mailserverPassword);
 		result.append(", mailsubjectSendSongbook: ");
 		result.append(mailsubjectSendSongbook);
+		result.append(", mididevice: ");
+		result.append(mididevice);
 		result.append(')');
 		return result.toString();
 	}
