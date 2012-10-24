@@ -141,13 +141,17 @@ public class GeneralPreferencePage extends PreferencePage implements
 
 	@Override
 	public boolean performOk() {
+		if (session == null)
+			return true;
+		
 		getConfiguration().setFontsize(spnFontSize.getSelection());
 		getConfiguration().setMailserverUrl(txtMailserverUrl.getText());
 		getConfiguration().setMailserverUser(txtMailserverUser.getText());
-		getConfiguration().setMailserverPassword(
-				txtMailserverPassword.getText());
-		session.getGlobalConfs().setShowGrid(chkEnableGrid.getSelection());
+		getConfiguration().setMailserverPassword(txtMailserverPassword.getText());
+		if (chkEnableGrid != null)
+		  session.getGlobalConfs().setShowGrid(chkEnableGrid.getSelection());
 
+		
 		session.saveModel();
 
 		return true;

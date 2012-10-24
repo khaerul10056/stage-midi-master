@@ -14,7 +14,6 @@ import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.core.services.contributions.IContributionFactory;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.services.IServiceConstants;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.preference.IPreferenceNode;
 import org.eclipse.jface.preference.IPreferencePage;
 import org.eclipse.jface.preference.PreferenceDialog;
@@ -63,7 +62,7 @@ public class PreferenceHandler {
 		IContributionFactory factory = context.get(IContributionFactory.class);
 
 		for(IConfigurationElement elmt : registry.getConfigurationElementsFor(PREFS_PAGE_XP)) {
-			if (elmt.getAttribute(ATTR_ID).indexOf(".mda.") < 0)
+			if (! elmt.getAttribute(ATTR_ID).startsWith("mda."))
 				continue;
 			
 			if(!elmt.getName().equals(ELMT_PAGE)) {
