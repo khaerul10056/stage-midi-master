@@ -2802,4 +2802,5 @@
   <users mail="renate.meinel@gmx.de" name="Meinel" firstname="Renate"/>
   <users mail="gabyhllein@yahoo.de" name="H&#xf6;llein" firstname="Gaby"/>
   <users mail="markus.oley@t-online.de" name="" firstname="Loopback" sendSongbook="true"/>
+  <presentationschemes type="SCREEN"/>
 </org.mda.model:MidiPlayerRoot>

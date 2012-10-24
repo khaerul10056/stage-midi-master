@@ -8,13 +8,8 @@
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_lGHdwAHgEeKq7_ligx7iKQ" featurename="handlers" parentElementId="org.mda.commons.ui.trimmedwindow.0">
     <elements xsi:type="commands:Handler" xmi:id="_sXbIMAHgEeKq7_ligx7iKQ" elementId="org.mda.presenter.ui.handler.startpresentation" contributionURI="bundleclass://org.mda.presenter.ui/org.mda.presenter.ui.StartPresentation" command="_5QLjUAHgEeKq7_ligx7iKQ"/>
-    <elements xsi:type="commands:Handler" xmi:id="_aHv2IBSAEeKb9-Ffg4zaIA" elementId="org.mda.presenter.ui.handler.globalpresentationconfig" contributionURI="bundleclass://org.mda.presenter.ui/org.mda.presenter.ui.config.GlobalPresentationSchemeHandler" command="_e_yjIBSAEeKb9-Ffg4zaIA"/>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_z2jzQAHgEeKq7_ligx7iKQ" featurename="commands" parentElementId="org.mda.application.application">
     <elements xsi:type="commands:Command" xmi:id="_5QLjUAHgEeKq7_ligx7iKQ" elementId="org.mda.presenter.ui.command.startpresentation" commandName="Start presentation"/>
-    <elements xsi:type="commands:Command" xmi:id="_e_yjIBSAEeKb9-Ffg4zaIA" elementId="org.mda.presenter.ui.command.globalpresentationcommand" commandName="Configure global presentation schemes"/>
-  </fragments>
-  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_I_pNEBR9EeKb9-Ffg4zaIA" featurename="children" parentElementId="org.mda.application.menu.file">
-    <elements xsi:type="menu:DirectMenuItem" xmi:id="_V-6f4BR9EeKb9-Ffg4zaIA" elementId="org.mda.presentation.ui.menu.presentationconfig" label="Global presentation schemes" contributionURI="bundleclass://org.mda.presenter.ui/org.mda.presenter.ui.config.GlobalPresentationSchemeHandler"/>
   </fragments>
 </fragment:ModelFragments>

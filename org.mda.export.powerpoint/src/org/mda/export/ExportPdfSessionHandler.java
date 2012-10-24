@@ -8,7 +8,6 @@ import mda.Session;
 
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.Utils;
@@ -41,8 +40,7 @@ public class ExportPdfSessionHandler {
 		String text = "Session " + currentSession.getName() + " was exported to " + export.getAbsolutePath();
 		uihandler.showMessageBox(mother, style, text);
 		
-		Program.launch(export.getAbsolutePath());
-
+		uihandler.launchProgram(export);
 	}
 
 }

@@ -6,4 +6,14 @@
             class=" org.mda.commons.ui.FullScreenProcessor">
       </processor>
 </extension>
+<extension
+      id="mda.preferences.commons"
+      name="Commons Preferences"
+      point="org.eclipse.ui.preferencePages">
+   <page
+         class="org.mda.commons.ui.config.GeneralPreferencePage"
+         id="org.mda.commons.ui"
+         name="General">
+   </page>
+</extension> 
 </plugin>
