@@ -10,7 +10,7 @@ public class MidiDeviceContentProviderTest {
 	
 	@Test
 	public void provide () {
-		MidiDeviceContentProvider contentProvider = new MidiDeviceContentProvider(true); 
+		MidiDeviceContentProvider contentProvider = new MidiDeviceContentProvider(true, true, true); 
 		Object[] elements = contentProvider.getElements(new MidiInfo());
 		LabelProvider defaultLabelProvider = new LabelProvider(); 
 		String text = defaultLabelProvider.getText(elements [0]);

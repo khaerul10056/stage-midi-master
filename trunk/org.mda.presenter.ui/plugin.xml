@@ -13,7 +13,10 @@
          id="mda.globalpresentations.preferencepage"
          name="Global presentation configurations">
    </page>
-</extension>
+ </extension>
+ <extension point="org.mda.core.injected">
+   <injected interface="org.mda.presenter.ui.PresenterUiModule"/>
+ </extension>
       
       
       

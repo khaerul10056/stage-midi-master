@@ -98,7 +98,7 @@ public class TestAdditionalsHandler {
     AdditionalsHandler handler = new AdditionalsHandler(forTest);
     final String name1 = "This is a crazy song";
     final AdditionalSuffix suffix1 = AdditionalSuffix.MP3;
-    final AdditionalSuffix suffix2 = AdditionalSuffix.MIDI;
+    final AdditionalSuffix suffix2 = AdditionalSuffix.MID;
     File AUDIO = new File (handler.getAdditionalsPath().getAbsolutePath() + "/" + AdditionalType.AUDIO.name().toLowerCase() +"/" + name1 + "." + suffix1);
     assertTrue (AUDIO.createNewFile());
 

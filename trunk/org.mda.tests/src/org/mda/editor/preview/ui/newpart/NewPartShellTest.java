@@ -2,6 +2,7 @@ package org.mda.editor.preview.ui.newpart;
 
 import mda.MidiFile;
 
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.Test;
 import org.mda.ApplicationSession;
@@ -15,7 +16,7 @@ public class NewPartShellTest {
 		    session.load(null);
 		    Shell shell = new Shell();
 		    MidiFile file = (MidiFile) session.getCurrentModel().getGallery().getGalleryItems().get(0);
-		    NewPartShell additionalshell = new NewPartShell(shell, file, file.getParts().get(0));
+		    NewPartShell additionalshell = new NewPartShell(shell, file, file.getParts().get(0), new Point (100, 100));
 		    additionalshell.dispose();
 	}
 

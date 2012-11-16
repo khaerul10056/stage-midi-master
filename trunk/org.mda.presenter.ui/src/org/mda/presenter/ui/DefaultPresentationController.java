@@ -3,10 +3,12 @@ package org.mda.presenter.ui;
 import javax.inject.Inject;
 
 import mda.AbstractSessionItem;
+import mda.MidiFilePart;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.IPresentationController;
 import org.mda.presenter.ui.slide.IPresentationView;
 import org.mda.presenter.ui.slide.NavigationRefreshAction;
 
@@ -30,6 +32,11 @@ public void end () {
 public boolean toItem (final AbstractSessionItem sessionItem) {
     boolean done = presentationContext.toItem(sessionItem, false);
     return done;
+  }
+  
+  
+  public boolean toPart(MidiFilePart part) {
+	  return presentationContext.toPart(part);
   }
 
 

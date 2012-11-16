@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import mda.PresentationScheme;
 import mda.User;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -20,7 +19,7 @@ import org.mda.ApplicationSession;
 import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
 import org.mda.commons.ui.calculator.configurator.PresentationType;
 
-@Creatable
+
 public class PresentationSchemaEditorBuilder {
 	
 	private User user;

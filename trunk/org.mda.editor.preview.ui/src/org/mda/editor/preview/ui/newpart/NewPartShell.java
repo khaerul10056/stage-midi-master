@@ -12,6 +12,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -50,10 +51,11 @@ public class NewPartShell extends Shell implements SelectionListener {
     return button;
   }
 
-  public NewPartShell (final Shell shell, final MidiFile midifile, MidiFilePart addAfter) {
+  public NewPartShell (final Shell shell, final MidiFile midifile, MidiFilePart addAfter, final Point position) {
     super (shell, SWT.NONE);
     this.midifile = midifile;
     this.addAfter = addAfter;
+    setLocation(position);
 
     setText("Add new part...");
 

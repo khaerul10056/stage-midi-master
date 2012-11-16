@@ -47,6 +47,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Tree;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
+import org.mda.inject.InjectService;
 import org.mda.listeners.IModelElementReloadListener;
 
 @Creatable
@@ -54,7 +55,7 @@ public class SessionOverviewPart {
   
   private String suchtextDefault = "Please add text to look for here...";
   
-  private ApplicationSession appSession;
+  private ApplicationSession appSession = InjectService.getInstance(ApplicationSession.class);
   
    
   private TreeViewer treviewer;
@@ -62,11 +63,11 @@ public class SessionOverviewPart {
   private Label lblDetails;
   
 
-private Button btnAdd;
+  private Button btnAdd;
 
-private ECommandService commandservice;
+  private ECommandService commandservice;
 
-private EHandlerService handlerservice;
+  private EHandlerService handlerservice;
 
   
   private GridData getGd (Integer verticalIndent) {
@@ -146,14 +147,13 @@ private EHandlerService handlerservice;
   }
   
 	@Inject
-	public SessionOverviewPart(final Composite comp, final ApplicationSession session, final EHandlerService handlerservice, 
+	public SessionOverviewPart(final Composite comp, final EHandlerService handlerservice, 
 			final ECommandService commandservice) {
 		
-	  appSession = session;
 	this.handlerservice = handlerservice;
 	this.commandservice = commandservice;
 	
-	handleStartupSession(session, handlerservice, commandservice);
+	handleStartupSession(appSession, handlerservice, commandservice);
 	
 	comp.setLayout(new GridLayout(2, false));
 	  

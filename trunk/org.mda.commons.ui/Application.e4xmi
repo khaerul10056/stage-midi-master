@@ -15,11 +15,13 @@
     <handlers xmi:id="_ttNhUAHeEeKq7_ligx7iKQ" elementId="org.mda.commons.ui.handler.exit" contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.commands.ExitHandler" command="_1Bx7IAHeEeKq7_ligx7iKQ"/>
     <handlers xmi:id="_fFWLgAwPEeKu97fhkqhNKw" elementId="org.mda.commons.ui.handler.savemodel" contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.SaveModelHandler" command="_pUe5AAwPEeKu97fhkqhNKw"/>
     <handlers xmi:id="_0aoHMB1LEeKdRpQIXq-6Wg" elementId="mda.handlers.preferences" contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.config.PreferenceHandler" command="_4nVYMB1LEeKdRpQIXq-6Wg"/>
+    <handlers xmi:id="_pE8-gB-zEeKkUoFAmhgMAw" elementId="mda.handlers.additionals" contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.additionals.EditAdditionalsHandler" command="_syTaAB-zEeKkUoFAmhgMAw"/>
     <mainMenu xmi:id="_uphRUM0UEeG6YYlJ-b_dpA" elementId="org.mda.application.menu.0">
       <children xsi:type="menu:Menu" xmi:id="_v5S3IM0UEeG6YYlJ-b_dpA" elementId="org.mda.application.menu.file" label="Global">
         <children xsi:type="menu:DirectMenuItem" xmi:id="_KcFy0M01EeG6YYlJ-b_dpA" elementId="org.mda.commons.ui.directmenuitem.0" label="Exit" contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.commands.ExitHandler"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_Y6LCsAwPEeKu97fhkqhNKw" elementId="org.mda.commons.ui.handledmenuitem.save" label="Save to file" command="_pUe5AAwPEeKu97fhkqhNKw"/>
         <children xsi:type="menu:DirectMenuItem" xmi:id="_UfgOYB1LEeKdRpQIXq-6Wg" elementId="mda.preferences.menu" label="Preferences.." contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.config.PreferenceHandler"/>
+        <children xsi:type="menu:DirectMenuItem" xmi:id="_YgVgMB-0EeKkUoFAmhgMAw" elementId="mda.menuitem.editadditionals" label="Edit additionals..." contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.additionals.EditAdditionalsHandler"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_sG22oNsSEeGddIlX7Js6XA" elementId="org.mda.commons.ui.menu.session" label="Session">
         <children xsi:type="menu:DirectMenuItem" xmi:id="_NmWh4N2oEeGWOKClsbjThQ" elementId="org.mda.commons.ui.directmenuitem.selectsession" label="Select session..." contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.session.SelectSessionHandler"/>
@@ -42,6 +44,7 @@
   <commands xmi:id="_1Bx7IAHeEeKq7_ligx7iKQ" elementId="org.mda.commons.ui.command.exit" commandName="Exit"/>
   <commands xmi:id="_pUe5AAwPEeKu97fhkqhNKw" elementId="org.mda.commons.ui.command.savemodel" commandName="Save model"/>
   <commands xmi:id="_4nVYMB1LEeKdRpQIXq-6Wg" elementId="mda.commands.preferences" commandName="Preferences..."/>
+  <commands xmi:id="_syTaAB-zEeKkUoFAmhgMAw" elementId="mda.command.additionals" commandName="Edit additionals..."/>
   <addons xmi:id="_4yFSMc0TEeG6YYlJ-b_dpA" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_4yFSMs0TEeG6YYlJ-b_dpA" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_4yFSM80TEeG6YYlJ-b_dpA" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>

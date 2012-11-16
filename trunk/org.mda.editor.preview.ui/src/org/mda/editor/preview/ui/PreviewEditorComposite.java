@@ -3,11 +3,9 @@ package org.mda.editor.preview.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
 
 import mda.MidiFilePart;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -18,7 +16,8 @@ import org.mda.editor.preview.ui.parts.ButtonPanelPart;
 import org.mda.editor.preview.ui.parts.ContentPart;
 import org.mda.editor.preview.ui.parts.SlideListPart;
 
-@Creatable
+import com.google.inject.Inject;
+
 public class PreviewEditorComposite {
 
   private List <AbstractPart> editorParts = new ArrayList<AbstractPart>();

@@ -1,11 +1,10 @@
 package org.mda.commons.ui;
 
 import java.io.IOException;
-import javax.inject.Inject;
+
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.mda.ApplicationSession;
 import org.mda.commons.ui.user.UserGeneralTab;
 import org.mda.commons.ui.user.UserTabExt;
 import org.mda.logging.Log;
@@ -22,8 +21,7 @@ public class Activator extends AbstractUIPlugin {
   public static final String PLUGIN_ID = "org.mda.commons.ui"; //$NON-NLS-1$
 
 
-  @Inject
-  private ApplicationSession session;
+  
 
 	/**
    * The constructor
@@ -71,10 +69,6 @@ public void stop(BundleContext context) throws Exception {
   public static ImageDescriptor loadImage (Device device, String name) throws IOException {
     ImageDescriptor imageDescriptorFromPlugin = imageDescriptorFromPlugin("org.mda.commons.ui", name);
     return imageDescriptorFromPlugin;
-  }
-
-  public ApplicationSession getSession () {
-    return session;
   }
 
 

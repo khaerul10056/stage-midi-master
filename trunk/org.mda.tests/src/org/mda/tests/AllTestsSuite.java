@@ -33,6 +33,7 @@ import org.mda.export.TestExportEngine;
 import org.mda.export.TestPdfExporter;
 import org.mda.export.TestPptExporter;
 import org.mda.google.TestGoogleContacts;
+import org.mda.inject.InjectServiceTest;
 import org.mda.midi.MidiInfoTest;
 import org.mda.midi.ui.MidiDeviceContentProviderTest;
 import org.mda.presenter.ui.PresentationContextTest;
@@ -61,6 +62,7 @@ import org.mda.transpose.TransposeTest;
   ContentProviderTest.class,
   MidiFileStructTest.class,
   PresentationConfiguratorTest.class,
+  InjectServiceTest.class,
 
   //UI
   AdditionalShellTest.class,
@@ -95,6 +97,7 @@ import org.mda.transpose.TransposeTest;
   //Midi 
   MidiDeviceContentProviderTest.class, 
   MidiInfoTest.class,
+  MidiFileSlideCalculatorTest.class,
 
 
   //Export

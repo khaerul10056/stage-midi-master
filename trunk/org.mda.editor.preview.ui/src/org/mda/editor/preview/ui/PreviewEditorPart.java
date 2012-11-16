@@ -1,7 +1,6 @@
 package org.mda.editor.preview.ui;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import mda.MidiFile;
 
@@ -11,6 +10,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.mda.ApplicationSession;
+import org.mda.inject.InjectService;
 import org.mda.listeners.IModelElementReloadListener;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -21,11 +21,9 @@ public class PreviewEditorPart {
 	private static final Log LOGGER = LogFactory.getLogger(PreviewEditorPart.class);
 
 
-	@Inject
-	private ApplicationSession appSession;
+	private ApplicationSession appSession = InjectService.getInstance(ApplicationSession.class) ;
 	
-	@Inject
-	private PreviewEditorComposite previewEditorContent;
+	private PreviewEditorComposite previewEditorContent = InjectService.getInstance(PreviewEditorComposite.class);
 
 	
 	

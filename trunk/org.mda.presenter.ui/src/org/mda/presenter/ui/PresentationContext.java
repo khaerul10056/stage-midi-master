@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -20,12 +21,14 @@ import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.imagecache.ImageCache;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.IPresentationContext;
+import org.mda.presenter.IPresentationController;
 import org.mda.presenter.ui.slide.IPresentationView;
 import org.mda.presenter.ui.slide.NavigationRefreshAction;
 
 @Singleton
 @Creatable
-public class PresentationContext {
+public class PresentationContext implements IPresentationContext {
 
   private static final Log LOGGER  = LogFactory.getLogger(PresentationContext.class);
 

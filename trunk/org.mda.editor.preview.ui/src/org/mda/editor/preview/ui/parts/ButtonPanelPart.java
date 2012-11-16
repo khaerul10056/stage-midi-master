@@ -22,9 +22,11 @@ import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.transpose.TransposeShell;
@@ -129,7 +131,12 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
   @Override
   public void widgetSelected (SelectionEvent arg0) {
     if (arg0.widget.equals(btnNewPart)) {
-      NewPartShell shell = new NewPartShell(comp.getShell(), getMidifile(), getEditorComposite().getSlidelistpanel().getCurrentPart());
+      Point point = btnNewPart.toDisplay(btnNewPart.getParent().getLocation());
+      point.x += btnNewPart.getBounds().width;
+      point.y -=  10;
+      
+      NewPartShell shell = new NewPartShell(comp.getShell(), getMidifile(), getEditorComposite().getSlidelistpanel().getCurrentPart(), point);
+      
       shell.addDisposeListener(new DisposeListener() {
 
         @Override
