@@ -4,14 +4,13 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.util.Locale;
 
-import javax.inject.Inject;
-
 import mda.Session;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.e4.ui.workbench.lifecycle.PostContextCreate;
 import org.mda.ApplicationSession;
 import org.mda.Utils;
+import org.mda.inject.InjectService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
@@ -23,8 +22,7 @@ public class Application {
 
   private static final Log LOGGER  = LogFactory.getLogger(Application.class);
 
-  @Inject
-  private ApplicationSession session;
+  private ApplicationSession session = InjectService.getInstance(ApplicationSession.class);
   
   
   @PostContextCreate
