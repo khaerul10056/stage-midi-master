@@ -201,11 +201,13 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 		  open();
 
 		  LOGGER.info("Session is not empty");
-		  Display.getDefault().asyncExec(new Runnable() {
+		  if (isRunning()) {
+		    Display.getDefault().asyncExec(new Runnable() {
 	            public void run() {
 	      		  presentationController.toItem(nextItem);
 	            }
 	        });
+		  }
 
 
 		  try {
@@ -248,11 +250,13 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 				  if (currentPart != currentPlayingPart) {
 					LOGGER.info ("Slide changes");
 				    
+					if (isRunning()) {
 				    Display.getDefault().asyncExec(new Runnable() {
 			            public void run() {
 			            	presentationController.toPart(currentPart);
 			            }
 			        });
+					}
 				    
 				    currentPlayingPart = currentPart;
 				    
