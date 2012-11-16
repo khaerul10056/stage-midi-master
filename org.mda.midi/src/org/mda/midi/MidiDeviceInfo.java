@@ -29,7 +29,15 @@ public class MidiDeviceInfo {
 		return midiInfo.getName();
 	}
 	
-	private MidiDevice getDevice () {
+	public boolean isTransmittingDevice () {
+		return getDevice().getMaxTransmitters() != 0;
+	}
+	
+	public boolean isRecievingDevice () {
+		return getDevice().getMaxReceivers() != 0;
+	}
+	
+	public MidiDevice getDevice () {
 		try {
 			return MidiSystem.getMidiDevice(midiInfo);
 		} catch (MidiUnavailableException e) {
