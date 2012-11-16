@@ -9,9 +9,13 @@ import org.eclipse.jface.viewers.Viewer;
 public class MidiDeviceContentProvider implements IStructuredContentProvider{
 	
 	private boolean withEmptyEntry;
+	private boolean recieving;
+	private boolean transmitting;
 	
-	public MidiDeviceContentProvider(boolean withEmptyEntry) {
+	public MidiDeviceContentProvider(boolean withEmptyEntry, final boolean recieving, final boolean transmitting) {
 		this.withEmptyEntry = withEmptyEntry;
+		this.recieving = recieving;
+		this.transmitting = transmitting;
 	}
 
 	@Override
@@ -34,9 +38,20 @@ public class MidiDeviceContentProvider implements IStructuredContentProvider{
 			objects.add(new MidiDeviceInfo(null));
 		
 		if (inputElement instanceof MidiInfo) 
-		   objects.addAll(((MidiInfo)inputElement).getAllMidiDevices());
+		   objects.addAll(((MidiInfo)inputElement).getAllMidiDevices(recieving, transmitting));
 		
 		return objects.toArray();
+	}
+	
+	public int findElement (final String key) {
+		Object[] elements = getElements(new MidiInfo());
+		for (int i = 0; i < elements.length; i++) {
+			MidiDeviceInfo nextMidiInfo = (MidiDeviceInfo) elements [i];
+			if (nextMidiInfo.getKey().equals(key))
+					return i;
+		}
+		
+		return -1;
 	}
 
 }
