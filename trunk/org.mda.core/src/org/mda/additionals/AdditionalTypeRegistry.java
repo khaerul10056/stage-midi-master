@@ -12,7 +12,7 @@ public class AdditionalTypeRegistry {
     typesPerSuffix.add(new AdditionalInfo(AdditionalSuffix.PNG, null, AdditionalType.IMAGE));
     typesPerSuffix.add(new AdditionalInfo(AdditionalSuffix.JPG, null, AdditionalType.IMAGE));
 
-    typesPerSuffix.add(new AdditionalInfo(AdditionalSuffix.MIDI, null, AdditionalType.MIDIFILE));
+    typesPerSuffix.add(new AdditionalInfo(AdditionalSuffix.MID, null, AdditionalType.MIDIFILE));
 
     typesPerSuffix.add(new AdditionalInfo(AdditionalSuffix.MP3, null, AdditionalType.AUDIO));
     typesPerSuffix.add(new AdditionalInfo(AdditionalSuffix.WAV, null, AdditionalType.AUDIO));

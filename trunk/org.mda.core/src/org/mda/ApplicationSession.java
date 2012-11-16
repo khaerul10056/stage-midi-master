@@ -6,14 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import javax.inject.Singleton;
-
 import mda.Configuration;
 import mda.MidiFile;
 import mda.MidiPlayerRoot;
 import mda.Session;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.mda.additionals.AdditionalsHandler;
 import org.mda.listeners.ModelEvents;
 import org.mda.logging.Log;
@@ -21,8 +18,6 @@ import org.mda.logging.LogFactory;
 import org.mda.transpose.FeatureActivation;
 
 
-@Singleton
-@Creatable
 public class ApplicationSession {
 
   private static final Log LOGGER  = LogFactory.getLogger(ApplicationSession.class);
