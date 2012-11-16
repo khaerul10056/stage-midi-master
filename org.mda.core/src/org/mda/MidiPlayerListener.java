@@ -4,6 +4,7 @@ import mda.AbstractSessionItem;
 import mda.Session;
 
 
+@Deprecated
 public interface MidiPlayerListener {
 
   public void sessionChanged (Session newSession);
