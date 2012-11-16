@@ -1,12 +1,9 @@
 package org.mda.midi.ui.config;
 
-import javax.inject.Inject;
-
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
@@ -16,9 +13,12 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.mda.ApplicationSession;
 import org.mda.commons.ui.util.UIUtils;
-import org.mda.midi.MidiDeviceInfo;
+import org.mda.inject.InjectService;
 import org.mda.midi.MidiDeviceContentProvider;
+import org.mda.midi.MidiDeviceInfo;
 import org.mda.midi.MidiInfo;
+
+import com.google.inject.Inject;
 
 
 public class MidiDevicesPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
@@ -36,6 +36,7 @@ public class MidiDevicesPreferencePage extends PreferencePage implements IWorkbe
 	
 	@Override
 	protected Control createContents(Composite parent) {
+		InjectService.injectObject(this);
 		parent.setLayout(UIUtils.createLayout(2, 20));
 		
 		Label lblMidiDevices = new Label(parent, SWT.NONE);
@@ -46,11 +47,12 @@ public class MidiDevicesPreferencePage extends PreferencePage implements IWorkbe
 		Combo cmbMidiDevice = new Combo(parent, SWT.NONE);
 		viewer = new ComboViewer(cmbMidiDevice);
 		cmbMidiDevice.setLayoutData(UIUtils.getContentData());
-		viewer.setContentProvider(new MidiDeviceContentProvider(true));
+		MidiDeviceContentProvider provider = new MidiDeviceContentProvider(true, false, true);
+		viewer.setContentProvider(provider);
 		viewer.setLabelProvider(new LabelProvider());
 		viewer.setInput(midiinfo);
 		
-		int foundDevice = midiinfo.findDeviceIndex(appSession.getCurrentModel().getConfig().getMididevice());
+		int foundDevice = provider.findElement(appSession.getCurrentModel().getConfig().getMididevice());
 		if (foundDevice >= 0) 
 			cmbMidiDevice.select(foundDevice + 1);	
 		

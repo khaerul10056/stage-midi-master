@@ -43,6 +43,11 @@ public class MidiFileCreator {
     midifile.setCopyright(copyright);
     return this;
   }
+  
+  public MidiFileCreator setBar (final int bar) {
+	  currentPart.setBar(bar);
+	  return this;
+  }
 
   public MidiFileCreator part (MidiFilePartType type) {
     currentPart = MidiplayerFactory.eINSTANCE.createMidiFilePart();
@@ -89,8 +94,9 @@ public class MidiFileCreator {
   }
 
   public MidiFileCreator chordAndText (final String chord, final String text) {
+	  
     if (currentTextLine == null)
-      throw new IllegalStateException("You have to add a textline before adding a chordpart");
+      line();
 
     MidiFileChordPart createMidiFileChordPart = MidiplayerFactory.eINSTANCE.createMidiFileChordPart();
     createMidiFileChordPart.setChord(chord);

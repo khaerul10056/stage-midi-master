@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+  <extension-point id="injected" name="org.mda.core.injected" schema="schema/injected.exsd"/>
+  <extension point="org.mda.core.injected">
+      <injected interface="org.mda.CoreModule">
+      </injected>
+  </extension>
+</plugin>

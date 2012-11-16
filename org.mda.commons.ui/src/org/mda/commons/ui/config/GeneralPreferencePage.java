@@ -1,6 +1,5 @@
 package org.mda.commons.ui.config;
 
-import javax.inject.Inject;
 
 import mda.Configuration;
 
@@ -19,6 +18,9 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.mda.ApplicationSession;
 import org.mda.commons.ui.util.UIUtils;
+import org.mda.inject.InjectService;
+
+import com.google.inject.Inject;
 
 public class GeneralPreferencePage extends PreferencePage implements
 		IWorkbenchPreferencePage {
@@ -60,6 +62,7 @@ public class GeneralPreferencePage extends PreferencePage implements
 
 	@Override
 	protected Control createContents(Composite parent) {
+		InjectService.injectObject(this);
 		parent.setLayout(UIUtils.createLayout(2, 20));
 
 		lblFile = new Label(parent, SWT.NONE);

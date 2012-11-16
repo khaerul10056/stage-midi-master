@@ -2795,7 +2795,7 @@
     <galleryItems xsi:type="org.mda.model:MidiFile" name="Hansdampf"/>
   </gallery>
   <sessions name="Probe" items="//@gallery/@galleryItems.0 //@gallery/@galleryItems.2 //@gallery/@galleryItems.1 //@gallery/@galleryItems.3 //@gallery/@galleryItems.4 //@gallery/@galleryItems.5 //@gallery/@galleryItems.6 //@gallery/@galleryItems.7 //@gallery/@galleryItems.8 //@gallery/@galleryItems.9 //@gallery/@galleryItems.10 //@gallery/@galleryItems.11 //@gallery/@galleryItems.12 //@gallery/@galleryItems.13 //@gallery/@galleryItems.14 //@gallery/@galleryItems.15 //@gallery/@galleryItems.17 //@gallery/@galleryItems.18 //@gallery/@galleryItems.20 //@gallery/@galleryItems.21 //@gallery/@galleryItems.22"/>
-  <config screenIDPresentation=":0.0" screenIDAdmin=":0.1" lastSession="//@sessions.0" pdfExportPath="texte_pdf" additionalsPath="additionals" fontsize="40" mailserverUser="" mailserverPassword=""/>
+  <config screenIDPresentation=":0.0" screenIDAdmin=":0.1" lastSession="//@sessions.0" pdfExportPath="texte_pdf" additionalsPath="additionals" fontsize="40" mailserverUser="" mailserverPassword="" mididevice="M1 [hw:1,0,0]"/>
   <users mail="khd.rausch@t-online.de" name="Rausch" firstname="Dieter"/>
   <users mail="biz.heidi-huebner@web.de" name="H&#xfc;bner" firstname="Heidi"/>
   <users mail="Gabriele.Beetz@gmx.de" name="Beetz" firstname="Gabi"/>

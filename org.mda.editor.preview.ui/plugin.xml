@@ -4,7 +4,8 @@
  <extension id="id" point="org.eclipse.e4.workbench.model">
         <fragment uri="fragment.e4xmi"></fragment>
       </extension>
-      
-      
+      <extension point="org.mda.core.injected">
+        <injected interface="org.mda.editor.preview.ui.PreviewUiModule"/>
+      </extension>
       
 </plugin>

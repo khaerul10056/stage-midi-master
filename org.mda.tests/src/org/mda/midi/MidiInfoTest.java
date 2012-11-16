@@ -11,7 +11,7 @@ public class MidiInfoTest {
 	@Test
 	public void infos () {
 		MidiInfo info = new MidiInfo();
-		Collection<MidiDeviceInfo> allMidiDevices = info.getAllMidiDevices();
+		Collection<MidiDeviceInfo> allMidiDevices = info.getAllMidiDevices(true, true);
 		Assert.assertTrue (allMidiDevices.size() > 0);
 	}
 

@@ -75,7 +75,11 @@ public class MidiFileDetailsShell  {
 
   private Label colorLabelBackground;
 
-  private Additional additional;
+  private Additional currentBackgroundPicture;
+  
+  private Additional currentMidifile;
+
+private Text txtMidifile;
 
   private GridData getLabelData () {
     return new GridData(SWT.BEGINNING, SWT.CENTER, false, false);
@@ -107,6 +111,14 @@ public class MidiFileDetailsShell  {
       if (findByKey != null)
         lblPicture.setBackgroundImage(findByKey.getImageScaled(PREVIEW_WIDTH, PREVIEW_HEIGHT));
     }
+    
+    if (midifile.getPath() != null) {
+    	Additional findByKey = getAdditionalHandler().findByKey(midifile.getPath());
+    	if (findByKey != null)
+    		txtMidifile.setText(findByKey.getName());
+    }
+    else
+    	txtMidifile.setText("");
   }
 
   public Shell build (final Shell mother, final MidiFile midifile) {
@@ -125,7 +137,7 @@ public class MidiFileDetailsShell  {
     lblPicture = new Label (shell, SWT.NONE);
     lblPicture.setBackground(shell.getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
 
-    refreshData();
+    
 
     lblPicture.addMouseListener(new MouseAdapter() {
 
@@ -138,14 +150,14 @@ public class MidiFileDetailsShell  {
 
           @Override
           public void widgetDisposed (DisposeEvent arg0) {
-            additional = additionalshell.getSelected();
-            if (additional == null) {
+            currentBackgroundPicture = additionalshell.getSelected();
+            if (currentBackgroundPicture == null) {
               LOGGER.info("Set picture of file " + midifile.getName() + " to <null>");
               midifile.setPic(null);
             }
             else {
-              LOGGER.info("Set picture of file " + midifile.getName() + " to " + additional.getKey());
-              midifile.setPic(additional.getKey());
+              LOGGER.info("Set picture of file " + midifile.getName() + " to " + currentBackgroundPicture.getKey());
+              midifile.setPic(currentBackgroundPicture.getKey());
             }
             refreshData();
           }
@@ -226,6 +238,30 @@ public class MidiFileDetailsShell  {
       }
 
     });
+    
+    
+    addLabel("Midifile:");
+    txtMidifile = new Text (shell, SWT.NONE);
+    txtMidifile.setText(midifile.getPath() != null ? midifile.getPath() : "" );
+    txtMidifile.setLayoutData(getContentData(true));
+    
+    txtMidifile.addMouseListener(new MouseAdapter() {
+
+        @Override
+        public void mouseDoubleClick (MouseEvent e) {
+          final AdditionalShell additionalshell = new AdditionalShell(shell, getAdditionalHandler(), AdditionalType.MIDIFILE, true);
+          additionalshell.addDisposeListener(new DisposeListener() {
+            @Override
+            public void widgetDisposed (DisposeEvent arg0) {
+              currentMidifile = additionalshell.getSelected();
+              String newMidiFile = currentMidifile != null ? currentMidifile.getKey() : null;
+              LOGGER.info("Set picture of file " + midifile.getName() + " to " + newMidiFile);
+              midifile.setPath(newMidiFile);
+              refreshData();
+            }
+          });
+        }
+      });
 
     addLabel("Original title:");
     txtOriginaltitle = new Text (shell, SWT.NONE);
@@ -263,6 +299,8 @@ public class MidiFileDetailsShell  {
     txtPublisherInland.setLayoutData(getContentData(true));
 
     buildButtons();
+    
+    refreshData();
 
     shell.open ();
     return shell;
@@ -298,7 +336,8 @@ public class MidiFileDetailsShell  {
   protected void save () {
     midifile.setBackgroundColor(! colorLabelBackground.getBackground().equals(defaultBackground) ? Utils.colorToString(colorLabelBackground.getBackground()) : null);
     midifile.setForegroundColor(! colorLabelForeground.getBackground().equals(defaultForeground) ? Utils.colorToString(colorLabelForeground.getBackground()) : null);
-    midifile.setPic(additional != null ? additional.getKey() : null);
+    midifile.setPic(currentBackgroundPicture != null ? currentBackgroundPicture.getKey() : null);
+    
 
     if (midifile.getCopyright() == null)
       midifile.setCopyright(MidiPlayerService.mf.createCopyright());

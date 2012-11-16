@@ -161,9 +161,8 @@ public class AdditionalShell extends Shell {
         }
       });
     }
-
-
-
+    else
+      currentType = onlyType;
 
     lstItems = new List(this, SWT.V_SCROLL);
     GridData gd = new GridData(SWT.BEGINNING, SWT.FILL, false, true);
