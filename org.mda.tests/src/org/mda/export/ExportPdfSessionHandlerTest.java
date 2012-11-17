@@ -18,9 +18,9 @@ public class ExportPdfSessionHandlerTest {
 		 Shell shell = new Shell();
 		    
 		 ExportPdfSessionHandler handler = StandaloneInjector.getInstance(ExportPdfSessionHandler.class);
-		 handler.execute(shell,  session);
+		 handler.execute(shell);
 		 
-		 Assert.assertNotNull (handler.uihandler.lastShownMessageBox);
+		 Assert.assertNotNull (handler.getUiHandler().lastShownMessageBox);
 		 shell.dispose();
 
 		
