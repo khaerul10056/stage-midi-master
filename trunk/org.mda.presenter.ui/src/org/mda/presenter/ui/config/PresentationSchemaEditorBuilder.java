@@ -26,7 +26,6 @@ public class PresentationSchemaEditorBuilder {
 	
 	private PresentationConfigurator configurator = new PresentationConfigurator();
 	
-	
 	@Inject
 	private ApplicationSession appsession;
 	
