@@ -161,8 +161,8 @@ public class RunSessionShell implements IPresentationView {
 	    return toolbar;
 	}
 	
-	public Shell build (final Shell parent, final boolean alwaysOnTop) {
-		shell = new Shell (parent, alwaysOnTop ? SWT.ON_TOP: SWT.NONE);
+	public Shell build (final Shell parent) {
+		shell = new Shell (parent,SWT.NONE);
 		Util.disableEscOnComponent(shell);
 		shell.setBounds(monitorManager.getPrimaryMonitor().getBounds());
 		
@@ -190,6 +190,7 @@ public class RunSessionShell implements IPresentationView {
 	        AbstractSessionItem item = (AbstractSessionItem) Util.getStructuredSelection(treviewer.getSelection());
 	          controller.toItem(item);
 	          overview.getComp().setFocus();
+	          
 	      }
 	    });
 	    

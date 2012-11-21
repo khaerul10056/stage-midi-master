@@ -72,7 +72,11 @@ public class SlideItemPanel extends Composite  {
 
   public void setModelPart (final MidiFilePart part) {
     this.part = part;
-    getBtnName().setText(part.getParttype().toString());
+    String btnText = part.getParttype().toString(); 
+    if (part.getBar() > 0)
+    	btnText +="(" + part.getBar() + ")";
+    getBtnName().setText(btnText);
+    
     if (part.getRefPart() != null)
       getBtnName().setImage(loadImageFromProject(ICON_LINK));
     else

@@ -10,6 +10,7 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Monitor;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -107,5 +108,45 @@ public static String logEvent (KeyEvent event) {
   return string;
 
 }
+
+public static String logEvent (Event event) {
+
+	  String string = event.character == SWT.KeyDown ? "DOWN": "UP  ";
+
+	  string += ": stateMask=0x" + Integer.toHexString(event.stateMask);
+
+	  if ((event.stateMask & SWT.CTRL) != 0)
+	      string += " CTRL";
+
+	  if ((event.stateMask & SWT.ALT) != 0)
+	      string += " ALT";
+
+	  if ((event.stateMask & SWT.SHIFT) != 0)
+	      string += " SHIFT";
+
+	  if ((event.stateMask & SWT.COMMAND) != 0)
+	      string += " COMMAND";
+
+	  string += ", keyCode=0x" + Integer.toHexString(event.keyCode);
+	  string += ", character=0x" + Integer.toHexString(event.character);
+
+	  switch (event.character) {
+
+	      case 0: string += " '\\0'"; break;
+	      case SWT.BS: string += " '\\b'"; break;
+	      case SWT.CR: string += " '\\r'"; break;
+	      case SWT.DEL: string += " DEL"; break;
+	      case SWT.ESC: string += " ESC"; break;
+	      case SWT.LF: string += " '\\n'"; break;
+	      case SWT.TAB: string += " '\\t'";break;
+	      default:
+	          string += " '" + event.character + "'";
+	          break;
+
+	  }
+
+	  return string;
+
+	}
 
 }

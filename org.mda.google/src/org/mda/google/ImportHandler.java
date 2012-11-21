@@ -4,17 +4,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import mda.MidiPlayerRoot;
 import mda.UserType;
 
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.mda.ApplicationSession;
+import org.mda.inject.InjectService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
 import com.google.gdata.util.ServiceException;
+import com.google.inject.Inject;
 
 
 public class ImportHandler {
@@ -26,6 +26,7 @@ public class ImportHandler {
 
   @Execute
   public Object execute() {
+	InjectService.injectObject(this);
     MidiPlayerRoot currentModel = session.getCurrentModel();
     GoogleContactsConnector connector = new GoogleContactsConnector();
     GoogleContactsDescriptor desc = new GoogleContactsDescriptor(UserType.MEMBER, "Sound of faith");

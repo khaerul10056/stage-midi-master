@@ -6,6 +6,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.mda.commons.ui.Util;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.DefaultPresentationController;
@@ -35,11 +36,11 @@ public class GlobalKeyRegistryPresentationController extends DefaultPresentation
       @Override
       public void handleEvent (Event e) {
     	  
+    	LOGGER.info("GlobalKeyRegistryPresentationController recieved key " + Util.logEvent(e));
+    	  
     	if (e.doit == false)
     		return;
     	
-    	
-    		 
     	
         if (e.character == SWT.ESC)
           e.doit = false;
