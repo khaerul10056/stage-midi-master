@@ -94,7 +94,7 @@ public class StartPresentation   {
 		LOGGER.error(e1.getLocalizedMessage(), e1);
 		return null;
 	} catch (NoMidiDeviceConfiguredException e1) {
-		midiplayer.stop();
+		midiplayer.end();
 		LOGGER.info("No mididevice configured, disabling midiplayer");
 	} catch (InvalidMidiDeviceConfiguredException e1) {
 		uihandler.showMessageBox(parentShell, SWT.ICON_ERROR, "Invalid mididevice " + e1.getMidiDeviceKey() + " configured");
@@ -104,14 +104,14 @@ public class StartPresentation   {
     
     
 
-    runsessionshell.build(parentShell, alwaysOnTop);
+    runsessionshell.build(parentShell);
     runsessionshell.getShell().addDisposeListener(new DisposeListener() {
 		
 		@Override
 		public void widgetDisposed(DisposeEvent e) {
 			
 			if (midiplayer.isRunning())
-			  midiplayer.stop();
+			  midiplayer.end();
 			
 			globalkeycontroller.close();
 			
