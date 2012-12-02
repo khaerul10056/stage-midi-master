@@ -75,6 +75,8 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 	
 	private MidiFilePart currentPlayingPart;
 	
+	private boolean configWaitAfterSong = true;
+	
 	
 	
 	
@@ -91,8 +93,11 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 		if (message.getType() == 47) { // 47 is end of track
 			LOGGER.info("End of track rescieved");
 			
-			isWaitingForNextSong = true;
-			
+			if (configWaitAfterSong) {
+				LOGGER.info("Stop Sequencer after end recievd");
+				getSequencer().stop();
+				isWaitingForNextSong = true;
+			}
 		}
 	}
 
@@ -108,8 +113,6 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 	 */
 	public void start() throws MidiUnavailableException, NoMidiFileFoundException, InvalidMidiDataException, IOException, MidiFileInvalidBarDataException, NoMidiDeviceConfiguredException, InvalidMidiDeviceConfiguredException {
 		initDevices();
-		
-		addListener();
 		
 		loadSequences();
 		running = true;
@@ -193,29 +196,22 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 		}
 
 		if (getSequencer() != null) {
+			getSequencer().close();
 			getSequencer().open();
+			
 			getSequencer().setSequence(currentSequence);
+			getSequencer().setMicrosecondPosition(0);
+			LOGGER.info("Current sequence from midifile " + midifile.getPath());
+			
+			LOGGER.info("Current position initialized pre start to bar " + sequencer.getTickPosition() + "(" + getSequencer().getTickLength() + ")");
+			LOGGER.info("Start sequencer " + getSequencer());
+			getSequencer().start();
+			LOGGER.info("Current position initialized after start to bar " + sequencer.getTickPosition());
 		}
 
 	}
 	
-	public void addListener () {
-		try {
-			LOGGER.info("Add Listener on MidiPlayer");
-		
-			Display.getDefault().addFilter(SWT.KeyDown, new Listener() {
-				
-				@Override
-				public void handleEvent(Event event) {
-					LOGGER.info("Event " + event.character + " recieved");
-					if (event.character == '1')
-						togglePause();
-				}
-			});
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+	
 
 	@Override
 	public void run() {
@@ -227,18 +223,9 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 		open();
 		
 		
-		
-		
-		
-		
-		
-		
-		
 		for (final AbstractSessionItem nextItem: getCurrentSession().getItems()) {
 		
-		  
-
-		  LOGGER.info("Session is not empty, start new song");
+		  LOGGER.info("Session is not empty, start new song " + nextItem.getName());
 		  if (isRunning()) {
 		    Display.getDefault().asyncExec(new Runnable() {
 	            public void run() {
@@ -258,12 +245,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 		  int currentBar = -1;
 		  int newBar = 0;
 
-		  if (getSequencer() != null) {
-			LOGGER.info("Current position initialized pre start to bar " + sequencer.getTickPosition() + "(" + getSequencer().getTickLength() + ")");
-			LOGGER.info("Start sequencer" + getSequencer());
-			getSequencer().start();
-			LOGGER.info("Current position initialized after start to bar " + sequencer.getTickPosition());
-		  }
+		  
 
 		  while (! isWaitingForNextSong) {
 			newTick = getCurrentTick();
@@ -296,8 +278,20 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 			}
 		  }
 		  
-		  isWaitingForNextSong = false;
-		  togglePause();
+		  LOGGER.info("ConfigWaitAfterSong = " + configWaitAfterSong);
+		  while (isWaitingForNextSong && configWaitAfterSong) {
+			  if (isRunning())
+				  getSequencer().stop();
+			  
+			  try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				LOGGER.error(e.toString(), e);
+			} 
+			  LOGGER.info("Waiting for next song....");
+		  }
+		  
+		  LOGGER.info("After waiting for new song");
 		  
 		}
 		end();
@@ -312,10 +306,15 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 			getSequencer().stop();
 		}
 		else {
-			LOGGER.info("Resume playback in bar " + getCurrentBar());
-			if (isWaitingForNextSong)
-				
-			getSequencer().start();
+			
+			if (isWaitingForNextSong) {
+				LOGGER.info("Set waitingForNextSong to false");
+				isWaitingForNextSong = false;
+			}
+			else {
+		  	  LOGGER.info("Resume playback in bar " + getCurrentBar() + "(waiting =" + isWaitingForNextSong + ")");
+			  getSequencer().start();
+			}
 		}
 	}
 
@@ -348,17 +347,30 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 	 */
 	private void initDevices() throws MidiUnavailableException, NoMidiDeviceConfiguredException, InvalidMidiDeviceConfiguredException {
 		
-		String midiDeviceKey = applicationSession.getCurrentModel().getConfig().getMididevice();
-		if (midiDeviceKey == null || midiDeviceKey.trim().length() == 0)
+		String configuredDevices = applicationSession.getCurrentModel().getConfig().getMididevice();
+		if (configuredDevices == null)
 			throw new NoMidiDeviceConfiguredException();
-			
-		MidiDeviceInfo infodevice = midiinfo.findDeviceInfoRecieving(midiDeviceKey);
-		if (infodevice == null)
-			throw new InvalidMidiDeviceConfiguredException(midiDeviceKey);
-		else
-			LOGGER.info ("Using " + infodevice.getKey() + "-" + infodevice.getDevice());
 		
-		midiDevice = infodevice.getDevice();
+		String [] midiDeviceKeys = configuredDevices.split("#");
+		
+		
+		for (String nextKey: midiDeviceKeys) {
+			if (nextKey == null || nextKey.trim().length() == 0)
+				continue;
+			
+			MidiDeviceInfo infodevice = midiinfo.findDeviceInfoRecieving(nextKey);
+			if (infodevice != null) { 
+				midiDevice = infodevice.getDevice();
+				break;
+			}
+		}
+		
+		
+		if (midiDevice == null)
+			throw new InvalidMidiDeviceConfiguredException(configuredDevices);
+		else
+			LOGGER.info ("Using " + midiDevice.getDeviceInfo().getDescription());
+
 		midiDevice.open();
 	}
 
