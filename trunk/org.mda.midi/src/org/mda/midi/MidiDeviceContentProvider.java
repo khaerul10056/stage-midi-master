@@ -44,6 +44,9 @@ public class MidiDeviceContentProvider implements IStructuredContentProvider{
 	}
 	
 	public int findElement (final String key) {
+		if (key == null)
+			return -1;
+		
 		Object[] elements = getElements(new MidiInfo());
 		for (int i = 0; i < elements.length; i++) {
 			MidiDeviceInfo nextMidiInfo = (MidiDeviceInfo) elements [i];

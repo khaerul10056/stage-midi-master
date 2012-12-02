@@ -9,7 +9,10 @@ import org.eclipse.swt.widgets.Listener;
 import org.mda.commons.ui.Util;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.midi.MidiPlayer;
 import org.mda.presenter.ui.DefaultPresentationController;
+
+import com.google.inject.Inject;
 
 @Creatable
 public class GlobalKeyRegistryPresentationController extends DefaultPresentationController {
@@ -17,6 +20,9 @@ public class GlobalKeyRegistryPresentationController extends DefaultPresentation
 	private static final Log LOGGER  = LogFactory.getLogger(GlobalKeyRegistryPresentationController.class);
 
   private Display  display;
+  
+  @Inject
+  private MidiPlayer midiplayer ;
 
   private Listener listener;
 
@@ -40,6 +46,11 @@ public class GlobalKeyRegistryPresentationController extends DefaultPresentation
     	  
     	if (e.doit == false)
     		return;
+    	
+    	if (e.character == '1') {
+    		LOGGER.info("Footcontroller pressed");
+			midiplayer.togglePause();
+		}
     	
     	
         if (e.character == SWT.ESC)
