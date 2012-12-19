@@ -14,6 +14,7 @@ import mda.Session;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.graphics.Point;
+import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.calculator.CalculatorPreCondition;
 import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
@@ -78,6 +79,7 @@ public class PresentationContext implements IPresentationContext {
     LOGGER.info("set current session " + currentSession.getName() + " at presentationcontext");
     this.currentViewingSession = currentSession;
     this.config = config;
+    ((DefaultMidiFileContentEditorConfig)this.config).setSkipEmptySlides(Boolean.FALSE); //TODO guggn, ob das OK ist
     calcPreCondition = new CalculatorPreCondition();
     calcPreCondition.setCalculationsize(size);
     slidesPerItem = calculateSlides (currentSession);
@@ -280,6 +282,8 @@ public class PresentationContext implements IPresentationContext {
         nextView.refresh();
       }
     }
+    else
+    	LOGGER.warn ("SessionItem for part " + part + " not found");
     return itemFound;
 
 

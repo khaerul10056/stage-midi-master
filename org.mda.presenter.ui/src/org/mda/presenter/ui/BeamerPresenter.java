@@ -68,7 +68,7 @@ public class BeamerPresenter implements IPresentationView {
     	  if (shell.isDisposed())
     		  return;
     	  
-        LOGGER.info("BeamerPresenter.paintControl called");
+        LOGGER.info("BeamerPresenter.paintControl called with part " + presentationContext.getCurrentSlide().getModelRef());
         Font font = shell.getFont();
         e.gc.setFont(font);
 

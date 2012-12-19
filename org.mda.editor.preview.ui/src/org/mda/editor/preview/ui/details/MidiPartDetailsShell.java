@@ -9,17 +9,22 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Spinner;
 
 @Creatable
 public class MidiPartDetailsShell {
 
 
   private Combo cmbType;
+  
+  private Spinner spnBar;
 
   private Shell shell;
   
@@ -43,14 +48,20 @@ public class MidiPartDetailsShell {
 
     shell.setLayout(new GridLayout(2, false));
 
-    //BackgroundImage
-    Label lblPictureText = new Label (shell, SWT.NONE);
-    lblPictureText.setText("Type:");
-    lblPictureText.setLayoutData(getLabelData());
-
+    //Type
+    Label lblType = new Label (shell, SWT.NONE);
+    lblType.setText("Type:");
+    lblType.setLayoutData(getLabelData());
     cmbType = new Combo(shell, SWT.NONE);
     GridData cd = getContentData();
     cmbType.setLayoutData(cd);
+    
+    //Bar
+    Label lblBar = new Label (shell, SWT.NONE);
+    lblBar.setText("Bar:");
+    lblBar.setLayoutData(getLabelData());
+    spnBar = new Spinner(shell,  SWT.NONE); 
+    spnBar.setLayoutData(cd);
 
     final ComboViewer cmbviewer = new ComboViewer(cmbType);
     cmbviewer.setContentProvider(new EnumContentProvider());
@@ -67,7 +78,14 @@ public class MidiPartDetailsShell {
 
       }
     });
-
+    spnBar.setSelection(part.getBar());
+    spnBar.addModifyListener(new ModifyListener() {
+		
+		@Override
+		public void modifyText(ModifyEvent e) {
+			part.setBar(spnBar.getSelection());
+		}
+	});
     shell.open ();
     return shell;
   }
