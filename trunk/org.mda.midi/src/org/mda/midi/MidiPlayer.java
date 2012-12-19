@@ -171,30 +171,21 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 			currentSequence = null;
 			return;
 		}
-		MidiFile midifile = (MidiFile) presentationContext.getCurrentSessionItem();
+		final MidiFile midifile = (MidiFile) presentationContext.getCurrentSessionItem();
+		
 		currentSequence = sequences.get(midifile);
+		LOGGER.info("Starting new song " + midifile.getName() + "-" + currentSequence);
 
-		for (int i = 0; i < currentSequence.getTracks().length; i++) {
-
-			Track track = currentSequence.getTracks()[i];
-			MetaMessage message2 = new MetaMessage();
-			message2.setMessage(0, new byte[] { 00, 02, 99 }, 0);
-
-			track.add(new MidiEvent(message2, 0));
-
-			//LOGGER.info("Track " + i + " : " + track);
-			
-			for (int j = 0; j < track.size(); j++) {
-				MidiMessage message = track.get(j).getMessage();
-				String bytesAsString = "";
-				for (int byteIndex = 0; byteIndex < message.getMessage().length; byteIndex++)
-					bytesAsString += message.getMessage()[byteIndex] + " ";
-
-				//LOGGER.info("  - " + track.get(j).getTick() + "-" + track.get(j).getMessage().getStatus() + bytesAsString + "-" + track.get(j).getMessage().getLength());
-			}
-
-		}
-
+	    Display.getDefault().asyncExec(new Runnable() {
+	            public void run() {
+	            	if (midifile.getParts().size() > 0) {
+	            	LOGGER.info("Send toPart 0 for midifile " + midifile.getName());
+	            	  currentPlayingPart = midifile.getParts().get(0);
+	            	  presentationController.toPart(currentPlayingPart);
+	            	}
+	            }
+	    });
+	    
 		if (getSequencer() != null) {
 			getSequencer().close();
 			getSequencer().open();
@@ -226,13 +217,12 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 		for (final AbstractSessionItem nextItem: getCurrentSession().getItems()) {
 		
 		  LOGGER.info("Session is not empty, start new song " + nextItem.getName());
-		  if (isRunning()) {
-		    Display.getDefault().asyncExec(new Runnable() {
-	            public void run() {
-	      		  presentationController.toItem(nextItem);
-	            }
-	        });
-		  }
+		  Display.getDefault().syncExec(new Runnable() {
+	          public void run() {
+	            LOGGER.info("Trigger toItem " + nextItem.getName());
+	            presentationController.toItem(nextItem);
+	          }
+	      });
 
 
 		  try {
