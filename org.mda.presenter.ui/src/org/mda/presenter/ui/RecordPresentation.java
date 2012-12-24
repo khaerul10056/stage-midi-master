@@ -36,7 +36,7 @@ import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
 import com.google.inject.Inject;
 
 @Creatable
-public class StartPresentation   {
+public class RecordPresentation   {
 
   private static final Log LOGGER  = LogFactory.getLogger(StartPresentation.class);
 
@@ -89,7 +89,7 @@ public class StartPresentation   {
     if (midideviceKey != null) { 
       midiDevice = info.findDeviceInfoTransmitting(midideviceKey);
       try {
-		midiplayer.start(MidiplayerMode.PLAYING);
+		midiplayer.start(MidiplayerMode.RECORDING);
 	} catch (MidiUnavailableException | NoMidiFileFoundException| InvalidMidiDataException | IOException | MidiFileInvalidBarDataException e1) {
 		
 		LOGGER.error(e1.getLocalizedMessage(), e1);

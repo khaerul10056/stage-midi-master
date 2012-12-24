@@ -32,7 +32,7 @@ public class MidiPlayerTester {
 	        MidiPlayer player = StandaloneInjector.getInstance(MidiPlayer.class);
 	        GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController();
 	        presentationcontext.registerController(controller);
-	        player.start();
+	        player.start(MidiplayerMode.PLAYING);
 	        while (player.isRunning()) {
 	        	
 	        }
