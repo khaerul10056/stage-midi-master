@@ -9,14 +9,11 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Spinner;
 
 @Creatable
 public class MidiPartDetailsShell {
@@ -24,7 +21,7 @@ public class MidiPartDetailsShell {
 
   private Combo cmbType;
   
-  private Spinner spnBar;
+  private Label lblPosition;
 
   private Shell shell;
   
@@ -60,8 +57,8 @@ public class MidiPartDetailsShell {
     Label lblBar = new Label (shell, SWT.NONE);
     lblBar.setText("Bar:");
     lblBar.setLayoutData(getLabelData());
-    spnBar = new Spinner(shell,  SWT.NONE); 
-    spnBar.setLayoutData(cd);
+    lblPosition = new Label(shell,  SWT.NONE); 
+    lblPosition.setLayoutData(cd);
 
     final ComboViewer cmbviewer = new ComboViewer(cmbType);
     cmbviewer.setContentProvider(new EnumContentProvider());
@@ -78,14 +75,7 @@ public class MidiPartDetailsShell {
 
       }
     });
-    spnBar.setSelection(part.getBar());
-    spnBar.addModifyListener(new ModifyListener() {
-		
-		@Override
-		public void modifyText(ModifyEvent e) {
-			part.setBar(spnBar.getSelection());
-		}
-	});
+    lblPosition.setText(part.getPosition());
     shell.open ();
     return shell;
   }

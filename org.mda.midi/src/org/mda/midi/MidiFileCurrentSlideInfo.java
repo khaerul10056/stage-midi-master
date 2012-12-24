@@ -7,13 +7,13 @@ public class MidiFileCurrentSlideInfo {
 	
 	private final MidiFile midifile; 
 	
-	private final Integer bar;
+	private final Position position;
 	
 	private final MidiFilePart currentPart;
 	
-	public MidiFileCurrentSlideInfo (MidiFile sessionItem, Integer bar, MidiFilePart currentPart) {
+	public MidiFileCurrentSlideInfo (MidiFile sessionItem, String position, MidiFilePart currentPart) {
 		this.midifile = sessionItem;
-		this.bar = bar;
+		this.position = new Position(position);
 		this.currentPart = currentPart;
 	}
 
@@ -21,8 +21,8 @@ public class MidiFileCurrentSlideInfo {
 		return midifile;
 	}
 
-	public Integer getBar() {
-		return bar;
+	public Position getPosition() {
+		return position;
 	}
 
 	public MidiFilePart getCurrentPart() {

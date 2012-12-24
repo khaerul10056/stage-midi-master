@@ -74,7 +74,7 @@ public class SlideItemPanel extends Composite  {
     this.part = part;
     String btnText = part.getParttype().toString(); 
     if (part.getBar() > 0)
-    	btnText +="(" + part.getBar() + ")";
+    	btnText +="(" + part.getPosition() + ")";
     getBtnName().setText(btnText);
     
     if (part.getRefPart() != null)
