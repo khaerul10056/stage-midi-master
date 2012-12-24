@@ -75,11 +75,11 @@ public class MidiFileCurrentSlideCalculatorTest {
 		MidiFilePart firstPart = midiFile.getParts().get(0);
 		MidiFilePart secondPart = midiFile.getParts().get(1);
 		
-		assertEquals (firstPart, calculator.getCurrentPart(midiFile, 12));
-		assertEquals (firstPart, calculator.getCurrentPart(midiFile, 13));
-		assertEquals (firstPart, calculator.getCurrentPart(midiFile, 14));
-		assertEquals (secondPart, calculator.getCurrentPart(midiFile, 15));
-		assertEquals (secondPart, calculator.getCurrentPart(midiFile, 80));
+		assertEquals (firstPart, calculator.getCurrentPart(midiFile, new Position (12,1)));
+		assertEquals (firstPart, calculator.getCurrentPart(midiFile, new Position (13,1)));
+		assertEquals (firstPart, calculator.getCurrentPart(midiFile, new Position(14,1)));
+		assertEquals (secondPart, calculator.getCurrentPart(midiFile, new Position(15,1)));
+		assertEquals (secondPart, calculator.getCurrentPart(midiFile, new Position(80,1)));
 		
 	}
 

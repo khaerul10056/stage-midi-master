@@ -125,11 +125,13 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 	 */
 	public void savePartIntersection () {
 		if (isRunning() && getMode().equals(MidiplayerMode.RECORDING)) {
-		  String position = getCurrentPositionInSong();
-		  MidiFile midifile = (MidiFile) currentPlayingPart.eContainer();
-		  MidiFilePart nextPart = MidiPlayerService.getNextPart(midifile, currentPlayingPart);
-		  LOGGER.info("Save part intersection " + position + " for part " + nextPart);
-		  nextPart.setPosition(position);
+		  Position position = getCurrentPositionInSong();
+		  if (position != null) {
+		    MidiFile midifile = (MidiFile) currentPlayingPart.eContainer();
+		    MidiFilePart nextPart = MidiPlayerService.getNextPart(midifile, currentPlayingPart);
+		    LOGGER.info("Save part intersection " + position + " for part " + nextPart);
+		    nextPart.setPosition(position.toString());
+		  }
 		}
 	}
 
@@ -244,8 +246,8 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 		  }
 
 
-		  int currentBar = -1;
-		  int newBar = 0;
+		  Position currentPosition = null;
+		  Position newPosition = null;
 
 		  
 
@@ -255,13 +257,15 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 				currentTick = newTick;
 			}
 			
-			newBar = getCurrentBar();
-			if (newBar != currentBar) {
-				currentBar = newBar;
-				LOGGER.info("Bar changed to " + newBar);
+			newPosition = getCurrentPositionInSong();
+			LOGGER.info("Current position: " + currentPosition + "- new position: " + newPosition);
+			
+			if (! newPosition.equals(currentPosition)) {
+				currentPosition = newPosition;
+				LOGGER.info("Bar changed to " + newPosition);
 				if (nextItem instanceof MidiFile) {
 				  MidiFile midifile = (MidiFile) nextItem;
-				  final MidiFilePart currentPart = currentSlideCalculator.getCurrentPart(midifile, currentBar);
+				  final MidiFilePart currentPart = currentSlideCalculator.getCurrentPart(midifile, currentPosition);
 				  if (currentPart != currentPlayingPart) {
 					LOGGER.info ("Slide changes");
 				    
@@ -376,15 +380,15 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 		midiDevice.open();
 	}
 
-	public String getCurrentPositionInSong() {
+	public Position getCurrentPositionInSong() {
 		if (getSequencer() != null && getSequencer().getSequence() != null) {
 			String currentPosition = "" + getCurrentBar() + "/" + currentTick;
 			LOGGER.info("CurrentPosition = " + currentPosition);
-			return currentPosition;
+			return new Position (getCurrentBar(), getCurrentTick());
 		}
 
 		LOGGER.info("CurrentPosition = <null>");
-		return "";
+		return null;
 
 	}
 

@@ -5,12 +5,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
-
 import mda.AbstractSessionItem;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.Session;
+
+import org.eclipse.e4.core.di.annotations.Creatable;
 
 /**
  * calculates the current part for a special bar in a special midifile
@@ -48,7 +48,7 @@ public class MidiFileCurrentSlideCalculator {
 					if (lastBar >= nextPart.getBar())
 						exception.addInvalidBarData(MidiFileInvalidBarData.createWrongBarOrderEntry(nextPart));
 					
-					currentSlideInfos.add(new MidiFileCurrentSlideInfo(nextMidiFile, nextPart.getBar(), nextPart));
+					currentSlideInfos.add(new MidiFileCurrentSlideInfo(nextMidiFile, nextPart.getPosition(), nextPart));
 				}
 				
 				if (numberOfBarAssignments == 0)
@@ -68,7 +68,7 @@ public class MidiFileCurrentSlideCalculator {
 				
 				int compareKey = name1.compareTo(name2);
 				if (compareKey == 0)
-					compareKey = o1.getBar().compareTo(o2.getBar());
+					compareKey = o1.getPosition().compareTo(o2.getPosition());
 				
 				return compareKey;
 			}
@@ -100,10 +100,11 @@ public class MidiFileCurrentSlideCalculator {
 	 * @param bar  bar
 	 * @return current bar
 	 */
-	public MidiFilePart getCurrentPart (final MidiFile currentItem, final int bar) {
+	public MidiFilePart getCurrentPart (final MidiFile currentItem, final Position position) {
 		List<MidiFileCurrentSlideInfo> currentSlideInfos2 = getCurrentSlideInfos(currentItem);
 		for (MidiFileCurrentSlideInfo next: currentSlideInfos2) {
-			if (next.getBar() > bar) {
+			Position posNextSlide = next.getPosition();
+			if (posNextSlide.isAfter(position)) {
 				int indexNextSlide = currentSlideInfos2.indexOf(next);
 				if (indexNextSlide > 0)
 					indexNextSlide --;
