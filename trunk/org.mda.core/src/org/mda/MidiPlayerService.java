@@ -299,13 +299,12 @@ public class MidiPlayerService {
     return currentPart;
   }
 
-  public final static MidiFilePart getNextPart (final MidiFile midifile, int number) {
-    for (MidiFilePart nextPart : midifile.getParts()) {
-      if (nextPart.getBar() > number)
-        return nextPart;
-    }
-
-    return null;
+  public final static MidiFilePart getNextPart (final MidiFile midifile, final MidiFilePart part) {
+	int posCurrent = midifile.getParts().indexOf(part);
+	if (posCurrent < midifile.getParts().size() - 1)
+		return midifile.getParts().get(posCurrent + 1);
+	else
+      return null;
 
   }
 

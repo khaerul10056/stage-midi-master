@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link mda.impl.MidiFilePartImpl#getParttype <em>Parttype</em>}</li>
  *   <li>{@link mda.impl.MidiFilePartImpl#getBar <em>Bar</em>}</li>
  *   <li>{@link mda.impl.MidiFilePartImpl#getRefPart <em>Ref Part</em>}</li>
+ *   <li>{@link mda.impl.MidiFilePartImpl#getPosition <em>Position</em>}</li>
  * </ul>
  * </p>
  *
@@ -101,6 +102,26 @@ public class MidiFilePartImpl extends EObjectImpl implements MidiFilePart {
   protected MidiFilePart refPart;
 
   /**
+	 * The default value of the '{@link #getPosition() <em>Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPosition()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String POSITION_EDEFAULT = "";
+
+		/**
+	 * The cached value of the '{@link #getPosition() <em>Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPosition()
+	 * @generated
+	 * @ordered
+	 */
+	protected String position = POSITION_EDEFAULT;
+
+		/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -223,6 +244,27 @@ public void setRefPart(MidiFilePart newRefPart) {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getPosition() {
+		return position;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPosition(String newPosition) {
+		String oldPosition = position;
+		position = newPosition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE_PART__POSITION, oldPosition, position));
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -249,6 +291,8 @@ public void setRefPart(MidiFilePart newRefPart) {
 			case MidiplayerPackage.MIDI_FILE_PART__REF_PART:
 				if (resolve) return getRefPart();
 				return basicGetRefPart();
+			case MidiplayerPackage.MIDI_FILE_PART__POSITION:
+				return getPosition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -275,6 +319,9 @@ public void setRefPart(MidiFilePart newRefPart) {
 			case MidiplayerPackage.MIDI_FILE_PART__REF_PART:
 				setRefPart((MidiFilePart)newValue);
 				return;
+			case MidiplayerPackage.MIDI_FILE_PART__POSITION:
+				setPosition((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -299,6 +346,9 @@ public void setRefPart(MidiFilePart newRefPart) {
 			case MidiplayerPackage.MIDI_FILE_PART__REF_PART:
 				setRefPart((MidiFilePart)null);
 				return;
+			case MidiplayerPackage.MIDI_FILE_PART__POSITION:
+				setPosition(POSITION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -319,6 +369,8 @@ public void setRefPart(MidiFilePart newRefPart) {
 				return bar != BAR_EDEFAULT;
 			case MidiplayerPackage.MIDI_FILE_PART__REF_PART:
 				return refPart != null;
+			case MidiplayerPackage.MIDI_FILE_PART__POSITION:
+				return POSITION_EDEFAULT == null ? position != null : !POSITION_EDEFAULT.equals(position);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -337,6 +389,8 @@ public void setRefPart(MidiFilePart newRefPart) {
 		result.append(parttype);
 		result.append(", bar: ");
 		result.append(bar);
+		result.append(", position: ");
+		result.append(position);
 		result.append(')');
 		return result.toString();
 	}

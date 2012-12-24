@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mda.MidiFilePart#getParttype <em>Parttype</em>}</li>
  *   <li>{@link mda.MidiFilePart#getBar <em>Bar</em>}</li>
  *   <li>{@link mda.MidiFilePart#getRefPart <em>Ref Part</em>}</li>
+ *   <li>{@link mda.MidiFilePart#getPosition <em>Position</em>}</li>
  * </ul>
  * </p>
  *
@@ -126,5 +127,32 @@ public interface MidiFilePart extends EObject {
 	 * @generated
 	 */
   void setRefPart(MidiFilePart value);
+
+		/**
+	 * Returns the value of the '<em><b>Position</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Position</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Position</em>' attribute.
+	 * @see #setPosition(String)
+	 * @see mda.MidiplayerPackage#getMidiFilePart_Position()
+	 * @model default=""
+	 * @generated
+	 */
+	String getPosition();
+
+		/**
+	 * Sets the value of the '{@link mda.MidiFilePart#getPosition <em>Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Position</em>' attribute.
+	 * @see #getPosition()
+	 * @generated
+	 */
+	void setPosition(String value);
 
 } // MidiFilePart

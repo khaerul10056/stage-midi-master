@@ -7,28 +7,22 @@ import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MetaEventListener;
 import javax.sound.midi.MetaMessage;
 import javax.sound.midi.MidiDevice;
-import javax.sound.midi.MidiEvent;
-import javax.sound.midi.MidiMessage;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Sequence;
 import javax.sound.midi.Sequencer;
-import javax.sound.midi.Track;
 import javax.sound.midi.Transmitter;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
-import javax.swing.text.Utilities;
 
 import mda.AbstractSessionItem;
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.Session;
 
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 import org.mda.ApplicationSession;
+import org.mda.MidiPlayerService;
 import org.mda.additionals.Additional;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -76,6 +70,8 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 	private MidiFilePart currentPlayingPart;
 	
 	private boolean configWaitAfterSong = true;
+
+	private MidiplayerMode mode;
 	
 	
 	
@@ -111,14 +107,30 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 	 * @throws InvalidMidiDeviceConfiguredException 
 	 * @throws NoMidiDeviceConfiguredException 
 	 */
-	public void start() throws MidiUnavailableException, NoMidiFileFoundException, InvalidMidiDataException, IOException, MidiFileInvalidBarDataException, NoMidiDeviceConfiguredException, InvalidMidiDeviceConfiguredException {
+	public void start(MidiplayerMode mode) throws MidiUnavailableException, NoMidiFileFoundException, InvalidMidiDataException, IOException, MidiFileInvalidBarDataException, NoMidiDeviceConfiguredException, InvalidMidiDeviceConfiguredException {
 		initDevices();
+		this.setMode(mode);
 		
 		loadSequences();
 		running = true;
 		thread = new Thread(this);
 		thread.setName("Juke");
 		thread.start();
+	}
+	
+	/**
+	 * save current position in song (in recording mode)
+	 * 
+	 * @param position
+	 */
+	public void savePartIntersection () {
+		if (isRunning() && getMode().equals(MidiplayerMode.RECORDING)) {
+		  String position = getCurrentPositionInSong();
+		  MidiFile midifile = (MidiFile) currentPlayingPart.eContainer();
+		  MidiFilePart nextPart = MidiPlayerService.getNextPart(midifile, currentPlayingPart);
+		  LOGGER.info("Save part intersection " + position + " for part " + nextPart);
+		  nextPart.setPosition(position);
+		}
 	}
 
 
@@ -448,6 +460,18 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 		
 		if (getSequencer() != null)
 			getSequencer().addMetaEventListener(this);
+	}
+
+	/**
+	 * getter
+	 * @return current mode player started with
+	 */
+	public MidiplayerMode getMode() {
+		return mode;
+	}
+
+	private void setMode(MidiplayerMode mode) {
+		this.mode = mode;
 	}
 
 

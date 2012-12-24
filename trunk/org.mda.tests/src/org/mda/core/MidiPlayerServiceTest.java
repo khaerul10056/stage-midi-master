@@ -34,7 +34,7 @@ public class MidiPlayerServiceTest {
   public static void beforeClass () {
     loadRootObject = MidiPlayerService.loadRootObject(new File ("conf/midiplayer.conf"));
   }
-
+  
 
   @Test
   public void removeReferences () {

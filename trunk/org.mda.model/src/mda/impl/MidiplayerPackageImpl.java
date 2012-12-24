@@ -398,6 +398,15 @@ public EReference getMidiFilePart_RefPart() {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMidiFilePart_Position() {
+		return (EAttribute)midiFilePartEClass.getEStructuralFeatures().get(4);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EClass getMidiFileTextLine() {
 		return midiFileTextLineEClass;
@@ -1083,6 +1092,7 @@ public EEnum getUserType() {
 		createEAttribute(midiFilePartEClass, MIDI_FILE_PART__PARTTYPE);
 		createEAttribute(midiFilePartEClass, MIDI_FILE_PART__BAR);
 		createEReference(midiFilePartEClass, MIDI_FILE_PART__REF_PART);
+		createEAttribute(midiFilePartEClass, MIDI_FILE_PART__POSITION);
 
 		midiFileTextLineEClass = createEClass(MIDI_FILE_TEXT_LINE);
 		createEReference(midiFileTextLineEClass, MIDI_FILE_TEXT_LINE__CHORD_PARTS);
@@ -1212,6 +1222,7 @@ public EEnum getUserType() {
 		initEAttribute(getMidiFilePart_Parttype(), this.getMidiFilePartType(), "parttype", null, 0, 1, MidiFilePart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMidiFilePart_Bar(), ecorePackage.getEInt(), "bar", null, 0, 1, MidiFilePart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMidiFilePart_RefPart(), this.getMidiFilePart(), null, "refPart", null, 0, 1, MidiFilePart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMidiFilePart_Position(), ecorePackage.getEString(), "position", "", 0, 1, MidiFilePart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(midiFileTextLineEClass, MidiFileTextLine.class, "MidiFileTextLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMidiFileTextLine_ChordParts(), this.getMidiFileChordPart(), null, "chordParts", null, 0, -1, MidiFileTextLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

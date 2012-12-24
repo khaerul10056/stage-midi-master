@@ -299,13 +299,22 @@ public interface MidiplayerPackage extends EPackage {
   int MIDI_FILE_PART__REF_PART = 3;
 
   /**
+	 * The feature id for the '<em><b>Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MIDI_FILE_PART__POSITION = 4;
+
+		/**
 	 * The number of structural features of the '<em>Midi File Part</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE_PART_FEATURE_COUNT = 4;
+	int MIDI_FILE_PART_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link mda.impl.MidiFileTextLineImpl <em>Midi File Text Line</em>}' class.
@@ -1175,6 +1184,17 @@ public interface MidiplayerPackage extends EPackage {
   EReference getMidiFilePart_RefPart();
 
   /**
+	 * Returns the meta object for the attribute '{@link mda.MidiFilePart#getPosition <em>Position</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Position</em>'.
+	 * @see mda.MidiFilePart#getPosition()
+	 * @see #getMidiFilePart()
+	 * @generated
+	 */
+	EAttribute getMidiFilePart_Position();
+
+		/**
 	 * Returns the meta object for class '{@link mda.MidiFileTextLine <em>Midi File Text Line</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2050,6 +2070,14 @@ public interface MidiplayerPackage extends EPackage {
     EReference MIDI_FILE_PART__REF_PART = eINSTANCE.getMidiFilePart_RefPart();
 
     /**
+		 * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MIDI_FILE_PART__POSITION = eINSTANCE.getMidiFilePart_Position();
+
+				/**
 		 * The meta object literal for the '{@link mda.impl.MidiFileTextLineImpl <em>Midi File Text Line</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

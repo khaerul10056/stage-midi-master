@@ -27,6 +27,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="parttype" eType="#//MidiFilePartType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="refPart" eType="#//MidiFilePart"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MidiFilePartType">
     <eLiterals name="REFRAIN"/>

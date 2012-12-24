@@ -52,15 +52,16 @@ public class GlobalKeyRegistryPresentationController extends DefaultPresentation
 			midiplayer.togglePause();
 		}
     	
-    	
         if (e.character == SWT.ESC)
           e.doit = false;
         
         if (e.keyCode == SWT.F4 && e.stateMask == SWT.ALT)
       	  end();
 
-        if (e.keyCode == SWT.ARROW_RIGHT && e.stateMask == SWT.NONE)
+        if (e.keyCode == SWT.ARROW_RIGHT && e.stateMask == SWT.NONE) {
+          midiplayer.savePartIntersection();
           nextSlide();
+        }
 
         if (e.keyCode == SWT.ARROW_LEFT && e.stateMask == SWT.NONE)
           previousSlide();
