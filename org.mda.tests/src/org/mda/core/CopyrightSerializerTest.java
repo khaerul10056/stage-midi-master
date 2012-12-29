@@ -58,7 +58,8 @@ public class CopyrightSerializerTest {
     List<String> serialize = serializer.serialize(file);
     Assert.assertFalse (serialize.isEmpty());
     Assert.assertEquals ("SONGNAME, Originaltitel: ORIGINALTITLE, Text: WRITERTEXT, Melodie: WRITERMUSIC,", serialize.get(0));
-    Assert.assertEquals ("Dt. Text: WRITERINLANDTEXT, (c) 2000, PUBLISHER, Für D,A,CH: PUBLISHERINLAND, genehmigtes Exemplar", serialize.get(1));
+    Assert.assertEquals ("Dt. Text: WRITERINLANDTEXT, (c) 2000, PUBLISHER, Für D,A,CH: PUBLISHERINLAND,", serialize.get(1)); 
+    Assert.assertEquals ("genehmigtes Exemplar", serialize.get(2));
 
   }
 
@@ -75,7 +76,8 @@ public class CopyrightSerializerTest {
     List<String> serialize = serializer.serialize(file);
     Assert.assertFalse (serialize.isEmpty());
     Assert.assertEquals ("SONGNAME, Originaltitel: ORIGINALTITLE,  Melodie & Text: WRITERMUSIC,", serialize.get(0));
-    Assert.assertEquals ("Dt. Text: WRITERINLANDTEXT, (c) 2000, PUBLISHER, Für D,A,CH: PUBLISHERINLAND, genehmigtes Exemplar", serialize.get(1));
+    Assert.assertEquals ("Dt. Text: WRITERINLANDTEXT, (c) 2000, PUBLISHER, Für D,A,CH: PUBLISHERINLAND,", serialize.get(1));
+    Assert.assertEquals ("genehmigtes Exemplar", serialize.get(2));
 
   }
 

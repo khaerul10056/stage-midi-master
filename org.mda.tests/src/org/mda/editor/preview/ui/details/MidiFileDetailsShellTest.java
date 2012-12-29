@@ -10,7 +10,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
-import org.mda.tests.StandaloneInjector;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
 
 public class MidiFileDetailsShellTest {
 	
@@ -24,12 +25,13 @@ public class MidiFileDetailsShellTest {
 	
 	@Test
 	public void build () {
-		ApplicationSession session = StandaloneInjector.getInstance(ApplicationSession.class);
+		InjectServiceMock.initialize();
+		ApplicationSession session = InjectService.getInstance(ApplicationSession.class);
 	    session.load(null);
 	    Shell shell = new Shell();
 	    final MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
 	    MidiFile file = (MidiFile) root.getGallery().getGalleryItems().get(0);
-	    MidiFileDetailsShell additionalshell = StandaloneInjector.getInstance(MidiFileDetailsShell.class); 
+	    MidiFileDetailsShell additionalshell = InjectService.getInstance(MidiFileDetailsShell.class); 
 	    additionalshell.build(shell, file);
 	    Assert.assertEquals ("", additionalshell.txtOriginaltitle.getText());
 	    Assert.assertEquals ("", additionalshell.txtPublisher.getText());

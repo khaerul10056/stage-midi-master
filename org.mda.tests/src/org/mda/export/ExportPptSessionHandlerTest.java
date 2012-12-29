@@ -4,20 +4,22 @@ import org.eclipse.swt.widgets.Shell;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.tests.StandaloneInjector;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
 
 public class ExportPptSessionHandlerTest {
 	
 	@Test
 	public void call () {
+		 InjectServiceMock.initialize();
 		
-		 ApplicationSession session = StandaloneInjector.getInstance(ApplicationSession.class);
+		 ApplicationSession session = InjectService.getInstance(ApplicationSession.class);
 		 session.load(null);
 		 
 		 session.setCurrentSession(session.getCurrentModel().getSessions().get(0));
 		 Shell shell = new Shell();
 		    
-		 ExportPptSessionHandler handler = StandaloneInjector.getInstance(ExportPptSessionHandler.class);
+		 ExportPptSessionHandler handler = InjectService.getInstance(ExportPptSessionHandler.class);
 		 handler.execute(shell);
 		 
 		 Assert.assertNotNull (handler.getUiHandler().lastShownMessageBox);

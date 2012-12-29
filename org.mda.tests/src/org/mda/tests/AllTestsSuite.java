@@ -16,6 +16,7 @@ import org.mda.commons.ui.user.UserLabelProviderTest;
 import org.mda.commons.ui.user.UserShellTest;
 import org.mda.core.ApplicationSessionTest;
 import org.mda.core.ChordTest;
+import org.mda.core.CopyrightSerializerTest;
 import org.mda.core.MidiPlayerServiceTest;
 import org.mda.core.UtilsTest;
 import org.mda.core.additionals.TestAdditionalsHandler;
@@ -32,6 +33,7 @@ import org.mda.export.ExportPptSessionHandlerTest;
 import org.mda.export.TestExportEngine;
 import org.mda.export.TestPdfExporter;
 import org.mda.export.TestPptExporter;
+import org.mda.find.TestSearchEngine;
 import org.mda.google.TestGoogleContacts;
 import org.mda.inject.InjectServiceTest;
 import org.mda.midi.MidiInfoTest;
@@ -63,6 +65,8 @@ import org.mda.transpose.TransposeTest;
   MidiFileStructTest.class,
   PresentationConfiguratorTest.class,
   InjectServiceTest.class,
+  TestSearchEngine.class,
+  CopyrightSerializerTest.class,
 
   //UI
   AdditionalShellTest.class,

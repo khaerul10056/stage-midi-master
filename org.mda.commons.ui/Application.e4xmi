@@ -5,7 +5,7 @@
       <children xsi:type="advanced:Perspective" xmi:id="_FyOQMM3vEeGENvdVhUHUNw" elementId="org.mda.commons.ui.perspective.admin" label="Administration">
         <children xsi:type="basic:PartSashContainer" xmi:id="_Ks6okM3vEeGENvdVhUHUNw" elementId="org.mda.commons.ui.partsashcontainer.0" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_cenvoM3vEeGENvdVhUHUNw" elementId="org.mda.commons.ui.partstack.left" containerData="30" selectedElement="_M34EQM3vEeGENvdVhUHUNw">
-            <children xsi:type="basic:Part" xmi:id="_M34EQM3vEeGENvdVhUHUNw" elementId="org.mda.commons.ui.part.sessionoverview" contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.SessionOverviewPart" label="Session Overview"/>
+            <children xsi:type="basic:Part" xmi:id="_M34EQM3vEeGENvdVhUHUNw" elementId="org.mda.commons.ui.part.sessionoverview" contributionURI="bundleclass://org.mda.commons.ui/org.mda.commons.ui.SessionOverviewPart" label=""/>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_duuFkM3vEeGENvdVhUHUNw" elementId="org.mda.commons.ui.partstack.right" containerData="70"/>
         </children>

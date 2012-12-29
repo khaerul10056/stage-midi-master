@@ -8,20 +8,30 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
 import org.mda.presenter.ui.ContentOverview;
 import org.mda.presenter.ui.PresentationContext;
-import org.mda.tests.StandaloneInjector;
 
 
 public class ContentOverviewTest {
-
-  private PresentationContext presentationContext = StandaloneInjector.getInstance(PresentationContext.class);
-  private ApplicationSession instance = StandaloneInjector.getInstance(ApplicationSession.class);
-  private ContentOverview overview = StandaloneInjector.getInstance(ContentOverview.class);
+	
+  private static PresentationContext presentationContext;
+  private static ApplicationSession instance;
+  private static ContentOverview overview;
+  
+  @BeforeClass
+  public static void beforeClass () {
+	  InjectServiceMock.initialize();
+	  presentationContext = InjectService.getInstance(PresentationContext.class);
+	  instance = InjectService.getInstance(ApplicationSession.class);
+	  overview = InjectService.getInstance(ContentOverview.class);
+  }
 
   @After
   public void tearDown () {
@@ -39,7 +49,7 @@ public class ContentOverviewTest {
   }
   
   private ContentOverview getContentOverview () {
-	  return StandaloneInjector.getInstance(ContentOverview.class);
+	  return InjectService.getInstance(ContentOverview.class);
   }
 
   @Test

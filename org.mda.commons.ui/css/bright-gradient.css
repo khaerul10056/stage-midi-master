@@ -1,78 +1,56 @@
-/*******************************************************************************
- * Copyright (c) 2009, 2010 Siemens AG and others.
- * 
- * All rights reserved. This program and the accompanying materials 
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html.
- * 
- * Contributors:
- *     Kai Tödter - initial implementation
- ******************************************************************************/
-
 Label {
-	font: Verdana 8px;
-	color: black;
+	font: Verdana 10px;
+	color: #e8e8e8;
 }
 
-Composite Label {
-	color: black;
+
+Shell {
+    background-color: #828282 #717171 40%;
 }
 
-#SeparatorLabel {
-	color: #1d659f;
+.MPart {
+	background-color: #777777 ;
+	swt-border-visible: false;
 }
 
-Text {
-	font: Verdana 8px;
+
+.MPartStack {
+  swt-tab-renderer: null;
+  swt-tab-height: 0px; /** To avoid lashes **/
+  padding: 0px 0px 0px;
+  swt-simple: false;
+  swt-mru-visible: false;
+  swt-shadow-visible: false;
+  swt-single: true;
 }
 
-Composite Text {
-	background-color: white;
-	color: black;
+#SearchField {
+     visibility: hidden;
 }
 
-SashForm {
-	background-color: #dddddd;
+Tree {
+	background-color: #999999 ;
+	selection-color: #000000;
 }
 
-#DetailsView {
-	background-color: #e8e8e8 #cccccc 60%;
-}
 
-Table {
-	background-color: #e8e8e8 #cccccc 60%;
-	color: black;
-	font: Verdana 8px;
-}
-
-.MTrimBar {
-	background-color: white #dddddd #eeeeee 35% 25% 25%;
-	color: white;
-	font: Verdana 8px;
-}
-
-ETabFolder {
-	simple: true;
+TreeItem {
+	background-color: #000000 ;
 }
 
 CTabItem {
-	color: black;
-	font: Verdana 8px;
+	color: rgb(150, 150, 150);
 }
 
 CTabItem:selected {
-	background-color: #cccccc #e8e8e8 60%;
-	font-weight: normal;
-	font: Verdana 8px;
+	background-color: #4a4a4a #101010 60%;
 }
 
 CTabItem.active:selected {
-	background-color: #ffffff #cccccc #dddddd 50% 50%;
-	color: #1d659f;
-	font: bold;
+	background-color: #777777 ;
 }
 
-Shell {
-    background-color: #e8e8e8 #cccccc 60%;
-}
+
+
+
+
