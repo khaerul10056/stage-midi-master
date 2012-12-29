@@ -14,7 +14,8 @@ import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
-import org.mda.tests.StandaloneInjector;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
 
 
 public class TestExportEngine {
@@ -28,8 +29,10 @@ public class TestExportEngine {
     final String USER1 = "USER1";
     final String MAIL1 = "markus.oley@t-online.de";
     final String NOTSONGBOOKUSER = "NOTSONGBOOKUSER";
+    
+    InjectServiceMock.initialize();
 
-    ApplicationSession appsession = StandaloneInjector.getInstance(ApplicationSession.class);
+    ApplicationSession appsession = InjectService.getInstance(ApplicationSession.class);
     appsession.load(null);
     appsession.getCurrentModel().getConfig().setPdfExportPath("tmp/export");
     File path = new File ("tmp/export");
@@ -53,7 +56,7 @@ public class TestExportEngine {
     model.getConfig().setMailserverUser("USER");
 
 
-    ExportEngine engine = StandaloneInjector.getInstance(ExportEngine.class);
+    ExportEngine engine = InjectService.getInstance(ExportEngine.class);
 
     exportSongbooks = engine.exportSongbooks();
 

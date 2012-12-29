@@ -6,9 +6,10 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.tests.StandaloneInjector;
 
 
 public class NewPartShellTester {
@@ -17,7 +18,8 @@ public class NewPartShellTester {
 
   /** @param args */
   public static void main (String[] args) throws Exception {
-    ApplicationSession session = StandaloneInjector.getInstance(ApplicationSession.class);
+	InjectServiceMock.initialize();
+    ApplicationSession session = InjectService.getInstance(ApplicationSession.class);
     session.load(null);
     Shell shell = new Shell();
     MidiFile file = (MidiFile) session.getCurrentModel().getGallery().getGalleryItems().get(0);

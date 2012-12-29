@@ -12,13 +12,22 @@ import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.find.SearchEnginePanel;
 import org.mda.find.SearchResult;
+import org.mda.inject.InjectService;
+
+import com.google.inject.Inject;
 
 public class SearchEngineHandler {
 	
+	@Inject
+	private ApplicationSession appsession;
 	
+	@Inject
+	private SearchEnginePanel searchenginepanel;
 	
 	@Execute
-	public void execute(final ApplicationSession appsession, final SearchEnginePanel searchenginepanel) {
+	public void execute() {
+		InjectService.injectObject(this);
+		
 		searchenginepanel.build();
 		searchenginepanel.getShell().addDisposeListener(new DisposeListener() {
 			

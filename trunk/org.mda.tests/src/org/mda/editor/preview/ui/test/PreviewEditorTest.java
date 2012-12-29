@@ -22,9 +22,13 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Listener;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.calculator.Slide;
+import org.mda.editor.preview.ui.PreviewEditorComposite;
 import org.mda.editor.preview.ui.parts.ContentPart;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.ui.test.MidiFileCreator;
@@ -40,10 +44,7 @@ public class PreviewEditorTest extends AbstractEditorTest {
 
   
 
-  @BeforeClass
-  public static void setUp () {
-    applicationSession.load(null);
-  }
+  
 
   @Test
   public void synchronizeEmptyChordlineWhenTextWasModified () {
@@ -146,7 +147,7 @@ public class PreviewEditorTest extends AbstractEditorTest {
     prepareEditor(song);
     
     ContentPart contentPanel = editor.getContentpanel();
-    assertEquals (1, contentPanel.getTextLines().size());
+    assertEquals ("Textlines invalid: <" + contentPanel.getTextLines() + ">", 1, contentPanel.getTextLines().size());
   }
   
   

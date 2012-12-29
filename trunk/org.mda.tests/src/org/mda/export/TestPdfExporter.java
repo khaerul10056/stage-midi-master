@@ -3,7 +3,9 @@ package org.mda.export;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import mda.AbstractSessionItem;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,9 +17,10 @@ import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.commons.ui.calculator.SlideType;
 import org.mda.export.pdf.PdfExporter;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.tests.StandaloneInjector;
 
 
 public class TestPdfExporter {
@@ -26,7 +29,7 @@ public class TestPdfExporter {
 
   private File tmpFile = new File ("tmp/export.pdf");
 
-  private static ApplicationSession appSession = StandaloneInjector.getInstance(ApplicationSession.class);
+  private static ApplicationSession appSession;
 
   @Before
   public void before () {
@@ -42,6 +45,8 @@ public class TestPdfExporter {
 
   @BeforeClass
   public static void beforeClass () {
+	InjectServiceMock.initialize();
+	appSession = InjectService.getInstance(ApplicationSession.class);
     appSession.load(null);
     appSession.getGlobalConfs().setShowGrid(true);
     appSession.getGlobalConfs().setDefaultBorder(0);
@@ -57,7 +62,7 @@ public class TestPdfExporter {
   }
   
   private PdfExporter getExporter () {
-	  return StandaloneInjector.getInstance(PdfExporter.class);
+	  return InjectService.getInstance(PdfExporter.class);
   }
   @Test
   public void checkExportWithChords () {

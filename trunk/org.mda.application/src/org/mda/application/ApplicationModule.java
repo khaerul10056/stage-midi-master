@@ -11,7 +11,7 @@ public class ApplicationModule implements Module {
 	@Override
 	public void configure(Binder binder) {
 		
-		binder.bind(ApplicationSession.class).to(ApplicationSession.class).in(Singleton.class);
+		binder.bind(ApplicationSession.class).in(Singleton.class);
 	}
 
 	

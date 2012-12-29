@@ -21,7 +21,7 @@
          </property>
          <property
                name="applicationCSS"
-               value="platform:/plugin/org.mda.commons.ui/css/default.css">
+               value="platform:/plugin/org.mda.commons.ui/css/bright-gradient.css">
          </property>
          <property
                name="lifeCycleURI"

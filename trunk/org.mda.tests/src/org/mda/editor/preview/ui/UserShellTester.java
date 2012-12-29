@@ -13,20 +13,22 @@ import org.mda.ApplicationSession;
 import org.mda.commons.ui.user.IUserTab;
 import org.mda.commons.ui.user.UserGeneralTab;
 import org.mda.commons.ui.user.UserShell;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
 import org.mda.presenter.ui.config.UserPresentationConfigTab;
-import org.mda.tests.StandaloneInjector;
 
 
 public class UserShellTester {
   /** @param args */
   public static void main (String[] args) throws Exception {
-    ApplicationSession session = StandaloneInjector.getInstance(ApplicationSession.class);
+	InjectServiceMock.initialize();
+    ApplicationSession session = InjectService.getInstance(ApplicationSession.class);
     session.load(null);
     MidiPlayerRoot model = session.getCurrentModel();
     
     Collection <IUserTab> userTabs = new ArrayList<IUserTab>(); 
-    userTabs.add(StandaloneInjector.getInstance(UserGeneralTab.class));
-    userTabs.add(StandaloneInjector.getInstance(UserPresentationConfigTab.class));
+    userTabs.add(InjectService.getInstance(UserGeneralTab.class));
+    userTabs.add(InjectService.getInstance(UserPresentationConfigTab.class));
     
     if (model.getUsers().size() == 0) {
       model.getUsers().add (UserShellTester.createUser("Name1", "Vorname1", UserType.FRIEND, "vorname1.name1@provider.de"));

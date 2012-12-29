@@ -6,13 +6,15 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.tests.StandaloneInjector;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
 
 public class NewPartShellTest {
 	
 	@Test
 	public void build () {
-		 ApplicationSession session = StandaloneInjector.getInstance(ApplicationSession.class);
+		 InjectServiceMock.initialize();
+		 ApplicationSession session = InjectService.getInstance(ApplicationSession.class);
 		    session.load(null);
 		    Shell shell = new Shell();
 		    MidiFile file = (MidiFile) session.getCurrentModel().getGallery().getGalleryItems().get(0);

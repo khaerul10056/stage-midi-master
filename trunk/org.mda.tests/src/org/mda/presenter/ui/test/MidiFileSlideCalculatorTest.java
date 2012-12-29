@@ -3,15 +3,18 @@ package org.mda.presenter.ui.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
 import java.io.File;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+
 import mda.MidiFile;
 import mda.MidiFilePart;
 import mda.MidiFilePartType;
 import mda.MidiFileTextLine;
 import mda.MidiPlayerRoot;
+
 import org.eclipse.swt.graphics.Point;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -24,16 +27,17 @@ import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
 import org.mda.commons.ui.calculator.Slide;
 import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.commons.ui.calculator.SlideType;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.tests.StandaloneInjector;
 
 
 public class MidiFileSlideCalculatorTest {
 
   private static final Log LOGGER  = LogFactory.getLogger(MidiFileSlideCalculatorTest.class);
 
-  private static ApplicationSession appSession = StandaloneInjector.getInstance(ApplicationSession.class);
+  private static ApplicationSession appSession;
 
   final String PUBLISHER = "PUBLISHER";
   final String PUBLISHERINLAND = "PUBLISHERINLAND";
@@ -41,6 +45,8 @@ public class MidiFileSlideCalculatorTest {
 
   @BeforeClass
   public static void beforeClass () {
+	InjectServiceMock.initialize(); 
+	appSession = InjectService.getInstance(ApplicationSession.class);
     appSession.load(null);
   }
 
@@ -76,7 +82,7 @@ public class MidiFileSlideCalculatorTest {
   }
   
   private MidiFileSlideCalculator getCalculator () {
-	  return StandaloneInjector.getInstance(MidiFileSlideCalculator.class);
+	  return InjectService.getInstance(MidiFileSlideCalculator.class);
   }
 
   @Test

@@ -2,6 +2,7 @@ package org.mda.presenter.ui;
 
 import mda.MidiFile;
 import mda.MidiFilePart;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.graphics.Point;
 import org.junit.After;
@@ -11,17 +12,22 @@ import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.calculator.Slide;
-import org.mda.tests.StandaloneInjector;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
+
 
 
 public class PresentationContextTest {
 
-  private PresentationContext presentationContext = StandaloneInjector.getInstance(PresentationContext.class);
-  private ApplicationSession appsession = StandaloneInjector.getInstance(ApplicationSession.class);
+  private PresentationContext presentationContext;
+  private ApplicationSession appsession;
   
 
   @Before
   public void setup () {
+	InjectServiceMock.initialize();
+	presentationContext = InjectService.getInstance(PresentationContext.class);
+	appsession = InjectService.getInstance(ApplicationSession.class);
     presentationContext.clear();
   }
 

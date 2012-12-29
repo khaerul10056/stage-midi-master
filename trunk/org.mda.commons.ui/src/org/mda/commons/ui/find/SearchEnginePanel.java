@@ -5,9 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import mda.MidiFile;
-import mda.MidiplayerFactory;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
@@ -16,7 +14,6 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
@@ -30,7 +27,6 @@ import org.mda.find.SearchResult;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
-@Creatable
 public class SearchEnginePanel  {
 	
 	private static final Log LOGGER  = LogFactory.getLogger(SearchEnginePanel.class);

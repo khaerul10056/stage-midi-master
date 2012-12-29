@@ -12,9 +12,11 @@ public class MidiDeviceContentProviderTest {
 	public void provide () {
 		MidiDeviceContentProvider contentProvider = new MidiDeviceContentProvider(true, true, true); 
 		Object[] elements = contentProvider.getElements(new MidiInfo());
-		LabelProvider defaultLabelProvider = new LabelProvider(); 
-		String text = defaultLabelProvider.getText(elements [0]);
-		Assert.assertTrue (text.length() > 0);
+		LabelProvider defaultLabelProvider = new LabelProvider();
+		String text0 = defaultLabelProvider.getText(elements [0]);
+		String text1 = defaultLabelProvider.getText(elements [1]);
+		Assert.assertTrue(text0.trim().isEmpty());
+		Assert.assertFalse(text1.trim().isEmpty());
 	}
 
 }

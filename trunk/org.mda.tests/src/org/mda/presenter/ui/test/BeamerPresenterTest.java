@@ -20,11 +20,12 @@ import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
 import org.mda.presenter.ui.BeamerPresenter;
 import org.mda.presenter.ui.DefaultPresentationController;
 import org.mda.presenter.ui.PresentationContext;
 import org.mda.presenter.ui.SpecialSlide;
-import org.mda.tests.StandaloneInjector;
 
 
 public class BeamerPresenterTest {
@@ -40,13 +41,17 @@ public class BeamerPresenterTest {
   private MidiFilePart preLastPartOfLastSong;
   private MidiFilePart firstPartOfLastSong;
   private MidiFile prelastSong;
-  private static PresentationContext presentationContext = StandaloneInjector.getInstance(PresentationContext.class);
-  private static ApplicationSession appsession = StandaloneInjector.getInstance(ApplicationSession.class);
-  private static DefaultMidiFileContentEditorConfig config = StandaloneInjector.getInstance(DefaultMidiFileContentEditorConfig.class);
+  private static PresentationContext presentationContext;
+  private static ApplicationSession appsession;
+  private static DefaultMidiFileContentEditorConfig config;
   
 
   @BeforeClass
   public static void beforeClass () {
+	InjectServiceMock.initialize();
+	presentationContext = InjectService.getInstance(PresentationContext.class);
+	appsession = InjectService.getInstance(ApplicationSession.class);
+	config = InjectService.getInstance(DefaultMidiFileContentEditorConfig.class);
     session = root.getSessions().get(0);
     appsession.load(null);
   }
@@ -55,9 +60,9 @@ public class BeamerPresenterTest {
   public void before () {
     presentationContext.setCurrentSession(session, config, new Point (400, 200));
 
-    presenter = StandaloneInjector.getInstance(BeamerPresenter.class); 
+    presenter = InjectService.getInstance(BeamerPresenter.class); 
     presenter.build(Display.getDefault(), session, false);
-    controller = StandaloneInjector.getInstance(DefaultPresentationController.class);
+    controller = InjectService.getInstance(DefaultPresentationController.class);
     presentationContext.registerController(controller);
     presentationContext.registerView(presenter);
 

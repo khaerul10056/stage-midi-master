@@ -3,9 +3,11 @@ package org.mda.export;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import mda.AbstractSessionItem;
 import mda.MidiFile;
 import mda.MidiFilePartType;
+
 import org.apache.poi.hslf.model.TextBox;
 import org.apache.poi.hslf.usermodel.SlideShow;
 import org.eclipse.swt.SWT;
@@ -20,19 +22,22 @@ import org.mda.ApplicationSession;
 import org.mda.Utils;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.export.powerpoint.PptExporter;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
 import org.mda.presenter.ui.test.MidiFileCreator;
-import org.mda.tests.StandaloneInjector;
 
 
 public class TestPptExporter {
 
   private File tmpFile = new File ("tmp/export.ppt");
 
-  private static ApplicationSession appSession = StandaloneInjector.getInstance(ApplicationSession.class);
+  private static ApplicationSession appSession;
 
 
   @BeforeClass
   public static void beforeClass () {
+	InjectServiceMock.initialize();
+	appSession = InjectService.getInstance(ApplicationSession.class);
     appSession.load(null);
   }
 
@@ -50,7 +55,7 @@ public class TestPptExporter {
 
 
   private PptExporter getExporter () {
-	  return StandaloneInjector.getInstance(PptExporter.class);
+	  return InjectService.getInstance(PptExporter.class);
   }
 
   @Test

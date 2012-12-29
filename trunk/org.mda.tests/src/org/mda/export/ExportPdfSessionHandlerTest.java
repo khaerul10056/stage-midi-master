@@ -4,20 +4,24 @@ import org.eclipse.swt.widgets.Shell;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.tests.StandaloneInjector;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
 
 public class ExportPdfSessionHandlerTest {
 	
 	@Test
 	public void call () {
 		
-		 ApplicationSession session = StandaloneInjector.getInstance(ApplicationSession.class);
+		 InjectServiceMock.initialize(); 
+		 
+		
+		 ApplicationSession session = InjectService.getInstance(ApplicationSession.class);
 		 session.load(null);
 		 
 		 session.setCurrentSession(session.getCurrentModel().getSessions().get(0));
 		 Shell shell = new Shell();
 		    
-		 ExportPdfSessionHandler handler = StandaloneInjector.getInstance(ExportPdfSessionHandler.class);
+		 ExportPdfSessionHandler handler = InjectService.getInstance(ExportPdfSessionHandler.class);
 		 handler.execute(shell);
 		 
 		 Assert.assertNotNull (handler.getUiHandler().lastShownMessageBox);

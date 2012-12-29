@@ -20,7 +20,7 @@ public class InjectService {
 
 	private static final Log LOGGER = LogFactory.getLogger(InjectService.class);
 
-	private static Collection<Module> cachedModules;
+	static Collection<Module> cachedModules;
 	
 	private static Injector injector;
 
@@ -43,8 +43,12 @@ public class InjectService {
 					}
 				}
 			}
-			injector = Guice.createInjector(cachedModules);
+			
 		}
+		
+		if (injector == null)
+			injector = Guice.createInjector(cachedModules);
+		
 		return cachedModules;
 
 	}
