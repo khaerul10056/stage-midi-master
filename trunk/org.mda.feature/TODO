@@ -1,3 +1,10 @@
+Test			RunSessionShell
+Test			Midiplayer
+Test			MidiDevicesPreferencePage
+Test			StartPresentation
+Test			RecordPresentation
+
+
 Bug             Presentation	Equal parts may be layouted in different ways
 Bug				Midiplayer 		After recording song and ending, there seems to be a midiplayer left in memory 
 Bug             Additionals     When selecting a foregroundcolor selection of backgroundimage is canceled new
