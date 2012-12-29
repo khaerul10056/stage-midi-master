@@ -78,6 +78,11 @@ public class BeamerPresenterTest {
 
 
 
+  
+  @Test
+  public void paint () {
+	  presenter.getShell().computeSize(400, 400);
+  }
 
   @Test
   public void nextAndPreviousSlide () {
