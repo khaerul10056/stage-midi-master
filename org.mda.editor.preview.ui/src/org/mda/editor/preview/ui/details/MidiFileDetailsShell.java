@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
@@ -40,6 +41,8 @@ public class MidiFileDetailsShell  {
   private MidiFile midifile;
 
   Label lblPicture;
+  
+  Spinner spnMidiControl;
 
   //copyright-infos
   Text txtOriginaltitle;
@@ -297,6 +300,12 @@ private Text txtMidifile;
     txtPublisherInland = new Text (shell, SWT.NONE);
     txtPublisherInland.setText(midifile.getCopyright() != null && midifile.getCopyright().getPublisherInland() != null ? midifile.getCopyright().getPublisherInland() : "");
     txtPublisherInland.setLayoutData(getContentData(true));
+    
+    addLabel ("Send program change:");
+    spnMidiControl = new Spinner(shell, SWT.NONE);
+    spnMidiControl.setMinimum(-1);
+    spnMidiControl.setSelection(midifile.getMidicontrol());
+    spnMidiControl.setLayoutData(getContentData(true));
 
     buildButtons();
     
@@ -337,6 +346,7 @@ private Text txtMidifile;
     midifile.setBackgroundColor(! colorLabelBackground.getBackground().equals(defaultBackground) ? Utils.colorToString(colorLabelBackground.getBackground()) : null);
     midifile.setForegroundColor(! colorLabelForeground.getBackground().equals(defaultForeground) ? Utils.colorToString(colorLabelForeground.getBackground()) : null);
     midifile.setPic(currentBackgroundPicture != null ? currentBackgroundPicture.getKey() : null);
+    midifile.setMidicontrol(spnMidiControl.getSelection());
     
 
     if (midifile.getCopyright() == null)

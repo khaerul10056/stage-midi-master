@@ -37,6 +37,7 @@ import org.mda.find.TestSearchEngine;
 import org.mda.google.TestGoogleContacts;
 import org.mda.inject.InjectServiceTest;
 import org.mda.midi.MidiInfoTest;
+import org.mda.midi.mapping.MappingServiceTest;
 import org.mda.midi.ui.MidiDeviceContentProviderTest;
 import org.mda.presenter.ui.PresentationContextTest;
 import org.mda.presenter.ui.config.PresentationSchemaEditorBuilderTest;
@@ -44,6 +45,7 @@ import org.mda.presenter.ui.test.BeamerPresenterTest;
 import org.mda.presenter.ui.test.ContentOverviewTest;
 import org.mda.presenter.ui.test.MidiFileSlideCalculatorTest;
 import org.mda.struct.MidiFileStructTest;
+import org.mda.transpose.PitchTest;
 import org.mda.transpose.TransposeTest;
 
 
@@ -102,6 +104,8 @@ import org.mda.transpose.TransposeTest;
   MidiDeviceContentProviderTest.class, 
   MidiInfoTest.class,
   MidiFileSlideCalculatorTest.class,
+  MappingServiceTest.class, 
+  PitchTest.class,
 
 
   //Export

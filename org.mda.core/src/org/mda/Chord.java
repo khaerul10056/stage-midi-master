@@ -1,14 +1,14 @@
 package org.mda;
 
 import org.mda.transpose.InvalidChordException;
-import org.mda.transpose.Note;
+import org.mda.transpose.Pitch;
 import org.mda.transpose.NoteAddition;
 import org.mda.transpose.Scale;
 
 public final class Chord {
 
-  private Note main;
-  private Note bass;
+  private Pitch main;
+  private Pitch bass;
   private NoteAddition addition;
 
   private boolean basepartdividerInserted = false;
@@ -30,21 +30,21 @@ public final class Chord {
   private ChordRenderToken renderNotePart (final String chordAsString) throws InvalidChordException {
 
     //For example Am
-    for (Note nextNote: Note.values()) {
+    for (Pitch nextNote: Pitch.values()) {
       if (chordAsString.startsWith(nextNote.getLabel() + "m")) {
         return new ChordRenderToken(true, nextNote, nextNote.getLabel().length() + 1);
       }
     }
 
     //For example A
-    for (Note nextNote: Note.values()) {
+    for (Pitch nextNote: Pitch.values()) {
       if (chordAsString.startsWith(nextNote.getLabel())) {
         return new ChordRenderToken(false, nextNote, nextNote.getLabel().length());
       }
     }
 
     //For example a
-    for (Note nextNote: Note.values()) {
+    for (Pitch nextNote: Pitch.values()) {
       if (chordAsString.startsWith(nextNote.getLabel().toLowerCase())) {
         return new ChordRenderToken(true, nextNote, nextNote.getLabel().length());
       }
@@ -107,7 +107,7 @@ public final class Chord {
 
   }
 
-  public Note getMain() {
+  public Pitch getMain() {
     return main;
   }
 
@@ -134,15 +134,15 @@ public String toString () {
     return addition;
   }
 
-  public void setBass(Note bass) {
+  public void setBass(Pitch bass) {
     this.bass = bass;
   }
 
-  public Note getBass() {
+  public Pitch getBass() {
     return bass;
   }
 
-  public void transpose (final Scale scale, int diff, Note to) {
+  public void transpose (final Scale scale, int diff, Pitch to) {
     if (getBass() != null)
       bass = scale.transpose(getBass(), diff, to);
 

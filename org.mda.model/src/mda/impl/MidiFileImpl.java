@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link mda.impl.MidiFileImpl#getPic <em>Pic</em>}</li>
  *   <li>{@link mda.impl.MidiFileImpl#getKey <em>Key</em>}</li>
  *   <li>{@link mda.impl.MidiFileImpl#getCopyright <em>Copyright</em>}</li>
+ *   <li>{@link mda.impl.MidiFileImpl#getMidicontrol <em>Midicontrol</em>}</li>
  * </ul>
  * </p>
  *
@@ -94,6 +95,24 @@ public class MidiFileImpl extends AbstractSessionItemImpl implements MidiFile {
 	 */
   protected Copyright copyright;
     /**
+	 * The default value of the '{@link #getMidicontrol() <em>Midicontrol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMidicontrol()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MIDICONTROL_EDEFAULT = -1;
+		/**
+	 * The cached value of the '{@link #getMidicontrol() <em>Midicontrol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMidicontrol()
+	 * @generated
+	 * @ordered
+	 */
+	protected int midicontrol = MIDICONTROL_EDEFAULT;
+				/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -221,6 +240,27 @@ public void setCopyright(Copyright newCopyright) {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getMidicontrol() {
+		return midicontrol;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMidicontrol(int newMidicontrol) {
+		int oldMidicontrol = midicontrol;
+		midicontrol = newMidicontrol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE__MIDICONTROL, oldMidicontrol, midicontrol));
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -248,6 +288,8 @@ public void setCopyright(Copyright newCopyright) {
 				return getKey();
 			case MidiplayerPackage.MIDI_FILE__COPYRIGHT:
 				return getCopyright();
+			case MidiplayerPackage.MIDI_FILE__MIDICONTROL:
+				return getMidicontrol();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -274,6 +316,9 @@ public void setCopyright(Copyright newCopyright) {
 			case MidiplayerPackage.MIDI_FILE__COPYRIGHT:
 				setCopyright((Copyright)newValue);
 				return;
+			case MidiplayerPackage.MIDI_FILE__MIDICONTROL:
+				setMidicontrol((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -298,6 +343,9 @@ public void setCopyright(Copyright newCopyright) {
 			case MidiplayerPackage.MIDI_FILE__COPYRIGHT:
 				setCopyright((Copyright)null);
 				return;
+			case MidiplayerPackage.MIDI_FILE__MIDICONTROL:
+				setMidicontrol(MIDICONTROL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -318,6 +366,8 @@ public void setCopyright(Copyright newCopyright) {
 				return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
 			case MidiplayerPackage.MIDI_FILE__COPYRIGHT:
 				return copyright != null;
+			case MidiplayerPackage.MIDI_FILE__MIDICONTROL:
+				return midicontrol != MIDICONTROL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -336,6 +386,8 @@ public void setCopyright(Copyright newCopyright) {
 		result.append(pic);
 		result.append(", key: ");
 		result.append(key);
+		result.append(", midicontrol: ");
+		result.append(midicontrol);
 		result.append(')');
 		return result.toString();
 	}

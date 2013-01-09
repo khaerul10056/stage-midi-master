@@ -348,6 +348,15 @@ public EReference getMidiFile_Copyright() {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMidiFile_Midicontrol() {
+		return (EAttribute)midiFileEClass.getEStructuralFeatures().get(4);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EClass getMidiFilePart() {
 		return midiFilePartEClass;
@@ -1086,6 +1095,7 @@ public EEnum getUserType() {
 		createEAttribute(midiFileEClass, MIDI_FILE__PIC);
 		createEAttribute(midiFileEClass, MIDI_FILE__KEY);
 		createEReference(midiFileEClass, MIDI_FILE__COPYRIGHT);
+		createEAttribute(midiFileEClass, MIDI_FILE__MIDICONTROL);
 
 		midiFilePartEClass = createEClass(MIDI_FILE_PART);
 		createEReference(midiFilePartEClass, MIDI_FILE_PART__TEXTLINES);
@@ -1216,6 +1226,7 @@ public EEnum getUserType() {
 		initEAttribute(getMidiFile_Pic(), ecorePackage.getEString(), "pic", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMidiFile_Key(), ecorePackage.getEString(), "key", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMidiFile_Copyright(), this.getCopyright(), null, "copyright", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMidiFile_Midicontrol(), ecorePackage.getEInt(), "midicontrol", "-1", 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(midiFilePartEClass, MidiFilePart.class, "MidiFilePart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMidiFilePart_Textlines(), this.getMidiFileTextLine(), null, "textlines", null, 0, -1, MidiFilePart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

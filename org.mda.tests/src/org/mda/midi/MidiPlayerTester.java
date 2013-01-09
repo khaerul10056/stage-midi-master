@@ -1,39 +1,64 @@
 package org.mda.midi;
 
-import org.junit.Test;
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.ShortMessage;
+
 import org.mda.inject.InjectServiceMock;
+
 
 public class MidiPlayerTester {
 	
 	
 	 public static boolean useExternalSynth = true;
+	 
+	 static int instrument = 45;
+	    static int note = 100;
+	    static int timbre = 0;
+	    static int force = 100;
 
-	    @Test
-	    public void startPlayer () throws Exception {
+	    public static void main (String args []) throws Exception {
+	    	
 	    	InjectServiceMock.initialize();
-	    	throw new IllegalStateException("Not yet implemented");
 	    	
-	    	
-//	    	ApplicationSession applicationsession = InjectService.getInstance(ApplicationSession.class);
-//	    	PresentationContext presentationcontext = InjectService.getInstance(PresentationContext.class);
-//	        applicationsession.load(null);
-//	        MidiInfo info = new MidiInfo();
-//	        for (MidiDeviceInfo devinfo: info.getAllMidiDevices(true, true)) {
-//	        	System.out.println ("-" + devinfo.getKey());
+	    	MidiInfo info = new MidiInfo();
+	        for (MidiDeviceInfo devinfo: info.getAllMidiDevices(true, true)) {
+	        	System.out.println ("-" + devinfo.getKey());
+	        }
+	        MidiDeviceInfo findDeviceIndex = info.findDeviceInfoRecieving("M1 [hw:1,0,0]");
+	        
+	        ShortMessage instrumentChange = new ShortMessage();
+	        
+	        ShortMessage myMsg = new ShortMessage();
+	        // Start playing the note Middle C (60), 
+	        // moderately loud (velocity = 93).
+	        myMsg.setMessage(ShortMessage.NOTE_ON, 0, 60, 00);
+	        MidiSystem.getReceiver().send(myMsg, 0);
+	        myMsg.setMessage(ShortMessage.NOTE_OFF, 0, 60, 00);
+	        MidiSystem.getReceiver().send(myMsg, 0);
+	        
+	        
+	        
+	        
+	        instrumentChange.setMessage(ShortMessage.PROGRAM_CHANGE, 0, 32, 0);
+	        findDeviceIndex.getDevice().getReceiver().send(instrumentChange, 0);
+	        
+	        instrumentChange.setMessage(ShortMessage.PROGRAM_CHANGE, 0, 0, 2);
+	        findDeviceIndex.getDevice().getReceiver().send(instrumentChange, 0);
+	        
+	        instrumentChange.setMessage(ShortMessage.PROGRAM_CHANGE, 0, 2, 0);
+	        findDeviceIndex.getDevice().getReceiver().send(instrumentChange, 0);
+	        
+//	        for (int i = 0; i < 16; i++) {
+//	          System.out.println ("Sending on channel " + i); 
+//	          instrumentChange.setMessage(ShortMessage.PROGRAM_CHANGE, i, 16, 16);
+//	          findDeviceIndex.getDevice().getReceiver().send(instrumentChange, 0);
+//	          
+//	          Thread.sleep(1000);
 //	        }
-//	        MidiDeviceInfo findDeviceIndex = info.findDeviceInfoTransmitting("M1 [hw:1,0,0]");
-//	        applicationsession.getConfig().setMididevice(findDeviceIndex.getKey());
-//	        
-//	        presentationcontext.setCurrentSession(applicationsession.getCurrentModel().getSessions().get(0), new DefaultMidiFileContentEditorConfig(), new Point (0,0));
-//	        System.out.println ("Set current session: " + presentationcontext.getCurrentSession().getName());
-//	        
-//	        MidiPlayer player = InjectService.getInstance(MidiPlayer.class);
-//	        GlobalKeyRegistryPresentationController controller = new GlobalKeyRegistryPresentationController();
-//	        presentationcontext.registerController(controller);
-//	        player.start(MidiplayerMode.PLAYING);
-//	        while (player.isRunning()) {
-//	        	
-//	        }
-//	        	
+	        
+	        System.out.println ("Done");
+	        
+	        
+	        	
 	    }
 }

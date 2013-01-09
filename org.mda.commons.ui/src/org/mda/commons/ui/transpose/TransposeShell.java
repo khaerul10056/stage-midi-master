@@ -19,7 +19,7 @@ import org.mda.commons.ui.util.UIUtils;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.transpose.InvalidChordException;
-import org.mda.transpose.Note;
+import org.mda.transpose.Pitch;
 import org.mda.transpose.Scale;
 import org.mda.transpose.ScaleStep;
 import org.mda.transpose.TransposeService;
@@ -77,7 +77,7 @@ public class TransposeShell extends Shell {
 
     if (midifile.getKey() != null) {
     try {
-    Note testNote = Note.valueOf(midifile.getKey());
+    Pitch testNote = Pitch.valueOf(midifile.getKey());
     if (testNote != null) {
       ScaleStep foundStep = scale.findNote(testNote);
       if (foundStep != null)
@@ -95,7 +95,7 @@ public class TransposeShell extends Shell {
 
   }
 
-  private Note getSelectedChor (ComboViewer viewer) {
+  private Pitch getSelectedChor (ComboViewer viewer) {
     StructuredSelection selection = (StructuredSelection) viewer.getSelection();
     ScaleStep step = (ScaleStep) selection.getFirstElement();
     return step.getNote1();
@@ -110,8 +110,8 @@ public class TransposeShell extends Shell {
       @Override
       public void widgetSelected (SelectionEvent arg0) {
 
-        Note fromNote = getSelectedChor(viewer1);
-        Note toNote = getSelectedChor(viewer2);
+        Pitch fromNote = getSelectedChor(viewer1);
+        Pitch toNote = getSelectedChor(viewer2);
 
         TransposeService transposeService = new TransposeService();
         try {

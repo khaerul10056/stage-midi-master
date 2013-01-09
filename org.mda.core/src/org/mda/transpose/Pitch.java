@@ -1,6 +1,6 @@
 package org.mda.transpose;
 
-public enum Note {
+public enum Pitch {
   CIS ("C#"),
   DES ("Db"),
   DIS ("D#"),
@@ -21,7 +21,7 @@ public enum Note {
   HES ("Hes"),
   H ("H");
 
-  private Note (final String label) {
+  private Pitch (final String label) {
     this.label = label;
   }
 

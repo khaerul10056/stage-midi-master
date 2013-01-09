@@ -244,13 +244,22 @@ public interface MidiplayerPackage extends EPackage {
   int MIDI_FILE__COPYRIGHT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 3;
 
     /**
+	 * The feature id for the '<em><b>Midicontrol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MIDI_FILE__MIDICONTROL = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 4;
+
+				/**
 	 * The number of structural features of the '<em>Midi File</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE_FEATURE_COUNT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 4;
+	int MIDI_FILE_FEATURE_COUNT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link mda.impl.MidiFilePartImpl <em>Midi File Part</em>}' class.
@@ -1130,6 +1139,17 @@ public interface MidiplayerPackage extends EPackage {
   EReference getMidiFile_Copyright();
 
     /**
+	 * Returns the meta object for the attribute '{@link mda.MidiFile#getMidicontrol <em>Midicontrol</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Midicontrol</em>'.
+	 * @see mda.MidiFile#getMidicontrol()
+	 * @see #getMidiFile()
+	 * @generated
+	 */
+	EAttribute getMidiFile_Midicontrol();
+
+				/**
 	 * Returns the meta object for class '{@link mda.MidiFilePart <em>Midi File Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2028,6 +2048,14 @@ public interface MidiplayerPackage extends EPackage {
     EReference MIDI_FILE__COPYRIGHT = eINSTANCE.getMidiFile_Copyright();
 
         /**
+		 * The meta object literal for the '<em><b>Midicontrol</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MIDI_FILE__MIDICONTROL = eINSTANCE.getMidiFile_Midicontrol();
+
+								/**
 		 * The meta object literal for the '{@link mda.impl.MidiFilePartImpl <em>Midi File Part</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
