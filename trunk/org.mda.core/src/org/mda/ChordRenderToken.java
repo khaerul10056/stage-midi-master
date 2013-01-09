@@ -1,23 +1,23 @@
 package org.mda;
 
-import org.mda.transpose.Note;
+import org.mda.transpose.Pitch;
 
 
 public class ChordRenderToken {
 
   private final boolean minor;
 
-  private final Note note;
+  private final Pitch note;
 
   private final int tokenlength;
 
-  public ChordRenderToken (final boolean minor, Note note, int tokenlength) {
+  public ChordRenderToken (final boolean minor, Pitch note, int tokenlength) {
     this.minor = minor;
     this.note = note;
     this.tokenlength = tokenlength;
   }
 
-  public Note getNote () {
+  public Pitch getNote () {
     return note;
   }
 

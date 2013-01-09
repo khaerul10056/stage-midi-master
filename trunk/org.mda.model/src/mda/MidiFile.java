@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link mda.MidiFile#getPic <em>Pic</em>}</li>
  *   <li>{@link mda.MidiFile#getKey <em>Key</em>}</li>
  *   <li>{@link mda.MidiFile#getCopyright <em>Copyright</em>}</li>
+ *   <li>{@link mda.MidiFile#getMidicontrol <em>Midicontrol</em>}</li>
  * </ul>
  * </p>
  *
@@ -121,5 +122,32 @@ public interface MidiFile extends AbstractSessionItem {
 	 * @generated
 	 */
   void setCopyright(Copyright value);
+
+				/**
+	 * Returns the value of the '<em><b>Midicontrol</b></em>' attribute.
+	 * The default value is <code>"-1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Midicontrol</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Midicontrol</em>' attribute.
+	 * @see #setMidicontrol(int)
+	 * @see mda.MidiplayerPackage#getMidiFile_Midicontrol()
+	 * @model default="-1"
+	 * @generated
+	 */
+	int getMidicontrol();
+
+				/**
+	 * Sets the value of the '{@link mda.MidiFile#getMidicontrol <em>Midicontrol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Midicontrol</em>' attribute.
+	 * @see #getMidicontrol()
+	 * @generated
+	 */
+	void setMidicontrol(int value);
 
 } // MidiFile

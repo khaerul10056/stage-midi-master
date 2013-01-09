@@ -22,7 +22,7 @@ public class TransposeService {
    * @param to to key
    * @throws InvalidChordException
    */
-  public void transpose (MidiFile song, Note from, Note to) throws InvalidChordException {
+  public void transpose (MidiFile song, Pitch from, Pitch to) throws InvalidChordException {
     for (MidiFilePart nextPart : song.getParts())
       for (MidiFileTextLine nextLine: nextPart.getTextlines())
         for (MidiFileChordPart nextChordPart: nextLine.getChordParts())
@@ -31,7 +31,7 @@ public class TransposeService {
     song.setKey(to.getLabel());
   }
 
-  private int getDiff (final Note from, final Note to) {
+  private int getDiff (final Pitch from, final Pitch to) {
     int fromPos = scale.getNoteOffset(from);
     int toPos = scale.getNoteOffset(to);
 
@@ -45,7 +45,7 @@ public class TransposeService {
    * @param to  to key
    * @throws InvalidChordException
    */
-  private void transpose (MidiFileChordPart chordPart, Note from, Note to) throws InvalidChordException {
+  private void transpose (MidiFileChordPart chordPart, Pitch from, Pitch to) throws InvalidChordException {
     if (chordPart.getChord() == null)
       return;
 

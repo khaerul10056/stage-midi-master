@@ -18,7 +18,7 @@ public class TransposeTest {
     MidiFile file = creator.line().chordAndText("D", "Hello").chordAndText("G", "you").get();
 
     TransposeService ts = new TransposeService();
-    ts.transpose(file, Note.D, Note.C);
+    ts.transpose(file, Pitch.D, Pitch.C);
     MidiFileChordPart first = file.getParts().get(0).getTextlines().get(0).getChordParts().get(0);
     MidiFileChordPart second = file.getParts().get(0).getTextlines().get(0).getChordParts().get(1);
 
@@ -33,7 +33,7 @@ public class TransposeTest {
     MidiFile file = creator.line().chordAndText("D", "Hello").chordAndText("G", "you").get();
 
     TransposeService ts = new TransposeService();
-    ts.transpose(file, Note.D, Note.A);
+    ts.transpose(file, Pitch.D, Pitch.A);
     MidiFileChordPart first = file.getParts().get(0).getTextlines().get(0).getChordParts().get(0);
     MidiFileChordPart second = file.getParts().get(0).getTextlines().get(0).getChordParts().get(1);
 
@@ -50,7 +50,7 @@ public class TransposeTest {
     MidiFile file = creator.line().chordAndText("D/A", "Hello").get();
 
     TransposeService ts = new TransposeService();
-    ts.transpose(file, Note.A, Note.F);
+    ts.transpose(file, Pitch.A, Pitch.F);
     MidiFileChordPart first = file.getParts().get(0).getTextlines().get(0).getChordParts().get(0);
 
     Assert.assertEquals ("Bb/F", first.getChord());
@@ -69,7 +69,7 @@ public class TransposeTest {
     MidiFile file = creator.get();
 
     TransposeService ts = new TransposeService();
-    ts.transpose(file, Note.D, Note.E);
+    ts.transpose(file, Pitch.D, Pitch.E);
 
     for (MidiFilePart nextPart: file.getParts()) {
       MidiFileChordPart first = nextPart.getTextlines().get(0).getChordParts().get(0);
@@ -78,7 +78,7 @@ public class TransposeTest {
       Assert.assertEquals ("A", second.getChord());
     }
 
-    Assert.assertEquals (Note.E.getLabel(), file.getKey());
+    Assert.assertEquals (Pitch.E.getLabel(), file.getKey());
 
 
 
@@ -91,7 +91,7 @@ public class TransposeTest {
     MidiFile file = creator.line().chordAndText("f#", "Hello").get();
 
     TransposeService ts = new TransposeService();
-    ts.transpose(file, Note.A, Note.F);
+    ts.transpose(file, Pitch.A, Pitch.F);
     MidiFileChordPart first = file.getParts().get(0).getTextlines().get(0).getChordParts().get(0);
 
     Assert.assertEquals ("d", first.getChord());

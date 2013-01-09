@@ -11,6 +11,7 @@ import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Sequence;
 import javax.sound.midi.Sequencer;
+import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Transmitter;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
@@ -179,6 +180,25 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 			throw noMidiFileFoundException;
 		
 	}
+	
+	public void sendProgramChange (final MidiFile file) throws InvalidMidiDataException, MidiUnavailableException {
+		
+		if (file.getMidicontrol() >= 0) {
+        
+        //Send because elsewhere the program change is not sent
+        ShortMessage myMsg = new ShortMessage();
+        myMsg.setMessage(ShortMessage.NOTE_ON, 0, 60, 00);
+        MidiSystem.getReceiver().send(myMsg, 0);
+        myMsg.setMessage(ShortMessage.NOTE_OFF, 0, 60, 00);
+        MidiSystem.getReceiver().send(myMsg, 0);
+        
+
+		ShortMessage instrumentChange = new ShortMessage();
+        instrumentChange.setMessage(ShortMessage.PROGRAM_CHANGE, 0, file.getMidicontrol(), 0);
+        midiDevice.getReceiver().send(instrumentChange, 0);
+		}
+		
+	}
 
 	public void startNewSong() throws InvalidMidiDataException, IOException, MidiUnavailableException {
 		if (! (presentationContext.getCurrentSessionItem() instanceof MidiFile)) {
@@ -186,6 +206,8 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 			return;
 		}
 		final MidiFile midifile = (MidiFile) presentationContext.getCurrentSessionItem();
+		
+		sendProgramChange(midifile);
 		
 		currentSequence = sequences.get(midifile);
 		LOGGER.info("Starting new song " + midifile.getName() + "-" + currentSequence);

@@ -9,26 +9,26 @@ public class Scale {
   private final List <ScaleStep> steps = new ArrayList<ScaleStep>();
 
   public Scale () {
-    getSteps().add(new ScaleStep(Note.C));
-    getSteps().add(new ScaleStep(Note.CIS, Note.DES));
-    getSteps().add(new ScaleStep(Note.D));
-    getSteps().add(new ScaleStep(Note.DIS, Note.ES));
-    getSteps().add(new ScaleStep(Note.E));
-    getSteps().add(new ScaleStep(Note.F));
-    getSteps().add(new ScaleStep(Note.FIS, Note.GES));
-    getSteps().add(new ScaleStep(Note.G));
-    getSteps().add(new ScaleStep(Note.GIS, Note.AS));
-    getSteps().add(new ScaleStep(Note.A));
-    getSteps().add(new ScaleStep(Note.Bb, Note.HES));
-    getSteps().add(new ScaleStep(Note.H));
+    getSteps().add(new ScaleStep(Pitch.C));
+    getSteps().add(new ScaleStep(Pitch.CIS, Pitch.DES));
+    getSteps().add(new ScaleStep(Pitch.D));
+    getSteps().add(new ScaleStep(Pitch.DIS, Pitch.ES));
+    getSteps().add(new ScaleStep(Pitch.E));
+    getSteps().add(new ScaleStep(Pitch.F));
+    getSteps().add(new ScaleStep(Pitch.FIS, Pitch.GES));
+    getSteps().add(new ScaleStep(Pitch.G));
+    getSteps().add(new ScaleStep(Pitch.GIS, Pitch.AS));
+    getSteps().add(new ScaleStep(Pitch.A));
+    getSteps().add(new ScaleStep(Pitch.Bb, Pitch.HES));
+    getSteps().add(new ScaleStep(Pitch.H));
   }
 
-  public int getNoteOffset (final Note note) {
+  public int getNoteOffset (final Pitch note) {
     ScaleStep noteFound = findNote(note);
     return getSteps().indexOf(noteFound);
   }
 
-  public ScaleStep findNote (final Note note) {
+  public ScaleStep findNote (final Pitch note) {
     for (ScaleStep nextStep: getSteps()) {
       if (nextStep.hasNote(note))
         return nextStep;
@@ -39,7 +39,7 @@ public class Scale {
   }
 
 
-  public Note transpose (final Note from, int diff, Note to) {
+  public Pitch transpose (final Pitch from, int diff, Pitch to) {
 
     int offsetFrom = getNoteOffset(from);
     offsetFrom += diff;
