@@ -10,7 +10,11 @@ import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
 
-
+/**
+ * @deprecated use class in org.mda.presenter
+ * @author oleym
+ *
+ */
 public abstract class SlideCalculator implements ISlideCalculator {
 
   private static final Log LOGGER  = LogFactory.getLogger(SlideCalculator.class);

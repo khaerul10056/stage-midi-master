@@ -1,6 +1,10 @@
 package org.mda.commons.ui.calculator;
 
-
+/**
+ * @deprecated use class in org.mda.presenter
+ * @author oleym
+ *
+ */
 public class FontDescriptor {
 
   private Integer fontsize;

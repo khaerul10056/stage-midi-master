@@ -31,7 +31,13 @@ import org.mda.struct.MidiFileStruct;
 import org.mda.struct.MidiFileStructItem;
 
 
+/**
+ * @deprecated Use {@linkplain org.mda.presenter.MidiFileSlideCalculator}
+ * @author oleym
+ *
+ */
 @Creatable
+@Deprecated
 public class MidiFileSlideCalculator extends SlideCalculator {
 
   private static final Log LOGGER  = LogFactory.getLogger(MidiFileSlideCalculator.class);

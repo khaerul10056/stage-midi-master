@@ -12,16 +12,11 @@ import mda.MidiFilePartType;
 import mda.MidiPlayerRoot;
 
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.widgets.Shell;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
-import org.mda.editor.preview.ui.PreviewEditorComposite;
 import org.mda.editor.preview.ui.parts.TextLine;
-import org.mda.inject.InjectService;
 import org.mda.presenter.ui.test.MidiFileCreator;
 
 public class PreviewEditorUiTest extends AbstractEditorTest {
@@ -29,7 +24,6 @@ public class PreviewEditorUiTest extends AbstractEditorTest {
   private MidiPlayerRoot root   = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
   private final String CHORDLINEORIGINAL = "D    G                    A       D           G               A";
   private final String TEXTLINEORIGINAL  = "Alle Schöpfung staunt und preist, betet an in Wahrheit und in Geist,";
-  private static Shell shell;
   
   /**
    * checks mergeCurrentLine

@@ -6,7 +6,7 @@ import org.eclipse.swt.graphics.Rectangle;
 /**
  * item on a slide
  * @author oleym
- *
+ * @deprecated use class from org.mda.presenter
  */
 public class SlideItem {
 
