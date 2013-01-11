@@ -1,6 +1,8 @@
 package org.mda.application;
 
 import org.mda.ApplicationSession;
+import org.mda.commons.ui.IGraphicsContext;
+import org.mda.commons.ui.calculator.SWTGraphicsContext;
 
 import com.google.inject.Binder;
 import com.google.inject.Module;
@@ -12,6 +14,7 @@ public class ApplicationModule implements Module {
 	public void configure(Binder binder) {
 		
 		binder.bind(ApplicationSession.class).in(Singleton.class);
+		binder.bind(IGraphicsContext.class).to(SWTGraphicsContext.class);
 	}
 
 	

@@ -5,6 +5,11 @@ import org.eclipse.swt.graphics.Point;
 
 
 @Creatable
+/**
+ * @deprecated use class in org.mda.presenter
+ *
+ */
+@Deprecated
 public class CalculatorPreCondition {
 
   /**

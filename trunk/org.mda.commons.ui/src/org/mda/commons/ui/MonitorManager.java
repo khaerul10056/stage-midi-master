@@ -4,14 +4,11 @@ import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
-import org.mda.logging.Log;
-import org.mda.logging.LogFactory;
 
 @Creatable
 public class MonitorManager {
 	
-    private static final Log LOGGER  = LogFactory.getLogger(MonitorManager.class);
-	
+    
 	public Monitor getPrimaryMonitor () {
 		for (Monitor nextMonitor: Display.getCurrent().getMonitors()) {
 	      if (nextMonitor.equals(Display.getCurrent().getPrimaryMonitor())) {

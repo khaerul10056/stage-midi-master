@@ -17,7 +17,11 @@ import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
-
+/**
+ * @deprecated use class in org.mda.presenter
+ * @author oleym
+ *
+ */
 public class PresentationConfigurator {
 
   private static final Log LOGGER  = LogFactory.getLogger(PresentationConfigurator.class);

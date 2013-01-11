@@ -9,7 +9,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
-
+/**
+ * @deprecated use class in org.mda.presenter
+ * @author oleym
+ *
+ */
 public class PresentationConfigDefaults {
 	
 	private Collection <PresentationScheme> defaultschemes = new ArrayList<PresentationScheme>();

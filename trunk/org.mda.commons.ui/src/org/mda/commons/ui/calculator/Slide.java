@@ -17,6 +17,7 @@ import org.mda.commons.ui.imagecache.ImageCache;
 
 /** dataobject containing information created for a slide,
  * e.g. the text with all it's layoutdata
+ * @deprecated use class in org.mda.presenter
  * @author oleym */
 public class Slide {
 

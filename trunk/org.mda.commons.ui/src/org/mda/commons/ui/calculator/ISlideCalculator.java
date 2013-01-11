@@ -5,6 +5,11 @@ import mda.AbstractSessionItem;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
 
 
+/**
+ * @deprecated use interface in org.mda.presenter
+ * @author oleym
+ *
+ */
 public interface ISlideCalculator {
 
   /**
@@ -12,6 +17,7 @@ public interface ISlideCalculator {
    * @param sessionitem item of the session, e.g. a song
    * @param precondition like editor-panel-size
    * @return list of slides
+   * 
    */
   public List <Slide> calculate (final AbstractSessionItem sessionitem, CalculatorPreCondition preCondition);
 
