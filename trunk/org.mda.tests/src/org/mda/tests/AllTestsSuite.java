@@ -33,6 +33,7 @@ import org.mda.export.ExportPptSessionHandlerTest;
 import org.mda.export.TestExportEngine;
 import org.mda.export.TestPdfExporter;
 import org.mda.export.TestPptExporter;
+import org.mda.export.TestTextfileExporter;
 import org.mda.find.TestSearchEngine;
 import org.mda.google.TestGoogleContacts;
 import org.mda.inject.InjectServiceTest;
@@ -112,6 +113,7 @@ import org.mda.transpose.TransposeTest;
   TestExportEngine.class,
   TestPptExporter.class,
   TestPdfExporter.class,
+  TestTextfileExporter.class,
 
   //Google
   TestGoogleContacts.class

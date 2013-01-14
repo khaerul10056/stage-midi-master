@@ -21,6 +21,7 @@ Export-Package: com.lowagie.text,
  org.mda.export,
  org.mda.export.pdf,
  org.mda.export.powerpoint,
+ org.mda.export.textfile,
  org.mda.export.word
 Bundle-ClassPath: lib/poi-3.7/poi-3.7-20101029.jar,
  lib/poi-3.7/poi-examples-3.7-20101029.jar,

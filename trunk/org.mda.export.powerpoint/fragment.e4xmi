@@ -5,8 +5,9 @@
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_riWRkOfaEeGJ357Q6THRgw" featurename="children" parentElementId="org.mda.commons.ui.menu.export">
     <elements xsi:type="menu:DirectMenuItem" xmi:id="_9cN2IOfaEeGJ357Q6THRgw" elementId="org.mda.commons.ui.menu.export.ppt" label="Export powerpoint" contributionURI="bundleclass://org.mda.export.powerpoint/org.mda.export.ExportPptSessionHandler"/>
-  </fragments>
-  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_P2pxIOfbEeGJ357Q6THRgw" featurename="children" parentElementId="org.mda.commons.ui.menu.export">
     <elements xsi:type="menu:DirectMenuItem" xmi:id="_VW01IOfbEeGJ357Q6THRgw" elementId="org.mda.commons.ui.menu.export.pdf" label="Export pdf" contributionURI="bundleclass://org.mda.export.powerpoint/org.mda.export.ExportPdfSessionHandler"/>
+    <elements xsi:type="menu:DirectMenuItem" xmi:id="_qgKlQF6eEeKQd4JZRY4Psg" elementId="org.mda.commons.ui.menu.export.txt" label="Export textfile" contributionURI="bundleclass://org.mda.export.powerpoint/org.mda.export.ExportTextfileSessionHandler"/>
   </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_P2pxIOfbEeGJ357Q6THRgw" featurename="children" parentElementId="org.mda.commons.ui.menu.export"/>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_gEa_IF6eEeKQd4JZRY4Psg" featurename="children" parentElementId="org.mda.commons.ui.menu.export"/>
 </fragment:ModelFragments>

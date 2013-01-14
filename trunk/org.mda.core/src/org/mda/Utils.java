@@ -1,13 +1,19 @@
 package org.mda;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.TreeMap;
 import mda.MidiFileChordPart;
@@ -51,6 +57,39 @@ public class Utils {
   public static final String ICON_NORMAL_BACKGROUND = "normal.png";
 
   public static final String ICON_PARTPROPERTIES = "partproperties.gif";
+  
+  /**
+   * reads textfile in an string list
+   * @param file file
+   * @return list of strings
+   * @throws IOException
+   */
+  public static List<String> readTextFile (final File file) throws IOException {
+	  BufferedReader br = new BufferedReader(new FileReader(file));
+	  final List <String> content = new ArrayList<String>();
+	    try {
+	        String line = br.readLine();
+	        do {
+	        	line = br.readLine();
+	        	if (line != null) 
+	        	  content.add(line);
+	        }
+	        while (line != null);
+	    } finally {
+	        br.close();
+	    }
+	    
+	    return content;
+  }
+  
+  public static void writeTextFile(final File file, final Collection<String> content) throws IOException {
+	     BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
+          for (String nextLine: content)
+            bw.write(nextLine + System.getProperty("line.separator"));
+          
+          bw.close();
+  }
+
   
   public static String removeWhitespaces (final String before) {
 	  return before.replaceAll("\\s","");
@@ -372,6 +411,7 @@ public class Utils {
     newText += text.substring(start + length, text.length());
     return newText;
   }
+
 
 
 
