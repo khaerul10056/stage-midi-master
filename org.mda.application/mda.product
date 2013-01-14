@@ -3,7 +3,6 @@
 
 <product name="MIDI Driven Application" uid="MDA" id="org.mda.application.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
 
-
    <configIni use="default">
    </configIni>
 
@@ -15,14 +14,12 @@
 
    <windowImages i16="icons/alt_window_16.gif" i32="icons/alt_window_32.gif"/>
 
-
    <launcher name="mda">
       <solaris/>
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
-
 
    <vm>
       <linux include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7</linux>
@@ -31,6 +28,9 @@
 
    <plugins>
       <plugin id="at.bestsolution.efxclipse.runtime.osgi" fragment="true"/>
+      <plugin id="com.google.inject"/>
+      <plugin id="com.google.inject.assistedinject" fragment="true"/>
+      <plugin id="com.google.inject.multibindings" fragment="true"/>
       <plugin id="com.ibm.icu"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
@@ -107,6 +107,7 @@
       <plugin id="org.mda.editor.session.ui"/>
       <plugin id="org.mda.export.powerpoint"/>
       <plugin id="org.mda.google"/>
+      <plugin id="org.mda.midi"/>
       <plugin id="org.mda.model"/>
       <plugin id="org.mda.navigator.ui"/>
       <plugin id="org.mda.presenter.ui"/>

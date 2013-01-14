@@ -49,7 +49,9 @@
       <import plugin="org.eclipse.e4.core.di.extensions" version="0.11.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.swt" version="3.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.commands" version="3.6.0" match="greaterOrEqual"/>
-      <import plugin="org.slf4j.api" version="1.6.4" match="greaterOrEqual"/>
+      <import plugin="com.google.inject" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.e4.core.services" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.mda.midi" version="1.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

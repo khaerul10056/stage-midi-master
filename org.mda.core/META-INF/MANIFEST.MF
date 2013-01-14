@@ -25,6 +25,5 @@ Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  javax.inject;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.e4.core.contexts;bundle-version="1.1.0",
  org.eclipse.e4.core.di;bundle-version="1.1.0";visibility:=reexport,
- org.slf4j.api;bundle-version="1.6.4",
  com.google.inject;bundle-version="3.0.0"
 Bundle-ActivationPolicy: lazy
