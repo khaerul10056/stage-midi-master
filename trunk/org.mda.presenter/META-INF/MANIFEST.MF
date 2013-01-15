@@ -5,3 +5,6 @@ Bundle-SymbolicName: org.mda.presenter
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.mda.core;bundle-version="1.0.0"
+Export-Package: org.mda.presenter,
+ org.mda.presenter.adapter,
+ org.mda.presenter.config
