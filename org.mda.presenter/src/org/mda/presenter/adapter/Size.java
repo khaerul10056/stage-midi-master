@@ -18,6 +18,10 @@ public class Size {
 	public int getHeight() {
 		return height;
 	}
+	
+	public String toString () {
+		return width + "x" + height;
+	}
 
 	
 

@@ -4,7 +4,12 @@ Bundle-Name: SmmJavaFX
 Bundle-SymbolicName: org.mda.presenter.javafx
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.mda.commons.ui;bundle-version="1.0.0",
+ org.mda.core;bundle-version="1.0.0",
+ com.google.inject;bundle-version="3.0.0",
+ org.mda.presenter;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: org.mda.javafx.presenter.javafx
 

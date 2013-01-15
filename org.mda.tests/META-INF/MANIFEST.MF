@@ -19,7 +19,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface;bundle-version="3.8.0",
  org.mda.midi;bundle-version="1.0.0",
  org.mda.midi.ui;bundle-version="1.0.0",
- org.mda.presenter.javafx;bundle-version="1.0.0"
+ org.mda.presenter.javafx;bundle-version="1.0.0",
+ org.mda.presenter;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.mda.tests
 Bundle-ClassPath: lib/mockito-all-1.8.5.jar,
