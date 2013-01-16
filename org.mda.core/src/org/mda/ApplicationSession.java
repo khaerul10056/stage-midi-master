@@ -29,6 +29,7 @@ public class ApplicationSession {
   private File configFileAsFile;
 
   public static final String PROP_LASTMODELFILE = "org.mda.commons.ui.lastmodelfile";
+  public static final String PROP_LASTSESSION = "org.mda.commons.ui.lastsession";
 
   public static final String PROP_ENABLEGRID = "org.mda.commons.ui.enableGrid";
 
@@ -106,12 +107,12 @@ public class ApplicationSession {
 
       LOGGER.info("Create initial properties in " + confPath.getAbsolutePath());
 
-      configFileAsFile = new File (confPath + File.separator + "mda.properties");
+      setConfigFile(new File (confPath + File.separator + "mda.properties"));
 
       //load if exists
-      if (configFileAsFile.exists()) {
+      if (getConfigFile().exists()) {
         try {
-          sessionProps.load(new FileInputStream(configFileAsFile));
+          sessionProps.load(new FileInputStream(getConfigFile()));
         }
         catch (Exception e) {
           LOGGER.error(e.getLocalizedMessage(), e);
@@ -134,17 +135,25 @@ public class ApplicationSession {
       getFeatureActivation().setShowWhitespaces(Boolean.valueOf(sessionProps.getProperty(PROP_SHOWWHITESPACES)));
       getFeatureActivation().setPresentationAlwaysOnTop(Boolean.valueOf(sessionProps.getProperty(PROP_PRESENTATIONALWAYSONTOP)));
       
-      if (! configFileAsFile.exists())
-        save(configFileAsFile);
+      String propLastSession = sessionProps.getProperty(PROP_LASTSESSION); 
+      if (propLastSession != null) {
+    	  getFeatureActivation().setLastUsedSession(MidiPlayerService.findSession(getCurrentModel(), propLastSession));
+    	  setCurrentSession(getFeatureActivation().getLastUsedSession());
+      }
+      
+      if (! getConfigFile().exists())
+        save(getConfigFile());
     }
   }
 
 
   public void save (final File configFile)  {
+	LOGGER.info("Saving configs in " + configFile.getAbsolutePath());
     sessionProps.put(PROP_LASTMODELFILE, getLastModelPath().toString());
+    sessionProps.put(PROP_LASTSESSION, getCurrentSession().getName());
 
     try {
-      sessionProps.store(new FileOutputStream(configFileAsFile), "properties saved by MDA");
+      sessionProps.store(new FileOutputStream(getConfigFile()), "properties saved by MDA");
 
     }
     catch (IOException e) {
@@ -236,6 +245,14 @@ public MidiFile getCurrentMidifile() {
 
 public void setCurrentMidifile(MidiFile currentMidifile) {
 	getModelEvents().setCurrentModelElement(MidiFile.class, currentMidifile);
+}
+
+public File getConfigFile() {
+	return configFileAsFile;
+}
+
+public void setConfigFile(File configFileAsFile) {
+	this.configFileAsFile = configFileAsFile;
 }
 
 

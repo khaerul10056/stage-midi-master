@@ -11,7 +11,7 @@ public class Area {
 		this.size = size;
 	}
 	
-	public Area(final int x, final int y, final Size size) {
+	public Area(final float x, final float y, final Size size) {
 		this.location = new Location(x, y); 
 		this.size = size;
 	}
@@ -24,20 +24,24 @@ public class Area {
 		return location;
 	}
 	
-	public int getX () {
+	public float getX () {
 		return location.getX(); 
 	}
 	
-	public int getY () {
+	public float getY () {
 		return location.getY();
 	}
 	
-	public int getWidth () {
+	public float getWidth () {
 		return size.getWidth();
 	}
 	
-	public int getHeight () {
+	public float getHeight () {
 		return size.getHeight(); 
+	}
+	
+	public String toString () {
+		return location.getX() + "-" + location.getY() + "-" + size.getWidth() + "-" + size.getHeight();
 	}
 	
 

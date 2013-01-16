@@ -3,11 +3,25 @@ package org.mda.presenter;
 import java.util.List;
 
 import mda.AbstractSessionItem;
+import mda.Session;
 
 import org.mda.presenter.config.IMidiFilePresenterConfig;
 
 
+/**
+ * defines the interface for a slide calculator
+ * @author oleym
+ *
+ */
 public interface ISlideCalculator {
+	
+  /**
+   * calculates the slides for the current session
+   * @param session session
+   * @param preCondition like editor-panel-size
+   * @return list of slides
+   */
+  public List<Slide> calculate (final Session session, final CalculatorPreCondition preCondition);
 
   /**
    * calculates the slides for the current item

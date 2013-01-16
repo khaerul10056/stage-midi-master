@@ -12,6 +12,7 @@ import mda.MidiFile;
 import mda.MidiFileChordPart;
 import mda.MidiFilePart;
 import mda.MidiFileTextLine;
+import mda.Session;
 
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
@@ -33,9 +34,9 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
   private static final Log LOGGER  = LogFactory.getLogger(MidiFileSlideCalculator.class);
 
-  private int currentX;
+  private float currentX;
 
-  private int currentY;
+  private float currentY;
 
   private File imageFile;
 
@@ -46,9 +47,19 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
   private CopyrightSerializer copyrightSerializer = new CopyrightSerializer();
 
-  private int height = -1;
+  private float height = -1;
 
-  private int maxY = -1;
+  private float maxY = -1;
+  
+  
+  public List<Slide> calculate (final Session session, final CalculatorPreCondition preCondition) {
+	  List <Slide> slides = new ArrayList<Slide>();
+	  for (AbstractSessionItem sessionItem : session.getItems()) {
+		  slides.addAll(calculate(sessionItem, preCondition));
+	  }
+	  
+	  return slides;
+  }
 
   @Override
   public List<Slide> calculate (final AbstractSessionItem sessionitem, final CalculatorPreCondition preCondition) {
@@ -182,13 +193,13 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     return getConfig().isChordPresented() ? 5 : 0;
   }
 
-  private int getOffsetChordToText (int currentY, int lineheight) {
-    int offset = getConfig().isChordPresented() ? currentY + lineheight  : currentY;
+  private float getOffsetChordToText (float currentY, float lineheight) {
+    float offset = getConfig().isChordPresented() ? currentY + lineheight  : currentY;
     return offset + + getIndentBetweenChordAndText();
   }
 
-  private int getOffsetLongestPartType (final MidiFile file, final CalculatorPreCondition preCondition) {
-    int length = 0;
+  private float getOffsetLongestPartType (final MidiFile file, final CalculatorPreCondition preCondition) {
+    float length = 0;
     String longestPart = "";
     MidiFileStruct struct = new MidiFileStruct(file);
     for (MidiFilePart nextPart: file.getParts()) {
@@ -240,7 +251,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     slides.removeAll(emptySlides);
   }
 
-  private int getLineHeight () {
+  private float getLineHeight () {
     return getGc().getSize("H", getConfig().getFont()).getWidth();
   }
 
@@ -260,13 +271,13 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
     //TODO centralize fonthandling
     Font font = new Font ("Arial Alternative", getConfig().getFont().getFontsize());
-    int longestTypeOffset = getOffsetLongestPartType(midifile, preCondition);
+    float longestTypeOffset = getOffsetLongestPartType(midifile, preCondition);
 
     Font zoomedFont = calculateZoomedFont(font, preCondition);
     if (LOGGER.isDebugEnabled())
       LOGGER.debug("set font to size " + zoomedFont.getFontsize() + " from " + font.getFontsize());
 
-    int height = getLineHeight();
+    float height = getLineHeight();
     if (getConfig().isChordPresented())
       height += getLineHeight();
     else
@@ -293,7 +304,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       if (blockType != null) {
 
         Size parttypeExtend = getGc().getSize(blockType, getConfig().getFont());
-        int addToY = getOffsetChordToText(currentY, getLineHeight());
+        float addToY = getOffsetChordToText(currentY, getLineHeight());
         Location point = new Location(leftPosDefault, addToY);
 
         Location zoomedPoint = calculateZoomedLocation(point, preCondition);
@@ -341,15 +352,15 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
         SlideItem newTextItem = null;
 
-        int biggestXExtend = 0;
+        float biggestXExtend = 0;
         if (chordExtend.getWidth() > biggestXExtend)
           biggestXExtend = chordExtend.getWidth();
         if (textExtend.getWidth() > biggestXExtend)
           biggestXExtend = textExtend.getWidth();
 
         if (text != null) {
-          int addToY = getOffsetChordToText(currentY, getLineHeight());
-          int indentToChord = currentY - addToY; //indent between chord and text
+          float addToY = getOffsetChordToText(currentY, getLineHeight());
+          float indentToChord = currentY - addToY; //indent between chord and text
           Location point = new Location(currentX, addToY);
           Location zoomedPoint = calculateZoomedLocation(point, preCondition);
           Size zoomedTextExtend = calculateZoomedSize(textExtend, preCondition);
@@ -412,7 +423,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
   }
 
   private boolean isYOutOfPageSize (CalculatorPreCondition preCondition) {
-    int zoomedCurrentY = calculateZoomedLocation(new Location (currentY, 0), preCondition).getX(); //TODO check, if this is OK
+    float zoomedCurrentY = calculateZoomedLocation(new Location (currentY, 0), preCondition).getX(); //TODO check, if this is OK
     return zoomedCurrentY > maxY;
   }
 
@@ -421,7 +432,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
    * @param height
    * @return
    */
-  private void stepCurrentYToNextLine (final int height) {
+  private void stepCurrentYToNextLine (final float height) {
     currentY += height;
     currentY += getDistanceBetweenLines();
   }
@@ -435,8 +446,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
   private void moveCurrentItemsToPreviousLine (final Slide slide, final List <SlideItem> currentItems) {
     List<SlideItem> textItems = slide.getItems(SlideType.TEXT);
     SlideItem lastTextItem = textItems.get(textItems.size() - 1);
-    int lastX = lastTextItem.getXMax();
-    int lastY = lastTextItem.getY();
+    float lastX = lastTextItem.getXMax();
+    float lastY = lastTextItem.getY();
 
     if (! lastTextItem.getText().endsWith(" "))
       lastX += getGc().getSize(" ", getConfig().getFont()).getWidth();
@@ -448,10 +459,10 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       lastX = Math.max(lastX, lastChordItem.getXMax());
     }
 
-    int firstX = currentItems.get(0).getX();
+    float firstX = currentItems.get(0).getX();
 
     for (SlideItem item: currentItems) {
-      int newY = lastY;
+      float newY = lastY;
       if (item.getItemType().equals(SlideType.CHORD))
         newY += lastTextItem.getIndentToChord();
 
@@ -460,8 +471,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     }
   }
 
-  private int getMaxX (final Collection <SlideItem> items) {
-    int maxX = 0;
+  private float getMaxX (final Collection <SlideItem> items) {
+    float maxX = 0;
     for (SlideItem next: items) {
       if (next.getXMax() > maxX)
         maxX = next.getXMax();
@@ -493,14 +504,14 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     if (currentItems.size() == 0)
       return false;
 
-    int firstX = currentItems.get(0).getX();
-    int lastXMax = getMaxX(currentItems);
+    float firstX = currentItems.get(0).getX();
+    float lastXMax = getMaxX(currentItems);
 
-    int spaceAmountOfCurrentItems = lastXMax - firstX;
+    float spaceAmountOfCurrentItems = lastXMax - firstX;
 
     List<SlideItem> textitems = slide.getItems(SlideType.TEXT);
     SlideItem lastSlideItem = textitems.get(textitems.size() - 1);
-    int xMaxOfLast = lastSlideItem.getXMax();
+    float xMaxOfLast = lastSlideItem.getXMax();
 
     String logtext = "";
     for (SlideItem next: currentItems) {

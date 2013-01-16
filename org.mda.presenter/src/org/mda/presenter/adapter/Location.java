@@ -2,20 +2,20 @@ package org.mda.presenter.adapter;
 
 public class Location {
 
-    private final int x; 
+    private final float x; 
 	
-	private final int y;
+	private final float y;
 	
-	public Location (final int x, final int y) {
+	public Location (final float x, final float y) {
 		this.y = y;
 		this.x = x;
 	}
 
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 

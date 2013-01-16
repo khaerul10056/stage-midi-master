@@ -3,8 +3,6 @@ package org.mda.commons.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import mda.MidiFilePartType;
 import mda.impl.PresentationSchemeImpl;
 
@@ -15,7 +13,8 @@ import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
 import org.mda.Utils;
 import org.mda.commons.ui.calculator.FontDescriptor;
-import org.mda.commons.ui.calculator.SWTGraphicsContext;
+
+import com.google.inject.Inject;
 
 
 public class DefaultMidiFileContentEditorConfig extends PresentationSchemeImpl implements IMidiFileEditorUIConfig {
@@ -28,7 +27,8 @@ public class DefaultMidiFileContentEditorConfig extends PresentationSchemeImpl i
 
 
 
-  private IGraphicsContext graphicsContext = new SWTGraphicsContext();
+  @Inject
+  private IGraphicsContext graphicsContext; // = new SWTGraphicsContext();
 
   @Inject
   private ApplicationSession session;
