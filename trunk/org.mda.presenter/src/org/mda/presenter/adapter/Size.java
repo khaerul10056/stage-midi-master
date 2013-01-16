@@ -2,20 +2,20 @@ package org.mda.presenter.adapter;
 
 public class Size {
 	
-	private final int width; 
+	private final float width; 
 	
-	private final int height;
+	private final float height;
 	
-	public Size (final int width, final int height) {
-		this.height = height;
-		this.width = width;
+	public Size (final float computeStringWidth, final float computeStringHeight) {
+		this.height = computeStringHeight;
+		this.width = computeStringWidth;
 	}
 
-	public int getWidth() {
+	public float getWidth() {
 		return width;
 	}
 
-	public int getHeight() {
+	public float getHeight() {
 		return height;
 	}
 	

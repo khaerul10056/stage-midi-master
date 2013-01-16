@@ -40,6 +40,28 @@ public class MidiPlayerService {
     defaultPaths.add("/home/oleym/privat/soundOfFaith/midi"); //todo konfigurierbar machen, pro Pfad Angabe von Filetypen (.mid, .txt...)
   }
 
+  
+  public static Session findSession (final MidiPlayerRoot root, final String sessionName) {
+		String sessionTrimmed = Utils.removeWhitespaces(sessionName);
+		
+		String existingSessions = "";
+		
+		for (Session nextSession: root.getSessions()) {
+			String found = Utils.removeWhitespaces(nextSession.getName());
+			if (found.equalsIgnoreCase(sessionTrimmed)) {
+				LOGGER.info("Starting with session " + sessionTrimmed);
+				return nextSession;
+			}
+			else {
+				if (! existingSessions.isEmpty())
+					existingSessions+=",";
+				
+				existingSessions+=found;
+			}
+		}
+		
+		throw new IllegalArgumentException("Could not find session <" + sessionName + "> in current model. Existing session: <" + existingSessions + ">");
+  }
 
   public static List <AbstractSessionItem> sortedSessionItemList (final List <AbstractSessionItem> unsorted) {
     List <AbstractSessionItem> cloned = new ArrayList <AbstractSessionItem> (); 

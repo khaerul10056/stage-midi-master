@@ -1,5 +1,7 @@
 package org.mda.presenter;
 
+import java.util.logging.Logger;
+
 import org.mda.presenter.adapter.Area;
 import org.mda.presenter.adapter.Font;
 
@@ -10,6 +12,8 @@ import org.mda.presenter.adapter.Font;
  *
  */
 public class SlideItem {
+	
+  private static final Logger LOGGER  = Logger.getLogger(SlideItem.class.getName());
 
   private final String text;
   private Area area;
@@ -32,14 +36,15 @@ public class SlideItem {
    * @param newSlide if a new slide is forces in this line
    */
   public SlideItem (final Area location, final String text, final SlideType itemType, final SlideItem refSlideItem, final boolean newSlide,
-                    final Font font, final int indentToChord) {
+                    final Font font, final float indentToChord) {
+	LOGGER.info("Creating SlideItem " + text + "-" + location);
     this.area = location;
     this.text = text;
     this.itemType = itemType;
     this.refSlideItem = refSlideItem;
     this.newSlide = newSlide;
     this.font = font;
-    this.indentToChord = indentToChord;
+    this.indentToChord = (int) indentToChord;
   }
 
 
@@ -62,7 +67,7 @@ public String toString () {
    * returns the height of the current item
    * @return height
    */
-  public int getHeight () {
+  public float getHeight () {
     return area.getHeight();
   }
 
@@ -70,7 +75,7 @@ public String toString () {
    * returns the width of the current item
    * @return width
    */
-  public int getWidth () {
+  public float getWidth () {
     return area.getWidth();
   }
 
@@ -78,7 +83,7 @@ public String toString () {
    * returns the beginning of the current item in x-order
    * @return beginning x
    */
-  public int getX () {
+  public float getX () {
     return area.getX();
   }
 
@@ -86,7 +91,7 @@ public String toString () {
    * set the x-location
    * @param newX new value of x
    */
-  public void setX (int newX) {
+  public void setX (float newX) {
     area = new Area(newX, area.getY(), area.getSize());
   }
 
@@ -94,7 +99,7 @@ public String toString () {
    * set the y-location
    * @param newY new value of y
    */
-  public void setY (int newY) {
+  public void setY (float newY) {
     area = new Area (area.getX(), newY, area.getSize());
   }
 
@@ -102,7 +107,7 @@ public String toString () {
    * returns the beginning of the current item in y-order
    * @return beginning y
    */
-  public int getY () {
+  public float getY () {
     return area.getY();
   }
 
@@ -110,7 +115,7 @@ public String toString () {
    * returns the end of the current item in x-order
    * @return end x
    */
-  public int getXMax () {
+  public float getXMax () {
     return getX() + getWidth();
   }
 
@@ -118,7 +123,7 @@ public String toString () {
    * returns the end of the current item in y-order
    * @return
    */
-  public int getYMax () {
+  public float getYMax () {
     return getY()+ getHeight();
   }
 

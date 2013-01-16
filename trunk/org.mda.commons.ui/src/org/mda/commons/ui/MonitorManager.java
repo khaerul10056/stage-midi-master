@@ -1,11 +1,10 @@
 package org.mda.commons.ui;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 
-@Creatable
+
 public class MonitorManager {
 	
     

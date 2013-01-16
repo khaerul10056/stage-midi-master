@@ -135,12 +135,12 @@ public class SessionOverviewPart {
   }
   
   
-  private void handleStartupSession (final ApplicationSession session, final EHandlerService handlerservice, final ECommandService commandservice) {
-	  if (session.getFeatureActivation().isStartupSessionConfigured()) {
+  private void handleStartupSession (final ApplicationSession appsession, final EHandlerService handlerservice, final ECommandService commandservice) {
+	  if (appsession.getFeatureActivation().isStartupSessionConfigured()) {
 		ParameterizedCommand myCommand = commandservice.createCommand("org.mda.presenter.ui.command.startpresentation", new HashMap());
 		
 		//set runsession as active session
-		session.setCurrentSession(session.getFeatureActivation().getRunSession());
+		appsession.setCurrentSession(appsession.getFeatureActivation().getRunSession());
 		
 		Object result = handlerservice.executeHandler(myCommand);
 	  }
@@ -272,11 +272,6 @@ public class SessionOverviewPart {
 			return Session.class;
 		}
 	});
-    
-    
-    if (appSession.getCurrentModel() != null)
-      appSession.getModelEvents().setCurrentModelElement(Session.class, appSession.getCurrentModel().getSessions().get(0));	//TODO read last edited session
-    
     
     treModel.setFocus();
     

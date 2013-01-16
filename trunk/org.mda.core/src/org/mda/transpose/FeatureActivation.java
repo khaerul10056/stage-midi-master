@@ -18,6 +18,8 @@ public class FeatureActivation {
   private boolean presentationAlwaysOnTop;
   
   private Session startWithSession;
+  
+  private Session lastUsedSession;
 
   public boolean isShowGridEnabled () {
     return showGridEnabled;
@@ -57,6 +59,14 @@ public boolean isEscClosingWindowEnabled () {
 
 public void setRunSession(Session runSession) {
 	this.startWithSession = runSession;
+}
+
+public Session getLastUsedSession() {
+	return lastUsedSession;
+}
+
+public void setLastUsedSession(Session lastUsedSession) {
+	this.lastUsedSession = lastUsedSession;
 }
 
 }

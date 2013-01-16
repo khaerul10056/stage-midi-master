@@ -3,7 +3,6 @@ package org.mda.presenter.config;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
 
 import mda.MidiFilePartType;
 import mda.impl.PresentationSchemeImpl;
@@ -13,6 +12,8 @@ import org.mda.presenter.adapter.Color;
 import org.mda.presenter.adapter.Font;
 import org.mda.presenter.adapter.IGraphicsContext;
 import org.mda.presenter.adapter.Size;
+
+import com.google.inject.Inject;
 
 
 public class DefaultMidiFilePresenterConfig extends PresentationSchemeImpl implements IMidiFilePresenterConfig {

@@ -9,8 +9,10 @@ import org.mda.commons.ui.UIHandler;
 import org.mda.commons.ui.UIHandler4Test;
 import org.mda.export.MailingAdapter;
 import org.mda.export.MailingAdapter4Test;
+import org.mda.javafx.presenter.javafx.JavaFXGraphicsContext;
 import org.mda.presenter.IPresentationContext;
 import org.mda.presenter.IPresentationController;
+import org.mda.presenter.adapter.IGraphicsContext;
 import org.mda.presenter.ui.DefaultPresentationController;
 import org.mda.presenter.ui.PresentationContext;
 
@@ -26,6 +28,7 @@ public class TestModule implements Module {
       binder.bind(MailingAdapter.class).to(MailingAdapter4Test.class);
       binder.bind(IPresentationController.class).to(DefaultPresentationController.class);
       binder.bind(IPresentationContext.class).to(PresentationContext.class);
+      binder.bind(IGraphicsContext.class).to(JavaFXGraphicsContext.class); //TODO into 
     }
 }
   
