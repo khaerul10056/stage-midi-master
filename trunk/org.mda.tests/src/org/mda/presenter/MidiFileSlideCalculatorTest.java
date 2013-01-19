@@ -25,7 +25,7 @@ import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.adapter.Size;
+import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
 import org.mda.presenter.ui.test.MidiFileCreator;
 
@@ -575,7 +575,7 @@ public class MidiFileSlideCalculatorTest {
     Slide slideFullScreen = calculator.calculatePart(midiFilePart, preCondition).get(0);
 
 
-    Size half = new Size (config.getDefaultPresentationScreenSize().getWidth() / 2, config.getDefaultPresentationScreenSize().getHeight() / 2);
+    SizeInfo half = new SizeInfo (config.getDefaultPresentationScreenSize().getWidth() / 2, config.getDefaultPresentationScreenSize().getHeight() / 2);
     preCondition.setCalculationsize(half);
     Slide halfScreen = calculator.calculatePart(midiFilePart, preCondition).get(0);
 

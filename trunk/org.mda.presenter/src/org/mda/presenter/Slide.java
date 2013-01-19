@@ -5,25 +5,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.EObject;
 import org.mda.Utils;
-import org.mda.presenter.adapter.Color;
-import org.mda.presenter.adapter.Font;
-import org.mda.presenter.adapter.Size;
-//import java.awt.Point;
+import org.mda.presenter.adapter.ColorInfo;
+import org.mda.presenter.adapter.FontInfo;
+import org.mda.presenter.adapter.SizeInfo;
 
 /** dataobject containing information created for a slide,
  * e.g. the text with all it's layoutdata
  * @author oleym */
 public class Slide {
-
-  private static final Logger LOGGER  = Logger.getLogger(Slide.class.getName());
-
-
-
-  private int duration;
 
   /** reference to the current modelelement (e.g. midifilepart) */
   private final EObject                                 modelRef;
@@ -31,22 +23,22 @@ public class Slide {
 
   private Integer                                       currentLine = 0;
 
-  private final Font font;
+  private final FontInfo font;
 
   private final HashMap<Integer, Collection<SlideItem>> items       = new HashMap<Integer, Collection<SlideItem>>();
 
   private File backgroundImageFile;
 
-  private Color backgroundColor;
+  private ColorInfo backgroundColor;
 
-  private Color foregroundColor;
+  private ColorInfo foregroundColor;
 
-  private Size size;
+  private SizeInfo size;
 
   private final boolean forceNewPage;
 
 
-  public Slide (EObject modelRef, final EObject firstLineModelRef, final Font font, final boolean forceNewPage) {
+  public Slide (EObject modelRef, final EObject firstLineModelRef, final FontInfo font, final boolean forceNewPage) {
     this.modelRef = modelRef;
     this.firstLineModelRef = firstLineModelRef;
     this.font = font;
@@ -238,7 +230,7 @@ public String toString () {
     return builder.toString() + "\n";
   }
 
-  public Font getFont () {
+  public FontInfo getFont () {
     return font;
   }
 
@@ -246,19 +238,19 @@ public String toString () {
     return backgroundImageFile;
   }
 
-  public Color getBackgroundColor () {
+  public ColorInfo getBackgroundColor () {
     return backgroundColor;
   }
 
-  public void setBackgroundColor (Color backgroundColor) {
+  public void setBackgroundColor (ColorInfo backgroundColor) {
     this.backgroundColor = backgroundColor;
   }
 
-  public Color getForegroundColor () {
+  public ColorInfo getForegroundColor () {
     return foregroundColor;
   }
 
-  public void setForegroundColor (Color foregroundColor) {
+  public void setForegroundColor (ColorInfo foregroundColor) {
     this.foregroundColor = foregroundColor;
   }
 
@@ -274,11 +266,11 @@ public String toString () {
     return firstLineModelRef;
   }
 
-  public Size getSize () {
+  public SizeInfo getSize () {
     return size;
   }
 
-  public void setSize (Size size) {
+  public void setSize (SizeInfo size) {
     this.size = size;
   }
 

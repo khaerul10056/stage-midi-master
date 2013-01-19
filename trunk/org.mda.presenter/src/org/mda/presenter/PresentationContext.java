@@ -14,7 +14,7 @@ import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.IPresentationContext;
 import org.mda.presenter.IPresentationController;
-import org.mda.presenter.adapter.Size;
+import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.IMidiFilePresenterConfig;
 
 import com.google.inject.Inject;
@@ -73,7 +73,7 @@ public class PresentationContext implements IPresentationContext {
       slidesPerItem.clear();
   }
 
-  public void setCurrentSession (Session currentSession, final IMidiFilePresenterConfig config, Size size) {
+  public void setCurrentSession (Session currentSession, final IMidiFilePresenterConfig config, SizeInfo size) {
     LOGGER.info("set current session " + currentSession.getName() + " at presentationcontext");
     this.currentViewingSession = currentSession;
     this.config = config;

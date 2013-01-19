@@ -2,25 +2,25 @@ package org.mda.presenter.adapter;
 
 public class Area {
 	
-	private final Location location; 
-	private final Size size;
+	private final LocationInfo location; 
+	private final SizeInfo size;
 	
 
-	public Area (final Location location, final Size size) {
+	public Area (final LocationInfo location, final SizeInfo size) {
 		this.location = location; 
 		this.size = size;
 	}
 	
-	public Area(final float x, final float y, final Size size) {
-		this.location = new Location(x, y); 
+	public Area(final float x, final float y, final SizeInfo size) {
+		this.location = new LocationInfo(x, y); 
 		this.size = size;
 	}
 
-	public Size getSize() {
+	public SizeInfo getSize() {
 		return size;
 	}
 
-	public Location getLocation() {
+	public LocationInfo getLocation() {
 		return location;
 	}
 	

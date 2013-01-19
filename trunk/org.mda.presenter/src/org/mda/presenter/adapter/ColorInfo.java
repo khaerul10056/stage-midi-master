@@ -8,7 +8,7 @@ import org.mda.presenter.utils.ColorNotFoundException;
  * @author oleym
  *
  */
-public class Color {
+public class ColorInfo {
 	
 	private final int red; 
 	
@@ -16,10 +16,10 @@ public class Color {
 	
 	private final int blue;
 
-	public final static Color BLACK = new Color (0, 0, 0);
-	public final static Color WHITE = new Color (255, 255, 255);
+	public final static ColorInfo BLACK = new ColorInfo (0, 0, 0);
+	public final static ColorInfo WHITE = new ColorInfo (255, 255, 255);
 	
-	public Color (final String colorAsString) throws ColorNotFoundException {
+	public ColorInfo (final String colorAsString) throws ColorNotFoundException {
 		String [] colorAspects = colorAsString != null ? colorAsString.split("x") : new String [0];
 	    if (colorAspects.length != 3)
 	        throw new ColorNotFoundException(colorAsString);
@@ -29,7 +29,7 @@ public class Color {
 		this.blue = Integer.valueOf(colorAspects [2]);
 	}
 	
-	public Color (int red, int green, int blue) {
+	public ColorInfo (int red, int green, int blue) {
 		this.red = red;
 		this.green = green;
 		this.blue = blue;		

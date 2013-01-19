@@ -23,7 +23,7 @@ import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.SpecialSlide;
-import org.mda.presenter.adapter.Size;
+import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
 import org.mda.presenter.ui.DefaultPresentationController;
 
@@ -57,7 +57,7 @@ public class BeamerPresenterTest {
 
 	  @Before
 	  public void before () {
-	    presentationContext.setCurrentSession(session, config, new Size (400, 200));
+	    presentationContext.setCurrentSession(session, config, new SizeInfo (400, 200));
 
 	    presenter = InjectService.getInstance(BeamerPresenter.class); 
 	    presenter.build(session, false, config);

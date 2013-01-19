@@ -16,7 +16,7 @@ import org.mda.MidiPlayerService;
 import org.mda.inject.InjectService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.adapter.Color;
+import org.mda.presenter.adapter.ColorInfo;
 import org.mda.presenter.utils.ColorNotFoundException;
 
 
@@ -169,9 +169,9 @@ public class PresentationConfigurator {
    * @param defaultColor	default color
    * @return color or default color
    */
-  public static Color getColorOrDefaultColor (final String color, final Color defaultColor) {
+  public static ColorInfo getColorOrDefaultColor (final String color, final ColorInfo defaultColor) {
 	  try {
-	    Color normalColor = new Color (color);
+	    ColorInfo normalColor = new ColorInfo (color);
 	    return normalColor;
 	  } catch (ColorNotFoundException e) {
 		  return defaultColor;
