@@ -11,10 +11,13 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.MenuItemBuilder;
 import javafx.scene.control.ToolBar;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.VBoxBuilder;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextBuilder;
 import javafx.stage.Stage;
 
 import com.sun.javafx.tk.FontMetrics;
@@ -65,12 +68,18 @@ public class HelloJavaFXWorld extends Application
         ToolBar toolbar = createToolbar();
         toolbar.prefWidthProperty().bind(stage.widthProperty());
 
-        VBox vbox = VBoxBuilder.create().alignment(Pos.TOP_LEFT).fillWidth(true).children(menubar, toolbar).build();
-
-        final Scene scene = new Scene(vbox, 800, 400, Color.CORNSILK);
+        Pane drecksPane = new Pane();
+        Font font = new Font ("Arial", 48);
+        for (int i = 0; i< 100; i++) {
+          Text normalText = TextBuilder.create().text("Wasn des fuern Zeuch").font(font).build();
+          normalText.setLayoutX(20); 
+          normalText.setLayoutY(40 * i);
+          drecksPane.getChildren().add(normalText);
+        }
+        
+        final Scene scene = new Scene(drecksPane, 800, 400, Color.CORNSILK);
 
         stage.setTitle("HelloWorld in JavaFX 2.0");
-        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.show();
     }

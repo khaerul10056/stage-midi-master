@@ -12,7 +12,6 @@ import mda.MidiFile;
 import mda.MidiFileChordPart;
 import mda.MidiFilePart;
 import mda.MidiFileTextLine;
-import mda.Session;
 
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
@@ -52,19 +51,12 @@ public class MidiFileSlideCalculator extends SlideCalculator {
   private float maxY = -1;
   
   
-  public List<Slide> calculate (final Session session, final CalculatorPreCondition preCondition) {
-	  List <Slide> slides = new ArrayList<Slide>();
-	  for (AbstractSessionItem sessionItem : session.getItems()) {
-		  slides.addAll(calculate(sessionItem, preCondition));
-	  }
-	  
-	  return slides;
-  }
-
   @Override
   public List<Slide> calculate (final AbstractSessionItem sessionitem, final CalculatorPreCondition preCondition) {
     List<Slide> slides = new ArrayList<Slide>();
     MidiFile midifile = (MidiFile) sessionitem;
+    
+    LOGGER.info("PreConditionSize: " + preCondition.getCalculationsize() + "- Config " + getConfig().getDefaultPresentationScreenSize());
 
     if (height < 0)
       height = preCondition.getCalculationsize().getHeight();

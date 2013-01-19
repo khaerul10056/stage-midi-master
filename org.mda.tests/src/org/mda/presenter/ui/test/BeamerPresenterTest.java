@@ -28,6 +28,7 @@ import org.mda.presenter.ui.PresentationContext;
 import org.mda.presenter.ui.SpecialSlide;
 
 
+@Deprecated
 public class BeamerPresenterTest {
 
   private static MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));

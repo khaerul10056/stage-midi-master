@@ -29,6 +29,10 @@
          </property>
       </product>
    </extension>
+   <extension point="org.mda.core.injected">
+      <injected interface="org.mda.application.ApplicationModule">
+      </injected>
+  </extension>
    
    
 

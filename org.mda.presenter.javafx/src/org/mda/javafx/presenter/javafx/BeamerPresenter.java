@@ -2,35 +2,31 @@ package org.mda.javafx.presenter.javafx;
 
 
 import java.util.HashMap;
-import java.util.List;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.GridPaneBuilder;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.PaneBuilder;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.CircleBuilder;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.LineBuilder;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontBuilder;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBuilder;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import mda.Session;
 
 import org.mda.ApplicationSession;
-import org.mda.inject.InjectService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.CalculatorPreCondition;
-import org.mda.presenter.MidiFileSlideCalculator;
+import org.mda.presenter.IPresentationView;
+import org.mda.presenter.PresentationContext;
 import org.mda.presenter.Slide;
 import org.mda.presenter.SlideItem;
 import org.mda.presenter.adapter.Size;
 import org.mda.presenter.config.IMidiFilePresenterConfig;
-import org.mda.presenter.config.PresentationConfigurator;
-import org.mda.presenter.config.PresentationType;
-import org.mda.presenter.ui.slide.IPresentationView;
 
 import com.google.inject.Inject;
 
@@ -42,70 +38,117 @@ public class BeamerPresenter implements IPresentationView {
 //	private MonitorManager monitormanager;
 	
 	@Inject
-	MidiFileSlideCalculator calculator;
-	
+	PresentationContext presentationContext;
 	
 	@Inject
 	ApplicationSession applicationSession;
 	
-	private Size size = new Size (800,600);
+	@Inject
+	KeyPresentationController keycontroller;
+	
 	
     private HashMap<Slide, Pane> panesPerSlide = new HashMap<Slide, Pane>();
+	
+	private Stage presentationStage;
+	
+	private Pane currentPane;
 	
 	
 	@Override
 	public void end() {
+		presentationContext.deregisterController(keycontroller.getClass());
+		presentationContext.deregisterView(getClass());
+		presentationStage.close();
 		
-		// TODO Auto-generated method stub
+		
+
 		
 	}
 
 	@Override
 	public void refresh() {
+		LOGGER.info("refresh called");
 		
-		//panesPerSlide.values().iterator().next().setVisible(true);
-        
+		Slide nextSlide = presentationContext.getCurrentSlide(); 
+		Pane nextPane = panesPerSlide.get(nextSlide);
+		
+		//TODO animations
+		currentPane.setVisible(false);
+		currentPane = nextPane; 
+		currentPane.setVisible(true);
 		
 	}
+	
+	private void showGrid (Pane stackpane, Size size) {
+        for (int i = 0; i < size.getWidth(); i += 100) {
+        	Line line = LineBuilder.create().layoutX(i).layoutY(0).endX(0).endY(size.getHeight()).build();
+        	stackpane.getChildren().add(line);
+        }
 
-	public void build(Session currentSession, boolean onTop) {
+        for (int i = 0; i < size.getHeight(); i += 100) {
+          Line line = LineBuilder.create().layoutX(0).layoutY(i).endX(size.getWidth()).endY(0).build();
+          stackpane.getChildren().add(line);
+        }
+
+      }
+
+	public void build(final Session currentSession, boolean onTop, final IMidiFilePresenterConfig config) {
 		
-		
-		
-		CalculatorPreCondition calcPreCondition = new CalculatorPreCondition();
-		calcPreCondition.setCalculationsize(size);
-		
-		PresentationConfigurator configurator = new PresentationConfigurator();
-	    IMidiFilePresenterConfig config = configurator.configure(null, applicationSession.getCurrentModel(), PresentationType.SCREEN);
-	    InjectService.injectObject(config); //TODO make it better
-		
-		calculator.setConfig(config);
+		presentationContext.registerView(this);
+		presentationContext.setCurrentSession(currentSession, config, config.getDefaultPresentationScreenSize());
 		
 		StackPane stackpane = new StackPane();
-		Stage presentationStage = new Stage();
+		presentationStage = new Stage();
+		presentationStage.initStyle(StageStyle.UNDECORATED);
+		presentationStage.setWidth(config.getDefaultPresentationScreenSize().getWidth());
+		presentationStage.setHeight(config.getDefaultPresentationScreenSize().getHeight());
+		presentationStage.centerOnScreen();
 		presentationStage.setScene(new Scene (stackpane));
+		stackpane.prefHeightProperty().bind(presentationStage.heightProperty());
+		stackpane.prefWidthProperty().bind(presentationStage.widthProperty());
 		
-	    List<Slide> calculate = calculator.calculate(currentSession, calcPreCondition);
+		currentPane = null;
 		
-		for (Slide nextSlide: calculate) {
+		for (Slide nextSlide: presentationContext.getSlides()) {
 			
 			Pane nextPane = PaneBuilder.create().build();
 			
+			nextPane.prefHeightProperty().bind(presentationStage.heightProperty());
+			nextPane.prefWidthProperty().bind(presentationStage.widthProperty());
+		
+			if (applicationSession.getFeatureActivation().isShowGridEnabled())
+			  showGrid(nextPane, config.getDefaultPresentationScreenSize());
+	
 			for (SlideItem slideItem : nextSlide.getItems()) {
+				Font font = FontBuilder.create().name(slideItem.getFont().getFontname()).size(slideItem.getFont().getFontsizeAsInt()).build();
+				Text text = TextBuilder.create().text(slideItem.getText()).font(font).build();
+				text.prefWidth(slideItem.getWidth());
+				text.prefHeight(slideItem.getHeight());
+				text.setLayoutX(slideItem.getX());
+				text.setLayoutY(slideItem.getY() + slideItem.getHeight());
 				
-				Text text = TextBuilder.create().text(slideItem.getText()).x(slideItem.getX()).y(slideItem.getY()).build();
 				nextPane.getChildren().add(text);
-				LOGGER.info("Create text <" + text.getText() + " on " + text.getX() + "-" + text.getY());
+				LOGGER.info("Create text <" + text.getText() + " on " + text.getX() + "-" + text.getY() + "-Item " + slideItem + "-");
 			}
+			
+			nextPane.setVisible(false);
+			
 			
 			stackpane.getChildren().add(nextPane);
 			panesPerSlide.put(nextSlide, nextPane);
 			
+			if (currentPane == null) 
+				currentPane = nextPane;
 		}
 
-		panesPerSlide.values().iterator().next().setVisible(true);
+		currentPane.setVisible(true);
+		
+		presentationContext.registerController(keycontroller);
+		presentationStage.addEventHandler(KeyEvent.KEY_PRESSED, keycontroller );
 		presentationStage.show();
 		
+		
+	
 	}
 
 }

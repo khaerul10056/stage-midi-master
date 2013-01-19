@@ -61,6 +61,9 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
   @Override
   public List<Slide> calculate (final AbstractSessionItem sessionitem, final CalculatorPreCondition preCondition) {
+	  
+	LOGGER.info("PreConditionSize: " + preCondition.getCalculationsize() + "- Config " + getConfig().getDefaultPresentationScreenSize());
+	  
     List<Slide> slides = new ArrayList<Slide>();
     MidiFile midifile = (MidiFile) sessionitem;
 

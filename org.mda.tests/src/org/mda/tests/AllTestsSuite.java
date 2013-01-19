@@ -100,6 +100,13 @@ import org.mda.transpose.TransposeTest;
   MidiFileDetailsShellTest.class, 
   MidiPartDetailsShellTest.class,
   PresentationSchemaEditorBuilderTest.class,
+  
+  //Presenter
+  org.mda.presenter.MidiFileSlideCalculatorTest.class,
+  org.mda.javafx.presenter.javafx.BeamerPresenterTest.class,
+  
+  
+  //JavaFX
 
   //Midi 
   MidiDeviceContentProviderTest.class, 

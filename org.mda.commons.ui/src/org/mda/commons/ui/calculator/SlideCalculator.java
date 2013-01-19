@@ -1,13 +1,15 @@
 package org.mda.commons.ui.calculator;
 
 import java.math.BigDecimal;
+
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+
+import com.google.inject.Inject;
 
 
 /**
@@ -19,6 +21,7 @@ public abstract class SlideCalculator implements ISlideCalculator {
 
   private static final Log LOGGER  = LogFactory.getLogger(SlideCalculator.class);
 
+  @Inject
   private IMidiFileEditorUIConfig config;
 
 
@@ -32,10 +35,7 @@ public void setConfig (IMidiFileEditorUIConfig config) {
   }
 
   public IMidiFileEditorUIConfig getConfig () {
-    if (config == null)
-      return new DefaultMidiFileContentEditorConfig();
-    else
-      return config;
+    return config;
   }
 
   /**

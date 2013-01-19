@@ -2,7 +2,7 @@ package org.mda.javafx.presenter.javafx;
 
 
 
-import javafx.scene.text.FontBuilder;
+import javafx.scene.text.FontWeight;
 
 import org.mda.presenter.adapter.Font;
 import org.mda.presenter.adapter.IGraphicsContext;
@@ -18,7 +18,12 @@ public class JavaFXGraphicsContext implements IGraphicsContext {
 
 	@Override
 	public Size getSize(String text, Font fontdesc) {
-		javafx.scene.text.Font font = FontBuilder.create().name("Arial").size(fontdesc.getFontsize()).build();
+		javafx.scene.text.Font font = null;
+		if (fontdesc.isBold())
+		  font = javafx.scene.text.Font.font("Arial Alternative", FontWeight.BOLD, fontdesc.getFontsize());
+		else
+		  font = javafx.scene.text.Font.font("Arial Alternative", FontWeight.NORMAL, fontdesc.getFontsize());
+		
 		FontMetrics fontMetrics = fontloader.getFontMetrics(font);
 		float computeStringWidth = fontMetrics.computeStringWidth(text);
 		float computeStringHeight = fontMetrics.getAscent();
