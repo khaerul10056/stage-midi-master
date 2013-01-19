@@ -11,24 +11,28 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import mda.MidiPlayerRoot;
 import mda.Session;
 
-import org.eclipse.swt.graphics.Point;
 import org.mda.ApplicationSession;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
 import org.mda.javafx.presenter.javafx.BeamerPresenter;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.adapter.Size;
 import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.PresentationConfigurator;
+import org.mda.presenter.config.PresentationType;
 import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
 
 public class JavaFxPresenterTester extends Application {
 
+	private static final Log LOGGER  = LogFactory.getLogger(JavaFxPresenterTester.class);
 	
 
 	@Override
@@ -38,6 +42,15 @@ public class JavaFxPresenterTester extends Application {
 		primaryStage.setFullScreen(false);
 		primaryStage.setWidth(800); 
 		primaryStage.setHeight(300);
+		primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler <KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent arg0) {
+				LOGGER.info("keyevent recieved");
+				
+			}
+			
+		});
 		ObservableList<Size> sizes = FXCollections.observableArrayList(
 		  new Size(1400, 1050), 
 		  new Size(1280, 900),
@@ -51,7 +64,7 @@ public class JavaFxPresenterTester extends Application {
 		    grid.setVgap(10);
 		    grid.setPadding(new Insets(0, 10, 0, 10));
 
-		ApplicationSession appsession = InjectService.getInstance(ApplicationSession.class);
+		final ApplicationSession appsession = InjectService.getInstance(ApplicationSession.class);
 		appsession.load(null);
 
 		final MidiPlayerRoot playerroot = appsession.getCurrentModel();
@@ -93,10 +106,27 @@ public class JavaFxPresenterTester extends Application {
                 Size size = (Size) cmbSize.getSelectionModel().getSelectedItem();
                 Session currentSession = (Session) cmbSession.getSelectionModel().getSelectedItem();
                 
-				DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
-				config.setShowChords(chkWithChords.isSelected());
+                
+//                Session currentSession = MidiplayerFactory.eINSTANCE.createSession(); 
+//                MidiFileCreator creator = MidiFileCreator.create(); 
+//                creator.part(MidiFilePartType.VERS).line().chordAndText("C", "This is an example"); 
+//                creator.line().text("And a second line"); 
+//                creator.line().text("And a third line");
+//                creator.line().text("And a fourth line");
+//                creator.line().text("And a fifth line");
+//                creator.line().chordAndText("C", "And a six line");
+//                MidiFile file = creator.get();
+//                currentSession.getItems().add(file);
+                
+                PresentationConfigurator configurator = new PresentationConfigurator();
+        	    DefaultMidiFilePresenterConfig config = (DefaultMidiFilePresenterConfig) configurator.configure(null, appsession.getCurrentModel(), PresentationType.SCREEN);
+        		config.setShowChords(chkWithChords.isSelected());
 				config.setShowBackground(chkWithBackground.isSelected());
 				config.setShowBlockType(chkWithBlocktypes.isSelected());
+				config.setSkipEmptySlides(true);
+				config.setOptimizeLineFilling(false);
+				config.setDefaultPresentationScreenSize(size);
+				
 
 				PresentationContext presentationContext = InjectService.getInstance(PresentationContext.class);
 				presentationContext.setCurrentSession(currentSession, config, size);
@@ -105,9 +135,7 @@ public class JavaFxPresenterTester extends Application {
 				presentationContext.registerController(globalKeyRegPresentationController);
 
 				BeamerPresenter beamerPresenter = InjectService.getInstance(BeamerPresenter.class);
-				beamerPresenter.build(currentSession,false);
-//				presentationContext.registerController(globalKeyRegPresentationController);
-//				presentationContext.registerView(beamerPresenter);
+				beamerPresenter.build(currentSession,false, config);
 				
 				
 				

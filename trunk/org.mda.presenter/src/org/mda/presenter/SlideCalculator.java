@@ -1,13 +1,15 @@
 package org.mda.presenter;
 
 import java.math.BigDecimal;
+
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.adapter.Font;
 import org.mda.presenter.adapter.Location;
 import org.mda.presenter.adapter.Size;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
 import org.mda.presenter.config.IMidiFilePresenterConfig;
+
+import com.google.inject.Inject;
 
 
 
@@ -15,6 +17,7 @@ public abstract class SlideCalculator implements ISlideCalculator {
 
   private static final Log LOGGER  = LogFactory.getLogger(SlideCalculator.class);
 
+  @Inject
   private IMidiFilePresenterConfig config;
 
 
@@ -28,10 +31,7 @@ public abstract class SlideCalculator implements ISlideCalculator {
   }
 
   public IMidiFilePresenterConfig getConfig () {
-    if (config == null)
-      return new DefaultMidiFilePresenterConfig();
-    else
-      return config;
+    return config;
   }
 
   /**
@@ -51,7 +51,7 @@ public abstract class SlideCalculator implements ISlideCalculator {
     BigDecimal zoomedWidth = new BigDecimal (getConfig().getDefaultPresentationScreenSize().getWidth()).multiply(min);
     BigDecimal zoomedHeight = new BigDecimal (getConfig().getDefaultPresentationScreenSize().getHeight()).multiply(min);
 
-    preCondition.setCalculationsize(new Size (zoomedWidth.intValue(), zoomedHeight.intValue()));
+//    preCondition.setCalculationsize(new Size (zoomedWidth.intValue(), zoomedHeight.intValue()));
   }
 
   /**

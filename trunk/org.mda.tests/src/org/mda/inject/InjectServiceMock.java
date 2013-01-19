@@ -7,6 +7,7 @@ import org.mda.application.ApplicationModule;
 import org.mda.editor.preview.ui.PreviewUiModule;
 import org.mda.javafx.presenter.javafx.PresenterJavaFxModule;
 import org.mda.midi.MidiModule;
+import org.mda.presenter.PresenterModule;
 import org.mda.presenter.ui.PresenterUiModule;
 
 /**
@@ -27,6 +28,7 @@ public class InjectServiceMock {
 			InjectService.cachedModules.add(new PreviewUiModule());
 			InjectService.cachedModules.add(new TestModule());
 			InjectService.cachedModules.add(new PresenterJavaFxModule());
+			InjectService.cachedModules.add(new PresenterModule());
 		}
 	}
 

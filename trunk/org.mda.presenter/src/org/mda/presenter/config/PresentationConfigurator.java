@@ -13,6 +13,7 @@ import mda.User;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.mda.MidiPlayerService;
+import org.mda.inject.InjectService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.adapter.Color;
@@ -56,7 +57,7 @@ public class PresentationConfigurator {
     if (currentType == null)
       throw new IllegalArgumentException("parameter currentType must not be null");
 
-    DefaultMidiFilePresenterConfig defaultConfig = new DefaultMidiFilePresenterConfig();
+    DefaultMidiFilePresenterConfig defaultConfig = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     
     overwriteConfiguration(defaultConfig, defaults.getAllDefaultSchemes(), currentType);  //programmatic defaults
     

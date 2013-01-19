@@ -1,4 +1,4 @@
-package org.mda.presenter.ui.test;
+package org.mda.presenter;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -15,24 +15,21 @@ import mda.MidiFilePartType;
 import mda.MidiFileTextLine;
 import mda.MidiPlayerRoot;
 
-import org.eclipse.swt.graphics.Point;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
-import org.mda.commons.ui.calculator.CalculatorPreCondition;
-import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
-import org.mda.commons.ui.calculator.Slide;
-import org.mda.commons.ui.calculator.SlideItem;
-import org.mda.commons.ui.calculator.SlideType;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.adapter.Size;
+import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.ui.test.MidiFileCreator;
 
-@Deprecated 
+
 public class MidiFileSlideCalculatorTest {
 
   private static final Log LOGGER  = LogFactory.getLogger(MidiFileSlideCalculatorTest.class);
@@ -54,8 +51,8 @@ public class MidiFileSlideCalculatorTest {
 
   private void checkConsistency (final Slide slide) {
     for (int line = 0; line < slide.getLineCount(); line ++) {
-      int yOfLine = -1;
-      int xOfLine = -1;
+      float yOfLine = -1;
+      float xOfLine = -1;
       Collection <SlideItem> itemsOfLine = slide.getItems(line);
       for (SlideItem next: itemsOfLine) {
         assertTrue(next.getText() + "yOfLine = " + yOfLine + ", next.getY() = " + next.getY(), yOfLine == -1 || yOfLine == next.getY());
@@ -93,7 +90,7 @@ public class MidiFileSlideCalculatorTest {
 
     creator = creator.copyright(null, PUBLISHER, PUBLISHERINLAND, null, null, null, null);
     MidiFile song = creator.get();
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     config.setShowCopyright(true);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
@@ -113,7 +110,7 @@ public class MidiFileSlideCalculatorTest {
     final String PUBLISHERINLAND = "PUBLISHERINLAND";
     creator = creator.copyright(null, PUBLISHER, PUBLISHERINLAND, null, null, null, null);
     MidiFile song = creator.get();
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     config.setShowCopyright(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
@@ -131,7 +128,7 @@ public class MidiFileSlideCalculatorTest {
     creator = creator.part(MidiFilePartType.REFRAIN);
     creator = creator.line().chordAndText("D", "                         ").chordAndText("F", "    ");
     MidiFile song = creator.get();
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     config.setOptimizeLineFilling(false);
     config.setOptimizeEmptyTokens(true);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
@@ -157,7 +154,7 @@ public class MidiFileSlideCalculatorTest {
     creator = creator.part(MidiFilePartType.VERS);
     creator = creator.line().text("This is the first vers").text("still");
     MidiFile song = creator.get();
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     config.setOptimizeLineFilling(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
@@ -178,11 +175,11 @@ public class MidiFileSlideCalculatorTest {
       for (int j = 0; j < currentSlideWithBorder.getItems().size(); j++) {
         SlideItem nextItemWithoutBorder = currentSlideWithoutBorder.getItems().get(j);
         SlideItem nextItemWithBorder = currentSlideWithBorder.getItems().get(j);
-        int expectedX = nextItemWithoutBorder.getX() + BORDER;
-        int expectedY = nextItemWithoutBorder.getY() + BORDER;
+        float expectedX = nextItemWithoutBorder.getX() + BORDER;
+        float expectedY = nextItemWithoutBorder.getY() + BORDER;
 
-        assertEquals (expectedX, nextItemWithBorder.getX());
-        assertEquals (expectedY, nextItemWithBorder.getY());
+        assertEquals ("x value at " + nextItemWithBorder.getText() + " not correct", expectedX, nextItemWithBorder.getX(), 0.00);
+        assertEquals (expectedY, nextItemWithBorder.getY(), 0.00);
       }
     }
   }
@@ -201,7 +198,7 @@ public class MidiFileSlideCalculatorTest {
     creator = creator.line().text("third line, which should definitively not be merged to previous line");
     MidiFile song = creator.get();
 
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     config.setOptimizeLineFilling(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
@@ -243,7 +240,7 @@ public class MidiFileSlideCalculatorTest {
     creator = creator.part(MidiFilePartType.INTRO).line().chordAndText("D", "");
     creator = creator.part(MidiFilePartType.INTRO).line().chordAndText("D", "Hallo");
     MidiFile song = creator.get();
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     config.setNewPageRespected(false);
     config.setShowTitle(true);
     config.setSkipEmptySlides(false);
@@ -271,7 +268,7 @@ public class MidiFileSlideCalculatorTest {
     MidiFile song = creator.get();
     song.setName(TITLE);
 
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     config.setNewPageRespected(false);
     config.setShowTitle(true);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
@@ -284,7 +281,7 @@ public class MidiFileSlideCalculatorTest {
     SlideItem item2 = calculate.get(0).getItems().get(1);
     assertEquals ("SONGTITLE", item1.getText());
     assertEquals ("First line", item2.getText());
-    assertEquals (item1.getX(), item2.getX());
+    assertEquals (item1.getX(), item2.getX(), 0.00);
     assertTrue (item1.getY() < item2.getY());
 
   }
@@ -302,7 +299,7 @@ public class MidiFileSlideCalculatorTest {
     creator = creator.line().chordAndText("F", "second line");
     creator = creator.line().chordAndText("G", "thir line on a new slide");
     MidiFile song = creator.get();
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     config.setNewPageRespected(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
@@ -334,7 +331,7 @@ public class MidiFileSlideCalculatorTest {
     creator = creator.line().chordAndText("F", "second line");
     creator = creator.line().chordAndText("G", "thir line on a new slide");
     MidiFile song = creator.get();
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
@@ -346,15 +343,15 @@ public class MidiFileSlideCalculatorTest {
 
     calculate = calculator.calculate(song, preCondition);
     assertEquals(2, calculate.size());
-    assertEquals (calculate.get(0).getItems().get(0).getY(), calculate.get(1).getItems().get(0).getY());
-    assertEquals (calculate.get(0).getItems().get(0).getX(), calculate.get(1).getItems().get(0).getX());
+    assertEquals (calculate.get(0).getItems().get(0).getY(), calculate.get(1).getItems().get(0).getY(), 0.00);
+    assertEquals (calculate.get(0).getItems().get(0).getX(), calculate.get(1).getItems().get(0).getX(), 0.00);
   }
 
 
   @Test
   public void createChordRelatedPart () throws Exception {
     MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", " ").get();
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
@@ -366,7 +363,7 @@ public class MidiFileSlideCalculatorTest {
   @Test
   public void chordRelatedPartWith2Spaces () throws Exception {
     MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", "  ").get();
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
@@ -382,7 +379,7 @@ public class MidiFileSlideCalculatorTest {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     MidiFilePart midiFilePart = song.getParts().get(1);
 
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     config.setAutoWrapToNewPage(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
@@ -397,7 +394,7 @@ public class MidiFileSlideCalculatorTest {
 
   }
 
-  private List<Slide> calculate (final MidiFile part, DefaultMidiFileContentEditorConfig config) {
+  private List<Slide> calculate (final MidiFile part, DefaultMidiFilePresenterConfig config) {
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
@@ -419,7 +416,7 @@ public class MidiFileSlideCalculatorTest {
     MidiFile song = creator.get();
     assertEquals (2, song.getParts().size());
 
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     config.setShowChords(false);
     config.setPagePerPart(true);
     config.setFontsize(80);
@@ -437,11 +434,11 @@ public class MidiFileSlideCalculatorTest {
     assertEquals (ONE, firstLineItem.getText());
     assertEquals (TWO, thirdLineItem.getText());
     assertEquals (THREE, nextSideFirstLineItem.getText());
-    assertEquals (firstLineItem.getY(), 0); 
-    assertEquals (secondLineItem.getY(), 0); 
-    assertEquals (thirdLineItem.getY(), 194);
-    assertEquals (firstLineItem.getY(), secondLineItem.getY());
-    assertEquals (firstLineItem.getY(), nextSideFirstLineItem.getY());
+    assertEquals (0, firstLineItem.getY(),  0); 
+    assertEquals (0, secondLineItem.getY(), 0); 
+    assertEquals (194, thirdLineItem.getY(), 0);
+    assertEquals (firstLineItem.getY(), secondLineItem.getY(), 0);
+    assertEquals (firstLineItem.getY(), nextSideFirstLineItem.getY(), 0);
   }
   @Test
   public void checkWithType () {
@@ -456,7 +453,7 @@ public class MidiFileSlideCalculatorTest {
     MidiFile song = creator.get();
     assertEquals (2, song.getParts().size());
 
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     config.setShowChords(true);
     config.setShowBlockType(true);
     config.setPagePerPart(false);
@@ -479,12 +476,12 @@ public class MidiFileSlideCalculatorTest {
     assertEquals (ONE, firstLineItem.getText());
     assertEquals (TWO, secondLineItem.getText());
 
-    assertEquals (parttypeItem.getY(), firstLineItem.getY());
+    assertEquals (parttypeItem.getY(), firstLineItem.getY(), 0.00);
     assertTrue (chordLineItem.getY() < firstLineItem.getY());
     assertTrue (parttypeItem.getX() + parttypeItem.getWidth() < secondLineItem.getX());
-    assertEquals(firstLineItem.getX(), secondLineItem.getX());
-    assertEquals(firstLineItem.getX(), thirdLineItem.getX());
-    assertEquals (parttypeItem.getX(), parttypeItem2.getX());
+    assertEquals(firstLineItem.getX(), secondLineItem.getX(), 0.00);
+    assertEquals(firstLineItem.getX(), thirdLineItem.getX(), 0.00);
+    assertEquals (parttypeItem.getX(), parttypeItem2.getX(), 0.00);
     assertTrue (parttypeItem2.getY() > secondLineItem.getY());
   }
 
@@ -500,7 +497,7 @@ public class MidiFileSlideCalculatorTest {
     creator.line().text("second line");
     MidiFile song = creator.get();
 
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     config.setShowChords(true);
     config.setFontsize(80);
 
@@ -518,14 +515,14 @@ public class MidiFileSlideCalculatorTest {
     assertEquals ("test", item2.getText());
     assertEquals (SlideType.TEXT, item2.getItemType());
 
-    assertEquals (item1.getY(), item2.getY());
+    assertEquals (item1.getY(), item2.getY(), 0.00);
 
     assertEquals ("D", item3.getText());
     assertEquals (SlideType.CHORD, item3.getItemType());
 
     assertEquals ("second line", item4.getText());
     assertEquals (SlideType.TEXT, item4.getItemType());
-    assertEquals (item4.getX(), item1.getX());
+    assertEquals (item4.getX(), item1.getX(), 0.00);
     assertTrue (item4.getY() > item1.getY());
   }
 
@@ -539,7 +536,7 @@ public class MidiFileSlideCalculatorTest {
     creator.line().text("second line");
     MidiFile song = creator.get();
 
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     config.setShowChords(false);
     config.setFontsize(80);
     Slide slide = calculate(song, config).get(0);
@@ -555,11 +552,11 @@ public class MidiFileSlideCalculatorTest {
     assertEquals ("test", item2.getText());
     assertEquals (SlideType.TEXT, item2.getItemType());
 
-    assertEquals (item1.getY(), item2.getY());
+    assertEquals (item1.getY(), item2.getY(), 0.00);
 
     assertEquals ("second line", item3.getText());
     assertEquals (SlideType.TEXT, item3.getItemType());
-    assertEquals (item3.getX(), item1.getX());
+    assertEquals (item3.getX(), item1.getX(), 0.00);
     assertTrue (item3.getY() > item1.getY());
   }
 
@@ -570,7 +567,7 @@ public class MidiFileSlideCalculatorTest {
     MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
     MidiFilePart midiFilePart = song.getParts().get(1);
 
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
@@ -578,7 +575,7 @@ public class MidiFileSlideCalculatorTest {
     Slide slideFullScreen = calculator.calculatePart(midiFilePart, preCondition).get(0);
 
 
-    Point half = new Point (config.getDefaultPresentationScreenSize().x / 2, config.getDefaultPresentationScreenSize().y / 2);
+    Size half = new Size (config.getDefaultPresentationScreenSize().getWidth() / 2, config.getDefaultPresentationScreenSize().getHeight() / 2);
     preCondition.setCalculationsize(half);
     Slide halfScreen = calculator.calculatePart(midiFilePart, preCondition).get(0);
 
@@ -589,7 +586,7 @@ public class MidiFileSlideCalculatorTest {
 
       like ("X-Coordinate of " + nextFull.getText(), nextFull.getX(), nextHalf.getX() * 2);
       like ("Y-Coordinate of " + nextFull.getText(), nextFull.getY(), nextHalf.getY() * 2);
-      like ("Font of " + nextFull.getText(), slideFullScreen.getFont().getFontData() [0].getHeight(), halfScreen.getFont().getFontData() [0].getHeight() * 2);
+      like ("Font of " + nextFull.getText(), slideFullScreen.getFont().getFontsizeAsInt(), halfScreen.getFont().getFontsizeAsInt());
     }
 
     System.out.println ("Full: " + slideFullScreen.toString());
@@ -597,7 +594,7 @@ public class MidiFileSlideCalculatorTest {
 
   }
 
-  private void like (final String text, final int first, final int second) {
+  private void like (final String text, final float first, final float second) {
     if (first + 1 == second || first -1 == second || first == second)
       return;
     else

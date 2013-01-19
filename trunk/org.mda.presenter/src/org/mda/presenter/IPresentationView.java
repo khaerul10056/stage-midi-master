@@ -1,9 +1,8 @@
-package org.mda.presenter.ui.slide;
+package org.mda.presenter;
 
 
 
 
-@Deprecated
 public interface IPresentationView {
   /**
    * ends up the presentation

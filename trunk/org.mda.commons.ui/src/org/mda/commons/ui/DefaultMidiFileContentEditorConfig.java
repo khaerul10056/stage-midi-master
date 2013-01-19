@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
 import org.mda.Utils;
 import org.mda.commons.ui.calculator.FontDescriptor;
+import org.mda.commons.ui.calculator.SWTGraphicsContext;
 
 import com.google.inject.Inject;
 
@@ -27,8 +28,7 @@ public class DefaultMidiFileContentEditorConfig extends PresentationSchemeImpl i
 
 
 
-  @Inject
-  private IGraphicsContext graphicsContext; // = new SWTGraphicsContext();
+  private IGraphicsContext graphicsContext = new SWTGraphicsContext();
 
   @Inject
   private ApplicationSession session;

@@ -16,7 +16,6 @@ import org.mda.presenter.IPresentationContext;
 import org.mda.presenter.IPresentationController;
 import org.mda.presenter.adapter.Size;
 import org.mda.presenter.config.IMidiFilePresenterConfig;
-import org.mda.presenter.ui.slide.IPresentationView;
 
 import com.google.inject.Inject;
 
@@ -40,14 +39,22 @@ public class PresentationContext implements IPresentationContext {
   
   @Inject
   MidiFileSlideCalculator calculator;
-  
-  
 
-
+  /**
+   * list of registered controllers to control the presentation 
+   * this can be a midiplayer, keyboard, remote controller,...
+   */
   private final List <IPresentationController> registeredControllers = new ArrayList<IPresentationController>();
 
+  /**
+   * list of registered views, which are notified if presentation state changes 
+   * e.g. if another slide is triggered
+   */
   private final List <IPresentationView> registeredViews = new ArrayList<IPresentationView>();
 
+  /**
+   * {@inheritDoc}
+   */
   public Session getCurrentSession () {
     return currentViewingSession;
   }
@@ -179,13 +186,20 @@ public class PresentationContext implements IPresentationContext {
   public Slide getCurrentSlide () {
     return slidesPerItem.get(getCurrentSessionItem()).get(currentSlideIndex);
   }
+  
+  public List <Slide> getSlides () {
+	  List <Slide> completeListe = new ArrayList<>(); 
+	  for (List<Slide> nextLists : slidesPerItem.values()) {
+		  completeListe.addAll(nextLists);
+	  }
+	  return completeListe;
+  }
 
   private LinkedHashMap<AbstractSessionItem, List<Slide>> calculateSlides (Session session) {
     LinkedHashMap<AbstractSessionItem, List<Slide>> slidesPerItem = new LinkedHashMap<AbstractSessionItem, List<Slide>>();
+    calculator.setConfig(config);
 
     for (AbstractSessionItem nextItem: session.getItems()) {
-      
-      calculator.setConfig(config);
       List<Slide> calculate = calculator.calculate(nextItem, calcPreCondition);
       slidesPerItem.put(nextItem, calculate);
     }
