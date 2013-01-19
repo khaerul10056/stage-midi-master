@@ -25,7 +25,7 @@ import org.mda.presenter.IPresentationView;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.Slide;
 import org.mda.presenter.SlideItem;
-import org.mda.presenter.adapter.Size;
+import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.IMidiFilePresenterConfig;
 
 import com.google.inject.Inject;
@@ -42,6 +42,12 @@ public class BeamerPresenter implements IPresentationView {
 	
 	@Inject
 	ApplicationSession applicationSession;
+	
+	@Inject
+	ColorResolver colorResolver;
+	
+	@Inject
+	BackgroundImageResolver backgroundImageResolver;
 	
 	@Inject
 	KeyPresentationController keycontroller;
@@ -79,7 +85,7 @@ public class BeamerPresenter implements IPresentationView {
 		
 	}
 	
-	private void showGrid (Pane stackpane, Size size) {
+	private void showGrid (Pane stackpane, SizeInfo size) {
         for (int i = 0; i < size.getWidth(); i += 100) {
         	Line line = LineBuilder.create().layoutX(i).layoutY(0).endX(0).endY(size.getHeight()).build();
         	stackpane.getChildren().add(line);
@@ -112,6 +118,10 @@ public class BeamerPresenter implements IPresentationView {
 		for (Slide nextSlide: presentationContext.getSlides()) {
 			
 			Pane nextPane = PaneBuilder.create().build();
+			if (nextSlide.getBackgroundImageFile() != null)
+			  nextPane.setStyle(backgroundImageResolver.getBackgroundImageCss(nextSlide.getBackgroundImageFile(), config.getDefaultPresentationScreenSize()));
+			else
+			  nextPane.setStyle(colorResolver.getBackground(nextSlide.getBackgroundColor()));
 			
 			nextPane.prefHeightProperty().bind(presentationStage.heightProperty());
 			nextPane.prefWidthProperty().bind(presentationStage.widthProperty());
@@ -122,6 +132,7 @@ public class BeamerPresenter implements IPresentationView {
 			for (SlideItem slideItem : nextSlide.getItems()) {
 				Font font = FontBuilder.create().name(slideItem.getFont().getFontname()).size(slideItem.getFont().getFontsizeAsInt()).build();
 				Text text = TextBuilder.create().text(slideItem.getText()).font(font).build();
+				text.setFill(colorResolver.getFxColor(nextSlide.getForegroundColor()));
 				text.prefWidth(slideItem.getWidth());
 				text.prefHeight(slideItem.getHeight());
 				text.setLayoutX(slideItem.getX());

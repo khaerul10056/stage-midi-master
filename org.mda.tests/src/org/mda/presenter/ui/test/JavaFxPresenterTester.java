@@ -24,7 +24,7 @@ import org.mda.javafx.presenter.javafx.BeamerPresenter;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.PresentationContext;
-import org.mda.presenter.adapter.Size;
+import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
 import org.mda.presenter.config.PresentationConfigurator;
 import org.mda.presenter.config.PresentationType;
@@ -51,12 +51,12 @@ public class JavaFxPresenterTester extends Application {
 			}
 			
 		});
-		ObservableList<Size> sizes = FXCollections.observableArrayList(
-		  new Size(1400, 1050), 
-		  new Size(1280, 900),
-		  new Size(1152, 864),
-		  new Size(1024, 768),
-		  new Size(800, 600)
+		ObservableList<SizeInfo> sizes = FXCollections.observableArrayList(
+		  new SizeInfo(1400, 1050), 
+		  new SizeInfo(1280, 900),
+		  new SizeInfo(1152, 864),
+		  new SizeInfo(1024, 768),
+		  new SizeInfo(800, 600)
 		);
 		
 		GridPane grid = new GridPane();
@@ -82,13 +82,14 @@ public class JavaFxPresenterTester extends Application {
 		
 		final CheckBox chkWithBackground = new CheckBox();
 		grid.add(new Label ("Show background: "), 0, 2);
+		chkWithBackground.setSelected(true);
 		grid.add(chkWithBackground, 1, 2);
 
 		final CheckBox chkWithBlocktypes = new CheckBox();
 		grid.add(new Label ("Show blocktypes: "), 0, 3);
 		grid.add(chkWithBlocktypes, 1, 3);
 		
-		final ComboBox<Size> cmbSize = new ComboBox<Size>(sizes);
+		final ComboBox<SizeInfo> cmbSize = new ComboBox<SizeInfo>(sizes);
 		cmbSize.setValue(sizes.get(0));
 		grid.add(new Label ("Size: "), 0, 4);
 		grid.add(cmbSize, 1, 4);
@@ -103,7 +104,7 @@ public class JavaFxPresenterTester extends Application {
 		btnOK.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Size size = (Size) cmbSize.getSelectionModel().getSelectedItem();
+                SizeInfo size = (SizeInfo) cmbSize.getSelectionModel().getSelectedItem();
                 Session currentSession = (Session) cmbSession.getSelectionModel().getSelectedItem();
                 
                 
@@ -125,6 +126,7 @@ public class JavaFxPresenterTester extends Application {
 				config.setShowBlockType(chkWithBlocktypes.isSelected());
 				config.setSkipEmptySlides(true);
 				config.setOptimizeLineFilling(false);
+				config.setNewPageRespected(true);
 				config.setDefaultPresentationScreenSize(size);
 				
 

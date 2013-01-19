@@ -6,7 +6,7 @@ import java.util.Collection;
 import mda.PresentationScheme;
 
 import org.mda.MidiPlayerService;
-import org.mda.presenter.adapter.Color;
+import org.mda.presenter.adapter.ColorInfo;
 /**
  * Default values for configuration
  * @author oleym
@@ -29,9 +29,9 @@ public class PresentationConfigDefaults {
 	private PresentationScheme createScreenScheme () {
 		PresentationScheme scheme = MidiPlayerService.mf.createPresentationScheme();
 		
-		scheme.setBackgroundColor(Color.BLACK.toString());
+		scheme.setBackgroundColor(ColorInfo.BLACK.toString());
 		scheme.setBorder(new Integer (10));
-		scheme.setForegroundColor(Color.WHITE.toString());
+		scheme.setForegroundColor(ColorInfo.WHITE.toString());
 		scheme.setNewPageRespected(Boolean.TRUE);
 		scheme.setOptimizeEmptyTokens(Boolean.TRUE);
 		scheme.setOptimizeEqualParts(Boolean.FALSE);
@@ -50,9 +50,9 @@ public class PresentationConfigDefaults {
 	private PresentationScheme createPdfScheme () {
 		PresentationScheme scheme = MidiPlayerService.mf.createPresentationScheme();
 		
-		scheme.setBackgroundColor(Color.WHITE.toString());
+		scheme.setBackgroundColor(ColorInfo.WHITE.toString());
 		scheme.setBorder(new Integer (35));
-		scheme.setForegroundColor(Color.BLACK.toString());
+		scheme.setForegroundColor(ColorInfo.BLACK.toString());
 		scheme.setNewPageRespected(Boolean.FALSE);
 		scheme.setOptimizeEmptyTokens(Boolean.TRUE);
 		scheme.setOptimizeEqualParts(Boolean.TRUE);
@@ -72,9 +72,9 @@ public class PresentationConfigDefaults {
 	private PresentationScheme createPptScheme () {
 		PresentationScheme scheme = MidiPlayerService.mf.createPresentationScheme();
 		
-		scheme.setBackgroundColor(Color.BLACK.toString());
+		scheme.setBackgroundColor(ColorInfo.BLACK.toString());
 		scheme.setBorder(new Integer (10));
-		scheme.setForegroundColor(Color.WHITE.toString());
+		scheme.setForegroundColor(ColorInfo.WHITE.toString());
 		scheme.setNewPageRespected(Boolean.TRUE);
 		scheme.setOptimizeEmptyTokens(Boolean.TRUE);
 		scheme.setOptimizeEqualParts(Boolean.FALSE);

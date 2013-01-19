@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.adapter.Font;
-import org.mda.presenter.adapter.Location;
-import org.mda.presenter.adapter.Size;
+import org.mda.presenter.adapter.FontInfo;
+import org.mda.presenter.adapter.LocationInfo;
+import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.IMidiFilePresenterConfig;
 
 import com.google.inject.Inject;
@@ -74,13 +74,13 @@ public abstract class SlideCalculator implements ISlideCalculator {
    * @param preCondition
    * @return
    */
-  protected Location calculateZoomedLocation (final Location origin, final CalculatorPreCondition preCondition) {
+  protected LocationInfo calculateZoomedLocation (final LocationInfo origin, final CalculatorPreCondition preCondition) {
     BigDecimal zoomFactor = getZoomFactor(preCondition);
 
     BigDecimal zoomedWidth = new BigDecimal (origin.getX()).multiply(zoomFactor);
     BigDecimal zoomedHeight = new BigDecimal (origin.getY()).multiply(zoomFactor);
 
-    return new Location (zoomedWidth.intValue(), zoomedHeight.intValue());
+    return new LocationInfo (zoomedWidth.intValue(), zoomedHeight.intValue());
   }
   
   /**
@@ -90,13 +90,13 @@ public abstract class SlideCalculator implements ISlideCalculator {
    * @param preCondition
    * @return
    */
-  protected Size calculateZoomedSize (final Size origin, final CalculatorPreCondition preCondition) {
+  protected SizeInfo calculateZoomedSize (final SizeInfo origin, final CalculatorPreCondition preCondition) {
     BigDecimal zoomFactor = getZoomFactor(preCondition);
 
     BigDecimal zoomedWidth = new BigDecimal (origin.getWidth()).multiply(zoomFactor);
     BigDecimal zoomedHeight = new BigDecimal (origin.getHeight()).multiply(zoomFactor);
 
-    return new Size (zoomedWidth.intValue(), zoomedHeight.intValue());
+    return new SizeInfo (zoomedWidth.intValue(), zoomedHeight.intValue());
   }
 
   /**
@@ -106,12 +106,12 @@ public abstract class SlideCalculator implements ISlideCalculator {
    * @param preCondition
    * @return
    */
-  protected Font calculateZoomedFont (final Font font, final CalculatorPreCondition preCondition) {
+  protected FontInfo calculateZoomedFont (final FontInfo font, final CalculatorPreCondition preCondition) {
 
     BigDecimal zoomFactor = getZoomFactor(preCondition);
     BigDecimal zoomedHeight = new BigDecimal (font.getFontsize()).multiply(zoomFactor);
     
-    Font newFont = new Font (font);
+    FontInfo newFont = new FontInfo (font);
     newFont.setFontsize(zoomedHeight.intValue());
     return newFont;
   }

@@ -20,10 +20,10 @@ import org.mda.copyright.CopyrightSerializer;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.adapter.Area;
-import org.mda.presenter.adapter.Font;
+import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
-import org.mda.presenter.adapter.Location;
-import org.mda.presenter.adapter.Size;
+import org.mda.presenter.adapter.LocationInfo;
+import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.PresentationConfigurator;
 import org.mda.struct.MidiFileStruct;
 import org.mda.struct.MidiFileStructItem;
@@ -39,7 +39,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
   private File imageFile;
 
-  private Size nullExtend = new Size (0,0);
+  private SizeInfo nullExtend = new SizeInfo (0,0);
 
   @Inject
   private ApplicationSession  appSession;
@@ -67,8 +67,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
     if (getConfig().isShowCopyright()) {
       int copyrightFontsize = getConfig().getFont().getFontsizeAsInt() - 2;
-      Font font = new Font ("Arial Alternative", copyrightFontsize);
-      Font zoomedFont = calculateZoomedFont(font, preCondition);
+      FontInfo font = new FontInfo ("Arial Alternative", copyrightFontsize);
+      FontInfo zoomedFont = calculateZoomedFont(font, preCondition);
       if (LOGGER.isDebugEnabled())
         LOGGER.debug("set font to size " + zoomedFont.getFontsizeAsInt() + " from " + font.getFontsizeAsInt());
 
@@ -79,10 +79,10 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       maxY = currentY;
 
       for (String nextCopyrightLine : serialize) {
-        Size copyrightExtend = getGc().getSize(nextCopyrightLine, getConfig().getFont());
-        Size zoomedSize = calculateZoomedSize(copyrightExtend, preCondition);
+        SizeInfo copyrightExtend = getGc().getSize(nextCopyrightLine, getConfig().getFont());
+        SizeInfo zoomedSize = calculateZoomedSize(copyrightExtend, preCondition);
         Area newRectangle = new Area(currentX, currentY, zoomedSize);
-        Font fontDesc = new Font(copyrightFontsize);
+        FontInfo fontDesc = new FontInfo(copyrightFontsize);
         SlideItem titleItem = new SlideItem(newRectangle, nextCopyrightLine, SlideType.COPYRIGHT, null, false, fontDesc, 0);
         copyrightItems.add(titleItem);
 
@@ -136,13 +136,13 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
       String name = MidiPlayerService.getTitle(midifile);
 
-      Location point = new Location(currentX, currentY);
-      Location zoomedPoint = calculateZoomedLocation(point, preCondition);
+      LocationInfo point = new LocationInfo(currentX, currentY);
+      LocationInfo zoomedPoint = calculateZoomedLocation(point, preCondition);
 
-      Font descTitle = new Font(getConfig().getFont());
+      FontInfo descTitle = new FontInfo(getConfig().getFont());
       descTitle.setBold(true);
 
-      Size sizeTitle = getGc().getSize(midifile.getName(), descTitle);
+      SizeInfo sizeTitle = getGc().getSize(midifile.getName(), descTitle);
       Area titleRectangle = new Area(zoomedPoint, sizeTitle);
 
       SlideItem titleItem = new SlideItem(titleRectangle, name.toUpperCase(), SlideType.TITLE, null, false, descTitle, 0);
@@ -197,7 +197,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     for (MidiFilePart nextPart: file.getParts()) {
       String label = struct.getItem(nextPart).getLabel();
       if (label != null) {
-        Size currentOffset = getGc().getSize(label, getConfig().getFont());
+        SizeInfo currentOffset = getGc().getSize(label, getConfig().getFont());
         if (currentOffset.getWidth() > length) {
           length = currentOffset.getWidth();
           longestPart = label;
@@ -211,7 +211,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
   }
 
   private Slide newSlide (final MidiFile midifile, final MidiFilePart part, final MidiFileTextLine firstLine,
-                          final Font zoomedFont, final CalculatorPreCondition preCondition, final boolean forceNewPage) {
+                          final FontInfo zoomedFont, final CalculatorPreCondition preCondition, final boolean forceNewPage) {
     Slide slide = new Slide(part, firstLine, zoomedFont, forceNewPage);
     slide.setBackgroundImage(imageFile);
     slide.setSize(preCondition.getCalculationsize());
@@ -262,10 +262,10 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       return slides;
 
     //TODO centralize fonthandling
-    Font font = new Font ("Arial Alternative", getConfig().getFont().getFontsize());
+    FontInfo font = new FontInfo ("Arial Alternative", getConfig().getFont().getFontsize());
     float longestTypeOffset = getOffsetLongestPartType(midifile, preCondition);
 
-    Font zoomedFont = calculateZoomedFont(font, preCondition);
+    FontInfo zoomedFont = calculateZoomedFont(font, preCondition);
     if (LOGGER.isDebugEnabled())
       LOGGER.debug("set font to size " + zoomedFont.getFontsize() + " from " + font.getFontsize());
 
@@ -295,12 +295,12 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       String blockType = structItem.getLabel();
       if (blockType != null) {
 
-        Size parttypeExtend = getGc().getSize(blockType, getConfig().getFont());
+        SizeInfo parttypeExtend = getGc().getSize(blockType, getConfig().getFont());
         float addToY = getOffsetChordToText(currentY, getLineHeight());
-        Location point = new Location(leftPosDefault, addToY);
+        LocationInfo point = new LocationInfo(leftPosDefault, addToY);
 
-        Location zoomedPoint = calculateZoomedLocation(point, preCondition);
-        Size zoomedPartTypeExtend = calculateZoomedSize(parttypeExtend, preCondition);
+        LocationInfo zoomedPoint = calculateZoomedLocation(point, preCondition);
+        SizeInfo zoomedPartTypeExtend = calculateZoomedSize(parttypeExtend, preCondition);
 
         Area textRectangle = new Area (zoomedPoint, zoomedPartTypeExtend);
         SlideItem newTextItem = new SlideItem(textRectangle, blockType, SlideType.TEXT, null, false, getConfig().getFont(), 0);
@@ -339,8 +339,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         }
 
 
-        Size textExtend = text != null ? getGc().getSize(text, getConfig().getFont()) : nullExtend;
-        Size chordExtend = chord != null && getConfig().isChordPresented() ? getGc().getSize(chord, getConfig().getFont()): nullExtend ;
+        SizeInfo textExtend = text != null ? getGc().getSize(text, getConfig().getFont()) : nullExtend;
+        SizeInfo chordExtend = chord != null && getConfig().isChordPresented() ? getGc().getSize(chord, getConfig().getFont()): nullExtend ;
 
         SlideItem newTextItem = null;
 
@@ -353,10 +353,10 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         if (text != null) {
           float addToY = getOffsetChordToText(currentY, getLineHeight());
           float indentToChord = currentY - addToY; //indent between chord and text
-          Location point = new Location(currentX, addToY);
-          Location zoomedPoint = calculateZoomedLocation(point, preCondition);
-          Size zoomedTextExtend = calculateZoomedSize(textExtend, preCondition);
-          Location zoomedIndent = calculateZoomedLocation(new Location (indentToChord, 0), preCondition);
+          LocationInfo point = new LocationInfo(currentX, addToY);
+          LocationInfo zoomedPoint = calculateZoomedLocation(point, preCondition);
+          SizeInfo zoomedTextExtend = calculateZoomedSize(textExtend, preCondition);
+          LocationInfo zoomedIndent = calculateZoomedLocation(new LocationInfo (indentToChord, 0), preCondition);
 
           Area textRectangle = new Area(zoomedPoint, zoomedTextExtend);
           newTextItem = new SlideItem(textRectangle, text, SlideType.TEXT, null, newSlideForced, getConfig().getFont(), zoomedIndent.getX());
@@ -364,9 +364,9 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         }
 
         if (chord != null && getConfig().isChordPresented()) {
-          Location point = new Location (currentX, currentY);
-          Location zoomedPoint = calculateZoomedLocation(point, preCondition);
-          Size zoomedChordExtend = calculateZoomedSize(chordExtend, preCondition);
+          LocationInfo point = new LocationInfo (currentX, currentY);
+          LocationInfo zoomedPoint = calculateZoomedLocation(point, preCondition);
+          SizeInfo zoomedChordExtend = calculateZoomedSize(chordExtend, preCondition);
 
           Area  chordRectangle = new Area(zoomedPoint, zoomedChordExtend);
           SlideItem newItem = new SlideItem(chordRectangle, chord, SlideType.CHORD, newTextItem, newSlideForced, getConfig().getFont(), 0);
@@ -415,7 +415,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
   }
 
   private boolean isYOutOfPageSize (CalculatorPreCondition preCondition) {
-    float zoomedCurrentY = calculateZoomedLocation(new Location (currentY, 0), preCondition).getX(); //TODO check, if this is OK
+    float zoomedCurrentY = calculateZoomedLocation(new LocationInfo (currentY, 0), preCondition).getX(); //TODO check, if this is OK
     return zoomedCurrentY > maxY;
   }
 

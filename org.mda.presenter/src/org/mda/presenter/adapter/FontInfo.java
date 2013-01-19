@@ -1,6 +1,6 @@
 package org.mda.presenter.adapter;
 
-public class Font {
+public class FontInfo {
 	
   private String fontname;
 
@@ -8,22 +8,22 @@ public class Font {
   
   private boolean bold;
   
-  public Font(String name, final Integer fontsize) {
+  public FontInfo(String name, final Integer fontsize) {
 	  this.fontname = name;
 	  this.fontsize = fontsize;
   }
 
-  public Font (final Font desc) {
+  public FontInfo (final FontInfo desc) {
     this.setFontsize(desc.getFontsize());
     this.setBold(desc.isBold());
   }
 
-  public Font (final Integer fontsize) {
+  public FontInfo (final Integer fontsize) {
     this.setFontsize(fontsize);
     this.setBold(false);
   }
 
-  public Font (final Integer fontsize, final boolean bold) {
+  public FontInfo (final Integer fontsize, final boolean bold) {
     this.setFontsize(fontsize);
     this.setBold(bold);
   }
@@ -67,7 +67,7 @@ public class Font {
       return false;
     if (getClass() != obj.getClass())
       return false;
-    Font other = (Font) obj;
+    FontInfo other = (FontInfo) obj;
     if (bold != other.bold)
       return false;
     if (fontsize == null) {

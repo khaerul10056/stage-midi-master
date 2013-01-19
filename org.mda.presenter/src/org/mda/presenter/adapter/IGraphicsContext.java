@@ -2,6 +2,6 @@ package org.mda.presenter.adapter;
 
 public interface IGraphicsContext {
 
-  public Size getSize (String text, final Font fontdesc);
+  public SizeInfo getSize (String text, final FontInfo fontdesc);
 
 }

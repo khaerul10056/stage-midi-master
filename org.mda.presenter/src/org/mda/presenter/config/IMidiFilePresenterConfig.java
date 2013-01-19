@@ -3,10 +3,10 @@ package org.mda.presenter.config;
 
 import mda.MidiFilePartType;
 
-import org.mda.presenter.adapter.Color;
-import org.mda.presenter.adapter.Font;
+import org.mda.presenter.adapter.ColorInfo;
+import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
-import org.mda.presenter.adapter.Size;
+import org.mda.presenter.adapter.SizeInfo;
 
 public interface IMidiFilePresenterConfig {
 
@@ -29,18 +29,18 @@ public interface IMidiFilePresenterConfig {
 
 	IGraphicsContext getGraphicsContext();
 
-	Color getDefaultBackgroundColor();
+	ColorInfo getDefaultBackgroundColor();
 
-	Color getDefaultForegroundColor();
+	ColorInfo getDefaultForegroundColor();
 
-	Font getFont();
+	FontInfo getFont();
 
 	/**
 	 * get default-size of presentation screen
 	 * 
 	 * @return presentation screen size
 	 */
-	Size getDefaultPresentationScreenSize();
+	SizeInfo getDefaultPresentationScreenSize();
 
 	/**
 	 * returns if the background image should be shown
@@ -138,6 +138,6 @@ public interface IMidiFilePresenterConfig {
 
 	boolean isAutoWrapToNewPage();
 
-	void setDefaultPresentationScreenSize(Size calcSize);
+	void setDefaultPresentationScreenSize(SizeInfo calcSize);
 
 }

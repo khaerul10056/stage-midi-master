@@ -8,10 +8,10 @@ import mda.MidiFilePartType;
 import mda.impl.PresentationSchemeImpl;
 
 import org.mda.ApplicationSession;
-import org.mda.presenter.adapter.Color;
-import org.mda.presenter.adapter.Font;
+import org.mda.presenter.adapter.ColorInfo;
+import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
-import org.mda.presenter.adapter.Size;
+import org.mda.presenter.adapter.SizeInfo;
 
 import com.google.inject.Inject;
 
@@ -20,7 +20,7 @@ public class DefaultMidiFilePresenterConfig extends PresentationSchemeImpl imple
 
   
 
-  private Size                  defaultPresentationScreenSize = new Size (1280, 800); //TODO make better
+  private SizeInfo                  defaultPresentationScreenSize = new SizeInfo (1280, 800); //TODO make better
 
   private List<MidiFilePartType> partsToIgnore   = new ArrayList<MidiFilePartType>();
 
@@ -39,14 +39,14 @@ public class DefaultMidiFilePresenterConfig extends PresentationSchemeImpl imple
  
 
   @Override
-  public Font getFont () {
+  public FontInfo getFont () {
     if (fontsize != null)
-      return new Font(fontsize);
+      return new FontInfo(fontsize);
 
     if (session != null && session.getCurrentModel() != null && session.getCurrentModel().getConfig() != null && session.getCurrentModel().getConfig().getFontsize() != null)
-      return new Font(session.getCurrentModel().getConfig().getFontsize());
+      return new FontInfo(session.getCurrentModel().getConfig().getFontsize());
 
-    return new Font(40);
+    return new FontInfo(40);
   }
 
   public void setFontsize (Integer fontsize) {
@@ -64,7 +64,7 @@ public class DefaultMidiFilePresenterConfig extends PresentationSchemeImpl imple
   }
 
   @Override
-  public Size getDefaultPresentationScreenSize () {
+  public SizeInfo getDefaultPresentationScreenSize () {
     return defaultPresentationScreenSize;
   }
   
@@ -80,7 +80,7 @@ public class DefaultMidiFilePresenterConfig extends PresentationSchemeImpl imple
   }
   
   @Override
-  public void setDefaultPresentationScreenSize (Size defaultPresentationScreenSize) {
+  public void setDefaultPresentationScreenSize (SizeInfo defaultPresentationScreenSize) {
 	    this.defaultPresentationScreenSize = defaultPresentationScreenSize;
   }
   
@@ -92,13 +92,13 @@ public class DefaultMidiFilePresenterConfig extends PresentationSchemeImpl imple
   }
 
   @Override
-  public Color getDefaultBackgroundColor () {
-    return PresentationConfigurator.getColorOrDefaultColor(getBackgroundColor(),Color.BLACK);
+  public ColorInfo getDefaultBackgroundColor () {
+    return PresentationConfigurator.getColorOrDefaultColor(getBackgroundColor(),ColorInfo.BLACK);
   }
   
   @Override
-  public Color getDefaultForegroundColor () {
-	  return PresentationConfigurator.getColorOrDefaultColor(getForegroundColor(), Color.WHITE);
+  public ColorInfo getDefaultForegroundColor () {
+	  return PresentationConfigurator.getColorOrDefaultColor(getForegroundColor(), ColorInfo.WHITE);
   }
 
   @Override

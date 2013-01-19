@@ -1,12 +1,12 @@
 package org.mda.presenter.adapter;
 
-public class Location {
+public class LocationInfo {
 
     private final float x; 
 	
 	private final float y;
 	
-	public Location (final float x, final float y) {
+	public LocationInfo (final float x, final float y) {
 		this.y = y;
 		this.x = x;
 	}

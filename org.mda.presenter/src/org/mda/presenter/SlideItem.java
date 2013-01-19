@@ -1,9 +1,9 @@
 package org.mda.presenter;
 
-import java.util.logging.Logger;
-
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 import org.mda.presenter.adapter.Area;
-import org.mda.presenter.adapter.Font;
+import org.mda.presenter.adapter.FontInfo;
 
 
 /**
@@ -13,7 +13,7 @@ import org.mda.presenter.adapter.Font;
  */
 public class SlideItem {
 	
-  private static final Logger LOGGER  = Logger.getLogger(SlideItem.class.getName());
+	private static final Log LOGGER  = LogFactory.getLogger(SlideItem.class);
 
   private final String text;
   private Area area;
@@ -23,7 +23,7 @@ public class SlideItem {
 
   private final SlideItem refSlideItem;
   private final boolean newSlide;
-  private final Font font;
+  private final FontInfo font;
   private final int indentToChord;
 
 
@@ -36,7 +36,7 @@ public class SlideItem {
    * @param newSlide if a new slide is forces in this line
    */
   public SlideItem (final Area location, final String text, final SlideType itemType, final SlideItem refSlideItem, final boolean newSlide,
-                    final Font font, final float indentToChord) {
+                    final FontInfo font, final float indentToChord) {
 	LOGGER.info("Creating SlideItem " + text + "-" + location);
     this.area = location;
     this.text = text;
@@ -144,7 +144,7 @@ public String toString () {
   }
 
 
-  public Font getFont () {
+  public FontInfo getFont () {
     return font;
   }
 
