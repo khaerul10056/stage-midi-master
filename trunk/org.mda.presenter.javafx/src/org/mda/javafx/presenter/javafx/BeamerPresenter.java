@@ -25,6 +25,7 @@ import org.mda.presenter.IPresentationView;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.Slide;
 import org.mda.presenter.SlideItem;
+import org.mda.presenter.adapter.AreaInfo;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.IMidiFilePresenterConfig;
 
@@ -34,8 +35,8 @@ public class BeamerPresenter implements IPresentationView {
 	
 	private static final Log LOGGER  = LogFactory.getLogger(BeamerPresenter.class);
 	
-//	@Inject
-//	private MonitorManager monitormanager;
+	@Inject
+	private MonitorManager monitormanager;
 	
 	@Inject
 	PresentationContext presentationContext;
@@ -106,9 +107,12 @@ public class BeamerPresenter implements IPresentationView {
 		StackPane stackpane = new StackPane();
 		presentationStage = new Stage();
 		presentationStage.initStyle(StageStyle.UNDECORATED);
-		presentationStage.setWidth(config.getDefaultPresentationScreenSize().getWidth());
-		presentationStage.setHeight(config.getDefaultPresentationScreenSize().getHeight());
-		presentationStage.centerOnScreen();
+		
+		AreaInfo beamerpresenterBounds = monitormanager.getBeamerOrPreviewBounds();
+		presentationStage.setX(beamerpresenterBounds.getX()); 
+		presentationStage.setY(beamerpresenterBounds.getY());
+		presentationStage.setWidth(beamerpresenterBounds.getWidth()); 
+		presentationStage.setHeight(beamerpresenterBounds.getHeight());
 		presentationStage.setScene(new Scene (stackpane));
 		stackpane.prefHeightProperty().bind(presentationStage.heightProperty());
 		stackpane.prefWidthProperty().bind(presentationStage.widthProperty());
@@ -119,7 +123,7 @@ public class BeamerPresenter implements IPresentationView {
 			
 			Pane nextPane = PaneBuilder.create().build();
 			if (nextSlide.getBackgroundImageFile() != null)
-			  nextPane.setStyle(backgroundImageResolver.getBackgroundImageCss(nextSlide.getBackgroundImageFile(), config.getDefaultPresentationScreenSize()));
+			  nextPane.setStyle(backgroundImageResolver.getBackgroundImageCss(nextSlide.getBackgroundImageFile(), beamerpresenterBounds.getSize()));
 			else
 			  nextPane.setStyle(colorResolver.getBackground(nextSlide.getBackgroundColor()));
 			

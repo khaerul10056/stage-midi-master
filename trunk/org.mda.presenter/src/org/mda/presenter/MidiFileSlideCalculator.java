@@ -19,7 +19,7 @@ import org.mda.additionals.Additional;
 import org.mda.copyright.CopyrightSerializer;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.adapter.Area;
+import org.mda.presenter.adapter.AreaInfo;
 import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
 import org.mda.presenter.adapter.LocationInfo;
@@ -81,7 +81,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       for (String nextCopyrightLine : serialize) {
         SizeInfo copyrightExtend = getGc().getSize(nextCopyrightLine, getConfig().getFont());
         SizeInfo zoomedSize = calculateZoomedSize(copyrightExtend, preCondition);
-        Area newRectangle = new Area(currentX, currentY, zoomedSize);
+        AreaInfo newRectangle = new AreaInfo(currentX, currentY, zoomedSize);
         FontInfo fontDesc = new FontInfo(copyrightFontsize);
         SlideItem titleItem = new SlideItem(newRectangle, nextCopyrightLine, SlideType.COPYRIGHT, null, false, fontDesc, 0);
         copyrightItems.add(titleItem);
@@ -143,7 +143,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       descTitle.setBold(true);
 
       SizeInfo sizeTitle = getGc().getSize(midifile.getName(), descTitle);
-      Area titleRectangle = new Area(zoomedPoint, sizeTitle);
+      AreaInfo titleRectangle = new AreaInfo(zoomedPoint, sizeTitle);
 
       SlideItem titleItem = new SlideItem(titleRectangle, name.toUpperCase(), SlideType.TITLE, null, false, descTitle, 0);
       slide.addItem (titleItem);
@@ -302,7 +302,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
         LocationInfo zoomedPoint = calculateZoomedLocation(point, preCondition);
         SizeInfo zoomedPartTypeExtend = calculateZoomedSize(parttypeExtend, preCondition);
 
-        Area textRectangle = new Area (zoomedPoint, zoomedPartTypeExtend);
+        AreaInfo textRectangle = new AreaInfo (zoomedPoint, zoomedPartTypeExtend);
         SlideItem newTextItem = new SlideItem(textRectangle, blockType, SlideType.TEXT, null, false, getConfig().getFont(), 0);
         slide.addItem(newTextItem);
       }
@@ -358,7 +358,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
           SizeInfo zoomedTextExtend = calculateZoomedSize(textExtend, preCondition);
           LocationInfo zoomedIndent = calculateZoomedLocation(new LocationInfo (indentToChord, 0), preCondition);
 
-          Area textRectangle = new Area(zoomedPoint, zoomedTextExtend);
+          AreaInfo textRectangle = new AreaInfo(zoomedPoint, zoomedTextExtend);
           newTextItem = new SlideItem(textRectangle, text, SlideType.TEXT, null, newSlideForced, getConfig().getFont(), zoomedIndent.getX());
           itemsOfCurrentLine.add(newTextItem);
         }
@@ -368,7 +368,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
           LocationInfo zoomedPoint = calculateZoomedLocation(point, preCondition);
           SizeInfo zoomedChordExtend = calculateZoomedSize(chordExtend, preCondition);
 
-          Area  chordRectangle = new Area(zoomedPoint, zoomedChordExtend);
+          AreaInfo  chordRectangle = new AreaInfo(zoomedPoint, zoomedChordExtend);
           SlideItem newItem = new SlideItem(chordRectangle, chord, SlideType.CHORD, newTextItem, newSlideForced, getConfig().getFont(), 0);
           itemsOfCurrentLine.add(newItem);
         }
