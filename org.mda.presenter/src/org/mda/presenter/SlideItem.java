@@ -2,7 +2,7 @@ package org.mda.presenter;
 
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.adapter.Area;
+import org.mda.presenter.adapter.AreaInfo;
 import org.mda.presenter.adapter.FontInfo;
 
 
@@ -16,7 +16,7 @@ public class SlideItem {
 	private static final Log LOGGER  = LogFactory.getLogger(SlideItem.class);
 
   private final String text;
-  private Area area;
+  private AreaInfo area;
 
 
   private final SlideType itemType;
@@ -35,7 +35,7 @@ public class SlideItem {
    * @param refSlideItem  maybe <code>null</code> on text-items. Any chord-item holds a reference to his text-item
    * @param newSlide if a new slide is forces in this line
    */
-  public SlideItem (final Area location, final String text, final SlideType itemType, final SlideItem refSlideItem, final boolean newSlide,
+  public SlideItem (final AreaInfo location, final String text, final SlideType itemType, final SlideItem refSlideItem, final boolean newSlide,
                     final FontInfo font, final float indentToChord) {
 	LOGGER.info("Creating SlideItem " + text + "-" + location);
     this.area = location;
@@ -92,7 +92,7 @@ public String toString () {
    * @param newX new value of x
    */
   public void setX (float newX) {
-    area = new Area(newX, area.getY(), area.getSize());
+    area = new AreaInfo(newX, area.getY(), area.getSize());
   }
 
   /**
@@ -100,7 +100,7 @@ public String toString () {
    * @param newY new value of y
    */
   public void setY (float newY) {
-    area = new Area (area.getX(), newY, area.getSize());
+    area = new AreaInfo (area.getX(), newY, area.getSize());
   }
 
   /**
