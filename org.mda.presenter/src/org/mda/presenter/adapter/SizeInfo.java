@@ -14,6 +14,14 @@ public class SizeInfo {
 	public float getWidth() {
 		return width;
 	}
+	
+	public int getWidthAsInt () {
+		return (int) width;
+	}
+	
+	public int getHeightAsInt () {
+		return (int) height;
+	}
 
 	public float getHeight() {
 		return height;

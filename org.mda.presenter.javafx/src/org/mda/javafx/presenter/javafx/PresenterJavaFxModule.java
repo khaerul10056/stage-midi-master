@@ -1,6 +1,5 @@
 package org.mda.javafx.presenter.javafx;
 
-import org.mda.presenter.adapter.IGraphicsContext;
 import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
 import org.mda.presenter.config.IMidiFilePresenterConfig;
 
@@ -11,7 +10,7 @@ public class PresenterJavaFxModule implements Module {
 
 	@Override
 	public void configure(Binder binder) {
-		binder.bind(IGraphicsContext.class).to(JavaFXGraphicsContext.class);
+		
 		binder.bind(IMidiFilePresenterConfig.class).to(DefaultMidiFilePresenterConfig.class);
 	}
 

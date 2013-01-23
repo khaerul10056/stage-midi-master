@@ -10,11 +10,18 @@ public class ColorResolver {
 		return "-fx-background-color: #" + getColor(backgroundColor) + ";";
 	}
 	
+	private String fillWithNull (final String thing) {
+		if (thing.length() == 1) 
+			return "0" + thing;
+		else
+			return thing;
+	}
+	
 	private String getColor (final ColorInfo someColor) {
-		String red = String.format("%02d", someColor.getRed());
-		String green = String.format("%02d", someColor.getGreen());
-		String blue = String.format("%02d",  someColor.getBlue());
-		return red + green + blue;
+		String red = Integer.toHexString(someColor.getRed());
+		String green = Integer.toHexString(someColor.getGreen());
+		String blue = Integer.toHexString(someColor.getBlue());
+		return fillWithNull(red) + fillWithNull(green) + fillWithNull(blue);
 	}
 	
 	public Color getFxColor (final ColorInfo someColor) {
