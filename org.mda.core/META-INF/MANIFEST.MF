@@ -13,7 +13,6 @@ Export-Package: org.mda,
  org.mda.listeners,
  org.mda.logging,
  org.mda.presenter,
- org.mda.presenter.ui.slide,
  org.mda.struct,
  org.mda.transpose
 Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,

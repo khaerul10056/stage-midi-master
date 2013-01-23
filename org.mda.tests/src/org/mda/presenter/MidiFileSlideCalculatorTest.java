@@ -20,7 +20,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
 import org.mda.logging.Log;

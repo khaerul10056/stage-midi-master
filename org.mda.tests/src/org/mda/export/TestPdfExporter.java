@@ -12,15 +12,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
-import org.mda.commons.ui.calculator.Slide;
-import org.mda.commons.ui.calculator.SlideItem;
-import org.mda.commons.ui.calculator.SlideType;
 import org.mda.export.pdf.PdfExporter;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.SlideType;
+import org.mda.presenter.Slide;
+import org.mda.presenter.SlideItem;
+import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
 
 
 public class TestPdfExporter {
@@ -68,7 +68,7 @@ public class TestPdfExporter {
   public void checkExportWithChords () {
     PdfExporter exporter = getExporter();
 
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = new DefaultMidiFilePresenterConfig();
     config.setShowChords(true);
     appSession.getGlobalConfs().setDefaultBorder(new Integer (0));
 
@@ -106,7 +106,7 @@ public class TestPdfExporter {
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();
     sessionitems.add(appSession.getCurrentModel().getGallery().getGalleryItems().get(0));
 
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = new DefaultMidiFilePresenterConfig();
     config.setShowChords(false);
 
     exporter.export(sessionitems, tmpFile, config);

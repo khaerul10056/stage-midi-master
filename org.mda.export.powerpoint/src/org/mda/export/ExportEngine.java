@@ -27,12 +27,12 @@ import mda.User;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.mda.ApplicationSession;
-import org.mda.commons.ui.IMidiFileEditorUIConfig;
-import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
-import org.mda.commons.ui.calculator.configurator.PresentationType;
 import org.mda.export.pdf.PdfExporter;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.PresentationConfigurator;
+import org.mda.presenter.config.PresentationType;
 
 @Creatable
 public class ExportEngine {
@@ -82,7 +82,7 @@ public class ExportEngine {
           LOG.info("Exporting file " + exportFile.getAbsolutePath() + " for user " + nextUser.getName() + " " + nextUser.getFirstname());
           PresentationConfigurator configurator = new PresentationConfigurator();
           PresentationType type = nextUser.getDefaultPresentationType() != null ? PresentationType.valueOf(nextUser.getDefaultPresentationType()) : PresentationType.PDF;
-          IMidiFileEditorUIConfig config = configurator.configure(nextUser, appSession.getCurrentModel(), type);
+          IMidiFilePresenterConfig config = configurator.configure(nextUser, appSession.getCurrentModel(), type);
           exportFile = exporter.export(currentModel.getGallery().getGalleryItems(), exportFile, config);
           exportResult.setUser(nextUser);
           exportResult.setExportFile(exportFile);

@@ -9,14 +9,12 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.Utils;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
-import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.UIHandler;
-import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
-import org.mda.commons.ui.calculator.configurator.PresentationType;
-import org.mda.export.pdf.PdfExporter;
 import org.mda.export.textfile.TextfileExporter;
 import org.mda.inject.InjectService;
+import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.PresentationConfigurator;
+import org.mda.presenter.config.PresentationType;
 
 import com.google.inject.Inject;
 
@@ -38,7 +36,7 @@ public class ExportTextfileSessionHandler {
 
 		//TODO make a new PresentationType
 		PresentationConfigurator configurator = new PresentationConfigurator(); 
-		DefaultMidiFileContentEditorConfig config = (DefaultMidiFileContentEditorConfig) configurator.configure(null, session.getCurrentModel(), PresentationType.PDF);
+		DefaultMidiFilePresenterConfig config = (DefaultMidiFilePresenterConfig) configurator.configure(null, session.getCurrentModel(), PresentationType.PDF);
 		config.setShowTitle(true); 
 		config.setShowChords(false);
 		Session currentSession = (Session) session.getModelEvents().getCurrentModelElement(Session.class);

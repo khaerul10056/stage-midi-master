@@ -4,7 +4,6 @@ import mda.MidiFile;
 import mda.MidiFilePartType;
 import mda.Session;
 
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.After;
 import org.junit.Assert;
@@ -12,11 +11,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
+import org.mda.presenter.PresentationContext;
+import org.mda.presenter.adapter.SizeInfo;
+import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
 import org.mda.presenter.ui.ContentOverview;
-import org.mda.presenter.ui.PresentationContext;
 
 
 public class ContentOverviewTest {
@@ -41,7 +41,7 @@ public class ContentOverviewTest {
   @Test
   public void testContentOverview () throws Exception {
     instance.load(null);
-    presentationContext.setCurrentSession(instance.getCurrentModel().getSessions().get(0), new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
+    presentationContext.setCurrentSession(instance.getCurrentModel().getSessions().get(0), new DefaultMidiFilePresenterConfig(), new SizeInfo(400, 200));
     overview.build(new Shell());
     overview.refresh();
     Assert.assertTrue (overview.getPreviewParts().get(0).isSelected());
@@ -65,7 +65,7 @@ public class ContentOverviewTest {
     session.getItems().add(song);
     song.getParts().get(0).getTextlines().get(2).setNewSlide(true);
 
-    presentationContext.setCurrentSession(session, new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
+    presentationContext.setCurrentSession(session, new DefaultMidiFilePresenterConfig(), new SizeInfo(400, 200));
 
     ContentOverview overview = getContentOverview();
     overview.build(new Shell());
@@ -107,7 +107,7 @@ public class ContentOverviewTest {
     session.getItems().add(song1);
     session.getItems().add(song2);
 
-    presentationContext.setCurrentSession(session, new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
+    presentationContext.setCurrentSession(session, new DefaultMidiFilePresenterConfig(), new SizeInfo(400, 200));
     presentationContext.setCurrentSessionItemIndex(1);
 
     ContentOverview overview = getContentOverview();

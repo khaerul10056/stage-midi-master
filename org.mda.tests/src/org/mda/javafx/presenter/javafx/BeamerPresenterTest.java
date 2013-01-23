@@ -1,6 +1,8 @@
 package org.mda.javafx.presenter.javafx;
 
 import static org.junit.Assert.assertEquals;
+import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.controller.DefaultPresentationController;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -11,8 +13,6 @@ import mda.MidiFilePart;
 import mda.MidiPlayerRoot;
 import mda.Session;
 
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.widgets.Display;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -25,7 +25,6 @@ import org.mda.presenter.PresentationContext;
 import org.mda.presenter.SpecialSlide;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
-import org.mda.presenter.ui.DefaultPresentationController;
 
 public class BeamerPresenterTest {
 

@@ -14,9 +14,9 @@ import mda.MidiFileTextLine;
 
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
-import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
+import org.mda.presenter.config.IMidiFilePresenterConfig;
 
 public class TextfileExporter extends AbstractExporter {
 	
@@ -32,7 +32,7 @@ public class TextfileExporter extends AbstractExporter {
 	}
 
 	@Override
-	public File export(Collection<AbstractSessionItem> items, File exportFile, IMidiFileEditorUIConfig config) throws ExportException {
+	public File export(Collection<AbstractSessionItem> items, File exportFile, IMidiFilePresenterConfig config) throws ExportException {
 		content.clear();
 		
 		if (config.isChordPresented())

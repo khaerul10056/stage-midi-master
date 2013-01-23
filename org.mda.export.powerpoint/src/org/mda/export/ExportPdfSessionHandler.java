@@ -9,12 +9,12 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.Utils;
-import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.UIHandler;
-import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
-import org.mda.commons.ui.calculator.configurator.PresentationType;
 import org.mda.export.pdf.PdfExporter;
 import org.mda.inject.InjectService;
+import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.PresentationConfigurator;
+import org.mda.presenter.config.PresentationType;
 
 import com.google.inject.Inject;
 
@@ -35,7 +35,7 @@ public class ExportPdfSessionHandler {
 		InjectService.injectObject(this);
 		
 		PresentationConfigurator configurator = new PresentationConfigurator(); 
-		IMidiFileEditorUIConfig config = configurator.configure(null, session.getCurrentModel(), PresentationType.PDF);
+		IMidiFilePresenterConfig config = configurator.configure(null, session.getCurrentModel(), PresentationType.PDF);
 		
 		Session currentSession = (Session) session.getModelEvents().getCurrentModelElement(Session.class);
 		String name = Utils.removeWhitespaces(currentSession.getName());
