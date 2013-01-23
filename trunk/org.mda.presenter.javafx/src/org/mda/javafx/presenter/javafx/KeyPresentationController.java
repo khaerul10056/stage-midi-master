@@ -41,19 +41,19 @@ public class KeyPresentationController extends DefaultPresentationController imp
         if (e.getCode().equals(KeyCode.RIGHT) && e.isShiftDown())
           nextSong();
 
-        if (e.getCharacter().equals("w")) {
+        if (e.getText().equals("w")) {
           toggleWhite();
         }
 
-        if (e.getCharacter().equals("b")) {
+        if (e.getText().equals("b")) {
           toggleBlack();
         }
 
-        if (e.getCharacter().equals("t")) {
+        if (e.getText().equals("t")) {
           toggleOnlyBackground();
         }
         
-        if (e.getCharacter().equals("n")) {
+        if (e.getText().equals("n")) {
             toggleNormalize();
           }
         

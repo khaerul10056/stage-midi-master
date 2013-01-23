@@ -9,15 +9,12 @@ import org.mda.presenter.adapter.LocationInfo;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.IMidiFilePresenterConfig;
 
-import com.google.inject.Inject;
-
 
 
 public abstract class SlideCalculator implements ISlideCalculator {
 
   private static final Log LOGGER  = LogFactory.getLogger(SlideCalculator.class);
 
-  @Inject
   private IMidiFilePresenterConfig config;
 
 

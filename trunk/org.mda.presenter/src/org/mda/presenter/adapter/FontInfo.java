@@ -16,6 +16,7 @@ public class FontInfo {
   public FontInfo (final FontInfo desc) {
     this.setFontsize(desc.getFontsize());
     this.setBold(desc.isBold());
+    this.setFontname(desc.getFontname());
   }
 
   public FontInfo (final Integer fontsize) {

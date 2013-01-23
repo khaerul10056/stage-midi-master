@@ -188,7 +188,7 @@ public class PresentationContext implements IPresentationContext {
   }
   
   public List <Slide> getSlides () {
-	  List <Slide> completeListe = new ArrayList<>(); 
+	  List <Slide> completeListe = new ArrayList<Slide>(); 
 	  for (List<Slide> nextLists : slidesPerItem.values()) {
 		  completeListe.addAll(nextLists);
 	  }
@@ -205,6 +205,10 @@ public class PresentationContext implements IPresentationContext {
     }
 
     return slidesPerItem;
+  }
+  
+  public IMidiFilePresenterConfig getCurrentConfig () {
+	  return config;
   }
 
   public NavigationRefreshAction nextSlide () {
@@ -318,7 +322,7 @@ public class PresentationContext implements IPresentationContext {
   }
 
   public SpecialSlide getSpecialSlide () {
-    return specialSlide;
+	return specialSlide != null ? specialSlide : SpecialSlide.NONE;
   }
 
   public void setSpecialSlide (SpecialSlide specialSlide) {

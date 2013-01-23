@@ -3,6 +3,11 @@ package org.mda.javafx.presenter.javafx;
 
 import java.util.HashMap;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.ParallelTransitionBuilder;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -16,6 +21,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextBuilder;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import mda.Session;
 
 import org.mda.ApplicationSession;
@@ -25,7 +31,9 @@ import org.mda.presenter.IPresentationView;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.Slide;
 import org.mda.presenter.SlideItem;
+import org.mda.presenter.SpecialSlide;
 import org.mda.presenter.adapter.AreaInfo;
+import org.mda.presenter.adapter.ColorInfo;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.IMidiFilePresenterConfig;
 
@@ -55,6 +63,8 @@ public class BeamerPresenter implements IPresentationView {
 	
 	
     private HashMap<Slide, Pane> panesPerSlide = new HashMap<Slide, Pane>();
+    private HashMap<SpecialSlide, Pane> specialSlidesPerPane = new HashMap<SpecialSlide, Pane> ();
+    private HashMap<Slide, Pane> emptyPanesPerSlide = new HashMap<Slide, Pane>();
 	
 	private Stage presentationStage;
 	
@@ -66,23 +76,60 @@ public class BeamerPresenter implements IPresentationView {
 		presentationContext.deregisterController(keycontroller.getClass());
 		presentationContext.deregisterView(getClass());
 		presentationStage.close();
-		
-		
-
-		
 	}
 
 	@Override
 	public void refresh() {
 		LOGGER.info("refresh called");
-		
+		Pane nextPane = null;
 		Slide nextSlide = presentationContext.getCurrentSlide(); 
-		Pane nextPane = panesPerSlide.get(nextSlide);
 		
-		//TODO animations
-		currentPane.setVisible(false);
-		currentPane = nextPane; 
-		currentPane.setVisible(true);
+		if (presentationContext.getSpecialSlide() == SpecialSlide.NONE) {
+			nextPane = panesPerSlide.get(nextSlide);
+			LOGGER.info("get pane for slide " + nextSlide + ":" + nextPane );
+		}
+		else {
+			if (presentationContext.getSpecialSlide() == SpecialSlide.WITHOUT_TEXT) {
+				LOGGER.info("get pane without text for slide " + nextSlide);
+				nextPane = emptyPanesPerSlide.get(nextSlide);
+			}
+			else {
+				LOGGER.info("get pane for specialslide " + presentationContext.getSpecialSlide());
+				nextPane = specialSlidesPerPane.get(presentationContext.getSpecialSlide());
+			}
+		}
+		
+		if  (nextPane != null) {
+		  LOGGER.info("NextPane = " + nextPane.getId());
+		  //TODO animations
+		  
+		  
+		  
+		  FadeTransition ft1 = new FadeTransition(Duration.millis(800), currentPane);
+          ft1.setFromValue(1.0);
+          ft1.setToValue(0.0);
+
+          nextPane.setOpacity(0);
+          nextPane.setVisible(true); 
+          nextPane.setManaged(true);
+          FadeTransition ft2 = new FadeTransition(Duration.millis(800), nextPane);
+          ft2.setFromValue(0.0);
+          ft2.setToValue(1.0);
+
+          ParallelTransition pt = ParallelTransitionBuilder.create().children(ft1, ft2).build();
+          pt.setOnFinished(new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent actionEvent) {
+                  currentPane.setVisible(false);
+                  currentPane.setManaged(false);
+                  currentPane.setOpacity(1);
+              }
+          });
+          pt.play();		  
+		  
+		}
+		else
+			LOGGER.error("Could not determine nextPane");
 		
 	}
 	
@@ -98,6 +145,39 @@ public class BeamerPresenter implements IPresentationView {
         }
 
       }
+	
+	private void addBlackSlide (final Stage stage, StackPane stackpane) {
+		LOGGER.info("add black slide");
+		Pane blackSlide = createPaneInStage(stage);
+		blackSlide.setId("blackSlide");
+		blackSlide.setStyle(colorResolver.getBackground(ColorInfo.BLACK));
+		specialSlidesPerPane.put(SpecialSlide.BLACK, blackSlide);
+		stackpane.getChildren().add(blackSlide);
+	}
+	
+	private void addWhiteSlide (final Stage stage, StackPane stackpane) {
+		LOGGER.info("add white slide");
+		Pane whiteSlide = createPaneInStage(stage);
+		whiteSlide.setId("whiteSlide");
+		whiteSlide.setStyle(colorResolver.getBackground(ColorInfo.WHITE));
+		specialSlidesPerPane.put(SpecialSlide.WHITE, whiteSlide);
+		stackpane.getChildren().add(whiteSlide);
+	}
+	
+	private Pane createPaneInStage (final Stage stage) {
+		Pane nextPane = PaneBuilder.create().build();
+		nextPane.prefHeightProperty().bind(stage.heightProperty());
+		nextPane.prefWidthProperty().bind(stage.widthProperty());
+		return nextPane;
+	}
+	
+	private void addStyle (final Pane pane, final Slide slide, AreaInfo beamerpresenterBounds) {
+		if (slide.getBackgroundImageFile() != null)
+			  pane.setStyle(backgroundImageResolver.getBackgroundImageCss(slide.getBackgroundImageFile(), beamerpresenterBounds.getSize()));
+			else
+			  pane.setStyle(colorResolver.getBackground(slide.getBackgroundColor()));
+		pane.setVisible(false);
+	}
 
 	public void build(final Session currentSession, boolean onTop, final IMidiFilePresenterConfig config) {
 		
@@ -117,18 +197,20 @@ public class BeamerPresenter implements IPresentationView {
 		stackpane.prefHeightProperty().bind(presentationStage.heightProperty());
 		stackpane.prefWidthProperty().bind(presentationStage.widthProperty());
 		
+		addBlackSlide(presentationStage, stackpane);
+		addWhiteSlide(presentationStage, stackpane);
+		
 		currentPane = null;
 		
 		for (Slide nextSlide: presentationContext.getSlides()) {
 			
-			Pane nextPane = PaneBuilder.create().build();
-			if (nextSlide.getBackgroundImageFile() != null)
-			  nextPane.setStyle(backgroundImageResolver.getBackgroundImageCss(nextSlide.getBackgroundImageFile(), beamerpresenterBounds.getSize()));
-			else
-			  nextPane.setStyle(colorResolver.getBackground(nextSlide.getBackgroundColor()));
+			Pane nextPane = createPaneInStage(presentationStage);
+			nextPane.setId("normal slide for " + nextSlide.toString());
+			addStyle(nextPane, nextSlide, beamerpresenterBounds);
 			
-			nextPane.prefHeightProperty().bind(presentationStage.heightProperty());
-			nextPane.prefWidthProperty().bind(presentationStage.widthProperty());
+			Pane emptyPane = createPaneInStage(presentationStage);
+			emptyPane.setId("empty slide for " + nextSlide.toString());
+			addStyle(emptyPane, nextSlide, beamerpresenterBounds);
 		
 			if (applicationSession.getFeatureActivation().isShowGridEnabled())
 			  showGrid(nextPane, config.getDefaultPresentationScreenSize());
@@ -146,15 +228,19 @@ public class BeamerPresenter implements IPresentationView {
 				LOGGER.info("Create text <" + text.getText() + " on " + text.getX() + "-" + text.getY() + "-Item " + slideItem + "-");
 			}
 			
-			nextPane.setVisible(false);
+			
 			
 			
 			stackpane.getChildren().add(nextPane);
+			stackpane.getChildren().add(emptyPane);
 			panesPerSlide.put(nextSlide, nextPane);
+			emptyPanesPerSlide.put(nextSlide, emptyPane);
 			
 			if (currentPane == null) 
 				currentPane = nextPane;
 		}
+		
+		
 
 		currentPane.setVisible(true);
 		

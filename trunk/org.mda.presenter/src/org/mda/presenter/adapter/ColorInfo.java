@@ -50,5 +50,14 @@ public class ColorInfo {
 	public int getRed() {
 		return red;
 	}
+	
+	public boolean equals (Object object) {
+		if (! (object instanceof ColorInfo))
+			return false;
+		
+		ColorInfo compareObject = (ColorInfo) object;
+		
+		return compareObject.getGreen() == green && compareObject.getRed() == red && compareObject.getBlue() == blue;
+	}
 
 }
