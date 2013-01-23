@@ -16,8 +16,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.mda.ApplicationSession;
-import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
-import org.mda.commons.ui.calculator.configurator.PresentationType;
+import org.mda.presenter.config.PresentationConfigurator;
+import org.mda.presenter.config.PresentationType;
 
 
 public class PresentationSchemaEditorBuilder {

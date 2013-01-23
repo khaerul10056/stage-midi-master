@@ -13,13 +13,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
-import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.UIHandler;
-import org.mda.commons.ui.calculator.configurator.PresentationConfigurator;
-import org.mda.commons.ui.calculator.configurator.PresentationType;
 import org.mda.inject.InjectService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -31,6 +27,11 @@ import org.mda.midi.MidiPlayer;
 import org.mda.midi.MidiplayerMode;
 import org.mda.midi.NoMidiDeviceConfiguredException;
 import org.mda.midi.NoMidiFileFoundException;
+import org.mda.presenter.PresentationContext;
+import org.mda.presenter.adapter.SizeInfo;
+import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.PresentationConfigurator;
+import org.mda.presenter.config.PresentationType;
 import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
 
 import com.google.inject.Inject;
@@ -70,14 +71,15 @@ public class RecordPresentation   {
     LOGGER.info("Starting presentation of selection " + applicationSession.getCurrentSession().getName());
 
     PresentationConfigurator configurator = new PresentationConfigurator();
-    IMidiFileEditorUIConfig config = configurator.configure(null, applicationSession.getCurrentModel(), PresentationType.SCREEN);
+    IMidiFilePresenterConfig config = configurator.configure(null, applicationSession.getCurrentModel(), PresentationType.SCREEN);
     
     boolean alwaysOnTop = applicationSession.getFeatureActivation().isPresentationAlwaysOnTop();
     
     beamerpresenter.build(Display.getCurrent(), applicationSession.getCurrentSession(), alwaysOnTop);
     beamerpresenter.getShell().setEnabled(true);
     
-    presentationContext.setCurrentSession(applicationSession.getCurrentSession(), config, beamerpresenter.getShell().getSize());
+    SizeInfo sizeinfo = new SizeInfo(beamerpresenter.getShell().getSize().x, beamerpresenter.getShell().getSize().y);
+    presentationContext.setCurrentSession(applicationSession.getCurrentSession(), config, sizeinfo);
     presentationContext.registerView(beamerpresenter);
     presentationContext.registerController(globalkeycontroller);    //Register global controller
     

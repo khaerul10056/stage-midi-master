@@ -20,17 +20,12 @@ import org.eclipse.swt.custom.ExtendedModifyListener;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Listener;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
-import org.mda.commons.ui.calculator.Slide;
-import org.mda.editor.preview.ui.PreviewEditorComposite;
 import org.mda.editor.preview.ui.parts.ContentPart;
-import org.mda.inject.InjectService;
-import org.mda.inject.InjectServiceMock;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.Slide;
 import org.mda.presenter.ui.test.MidiFileCreator;
 
 
@@ -373,11 +368,11 @@ public class PreviewEditorTest extends AbstractEditorTest {
     shell.setSize(new Point (800, 1600));
     editor.getContentpanel().setCurrentPart(song.getParts().get(0));
 
-    int height = editor.getContentpanel().getCurrentSlide().getFont().getFontData() [0].getHeight();
+    int height = editor.getContentpanel().getCurrentSlide().getFont().getFontsize();
 
     shell.setSize(new Point (400, 800));
 
-    int heightNew = editor.getContentpanel().getCurrentSlide().getFont().getFontData() [0].getHeight();
+    int heightNew = editor.getContentpanel().getCurrentSlide().getFont().getFontsize();
 
     assertEquals(height, heightNew * 2);
   }

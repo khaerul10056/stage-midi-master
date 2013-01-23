@@ -2,8 +2,9 @@ package org.mda.export;
 
 import javax.inject.Inject;
 
-import org.mda.commons.ui.calculator.CalculatorPreCondition;
-import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
+import org.mda.presenter.CalculatorPreCondition;
+import org.mda.presenter.MidiFileSlideCalculator;
+
 
 
 public abstract class AbstractExporter implements IExport {

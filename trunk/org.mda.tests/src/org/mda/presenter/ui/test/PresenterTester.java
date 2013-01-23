@@ -16,22 +16,23 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
+import org.mda.presenter.PresentationContext;
+import org.mda.presenter.adapter.SizeInfo;
+import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
 import org.mda.presenter.ui.BeamerPresenter;
-import org.mda.presenter.ui.PresentationContext;
 import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
 
 public class PresenterTester extends Shell {
 
-  private final List <Point> sizes = new ArrayList<Point>();
+  private final List <SizeInfo> sizes = new ArrayList<SizeInfo>();
 
   public PresenterTester () {
     setLayout(new GridLayout());
-    sizes.add(new Point (1400, 1050));
-    sizes.add(new Point(1280, 900));
-    sizes.add(new Point(1152, 864));
-    sizes.add(new Point(1024, 768));
-    sizes.add(new Point(800, 600));
+    sizes.add(new SizeInfo(1400, 1050));
+    sizes.add(new SizeInfo(1280, 900));
+    sizes.add(new SizeInfo(1152, 864));
+    sizes.add(new SizeInfo(1024, 768));
+    sizes.add(new SizeInfo(800, 600));
 
     final Combo cmbSession = new Combo(this, SWT.NONE);
 
@@ -45,7 +46,7 @@ public class PresenterTester extends Shell {
     chkWithBlocktypes.setText("Show blocktypes");
 
     final Combo cmbSize = new Combo(this, SWT.NONE);
-    for (Point next: sizes) {
+    for (SizeInfo next: sizes) {
       cmbSize.add(next.toString());
     }
     cmbSize.select(0);
@@ -68,10 +69,10 @@ public class PresenterTester extends Shell {
       @Override
       public void widgetSelected (SelectionEvent e) {
 
-        Point size = sizes.get(cmbSize.getSelectionIndex());
+        SizeInfo size = sizes.get(cmbSize.getSelectionIndex());
         Session currentSession = root.getSessions().get(cmbSession.getSelectionIndex());
 
-        DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+        DefaultMidiFilePresenterConfig config = new DefaultMidiFilePresenterConfig();
         config.setShowChords(chkWithChords.getSelection());
         config.setShowBackground(chkWithBackground.getSelection());
         config.setShowBlockType(chkWithBlocktypes.getSelection());

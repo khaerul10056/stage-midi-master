@@ -26,7 +26,9 @@ import org.mda.commons.ui.MonitorManager;
 import org.mda.commons.ui.Util;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.ui.slide.IPresentationView;
+import org.mda.presenter.IPresentationView;
+import org.mda.presenter.PresentationContext;
+import org.mda.presenter.controller.DefaultPresentationController;
 
 @Creatable
 public class RunSessionShell implements IPresentationView {

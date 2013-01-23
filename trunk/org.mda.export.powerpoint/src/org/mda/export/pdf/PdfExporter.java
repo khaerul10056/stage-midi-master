@@ -16,18 +16,19 @@ import mda.MidiFile;
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.graphics.Point;
 import org.mda.ApplicationSession;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
-import org.mda.commons.ui.IMidiFileEditorUIConfig;
-import org.mda.commons.ui.calculator.CalculatorPreCondition;
-import org.mda.commons.ui.calculator.FontDescriptor;
-import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
-import org.mda.commons.ui.calculator.Slide;
-import org.mda.commons.ui.calculator.SlideItem;
-import org.mda.commons.ui.calculator.SlideType;
 import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.CalculatorPreCondition;
+import org.mda.presenter.MidiFileSlideCalculator;
+import org.mda.presenter.Slide;
+import org.mda.presenter.SlideItem;
+import org.mda.presenter.SlideType;
+import org.mda.presenter.adapter.FontInfo;
+import org.mda.presenter.adapter.SizeInfo;
+import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.IMidiFilePresenterConfig;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
@@ -55,11 +56,11 @@ public class PdfExporter extends AbstractExporter {
   private List <Slide> lastSlides = new ArrayList<Slide>();
 
   @Override
-public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig config) throws ExportException  {
+public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFilePresenterConfig config) throws ExportException  {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
     
-    DefaultMidiFileContentEditorConfig configImpl = (DefaultMidiFileContentEditorConfig) config;
+    DefaultMidiFilePresenterConfig configImpl = (DefaultMidiFilePresenterConfig) config;
     configImpl.setFontsize(new Integer (12));
     configImpl.setGraphicsContext(new PDFGraphicsContext());
     calculator.setConfig(configImpl);
@@ -75,7 +76,7 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
     float x = pagesizeA4.width();
     float y = pagesizeA4.height();
     LOGGER.info("set size to " + x +","+ y + ")");
-    Point calcSize = new Point ((int)x, (int)y);
+    SizeInfo calcSize = new SizeInfo((int)x, (int)y);
     calcPreCondition.setCalculationsize(calcSize);
     config.setDefaultPresentationScreenSize(calcSize);
 
@@ -124,8 +125,6 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
     if (LOGGER.isDebugEnabled())
       LOGGER.debug("In PdfExporter: \n" + song.toString());
 
-    //absText(writer, "Dies ist ein Demotext", 20, doc.getPageSize().height() - 3, 100, SlideType.TEXT, new FontDescriptor(12));
-
     for (SlideItem nextItem: song.getItems()) {
       float y = doc.getPageSize().height() - nextItem.getY();
 
@@ -141,17 +140,17 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
 
   }
 
-  private void showGrid (PdfWriter writer, Point size) {
+  private void showGrid (PdfWriter writer, SizeInfo size) {
     PdfContentByte cb = writer.getDirectContent();
     cb.saveState();
-    for (int i = 0; i < size.x; i += 100) {
+    for (int i = 0; i < size.getWidth(); i += 100) {
       cb.moveTo(i,  0);
-      cb.lineTo(i, size.y);
+      cb.lineTo(i, size.getHeight());
     }
 
-    for (int i = 0; i < size.y; i += 100) {
+    for (int i = 0; i < size.getHeight(); i += 100) {
       cb.moveTo (0, i);
-      cb.lineTo(size.x, i);
+      cb.lineTo(size.getWidth(), i);
     }
 
     cb.stroke();
@@ -159,7 +158,7 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
 
   }
 
-  private static void absText(final PdfWriter writer, String text, float x, float y, float width, final SlideType slideType, FontDescriptor fontDescriptor) {
+  private static void absText(final PdfWriter writer, String text, float x, float y, float width, final SlideType slideType, FontInfo fontDescriptor) {
     try {
       PdfContentByte cb = writer.getDirectContent();
       BaseFont bf = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED); //centralize fonthandling

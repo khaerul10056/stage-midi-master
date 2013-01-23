@@ -20,11 +20,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.Utils;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.export.powerpoint.PptExporter;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
 import org.mda.presenter.ui.test.MidiFileCreator;
+import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
 
 
 public class TestPptExporter {
@@ -75,7 +75,7 @@ public class TestPptExporter {
 
     PptExporter exporter = getExporter();
 
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = new DefaultMidiFilePresenterConfig();
     config.setShowChords(false);
     config.setShowBackground(true);
 
@@ -105,7 +105,7 @@ public class TestPptExporter {
 
       PptExporter exporter = getExporter();
 
-      DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+      DefaultMidiFilePresenterConfig config = new DefaultMidiFilePresenterConfig();
       config.setShowChords(false);
       config.setShowBackground(true);
 
@@ -137,7 +137,7 @@ public class TestPptExporter {
     file.setBackgroundColor(colorBlackAsString);
     java.awt.Color colorBlackAsAwt = Utils.toAwtColor(colorBlack);
 
-    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+    DefaultMidiFilePresenterConfig config = new DefaultMidiFilePresenterConfig();
     config.setShowChords(false);
 
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();

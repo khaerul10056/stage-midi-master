@@ -5,7 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
+
 import mda.AbstractSessionItem;
+
 import org.apache.poi.hpsf.MutableProperty;
 import org.apache.poi.hpsf.MutablePropertySet;
 import org.apache.poi.hpsf.MutableSection;
@@ -15,16 +17,16 @@ import org.apache.poi.hpsf.WritingNotSupportedException;
 import org.apache.poi.hpsf.wellknown.PropertyIDMap;
 import org.apache.poi.hpsf.wellknown.SectionIDMap;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.export.ExportException;
 import org.mda.export.IExport;
+import org.mda.presenter.config.IMidiFilePresenterConfig;
 
 
 public class WordExporter implements IExport {
 
 
   @Override
-public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig exportConf) throws ExportException {
+public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFilePresenterConfig exportConf) throws ExportException {
 
 //    POIFSFileSystem fs = new POIFSFileSystem();
 //    HWPFDocument document = new HWPFDocument(fs);

@@ -32,24 +32,26 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Widget;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.Util;
-import org.mda.commons.ui.calculator.CalculatorPreCondition;
-import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
-import org.mda.commons.ui.calculator.Slide;
-import org.mda.commons.ui.calculator.SlideItem;
 import org.mda.editor.preview.ui.AbstractPart;
 import org.mda.editor.preview.ui.PreviewEditorComposite;
 import org.mda.editor.preview.ui.chords.ChordHover;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.CalculatorPreCondition;
+import org.mda.presenter.MidiFileSlideCalculator;
+import org.mda.presenter.Slide;
+import org.mda.presenter.SlideItem;
+import org.mda.presenter.adapter.SizeInfo;
+import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
 
 @Creatable
 public class ContentPart extends AbstractPart implements FocusListener {
 
   private static final Log                   LOGGER            = LogFactory.getLogger(ContentPart.class);
 
-  private DefaultMidiFileContentEditorConfig config            = new DefaultMidiFileContentEditorConfig(); //TODO inject
+  @com.google.inject.Inject
+  private DefaultMidiFilePresenterConfig config;
 
   private CalculatorPreCondition             calcPreConditions = new CalculatorPreCondition();            //TODO inject
 
@@ -145,7 +147,7 @@ public void setCurrentPart (MidiFilePart currentPart) {
 
     LOGGER.info("Show part (position " + currentLine + "/" + currentcarePosition);
 
-    calcPreConditions.setCalculationsize(size);
+    calcPreConditions.setCalculationsize(new SizeInfo(size.x, size.y));
     config.setNewPageRespected(false);
     config.setAutoWrapToNewPage(false);
 
@@ -186,7 +188,7 @@ public void setCurrentPart (MidiFilePart currentPart) {
       if (currentcarePosition >= 0)
         setCurrentCaretPositionInLine(currentcarePosition, currentLine);
     }
-    return calcPreConditions.getCalculationsize();
+    return new Point ((int)calcPreConditions.getCalculationsize().getWidth(), (int) calcPreConditions.getCalculationsize().getHeight());
   }
 
   public void saveCurrentCaretSituation () {

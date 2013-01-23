@@ -8,7 +8,6 @@ import org.mda.commons.ui.ContentProviderTest;
 import org.mda.commons.ui.MidiFileEditorInputTest;
 import org.mda.commons.ui.SessionsContentProviderTest;
 import org.mda.commons.ui.additionals.AdditionalShellTest;
-import org.mda.commons.ui.calculator.configurator.PresentationConfiguratorTest;
 import org.mda.commons.ui.imports.ImportShellTest;
 import org.mda.commons.ui.transpose.TransposeShellTest;
 import org.mda.commons.ui.user.UserContentProviderTest;
@@ -37,14 +36,14 @@ import org.mda.export.TestTextfileExporter;
 import org.mda.find.TestSearchEngine;
 import org.mda.google.TestGoogleContacts;
 import org.mda.inject.InjectServiceTest;
+import org.mda.javafx.presenter.javafx.BeamerPresenterTest;
 import org.mda.midi.MidiInfoTest;
 import org.mda.midi.mapping.MappingServiceTest;
 import org.mda.midi.ui.MidiDeviceContentProviderTest;
-import org.mda.presenter.ui.PresentationContextTest;
+import org.mda.presenter.MidiFileSlideCalculatorTest;
+import org.mda.presenter.PresentationContextTest;
 import org.mda.presenter.ui.config.PresentationSchemaEditorBuilderTest;
-import org.mda.presenter.ui.test.BeamerPresenterTest;
 import org.mda.presenter.ui.test.ContentOverviewTest;
-import org.mda.presenter.ui.test.MidiFileSlideCalculatorTest;
 import org.mda.struct.MidiFileStructTest;
 import org.mda.transpose.PitchTest;
 import org.mda.transpose.TransposeTest;
@@ -66,7 +65,7 @@ import org.mda.transpose.TransposeTest;
   TransposeTest.class,
   ContentProviderTest.class,
   MidiFileStructTest.class,
-  PresentationConfiguratorTest.class,
+  org.mda.presenter.config.PresentationConfiguratorTest.class,
   InjectServiceTest.class,
   TestSearchEngine.class,
   CopyrightSerializerTest.class,
@@ -81,8 +80,6 @@ import org.mda.transpose.TransposeTest;
   
   ChordHoverTest.class,
 
-  BeamerPresenterTest.class,
-  MidiFileSlideCalculatorTest.class,
   ContentOverviewTest.class,
   MidiFileEditorInputTest.class,
   PresentationContextTest.class,
@@ -102,8 +99,8 @@ import org.mda.transpose.TransposeTest;
   PresentationSchemaEditorBuilderTest.class,
   
   //Presenter
-  org.mda.presenter.MidiFileSlideCalculatorTest.class,
-  org.mda.javafx.presenter.javafx.BeamerPresenterTest.class,
+  MidiFileSlideCalculatorTest.class,
+  BeamerPresenterTest.class,
   
   
   //JavaFX

@@ -18,14 +18,17 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
 import org.mda.commons.ui.Util;
-import org.mda.commons.ui.calculator.CalculatorPreCondition;
-import org.mda.commons.ui.calculator.MidiFileSlideCalculator;
-import org.mda.commons.ui.calculator.Slide;
+import org.mda.inject.InjectService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.ui.slide.IPresentationView;
+import org.mda.presenter.CalculatorPreCondition;
+import org.mda.presenter.IPresentationView;
+import org.mda.presenter.MidiFileSlideCalculator;
+import org.mda.presenter.PresentationContext;
+import org.mda.presenter.Slide;
+import org.mda.presenter.adapter.SizeInfo;
+import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
 
 @Creatable
 public class ContentOverview  implements IPresentationView{
@@ -36,7 +39,10 @@ public class ContentOverview  implements IPresentationView{
   private PresentationContext  presentationContext;
   
   @Inject
-  private MidiFileSlideCalculator calculator; 
+  private MidiFileSlideCalculator calculator;
+  
+  @Inject
+  private DefaultMidiFilePresenterConfig config;
 
   private List<ContentOverviewPanel> previewParts = new ArrayList<ContentOverviewPanel>();
 
@@ -79,18 +85,18 @@ public class ContentOverview  implements IPresentationView{
       previewParts.clear();
 
       if (currentItem instanceof MidiFile) {
-        Point size = new Point (320, 240);
+        SizeInfo size = new SizeInfo(320, 240);
         CalculatorPreCondition calcPreCondition = new CalculatorPreCondition();
-        DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
-        calculator.setConfig(config);
+        calculator.setConfig(presentationContext.getCurrentConfig());
         calcPreCondition.setCalculationsize(size);
         List<Slide> slides = calculator.calculate(currentItem, calcPreCondition);
         for (Slide slide: slides) {
           final ContentOverviewPanel overviewPanel = new ContentOverviewPanel(comp, (MidiFilePart) slide.getModelRef(), slide, config);
+          InjectService.injectObject(overviewPanel); //TODO make better
           GridData gd = new GridData(SWT.FILL, SWT.FILL, false, false);
-          gd.heightHint = size.y; 
-          gd.widthHint = size.x;
-          overviewPanel.setSize(size);
+          gd.heightHint = size.getHeightAsInt(); 
+          gd.widthHint = size.getWidthAsInt();
+          overviewPanel.setSize(new Point (size.getWidthAsInt(), size.getHeightAsInt()));
           overviewPanel.setLayoutData(gd);
           overviewPanel.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_CYAN));
           overviewPanel.redraw();

@@ -23,15 +23,16 @@ import org.apache.poi.hslf.usermodel.RichTextRun;
 import org.apache.poi.hslf.usermodel.SlideShow;
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
 import org.mda.Utils;
-import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.adapter.ColorInfo;
+import org.mda.presenter.adapter.SizeInfo;
+import org.mda.presenter.config.IMidiFilePresenterConfig;
 
 @Creatable
 public class PptExporter extends AbstractExporter {
@@ -42,26 +43,29 @@ public class PptExporter extends AbstractExporter {
 
   @Inject
   private ApplicationSession applicationsession;
+  
+  
+  
+  
 
 
 
   @Override
-public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFileEditorUIConfig config) throws ExportException {
+public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFilePresenterConfig config) throws ExportException {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
 
     SlideShow show = new SlideShow();
-    show.setPageSize(new Dimension(getCalculator().getConfig().getDefaultPresentationScreenSize().x, getCalculator().getConfig().getDefaultPresentationScreenSize().y));
+    show.setPageSize(new Dimension(config.getDefaultPresentationScreenSize().getWidthAsInt(), config.getDefaultPresentationScreenSize().getHeightAsInt()));
 
     getCalculator().setConfig(config);
-    LOG.info("Calculate size " + show.getPageSize().width + "x" + show.getPageSize().height + " from " +
-        getCalculator().getConfig().getDefaultPresentationScreenSize().x + "x" + getCalculator().getConfig().getDefaultPresentationScreenSize().y );
-    getCalcPreCondition().setCalculationsize(new Point (show.getPageSize().width, show.getPageSize().height));
+    LOG.info("Calculate size " + show.getPageSize().width + "x" + show.getPageSize().height + " from " + getCalculator().getConfig().getDefaultPresentationScreenSize());
+    getCalcPreCondition().setCalculationsize(new SizeInfo (show.getPageSize().width, show.getPageSize().height));
 
     for (AbstractSessionItem nextItem : items) {
-      List<org.mda.commons.ui.calculator.Slide> calculate = getCalculator().calculate(nextItem, getCalcPreCondition());
+      List<org.mda.presenter.Slide> calculate = getCalculator().calculate(nextItem, getCalcPreCondition());
 
-      for (org.mda.commons.ui.calculator.Slide nextInternSlide : calculate) {
+      for (org.mda.presenter.Slide nextInternSlide : calculate) {
         exportSlide(show, nextInternSlide);
       }
     }
@@ -76,7 +80,7 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
     return exportFile;
   }
 
-  private void exportSlide (SlideShow show, org.mda.commons.ui.calculator.Slide song) {
+  private void exportSlide (SlideShow show, org.mda.presenter.Slide song) {
 
     if (song.getItems().size() == 0)
       return;
@@ -103,22 +107,22 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
     }
     else {
       fill.setFillType(Fill.FILL_SHADE);
-      fill.setBackgroundColor(Utils.toAwtColor(song.getBackgroundColor()));
-      fill.setForegroundColor(Utils.toAwtColor(song.getBackgroundColor()));
+      fill.setBackgroundColor(toAwtColor(song.getBackgroundColor()));
+      fill.setForegroundColor(toAwtColor(song.getBackgroundColor()));
     }
 
-    int height = song.getItems().get(0).getHeight();
+    int height = (int) song.getItems().get(0).getHeight();
     int y = 0;
     for (int i = 0; i < song.getLineCount(); i++) {
       TextBox txt = new TextBox();
       txt.setText(song.getTextline(i));
 
       RichTextRun rt = txt.getTextRun().getRichTextRuns()[0];
-      rt.setFontSize(song.getFont().getFontData() [0].getHeight());
+      rt.setFontSize(song.getFont().getFontsizeAsInt());
       rt.setFontName("Arial");
       rt.setAlignment(TextShape.AlignLeft);
       if (song.getForegroundColor() != null)
-        rt.setFontColor(Utils.toAwtColor(song.getForegroundColor()));
+        rt.setFontColor(toAwtColor(song.getForegroundColor()));
       else
         rt.setFontColor(Utils.toAwtColor(Display.getDefault().getSystemColor(SWT.COLOR_WHITE)));
 
@@ -135,19 +139,23 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
       paintGrid(newSlide, song.getSize());
 
   }
+  
+  private static java.awt.Color toAwtColor (final ColorInfo color) {
+	    return new java.awt.Color (color.getRed(), color.getGreen(), color.getBlue());
+  }
 
-  private void paintGrid (Slide newSlide, Point size) {
-    for (int i = 0; i < size.x; i += 100) {
+  private void paintGrid (Slide newSlide, SizeInfo size) {
+    for (int i = 0; i < size.getWidth(); i += 100) {
       Line line = new Line();
       line.setLineStyle(Line.PEN_DOT);
-      line.setAnchor(new Rectangle (i, 0, 0, size.y));
+      line.setAnchor(new Rectangle (i, 0, 0, size.getHeightAsInt()));
       newSlide.addShape(line);
     }
 
-    for (int i = 0; i < size.y; i += 100) {
+    for (int i = 0; i < size.getHeight(); i += 100) {
       Line line = new Line();
       line.setLineStyle(Line.PEN_DOT);
-      line.setAnchor(new Rectangle (0, i, size.x, 0));
+      line.setAnchor(new Rectangle (0, i, size.getWidthAsInt(), 0));
       newSlide.addShape(line);
     }
 

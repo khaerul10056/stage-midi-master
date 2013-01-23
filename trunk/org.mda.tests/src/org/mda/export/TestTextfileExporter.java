@@ -16,13 +16,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.Utils;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
-import org.mda.commons.ui.calculator.Slide;
 import org.mda.export.pdf.PdfExporter;
 import org.mda.export.textfile.TextfileExporter;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
 import org.mda.presenter.ui.test.MidiFileCreator;
+import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
 
 public class TestTextfileExporter {
 	
@@ -72,7 +71,7 @@ public class TestTextfileExporter {
   public void exportWithoutChords () throws IOException {
 	    TextfileExporter exporter = getExporter();
 
-	    DefaultMidiFileContentEditorConfig config = new DefaultMidiFileContentEditorConfig();
+	    DefaultMidiFilePresenterConfig config = new DefaultMidiFilePresenterConfig();
 	    config.setShowChords(false);
 	    config.setShowTitle(true);
 	    appSession.getGlobalConfs().setDefaultBorder(new Integer (0));

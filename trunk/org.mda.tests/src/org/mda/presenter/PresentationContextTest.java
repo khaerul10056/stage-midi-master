@@ -1,20 +1,18 @@
-package org.mda.presenter.ui;
+package org.mda.presenter;
 
 import mda.MidiFile;
 import mda.MidiFilePart;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.swt.graphics.Point;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mda.ApplicationSession;
-import org.mda.commons.ui.DefaultMidiFileContentEditorConfig;
-import org.mda.commons.ui.calculator.Slide;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
-
+import org.mda.presenter.adapter.SizeInfo;
+import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
 
 
 public class PresentationContextTest {
@@ -43,7 +41,7 @@ public class PresentationContextTest {
     MidiFile currentFile = (MidiFile) appsession.getCurrentModel().getSessions().get(0).getItems().get(0);
     MidiFilePart part1 = currentFile.getParts().get(0);
     MidiFilePart part2 = currentFile.getParts().get(1);
-    presentationContext.setCurrentSession(appsession.getCurrentModel().getSessions().get(0), new DefaultMidiFileContentEditorConfig(), new Point (400, 200));
+    presentationContext.setCurrentSession(appsession.getCurrentModel().getSessions().get(0), new DefaultMidiFilePresenterConfig(), new SizeInfo (400, 200));
     presentationContext.setCurrentSessionItemIndex(0);
 
     Slide slide = presentationContext.getCurrentSlide();

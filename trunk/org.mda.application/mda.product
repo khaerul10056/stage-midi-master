@@ -25,9 +25,7 @@
       <linux include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7</linux>
    </vm>
 
-
    <plugins>
-      <plugin id="at.bestsolution.efxclipse.runtime.osgi" fragment="true"/>
       <plugin id="com.google.inject"/>
       <plugin id="com.google.inject.assistedinject" fragment="true"/>
       <plugin id="com.google.inject.multibindings" fragment="true"/>
@@ -104,12 +102,11 @@
       <plugin id="org.mda.commons.ui"/>
       <plugin id="org.mda.core"/>
       <plugin id="org.mda.editor.preview.ui"/>
-      <plugin id="org.mda.editor.session.ui"/>
       <plugin id="org.mda.export.powerpoint"/>
       <plugin id="org.mda.google"/>
       <plugin id="org.mda.midi"/>
       <plugin id="org.mda.model"/>
-      <plugin id="org.mda.navigator.ui"/>
+      <plugin id="org.mda.presenter"/>
       <plugin id="org.mda.presenter.ui"/>
       <plugin id="org.w3c.css.sac"/>
       <plugin id="org.w3c.dom.smil"/>

@@ -10,7 +10,7 @@ import org.mda.commons.ui.Util;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.midi.MidiPlayer;
-import org.mda.presenter.ui.DefaultPresentationController;
+import org.mda.presenter.controller.DefaultPresentationController;
 
 import com.google.inject.Inject;
 

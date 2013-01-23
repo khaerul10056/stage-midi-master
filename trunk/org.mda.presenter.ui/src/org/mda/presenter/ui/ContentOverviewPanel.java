@@ -1,7 +1,11 @@
 package org.mda.presenter.ui;
 
 import java.io.File;
+
+import javax.inject.Inject;
+
 import mda.MidiFilePart;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
@@ -12,13 +16,15 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.mda.commons.ui.IMidiFileEditorUIConfig;
 import org.mda.commons.ui.Util;
-import org.mda.commons.ui.calculator.CalculatorPreCondition;
-import org.mda.commons.ui.calculator.Slide;
-import org.mda.commons.ui.calculator.SlideItem;
+import org.mda.commons.ui.imagecache.ImageCache;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.CalculatorPreCondition;
+import org.mda.presenter.Slide;
+import org.mda.presenter.SlideItem;
+import org.mda.presenter.adapter.SizeInfo;
+import org.mda.presenter.config.IMidiFilePresenterConfig;
 
 
 public class ContentOverviewPanel extends Composite  {
@@ -32,13 +38,19 @@ public class ContentOverviewPanel extends Composite  {
   private File currentShownImageAsFile = null;
 
   private Slide currentSlide = null;
+  
   private CalculatorPreCondition calcPreCondition;
+  
+  private ColorResolver colorresolver = new ColorResolver();
 
   private Point lastSize;
 
   private final MidiFilePart currentPart;
 
   private boolean selected;
+  
+  @Inject
+  private ImageCache imageCache;
 
 
 
@@ -71,10 +83,10 @@ public void setSize (final int weight, final int height) {
 
     super.setSize(weight, height);
     LOGGER.debug("set size of Contentoverviewpanel to " + getSize().x + "x" + getSize().y);
-    calcPreCondition.setCalculationsize(new Point (getBounds().width, getBounds().height));
+    calcPreCondition.setCalculationsize(new SizeInfo (getBounds().width, getBounds().height));
   }
 
-  public ContentOverviewPanel (Composite parent, MidiFilePart part, Slide calculatedSlide, IMidiFileEditorUIConfig config) {
+  public ContentOverviewPanel (Composite parent, MidiFilePart part, Slide calculatedSlide, IMidiFilePresenterConfig config) {
     super(parent, SWT.NONE);
     this.currentPart = part;
     this.currentSlide = calculatedSlide;
@@ -83,8 +95,8 @@ public void setSize (final int weight, final int height) {
     LOGGER.debug("set Size of preview-part to " + width + "x" + height);
     Util.disableEscOnComponent(this);
 
-    setBackground(config.getDefaultBackgroundColor());
-    setForeground(config.getDefaultForegroundColor());
+    setBackground(colorresolver.getColor(config.getDefaultBackgroundColor()));
+    setForeground(colorresolver.getColor(config.getDefaultForegroundColor()));
 
     addPaintListener(new PaintListener() {
 
@@ -105,7 +117,7 @@ public void setSize (final int weight, final int height) {
 
         Font font = getFont();
         e.gc.setFont(font);
-        e.gc.setForeground(getCurrentSlide().getForegroundColor());
+        e.gc.setForeground(colorresolver.getColor(getCurrentSlide().getForegroundColor()));
 
         if (getCurrentSlide().getBackgroundImageFile() != null) {
           if (currentShownImage == null ||
@@ -113,23 +125,25 @@ public void setSize (final int weight, final int height) {
               currentShownImage.getBounds().width != getBounds().width ||                       // size has changed
               currentShownImage.getBounds().height != getBounds().height) {
             LOGGER.info("Repaint background image: " + (currentShownImage != null ? currentShownImage.getBounds() : "<null>") +  getBounds());
-            setBackgroundImage(getCurrentSlide().getBackgroundImage(getSize()));
+            Image image = imageCache.getImage(getCurrentSlide().getBackgroundImageFile(), getSize());
+            setBackgroundImage(image);
             currentShownImage = getBackgroundImage();
             currentShownImageAsFile = getCurrentSlide().getBackgroundImageFile();
           }
         }
         else {
           setBackgroundImage(null);
-          setBackground(getCurrentSlide().getBackgroundColor());
+          setBackground(colorresolver.getColor(getCurrentSlide().getBackgroundColor()));
           currentShownImage = null;
           currentShownImageAsFile = null;
         }
 
 
         for (SlideItem nextItem: getCurrentSlide().getItems()) {
-          e.gc.setFont(getCurrentSlide().getFont());
+          Font font2 = new Font(getDisplay(), getCurrentSlide().getFont().getFontname(), getCurrentSlide().getFont().getFontsizeAsInt(), getCurrentSlide().getFont().isBold() ? SWT.BOLD : SWT.NORMAL);
+          e.gc.setFont(font2);
 
-          e.gc.drawText(nextItem.getText(), nextItem.getX(), nextItem.getY(), true);
+          e.gc.drawText(nextItem.getText(), (int) nextItem.getX(), (int) nextItem.getY(), true);
         }
 
         if (selected) {
