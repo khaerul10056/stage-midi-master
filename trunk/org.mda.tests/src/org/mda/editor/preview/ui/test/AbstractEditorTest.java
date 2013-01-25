@@ -1,6 +1,11 @@
 package org.mda.editor.preview.ui.test;
 
 import mda.MidiFile;
+import mda.MidiFileChordPart;
+import mda.MidiFilePart;
+import mda.MidiFilePartType;
+import mda.MidiFileTextLine;
+import mda.MidiplayerFactory;
 
 import org.eclipse.swt.widgets.Shell;
 import org.junit.BeforeClass;
@@ -26,6 +31,9 @@ public class AbstractEditorTest {
 		
 		applicationSession.setCurrentMidifile(song);
 		editor.build(shell);
+		
+		
+		
 		if (song.getParts().size() > 0)
 			editor.setCurrentPart(song.getParts().get(0));
 	}
