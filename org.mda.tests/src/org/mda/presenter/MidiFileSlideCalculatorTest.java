@@ -562,41 +562,6 @@ public class MidiFileSlideCalculatorTest {
     assertTrue (item3.getY() > item1.getY());
   }
 
-  @Test
-  public void zoom () {
-
-    MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
-    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    MidiFilePart midiFilePart = song.getParts().get(1);
-
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
-    CalculatorPreCondition preCondition = new CalculatorPreCondition();
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-
-    MidiFileSlideCalculator calculator = getCalculator();
-    calculator.setConfig(config);
-    Slide slideFullScreen = calculator.calculatePart(midiFilePart, preCondition).get(0);
-
-
-    SizeInfo half = new SizeInfo (config.getDefaultPresentationScreenSize().getWidth() / 2, config.getDefaultPresentationScreenSize().getHeight() / 2);
-    preCondition.setCalculationsize(half);
-    Slide halfScreen = calculator.calculatePart(midiFilePart, preCondition).get(0);
-
-    Iterator<SlideItem> halfIterator = halfScreen.getItems().iterator();
-
-    for (SlideItem nextFull : slideFullScreen.getItems()) {
-      SlideItem nextHalf = halfIterator.next();
-
-      like ("X-Coordinate of " + nextFull.getText(), nextFull.getX(), nextHalf.getX() * 2);
-      like ("Y-Coordinate of " + nextFull.getText(), nextFull.getY(), nextHalf.getY() * 2);
-      like ("Font of " + nextFull.getText(), slideFullScreen.getFont().getFontsizeAsInt(), halfScreen.getFont().getFontsizeAsInt());
-    }
-
-    System.out.println ("Full: " + slideFullScreen.toString());
-    System.out.println ("Half: " + halfScreen.toString());
-
-  }
-
   private void like (final String text, final float first, final float second) {
     if (first + 1 == second || first -1 == second || first == second)
       return;

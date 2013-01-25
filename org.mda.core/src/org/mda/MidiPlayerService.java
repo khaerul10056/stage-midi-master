@@ -580,6 +580,14 @@ public class MidiPlayerService {
 	  MidiFile createMidiFile = mf.createMidiFile();
 	  createMidiFile.setName(name);
 	  playerroot.getGallery().getGalleryItems().add(createMidiFile);
+	  MidiFilePart part = MidiplayerFactory.eINSTANCE.createMidiFilePart();
+	  part.setParttype(MidiFilePartType.VERS);
+	  MidiFileTextLine textline = MidiplayerFactory.eINSTANCE.createMidiFileTextLine();
+	  MidiFileChordPart chordpart = MidiplayerFactory.eINSTANCE.createMidiFileChordPart();
+	  chordpart.setText(" ");
+	  textline.getChordParts().add(chordpart);
+	  part.getTextlines().add(textline);
+	  createMidiFile.getParts().add(part);
 	  return createMidiFile;	  
   }
 

@@ -97,17 +97,6 @@ public class ContentPart extends AbstractPart implements FocusListener {
       }
     });
 
-    comp.addMouseListener(new MouseAdapter() {
-
-      @Override
-      public void mouseDown (MouseEvent arg0) {
-        
-        System.out.println ("Hallo");
-
-      }
-
-    });
-    
     return comp;
   }
 
