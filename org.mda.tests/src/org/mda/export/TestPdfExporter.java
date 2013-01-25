@@ -92,10 +92,10 @@ public class TestPdfExporter {
     SlideItem schoepfungItem = findItem(versSlide, "Schöpfung staunt und", 0);
     SlideItem secondChord = findItem(versSlide, "D", 0);
 
-    Assert.assertEquals (alleItem.getXMax(), schoepfungItem.getX());
+    Assert.assertEquals (alleItem.getXMax(), schoepfungItem.getX(), 0);
 
-    Assert.assertEquals (alleItem.getY(), schoepfungItem.getY());
-    Assert.assertEquals (firstChord.getY(), secondChord.getY());
+    Assert.assertEquals (alleItem.getY(), schoepfungItem.getY(), 0);
+    Assert.assertEquals (firstChord.getY(), secondChord.getY(), 0);
 
   }
 
@@ -125,8 +125,8 @@ public class TestPdfExporter {
     Assert.assertNull (firstChord);
     Assert.assertNull (secondChord);
 
-    Assert.assertEquals (alleItem.getXMax(), schoepfungItem.getX());
-    Assert.assertEquals (alleItem.getY(), schoepfungItem.getY());
+    Assert.assertEquals (alleItem.getXMax(), schoepfungItem.getX(), 0);
+    Assert.assertEquals (alleItem.getY(), schoepfungItem.getY(),0 );
 
 
 

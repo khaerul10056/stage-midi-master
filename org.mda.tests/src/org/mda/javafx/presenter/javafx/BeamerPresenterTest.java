@@ -30,7 +30,6 @@ public class BeamerPresenterTest {
 
 	  private static MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
 	  private static Session session;
-	  private BeamerPresenter presenter;
 	  private MidiFile firstSong;
 	  private MidiFile secondSong;
 	  private DefaultPresentationController controller;
@@ -57,13 +56,9 @@ public class BeamerPresenterTest {
 	  @Before
 	  public void before () {
 	    presentationContext.setCurrentSession(session, config, new SizeInfo (400, 200));
-
-	    presenter = InjectService.getInstance(BeamerPresenter.class); 
-	    presenter.build(session, false, config);
 	    controller = InjectService.getInstance(DefaultPresentationController.class);
 	    presentationContext.registerController(controller);
-	    presentationContext.registerView(presenter);
-
+	    
 	    firstSong = (MidiFile) session.getItems().get(0);
 	    secondSong = (MidiFile) session.getItems().get(1);
 	    lastSong = (MidiFile) session.getItems().get(session.getItems().size() - 1);
@@ -71,14 +66,6 @@ public class BeamerPresenterTest {
 	    firstPartOfLastSong = lastSong.getParts().get(0);
 	    preLastPartOfLastSong = lastSong.getParts().get(lastSong.getParts().size() - 2);
 	    lastPartOfLastSong = lastSong.getParts().get(lastSong.getParts().size() - 1);
-	  }
-
-
-
-	  
-	  @Test
-	  public void paint () {
-		  //TODO presenter.getShell().computeSize(400, 400);
 	  }
 
 	  @Test

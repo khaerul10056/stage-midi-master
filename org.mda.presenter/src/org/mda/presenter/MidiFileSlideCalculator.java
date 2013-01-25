@@ -288,8 +288,6 @@ public class MidiFileSlideCalculator extends SlideCalculator {
       }
     }
 
-    normalizeSizeToPresentationSize(preCondition);
-
     if (getConfig().isShowBlockType()) { //show blocktype (e.g. refrain, chorus..)
 
       String blockType = structItem.getLabel();

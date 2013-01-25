@@ -30,6 +30,13 @@ public class SizeInfo {
 	public String toString () {
 		return width + "x" + height;
 	}
+	
+	public boolean equals (final Object object) {
+		if (!(object instanceof SizeInfo))
+			return false;
+		SizeInfo sizeinfoCompare = (SizeInfo) object;
+		return sizeinfoCompare.height == height && sizeinfoCompare.width == width;
+	}
 
 	
 

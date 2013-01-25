@@ -30,26 +30,7 @@ public abstract class SlideCalculator implements ISlideCalculator {
   public IMidiFilePresenterConfig getConfig () {
     return config;
   }
-
-  /**
-   * resets the size to both equal zoomfactors horizontally and vertically
-   * @param preCondition
-   * @return
-   */
-  protected void normalizeSizeToPresentationSize (final CalculatorPreCondition preCondition) {
-    BigDecimal zoomFactorHorizontal = new BigDecimal(preCondition.getCalculationsize().getWidth());
-    zoomFactorHorizontal = zoomFactorHorizontal.divide(new BigDecimal (getConfig().getDefaultPresentationScreenSize().getWidth()), 10, BigDecimal.ROUND_UP);
-
-    BigDecimal zoomFactorVertical = new BigDecimal(preCondition.getCalculationsize().getHeight());
-    zoomFactorVertical = zoomFactorVertical.divide(new BigDecimal (getConfig().getDefaultPresentationScreenSize().getWidth()), 10, BigDecimal.ROUND_UP);
-
-    BigDecimal min = zoomFactorHorizontal.min(zoomFactorVertical);
-
-    BigDecimal zoomedWidth = new BigDecimal (getConfig().getDefaultPresentationScreenSize().getWidth()).multiply(min);
-    BigDecimal zoomedHeight = new BigDecimal (getConfig().getDefaultPresentationScreenSize().getHeight()).multiply(min);
-
-//    preCondition.setCalculationsize(new Size (zoomedWidth.intValue(), zoomedHeight.intValue()));
-  }
+  
 
   /**
    * getter
