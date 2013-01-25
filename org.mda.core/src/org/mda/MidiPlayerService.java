@@ -579,6 +579,10 @@ public class MidiPlayerService {
   public static MidiFile createSong (final MidiPlayerRoot playerroot, final String name) {
 	  MidiFile createMidiFile = mf.createMidiFile();
 	  createMidiFile.setName(name);
+	  if (playerroot.getGallery() == null) {
+		  Gallery newGallery = mf.createGallery();
+		  playerroot.setGallery(newGallery);
+	  }
 	  playerroot.getGallery().getGalleryItems().add(createMidiFile);
 	  MidiFilePart part = MidiplayerFactory.eINSTANCE.createMidiFilePart();
 	  part.setParttype(MidiFilePartType.VERS);
