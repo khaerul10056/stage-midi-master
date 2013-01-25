@@ -13,6 +13,8 @@ import mda.MidiFilePart;
 import mda.MidiFilePartType;
 import mda.MidiFileTextLine;
 import mda.MidiPlayerRoot;
+import mda.MidiplayerFactory;
+import mda.util.MidiplayerSwitch;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.SWT;
@@ -138,7 +140,8 @@ public class PreviewEditorTest extends AbstractEditorTest {
 
   @Test
   public void newSong () {
-    MidiFile song = MidiFileCreator.create().get();
+	MidiPlayerRoot root = MidiplayerFactory.eINSTANCE.createMidiPlayerRoot();
+    MidiFile song = MidiPlayerService.createSong(root, "Testsong");
     prepareEditor(song);
     
     ContentPart contentPanel = editor.getContentpanel();
