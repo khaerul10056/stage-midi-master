@@ -32,12 +32,14 @@ public class TestPptExporter {
   private File tmpFile = new File ("tmp/export.ppt");
 
   private static ApplicationSession appSession;
+  private static DefaultMidiFilePresenterConfig config;
 
 
   @BeforeClass
   public static void beforeClass () {
 	InjectServiceMock.initialize();
 	appSession = InjectService.getInstance(ApplicationSession.class);
+	config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     appSession.load(null);
   }
 
@@ -75,7 +77,6 @@ public class TestPptExporter {
 
     PptExporter exporter = getExporter();
 
-    DefaultMidiFilePresenterConfig config = new DefaultMidiFilePresenterConfig();
     config.setShowChords(false);
     config.setShowBackground(true);
 
@@ -105,7 +106,6 @@ public class TestPptExporter {
 
       PptExporter exporter = getExporter();
 
-      DefaultMidiFilePresenterConfig config = new DefaultMidiFilePresenterConfig();
       config.setShowChords(false);
       config.setShowBackground(true);
 
@@ -137,7 +137,6 @@ public class TestPptExporter {
     file.setBackgroundColor(colorBlackAsString);
     java.awt.Color colorBlackAsAwt = Utils.toAwtColor(colorBlack);
 
-    DefaultMidiFilePresenterConfig config = new DefaultMidiFilePresenterConfig();
     config.setShowChords(false);
 
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();

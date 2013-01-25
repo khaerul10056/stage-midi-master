@@ -42,6 +42,7 @@ import org.mda.midi.mapping.MappingServiceTest;
 import org.mda.midi.ui.MidiDeviceContentProviderTest;
 import org.mda.presenter.MidiFileSlideCalculatorTest;
 import org.mda.presenter.PresentationContextTest;
+import org.mda.presenter.config.PresentationConfiguratorTest;
 import org.mda.presenter.ui.config.PresentationSchemaEditorBuilderTest;
 import org.mda.presenter.ui.test.ContentOverviewTest;
 import org.mda.struct.MidiFileStructTest;
@@ -65,7 +66,7 @@ import org.mda.transpose.TransposeTest;
   TransposeTest.class,
   ContentProviderTest.class,
   MidiFileStructTest.class,
-  org.mda.presenter.config.PresentationConfiguratorTest.class,
+  
   InjectServiceTest.class,
   TestSearchEngine.class,
   CopyrightSerializerTest.class,
@@ -101,6 +102,7 @@ import org.mda.transpose.TransposeTest;
   //Presenter
   MidiFileSlideCalculatorTest.class,
   BeamerPresenterTest.class,
+  PresentationConfiguratorTest.class,
   
   
   //JavaFX

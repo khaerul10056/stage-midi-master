@@ -335,6 +335,7 @@ public class MidiFileSlideCalculatorTest {
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
     MidiFileSlideCalculator calculator = getCalculator();
+    calculator.setConfig(config);
     List<Slide> calculate = calculator.calculate(song, preCondition);
     assertEquals(1, calculate.size());
 
@@ -353,8 +354,9 @@ public class MidiFileSlideCalculatorTest {
     DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-
+    
     MidiFileSlideCalculator calculator = getCalculator();
+    calculator.setConfig(config);
     Slide calculatePart = calculator.calculatePart(song.getParts().get(0), preCondition).get(0);
     assertEquals (1, calculatePart.getTextline(0).length());
   }
@@ -367,6 +369,7 @@ public class MidiFileSlideCalculatorTest {
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
     MidiFileSlideCalculator calculator = getCalculator();
+    calculator.setConfig(config);
     Slide calculatePart = calculator.calculatePart(song.getParts().get(0), preCondition).get(0);
     assertEquals (2, calculatePart.getTextline(0).length());
   }
@@ -435,7 +438,7 @@ public class MidiFileSlideCalculatorTest {
     assertEquals (THREE, nextSideFirstLineItem.getText());
     assertEquals (0, firstLineItem.getY(),  0); 
     assertEquals (0, secondLineItem.getY(), 0); 
-    assertEquals (194, thirdLineItem.getY(), 0);
+    assertEquals (95, thirdLineItem.getY(), 0);
     assertEquals (firstLineItem.getY(), secondLineItem.getY(), 0);
     assertEquals (firstLineItem.getY(), nextSideFirstLineItem.getY(), 0);
   }
@@ -571,6 +574,7 @@ public class MidiFileSlideCalculatorTest {
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
     MidiFileSlideCalculator calculator = getCalculator();
+    calculator.setConfig(config);
     Slide slideFullScreen = calculator.calculatePart(midiFilePart, preCondition).get(0);
 
 

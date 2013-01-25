@@ -24,6 +24,7 @@ public class ContentOverviewTest {
   private static PresentationContext presentationContext;
   private static ApplicationSession instance;
   private static ContentOverview overview;
+  private static DefaultMidiFilePresenterConfig config;
   
   @BeforeClass
   public static void beforeClass () {
@@ -31,6 +32,7 @@ public class ContentOverviewTest {
 	  presentationContext = InjectService.getInstance(PresentationContext.class);
 	  instance = InjectService.getInstance(ApplicationSession.class);
 	  overview = InjectService.getInstance(ContentOverview.class);
+	  config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
   }
 
   @After
@@ -41,7 +43,7 @@ public class ContentOverviewTest {
   @Test
   public void testContentOverview () throws Exception {
     instance.load(null);
-    presentationContext.setCurrentSession(instance.getCurrentModel().getSessions().get(0), new DefaultMidiFilePresenterConfig(), new SizeInfo(400, 200));
+    presentationContext.setCurrentSession(instance.getCurrentModel().getSessions().get(0), config, new SizeInfo(400, 200));
     overview.build(new Shell());
     overview.refresh();
     Assert.assertTrue (overview.getPreviewParts().get(0).isSelected());
@@ -65,7 +67,7 @@ public class ContentOverviewTest {
     session.getItems().add(song);
     song.getParts().get(0).getTextlines().get(2).setNewSlide(true);
 
-    presentationContext.setCurrentSession(session, new DefaultMidiFilePresenterConfig(), new SizeInfo(400, 200));
+    presentationContext.setCurrentSession(session, config, new SizeInfo(400, 200));
 
     ContentOverview overview = getContentOverview();
     overview.build(new Shell());
@@ -107,7 +109,7 @@ public class ContentOverviewTest {
     session.getItems().add(song1);
     session.getItems().add(song2);
 
-    presentationContext.setCurrentSession(session, new DefaultMidiFilePresenterConfig(), new SizeInfo(400, 200));
+    presentationContext.setCurrentSession(session, config, new SizeInfo(400, 200));
     presentationContext.setCurrentSessionItemIndex(1);
 
     ContentOverview overview = getContentOverview();

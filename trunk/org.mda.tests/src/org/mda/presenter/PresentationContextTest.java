@@ -19,6 +19,7 @@ public class PresentationContextTest {
 
   private PresentationContext presentationContext;
   private ApplicationSession appsession;
+  private DefaultMidiFilePresenterConfig config;
   
 
   @Before
@@ -27,6 +28,7 @@ public class PresentationContextTest {
 	presentationContext = InjectService.getInstance(PresentationContext.class);
 	appsession = InjectService.getInstance(ApplicationSession.class);
     presentationContext.clear();
+    config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
   }
 
   @After
@@ -41,7 +43,7 @@ public class PresentationContextTest {
     MidiFile currentFile = (MidiFile) appsession.getCurrentModel().getSessions().get(0).getItems().get(0);
     MidiFilePart part1 = currentFile.getParts().get(0);
     MidiFilePart part2 = currentFile.getParts().get(1);
-    presentationContext.setCurrentSession(appsession.getCurrentModel().getSessions().get(0), new DefaultMidiFilePresenterConfig(), new SizeInfo (400, 200));
+    presentationContext.setCurrentSession(appsession.getCurrentModel().getSessions().get(0), config, new SizeInfo (400, 200));
     presentationContext.setCurrentSessionItemIndex(0);
 
     Slide slide = presentationContext.getCurrentSlide();

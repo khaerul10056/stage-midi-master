@@ -4,8 +4,8 @@ package org.mda.javafx.presenter.javafx;
 import java.util.HashMap;
 
 import javafx.animation.FadeTransition;
-import javafx.animation.ParallelTransition;
-import javafx.animation.ParallelTransitionBuilder;
+import javafx.animation.SequentialTransition;
+import javafx.animation.SequentialTransitionBuilder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -77,6 +77,14 @@ public class BeamerPresenter implements IPresentationView {
 		presentationContext.deregisterView(getClass());
 		presentationStage.close();
 	}
+	
+	private void logPane (final Pane pane, final String additionalText) {
+		LOGGER.info("Pane      : " + pane.getId());
+		LOGGER.info("Context   : " + additionalText);
+		LOGGER.info("Opacity   : " + pane.getOpacity());
+		LOGGER.info("Visible   : " + pane.isVisible()); 
+		LOGGER.info("Managed   : " + pane.isManaged());
+	}
 
 	@Override
 	public void refresh() {
@@ -100,32 +108,36 @@ public class BeamerPresenter implements IPresentationView {
 		}
 		
 		if  (nextPane != null) {
-		  LOGGER.info("NextPane = " + nextPane.getId());
-		  //TODO animations
-		  
-		  
-		  
-		  FadeTransition ft1 = new FadeTransition(Duration.millis(800), currentPane);
-          ft1.setFromValue(1.0);
-          ft1.setToValue(0.0);
-
-          nextPane.setOpacity(0);
-          nextPane.setVisible(true); 
-          nextPane.setManaged(true);
-          FadeTransition ft2 = new FadeTransition(Duration.millis(800), nextPane);
-          ft2.setFromValue(0.0);
-          ft2.setToValue(1.0);
-
-          ParallelTransition pt = ParallelTransitionBuilder.create().children(ft1, ft2).build();
-          pt.setOnFinished(new EventHandler<ActionEvent>() {
-              @Override
-              public void handle(ActionEvent actionEvent) {
-                  currentPane.setVisible(false);
-                  currentPane.setManaged(false);
-                  currentPane.setOpacity(1);
-              }
-          });
-          pt.play();		  
+//		  LOGGER.info("NextPane = " + nextPane.getId());
+//		  //TODO animations
+//		  
+//		  FadeTransition ft1 = new FadeTransition(Duration.millis(700), currentPane);
+//		  
+//		  final Pane thenext = nextPane; 
+//          ft1.setFromValue(1.0);
+//          ft1.setToValue(0.0);
+//          ft1.setOnFinished(new EventHandler<ActionEvent>() {
+//              @Override
+//              public void handle(ActionEvent actionEvent) {
+//                  currentPane.setVisible(false);
+//                  thenext.setVisible(true);
+//              }
+//          });
+//
+//          FadeTransition ft2 = new FadeTransition(Duration.millis(700), nextPane);
+//          ft2.setFromValue(0.0);
+//          ft2.setToValue(1.0);
+//          nextPane.setVisible(true);
+//          nextPane.setOpacity(0.0);
+//          
+//          logPane(currentPane, "currentPane"); 
+//		  logPane(nextPane, "nextPane");
+//          
+//          SequentialTransition pt = SequentialTransitionBuilder.create().children(ft1, ft2).build();
+//          pt.play();	
+			currentPane.setVisible(false);
+			currentPane = nextPane;
+			nextPane.setVisible(true);
 		  
 		}
 		else
