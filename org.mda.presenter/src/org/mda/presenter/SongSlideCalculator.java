@@ -25,8 +25,8 @@ import org.mda.presenter.adapter.IGraphicsContext;
 import org.mda.presenter.adapter.LocationInfo;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.PresentationConfigurator;
-import org.mda.struct.MidiFileStruct;
-import org.mda.struct.MidiFileStructItem;
+import org.mda.struct.SongStruct;
+import org.mda.struct.SongStructItem;
 
 
 public class SongSlideCalculator extends SlideCalculator {
@@ -193,7 +193,7 @@ public class SongSlideCalculator extends SlideCalculator {
   private float getOffsetLongestPartType (final Song file, final CalculatorPreCondition preCondition) {
     float length = 0;
     String longestPart = "";
-    MidiFileStruct struct = new MidiFileStruct(file);
+    SongStruct struct = new SongStruct(file);
     for (SongPart nextPart: file.getParts()) {
       String label = struct.getItem(nextPart).getLabel();
       if (label != null) {
@@ -253,8 +253,8 @@ public class SongSlideCalculator extends SlideCalculator {
     Song midifile = (Song) part.eContainer();
     init(midifile);
     List <Slide> slides = new ArrayList<Slide>();
-    MidiFileStruct struct = new MidiFileStruct(midifile);
-    MidiFileStructItem structItem = struct.getItem(part);
+    SongStruct struct = new SongStruct(midifile);
+    SongStructItem structItem = struct.getItem(part);
 
     boolean isFirstPartInSong = part.equals(midifile.getParts().get(0));
 

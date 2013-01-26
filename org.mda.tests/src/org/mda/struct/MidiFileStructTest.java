@@ -34,11 +34,11 @@ public class MidiFileStructTest {
 
 
     Song file = creator.get();
-    MidiFileStruct struct = new MidiFileStruct(file);
+    SongStruct struct = new SongStruct(file);
 
     LOGGER.info(MidiPlayerService.toString(file));
 
-    List<MidiFileStructItem> items = struct.getItems();
+    List<SongStructItem> items = struct.getItems();
 
     //Intro 1
     Assert.assertNull (items.get(0).getIndex()); // because its the only INTRO
@@ -110,8 +110,8 @@ public class MidiFileStructTest {
     creator = creator.part(SongPartType.REFRAIN);
 
     Song file = creator.get();
-    MidiFileStruct struct = new MidiFileStruct(file);
-    for (MidiFileStructItem nextStructItem: struct.getItems()) {
+    SongStruct struct = new SongStruct(file);
+    for (SongStructItem nextStructItem: struct.getItems()) {
       LOGGER.info(nextStructItem.getLabel());
     }
 
