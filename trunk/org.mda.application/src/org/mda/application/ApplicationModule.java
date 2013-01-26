@@ -3,8 +3,8 @@ package org.mda.application;
 import org.mda.ApplicationSession;
 import org.mda.commons.ui.calculator.SWTGraphicsContext;
 import org.mda.presenter.adapter.IGraphicsContext;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 
 import com.google.inject.Binder;
 import com.google.inject.Module;
@@ -17,7 +17,7 @@ public class ApplicationModule implements Module {
 		
 		binder.bind(ApplicationSession.class).in(Singleton.class);
 		binder.bind(IGraphicsContext.class).to(SWTGraphicsContext.class);
-		binder.bind(IMidiFilePresenterConfig.class).to(DefaultMidiFilePresenterConfig.class);
+		binder.bind(IPresenterConfig.class).to(DefaultPresenterConfig.class);
 	}
 
 	

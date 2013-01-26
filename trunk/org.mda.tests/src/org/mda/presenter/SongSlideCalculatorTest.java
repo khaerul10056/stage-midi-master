@@ -6,14 +6,13 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
-import mda.MidiFile;
-import mda.MidiFilePart;
-import mda.MidiFilePartType;
-import mda.MidiFileTextLine;
 import mda.MidiPlayerRoot;
+import mda.Song;
+import mda.SongPart;
+import mda.SongPartType;
+import mda.SongTextLine;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -24,14 +23,13 @@ import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.adapter.SizeInfo;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
 import org.mda.presenter.ui.test.MidiFileCreator;
 
 
-public class MidiFileSlideCalculatorTest {
+public class SongSlideCalculatorTest {
 
-  private static final Log LOGGER  = LogFactory.getLogger(MidiFileSlideCalculatorTest.class);
+  private static final Log LOGGER  = LogFactory.getLogger(SongSlideCalculatorTest.class);
 
   private static ApplicationSession appSession;
 
@@ -77,23 +75,23 @@ public class MidiFileSlideCalculatorTest {
 
   }
   
-  private MidiFileSlideCalculator getCalculator () {
-	  return InjectService.getInstance(MidiFileSlideCalculator.class);
+  private SongSlideCalculator getCalculator () {
+	  return InjectService.getInstance(SongSlideCalculator.class);
   }
 
   @Test
   public void copyright () {
     MidiFileCreator creator = MidiFileCreator.create();
-    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.part(SongPartType.REFRAIN);
     creator = creator.line().chordAndText("D", "                         ").chordAndText("F", "    ");
 
     creator = creator.copyright(null, PUBLISHER, PUBLISHERINLAND, null, null, null, null);
-    MidiFile song = creator.get();
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    Song song = creator.get();
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setShowCopyright(true);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = getCalculator();
+    SongSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
     Slide slide = calculateWithoutBorder.get(0);
@@ -103,17 +101,17 @@ public class MidiFileSlideCalculatorTest {
   @Test
   public void noCopyright () {
     MidiFileCreator creator = MidiFileCreator.create();
-    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.part(SongPartType.REFRAIN);
     creator = creator.line().chordAndText("D", "                         ").chordAndText("F", "    ");
     final String PUBLISHER = "PUBLISHER";
     final String PUBLISHERINLAND = "PUBLISHERINLAND";
     creator = creator.copyright(null, PUBLISHER, PUBLISHERINLAND, null, null, null, null);
-    MidiFile song = creator.get();
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    Song song = creator.get();
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setShowCopyright(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = getCalculator();
+    SongSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
     Slide slide = calculateWithoutBorder.get(0);
@@ -124,15 +122,15 @@ public class MidiFileSlideCalculatorTest {
   @Test
   public void skipEmptyText () {
     MidiFileCreator creator = MidiFileCreator.create();
-    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.part(SongPartType.REFRAIN);
     creator = creator.line().chordAndText("D", "                         ").chordAndText("F", "    ");
-    MidiFile song = creator.get();
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    Song song = creator.get();
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setOptimizeLineFilling(false);
     config.setOptimizeEmptyTokens(true);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = getCalculator();
+    SongSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
     Slide firstSlide = calculateWithoutBorder.get(0);
@@ -147,17 +145,17 @@ public class MidiFileSlideCalculatorTest {
   public void border () {
     final int BORDER = 60;
     MidiFileCreator creator = MidiFileCreator.create();
-    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.part(SongPartType.REFRAIN);
     creator = creator.line().text("This is the first refrain").text("still");
     creator = creator.line().text("and this is the second line of the refrain");
-    creator = creator.part(MidiFilePartType.VERS);
+    creator = creator.part(SongPartType.VERS);
     creator = creator.line().text("This is the first vers").text("still");
-    MidiFile song = creator.get();
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    Song song = creator.get();
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setOptimizeLineFilling(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = getCalculator();
+    SongSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
 
@@ -187,21 +185,21 @@ public class MidiFileSlideCalculatorTest {
   @Test
   public void optimizeLineFilling () {
     MidiFileCreator creator = MidiFileCreator.create();
-    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.part(SongPartType.REFRAIN);
     creator = creator.line().text("This is the first line").text("still");
     creator = creator.line().text("and this is the second line that is too long to be merged to the first line");
 
-    creator = creator.part(MidiFilePartType.VERS);
+    creator = creator.part(SongPartType.VERS);
     creator = creator.line().text("First line").text("still");
     creator = creator.line().text("second merged");
     creator = creator.line().text("third line, which should definitively not be merged to previous line");
-    MidiFile song = creator.get();
+    Song song = creator.get();
 
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setOptimizeLineFilling(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = getCalculator();
+    SongSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculate = calculator.calculate(song, preCondition);
 
@@ -235,18 +233,18 @@ public class MidiFileSlideCalculatorTest {
   @Test
   public void skipEmptySlides () {
     MidiFileCreator creator = MidiFileCreator.create();
-    creator = creator.part(MidiFilePartType.INTRO).line().chordAndText("D", null);
-    creator = creator.part(MidiFilePartType.INTRO).line().chordAndText("D", "");
-    creator = creator.part(MidiFilePartType.INTRO).line().chordAndText("D", "Hallo");
-    MidiFile song = creator.get();
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    creator = creator.part(SongPartType.INTRO).line().chordAndText("D", null);
+    creator = creator.part(SongPartType.INTRO).line().chordAndText("D", "");
+    creator = creator.part(SongPartType.INTRO).line().chordAndText("D", "Hallo");
+    Song song = creator.get();
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setNewPageRespected(false);
     config.setShowTitle(true);
     config.setSkipEmptySlides(false);
     config.setShowChords(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = getCalculator();
+    SongSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculate = calculator.calculate(song, preCondition);
     assertEquals (3, calculate.size());
@@ -260,19 +258,19 @@ public class MidiFileSlideCalculatorTest {
   @Test
   public void showTitle () {
     final String TITLE = "Songtitle.mid";
-    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS);
+    MidiFileCreator creator = MidiFileCreator.create().part(SongPartType.VERS);
     creator = creator.line().chordAndText("D", "First line");
     creator = creator.line().chordAndText("F", "second line");
     creator = creator.line().chordAndText("G", "thir line on a new slide");
-    MidiFile song = creator.get();
+    Song song = creator.get();
     song.setName(TITLE);
 
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setNewPageRespected(false);
     config.setShowTitle(true);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = getCalculator();
+    SongSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculate = calculator.calculate(song, preCondition);
 
@@ -286,23 +284,23 @@ public class MidiFileSlideCalculatorTest {
   }
 
   /**
-   * Tests if the new slide - attribute at the {@link MidiFileTextLine} is handled while calculating
+   * Tests if the new slide - attribute at the {@link SongTextLine} is handled while calculating
    * a slide
    *
    * @throws Exception Exception
    */
   @Test
   public void newSlideAtLineisInactive () throws Exception {
-    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS);
+    MidiFileCreator creator = MidiFileCreator.create().part(SongPartType.VERS);
     creator = creator.line().chordAndText("D", " ");
     creator = creator.line().chordAndText("F", "second line");
     creator = creator.line().chordAndText("G", "thir line on a new slide");
-    MidiFile song = creator.get();
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    Song song = creator.get();
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setNewPageRespected(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    MidiFileSlideCalculator calculator = getCalculator();
+    SongSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculate = calculator.calculate(song, preCondition);
     assertEquals(1, calculate.size());
@@ -318,23 +316,23 @@ public class MidiFileSlideCalculatorTest {
   }
 
   /**
-   * Tests if the new slide - attribute at the {@link MidiFileTextLine} is handled while calculating
+   * Tests if the new slide - attribute at the {@link SongTextLine} is handled while calculating
    * a slide
    *
    * @throws Exception Exception
    */
   @Test
   public void newSlideAtLineIsActive () throws Exception {
-    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS);
+    MidiFileCreator creator = MidiFileCreator.create().part(SongPartType.VERS);
     creator = creator.line().chordAndText("D", " ");
     creator = creator.line().chordAndText("F", "second line");
     creator = creator.line().chordAndText("G", "thir line on a new slide");
-    MidiFile song = creator.get();
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    Song song = creator.get();
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
-    MidiFileSlideCalculator calculator = getCalculator();
+    SongSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     List<Slide> calculate = calculator.calculate(song, preCondition);
     assertEquals(1, calculate.size());
@@ -350,12 +348,12 @@ public class MidiFileSlideCalculatorTest {
 
   @Test
   public void createChordRelatedPart () throws Exception {
-    MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", " ").get();
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    Song song = MidiFileCreator.create().part(SongPartType.INTRO).line().chordAndText("D", " ").get();
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
     
-    MidiFileSlideCalculator calculator = getCalculator();
+    SongSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     Slide calculatePart = calculator.calculatePart(song.getParts().get(0), preCondition).get(0);
     assertEquals (1, calculatePart.getTextline(0).length());
@@ -363,12 +361,12 @@ public class MidiFileSlideCalculatorTest {
 
   @Test
   public void chordRelatedPartWith2Spaces () throws Exception {
-    MidiFile song = MidiFileCreator.create().part(MidiFilePartType.INTRO).line().chordAndText("D", "  ").get();
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    Song song = MidiFileCreator.create().part(SongPartType.INTRO).line().chordAndText("D", "  ").get();
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
-    MidiFileSlideCalculator calculator = getCalculator();
+    SongSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     Slide calculatePart = calculator.calculatePart(song.getParts().get(0), preCondition).get(0);
     assertEquals (2, calculatePart.getTextline(0).length());
@@ -378,15 +376,15 @@ public class MidiFileSlideCalculatorTest {
   public void createLines () {
 
     MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
-    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
-    MidiFilePart midiFilePart = song.getParts().get(1);
+    Song song = (Song) root.getGallery().getGalleryItems().get(0);
+    SongPart midiFilePart = song.getParts().get(1);
 
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setAutoWrapToNewPage(false);
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
-    MidiFileSlideCalculator calculator = getCalculator();
+    SongSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     Slide calculatePart = calculator.calculatePart(midiFilePart, preCondition).get(0);
 
@@ -396,11 +394,11 @@ public class MidiFileSlideCalculatorTest {
 
   }
 
-  private List<Slide> calculate (final MidiFile part, DefaultMidiFilePresenterConfig config) {
+  private List<Slide> calculate (final Song part, DefaultPresenterConfig config) {
     CalculatorPreCondition preCondition = new CalculatorPreCondition();
     preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
-    MidiFileSlideCalculator calculator = getCalculator();
+    SongSlideCalculator calculator = getCalculator();
     calculator.setConfig(config);
     return calculator.calculate(part, preCondition);
   }
@@ -411,14 +409,14 @@ public class MidiFileSlideCalculatorTest {
     final String ONE = "This is a";
     final String TWO = "second line";
     final String THREE = "third line";
-    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    MidiFileCreator creator = MidiFileCreator.create().part(SongPartType.REFRAIN);
     creator.line().text(ONE).chordAndText("D", "test");
     creator.line().text(TWO);
-    creator.part(MidiFilePartType.ZWISCHENSPIEL).line().text(THREE);
-    MidiFile song = creator.get();
+    creator.part(SongPartType.ZWISCHENSPIEL).line().text(THREE);
+    Song song = creator.get();
     assertEquals (2, song.getParts().size());
 
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setShowChords(false);
     config.setPagePerPart(true);
     config.setFontsize(80);
@@ -448,14 +446,14 @@ public class MidiFileSlideCalculatorTest {
     final String ONE = "This is a";
     final String TWO = "second line";
     final String THREE = "third line";
-    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    MidiFileCreator creator = MidiFileCreator.create().part(SongPartType.REFRAIN);
     creator.line().text(ONE).chordAndText("D", "test");
     creator.line().text(TWO);
-    creator.part(MidiFilePartType.ZWISCHENSPIEL).line().text(THREE);
-    MidiFile song = creator.get();
+    creator.part(SongPartType.ZWISCHENSPIEL).line().text(THREE);
+    Song song = creator.get();
     assertEquals (2, song.getParts().size());
 
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setShowChords(true);
     config.setShowBlockType(true);
     config.setPagePerPart(false);
@@ -494,12 +492,12 @@ public class MidiFileSlideCalculatorTest {
   @Test
   public void checkConcreteWithChord () {
 
-    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    MidiFileCreator creator = MidiFileCreator.create().part(SongPartType.REFRAIN);
     creator.line().text("This is a").chordAndText("D", "test");
     creator.line().text("second line");
-    MidiFile song = creator.get();
+    Song song = creator.get();
 
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setShowChords(true);
     config.setFontsize(80);
 
@@ -533,12 +531,12 @@ public class MidiFileSlideCalculatorTest {
 
     //Text and follow chords
 
-    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    MidiFileCreator creator = MidiFileCreator.create().part(SongPartType.REFRAIN);
     creator.line().text("This is a").chordAndText("D", "test");
     creator.line().text("second line");
-    MidiFile song = creator.get();
+    Song song = creator.get();
 
-    DefaultMidiFilePresenterConfig config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setShowChords(false);
     config.setFontsize(80);
     Slide slide = calculate(song, config).get(0);

@@ -35,31 +35,31 @@ public interface MidiplayerFactory extends EFactory {
 	Session createSession();
 
 	/**
-	 * Returns a new object of class '<em>Midi File</em>'.
+	 * Returns a new object of class '<em>Song</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Midi File</em>'.
+	 * @return a new object of class '<em>Song</em>'.
 	 * @generated
 	 */
-	MidiFile createMidiFile();
+	Song createSong();
 
 	/**
-	 * Returns a new object of class '<em>Midi File Part</em>'.
+	 * Returns a new object of class '<em>Song Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Midi File Part</em>'.
+	 * @return a new object of class '<em>Song Part</em>'.
 	 * @generated
 	 */
-	MidiFilePart createMidiFilePart();
+	SongPart createSongPart();
 
 	/**
-	 * Returns a new object of class '<em>Midi File Text Line</em>'.
+	 * Returns a new object of class '<em>Song Text Line</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Midi File Text Line</em>'.
+	 * @return a new object of class '<em>Song Text Line</em>'.
 	 * @generated
 	 */
-	MidiFileTextLine createMidiFileTextLine();
+	SongTextLine createSongTextLine();
 
 	/**
 	 * Returns a new object of class '<em>Gallery</em>'.
@@ -80,13 +80,13 @@ public interface MidiplayerFactory extends EFactory {
 	MidiPlayerRoot createMidiPlayerRoot();
 
 	/**
-	 * Returns a new object of class '<em>Midi File Chord Part</em>'.
+	 * Returns a new object of class '<em>Song Chord Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Midi File Chord Part</em>'.
+	 * @return a new object of class '<em>Song Chord Part</em>'.
 	 * @generated
 	 */
-	MidiFileChordPart createMidiFileChordPart();
+	SongChordPart createSongChordPart();
 
 	/**
 	 * Returns a new object of class '<em>Configuration</em>'.

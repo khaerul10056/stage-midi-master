@@ -1,22 +1,22 @@
 package org.mda.editor.preview.ui;
 
 import org.eclipse.swt.graphics.Color;
-import mda.MidiFilePartType;
+import mda.SongPartType;
 
 
 public class StepTypeColorInfo {
 
-  private final MidiFilePartType parttype;
+  private final SongPartType parttype;
 
   private Color selected;
 
   private Color normal;
 
-  public StepTypeColorInfo (final MidiFilePartType parttype) {
+  public StepTypeColorInfo (final SongPartType parttype) {
     this.parttype = parttype;
   }
 
-  public MidiFilePartType getParttype () {
+  public SongPartType getParttype () {
     return parttype;
   }
 

@@ -20,7 +20,7 @@ import org.mda.logging.LogFactory;
 import org.mda.presenter.SlideType;
 import org.mda.presenter.Slide;
 import org.mda.presenter.SlideItem;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
 
 
 public class TestPdfExporter {
@@ -68,7 +68,7 @@ public class TestPdfExporter {
   public void checkExportWithChords () {
     PdfExporter exporter = getExporter();
 
-    DefaultMidiFilePresenterConfig config = new DefaultMidiFilePresenterConfig();
+    DefaultPresenterConfig config = new DefaultPresenterConfig();
     config.setShowChords(true);
     appSession.getGlobalConfs().setDefaultBorder(new Integer (0));
 
@@ -106,7 +106,7 @@ public class TestPdfExporter {
     List <AbstractSessionItem> sessionitems = new ArrayList<AbstractSessionItem>();
     sessionitems.add(appSession.getCurrentModel().getGallery().getGalleryItems().get(0));
 
-    DefaultMidiFilePresenterConfig config = new DefaultMidiFilePresenterConfig();
+    DefaultPresenterConfig config = new DefaultPresenterConfig();
     config.setShowChords(false);
 
     exporter.export(sessionitems, tmpFile, config);

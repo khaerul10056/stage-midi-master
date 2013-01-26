@@ -29,7 +29,7 @@ import org.mda.midi.NoMidiDeviceConfiguredException;
 import org.mda.midi.NoMidiFileFoundException;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.adapter.SizeInfo;
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 import org.mda.presenter.config.PresentationConfigurator;
 import org.mda.presenter.config.PresentationType;
 import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
@@ -71,7 +71,7 @@ public class StartPresentation   {
     LOGGER.info("Starting presentation of selection " + applicationSession.getCurrentSession().getName());
 
     PresentationConfigurator configurator = new PresentationConfigurator();
-    IMidiFilePresenterConfig config = configurator.configure(null, applicationSession.getCurrentModel(), PresentationType.SCREEN);
+    IPresenterConfig config = configurator.configure(null, applicationSession.getCurrentModel(), PresentationType.SCREEN);
     
     boolean alwaysOnTop = applicationSession.getFeatureActivation().isPresentationAlwaysOnTop();
     

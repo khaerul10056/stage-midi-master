@@ -35,7 +35,7 @@ import org.mda.presenter.SpecialSlide;
 import org.mda.presenter.adapter.AreaInfo;
 import org.mda.presenter.adapter.ColorInfo;
 import org.mda.presenter.adapter.SizeInfo;
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 
 import com.google.inject.Inject;
 
@@ -191,7 +191,7 @@ public class BeamerPresenter implements IPresentationView {
 		pane.setVisible(false);
 	}
 
-	public void build(final Session currentSession, boolean onTop, final IMidiFilePresenterConfig config) {
+	public void build(final Session currentSession, boolean onTop, final IPresenterConfig config) {
 		
 		presentationContext.registerView(this);
 		presentationContext.setCurrentSession(currentSession, config, config.getDefaultPresentationScreenSize());

@@ -2,10 +2,10 @@ package org.mda.importer;
 
 import java.util.ArrayList;
 import java.util.List;
-import mda.MidiFile;
-import mda.MidiFileChordPart;
-import mda.MidiFilePart;
-import mda.MidiFileTextLine;
+import mda.Song;
+import mda.SongChordPart;
+import mda.SongPart;
+import mda.SongTextLine;
 import org.mda.MidiPlayerService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -25,30 +25,30 @@ public class TextImporterService {
     }
   }
 
-  public void importText(MidiFile midifile) {
+  public void importText(Song midifile) {
 
-    MidiFilePart currentMidifilePart = null;
+    SongPart currentSongPart = null;
 
     for (TextImporterLine nextLine : lines) {
       if (nextLine.getPartType() != null) {
 
-        if (currentMidifilePart != null) {
-          midifile.getParts().add(currentMidifilePart);
-          LOGGER.info("Add part " + currentMidifilePart.getParttype());
+        if (currentSongPart != null) {
+          midifile.getParts().add(currentSongPart);
+          LOGGER.info("Add part " + currentSongPart.getParttype());
         }
 
         if (nextLine.getPartType() != null) {
-          currentMidifilePart = MidiPlayerService.mf.createMidiFilePart();
-          currentMidifilePart.setParttype(nextLine.getPartType());
+          currentSongPart = MidiPlayerService.mf.createSongPart();
+          currentSongPart.setParttype(nextLine.getPartType());
           LOGGER.info("Create part " + nextLine.getPartType());
         }
       }
 
-      if (currentMidifilePart != null && !nextLine.isChordLine()) {
-        MidiFileTextLine nextTextLine = MidiPlayerService.mf.createMidiFileTextLine();
-        currentMidifilePart.getTextlines().add(nextTextLine);
+      if (currentSongPart != null && !nextLine.isChordLine()) {
+        SongTextLine nextTextLine = MidiPlayerService.mf.createSongTextLine();
+        currentSongPart.getTextlines().add(nextTextLine);
         LOGGER.info("addLine " + nextTextLine.toString());
-        for (MidiFileChordPart nextChordPart : nextLine.getChordParts()) {
+        for (SongChordPart nextChordPart : nextLine.getChordParts()) {
           LOGGER.info("addPart " + nextChordPart.getText());
           nextTextLine.getChordParts().add(nextChordPart);
         }
@@ -56,9 +56,9 @@ public class TextImporterService {
 
     }
 
-    if (currentMidifilePart != null) {
-      midifile.getParts().add(currentMidifilePart);
-      currentMidifilePart = null;
+    if (currentSongPart != null) {
+      midifile.getParts().add(currentSongPart);
+      currentSongPart = null;
     }
 
   }

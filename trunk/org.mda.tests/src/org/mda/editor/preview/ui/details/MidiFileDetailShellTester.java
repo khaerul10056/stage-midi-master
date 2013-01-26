@@ -1,6 +1,6 @@
 package org.mda.editor.preview.ui.details;
 
-import mda.MidiFile;
+import mda.Song;
 
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
@@ -13,7 +13,7 @@ public class MidiFileDetailShellTester {
     session.load(null);
     Shell shell = new Shell();
     MidiFileDetailsShell additionalshell = new MidiFileDetailsShell(); 
-    additionalshell.build(shell, (MidiFile) session.getCurrentModel().getGallery().getGalleryItems().get(0));
+    additionalshell.build(shell, (Song) session.getCurrentModel().getGallery().getGalleryItems().get(0));
 
     while (!additionalshell.getShell().isDisposed()) {
       if (!shell.getDisplay().readAndDispatch()) {

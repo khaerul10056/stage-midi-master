@@ -162,205 +162,205 @@ public interface MidiplayerPackage extends EPackage {
 	int ABSTRACT_SESSION_ITEM_FEATURE_COUNT = 4;
 
 	/**
-	 * The meta object id for the '{@link mda.impl.MidiFileImpl <em>Midi File</em>}' class.
+	 * The meta object id for the '{@link mda.impl.SongImpl <em>Song</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see mda.impl.MidiFileImpl
-	 * @see mda.impl.MidiplayerPackageImpl#getMidiFile()
+	 * @see mda.impl.SongImpl
+	 * @see mda.impl.MidiplayerPackageImpl#getSong()
 	 * @generated
 	 */
-	int MIDI_FILE = 2;
+	int SONG = 2;
 
-	/**
+		/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE__NAME = ABSTRACT_SESSION_ITEM__NAME;
+	int SONG__NAME = ABSTRACT_SESSION_ITEM__NAME;
 
-	/**
+		/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE__PATH = ABSTRACT_SESSION_ITEM__PATH;
+	int SONG__PATH = ABSTRACT_SESSION_ITEM__PATH;
 
-	/**
+		/**
 	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  int MIDI_FILE__BACKGROUND_COLOR = ABSTRACT_SESSION_ITEM__BACKGROUND_COLOR;
+	int SONG__BACKGROUND_COLOR = ABSTRACT_SESSION_ITEM__BACKGROUND_COLOR;
 
-  /**
+		/**
 	 * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  int MIDI_FILE__FOREGROUND_COLOR = ABSTRACT_SESSION_ITEM__FOREGROUND_COLOR;
+	int SONG__FOREGROUND_COLOR = ABSTRACT_SESSION_ITEM__FOREGROUND_COLOR;
 
-  /**
+		/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  int MIDI_FILE__PARTS = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 0;
+	int SONG__PARTS = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 0;
 
-  /**
+		/**
 	 * The feature id for the '<em><b>Pic</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  int MIDI_FILE__PIC = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 1;
+	int SONG__PIC = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 1;
 
-  /**
+		/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE__KEY = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 2;
+	int SONG__KEY = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 2;
 
 		/**
 	 * The feature id for the '<em><b>Copyright</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  int MIDI_FILE__COPYRIGHT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 3;
+	int SONG__COPYRIGHT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 3;
 
-    /**
+		/**
 	 * The feature id for the '<em><b>Midicontrol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE__MIDICONTROL = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 4;
+	int SONG__MIDICONTROL = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 4;
 
-				/**
-	 * The number of structural features of the '<em>Midi File</em>' class.
+		/**
+	 * The number of structural features of the '<em>Song</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE_FEATURE_COUNT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 5;
+	int SONG_FEATURE_COUNT = ABSTRACT_SESSION_ITEM_FEATURE_COUNT + 5;
 
 	/**
-	 * The meta object id for the '{@link mda.impl.MidiFilePartImpl <em>Midi File Part</em>}' class.
+	 * The meta object id for the '{@link mda.impl.SongPartImpl <em>Song Part</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see mda.impl.MidiFilePartImpl
-	 * @see mda.impl.MidiplayerPackageImpl#getMidiFilePart()
+	 * @see mda.impl.SongPartImpl
+	 * @see mda.impl.MidiplayerPackageImpl#getSongPart()
 	 * @generated
 	 */
-	int MIDI_FILE_PART = 3;
+	int SONG_PART = 3;
 
-	/**
+		/**
 	 * The feature id for the '<em><b>Textlines</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE_PART__TEXTLINES = 0;
+	int SONG_PART__TEXTLINES = 0;
 
-	/**
+		/**
 	 * The feature id for the '<em><b>Parttype</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE_PART__PARTTYPE = 1;
+	int SONG_PART__PARTTYPE = 1;
 
-	/**
+		/**
 	 * The feature id for the '<em><b>Bar</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  int MIDI_FILE_PART__BAR = 2;
+	int SONG_PART__BAR = 2;
 
-  /**
+		/**
 	 * The feature id for the '<em><b>Ref Part</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  int MIDI_FILE_PART__REF_PART = 3;
+	int SONG_PART__REF_PART = 3;
 
-  /**
+		/**
 	 * The feature id for the '<em><b>Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE_PART__POSITION = 4;
+	int SONG_PART__POSITION = 4;
 
 		/**
-	 * The number of structural features of the '<em>Midi File Part</em>' class.
+	 * The number of structural features of the '<em>Song Part</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE_PART_FEATURE_COUNT = 5;
+	int SONG_PART_FEATURE_COUNT = 5;
 
 	/**
-	 * The meta object id for the '{@link mda.impl.MidiFileTextLineImpl <em>Midi File Text Line</em>}' class.
+	 * The meta object id for the '{@link mda.impl.SongTextLineImpl <em>Song Text Line</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see mda.impl.MidiFileTextLineImpl
-	 * @see mda.impl.MidiplayerPackageImpl#getMidiFileTextLine()
+	 * @see mda.impl.SongTextLineImpl
+	 * @see mda.impl.MidiplayerPackageImpl#getSongTextLine()
 	 * @generated
 	 */
-	int MIDI_FILE_TEXT_LINE = 4;
+	int SONG_TEXT_LINE = 4;
 
-	/**
+		/**
 	 * The feature id for the '<em><b>Chord Parts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE_TEXT_LINE__CHORD_PARTS = 0;
+	int SONG_TEXT_LINE__CHORD_PARTS = 0;
 
-	/**
+		/**
 	 * The feature id for the '<em><b>New Slide</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-  int MIDI_FILE_TEXT_LINE__NEW_SLIDE = 1;
-
-  /**
-	 * The number of structural features of the '<em>Midi File Text Line</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE_TEXT_LINE_FEATURE_COUNT = 2;
+	int SONG_TEXT_LINE__NEW_SLIDE = 1;
+
+		/**
+	 * The number of structural features of the '<em>Song Text Line</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SONG_TEXT_LINE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link mda.impl.GalleryImpl <em>Gallery</em>}' class.
@@ -455,41 +455,41 @@ public interface MidiplayerPackage extends EPackage {
 	int MIDI_PLAYER_ROOT_FEATURE_COUNT = 5;
 
 	/**
-	 * The meta object id for the '{@link mda.impl.MidiFileChordPartImpl <em>Midi File Chord Part</em>}' class.
+	 * The meta object id for the '{@link mda.impl.SongChordPartImpl <em>Song Chord Part</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see mda.impl.MidiFileChordPartImpl
-	 * @see mda.impl.MidiplayerPackageImpl#getMidiFileChordPart()
+	 * @see mda.impl.SongChordPartImpl
+	 * @see mda.impl.MidiplayerPackageImpl#getSongChordPart()
 	 * @generated
 	 */
-	int MIDI_FILE_CHORD_PART = 7;
+	int SONG_CHORD_PART = 7;
 
-	/**
+		/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE_CHORD_PART__TEXT = 0;
+	int SONG_CHORD_PART__TEXT = 0;
 
-	/**
+		/**
 	 * The feature id for the '<em><b>Chord</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE_CHORD_PART__CHORD = 1;
+	int SONG_CHORD_PART__CHORD = 1;
 
-	/**
-	 * The number of structural features of the '<em>Midi File Chord Part</em>' class.
+		/**
+	 * The number of structural features of the '<em>Song Chord Part</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIDI_FILE_CHORD_PART_FEATURE_COUNT = 2;
+	int SONG_CHORD_PART_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link mda.impl.ConfigurationImpl <em>Configuration</em>}' class.
@@ -955,17 +955,16 @@ public interface MidiplayerPackage extends EPackage {
   int PRESENTATION_SCHEME_FEATURE_COUNT = 17;
 
   /**
-	 * The meta object id for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
+	 * The meta object id for the '{@link mda.SongPartType <em>Song Part Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see mda.MidiFilePartType
-	 * @see mda.impl.MidiplayerPackageImpl#getMidiFilePartType()
+	 * @see mda.SongPartType
+	 * @see mda.impl.MidiplayerPackageImpl#getSongPartType()
 	 * @generated
 	 */
-	int MIDI_FILE_PART_TYPE = 12;
+	int SONG_PART_TYPE = 12;
 
-
-	/**
+		/**
 	 * The meta object id for the '{@link mda.AdditionalType <em>Additional Type</em>}' enum.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1085,168 +1084,168 @@ public interface MidiplayerPackage extends EPackage {
   EAttribute getAbstractSessionItem_ForegroundColor();
 
   /**
-	 * Returns the meta object for class '{@link mda.MidiFile <em>Midi File</em>}'.
+	 * Returns the meta object for class '{@link mda.Song <em>Song</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Midi File</em>'.
-	 * @see mda.MidiFile
+	 * @return the meta object for class '<em>Song</em>'.
+	 * @see mda.Song
 	 * @generated
 	 */
-	EClass getMidiFile();
+	EClass getSong();
 
-	/**
-	 * Returns the meta object for the containment reference list '{@link mda.MidiFile#getParts <em>Parts</em>}'.
+		/**
+	 * Returns the meta object for the containment reference list '{@link mda.Song#getParts <em>Parts</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Parts</em>'.
-	 * @see mda.MidiFile#getParts()
-	 * @see #getMidiFile()
+	 * @see mda.Song#getParts()
+	 * @see #getSong()
 	 * @generated
 	 */
-  EReference getMidiFile_Parts();
+	EReference getSong_Parts();
 
-  /**
-	 * Returns the meta object for the attribute '{@link mda.MidiFile#getPic <em>Pic</em>}'.
+		/**
+	 * Returns the meta object for the attribute '{@link mda.Song#getPic <em>Pic</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Pic</em>'.
-	 * @see mda.MidiFile#getPic()
-	 * @see #getMidiFile()
+	 * @see mda.Song#getPic()
+	 * @see #getSong()
 	 * @generated
 	 */
-  EAttribute getMidiFile_Pic();
+	EAttribute getSong_Pic();
 
-  /**
-	 * Returns the meta object for the attribute '{@link mda.MidiFile#getKey <em>Key</em>}'.
+		/**
+	 * Returns the meta object for the attribute '{@link mda.Song#getKey <em>Key</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Key</em>'.
-	 * @see mda.MidiFile#getKey()
-	 * @see #getMidiFile()
+	 * @see mda.Song#getKey()
+	 * @see #getSong()
 	 * @generated
 	 */
-	EAttribute getMidiFile_Key();
+	EAttribute getSong_Key();
 
 		/**
-	 * Returns the meta object for the containment reference '{@link mda.MidiFile#getCopyright <em>Copyright</em>}'.
+	 * Returns the meta object for the containment reference '{@link mda.Song#getCopyright <em>Copyright</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Copyright</em>'.
-	 * @see mda.MidiFile#getCopyright()
-	 * @see #getMidiFile()
+	 * @see mda.Song#getCopyright()
+	 * @see #getSong()
 	 * @generated
 	 */
-  EReference getMidiFile_Copyright();
+	EReference getSong_Copyright();
 
-    /**
-	 * Returns the meta object for the attribute '{@link mda.MidiFile#getMidicontrol <em>Midicontrol</em>}'.
+		/**
+	 * Returns the meta object for the attribute '{@link mda.Song#getMidicontrol <em>Midicontrol</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Midicontrol</em>'.
-	 * @see mda.MidiFile#getMidicontrol()
-	 * @see #getMidiFile()
+	 * @see mda.Song#getMidicontrol()
+	 * @see #getSong()
 	 * @generated
 	 */
-	EAttribute getMidiFile_Midicontrol();
+	EAttribute getSong_Midicontrol();
 
-				/**
-	 * Returns the meta object for class '{@link mda.MidiFilePart <em>Midi File Part</em>}'.
+		/**
+	 * Returns the meta object for class '{@link mda.SongPart <em>Song Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Midi File Part</em>'.
-	 * @see mda.MidiFilePart
+	 * @return the meta object for class '<em>Song Part</em>'.
+	 * @see mda.SongPart
 	 * @generated
 	 */
-	EClass getMidiFilePart();
+	EClass getSongPart();
 
-	/**
-	 * Returns the meta object for the containment reference list '{@link mda.MidiFilePart#getTextlines <em>Textlines</em>}'.
+		/**
+	 * Returns the meta object for the containment reference list '{@link mda.SongPart#getTextlines <em>Textlines</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Textlines</em>'.
-	 * @see mda.MidiFilePart#getTextlines()
-	 * @see #getMidiFilePart()
+	 * @see mda.SongPart#getTextlines()
+	 * @see #getSongPart()
 	 * @generated
 	 */
-	EReference getMidiFilePart_Textlines();
+	EReference getSongPart_Textlines();
 
-	/**
-	 * Returns the meta object for the attribute '{@link mda.MidiFilePart#getParttype <em>Parttype</em>}'.
+		/**
+	 * Returns the meta object for the attribute '{@link mda.SongPart#getParttype <em>Parttype</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Parttype</em>'.
-	 * @see mda.MidiFilePart#getParttype()
-	 * @see #getMidiFilePart()
+	 * @see mda.SongPart#getParttype()
+	 * @see #getSongPart()
 	 * @generated
 	 */
-	EAttribute getMidiFilePart_Parttype();
+	EAttribute getSongPart_Parttype();
 
-	/**
-	 * Returns the meta object for the attribute '{@link mda.MidiFilePart#getBar <em>Bar</em>}'.
+		/**
+	 * Returns the meta object for the attribute '{@link mda.SongPart#getBar <em>Bar</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Bar</em>'.
-	 * @see mda.MidiFilePart#getBar()
-	 * @see #getMidiFilePart()
+	 * @see mda.SongPart#getBar()
+	 * @see #getSongPart()
 	 * @generated
 	 */
-  EAttribute getMidiFilePart_Bar();
+	EAttribute getSongPart_Bar();
 
-  /**
-	 * Returns the meta object for the reference '{@link mda.MidiFilePart#getRefPart <em>Ref Part</em>}'.
+		/**
+	 * Returns the meta object for the reference '{@link mda.SongPart#getRefPart <em>Ref Part</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Ref Part</em>'.
-	 * @see mda.MidiFilePart#getRefPart()
-	 * @see #getMidiFilePart()
+	 * @see mda.SongPart#getRefPart()
+	 * @see #getSongPart()
 	 * @generated
 	 */
-  EReference getMidiFilePart_RefPart();
+	EReference getSongPart_RefPart();
 
-  /**
-	 * Returns the meta object for the attribute '{@link mda.MidiFilePart#getPosition <em>Position</em>}'.
+		/**
+	 * Returns the meta object for the attribute '{@link mda.SongPart#getPosition <em>Position</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Position</em>'.
-	 * @see mda.MidiFilePart#getPosition()
-	 * @see #getMidiFilePart()
+	 * @see mda.SongPart#getPosition()
+	 * @see #getSongPart()
 	 * @generated
 	 */
-	EAttribute getMidiFilePart_Position();
+	EAttribute getSongPart_Position();
 
 		/**
-	 * Returns the meta object for class '{@link mda.MidiFileTextLine <em>Midi File Text Line</em>}'.
+	 * Returns the meta object for class '{@link mda.SongTextLine <em>Song Text Line</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Midi File Text Line</em>'.
-	 * @see mda.MidiFileTextLine
+	 * @return the meta object for class '<em>Song Text Line</em>'.
+	 * @see mda.SongTextLine
 	 * @generated
 	 */
-	EClass getMidiFileTextLine();
+	EClass getSongTextLine();
 
-	/**
-	 * Returns the meta object for the containment reference list '{@link mda.MidiFileTextLine#getChordParts <em>Chord Parts</em>}'.
+		/**
+	 * Returns the meta object for the containment reference list '{@link mda.SongTextLine#getChordParts <em>Chord Parts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Chord Parts</em>'.
-	 * @see mda.MidiFileTextLine#getChordParts()
-	 * @see #getMidiFileTextLine()
+	 * @see mda.SongTextLine#getChordParts()
+	 * @see #getSongTextLine()
 	 * @generated
 	 */
-	EReference getMidiFileTextLine_ChordParts();
+	EReference getSongTextLine_ChordParts();
 
-	/**
-	 * Returns the meta object for the attribute '{@link mda.MidiFileTextLine#isNewSlide <em>New Slide</em>}'.
+		/**
+	 * Returns the meta object for the attribute '{@link mda.SongTextLine#isNewSlide <em>New Slide</em>}'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>New Slide</em>'.
-	 * @see mda.MidiFileTextLine#isNewSlide()
-	 * @see #getMidiFileTextLine()
+	 * @see mda.SongTextLine#isNewSlide()
+	 * @see #getSongTextLine()
 	 * @generated
 	 */
-  EAttribute getMidiFileTextLine_NewSlide();
+	EAttribute getSongTextLine_NewSlide();
 
-  /**
+		/**
 	 * Returns the meta object for class '{@link mda.Gallery <em>Gallery</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1333,38 +1332,38 @@ public interface MidiplayerPackage extends EPackage {
   EReference getMidiPlayerRoot_Presentationschemes();
 
   /**
-	 * Returns the meta object for class '{@link mda.MidiFileChordPart <em>Midi File Chord Part</em>}'.
+	 * Returns the meta object for class '{@link mda.SongChordPart <em>Song Chord Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Midi File Chord Part</em>'.
-	 * @see mda.MidiFileChordPart
+	 * @return the meta object for class '<em>Song Chord Part</em>'.
+	 * @see mda.SongChordPart
 	 * @generated
 	 */
-	EClass getMidiFileChordPart();
+	EClass getSongChordPart();
 
-	/**
-	 * Returns the meta object for the attribute '{@link mda.MidiFileChordPart#getText <em>Text</em>}'.
+		/**
+	 * Returns the meta object for the attribute '{@link mda.SongChordPart#getText <em>Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Text</em>'.
-	 * @see mda.MidiFileChordPart#getText()
-	 * @see #getMidiFileChordPart()
+	 * @see mda.SongChordPart#getText()
+	 * @see #getSongChordPart()
 	 * @generated
 	 */
-	EAttribute getMidiFileChordPart_Text();
+	EAttribute getSongChordPart_Text();
 
-	/**
-	 * Returns the meta object for the attribute '{@link mda.MidiFileChordPart#getChord <em>Chord</em>}'.
+		/**
+	 * Returns the meta object for the attribute '{@link mda.SongChordPart#getChord <em>Chord</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Chord</em>'.
-	 * @see mda.MidiFileChordPart#getChord()
-	 * @see #getMidiFileChordPart()
+	 * @see mda.SongChordPart#getChord()
+	 * @see #getSongChordPart()
 	 * @generated
 	 */
-	EAttribute getMidiFileChordPart_Chord();
+	EAttribute getSongChordPart_Chord();
 
-	/**
+		/**
 	 * Returns the meta object for class '{@link mda.Configuration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1878,16 +1877,16 @@ public interface MidiplayerPackage extends EPackage {
 	EAttribute getPresentationScheme_AutoWrapToNewPage();
 
 				/**
-	 * Returns the meta object for enum '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}'.
+	 * Returns the meta object for enum '{@link mda.SongPartType <em>Song Part Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Midi File Part Type</em>'.
-	 * @see mda.MidiFilePartType
+	 * @return the meta object for enum '<em>Song Part Type</em>'.
+	 * @see mda.SongPartType
 	 * @generated
 	 */
-	EEnum getMidiFilePartType();
+	EEnum getSongPartType();
 
-	/**
+				/**
 	 * Returns the meta object for enum '{@link mda.AdditionalType <em>Additional Type</em>}'.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2006,132 +2005,132 @@ public interface MidiplayerPackage extends EPackage {
     EAttribute ABSTRACT_SESSION_ITEM__FOREGROUND_COLOR = eINSTANCE.getAbstractSessionItem_ForegroundColor();
 
     /**
-		 * The meta object literal for the '{@link mda.impl.MidiFileImpl <em>Midi File</em>}' class.
+		 * The meta object literal for the '{@link mda.impl.SongImpl <em>Song</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see mda.impl.MidiFileImpl
-		 * @see mda.impl.MidiplayerPackageImpl#getMidiFile()
+		 * @see mda.impl.SongImpl
+		 * @see mda.impl.MidiplayerPackageImpl#getSong()
 		 * @generated
 		 */
-		EClass MIDI_FILE = eINSTANCE.getMidiFile();
+		EClass SONG = eINSTANCE.getSong();
 
-		/**
+				/**
 		 * The meta object literal for the '<em><b>Parts</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-    EReference MIDI_FILE__PARTS = eINSTANCE.getMidiFile_Parts();
+		EReference SONG__PARTS = eINSTANCE.getSong_Parts();
 
-    /**
+				/**
 		 * The meta object literal for the '<em><b>Pic</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-    EAttribute MIDI_FILE__PIC = eINSTANCE.getMidiFile_Pic();
+		EAttribute SONG__PIC = eINSTANCE.getSong_Pic();
 
-    /**
+				/**
 		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MIDI_FILE__KEY = eINSTANCE.getMidiFile_Key();
+		EAttribute SONG__KEY = eINSTANCE.getSong_Key();
 
 				/**
 		 * The meta object literal for the '<em><b>Copyright</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-    EReference MIDI_FILE__COPYRIGHT = eINSTANCE.getMidiFile_Copyright();
+		EReference SONG__COPYRIGHT = eINSTANCE.getSong_Copyright();
 
-        /**
+				/**
 		 * The meta object literal for the '<em><b>Midicontrol</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MIDI_FILE__MIDICONTROL = eINSTANCE.getMidiFile_Midicontrol();
+		EAttribute SONG__MIDICONTROL = eINSTANCE.getSong_Midicontrol();
 
-								/**
-		 * The meta object literal for the '{@link mda.impl.MidiFilePartImpl <em>Midi File Part</em>}' class.
+				/**
+		 * The meta object literal for the '{@link mda.impl.SongPartImpl <em>Song Part</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see mda.impl.MidiFilePartImpl
-		 * @see mda.impl.MidiplayerPackageImpl#getMidiFilePart()
+		 * @see mda.impl.SongPartImpl
+		 * @see mda.impl.MidiplayerPackageImpl#getSongPart()
 		 * @generated
 		 */
-		EClass MIDI_FILE_PART = eINSTANCE.getMidiFilePart();
+		EClass SONG_PART = eINSTANCE.getSongPart();
 
-		/**
+				/**
 		 * The meta object literal for the '<em><b>Textlines</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MIDI_FILE_PART__TEXTLINES = eINSTANCE.getMidiFilePart_Textlines();
+		EReference SONG_PART__TEXTLINES = eINSTANCE.getSongPart_Textlines();
 
-		/**
+				/**
 		 * The meta object literal for the '<em><b>Parttype</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MIDI_FILE_PART__PARTTYPE = eINSTANCE.getMidiFilePart_Parttype();
+		EAttribute SONG_PART__PARTTYPE = eINSTANCE.getSongPart_Parttype();
 
-		/**
+				/**
 		 * The meta object literal for the '<em><b>Bar</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-    EAttribute MIDI_FILE_PART__BAR = eINSTANCE.getMidiFilePart_Bar();
+		EAttribute SONG_PART__BAR = eINSTANCE.getSongPart_Bar();
 
-    /**
+				/**
 		 * The meta object literal for the '<em><b>Ref Part</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-    EReference MIDI_FILE_PART__REF_PART = eINSTANCE.getMidiFilePart_RefPart();
+		EReference SONG_PART__REF_PART = eINSTANCE.getSongPart_RefPart();
 
-    /**
+				/**
 		 * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MIDI_FILE_PART__POSITION = eINSTANCE.getMidiFilePart_Position();
+		EAttribute SONG_PART__POSITION = eINSTANCE.getSongPart_Position();
 
 				/**
-		 * The meta object literal for the '{@link mda.impl.MidiFileTextLineImpl <em>Midi File Text Line</em>}' class.
+		 * The meta object literal for the '{@link mda.impl.SongTextLineImpl <em>Song Text Line</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see mda.impl.MidiFileTextLineImpl
-		 * @see mda.impl.MidiplayerPackageImpl#getMidiFileTextLine()
+		 * @see mda.impl.SongTextLineImpl
+		 * @see mda.impl.MidiplayerPackageImpl#getSongTextLine()
 		 * @generated
 		 */
-		EClass MIDI_FILE_TEXT_LINE = eINSTANCE.getMidiFileTextLine();
+		EClass SONG_TEXT_LINE = eINSTANCE.getSongTextLine();
 
-		/**
+				/**
 		 * The meta object literal for the '<em><b>Chord Parts</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MIDI_FILE_TEXT_LINE__CHORD_PARTS = eINSTANCE.getMidiFileTextLine_ChordParts();
+		EReference SONG_TEXT_LINE__CHORD_PARTS = eINSTANCE.getSongTextLine_ChordParts();
 
-		/**
+				/**
 		 * The meta object literal for the '<em><b>New Slide</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-    EAttribute MIDI_FILE_TEXT_LINE__NEW_SLIDE = eINSTANCE.getMidiFileTextLine_NewSlide();
+		EAttribute SONG_TEXT_LINE__NEW_SLIDE = eINSTANCE.getSongTextLine_NewSlide();
 
-    /**
+				/**
 		 * The meta object literal for the '{@link mda.impl.GalleryImpl <em>Gallery</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2200,32 +2199,32 @@ public interface MidiplayerPackage extends EPackage {
     EReference MIDI_PLAYER_ROOT__PRESENTATIONSCHEMES = eINSTANCE.getMidiPlayerRoot_Presentationschemes();
 
     /**
-		 * The meta object literal for the '{@link mda.impl.MidiFileChordPartImpl <em>Midi File Chord Part</em>}' class.
+		 * The meta object literal for the '{@link mda.impl.SongChordPartImpl <em>Song Chord Part</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see mda.impl.MidiFileChordPartImpl
-		 * @see mda.impl.MidiplayerPackageImpl#getMidiFileChordPart()
+		 * @see mda.impl.SongChordPartImpl
+		 * @see mda.impl.MidiplayerPackageImpl#getSongChordPart()
 		 * @generated
 		 */
-		EClass MIDI_FILE_CHORD_PART = eINSTANCE.getMidiFileChordPart();
+		EClass SONG_CHORD_PART = eINSTANCE.getSongChordPart();
 
-		/**
+				/**
 		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MIDI_FILE_CHORD_PART__TEXT = eINSTANCE.getMidiFileChordPart_Text();
+		EAttribute SONG_CHORD_PART__TEXT = eINSTANCE.getSongChordPart_Text();
 
-		/**
+				/**
 		 * The meta object literal for the '<em><b>Chord</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MIDI_FILE_CHORD_PART__CHORD = eINSTANCE.getMidiFileChordPart_Chord();
+		EAttribute SONG_CHORD_PART__CHORD = eINSTANCE.getSongChordPart_Chord();
 
-		/**
+				/**
 		 * The meta object literal for the '{@link mda.impl.ConfigurationImpl <em>Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2610,16 +2609,16 @@ public interface MidiplayerPackage extends EPackage {
 		EAttribute PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE = eINSTANCE.getPresentationScheme_AutoWrapToNewPage();
 
 								/**
-		 * The meta object literal for the '{@link mda.MidiFilePartType <em>Midi File Part Type</em>}' enum.
+		 * The meta object literal for the '{@link mda.SongPartType <em>Song Part Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see mda.MidiFilePartType
-		 * @see mda.impl.MidiplayerPackageImpl#getMidiFilePartType()
+		 * @see mda.SongPartType
+		 * @see mda.impl.MidiplayerPackageImpl#getSongPartType()
 		 * @generated
 		 */
-		EEnum MIDI_FILE_PART_TYPE = eINSTANCE.getMidiFilePartType();
+		EEnum SONG_PART_TYPE = eINSTANCE.getSongPartType();
 
-        /**
+								/**
 		 * The meta object literal for the '{@link mda.AdditionalType <em>Additional Type</em>}' enum.
 		 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

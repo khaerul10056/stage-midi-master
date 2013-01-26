@@ -6,8 +6,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import mda.AbstractSessionItem;
-import mda.MidiFile;
-import mda.MidiFilePart;
+import mda.Song;
+import mda.SongPart;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
@@ -24,11 +24,11 @@ import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.CalculatorPreCondition;
 import org.mda.presenter.IPresentationView;
-import org.mda.presenter.MidiFileSlideCalculator;
+import org.mda.presenter.SongSlideCalculator;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.Slide;
 import org.mda.presenter.adapter.SizeInfo;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
 
 @Creatable
 public class ContentOverview  implements IPresentationView{
@@ -39,10 +39,10 @@ public class ContentOverview  implements IPresentationView{
   private PresentationContext  presentationContext;
   
   @Inject
-  private MidiFileSlideCalculator calculator;
+  private SongSlideCalculator calculator;
   
   @Inject
-  private DefaultMidiFilePresenterConfig config;
+  private DefaultPresenterConfig config;
 
   private List<ContentOverviewPanel> previewParts = new ArrayList<ContentOverviewPanel>();
 
@@ -84,14 +84,14 @@ public class ContentOverview  implements IPresentationView{
         oldPanel.dispose();
       previewParts.clear();
 
-      if (currentItem instanceof MidiFile) {
+      if (currentItem instanceof Song) {
         SizeInfo size = new SizeInfo(320, 240);
         CalculatorPreCondition calcPreCondition = new CalculatorPreCondition();
         calculator.setConfig(presentationContext.getCurrentConfig());
         calcPreCondition.setCalculationsize(size);
         List<Slide> slides = calculator.calculate(currentItem, calcPreCondition);
         for (Slide slide: slides) {
-          final ContentOverviewPanel overviewPanel = new ContentOverviewPanel(comp, (MidiFilePart) slide.getModelRef(), slide, config);
+          final ContentOverviewPanel overviewPanel = new ContentOverviewPanel(comp, (SongPart) slide.getModelRef(), slide, config);
           InjectService.injectObject(overviewPanel); //TODO make better
           GridData gd = new GridData(SWT.FILL, SWT.FILL, false, false);
           gd.heightHint = size.getHeightAsInt(); 

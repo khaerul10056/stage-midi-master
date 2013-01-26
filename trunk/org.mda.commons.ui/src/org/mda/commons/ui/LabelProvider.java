@@ -4,7 +4,7 @@ import static org.mda.Utils.ICON_SESSION;
 import static org.mda.Utils.ICON_SONG;
 import static org.mda.Utils.loadImageFromProject;
 import mda.AbstractSessionItem;
-import mda.MidiFile;
+import mda.Song;
 import mda.MidiPlayerRoot;
 import mda.Session;
 
@@ -49,7 +49,7 @@ public class LabelProvider implements ILabelProvider {
 		element = result.getEobject();
 	}
 		 
-    if (element instanceof MidiFile) {
+    if (element instanceof Song) {
       return loadImageFromProject(ICON_SONG);
     }
 

@@ -12,7 +12,7 @@ import org.mda.Utils;
 import org.mda.commons.ui.UIHandler;
 import org.mda.export.pdf.PdfExporter;
 import org.mda.inject.InjectService;
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 import org.mda.presenter.config.PresentationConfigurator;
 import org.mda.presenter.config.PresentationType;
 
@@ -35,7 +35,7 @@ public class ExportPdfSessionHandler {
 		InjectService.injectObject(this);
 		
 		PresentationConfigurator configurator = new PresentationConfigurator(); 
-		IMidiFilePresenterConfig config = configurator.configure(null, session.getCurrentModel(), PresentationType.PDF);
+		IPresenterConfig config = configurator.configure(null, session.getCurrentModel(), PresentationType.PDF);
 		
 		Session currentSession = (Session) session.getModelEvents().getCurrentModelElement(Session.class);
 		String name = Utils.removeWhitespaces(currentSession.getName());

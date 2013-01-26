@@ -10,10 +10,10 @@ import mda.*;
 import mda.AbstractSessionItem;
 import mda.Configuration;
 import mda.Gallery;
-import mda.MidiFile;
-import mda.MidiFileChordPart;
-import mda.MidiFilePart;
-import mda.MidiFileTextLine;
+import mda.Song;
+import mda.SongChordPart;
+import mda.SongPart;
+import mda.SongTextLine;
 import mda.MidiPlayerRoot;
 import mda.MidiplayerPackage;
 import mda.Session;
@@ -90,22 +90,22 @@ public class MidiplayerSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MidiplayerPackage.MIDI_FILE: {
-				MidiFile midiFile = (MidiFile)theEObject;
-				T result = caseMidiFile(midiFile);
-				if (result == null) result = caseAbstractSessionItem(midiFile);
+			case MidiplayerPackage.SONG: {
+				Song song = (Song)theEObject;
+				T result = caseSong(song);
+				if (result == null) result = caseAbstractSessionItem(song);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MidiplayerPackage.MIDI_FILE_PART: {
-				MidiFilePart midiFilePart = (MidiFilePart)theEObject;
-				T result = caseMidiFilePart(midiFilePart);
+			case MidiplayerPackage.SONG_PART: {
+				SongPart songPart = (SongPart)theEObject;
+				T result = caseSongPart(songPart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MidiplayerPackage.MIDI_FILE_TEXT_LINE: {
-				MidiFileTextLine midiFileTextLine = (MidiFileTextLine)theEObject;
-				T result = caseMidiFileTextLine(midiFileTextLine);
+			case MidiplayerPackage.SONG_TEXT_LINE: {
+				SongTextLine songTextLine = (SongTextLine)theEObject;
+				T result = caseSongTextLine(songTextLine);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -121,9 +121,9 @@ public class MidiplayerSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MidiplayerPackage.MIDI_FILE_CHORD_PART: {
-				MidiFileChordPart midiFileChordPart = (MidiFileChordPart)theEObject;
-				T result = caseMidiFileChordPart(midiFileChordPart);
+			case MidiplayerPackage.SONG_CHORD_PART: {
+				SongChordPart songChordPart = (SongChordPart)theEObject;
+				T result = caseSongChordPart(songChordPart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -186,47 +186,47 @@ public class MidiplayerSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Midi File</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Song</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Midi File</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Song</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMidiFile(MidiFile object) {
+	public T caseSong(Song object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Midi File Part</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Song Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Midi File Part</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Song Part</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMidiFilePart(MidiFilePart object) {
+	public T caseSongPart(SongPart object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Midi File Text Line</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Song Text Line</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Midi File Text Line</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Song Text Line</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMidiFileTextLine(MidiFileTextLine object) {
+	public T caseSongTextLine(SongTextLine object) {
 		return null;
 	}
 
@@ -261,17 +261,17 @@ public class MidiplayerSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Midi File Chord Part</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Song Chord Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Midi File Chord Part</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Song Chord Part</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMidiFileChordPart(MidiFileChordPart object) {
+	public T caseSongChordPart(SongChordPart object) {
 		return null;
 	}
 

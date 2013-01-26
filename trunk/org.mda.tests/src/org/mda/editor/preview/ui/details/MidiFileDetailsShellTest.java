@@ -2,7 +2,7 @@ package org.mda.editor.preview.ui.details;
 
 import java.io.File;
 
-import mda.MidiFile;
+import mda.Song;
 import mda.MidiPlayerRoot;
 
 import org.eclipse.swt.widgets.Shell;
@@ -30,7 +30,7 @@ public class MidiFileDetailsShellTest {
 	    session.load(null);
 	    Shell shell = new Shell();
 	    final MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
-	    MidiFile file = (MidiFile) root.getGallery().getGalleryItems().get(0);
+	    Song file = (Song) root.getGallery().getGalleryItems().get(0);
 	    MidiFileDetailsShell additionalshell = InjectService.getInstance(MidiFileDetailsShell.class); 
 	    additionalshell.build(shell, file);
 	    Assert.assertEquals ("", additionalshell.txtOriginaltitle.getText());
@@ -51,7 +51,7 @@ public class MidiFileDetailsShellTest {
 	    
 	    additionalshell.save();
 	    
-	    file = (MidiFile) root.getGallery().getGalleryItems().get(0);
+	    file = (Song) root.getGallery().getGalleryItems().get(0);
 	    Assert.assertEquals (ORIGINALTITLE, additionalshell.txtOriginaltitle.getText());
 	    Assert.assertEquals (PUBLISHER, additionalshell.txtPublisher.getText());
 	    Assert.assertEquals (PUBLISHERINLAND, additionalshell.txtPublisherInland.getText());

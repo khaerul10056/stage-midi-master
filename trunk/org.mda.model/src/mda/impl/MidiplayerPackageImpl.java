@@ -11,18 +11,19 @@ import mda.AdditionalType;
 import mda.Configuration;
 import mda.Copyright;
 import mda.Gallery;
-import mda.MidiFile;
-import mda.MidiFileChordPart;
-import mda.MidiFilePart;
-import mda.MidiFilePartType;
-import mda.MidiFileTextLine;
+import mda.SongChordPart;
+import mda.SongPart;
+import mda.SongPartType;
+import mda.SongTextLine;
 import mda.MidiPlayerRoot;
 import mda.MidiplayerFactory;
 import mda.MidiplayerPackage;
 import mda.PresentationScheme;
 import mda.Session;
+import mda.Song;
 import mda.User;
 import mda.UserType;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -56,21 +57,21 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass midiFileEClass = null;
+	private EClass songEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass midiFilePartEClass = null;
+	private EClass songPartEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass midiFileTextLineEClass = null;
+	private EClass songTextLineEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,7 +92,7 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass midiFileChordPartEClass = null;
+	private EClass songChordPartEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -126,9 +127,9 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum midiFilePartTypeEEnum = null;
+	private EEnum songPartTypeEEnum = null;
 
-	/**
+		/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
@@ -298,117 +299,8 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EClass getMidiFile() {
-		return midiFileEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EReference getMidiFile_Parts() {
-		return (EReference)midiFileEClass.getEStructuralFeatures().get(0);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getMidiFile_Pic() {
-		return (EAttribute)midiFileEClass.getEStructuralFeatures().get(1);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getMidiFile_Key() {
-		return (EAttribute)midiFileEClass.getEStructuralFeatures().get(2);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EReference getMidiFile_Copyright() {
-		return (EReference)midiFileEClass.getEStructuralFeatures().get(3);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMidiFile_Midicontrol() {
-		return (EAttribute)midiFileEClass.getEStructuralFeatures().get(4);
-	}
-
-				/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getMidiFilePart() {
-		return midiFilePartEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getMidiFilePart_Textlines() {
-		return (EReference)midiFilePartEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getMidiFilePart_Parttype() {
-		return (EAttribute)midiFilePartEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getMidiFilePart_Bar() {
-		return (EAttribute)midiFilePartEClass.getEStructuralFeatures().get(2);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EReference getMidiFilePart_RefPart() {
-		return (EReference)midiFilePartEClass.getEStructuralFeatures().get(3);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMidiFilePart_Position() {
-		return (EAttribute)midiFilePartEClass.getEStructuralFeatures().get(4);
+	public EClass getSong() {
+		return songEClass;
 	}
 
 		/**
@@ -416,32 +308,128 @@ public EReference getMidiFilePart_RefPart() {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EClass getMidiFileTextLine() {
-		return midiFileTextLineEClass;
+	public EReference getSong_Parts() {
+		return (EReference)songEClass.getEStructuralFeatures().get(0);
 	}
 
-	/**
+		/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EReference getMidiFileTextLine_ChordParts() {
-		return (EReference)midiFileTextLineEClass.getEStructuralFeatures().get(0);
+	public EAttribute getSong_Pic() {
+		return (EAttribute)songEClass.getEStructuralFeatures().get(1);
 	}
 
-	/**
+		/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public EAttribute getMidiFileTextLine_NewSlide() {
-		return (EAttribute)midiFileTextLineEClass.getEStructuralFeatures().get(1);
+	public EAttribute getSong_Key() {
+		return (EAttribute)songEClass.getEStructuralFeatures().get(2);
 	}
 
-  /**
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSong_Copyright() {
+		return (EReference)songEClass.getEStructuralFeatures().get(3);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSong_Midicontrol() {
+		return (EAttribute)songEClass.getEStructuralFeatures().get(4);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSongPart() {
+		return songPartEClass;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSongPart_Textlines() {
+		return (EReference)songPartEClass.getEStructuralFeatures().get(0);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSongPart_Parttype() {
+		return (EAttribute)songPartEClass.getEStructuralFeatures().get(1);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSongPart_Bar() {
+		return (EAttribute)songPartEClass.getEStructuralFeatures().get(2);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSongPart_RefPart() {
+		return (EReference)songPartEClass.getEStructuralFeatures().get(3);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSongPart_Position() {
+		return (EAttribute)songPartEClass.getEStructuralFeatures().get(4);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSongTextLine() {
+		return songTextLineEClass;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSongTextLine_ChordParts() {
+		return (EReference)songTextLineEClass.getEStructuralFeatures().get(0);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSongTextLine_NewSlide() {
+		return (EAttribute)songTextLineEClass.getEStructuralFeatures().get(1);
+	}
+
+		/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -526,32 +514,29 @@ public EReference getMidiPlayerRoot_Presentationschemes() {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EClass getMidiFileChordPart() {
-		return midiFileChordPartEClass;
+	public EClass getSongChordPart() {
+		return songChordPartEClass;
 	}
 
-	/**
+		/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EAttribute getMidiFileChordPart_Text() {
-		return (EAttribute)midiFileChordPartEClass.getEStructuralFeatures().get(0);
+	public EAttribute getSongChordPart_Text() {
+		return (EAttribute)songChordPartEClass.getEStructuralFeatures().get(0);
 	}
 
-	/**
+		/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EAttribute getMidiFileChordPart_Chord() {
-		return (EAttribute)midiFileChordPartEClass.getEStructuralFeatures().get(1);
+	public EAttribute getSongChordPart_Chord() {
+		return (EAttribute)songChordPartEClass.getEStructuralFeatures().get(1);
 	}
 
-	/**
+		/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
@@ -1025,12 +1010,11 @@ public EAttribute getPresentationScheme_ForegroundColor() {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EEnum getMidiFilePartType() {
-		return midiFilePartTypeEEnum;
+	public EEnum getSongPartType() {
+		return songPartTypeEEnum;
 	}
 
-	/**
+				/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
@@ -1090,23 +1074,23 @@ public EEnum getUserType() {
 		createEAttribute(abstractSessionItemEClass, ABSTRACT_SESSION_ITEM__BACKGROUND_COLOR);
 		createEAttribute(abstractSessionItemEClass, ABSTRACT_SESSION_ITEM__FOREGROUND_COLOR);
 
-		midiFileEClass = createEClass(MIDI_FILE);
-		createEReference(midiFileEClass, MIDI_FILE__PARTS);
-		createEAttribute(midiFileEClass, MIDI_FILE__PIC);
-		createEAttribute(midiFileEClass, MIDI_FILE__KEY);
-		createEReference(midiFileEClass, MIDI_FILE__COPYRIGHT);
-		createEAttribute(midiFileEClass, MIDI_FILE__MIDICONTROL);
+		songEClass = createEClass(SONG);
+		createEReference(songEClass, SONG__PARTS);
+		createEAttribute(songEClass, SONG__PIC);
+		createEAttribute(songEClass, SONG__KEY);
+		createEReference(songEClass, SONG__COPYRIGHT);
+		createEAttribute(songEClass, SONG__MIDICONTROL);
 
-		midiFilePartEClass = createEClass(MIDI_FILE_PART);
-		createEReference(midiFilePartEClass, MIDI_FILE_PART__TEXTLINES);
-		createEAttribute(midiFilePartEClass, MIDI_FILE_PART__PARTTYPE);
-		createEAttribute(midiFilePartEClass, MIDI_FILE_PART__BAR);
-		createEReference(midiFilePartEClass, MIDI_FILE_PART__REF_PART);
-		createEAttribute(midiFilePartEClass, MIDI_FILE_PART__POSITION);
+		songPartEClass = createEClass(SONG_PART);
+		createEReference(songPartEClass, SONG_PART__TEXTLINES);
+		createEAttribute(songPartEClass, SONG_PART__PARTTYPE);
+		createEAttribute(songPartEClass, SONG_PART__BAR);
+		createEReference(songPartEClass, SONG_PART__REF_PART);
+		createEAttribute(songPartEClass, SONG_PART__POSITION);
 
-		midiFileTextLineEClass = createEClass(MIDI_FILE_TEXT_LINE);
-		createEReference(midiFileTextLineEClass, MIDI_FILE_TEXT_LINE__CHORD_PARTS);
-		createEAttribute(midiFileTextLineEClass, MIDI_FILE_TEXT_LINE__NEW_SLIDE);
+		songTextLineEClass = createEClass(SONG_TEXT_LINE);
+		createEReference(songTextLineEClass, SONG_TEXT_LINE__CHORD_PARTS);
+		createEAttribute(songTextLineEClass, SONG_TEXT_LINE__NEW_SLIDE);
 
 		galleryEClass = createEClass(GALLERY);
 		createEReference(galleryEClass, GALLERY__GALLERY_ITEMS);
@@ -1118,9 +1102,9 @@ public EEnum getUserType() {
 		createEReference(midiPlayerRootEClass, MIDI_PLAYER_ROOT__USERS);
 		createEReference(midiPlayerRootEClass, MIDI_PLAYER_ROOT__PRESENTATIONSCHEMES);
 
-		midiFileChordPartEClass = createEClass(MIDI_FILE_CHORD_PART);
-		createEAttribute(midiFileChordPartEClass, MIDI_FILE_CHORD_PART__TEXT);
-		createEAttribute(midiFileChordPartEClass, MIDI_FILE_CHORD_PART__CHORD);
+		songChordPartEClass = createEClass(SONG_CHORD_PART);
+		createEAttribute(songChordPartEClass, SONG_CHORD_PART__TEXT);
+		createEAttribute(songChordPartEClass, SONG_CHORD_PART__CHORD);
 
 		configurationEClass = createEClass(CONFIGURATION);
 		createEAttribute(configurationEClass, CONFIGURATION__SCREEN_ID_PRESENTATION);
@@ -1174,7 +1158,7 @@ public EEnum getUserType() {
 		createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE);
 
 		// Create enums
-		midiFilePartTypeEEnum = createEEnum(MIDI_FILE_PART_TYPE);
+		songPartTypeEEnum = createEEnum(SONG_PART_TYPE);
 		additionalTypeEEnum = createEEnum(ADDITIONAL_TYPE);
 		userTypeEEnum = createEEnum(USER_TYPE);
 	}
@@ -1207,7 +1191,7 @@ public EEnum getUserType() {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		midiFileEClass.getESuperTypes().add(this.getAbstractSessionItem());
+		songEClass.getESuperTypes().add(this.getAbstractSessionItem());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(sessionEClass, Session.class, "Session", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1221,23 +1205,23 @@ public EEnum getUserType() {
 		initEAttribute(getAbstractSessionItem_BackgroundColor(), ecorePackage.getEString(), "backgroundColor", null, 0, 1, AbstractSessionItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractSessionItem_ForegroundColor(), ecorePackage.getEString(), "foregroundColor", null, 0, 1, AbstractSessionItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(midiFileEClass, MidiFile.class, "MidiFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMidiFile_Parts(), this.getMidiFilePart(), null, "parts", null, 0, -1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMidiFile_Pic(), ecorePackage.getEString(), "pic", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMidiFile_Key(), ecorePackage.getEString(), "key", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMidiFile_Copyright(), this.getCopyright(), null, "copyright", null, 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMidiFile_Midicontrol(), ecorePackage.getEInt(), "midicontrol", "-1", 0, 1, MidiFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(songEClass, Song.class, "Song", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSong_Parts(), this.getSongPart(), null, "parts", null, 0, -1, Song.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSong_Pic(), ecorePackage.getEString(), "pic", null, 0, 1, Song.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSong_Key(), ecorePackage.getEString(), "key", null, 0, 1, Song.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSong_Copyright(), this.getCopyright(), null, "copyright", null, 0, 1, Song.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSong_Midicontrol(), ecorePackage.getEInt(), "midicontrol", "-1", 0, 1, Song.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(midiFilePartEClass, MidiFilePart.class, "MidiFilePart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMidiFilePart_Textlines(), this.getMidiFileTextLine(), null, "textlines", null, 0, -1, MidiFilePart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMidiFilePart_Parttype(), this.getMidiFilePartType(), "parttype", null, 0, 1, MidiFilePart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMidiFilePart_Bar(), ecorePackage.getEInt(), "bar", null, 0, 1, MidiFilePart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMidiFilePart_RefPart(), this.getMidiFilePart(), null, "refPart", null, 0, 1, MidiFilePart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMidiFilePart_Position(), ecorePackage.getEString(), "position", "", 0, 1, MidiFilePart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(songPartEClass, SongPart.class, "SongPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSongPart_Textlines(), this.getSongTextLine(), null, "textlines", null, 0, -1, SongPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSongPart_Parttype(), this.getSongPartType(), "parttype", null, 0, 1, SongPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSongPart_Bar(), ecorePackage.getEInt(), "bar", null, 0, 1, SongPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSongPart_RefPart(), this.getSongPart(), null, "refPart", null, 0, 1, SongPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSongPart_Position(), ecorePackage.getEString(), "position", "", 0, 1, SongPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(midiFileTextLineEClass, MidiFileTextLine.class, "MidiFileTextLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMidiFileTextLine_ChordParts(), this.getMidiFileChordPart(), null, "chordParts", null, 0, -1, MidiFileTextLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMidiFileTextLine_NewSlide(), ecorePackage.getEBoolean(), "newSlide", null, 0, 1, MidiFileTextLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(songTextLineEClass, SongTextLine.class, "SongTextLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSongTextLine_ChordParts(), this.getSongChordPart(), null, "chordParts", null, 0, -1, SongTextLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSongTextLine_NewSlide(), ecorePackage.getEBoolean(), "newSlide", null, 0, 1, SongTextLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(galleryEClass, Gallery.class, "Gallery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGallery_GalleryItems(), this.getAbstractSessionItem(), null, "galleryItems", null, 0, -1, Gallery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1249,9 +1233,9 @@ public EEnum getUserType() {
 		initEReference(getMidiPlayerRoot_Users(), this.getUser(), null, "users", null, 0, -1, MidiPlayerRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMidiPlayerRoot_Presentationschemes(), this.getPresentationScheme(), null, "presentationschemes", null, 0, -1, MidiPlayerRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(midiFileChordPartEClass, MidiFileChordPart.class, "MidiFileChordPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMidiFileChordPart_Text(), ecorePackage.getEString(), "text", null, 0, 1, MidiFileChordPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMidiFileChordPart_Chord(), ecorePackage.getEString(), "chord", null, 0, 1, MidiFileChordPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(songChordPartEClass, SongChordPart.class, "SongChordPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSongChordPart_Text(), ecorePackage.getEString(), "text", null, 0, 1, SongChordPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSongChordPart_Chord(), ecorePackage.getEString(), "chord", null, 0, 1, SongChordPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConfiguration_ScreenIDPresentation(), ecorePackage.getEString(), "screenIDPresentation", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1305,14 +1289,14 @@ public EEnum getUserType() {
 		initEAttribute(getPresentationScheme_AutoWrapToNewPage(), ecorePackage.getEBooleanObject(), "autoWrapToNewPage", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
-		initEEnum(midiFilePartTypeEEnum, MidiFilePartType.class, "MidiFilePartType");
-		addEEnumLiteral(midiFilePartTypeEEnum, MidiFilePartType.REFRAIN);
-		addEEnumLiteral(midiFilePartTypeEEnum, MidiFilePartType.BRIDGE);
-		addEEnumLiteral(midiFilePartTypeEEnum, MidiFilePartType.VERS);
-		addEEnumLiteral(midiFilePartTypeEEnum, MidiFilePartType.SOLO);
-		addEEnumLiteral(midiFilePartTypeEEnum, MidiFilePartType.ZWISCHENSPIEL);
-		addEEnumLiteral(midiFilePartTypeEEnum, MidiFilePartType.INTRO);
-		addEEnumLiteral(midiFilePartTypeEEnum, MidiFilePartType.EXTRO);
+		initEEnum(songPartTypeEEnum, SongPartType.class, "SongPartType");
+		addEEnumLiteral(songPartTypeEEnum, SongPartType.REFRAIN);
+		addEEnumLiteral(songPartTypeEEnum, SongPartType.BRIDGE);
+		addEEnumLiteral(songPartTypeEEnum, SongPartType.VERS);
+		addEEnumLiteral(songPartTypeEEnum, SongPartType.SOLO);
+		addEEnumLiteral(songPartTypeEEnum, SongPartType.ZWISCHENSPIEL);
+		addEEnumLiteral(songPartTypeEEnum, SongPartType.INTRO);
+		addEEnumLiteral(songPartTypeEEnum, SongPartType.EXTRO);
 
 		initEEnum(additionalTypeEEnum, AdditionalType.class, "AdditionalType");
 		addEEnumLiteral(additionalTypeEEnum, AdditionalType.IMAGE);

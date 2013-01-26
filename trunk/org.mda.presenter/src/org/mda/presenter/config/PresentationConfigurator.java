@@ -50,14 +50,14 @@ public class PresentationConfigurator {
 	  return parent;
   }
 
-  public IMidiFilePresenterConfig configure (final User user, final MidiPlayerRoot root, final PresentationType currentType) {
+  public IPresenterConfig configure (final User user, final MidiPlayerRoot root, final PresentationType currentType) {
     if (root == null)
        throw new IllegalArgumentException("parameter root must not be null");
 
     if (currentType == null)
       throw new IllegalArgumentException("parameter currentType must not be null");
 
-    DefaultMidiFilePresenterConfig defaultConfig = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    DefaultPresenterConfig defaultConfig = InjectService.getInstance(DefaultPresenterConfig.class);
     
     overwriteConfiguration(defaultConfig, defaults.getAllDefaultSchemes(), currentType);  //programmatic defaults
     
@@ -115,7 +115,7 @@ public class PresentationConfigurator {
 
 	  }
 
-  public IMidiFilePresenterConfig overwriteConfiguration (DefaultMidiFilePresenterConfig originalConfig,
+  public IPresenterConfig overwriteConfiguration (DefaultPresenterConfig originalConfig,
                                                           Collection <PresentationScheme> schemes,
                                                           final PresentationType type) {
 

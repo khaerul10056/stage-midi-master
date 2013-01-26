@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import javax.inject.Singleton;
 
-import mda.MidiFile;
+import mda.Song;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
@@ -28,7 +28,7 @@ public class SongSelectorPanel extends Shell {
   @Singleton
   private ApplicationSession  appSession;
 
-  private Collection <MidiFile> selectedfiles = new ArrayList<MidiFile>();
+  private Collection <Song> selectedfiles = new ArrayList<Song>();
 
   public SongSelectorPanel () {
     setLayout(new GridLayout(2, true));
@@ -52,8 +52,8 @@ public class SongSelectorPanel extends Shell {
       public void widgetSelected(SelectionEvent e) {
         IStructuredSelection selection = (IStructuredSelection) tableviewer.getSelection();
         for (Object next : selection.toArray()) {
-          if (next instanceof MidiFile) {
-              selectedfiles.add((MidiFile) next);
+          if (next instanceof Song) {
+              selectedfiles.add((Song) next);
           }
         }
         dispose();
@@ -83,7 +83,7 @@ public class SongSelectorPanel extends Shell {
 
 
 
-  public Collection <MidiFile> getSelectedSongs () {
+  public Collection <Song> getSelectedSongs () {
     return selectedfiles;
   }
 

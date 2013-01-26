@@ -19,14 +19,14 @@ import org.apache.poi.hpsf.wellknown.SectionIDMap;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.mda.export.ExportException;
 import org.mda.export.IExport;
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 
 
 public class WordExporter implements IExport {
 
 
   @Override
-public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFilePresenterConfig exportConf) throws ExportException {
+public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IPresenterConfig exportConf) throws ExportException {
 
 //    POIFSFileSystem fs = new POIFSFileSystem();
 //    HWPFDocument document = new HWPFDocument(fs);

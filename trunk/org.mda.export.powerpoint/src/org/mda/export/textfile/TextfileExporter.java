@@ -7,16 +7,16 @@ import java.util.Collection;
 import java.util.List;
 
 import mda.AbstractSessionItem;
-import mda.MidiFile;
-import mda.MidiFileChordPart;
-import mda.MidiFilePart;
-import mda.MidiFileTextLine;
+import mda.Song;
+import mda.SongChordPart;
+import mda.SongPart;
+import mda.SongTextLine;
 
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
 import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 
 public class TextfileExporter extends AbstractExporter {
 	
@@ -32,15 +32,15 @@ public class TextfileExporter extends AbstractExporter {
 	}
 
 	@Override
-	public File export(Collection<AbstractSessionItem> items, File exportFile, IMidiFilePresenterConfig config) throws ExportException {
+	public File export(Collection<AbstractSessionItem> items, File exportFile, IPresenterConfig config) throws ExportException {
 		content.clear();
 		
 		if (config.isChordPresented())
 			throw new IllegalStateException("Presenting chords in textexport is not supported yet");
 		
 		for (AbstractSessionItem sessionItem: items) {
-			if (sessionItem instanceof MidiFile) {
-				MidiFile nextFile = (MidiFile) sessionItem;
+			if (sessionItem instanceof Song) {
+				Song nextFile = (Song) sessionItem;
 				
 			    if (config.isShowTitle()) {
 			    	String title= MidiPlayerService.getTitle(nextFile);
@@ -50,13 +50,13 @@ public class TextfileExporter extends AbstractExporter {
 			    	}
 			    }
 			    
-			    for (MidiFilePart nextPart : nextFile.getParts()) {
+			    for (SongPart nextPart : nextFile.getParts()) {
 			    	
 			    	if (nextPart.getRefPart() != null)
 			    		nextPart = nextPart.getRefPart();
-			        for (MidiFileTextLine nextLine : nextPart.getTextlines()) {
+			        for (SongTextLine nextLine : nextPart.getTextlines()) {
 			          StringBuilder builder = new StringBuilder();
-			          for (MidiFileChordPart nextChordPart : nextLine.getChordParts()) {
+			          for (SongChordPart nextChordPart : nextLine.getChordParts()) {
 			        	if (nextChordPart.getText() != null)
 			              builder.append(nextChordPart.getText());
 			          }

@@ -11,7 +11,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import mda.AbstractSessionItem;
-import mda.MidiFile;
+import mda.Song;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.graphics.Point;
@@ -21,14 +21,14 @@ import org.mda.export.ExportException;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.CalculatorPreCondition;
-import org.mda.presenter.MidiFileSlideCalculator;
+import org.mda.presenter.SongSlideCalculator;
 import org.mda.presenter.Slide;
 import org.mda.presenter.SlideItem;
 import org.mda.presenter.SlideType;
 import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.SizeInfo;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
@@ -45,7 +45,7 @@ public class PdfExporter extends AbstractExporter {
   private static final Log LOGGER  = LogFactory.getLogger(PdfExporter.class);
 
   @Inject
-  private MidiFileSlideCalculator calculator;
+  private SongSlideCalculator calculator;
   
   @Inject
   private CalculatorPreCondition  calcPreCondition;
@@ -56,11 +56,11 @@ public class PdfExporter extends AbstractExporter {
   private List <Slide> lastSlides = new ArrayList<Slide>();
 
   @Override
-public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFilePresenterConfig config) throws ExportException  {
+public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IPresenterConfig config) throws ExportException  {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
     
-    DefaultMidiFilePresenterConfig configImpl = (DefaultMidiFilePresenterConfig) config;
+    DefaultPresenterConfig configImpl = (DefaultPresenterConfig) config;
     configImpl.setFontsize(new Integer (12));
     configImpl.setGraphicsContext(new PDFGraphicsContext());
     calculator.setConfig(configImpl);
@@ -81,7 +81,7 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
     config.setDefaultPresentationScreenSize(calcSize);
 
     for (AbstractSessionItem next: items) {
-      export(document, writer, (MidiFile) next);
+      export(document, writer, (Song) next);
     }
 
     document.close();
@@ -98,7 +98,7 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
 
 
 
-  private void export (final Document doc, final PdfWriter writer, final MidiFile nextItem) throws ExportException {
+  private void export (final Document doc, final PdfWriter writer, final Song nextItem) throws ExportException {
 
 
 

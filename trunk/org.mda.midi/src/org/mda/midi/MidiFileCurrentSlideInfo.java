@@ -1,23 +1,23 @@
 package org.mda.midi;
 
-import mda.MidiFile;
-import mda.MidiFilePart;
+import mda.Song;
+import mda.SongPart;
 
 public class MidiFileCurrentSlideInfo {
 	
-	private final MidiFile midifile; 
+	private final Song midifile; 
 	
 	private final Position position;
 	
-	private final MidiFilePart currentPart;
+	private final SongPart currentPart;
 	
-	public MidiFileCurrentSlideInfo (MidiFile sessionItem, String position, MidiFilePart currentPart) {
+	public MidiFileCurrentSlideInfo (Song sessionItem, String position, SongPart currentPart) {
 		this.midifile = sessionItem;
 		this.position = new Position(position);
 		this.currentPart = currentPart;
 	}
 
-	public MidiFile getMidiFile() {
+	public Song getMidiFile() {
 		return midifile;
 	}
 
@@ -25,7 +25,7 @@ public class MidiFileCurrentSlideInfo {
 		return position;
 	}
 
-	public MidiFilePart getCurrentPart() {
+	public SongPart getCurrentPart() {
 		return currentPart;
 	}
 

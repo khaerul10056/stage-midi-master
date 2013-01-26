@@ -1,6 +1,6 @@
 package org.mda.commons.ui;
 
-import mda.MidiFile;
+import mda.Song;
 import mda.MidiplayerFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Text;
 
 public class NewSongPanel extends Shell {
 
-  private MidiFile newFile;
+  private Song newFile;
 
   public NewSongPanel () {
     setSize(600, 400);
@@ -34,7 +34,7 @@ public class NewSongPanel extends Shell {
 
       @Override
       public void widgetSelected(SelectionEvent e) {
-        setNewFile(MidiplayerFactory.eINSTANCE.createMidiFile());
+        setNewFile(MidiplayerFactory.eINSTANCE.createSong());
         getNewSong().setName(text.getText());
         dispose();
       }
@@ -61,11 +61,11 @@ public class NewSongPanel extends Shell {
 
   }
 
-  public MidiFile getNewSong () {
+  public Song getNewSong () {
     return newFile;
   }
 
-  private void setNewFile (MidiFile newFile) {
+  private void setNewFile (Song newFile) {
     this.newFile = newFile;
   }
 

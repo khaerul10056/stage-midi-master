@@ -9,11 +9,11 @@ import java.util.Comparator;
 import java.util.List;
 import mda.AbstractSessionItem;
 import mda.Gallery;
-import mda.MidiFile;
-import mda.MidiFileChordPart;
-import mda.MidiFilePart;
-import mda.MidiFilePartType;
-import mda.MidiFileTextLine;
+import mda.Song;
+import mda.SongChordPart;
+import mda.SongPart;
+import mda.SongPartType;
+import mda.SongTextLine;
 import mda.MidiPlayerRoot;
 import mda.MidiplayerFactory;
 import mda.MidiplayerPackage;
@@ -79,7 +79,7 @@ public class MidiPlayerService {
     return cloned;
   }
 
-  public static String getTitle (final MidiFile midifile) {
+  public static String getTitle (final Song midifile) {
     if (midifile == null)
       throw new IllegalArgumentException("Parameter midifile must not be null");
     if (midifile.getName() == null)
@@ -148,7 +148,7 @@ public class MidiPlayerService {
    * @param line line
    * @return part
    */
-  public final static MidiFilePart removeLine (final MidiFilePart part, final int line) {
+  public final static SongPart removeLine (final SongPart part, final int line) {
     part.getTextlines().remove(line);
     return part;
   }
@@ -159,9 +159,9 @@ public class MidiPlayerService {
    * @param clonablePart  part to clone
    * @return midifile
    */
-  public final static MidiFile clonePart (final MidiFile midifile, final MidiFilePart clonablePart) {
+  public final static Song clonePart (final Song midifile, final SongPart clonablePart) {
     int indexOfCurrent = midifile.getParts().indexOf(clonablePart);
-    MidiFilePart clonedPart = EcoreUtil.copy(clonablePart);
+    SongPart clonedPart = EcoreUtil.copy(clonablePart);
     midifile.getParts().add(indexOfCurrent + 1, clonedPart);
     return midifile;
   }
@@ -171,9 +171,9 @@ public class MidiPlayerService {
    * @param part part
    * @param line line to merge
    * @return part */
-  public final static MidiFilePart mergeLine (final MidiFilePart part, final int line, final int caretposition) {
-    MidiFileTextLine currentTextLine = part.getTextlines().get(line);
-    MidiFileTextLine previousTextLine = part.getTextlines().get(line - 1);
+  public final static SongPart mergeLine (final SongPart part, final int line, final int caretposition) {
+    SongTextLine currentTextLine = part.getTextlines().get(line);
+    SongTextLine previousTextLine = part.getTextlines().get(line - 1);
     previousTextLine.getChordParts().addAll(currentTextLine.getChordParts());
     part.getTextlines().remove(currentTextLine);
     return part;
@@ -185,14 +185,14 @@ public class MidiPlayerService {
    * @param line current linenumber
    * @param caretposition position of caret in current line
    * @return splitted part */
-  public final static MidiFilePart splitLine (final MidiFilePart part, final int line, int caretposition) {
+  public final static SongPart splitLine (final SongPart part, final int line, int caretposition) {
 
-    MidiFileTextLine currentTextLine = part.getTextlines().get(line);
+    SongTextLine currentTextLine = part.getTextlines().get(line);
 
     int lastToken = 0;
 
     for (lastToken = 0; lastToken < currentTextLine.getChordParts().size(); lastToken++) {
-      MidiFileChordPart chordPart = currentTextLine.getChordParts().get(lastToken);
+      SongChordPart chordPart = currentTextLine.getChordParts().get(lastToken);
       int longestToken = chordPart.getChord() == null ? chordPart.getText().length() : Math.max(chordPart.getText().length(), chordPart.getChord().length());
       //if current token is splitted, than break
       if (longestToken > caretposition)
@@ -205,20 +205,20 @@ public class MidiPlayerService {
 
     //If split at the end of the line, then add a new line
     if (splitToken >= currentTextLine.getChordParts().size()) {
-      MidiFileTextLine newTextLine = mf.createMidiFileTextLine();
-      MidiFileChordPart chordpart = mf.createMidiFileChordPart();
+      SongTextLine newTextLine = mf.createSongTextLine();
+      SongChordPart chordpart = mf.createSongChordPart();
       chordpart.setText(" ");
       newTextLine.getChordParts().add(chordpart);
       part.getTextlines().add(line + 1, newTextLine);
       return part;
     }
 
-    MidiFileChordPart splitPart = currentTextLine.getChordParts().get(splitToken);
+    SongChordPart splitPart = currentTextLine.getChordParts().get(splitToken);
     LOGGER.info("SplitToken = " +
       splitPart);
 
-    MidiFileTextLine newLine = mf.createMidiFileTextLine();
-    MidiFileChordPart newPartInNewLine = mf.createMidiFileChordPart();
+    SongTextLine newLine = mf.createSongTextLine();
+    SongChordPart newPartInNewLine = mf.createSongChordPart();
 
     int moveLenText = Math.min(splitPart.getText().length(), caretposition); //get splitpoint of text
     newPartInNewLine.setText(splitPart.getText().substring(moveLenText, splitPart.getText().length())); //add splitted data to new part
@@ -233,7 +233,7 @@ public class MidiPlayerService {
     LOGGER.info("SplitPart (" + splitPart + ")");
     LOGGER.info("NewPart (" + newPartInNewLine + ")");
 
-    Collection<MidiFileChordPart> toRemove = new ArrayList<MidiFileChordPart>();
+    Collection<SongChordPart> toRemove = new ArrayList<SongChordPart>();
     newLine.getChordParts().add(newPartInNewLine); //add new part to new line
     for (int i = splitToken + 1; i < currentTextLine.getChordParts().size(); i++) { //add rest of tokens in new line
       LOGGER.info("Rest Part " + i + "/" + currentTextLine.getChordParts().get(i));
@@ -268,7 +268,7 @@ public class MidiPlayerService {
 
   /** removes text and saves model
    * @param file file */
-  public final static void removeText (final MidiFile file) {
+  public final static void removeText (final Song file) {
     file.getParts().clear();
     saveRootObject(getRoot(file));
   }
@@ -311,9 +311,9 @@ public class MidiPlayerService {
     }
   }
 
-  public final static MidiFilePart getCurrentPart (final MidiFile midifile, int number) {
-    MidiFilePart currentPart = null;
-    for (MidiFilePart nextPart : midifile.getParts()) {
+  public final static SongPart getCurrentPart (final Song midifile, int number) {
+    SongPart currentPart = null;
+    for (SongPart nextPart : midifile.getParts()) {
       if (nextPart.getBar() <= number)
         currentPart = nextPart;
     }
@@ -321,7 +321,7 @@ public class MidiPlayerService {
     return currentPart;
   }
 
-  public final static MidiFilePart getNextPart (final MidiFile midifile, final MidiFilePart part) {
+  public final static SongPart getNextPart (final Song midifile, final SongPart part) {
 	int posCurrent = midifile.getParts().indexOf(part);
 	if (posCurrent < midifile.getParts().size() - 1)
 		return midifile.getParts().get(posCurrent + 1);
@@ -333,7 +333,7 @@ public class MidiPlayerService {
   /** getter
    * @param midifile midifile
    * @return description of the midifile as string */
-  public static final String getMidiFileAsString (final MidiFile midifile) {
+  public static final String getMidiFileAsString (final Song midifile) {
     StringBuilder builder = new StringBuilder();
 
     builder.append("Name:" +
@@ -341,12 +341,12 @@ public class MidiPlayerService {
     builder.append("Path:" +
       midifile.getPath() + "\n\n");
 
-    for (MidiFilePart nextPart : midifile.getParts()) {
+    for (SongPart nextPart : midifile.getParts()) {
       builder.append("- " +
         nextPart.getParttype() + ":\n");
-      for (MidiFileTextLine nextLine : nextPart.getTextlines()) {
+      for (SongTextLine nextLine : nextPart.getTextlines()) {
         builder.append("    * ");
-        for (MidiFileChordPart nextChordPart : nextLine.getChordParts()) {
+        for (SongChordPart nextChordPart : nextLine.getChordParts()) {
           if (nextChordPart.getChord() != null)
             builder.append("(" +
               nextChordPart.getChord() + ")");
@@ -368,14 +368,14 @@ public class MidiPlayerService {
    * @param midiFilePartType type of the new part
    * @param reference referenced part, if the new part should be a reference to another part, maybe <code>null</code>
    * @return */
-  public static int addPartAfter (MidiFile currentMidiFile, MidiFilePart addAfter, MidiFilePartType midiFilePartType, MidiFilePart reference) {
+  public static int addPartAfter (Song currentMidiFile, SongPart addAfter, SongPartType midiFilePartType, SongPart reference) {
 
     if (reference != null && midiFilePartType != null && reference.getRefPart().getParttype() != midiFilePartType)
       LOGGER.warn("addPartAfter was called with different types for direct parameter and reference, using the type " + reference.getParttype() + " from reference");
 
     int index = addAfter != null ? currentMidiFile.getParts().indexOf(addAfter): (currentMidiFile.getParts().size() - 1);
-    MidiFilePart newPart = mf.createMidiFilePart();
-    newPart.getTextlines().add(mf.createMidiFileTextLine());
+    SongPart newPart = mf.createSongPart();
+    newPart.getTextlines().add(mf.createSongTextLine());
     newPart.setParttype(midiFilePartType);
     if (reference != null) {
       newPart.setParttype(reference.getParttype());
@@ -395,7 +395,7 @@ public class MidiPlayerService {
    * @param part part
    * @return moved part
    */
-  public static MidiFilePart movePartUp (MidiFile currentMidiFile, MidiFilePart part) {
+  public static SongPart movePartUp (Song currentMidiFile, SongPart part) {
     int i = currentMidiFile.getParts().indexOf(part);
     if (i == 0) //if first do nothing
       return part;
@@ -411,7 +411,7 @@ public class MidiPlayerService {
    * @param part part
    * @return moved part
    */
-  public static MidiFilePart movePartDown (MidiFile currentMidiFile, MidiFilePart part) {
+  public static SongPart movePartDown (Song currentMidiFile, SongPart part) {
     int i = currentMidiFile.getParts().indexOf(part);
     if (i == currentMidiFile.getParts().size() - 1) //if last do nothing
       return part;
@@ -425,7 +425,7 @@ public class MidiPlayerService {
    * @param file midifile
    * @param part part to remove
    *          return index of removed part */
-  public static MidiFilePart removePart (final MidiFile file, MidiFilePart part) {
+  public static SongPart removePart (final Song file, SongPart part) {
     int index = file.getParts().indexOf(part);
     if (index >= 0)
       file.getParts().remove(part);
@@ -458,10 +458,10 @@ public class MidiPlayerService {
     }
   }
 
-  public static String toString (MidiFile midifile) {
+  public static String toString (Song midifile) {
     StringBuilder builder = new StringBuilder();
 
-    for (MidiFilePart nextPart: midifile.getParts()) {
+    for (SongPart nextPart: midifile.getParts()) {
       builder.append ("\n\n");
       builder.append (nextPart.getParttype() + "\n");
       builder.append (nextPart.getBar() + "\n");
@@ -472,7 +472,7 @@ public class MidiPlayerService {
 
   }
 
-  public static String toString (MidiFilePart nextPart) {
+  public static String toString (SongPart nextPart) {
     StringBuilder builder = new StringBuilder();
     List <String> strings = getRawText(nextPart, true);
     for (String nextString: strings)
@@ -481,18 +481,18 @@ public class MidiPlayerService {
     return builder.toString();
 
   }
-  public static List<String> getRawText (MidiFilePart nextPart, boolean chords) {
+  public static List<String> getRawText (SongPart nextPart, boolean chords) {
     List<String> lines = new ArrayList<String>();
 
     if (nextPart.getRefPart() != null)
       nextPart = nextPart.getRefPart();
 
-    for (MidiFileTextLine nextLine : nextPart.getTextlines()) {
+    for (SongTextLine nextLine : nextPart.getTextlines()) {
 
       String nextLineAsText = "";
       if (nextLine.isNewSlide())
         nextLineAsText += "->";
-      for (MidiFileChordPart nextChordPart : nextLine.getChordParts()) {
+      for (SongChordPart nextChordPart : nextLine.getChordParts()) {
         if (nextChordPart.getChord() != null && chords)
           nextLineAsText += "(" + nextChordPart.getChord() + ")";
         if (nextChordPart.getText() != null)
@@ -518,18 +518,18 @@ public class MidiPlayerService {
 	  return session;
   }
 
-  public static MidiFilePart splitPart (MidiFile midiFile, MidiFilePart midiFilePart, int caretOffsetOfCurrentTextField) {
-    Collection <MidiFileTextLine> movedTextlines = new ArrayList<MidiFileTextLine>();
+  public static SongPart splitPart (Song midiFile, SongPart midiFilePart, int caretOffsetOfCurrentTextField) {
+    Collection <SongTextLine> movedTextlines = new ArrayList<SongTextLine>();
 
     for (int i = 0; i < midiFile.getParts().size(); i++) {
-      MidiFilePart currentPart = midiFile.getParts().get(i);
+      SongPart currentPart = midiFile.getParts().get(i);
       if (currentPart.equals(midiFilePart)) {
 
         for (int j = caretOffsetOfCurrentTextField; j < currentPart.getTextlines().size(); j++) {
           movedTextlines.add(currentPart.getTextlines().get(j));
         }
 
-        MidiFilePart newPart = mf.createMidiFilePart();
+        SongPart newPart = mf.createSongPart();
         newPart.setParttype(currentPart.getParttype());
         newPart.getTextlines().addAll(movedTextlines);
         midiFile.getParts().add(i +1, newPart);
@@ -545,12 +545,12 @@ public class MidiPlayerService {
    * @param currentPart
    * @return
    */
-  public static MidiFilePart mergeWithPreviousPart (MidiFile midifile, MidiFilePart currentPart) {
+  public static SongPart mergeWithPreviousPart (Song midifile, SongPart currentPart) {
     int currentIndex = midifile.getParts().indexOf(currentPart);
     if (currentIndex == 0)
       return currentPart;
 
-    MidiFilePart previousPart = midifile.getParts().get(currentIndex - 1);
+    SongPart previousPart = midifile.getParts().get(currentIndex - 1);
     previousPart.getTextlines().addAll(currentPart.getTextlines());
     midifile.getParts().remove(currentPart);
     return previousPart;
@@ -562,10 +562,10 @@ public class MidiPlayerService {
    * @param string searchstring, contained by the name of the song
    * @return found midifile or <code>null</code> if nothing was found
    */
-  public static MidiFile findSong (final Gallery gallery, String string) {
+  public static Song findSong (final Gallery gallery, String string) {
     for (AbstractSessionItem next: gallery.getGalleryItems()) {
       if (next.getName().indexOf(string) >= 0)
-        return (MidiFile) next;
+        return (Song) next;
     }
 
     return null;
@@ -576,18 +576,18 @@ public class MidiPlayerService {
    * @param name  title of the song
    * @return songobject
    */
-  public static MidiFile createSong (final MidiPlayerRoot playerroot, final String name) {
-	  MidiFile createMidiFile = mf.createMidiFile();
+  public static Song createSong (final MidiPlayerRoot playerroot, final String name) {
+	  Song createMidiFile = mf.createSong();
 	  createMidiFile.setName(name);
 	  if (playerroot.getGallery() == null) {
 		  Gallery newGallery = mf.createGallery();
 		  playerroot.setGallery(newGallery);
 	  }
 	  playerroot.getGallery().getGalleryItems().add(createMidiFile);
-	  MidiFilePart part = MidiplayerFactory.eINSTANCE.createMidiFilePart();
-	  part.setParttype(MidiFilePartType.VERS);
-	  MidiFileTextLine textline = MidiplayerFactory.eINSTANCE.createMidiFileTextLine();
-	  MidiFileChordPart chordpart = MidiplayerFactory.eINSTANCE.createMidiFileChordPart();
+	  SongPart part = MidiplayerFactory.eINSTANCE.createSongPart();
+	  part.setParttype(SongPartType.VERS);
+	  SongTextLine textline = MidiplayerFactory.eINSTANCE.createSongTextLine();
+	  SongChordPart chordpart = MidiplayerFactory.eINSTANCE.createSongChordPart();
 	  chordpart.setText(" ");
 	  textline.getChordParts().add(chordpart);
 	  part.getTextlines().add(textline);
@@ -616,7 +616,7 @@ public class MidiPlayerService {
 	     return;
 	  
 	  AbstractSessionItem copyItem = currentSession.getItems().get(from);
-	  AbstractSessionItem dummy = mf.createMidiFile();
+	  AbstractSessionItem dummy = mf.createSong();
 	  currentSession.getItems().set(from, dummy);
 	  currentSession.getItems().add(to, copyItem);
 	  currentSession.getItems().remove(dummy);

@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import mda.AbstractSessionItem;
 
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 
 
 public interface IExport {
@@ -19,7 +19,7 @@ public interface IExport {
     * @return exportfile or <code>null</code> if an error occured
     * @throws Exception
     */
-   File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFilePresenterConfig config) throws ExportException;
+   File export (final Collection<AbstractSessionItem> items, final File exportFile, final IPresenterConfig config) throws ExportException;
 
    /**
     * gets the suffix for this export

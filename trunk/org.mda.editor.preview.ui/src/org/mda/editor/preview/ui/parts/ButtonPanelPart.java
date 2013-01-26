@@ -14,7 +14,7 @@ import static org.mda.Utils.loadImageFromProject;
 
 import javax.inject.Inject;
 
-import mda.MidiFilePart;
+import mda.SongPart;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
@@ -147,7 +147,7 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
     }
 
     if (arg0.widget.equals(btnNewSlideToggle)) {
-      MidiFilePart currentPart = getEditorComposite().getSlidelistpanel().getCurrentPart();
+      SongPart currentPart = getEditorComposite().getSlidelistpanel().getCurrentPart();
       int focusedLine = getEditorComposite().getContentpanel().getCurrentFocusedLine();
       boolean isSet = currentPart.getTextlines().get(focusedLine).isNewSlide();
       currentPart.getTextlines().get(focusedLine).setNewSlide(!isSet);
@@ -170,7 +170,7 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
     }
 
     if (arg0.widget.equals(btnRemovePart)) {
-      MidiFilePart nextPart = MidiPlayerService.removePart(getMidifile(), getEditorComposite().getSlidelistpanel().getCurrentPart());
+      SongPart nextPart = MidiPlayerService.removePart(getMidifile(), getEditorComposite().getSlidelistpanel().getCurrentPart());
       getEditorComposite().setCurrentPart(nextPart);
       getEditorComposite().redrawSlidelist();
     }
@@ -208,13 +208,13 @@ public class ButtonPanelPart extends AbstractPart implements SelectionListener {
     	getEditorComposite().getContentpanel().splitPart();
 
     if (arg0.widget.equals(btnUp)) {
-      MidiFilePart nextPart = MidiPlayerService.movePartUp(getMidifile(), getEditorComposite().getSlidelistpanel().getCurrentPart());
+      SongPart nextPart = MidiPlayerService.movePartUp(getMidifile(), getEditorComposite().getSlidelistpanel().getCurrentPart());
       getEditorComposite().setCurrentPart(nextPart);
       getEditorComposite().redrawSlidelist();
     }
 
     if (arg0.widget.equals(btnDown)) {
-      MidiFilePart nextPart = MidiPlayerService.movePartDown(getMidifile(), getEditorComposite().getSlidelistpanel().getCurrentPart());
+      SongPart nextPart = MidiPlayerService.movePartDown(getMidifile(), getEditorComposite().getSlidelistpanel().getCurrentPart());
       getEditorComposite().setCurrentPart(nextPart);
       getEditorComposite().redrawSlidelist();
     }

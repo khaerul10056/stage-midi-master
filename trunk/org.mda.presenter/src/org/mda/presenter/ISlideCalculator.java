@@ -4,7 +4,7 @@ import java.util.List;
 
 import mda.AbstractSessionItem;
 
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 
 
 /**
@@ -35,6 +35,6 @@ public interface ISlideCalculator {
    * set Configuration
    * @param config
    */
-  public void setConfig (IMidiFilePresenterConfig config);
+  public void setConfig (IPresenterConfig config);
 
 }

@@ -3,8 +3,8 @@ package org.mda.editor.preview.ui.parts;
 import java.util.ArrayList;
 import java.util.List;
 
-import mda.MidiFile;
-import mda.MidiFilePart;
+import mda.Song;
+import mda.SongPart;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
@@ -45,13 +45,13 @@ public class SlideListPart extends AbstractPart  {
   }
 
   @Override
-public void setCurrentPart (MidiFilePart currentPart) {
+public void setCurrentPart (SongPart currentPart) {
     super.setCurrentPart(currentPart);
     resetColors();
   }
 
   @Override
-public void setMidifile (final MidiFile file) {
+public void setMidifile (final Song file) {
 	  if (file == null)
 		  return;
 	  
@@ -66,7 +66,7 @@ public void setMidifile (final MidiFile file) {
     getSlideItems().clear();
 
     //add new items
-    for (MidiFilePart nextPart: file.getParts()) {
+    for (SongPart nextPart: file.getParts()) {
       SlideItemPanel nextPanel = new SlideItemPanel(comp);
       nextPanel.setModelPart(nextPart);
       nextPanel.setContent(getEditorComposite());

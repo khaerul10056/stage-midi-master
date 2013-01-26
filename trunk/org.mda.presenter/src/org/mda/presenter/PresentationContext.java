@@ -7,7 +7,7 @@ import java.util.List;
 
 
 import mda.AbstractSessionItem;
-import mda.MidiFilePart;
+import mda.SongPart;
 import mda.Session;
 
 import org.mda.logging.Log;
@@ -15,7 +15,7 @@ import org.mda.logging.LogFactory;
 import org.mda.presenter.IPresentationContext;
 import org.mda.presenter.IPresentationController;
 import org.mda.presenter.adapter.SizeInfo;
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 
 import com.google.inject.Inject;
 
@@ -33,12 +33,12 @@ public class PresentationContext implements IPresentationContext {
   private int currentSlideIndex = 0;
 
   private CalculatorPreCondition calcPreCondition;
-  private IMidiFilePresenterConfig config;
+  private IPresenterConfig config;
 
   private SpecialSlide specialSlide = null;
   
   @Inject
-  MidiFileSlideCalculator calculator;
+  SongSlideCalculator calculator;
 
   /**
    * list of registered controllers to control the presentation 
@@ -73,7 +73,7 @@ public class PresentationContext implements IPresentationContext {
       slidesPerItem.clear();
   }
 
-  public void setCurrentSession (Session currentSession, final IMidiFilePresenterConfig config, SizeInfo size) {
+  public void setCurrentSession (Session currentSession, final IPresenterConfig config, SizeInfo size) {
     LOGGER.info("set current session " + currentSession.getName() + " at presentationcontext");
     this.currentViewingSession = currentSession;
     this.config = config;
@@ -207,7 +207,7 @@ public class PresentationContext implements IPresentationContext {
     return slidesPerItem;
   }
   
-  public IMidiFilePresenterConfig getCurrentConfig () {
+  public IPresenterConfig getCurrentConfig () {
 	  return config;
   }
 
@@ -267,7 +267,7 @@ public class PresentationContext implements IPresentationContext {
     return action;
   }
 
-  public boolean toPart (final MidiFilePart part) {
+  public boolean toPart (final SongPart part) {
     AbstractSessionItem[] array = slidesPerItem.keySet().toArray(new AbstractSessionItem [slidesPerItem.size()]);
 
     boolean itemFound = false;

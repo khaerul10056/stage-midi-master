@@ -2,7 +2,7 @@
 package org.mda.commons.ui;
 
 import mda.AbstractSessionItem;
-import mda.MidiFile;
+import mda.Song;
 import mda.Session;
 
 import org.eclipse.e4.core.di.annotations.Execute;
@@ -36,9 +36,9 @@ public class SearchEngineHandler {
 				SearchResult activeSearchResult = searchenginepanel.getActiveSearchResult();
 				
 				if (activeSearchResult != null) {
-					if (activeSearchResult.getEobject() instanceof MidiFile) {
+					if (activeSearchResult.getEobject() instanceof Song) {
 						AbstractSessionItem selectedItem = appsession.getCurrentMidifile();
-						Session sessionWithAddedSong = MidiPlayerService.addSessionItem(appsession.getCurrentSession(), selectedItem, (MidiFile) activeSearchResult.getEobject());
+						Session sessionWithAddedSong = MidiPlayerService.addSessionItem(appsession.getCurrentSession(), selectedItem, (Song) activeSearchResult.getEobject());
 						appsession.getModelEvents().setCurrentModelElement(Session.class, sessionWithAddedSong);
 					}
 				}

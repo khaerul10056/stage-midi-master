@@ -1,7 +1,7 @@
 package org.mda.presenter;
 
 import mda.AbstractSessionItem;
-import mda.MidiFilePart;
+import mda.SongPart;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 
@@ -19,7 +19,7 @@ public interface IPresentationController {
    * @param part part
    * @return true 
    */
-  boolean toPart(MidiFilePart part);
+  boolean toPart(SongPart part);
 
   /**
    * finish presentation

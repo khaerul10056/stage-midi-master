@@ -3,20 +3,20 @@ package org.mda.export;
 import javax.inject.Inject;
 
 import org.mda.presenter.CalculatorPreCondition;
-import org.mda.presenter.MidiFileSlideCalculator;
+import org.mda.presenter.SongSlideCalculator;
 
 
 
 public abstract class AbstractExporter implements IExport {
 
   @Inject
-  MidiFileSlideCalculator calculator;
+  SongSlideCalculator calculator;
   
   @Inject
   CalculatorPreCondition  calcPreCondition;
 
 
-  protected MidiFileSlideCalculator getCalculator () {
+  protected SongSlideCalculator getCalculator () {
     return calculator;
   }
 

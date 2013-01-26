@@ -17,11 +17,11 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Midi File Part Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see mda.MidiplayerPackage#getMidiFilePartType()
+ * @see mda.MidiplayerPackage#getSongPartType()
  * @model
  * @generated
  */
-public enum MidiFilePartType implements Enumerator {
+public enum SongPartType implements Enumerator {
 	/**
 	 * The '<em><b>REFRAIN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -192,13 +192,13 @@ public enum MidiFilePartType implements Enumerator {
   public static final int EXTRO_VALUE = 6;
 
   /**
-	 * An array of all the '<em><b>Midi File Part Type</b></em>' enumerators.
+	 * An array of all the '<em><b>Song Part Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final MidiFilePartType[] VALUES_ARRAY =
-		new MidiFilePartType[] {
+	private static final SongPartType[] VALUES_ARRAY =
+		new SongPartType[] {
 			REFRAIN,
 			BRIDGE,
 			VERS,
@@ -209,22 +209,22 @@ public enum MidiFilePartType implements Enumerator {
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Midi File Part Type</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Song Part Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<MidiFilePartType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<SongPartType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Midi File Part Type</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Song Part Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MidiFilePartType get(String literal) {
+	public static SongPartType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			MidiFilePartType result = VALUES_ARRAY[i];
+			SongPartType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -233,14 +233,14 @@ public enum MidiFilePartType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Midi File Part Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Song Part Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MidiFilePartType getByName(String name) {
+	public static SongPartType getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			MidiFilePartType result = VALUES_ARRAY[i];
+			SongPartType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -249,12 +249,12 @@ public enum MidiFilePartType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Midi File Part Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Song Part Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MidiFilePartType get(int value) {
+	public static SongPartType get(int value) {
 		switch (value) {
 			case REFRAIN_VALUE: return REFRAIN;
 			case BRIDGE_VALUE: return BRIDGE;
@@ -294,7 +294,7 @@ public enum MidiFilePartType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private MidiFilePartType(int value, String name, String literal) {
+	private SongPartType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

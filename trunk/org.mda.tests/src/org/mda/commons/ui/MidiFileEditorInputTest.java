@@ -1,7 +1,7 @@
 package org.mda.commons.ui;
 
 import java.io.File;
-import mda.MidiFile;
+import mda.Song;
 import mda.MidiPlayerRoot;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,11 +12,11 @@ import org.mda.MidiPlayerService;
 public class MidiFileEditorInputTest {
 
   private String saveOldName;
-  private MidiFile song;
+  private Song song;
   @Before
   public void before () {
     MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
-    song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    song = (Song) root.getGallery().getGalleryItems().get(0);
 
     saveOldName = song.getName();
   }

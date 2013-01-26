@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import mda.AdditionalType;
 import mda.Copyright;
-import mda.MidiFile;
+import mda.Song;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
@@ -38,7 +38,7 @@ import org.mda.logging.LogFactory;
 @Creatable
 public class MidiFileDetailsShell  {
 
-  private MidiFile midifile;
+  private Song midifile;
 
   Label lblPicture;
   
@@ -124,7 +124,7 @@ private Text txtMidifile;
     	txtMidifile.setText("");
   }
 
-  public Shell build (final Shell mother, final MidiFile midifile) {
+  public Shell build (final Shell mother, final Song midifile) {
     this.midifile = midifile;
     this.shell = new Shell (mother); 
     shell.setSize(800, 700);

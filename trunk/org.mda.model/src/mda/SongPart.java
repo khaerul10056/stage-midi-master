@@ -18,22 +18,22 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link mda.MidiFilePart#getTextlines <em>Textlines</em>}</li>
- *   <li>{@link mda.MidiFilePart#getParttype <em>Parttype</em>}</li>
- *   <li>{@link mda.MidiFilePart#getBar <em>Bar</em>}</li>
- *   <li>{@link mda.MidiFilePart#getRefPart <em>Ref Part</em>}</li>
- *   <li>{@link mda.MidiFilePart#getPosition <em>Position</em>}</li>
+ *   <li>{@link mda.SongPart#getTextlines <em>Textlines</em>}</li>
+ *   <li>{@link mda.SongPart#getParttype <em>Parttype</em>}</li>
+ *   <li>{@link mda.SongPart#getBar <em>Bar</em>}</li>
+ *   <li>{@link mda.SongPart#getRefPart <em>Ref Part</em>}</li>
+ *   <li>{@link mda.SongPart#getPosition <em>Position</em>}</li>
  * </ul>
  * </p>
  *
- * @see mda.MidiplayerPackage#getMidiFilePart()
+ * @see mda.MidiplayerPackage#getSongPart()
  * @model
  * @generated
  */
-public interface MidiFilePart extends EObject {
+public interface SongPart extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Textlines</b></em>' containment reference list.
-	 * The list contents are of type {@link mda.MidiFileTextLine}.
+	 * The list contents are of type {@link mda.SongTextLine}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Textlines</em>' containment reference list isn't clear,
@@ -41,15 +41,15 @@ public interface MidiFilePart extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Textlines</em>' containment reference list.
-	 * @see mda.MidiplayerPackage#getMidiFilePart_Textlines()
+	 * @see mda.MidiplayerPackage#getSongPart_Textlines()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<MidiFileTextLine> getTextlines();
+	EList<SongTextLine> getTextlines();
 
 	/**
 	 * Returns the value of the '<em><b>Parttype</b></em>' attribute.
-	 * The literals are from the enumeration {@link mda.MidiFilePartType}.
+	 * The literals are from the enumeration {@link mda.SongPartType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parttype</em>' attribute isn't clear,
@@ -57,24 +57,24 @@ public interface MidiFilePart extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parttype</em>' attribute.
-	 * @see mda.MidiFilePartType
-	 * @see #setParttype(MidiFilePartType)
-	 * @see mda.MidiplayerPackage#getMidiFilePart_Parttype()
+	 * @see mda.SongPartType
+	 * @see #setParttype(SongPartType)
+	 * @see mda.MidiplayerPackage#getSongPart_Parttype()
 	 * @model
 	 * @generated
 	 */
-	MidiFilePartType getParttype();
+	SongPartType getParttype();
 
 	/**
-	 * Sets the value of the '{@link mda.MidiFilePart#getParttype <em>Parttype</em>}' attribute.
+	 * Sets the value of the '{@link mda.SongPart#getParttype <em>Parttype</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parttype</em>' attribute.
-	 * @see mda.MidiFilePartType
+	 * @see mda.SongPartType
 	 * @see #getParttype()
 	 * @generated
 	 */
-	void setParttype(MidiFilePartType value);
+	void setParttype(SongPartType value);
 
   /**
 	 * Returns the value of the '<em><b>Bar</b></em>' attribute.
@@ -86,14 +86,14 @@ public interface MidiFilePart extends EObject {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bar</em>' attribute.
 	 * @see #setBar(int)
-	 * @see mda.MidiplayerPackage#getMidiFilePart_Bar()
+	 * @see mda.MidiplayerPackage#getSongPart_Bar()
 	 * @model
 	 * @generated
 	 */
   int getBar();
 
   /**
-	 * Sets the value of the '{@link mda.MidiFilePart#getBar <em>Bar</em>}' attribute.
+	 * Sets the value of the '{@link mda.SongPart#getBar <em>Bar</em>}' attribute.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Bar</em>' attribute.
@@ -111,22 +111,22 @@ public interface MidiFilePart extends EObject {
    * </p>
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ref Part</em>' reference.
-	 * @see #setRefPart(MidiFilePart)
-	 * @see mda.MidiplayerPackage#getMidiFilePart_RefPart()
+	 * @see #setRefPart(SongPart)
+	 * @see mda.MidiplayerPackage#getSongPart_RefPart()
 	 * @model
 	 * @generated
 	 */
-  MidiFilePart getRefPart();
+  SongPart getRefPart();
 
   /**
-	 * Sets the value of the '{@link mda.MidiFilePart#getRefPart <em>Ref Part</em>}' reference.
+	 * Sets the value of the '{@link mda.SongPart#getRefPart <em>Ref Part</em>}' reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Ref Part</em>' reference.
 	 * @see #getRefPart()
 	 * @generated
 	 */
-  void setRefPart(MidiFilePart value);
+  void setRefPart(SongPart value);
 
 		/**
 	 * Returns the value of the '<em><b>Position</b></em>' attribute.
@@ -139,14 +139,14 @@ public interface MidiFilePart extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Position</em>' attribute.
 	 * @see #setPosition(String)
-	 * @see mda.MidiplayerPackage#getMidiFilePart_Position()
+	 * @see mda.MidiplayerPackage#getSongPart_Position()
 	 * @model default=""
 	 * @generated
 	 */
 	String getPosition();
 
 		/**
-	 * Sets the value of the '{@link mda.MidiFilePart#getPosition <em>Position</em>}' attribute.
+	 * Sets the value of the '{@link mda.SongPart#getPosition <em>Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Position</em>' attribute.

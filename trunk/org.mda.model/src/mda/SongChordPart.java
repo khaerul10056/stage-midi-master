@@ -16,16 +16,16 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link mda.MidiFileChordPart#getText <em>Text</em>}</li>
- *   <li>{@link mda.MidiFileChordPart#getChord <em>Chord</em>}</li>
+ *   <li>{@link mda.SongChordPart#getText <em>Text</em>}</li>
+ *   <li>{@link mda.SongChordPart#getChord <em>Chord</em>}</li>
  * </ul>
  * </p>
  *
- * @see mda.MidiplayerPackage#getMidiFileChordPart()
+ * @see mda.MidiplayerPackage#getSongChordPart()
  * @model
  * @generated
  */
-public interface MidiFileChordPart extends EObject {
+public interface SongChordPart extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Text</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -36,14 +36,14 @@ public interface MidiFileChordPart extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Text</em>' attribute.
 	 * @see #setText(String)
-	 * @see mda.MidiplayerPackage#getMidiFileChordPart_Text()
+	 * @see mda.MidiplayerPackage#getSongChordPart_Text()
 	 * @model
 	 * @generated
 	 */
 	String getText();
 
 	/**
-	 * Sets the value of the '{@link mda.MidiFileChordPart#getText <em>Text</em>}' attribute.
+	 * Sets the value of the '{@link mda.SongChordPart#getText <em>Text</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Text</em>' attribute.
@@ -62,14 +62,14 @@ public interface MidiFileChordPart extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Chord</em>' attribute.
 	 * @see #setChord(String)
-	 * @see mda.MidiplayerPackage#getMidiFileChordPart_Chord()
+	 * @see mda.MidiplayerPackage#getSongChordPart_Chord()
 	 * @model unique="false"
 	 * @generated
 	 */
 	String getChord();
 
 	/**
-	 * Sets the value of the '{@link mda.MidiFileChordPart#getChord <em>Chord</em>}' attribute.
+	 * Sets the value of the '{@link mda.SongChordPart#getChord <em>Chord</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Chord</em>' attribute.

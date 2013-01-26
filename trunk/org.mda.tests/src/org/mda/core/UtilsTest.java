@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.TreeMap;
-import mda.MidiFileChordPart;
+import mda.SongChordPart;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.junit.Assert;
@@ -63,7 +63,7 @@ public class UtilsTest {
 
   @Test
   public void getTextWithoutTagsTrimmed () {
-    List<MidiFileChordPart> chordPartsFromText = Utils.getChordPartsFromText( "REFRAIN This is the air I breathe",
+    List<SongChordPart> chordPartsFromText = Utils.getChordPartsFromText( "REFRAIN This is the air I breathe",
                                                                               "        A           D");
     Assert.assertEquals ("A", chordPartsFromText.get(0).getChord());
     Assert.assertEquals ("This is the ", chordPartsFromText.get(0).getText());
@@ -93,7 +93,7 @@ public class UtilsTest {
 
 
 
-    for (MidiFileChordPart nextPart: chordPartsFromText) {
+    for (SongChordPart nextPart: chordPartsFromText) {
       LOGGER.info("CHORDS   :" + nextPart.getChord());
       LOGGER.info("TEXT     :" + nextPart.getText());
     }

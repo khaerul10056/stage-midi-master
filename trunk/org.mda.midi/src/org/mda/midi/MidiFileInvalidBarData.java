@@ -1,7 +1,7 @@
 package org.mda.midi;
 
-import mda.MidiFile;
-import mda.MidiFilePart;
+import mda.Song;
+import mda.SongPart;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -13,14 +13,14 @@ public class MidiFileInvalidBarData {
 	private EObject location;
 	private String currentMessage;
 	
-	public static MidiFileInvalidBarData createNoBarDataAvailableEntry (final MidiFile file) {
+	public static MidiFileInvalidBarData createNoBarDataAvailableEntry (final Song file) {
 		MidiFileInvalidBarData bardata = new MidiFileInvalidBarData(); 
 		bardata.setLocation(file);
 		bardata.setCurrentMessage(NOBARDATA_AVAILABLE);
 		return bardata; 
 	}
 	
-	public static MidiFileInvalidBarData createWrongBarOrderEntry (final MidiFilePart laterPart) {
+	public static MidiFileInvalidBarData createWrongBarOrderEntry (final SongPart laterPart) {
 		MidiFileInvalidBarData bardata = new MidiFileInvalidBarData(); 
 		bardata.setLocation(laterPart);
 		bardata.setCurrentMessage(NOBARDATA_AVAILABLE);

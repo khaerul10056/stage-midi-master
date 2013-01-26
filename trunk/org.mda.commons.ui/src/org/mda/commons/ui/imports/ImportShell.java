@@ -3,7 +3,7 @@ package org.mda.commons.ui.imports;
 import java.util.Arrays;
 import java.util.List;
 import javax.inject.Inject;
-import mda.MidiFile;
+import mda.Song;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -34,13 +34,13 @@ public class ImportShell extends Shell {
   private Button             btnOk;
   private final Text         txtImportedText;
 
-  private MidiFile           midifile;
+  private Song           midifile;
 
   private static final Log   LOGGER  = LogFactory.getLogger(ImportShell.class);
 
   /** Constructor
    * @param shell parentshell */
-  public ImportShell (final Shell shell, final MidiFile midifile) {
+  public ImportShell (final Shell shell, final Song midifile) {
     super(shell);
     LOGGER.info("Starting importshell for midifile " +
       midifile.getName());

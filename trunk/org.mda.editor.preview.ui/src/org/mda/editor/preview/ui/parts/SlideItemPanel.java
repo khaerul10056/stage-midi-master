@@ -2,7 +2,7 @@ package org.mda.editor.preview.ui.parts;
 
 import static org.mda.Utils.ICON_LINK;
 import static org.mda.Utils.loadImageFromProject;
-import mda.MidiFilePart;
+import mda.SongPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -20,7 +20,7 @@ public class SlideItemPanel extends Composite  {
 
   private static final Log LOGGER  = LogFactory.getLogger(SlideItemPanel.class);
 
-  private MidiFilePart part;
+  private SongPart part;
 
   private PreviewEditorComposite editorComposite;
 
@@ -70,7 +70,7 @@ public class SlideItemPanel extends Composite  {
 
 
 
-  public void setModelPart (final MidiFilePart part) {
+  public void setModelPart (final SongPart part) {
     this.part = part;
     String btnText = part.getParttype().toString(); 
     if (part.getBar() > 0)
@@ -83,7 +83,7 @@ public class SlideItemPanel extends Composite  {
       getBtnName().setImage(null);
   }
 
-  public MidiFilePart getModelPart () {
+  public SongPart getModelPart () {
     return part;
   }
 

@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.inject.Inject;
 
-import mda.MidiFilePart;
+import mda.SongPart;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.PaintEvent;
@@ -24,7 +24,7 @@ import org.mda.presenter.CalculatorPreCondition;
 import org.mda.presenter.Slide;
 import org.mda.presenter.SlideItem;
 import org.mda.presenter.adapter.SizeInfo;
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 
 
 public class ContentOverviewPanel extends Composite  {
@@ -45,7 +45,7 @@ public class ContentOverviewPanel extends Composite  {
 
   private Point lastSize;
 
-  private final MidiFilePart currentPart;
+  private final SongPart currentPart;
 
   private boolean selected;
   
@@ -86,7 +86,7 @@ public void setSize (final int weight, final int height) {
     calcPreCondition.setCalculationsize(new SizeInfo (getBounds().width, getBounds().height));
   }
 
-  public ContentOverviewPanel (Composite parent, MidiFilePart part, Slide calculatedSlide, IMidiFilePresenterConfig config) {
+  public ContentOverviewPanel (Composite parent, SongPart part, Slide calculatedSlide, IPresenterConfig config) {
     super(parent, SWT.NONE);
     this.currentPart = part;
     this.currentSlide = calculatedSlide;
@@ -193,7 +193,7 @@ public Point computeSize(int wHint, int hHint, boolean bool) {
     return newSize;
   }
 
-  public MidiFilePart getCurrentPart () {
+  public SongPart getCurrentPart () {
     return currentPart;
   }
 

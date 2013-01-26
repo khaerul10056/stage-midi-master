@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.adapter.SizeInfo;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
 import org.mda.presenter.ui.BeamerPresenter;
 import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
 
@@ -72,7 +72,7 @@ public class PresenterTester extends Shell {
         SizeInfo size = sizes.get(cmbSize.getSelectionIndex());
         Session currentSession = root.getSessions().get(cmbSession.getSelectionIndex());
 
-        DefaultMidiFilePresenterConfig config = new DefaultMidiFilePresenterConfig();
+        DefaultPresenterConfig config = new DefaultPresenterConfig();
         config.setShowChords(chkWithChords.getSelection());
         config.setShowBackground(chkWithBackground.getSelection());
         config.setShowBlockType(chkWithBlocktypes.getSelection());
