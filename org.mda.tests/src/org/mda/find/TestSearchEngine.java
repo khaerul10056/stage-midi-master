@@ -27,7 +27,7 @@ public class TestSearchEngine {
 		SearchEngine engine = new SearchEngine();
 		List<SearchResult> find = engine.find("Alle Schoepfung", currentModel);
 		Assert.assertEquals(1, find.size());
-		Assert.assertEquals("MidiFile", find.get(0).getClazz().getName());
+		Assert.assertEquals("Song", find.get(0).getClazz().getName());
 
 	}
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <org.mda.model:MidiPlayerRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda.model="org.mda.model">
   <gallery>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Alle Schoepfung staunt und preist.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="image#05_51_24---Sunset-Worship-Background_web#jpg">
+    <galleryItems xsi:type="org.mda.model:Song" name="Alle Schoepfung staunt und preist.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="image#05_51_24---Sunset-Worship-Background_web#jpg">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text="  " chord="D"/>
@@ -238,7 +238,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Blessed be your name.mid" path="/home/oleym/privat/soundOfFaith/midi" backgroundColor="72x121x72" foregroundColor="249x249x249" pic="image#dsc00171#jpg">
+    <galleryItems xsi:type="org.mda.model:Song" name="Blessed be your name.mid" path="/home/oleym/privat/soundOfFaith/midi" backgroundColor="72x121x72" foregroundColor="249x249x249" pic="image#dsc00171#jpg">
       <parts parttype="INTRO" bar="1">
         <textlines>
           <chordParts text="H 2x"/>
@@ -385,7 +385,7 @@
         <textlines/>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Breathe.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:Song" name="Breathe.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text="   " chord="A"/>
@@ -545,7 +545,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Der Herr segne Dich.mid" path="/home/oleym/privat/soundOfFaith/midi" backgroundColor="36x30x229" foregroundColor="92x213x92" pic="image#DSC01532#jpg">
+    <galleryItems xsi:type="org.mda.model:Song" name="Der Herr segne Dich.mid" path="/home/oleym/privat/soundOfFaith/midi" backgroundColor="36x30x229" foregroundColor="92x213x92" pic="image#DSC01532#jpg">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text="C G/C F/C C C/E F G C"/>
@@ -694,7 +694,7 @@
         <textlines/>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Ehre sei dem Herrn.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="image#DSC01532#jpg">
+    <galleryItems xsi:type="org.mda.model:Song" name="Ehre sei dem Herrn.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="image#DSC01532#jpg">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text="h A h A G D F#    h A h A G D F#"/>
@@ -882,7 +882,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Er kam zu uns - Er ist Herr.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:Song" name="Er kam zu uns - Er ist Herr.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO" bar="2">
         <textlines>
           <chordParts text="  " chord="D"/>
@@ -1094,7 +1094,7 @@
         <textlines/>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="For all you've done.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:Song" name="For all you've done.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO" bar="2">
         <textlines>
           <chordParts text=" " chord="D "/>
@@ -1209,7 +1209,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Gnade und Wahrheit.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:Song" name="Gnade und Wahrheit.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text=" " chord="d "/>
@@ -1301,7 +1301,7 @@
         <textlines/>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Gnadenthron.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:Song" name="Gnadenthron.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text="d"/>
@@ -1508,7 +1508,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Gott ist Liebe.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:Song" name="Gott ist Liebe.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO" bar="2">
         <textlines>
           <chordParts text="  " chord="F"/>
@@ -1684,7 +1684,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Jesus in my house.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:Song" name="Jesus in my house.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO" bar="3">
         <textlines>
           <chordParts text="D G A G   D G A G    D G A G   D G A G"/>
@@ -1788,7 +1788,7 @@
         <textlines/>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Lord, Lord, Lord.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:Song" name="Lord, Lord, Lord.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO" bar="2">
         <textlines>
           <chordParts text="E"/>
@@ -1890,7 +1890,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Open the eyes.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:Song" name="Open the eyes.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text="D A/C# G/H G DE H/D# A/C# A E"/>
@@ -2041,7 +2041,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Saviour.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:Song" name="Saviour.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO" bar="2">
         <textlines>
           <chordParts text="  " chord="a"/>
@@ -2223,7 +2223,7 @@
         <textlines/>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Unbeschreiblich tief.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:Song" name="Unbeschreiblich tief.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text="A"/>
@@ -2362,7 +2362,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="We have a vision.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:Song" name="We have a vision.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text=" " chord="A"/>
@@ -2473,8 +2473,8 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="When I worship you(Schlechte Fassung).mid" path="/home/oleym/privat/soundOfFaith/midi"/>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="When I worship you.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:Song" name="When I worship you(Schlechte Fassung).mid" path="/home/oleym/privat/soundOfFaith/midi"/>
+    <galleryItems xsi:type="org.mda.model:Song" name="When I worship you.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO" bar="2">
         <textlines>
           <chordParts text="   " chord="Bb"/>
@@ -2634,7 +2634,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="You shine.mid" path="/home/oleym/privat/soundOfFaith/midi">
+    <galleryItems xsi:type="org.mda.model:Song" name="You shine.mid" path="/home/oleym/privat/soundOfFaith/midi">
       <parts parttype="INTRO">
         <textlines>
           <chordParts text="  " chord="E"/>
@@ -2767,7 +2767,7 @@
         </textlines>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Neues Lied">
+    <galleryItems xsi:type="org.mda.model:Song" name="Neues Lied">
       <parts parttype="VERS">
         <textlines>
           <chordParts text="Ein Lied " chord=""/>
@@ -2790,9 +2790,9 @@
         <textlines/>
       </parts>
     </galleryItems>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="DIes ist ein neues Lied"/>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Noch neueres Lied"/>
-    <galleryItems xsi:type="org.mda.model:MidiFile" name="Hansdampf"/>
+    <galleryItems xsi:type="org.mda.model:Song" name="DIes ist ein neues Lied"/>
+    <galleryItems xsi:type="org.mda.model:Song" name="Noch neueres Lied"/>
+    <galleryItems xsi:type="org.mda.model:Song" name="Hansdampf"/>
   </gallery>
   <sessions name="Probe" items="//@gallery/@galleryItems.0 //@gallery/@galleryItems.2 //@gallery/@galleryItems.1 //@gallery/@galleryItems.3 //@gallery/@galleryItems.4 //@gallery/@galleryItems.5 //@gallery/@galleryItems.6 //@gallery/@galleryItems.7 //@gallery/@galleryItems.8 //@gallery/@galleryItems.9 //@gallery/@galleryItems.10 //@gallery/@galleryItems.11 //@gallery/@galleryItems.12 //@gallery/@galleryItems.13 //@gallery/@galleryItems.14 //@gallery/@galleryItems.15 //@gallery/@galleryItems.17 //@gallery/@galleryItems.18 //@gallery/@galleryItems.20 //@gallery/@galleryItems.21 //@gallery/@galleryItems.22"/>
   <config screenIDPresentation=":0.0" screenIDAdmin=":0.1" lastSession="//@sessions.0" pdfExportPath="texte_pdf" additionalsPath="additionals" fontsize="40" mailserverUser="" mailserverPassword="" mididevice="M1 [hw:1,0,0]"/>
