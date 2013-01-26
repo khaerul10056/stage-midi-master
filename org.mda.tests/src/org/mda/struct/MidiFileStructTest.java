@@ -1,8 +1,8 @@
 package org.mda.struct;
 
 import java.util.List;
-import mda.MidiFile;
-import mda.MidiFilePartType;
+import mda.Song;
+import mda.SongPartType;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mda.MidiPlayerService;
@@ -23,17 +23,17 @@ public class MidiFileStructTest {
   public void partCounts () {
 
     MidiFileCreator creator = MidiFileCreator.create();
-    creator = creator.part(MidiFilePartType.INTRO);
-    creator = creator.part(MidiFilePartType.REFRAIN);
-    creator = creator.part(MidiFilePartType.VERS);
-    creator = creator.part(MidiFilePartType.VERS);
+    creator = creator.part(SongPartType.INTRO);
+    creator = creator.part(SongPartType.REFRAIN);
+    creator = creator.part(SongPartType.VERS);
+    creator = creator.part(SongPartType.VERS);
     creator = creator.refPart(1);
-    creator = creator.part(MidiFilePartType.VERS);
+    creator = creator.part(SongPartType.VERS);
     creator = creator.refPart(5);
     creator = creator.refPart(5);
 
 
-    MidiFile file = creator.get();
+    Song file = creator.get();
     MidiFileStruct struct = new MidiFileStruct(file);
 
     LOGGER.info(MidiPlayerService.toString(file));
@@ -97,19 +97,19 @@ public class MidiFileStructTest {
   @Test
   public void productiveExample () {
     MidiFileCreator creator = MidiFileCreator.create();
-    creator = creator.part(MidiFilePartType.INTRO);
-    creator = creator.part(MidiFilePartType.VERS);
-    creator = creator.part(MidiFilePartType.REFRAIN);
-    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.part(SongPartType.INTRO);
+    creator = creator.part(SongPartType.VERS);
+    creator = creator.part(SongPartType.REFRAIN);
+    creator = creator.part(SongPartType.REFRAIN);
     creator = creator.refPart(1);
     creator = creator.refPart(2);
     creator = creator.refPart(3);
-    creator = creator.part(MidiFilePartType.SOLO);
+    creator = creator.part(SongPartType.SOLO);
     creator = creator.refPart(2);
-    creator = creator.part(MidiFilePartType.REFRAIN);
-    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.part(SongPartType.REFRAIN);
+    creator = creator.part(SongPartType.REFRAIN);
 
-    MidiFile file = creator.get();
+    Song file = creator.get();
     MidiFileStruct struct = new MidiFileStruct(file);
     for (MidiFileStructItem nextStructItem: struct.getItems()) {
       LOGGER.info(nextStructItem.getLabel());

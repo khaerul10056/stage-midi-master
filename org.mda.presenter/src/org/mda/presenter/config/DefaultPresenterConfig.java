@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import mda.MidiFilePartType;
+import mda.SongPartType;
 import mda.impl.PresentationSchemeImpl;
 
 import org.mda.ApplicationSession;
@@ -16,13 +16,13 @@ import org.mda.presenter.adapter.SizeInfo;
 import com.google.inject.Inject;
 
 
-public class DefaultMidiFilePresenterConfig extends PresentationSchemeImpl implements IMidiFilePresenterConfig {
+public class DefaultPresenterConfig extends PresentationSchemeImpl implements IPresenterConfig {
 
   
 
   private SizeInfo                  defaultPresentationScreenSize = new SizeInfo (1280, 800); //TODO make better
 
-  private List<MidiFilePartType> partsToIgnore   = new ArrayList<MidiFilePartType>();
+  private List<SongPartType> partsToIgnore   = new ArrayList<SongPartType>();
 
 
 
@@ -54,12 +54,12 @@ public class DefaultMidiFilePresenterConfig extends PresentationSchemeImpl imple
   }
 
 
-  public void addIgnoredPartType (MidiFilePartType solo) {
+  public void addIgnoredPartType (SongPartType solo) {
     partsToIgnore.add(solo);
   }
 
   @Override
-  public boolean isPartIgnored (final MidiFilePartType parttype) {
+  public boolean isPartIgnored (final SongPartType parttype) {
     return partsToIgnore.contains(parttype);
   }
 

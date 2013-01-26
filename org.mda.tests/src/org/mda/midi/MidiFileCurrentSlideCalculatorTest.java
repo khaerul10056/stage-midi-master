@@ -2,11 +2,10 @@ package org.mda.midi;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import mda.MidiFile;
-import mda.MidiFilePart;
-import mda.MidiFilePartType;
+import mda.SongPart;
+import mda.SongPartType;
 import mda.Session;
-import mda.impl.MidiFileChordPartImpl;
+import mda.Song;
 
 import org.junit.Test;
 import org.mda.MidiPlayerService;
@@ -19,9 +18,9 @@ public class MidiFileCurrentSlideCalculatorTest {
         MidiFileCreator creator = MidiFileCreator.create();
 		
 		Session session = MidiPlayerService.mf.createSession();
-		creator.part(MidiFilePartType.INTRO).setBar(12);
+		creator.part(SongPartType.INTRO).setBar(12);
 		creator.chordAndText("This is a chord", "And this is a text");
-		creator.part(MidiFilePartType.VERS).setBar(11);
+		creator.part(SongPartType.VERS).setBar(11);
 		creator.chordAndText("This is a chord", "And this is a text");
 		session.getItems().add(creator.get());
 		
@@ -42,7 +41,7 @@ public class MidiFileCurrentSlideCalculatorTest {
 		MidiFileCreator creator = MidiFileCreator.create();
 		
 		Session session = MidiPlayerService.mf.createSession();
-		creator.part(MidiFilePartType.INTRO);
+		creator.part(SongPartType.INTRO);
 		creator.chordAndText("This is a chord", "And this is a text");
 		session.getItems().add(creator.get());
 		
@@ -64,16 +63,16 @@ public class MidiFileCurrentSlideCalculatorTest {
         MidiFileCreator creator = MidiFileCreator.create();
 		
 		Session session = MidiPlayerService.mf.createSession();
-		creator.part(MidiFilePartType.INTRO).setBar(12);
+		creator.part(SongPartType.INTRO).setBar(12);
 		creator.chordAndText("This is a chord", "And this is a text");
-		creator.part(MidiFilePartType.VERS).setBar(15);
+		creator.part(SongPartType.VERS).setBar(15);
 		creator.chordAndText("This is a chord", "And this is a text");
-		MidiFile midiFile = creator.get();
+		Song midiFile = creator.get();
 		session.getItems().add(midiFile);
 		calculator.init(session);
 		
-		MidiFilePart firstPart = midiFile.getParts().get(0);
-		MidiFilePart secondPart = midiFile.getParts().get(1);
+		SongPart firstPart = midiFile.getParts().get(0);
+		SongPart secondPart = midiFile.getParts().get(1);
 		
 		assertEquals (firstPart, calculator.getCurrentPart(midiFile, new Position (12,1)));
 		assertEquals (firstPart, calculator.getCurrentPart(midiFile, new Position (13,1)));

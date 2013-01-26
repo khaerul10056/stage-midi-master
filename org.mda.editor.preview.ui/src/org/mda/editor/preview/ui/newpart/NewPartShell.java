@@ -5,9 +5,9 @@ import static org.mda.Utils.ICON_REFPART;
 import static org.mda.Utils.loadImageFromProject;
 import java.util.ArrayList;
 import java.util.List;
-import mda.MidiFile;
-import mda.MidiFilePart;
-import mda.MidiFilePartType;
+import mda.Song;
+import mda.SongPart;
+import mda.SongPartType;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -23,15 +23,15 @@ import org.mda.MidiPlayerService;
 
 public class NewPartShell extends Shell implements SelectionListener {
 
-  private MidiFile midifile;
+  private Song midifile;
 
-  private MidiFilePart addAfter;
+  private SongPart addAfter;
 
    List <Button> buttonsDefault = new ArrayList<Button>();
 
   List <Button> buttonsReference = new ArrayList<Button>();
 
-  private List <MidiFilePart> partReferences = new ArrayList<MidiFilePart>();
+  private List <SongPart> partReferences = new ArrayList<SongPart>();
 
   private static Image imgNewPart = loadImageFromProject(ICON_PART);
   private static Image imgNewRefPart = loadImageFromProject(ICON_REFPART);
@@ -51,7 +51,7 @@ public class NewPartShell extends Shell implements SelectionListener {
     return button;
   }
 
-  public NewPartShell (final Shell shell, final MidiFile midifile, MidiFilePart addAfter, final Point position) {
+  public NewPartShell (final Shell shell, final Song midifile, SongPart addAfter, final Point position) {
     super (shell, SWT.NONE);
     this.midifile = midifile;
     this.addAfter = addAfter;
@@ -63,7 +63,7 @@ public class NewPartShell extends Shell implements SelectionListener {
 
     int completeNumbersOfButtons = 0;
 
-    for (MidiFilePartType newTypes : MidiFilePartType.values()) {
+    for (SongPartType newTypes : SongPartType.values()) {
       Button button = addButton();
       button.setText("New " + newTypes.getName());
       button.setImage(imgNewPart);
@@ -71,7 +71,7 @@ public class NewPartShell extends Shell implements SelectionListener {
       buttonsDefault.add(button);
     }
 
-    for (MidiFilePart nextPart: midifile.getParts()) {
+    for (SongPart nextPart: midifile.getParts()) {
 
       if (nextPart.getRefPart() == null) { //only parts that are no refpart itself
         Button btn = addButton();
@@ -120,14 +120,14 @@ protected void checkSubclass () {
 
 
 
-  private MidiFilePartType getPartType (final Widget widget) {
+  private SongPartType getPartType (final Widget widget) {
     int indexOf = buttonsDefault.indexOf(widget);
     if (indexOf < 0)
       return null;
-    return MidiFilePartType.get(indexOf);
+    return SongPartType.get(indexOf);
   }
 
-  private MidiFilePart getRefPart (final Widget widget) {
+  private SongPart getRefPart (final Widget widget) {
     int indexOf = buttonsReference.indexOf(widget);
     if (indexOf < 0)
       return null;
@@ -138,8 +138,8 @@ protected void checkSubclass () {
   public void widgetSelected (SelectionEvent arg0) {
     Widget widget = arg0.widget;
 
-    MidiFilePartType type = getPartType(widget);
-    MidiFilePart ref = getRefPart(widget);
+    SongPartType type = getPartType(widget);
+    SongPart ref = getRefPart(widget);
     MidiPlayerService.addPartAfter(midifile, addAfter, type, ref);
 
     dispose();

@@ -5,8 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import mda.MidiFile;
-import mda.MidiFilePartType;
+import mda.Song;
+import mda.SongPartType;
 import mda.MidiplayerFactory;
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,14 +33,14 @@ public class TextImporterTest {
 		DefaultTextImporterConfig config = new DefaultTextImporterConfig();
 		TextImporterService service = new TextImporterService (loadFile, config);
 
-		MidiFile midifile = MidiplayerFactory.eINSTANCE.createMidiFile();
+		Song midifile = MidiplayerFactory.eINSTANCE.createSong();
 
 
 		service.importText(midifile);
 
-		Assert.assertEquals (MidiFilePartType.INTRO, midifile.getParts().get(0).getParttype());
-		Assert.assertEquals (MidiFilePartType.REFRAIN, midifile.getParts().get(1).getParttype());
-		Assert.assertEquals (MidiFilePartType.VERS, midifile.getParts().get(2).getParttype());
+		Assert.assertEquals (SongPartType.INTRO, midifile.getParts().get(0).getParttype());
+		Assert.assertEquals (SongPartType.REFRAIN, midifile.getParts().get(1).getParttype());
+		Assert.assertEquals (SongPartType.VERS, midifile.getParts().get(2).getParttype());
 
 		LOGGER.info(MidiPlayerService.getMidiFileAsString(midifile));
 
@@ -59,12 +59,12 @@ public class TextImporterTest {
 		DefaultTextImporterConfig config = new DefaultTextImporterConfig();
 		TextImporterService service = new TextImporterService (loadFile, config);
 
-		MidiFile midifile = MidiplayerFactory.eINSTANCE.createMidiFile();
+		Song midifile = MidiplayerFactory.eINSTANCE.createSong();
 		service.importText(midifile);
 
-		Assert.assertEquals (MidiFilePartType.INTRO, midifile.getParts().get(0).getParttype());
-		Assert.assertEquals (MidiFilePartType.VERS, midifile.getParts().get(1).getParttype());
-		Assert.assertEquals (MidiFilePartType.REFRAIN, midifile.getParts().get(2).getParttype());
+		Assert.assertEquals (SongPartType.INTRO, midifile.getParts().get(0).getParttype());
+		Assert.assertEquals (SongPartType.VERS, midifile.getParts().get(1).getParttype());
+		Assert.assertEquals (SongPartType.REFRAIN, midifile.getParts().get(2).getParttype());
 
 		LOGGER.info(MidiPlayerService.getMidiFileAsString(midifile));
 

@@ -25,7 +25,7 @@ import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.adapter.SizeInfo;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
 import org.mda.presenter.config.PresentationConfigurator;
 import org.mda.presenter.config.PresentationType;
 import org.mda.presenter.ui.slide.GlobalKeyRegistryPresentationController;
@@ -120,7 +120,7 @@ public class JavaFxPresenterTester extends Application {
 //                currentSession.getItems().add(file);
                 
                 PresentationConfigurator configurator = new PresentationConfigurator();
-        	    DefaultMidiFilePresenterConfig config = (DefaultMidiFilePresenterConfig) configurator.configure(null, appsession.getCurrentModel(), PresentationType.SCREEN);
+        	    DefaultPresenterConfig config = (DefaultPresenterConfig) configurator.configure(null, appsession.getCurrentModel(), PresentationType.SCREEN);
         		config.setShowChords(chkWithChords.isSelected());
 				config.setShowBackground(chkWithBackground.isSelected());
 				config.setShowBlockType(chkWithBlocktypes.isSelected());

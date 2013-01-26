@@ -32,7 +32,7 @@ import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.adapter.ColorInfo;
 import org.mda.presenter.adapter.SizeInfo;
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 
 @Creatable
 public class PptExporter extends AbstractExporter {
@@ -51,7 +51,7 @@ public class PptExporter extends AbstractExporter {
 
 
   @Override
-public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IMidiFilePresenterConfig config) throws ExportException {
+public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IPresenterConfig config) throws ExportException {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
 

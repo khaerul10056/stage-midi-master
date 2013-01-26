@@ -10,7 +10,7 @@ import java.util.HashMap;
 import javax.inject.Inject;
 
 import mda.AbstractSessionItem;
-import mda.MidiFile;
+import mda.Song;
 import mda.Session;
 
 import org.eclipse.core.commands.ParameterizedCommand;
@@ -254,7 +254,7 @@ public class SessionOverviewPart {
 		@Override
 		public void selectionChanged(SelectionChangedEvent event) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) event.getSelection();
-			appSession.setCurrentMidifile((MidiFile) structuredSelection.getFirstElement());
+			appSession.setCurrentMidifile((Song) structuredSelection.getFirstElement());
 		}
 	});
     

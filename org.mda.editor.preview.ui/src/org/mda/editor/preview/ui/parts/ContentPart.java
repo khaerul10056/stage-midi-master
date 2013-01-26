@@ -6,9 +6,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import mda.MidiFileChordPart;
-import mda.MidiFilePart;
-import mda.MidiFileTextLine;
+import mda.SongChordPart;
+import mda.SongPart;
+import mda.SongTextLine;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
@@ -39,11 +39,11 @@ import org.mda.editor.preview.ui.chords.ChordHover;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.CalculatorPreCondition;
-import org.mda.presenter.MidiFileSlideCalculator;
+import org.mda.presenter.SongSlideCalculator;
 import org.mda.presenter.Slide;
 import org.mda.presenter.SlideItem;
 import org.mda.presenter.adapter.SizeInfo;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
 
 @Creatable
 public class ContentPart extends AbstractPart implements FocusListener {
@@ -51,7 +51,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
   private static final Log                   LOGGER            = LogFactory.getLogger(ContentPart.class);
 
   @com.google.inject.Inject
-  private DefaultMidiFilePresenterConfig config;
+  private DefaultPresenterConfig config;
 
   private CalculatorPreCondition             calcPreConditions = new CalculatorPreCondition();            //TODO inject
 
@@ -66,7 +66,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
   private Font                               font;
 
   @Inject
-  private MidiFileSlideCalculator            calculator;
+  private SongSlideCalculator            calculator;
 
   private int                                currentCaretPosition;
 
@@ -101,7 +101,7 @@ public class ContentPart extends AbstractPart implements FocusListener {
   }
 
   @Override
-public void setCurrentPart (MidiFilePart currentPart) {
+public void setCurrentPart (SongPart currentPart) {
     super.setCurrentPart(currentPart);
     showPart(currentPart, comp.getSize());
     setCurrentFocusedLine(0);
@@ -124,7 +124,7 @@ public void setCurrentPart (MidiFilePart currentPart) {
    * @param part part to repaint
    * @param size size
    * @return size */
-  private Point showPart (final MidiFilePart part, final Point size) {
+  private Point showPart (final SongPart part, final Point size) {
 	  
 	  if (part == null)
 		  return size; 
@@ -431,10 +431,10 @@ public void setCurrentPart (MidiFilePart currentPart) {
 
 
 
-  public MidiFilePart saveToModel () {
+  public SongPart saveToModel () {
     getCurrentPart().getTextlines().clear();
     for (int i = 0; i < getTextLines().size(); i++) {
-      MidiFileTextLine newTextLine = MidiPlayerService.mf.createMidiFileTextLine();
+      SongTextLine newTextLine = MidiPlayerService.mf.createSongTextLine();
       getCurrentPart().getTextlines().add(newTextLine);
 
       String chord = Utils.trimRight(getChordLines().get(i).getText());
@@ -454,7 +454,7 @@ public void setCurrentPart (MidiFilePart currentPart) {
 
 
       if (chord.trim().length() == 0) { //without chords
-        MidiFileChordPart newChordPart = MidiPlayerService.mf.createMidiFileChordPart();
+        SongChordPart newChordPart = MidiPlayerService.mf.createSongChordPart();
         newChordPart.setText(text);
         newTextLine.getChordParts().add(newChordPart);
       }
@@ -475,7 +475,7 @@ public void setCurrentPart (MidiFilePart currentPart) {
         positions.add(Math.max(chord.length(), text.length()));
 
         for (int linepos = 0; linepos < positions.size(); linepos++) {
-          MidiFileChordPart newChordPart = MidiPlayerService.mf.createMidiFileChordPart();
+          SongChordPart newChordPart = MidiPlayerService.mf.createSongChordPart();
           int from = linepos == 0 ? 0 : positions.get(linepos - 1);
           int toChord = Math.min(positions.get(linepos), chord.length());
           String chordPart = chord.substring(from, toChord);

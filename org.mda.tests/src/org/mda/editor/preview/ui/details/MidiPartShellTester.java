@@ -1,7 +1,7 @@
 package org.mda.editor.preview.ui.details;
 
 import java.io.File;
-import mda.MidiFile;
+import mda.Song;
 import mda.MidiPlayerRoot;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
@@ -16,7 +16,7 @@ public class MidiPartShellTester {
     session.load(null);
     Shell shell = new Shell();
     final MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
-    MidiFile file = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    Song file = (Song) root.getGallery().getGalleryItems().get(0);
     MidiPartDetailsShell additionalshell = new MidiPartDetailsShell(); 
     additionalshell.build(shell, file.getParts().get(0));
 

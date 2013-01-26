@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.TreeMap;
-import mda.MidiFileChordPart;
-import mda.MidiFilePartType;
+import mda.SongChordPart;
+import mda.SongPartType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
@@ -317,7 +317,7 @@ public class Utils {
 
     if (substring.trim().isEmpty()) return " ";
     String textWithoutTag = substring;
-    for (MidiFilePartType nextType : MidiFilePartType.values()) {
+    for (SongPartType nextType : SongPartType.values()) {
       if (substring.toUpperCase().startsWith(nextType.getName().toUpperCase()))
         textWithoutTag = substring.substring(nextType.getName().length(), substring.length());
     }
@@ -333,8 +333,8 @@ public class Utils {
     return textWithoutTagAndTrimmed;
   }
 
-  public static List <MidiFileChordPart> getChordPartsFromText (final String textline, final String chordline) {
-    List <MidiFileChordPart> parts = new ArrayList <MidiFileChordPart> ();
+  public static List <SongChordPart> getChordPartsFromText (final String textline, final String chordline) {
+    List <SongChordPart> parts = new ArrayList <SongChordPart> ();
 
     TreeMap<Integer,String> chordIndexes = new TreeMap<Integer, String>();
     if (chordline != null) chordIndexes = Utils.getChordPositions(chordline);
@@ -349,7 +349,7 @@ public class Utils {
     if (indeces.length > 0 && indeces[0].intValue() > 0) {
       String text = getTextWithoutTagsTrimmed(textline.substring(0, indeces[0]));
       if (text.trim().length() > 0) {
-        MidiFileChordPart nextPart = MidiPlayerService.mf.createMidiFileChordPart();
+        SongChordPart nextPart = MidiPlayerService.mf.createSongChordPart();
         nextPart.setText(text);
         parts.add(nextPart);
       }
@@ -358,7 +358,7 @@ public class Utils {
 
     if (indeces.length == 0) {
       String text = getTextWithoutTagsTrimmed(textline);
-      MidiFileChordPart nextPart = MidiPlayerService.mf.createMidiFileChordPart();
+      SongChordPart nextPart = MidiPlayerService.mf.createSongChordPart();
       nextPart.setText(text);
       parts.add(nextPart);
     }
@@ -387,7 +387,7 @@ public class Utils {
 
       // ignore empty parts, only not empty parts are added
       if (chord != null && chord.trim().length() > 0 && nextTextToken.length() > 0) {
-        MidiFileChordPart nextPart = MidiPlayerService.mf.createMidiFileChordPart();
+        SongChordPart nextPart = MidiPlayerService.mf.createSongChordPart();
         nextPart.setChord(chord);
         nextPart.setText(nextTextToken);
         parts.add(nextPart);

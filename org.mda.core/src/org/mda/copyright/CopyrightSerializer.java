@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import mda.Copyright;
-import mda.MidiFile;
+import mda.Song;
 import org.mda.MidiPlayerService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -63,7 +63,7 @@ public class CopyrightSerializer {
       return template.replace(type.getId(), "");
   }
 
-  public List <String> serialize (final MidiFile midifile) {
+  public List <String> serialize (final Song midifile) {
 
     LOGGER.info("Serializing copyright using template <" + template + ">");
 

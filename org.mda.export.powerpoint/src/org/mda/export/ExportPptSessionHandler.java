@@ -13,7 +13,7 @@ import org.mda.Utils;
 import org.mda.commons.ui.UIHandler;
 import org.mda.export.powerpoint.PptExporter;
 import org.mda.inject.InjectService;
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 import org.mda.presenter.config.PresentationConfigurator;
 import org.mda.presenter.config.PresentationType;
 
@@ -36,7 +36,7 @@ public class ExportPptSessionHandler {
 		InjectService.injectObject(this);
 		
 		PresentationConfigurator configurator = new PresentationConfigurator(); 
-		IMidiFilePresenterConfig config = configurator.configure(null, session.getCurrentModel(), PresentationType.PPT);
+		IPresenterConfig config = configurator.configure(null, session.getCurrentModel(), PresentationType.PPT);
 		Session currentSession = (Session) session.getModelEvents().getCurrentModelElement(Session.class);
 		String name = Utils.removeWhitespaces(currentSession.getName());
 		File exportPath = new File (session.getExportPath(), name + ".ppt");

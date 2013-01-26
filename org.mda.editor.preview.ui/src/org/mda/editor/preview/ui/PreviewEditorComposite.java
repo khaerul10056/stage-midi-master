@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import mda.MidiFilePart;
+import mda.SongPart;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -96,7 +96,7 @@ public boolean isBuilt () {
   }
 
 
-  public void setCurrentPart (MidiFilePart part) {
+  public void setCurrentPart (SongPart part) {
     for (AbstractPart nextPart: editorParts) {
       nextPart.setCurrentPart(part);
     }

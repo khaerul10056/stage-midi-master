@@ -1,6 +1,6 @@
 package org.mda.editor.preview.ui.newpart;
 
-import mda.MidiFile;
+import mda.Song;
 
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Shell;
@@ -22,7 +22,7 @@ public class NewPartShellTester {
     ApplicationSession session = InjectService.getInstance(ApplicationSession.class);
     session.load(null);
     Shell shell = new Shell();
-    MidiFile file = (MidiFile) session.getCurrentModel().getGallery().getGalleryItems().get(0);
+    Song file = (Song) session.getCurrentModel().getGallery().getGalleryItems().get(0);
     NewPartShell additionalshell = new NewPartShell(shell, file, file.getParts().get(0),new Point (100, 100));
 
     while (!additionalshell.isDisposed()) {

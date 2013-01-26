@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mda.AbstractSessionItem;
-import mda.MidiFile;
-import mda.MidiFilePartType;
+import mda.Song;
+import mda.SongPartType;
 
 import org.apache.poi.hslf.model.TextBox;
 import org.apache.poi.hslf.usermodel.SlideShow;
@@ -24,7 +24,7 @@ import org.mda.export.powerpoint.PptExporter;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
 import org.mda.presenter.ui.test.MidiFileCreator;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
 
 
 public class TestPptExporter {
@@ -32,14 +32,14 @@ public class TestPptExporter {
   private File tmpFile = new File ("tmp/export.ppt");
 
   private static ApplicationSession appSession;
-  private static DefaultMidiFilePresenterConfig config;
+  private static DefaultPresenterConfig config;
 
 
   @BeforeClass
   public static void beforeClass () {
 	InjectServiceMock.initialize();
 	appSession = InjectService.getInstance(ApplicationSession.class);
-	config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+	config = InjectService.getInstance(DefaultPresenterConfig.class);
     appSession.load(null);
   }
 
@@ -65,9 +65,9 @@ public class TestPptExporter {
     final String backgroundImage = "image#05_51_24---Sunset-Worship-Background_web#jpg";
 
     MidiFileCreator creator = MidiFileCreator.create();
-    creator = creator.part(MidiFilePartType.VERS).line();
+    creator = creator.part(SongPartType.VERS).line();
     creator = creator.chordAndText("D", "This is a test").chordAndText("E", "once more");
-    MidiFile file = creator.get();
+    Song file = creator.get();
     file.setPic(backgroundImage);
     Color colorBlack = Display.getDefault().getSystemColor(SWT.COLOR_BLACK);
     String colorBlackAsString = Utils.colorToString(colorBlack);
@@ -97,9 +97,9 @@ public class TestPptExporter {
       final String backgroundImage = "image#05_51_24---Sunset-Worship-Background_web#jpg";
 
       MidiFileCreator creator = MidiFileCreator.create();
-      creator = creator.part(MidiFilePartType.VERS).line();
+      creator = creator.part(SongPartType.VERS).line();
       creator = creator.chordAndText("D", "This is a test").chordAndText("E", "once more");
-      MidiFile file = creator.get();
+      Song file = creator.get();
       file.setPic(backgroundImage);
       Color colorWhite = Display.getDefault().getSystemColor(SWT.COLOR_WHITE);
       java.awt.Color colorWhiteAsAwt = Utils.toAwtColor(colorWhite);
@@ -127,9 +127,9 @@ public class TestPptExporter {
   public void testNoBackgroundImage () {
 
     MidiFileCreator creator = MidiFileCreator.create();
-    creator = creator.part(MidiFilePartType.VERS).line();
+    creator = creator.part(SongPartType.VERS).line();
     creator = creator.chordAndText("D", "This is a test").chordAndText("E", "once more");
-    MidiFile file = creator.get();
+    Song file = creator.get();
 
     PptExporter exporter = getExporter();
     Color colorBlack = Display.getDefault().getSystemColor(SWT.COLOR_BLACK);

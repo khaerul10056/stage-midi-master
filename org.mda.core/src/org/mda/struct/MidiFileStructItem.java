@@ -1,12 +1,12 @@
 package org.mda.struct;
 
-import mda.MidiFilePart;
-import mda.MidiFilePartType;
+import mda.SongPart;
+import mda.SongPartType;
 
 
 public class MidiFileStructItem {
 
-  private MidiFilePartType type;
+  private SongPartType type;
 
   /**
    * E.g. the second refrain is shown as 2
@@ -40,7 +40,7 @@ public class MidiFileStructItem {
    */
   private boolean isVisible = true;
 
-  private MidiFilePart part;
+  private SongPart part;
 
   public boolean isContentShown () {
     return isContentShown;
@@ -78,19 +78,19 @@ public class MidiFileStructItem {
     return builder.toString() + " ";
   }
 
-  public MidiFilePartType getType () {
+  public SongPartType getType () {
     return type;
   }
 
-  public void setType (MidiFilePartType type) {
+  public void setType (SongPartType type) {
     this.type = type;
   }
 
-  public MidiFilePart getPart () {
+  public SongPart getPart () {
     return part;
   }
 
-  public void setPart (MidiFilePart part) {
+  public void setPart (SongPart part) {
     this.part = part;
   }
 

@@ -3,13 +3,13 @@ package org.mda.midi;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import mda.MidiFile;
+import mda.Song;
 
 public class NoMidiFileFoundException extends Exception {
 	
-	Collection <MidiFile> filesWithoutMidiFile = new ArrayList<MidiFile>();
+	Collection <Song> filesWithoutMidiFile = new ArrayList<Song>();
 	
-	public void add (MidiFile midifile) {
+	public void add (Song midifile) {
 		filesWithoutMidiFile.add(midifile);
 	}
 	

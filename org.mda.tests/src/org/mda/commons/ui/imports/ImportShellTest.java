@@ -1,6 +1,6 @@
 package org.mda.commons.ui.imports;
 
-import mda.MidiFile;
+import mda.Song;
 import mda.MidiPlayerRoot;
 
 import org.eclipse.swt.widgets.Shell;
@@ -17,7 +17,7 @@ public class ImportShellTest {
 	    MidiPlayerRoot model = session.getCurrentModel();
 
 	    Shell shell = new Shell();
-	    ImportShell additionalshell = new ImportShell(shell, (MidiFile) model.getGallery().getGalleryItems().get(0));
+	    ImportShell additionalshell = new ImportShell(shell, (Song) model.getGallery().getGalleryItems().get(0));
    	    //TODO checks
 	    
 	    additionalshell.dispose();

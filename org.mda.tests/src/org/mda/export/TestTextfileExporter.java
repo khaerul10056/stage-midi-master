@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mda.AbstractSessionItem;
-import mda.MidiFile;
-import mda.MidiFilePartType;
+import mda.Song;
+import mda.SongPartType;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -21,7 +21,7 @@ import org.mda.export.textfile.TextfileExporter;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
 import org.mda.presenter.ui.test.MidiFileCreator;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
 
 public class TestTextfileExporter {
 	
@@ -56,13 +56,13 @@ public class TestTextfileExporter {
 
 	  
 	  
-	  private MidiFile createTestMidiFile () {
+	  private Song createTestMidiFile () {
 		  MidiFileCreator creator = MidiFileCreator.create();
 		  creator.setName("This is my song"); 
-		  creator.part(MidiFilePartType.VERS); 
+		  creator.part(SongPartType.VERS); 
 		  creator.line().chordAndText("C", "This is my song, ").chordAndText("G", "it sounds so good");
 		  creator.line().text("And this is my second line ").chord("C").chord("G").chordAndText("C", "with an end.");
-		  creator.part(MidiFilePartType.REFRAIN); 
+		  creator.part(SongPartType.REFRAIN); 
 		  creator.line().text("Refrain");
 		  return creator.get();
 	  }
@@ -71,7 +71,7 @@ public class TestTextfileExporter {
   public void exportWithoutChords () throws IOException {
 	    TextfileExporter exporter = getExporter();
 
-	    DefaultMidiFilePresenterConfig config = new DefaultMidiFilePresenterConfig();
+	    DefaultPresenterConfig config = new DefaultPresenterConfig();
 	    config.setShowChords(false);
 	    config.setShowTitle(true);
 	    appSession.getGlobalConfs().setDefaultBorder(new Integer (0));

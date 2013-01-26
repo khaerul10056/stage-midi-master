@@ -1,15 +1,15 @@
 package org.mda.javafx.presenter.javafx;
 
 import static org.junit.Assert.assertEquals;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
 import org.mda.presenter.controller.DefaultPresentationController;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
-import mda.MidiFile;
-import mda.MidiFilePart;
+import mda.Song;
+import mda.SongPart;
 import mda.MidiPlayerRoot;
 import mda.Session;
 
@@ -24,23 +24,23 @@ import org.mda.inject.InjectServiceMock;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.SpecialSlide;
 import org.mda.presenter.adapter.SizeInfo;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
 
 public class BeamerPresenterTest {
 
 	  private static MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
 	  private static Session session;
-	  private MidiFile firstSong;
-	  private MidiFile secondSong;
+	  private Song firstSong;
+	  private Song secondSong;
 	  private DefaultPresentationController controller;
-	  private MidiFile lastSong;
-	  private MidiFilePart lastPartOfLastSong;
-	  private MidiFilePart preLastPartOfLastSong;
-	  private MidiFilePart firstPartOfLastSong;
-	  private MidiFile prelastSong;
+	  private Song lastSong;
+	  private SongPart lastPartOfLastSong;
+	  private SongPart preLastPartOfLastSong;
+	  private SongPart firstPartOfLastSong;
+	  private Song prelastSong;
 	  private static PresentationContext presentationContext;
 	  private static ApplicationSession appsession;
-	  private static DefaultMidiFilePresenterConfig config;
+	  private static DefaultPresenterConfig config;
 	  
 
 	  @BeforeClass
@@ -48,7 +48,7 @@ public class BeamerPresenterTest {
 		InjectServiceMock.initialize();
 		presentationContext = InjectService.getInstance(PresentationContext.class);
 		appsession = InjectService.getInstance(ApplicationSession.class);
-		config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+		config = InjectService.getInstance(DefaultPresenterConfig.class);
 	    session = root.getSessions().get(0);
 	    appsession.load(null);
 	  }
@@ -59,10 +59,10 @@ public class BeamerPresenterTest {
 	    controller = InjectService.getInstance(DefaultPresentationController.class);
 	    presentationContext.registerController(controller);
 	    
-	    firstSong = (MidiFile) session.getItems().get(0);
-	    secondSong = (MidiFile) session.getItems().get(1);
-	    lastSong = (MidiFile) session.getItems().get(session.getItems().size() - 1);
-	    prelastSong = (MidiFile) session.getItems().get(session.getItems().size() - 2);
+	    firstSong = (Song) session.getItems().get(0);
+	    secondSong = (Song) session.getItems().get(1);
+	    lastSong = (Song) session.getItems().get(session.getItems().size() - 1);
+	    prelastSong = (Song) session.getItems().get(session.getItems().size() - 2);
 	    firstPartOfLastSong = lastSong.getParts().get(0);
 	    preLastPartOfLastSong = lastSong.getParts().get(lastSong.getParts().size() - 2);
 	    lastPartOfLastSong = lastSong.getParts().get(lastSong.getParts().size() - 1);
@@ -78,7 +78,7 @@ public class BeamerPresenterTest {
 	    assertEquals (firstSong.getParts().get(1), presentationContext.getCurrentSlide().getModelRef());
 
 	    //step to last slide in first file
-	    MidiFilePart lastPartOfFirstSong = firstSong.getParts().get(firstSong.getParts().size() - 1);
+	    SongPart lastPartOfFirstSong = firstSong.getParts().get(firstSong.getParts().size() - 1);
 	    while (presentationContext.getCurrentSlide().getModelRef() != lastPartOfFirstSong)
 	      assertTrue (controller.nextSlide());
 

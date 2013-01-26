@@ -17,19 +17,19 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link mda.MidiFileTextLine#getChordParts <em>Chord Parts</em>}</li>
- *   <li>{@link mda.MidiFileTextLine#isNewSlide <em>New Slide</em>}</li>
+ *   <li>{@link mda.SongTextLine#getChordParts <em>Chord Parts</em>}</li>
+ *   <li>{@link mda.SongTextLine#isNewSlide <em>New Slide</em>}</li>
  * </ul>
  * </p>
  *
- * @see mda.MidiplayerPackage#getMidiFileTextLine()
+ * @see mda.MidiplayerPackage#getSongTextLine()
  * @model
  * @generated
  */
-public interface MidiFileTextLine extends EObject {
+public interface SongTextLine extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Chord Parts</b></em>' containment reference list.
-	 * The list contents are of type {@link mda.MidiFileChordPart}.
+	 * The list contents are of type {@link mda.SongChordPart}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Chord Parts</em>' reference list isn't clear,
@@ -37,11 +37,11 @@ public interface MidiFileTextLine extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Chord Parts</em>' containment reference list.
-	 * @see mda.MidiplayerPackage#getMidiFileTextLine_ChordParts()
+	 * @see mda.MidiplayerPackage#getSongTextLine_ChordParts()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<MidiFileChordPart> getChordParts();
+	EList<SongChordPart> getChordParts();
 
   /**
 	 * Returns the value of the '<em><b>New Slide</b></em>' attribute.
@@ -53,14 +53,14 @@ public interface MidiFileTextLine extends EObject {
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>New Slide</em>' attribute.
 	 * @see #setNewSlide(boolean)
-	 * @see mda.MidiplayerPackage#getMidiFileTextLine_NewSlide()
+	 * @see mda.MidiplayerPackage#getSongTextLine_NewSlide()
 	 * @model
 	 * @generated
 	 */
   boolean isNewSlide();
 
   /**
-	 * Sets the value of the '{@link mda.MidiFileTextLine#isNewSlide <em>New Slide</em>}' attribute.
+	 * Sets the value of the '{@link mda.SongTextLine#isNewSlide <em>New Slide</em>}' attribute.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>New Slide</em>' attribute.

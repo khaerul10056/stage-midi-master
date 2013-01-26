@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import mda.Configuration;
-import mda.MidiFile;
+import mda.Song;
 import mda.MidiPlayerRoot;
 import mda.Session;
 
@@ -238,13 +238,13 @@ public class ApplicationSession {
   }
 
 
-public MidiFile getCurrentMidifile() {
-	return (MidiFile) getModelEvents().getCurrentModelElement(MidiFile.class);
+public Song getCurrentMidifile() {
+	return (Song) getModelEvents().getCurrentModelElement(Song.class);
 }
 
 
-public void setCurrentMidifile(MidiFile currentMidifile) {
-	getModelEvents().setCurrentModelElement(MidiFile.class, currentMidifile);
+public void setCurrentMidifile(Song currentMidifile) {
+	getModelEvents().setCurrentModelElement(Song.class, currentMidifile);
 }
 
 public File getConfigFile() {

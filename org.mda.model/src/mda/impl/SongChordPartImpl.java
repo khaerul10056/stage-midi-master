@@ -1,13 +1,9 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda.impl;
 
-import mda.MidiFileChordPart;
 import mda.MidiplayerPackage;
+import mda.SongChordPart;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -18,19 +14,19 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Midi File Chord Part</b></em>'.
+ * An implementation of the model object '<em><b>Song Chord Part</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link mda.impl.MidiFileChordPartImpl#getText <em>Text</em>}</li>
- *   <li>{@link mda.impl.MidiFileChordPartImpl#getChord <em>Chord</em>}</li>
+ *   <li>{@link mda.impl.SongChordPartImpl#getText <em>Text</em>}</li>
+ *   <li>{@link mda.impl.SongChordPartImpl#getChord <em>Chord</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordPart {
+public class SongChordPartImpl extends EObjectImpl implements SongChordPart {
 	/**
 	 * The default value of the '{@link #getText() <em>Text</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -76,7 +72,7 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MidiFileChordPartImpl() {
+	protected SongChordPartImpl() {
 		super();
 	}
 
@@ -87,7 +83,7 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MidiplayerPackage.Literals.MIDI_FILE_CHORD_PART;
+		return MidiplayerPackage.Literals.SONG_CHORD_PART;
 	}
 
 	/**
@@ -95,7 +91,6 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getText() {
 		return text;
 	}
@@ -105,12 +100,11 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setText(String newText) {
 		String oldText = text;
 		text = newText;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE_CHORD_PART__TEXT, oldText, text));
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.SONG_CHORD_PART__TEXT, oldText, text));
 	}
 
 	/**
@@ -118,7 +112,6 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getChord() {
 		return chord;
 	}
@@ -128,12 +121,11 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setChord(String newChord) {
 		String oldChord = chord;
 		chord = newChord;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_FILE_CHORD_PART__CHORD, oldChord, chord));
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.SONG_CHORD_PART__CHORD, oldChord, chord));
 	}
 
 	/**
@@ -144,9 +136,9 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidiplayerPackage.MIDI_FILE_CHORD_PART__TEXT:
+			case MidiplayerPackage.SONG_CHORD_PART__TEXT:
 				return getText();
-			case MidiplayerPackage.MIDI_FILE_CHORD_PART__CHORD:
+			case MidiplayerPackage.SONG_CHORD_PART__CHORD:
 				return getChord();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -160,10 +152,10 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidiplayerPackage.MIDI_FILE_CHORD_PART__TEXT:
+			case MidiplayerPackage.SONG_CHORD_PART__TEXT:
 				setText((String)newValue);
 				return;
-			case MidiplayerPackage.MIDI_FILE_CHORD_PART__CHORD:
+			case MidiplayerPackage.SONG_CHORD_PART__CHORD:
 				setChord((String)newValue);
 				return;
 		}
@@ -178,10 +170,10 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidiplayerPackage.MIDI_FILE_CHORD_PART__TEXT:
+			case MidiplayerPackage.SONG_CHORD_PART__TEXT:
 				setText(TEXT_EDEFAULT);
 				return;
-			case MidiplayerPackage.MIDI_FILE_CHORD_PART__CHORD:
+			case MidiplayerPackage.SONG_CHORD_PART__CHORD:
 				setChord(CHORD_EDEFAULT);
 				return;
 		}
@@ -196,9 +188,9 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidiplayerPackage.MIDI_FILE_CHORD_PART__TEXT:
+			case MidiplayerPackage.SONG_CHORD_PART__TEXT:
 				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
-			case MidiplayerPackage.MIDI_FILE_CHORD_PART__CHORD:
+			case MidiplayerPackage.SONG_CHORD_PART__CHORD:
 				return CHORD_EDEFAULT == null ? chord != null : !CHORD_EDEFAULT.equals(chord);
 		}
 		return super.eIsSet(featureID);
@@ -222,4 +214,4 @@ public class MidiFileChordPartImpl extends EObjectImpl implements MidiFileChordP
 		return result.toString();
 	}
 
-} //MidiFileChordPartImpl
+} //SongChordPartImpl

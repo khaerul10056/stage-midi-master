@@ -40,7 +40,7 @@ import org.mda.javafx.presenter.javafx.BeamerPresenterTest;
 import org.mda.midi.MidiInfoTest;
 import org.mda.midi.mapping.MappingServiceTest;
 import org.mda.midi.ui.MidiDeviceContentProviderTest;
-import org.mda.presenter.MidiFileSlideCalculatorTest;
+import org.mda.presenter.SongSlideCalculatorTest;
 import org.mda.presenter.PresentationContextTest;
 import org.mda.presenter.config.PresentationConfiguratorTest;
 import org.mda.presenter.ui.config.PresentationSchemaEditorBuilderTest;
@@ -100,7 +100,7 @@ import org.mda.transpose.TransposeTest;
   PresentationSchemaEditorBuilderTest.class,
   
   //Presenter
-  MidiFileSlideCalculatorTest.class,
+  SongSlideCalculatorTest.class,
   BeamerPresenterTest.class,
   PresentationConfiguratorTest.class,
   
@@ -110,7 +110,7 @@ import org.mda.transpose.TransposeTest;
   //Midi 
   MidiDeviceContentProviderTest.class, 
   MidiInfoTest.class,
-  MidiFileSlideCalculatorTest.class,
+  SongSlideCalculatorTest.class,
   MappingServiceTest.class, 
   PitchTest.class,
 

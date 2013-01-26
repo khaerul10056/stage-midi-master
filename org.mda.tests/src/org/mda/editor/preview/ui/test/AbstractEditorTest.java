@@ -1,10 +1,10 @@
 package org.mda.editor.preview.ui.test;
 
-import mda.MidiFile;
-import mda.MidiFileChordPart;
-import mda.MidiFilePart;
-import mda.MidiFilePartType;
-import mda.MidiFileTextLine;
+import mda.Song;
+import mda.SongChordPart;
+import mda.SongPart;
+import mda.SongPartType;
+import mda.SongTextLine;
 import mda.MidiplayerFactory;
 
 import org.eclipse.swt.widgets.Shell;
@@ -27,7 +27,7 @@ public class AbstractEditorTest {
 	 * 
 	 * @param song
 	 */
-	protected void prepareEditor(final MidiFile song) {
+	protected void prepareEditor(final Song song) {
 		
 		applicationSession.setCurrentMidifile(song);
 		editor.build(shell);

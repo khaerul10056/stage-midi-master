@@ -30,7 +30,7 @@ import org.mda.ApplicationSession;
 import org.mda.export.pdf.PdfExporter;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 import org.mda.presenter.config.PresentationConfigurator;
 import org.mda.presenter.config.PresentationType;
 
@@ -82,7 +82,7 @@ public class ExportEngine {
           LOG.info("Exporting file " + exportFile.getAbsolutePath() + " for user " + nextUser.getName() + " " + nextUser.getFirstname());
           PresentationConfigurator configurator = new PresentationConfigurator();
           PresentationType type = nextUser.getDefaultPresentationType() != null ? PresentationType.valueOf(nextUser.getDefaultPresentationType()) : PresentationType.PDF;
-          IMidiFilePresenterConfig config = configurator.configure(nextUser, appSession.getCurrentModel(), type);
+          IPresenterConfig config = configurator.configure(nextUser, appSession.getCurrentModel(), type);
           exportFile = exporter.export(currentModel.getGallery().getGalleryItems(), exportFile, config);
           exportResult.setUser(nextUser);
           exportResult.setExportFile(exportFile);

@@ -1,7 +1,7 @@
 package org.mda.editor.preview.ui.test;
 
 import java.io.File;
-import mda.MidiFile;
+import mda.Song;
 import mda.MidiPlayerRoot;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
@@ -22,7 +22,7 @@ public class PreviewEditorTester extends Shell {
     setLayout(new FillLayout());
     ApplicationSession applicationSession = new ApplicationSession();
     applicationSession.load(null);
-    applicationSession.setCurrentMidifile((MidiFile) root.getGallery().getGalleryItems().get(0));
+    applicationSession.setCurrentMidifile((Song) root.getGallery().getGalleryItems().get(0));
     editor.build(this);
     
   }

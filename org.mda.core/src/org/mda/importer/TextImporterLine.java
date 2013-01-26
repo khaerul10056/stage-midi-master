@@ -3,8 +3,8 @@ package org.mda.importer;
 import java.util.ArrayList;
 import java.util.List;
 
-import mda.MidiFileChordPart;
-import mda.MidiFilePartType;
+import mda.SongChordPart;
+import mda.SongPartType;
 
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
@@ -54,9 +54,9 @@ public class TextImporterLine {
    *
    * @return <code>null</code>, if this is not the beginning of a midipart
    */
-  public MidiFilePartType getPartType() {
-    MidiFilePartType[] values = MidiFilePartType.values();
-    for (MidiFilePartType nextValue : values) {
+  public SongPartType getPartType() {
+    SongPartType[] values = SongPartType.values();
+    for (SongPartType nextValue : values) {
       if (getContent().toUpperCase().startsWith(nextValue.getName().toUpperCase())) return nextValue;
     }
 
@@ -80,11 +80,11 @@ public class TextImporterLine {
     return maxTokenLen < 3;
   }
 
-  public List<MidiFileChordPart> getChordParts() {
-    List<MidiFileChordPart> parts = new ArrayList<MidiFileChordPart>();
+  public List<SongChordPart> getChordParts() {
+    List<SongChordPart> parts = new ArrayList<SongChordPart>();
 
     if (previousLine != null && !previousLine.isChordLine()) {
-      MidiFileChordPart singleChorPart = MidiPlayerService.mf.createMidiFileChordPart();
+      SongChordPart singleChorPart = MidiPlayerService.mf.createSongChordPart();
       singleChorPart.setText(getContent());
       parts.add(singleChorPart);
     }

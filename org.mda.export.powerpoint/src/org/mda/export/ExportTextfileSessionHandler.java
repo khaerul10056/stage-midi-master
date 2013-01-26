@@ -12,7 +12,7 @@ import org.mda.Utils;
 import org.mda.commons.ui.UIHandler;
 import org.mda.export.textfile.TextfileExporter;
 import org.mda.inject.InjectService;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
 import org.mda.presenter.config.PresentationConfigurator;
 import org.mda.presenter.config.PresentationType;
 
@@ -36,7 +36,7 @@ public class ExportTextfileSessionHandler {
 
 		//TODO make a new PresentationType
 		PresentationConfigurator configurator = new PresentationConfigurator(); 
-		DefaultMidiFilePresenterConfig config = (DefaultMidiFilePresenterConfig) configurator.configure(null, session.getCurrentModel(), PresentationType.PDF);
+		DefaultPresenterConfig config = (DefaultPresenterConfig) configurator.configure(null, session.getCurrentModel(), PresentationType.PDF);
 		config.setShowTitle(true); 
 		config.setShowChords(false);
 		Session currentSession = (Session) session.getModelEvents().getCurrentModelElement(Session.class);

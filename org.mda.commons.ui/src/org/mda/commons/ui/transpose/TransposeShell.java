@@ -1,6 +1,6 @@
 package org.mda.commons.ui.transpose;
 
-import mda.MidiFile;
+import mda.Song;
 
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -27,7 +27,7 @@ import org.mda.transpose.TransposeService;
 
 public class TransposeShell extends Shell {
 
-  private MidiFile midifile;
+  private Song midifile;
   Combo cmbFrom;
   private Combo cmbTo;
   private ComboViewer viewer1;
@@ -39,7 +39,7 @@ public class TransposeShell extends Shell {
 
 
 
-  public TransposeShell (Shell shell, final MidiFile file) {
+  public TransposeShell (Shell shell, final Song file) {
     super (shell);
     setSize(400, 300);
     setText("Transpose song");

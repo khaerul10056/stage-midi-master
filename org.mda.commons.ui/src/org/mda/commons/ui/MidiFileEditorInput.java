@@ -1,6 +1,6 @@
 package org.mda.commons.ui;
 
-import mda.MidiFile;
+import mda.Song;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -46,8 +46,8 @@ public class MidiFileEditorInput implements IEditorInput {
 
   @Override
   public String getName () {
-    if (eObject instanceof MidiFile) {
-      String name = ((MidiFile) eObject).getName();
+    if (eObject instanceof Song) {
+      String name = ((Song) eObject).getName();
       return name.indexOf(".") > 0 ? name.substring(0, name.indexOf(".")) : name;
     }
     else

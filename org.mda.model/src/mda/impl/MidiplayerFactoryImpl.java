@@ -62,12 +62,12 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case MidiplayerPackage.SESSION: return createSession();
-			case MidiplayerPackage.MIDI_FILE: return createMidiFile();
-			case MidiplayerPackage.MIDI_FILE_PART: return createMidiFilePart();
-			case MidiplayerPackage.MIDI_FILE_TEXT_LINE: return createMidiFileTextLine();
+			case MidiplayerPackage.SONG: return createSong();
+			case MidiplayerPackage.SONG_PART: return createSongPart();
+			case MidiplayerPackage.SONG_TEXT_LINE: return createSongTextLine();
 			case MidiplayerPackage.GALLERY: return createGallery();
 			case MidiplayerPackage.MIDI_PLAYER_ROOT: return createMidiPlayerRoot();
-			case MidiplayerPackage.MIDI_FILE_CHORD_PART: return createMidiFileChordPart();
+			case MidiplayerPackage.SONG_CHORD_PART: return createSongChordPart();
 			case MidiplayerPackage.CONFIGURATION: return createConfiguration();
 			case MidiplayerPackage.USER: return createUser();
 			case MidiplayerPackage.COPYRIGHT: return createCopyright();
@@ -85,8 +85,8 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case MidiplayerPackage.MIDI_FILE_PART_TYPE:
-				return createMidiFilePartTypeFromString(eDataType, initialValue);
+			case MidiplayerPackage.SONG_PART_TYPE:
+				return createSongPartTypeFromString(eDataType, initialValue);
 			case MidiplayerPackage.ADDITIONAL_TYPE:
 				return createAdditionalTypeFromString(eDataType, initialValue);
 			case MidiplayerPackage.USER_TYPE:
@@ -104,8 +104,8 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case MidiplayerPackage.MIDI_FILE_PART_TYPE:
-				return convertMidiFilePartTypeToString(eDataType, instanceValue);
+			case MidiplayerPackage.SONG_PART_TYPE:
+				return convertSongPartTypeToString(eDataType, instanceValue);
 			case MidiplayerPackage.ADDITIONAL_TYPE:
 				return convertAdditionalTypeToString(eDataType, instanceValue);
 			case MidiplayerPackage.USER_TYPE:
@@ -131,10 +131,9 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public MidiFile createMidiFile() {
-		MidiFileImpl midiFile = new MidiFileImpl();
-		return midiFile;
+	public Song createSong() {
+		SongImpl song = new SongImpl();
+		return song;
 	}
 
 	/**
@@ -142,10 +141,9 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public MidiFilePart createMidiFilePart() {
-		MidiFilePartImpl midiFilePart = new MidiFilePartImpl();
-		return midiFilePart;
+	public SongPart createSongPart() {
+		SongPartImpl songPart = new SongPartImpl();
+		return songPart;
 	}
 
 	/**
@@ -153,10 +151,9 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public MidiFileTextLine createMidiFileTextLine() {
-		MidiFileTextLineImpl midiFileTextLine = new MidiFileTextLineImpl();
-		return midiFileTextLine;
+	public SongTextLine createSongTextLine() {
+		SongTextLineImpl songTextLine = new SongTextLineImpl();
+		return songTextLine;
 	}
 
 	/**
@@ -186,10 +183,9 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public MidiFileChordPart createMidiFileChordPart() {
-		MidiFileChordPartImpl midiFileChordPart = new MidiFileChordPartImpl();
-		return midiFileChordPart;
+	public SongChordPart createSongChordPart() {
+		SongChordPartImpl songChordPart = new SongChordPartImpl();
+		return songChordPart;
 	}
 
 	/**
@@ -241,22 +237,22 @@ public PresentationScheme createPresentationScheme() {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MidiFilePartType createMidiFilePartTypeFromString(EDataType eDataType, String initialValue) {
-		MidiFilePartType result = MidiFilePartType.get(initialValue);
+	public SongPartType createSongPartTypeFromString(EDataType eDataType, String initialValue) {
+		SongPartType result = SongPartType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
-	/**
+		/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertMidiFilePartTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertSongPartTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
-	/**
+		/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated

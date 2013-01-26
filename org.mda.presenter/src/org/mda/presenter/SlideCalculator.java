@@ -7,7 +7,7 @@ import org.mda.logging.LogFactory;
 import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.LocationInfo;
 import org.mda.presenter.adapter.SizeInfo;
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 
 
 
@@ -15,7 +15,7 @@ public abstract class SlideCalculator implements ISlideCalculator {
 
   private static final Log LOGGER  = LogFactory.getLogger(SlideCalculator.class);
 
-  private IMidiFilePresenterConfig config;
+  private IPresenterConfig config;
 
 
   /**
@@ -23,11 +23,11 @@ public abstract class SlideCalculator implements ISlideCalculator {
    * @param config
    */
   @Override
-  public void setConfig (IMidiFilePresenterConfig config) {
+  public void setConfig (IPresenterConfig config) {
     this.config = config;
   }
 
-  public IMidiFilePresenterConfig getConfig () {
+  public IPresenterConfig getConfig () {
     return config;
   }
   

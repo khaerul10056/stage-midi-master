@@ -17,8 +17,8 @@ import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
 
 import mda.AbstractSessionItem;
-import mda.MidiFile;
-import mda.MidiFilePart;
+import mda.Song;
+import mda.SongPart;
 import mda.Session;
 
 import org.eclipse.swt.widgets.Display;
@@ -51,7 +51,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 
 	private static final Log LOGGER = LogFactory.getLogger(MidiPlayer.class);
 
-	private HashMap<MidiFile, Sequence> sequences = new HashMap<MidiFile, Sequence>();
+	private HashMap<Song, Sequence> sequences = new HashMap<Song, Sequence>();
 
 	private Thread thread;
 	private Sequencer sequencer;
@@ -68,7 +68,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 	
 	private Session currentPlayingSession;
 	
-	private MidiFilePart currentPlayingPart;
+	private SongPart currentPlayingPart;
 	
 	private boolean configWaitAfterSong = true;
 
@@ -128,8 +128,8 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 		if (isRunning() && getMode().equals(MidiplayerMode.RECORDING)) {
 		  Position position = getCurrentPositionInSong();
 		  if (position != null) {
-		    MidiFile midifile = (MidiFile) currentPlayingPart.eContainer();
-		    MidiFilePart nextPart = MidiPlayerService.getNextPart(midifile, currentPlayingPart);
+		    Song midifile = (Song) currentPlayingPart.eContainer();
+		    SongPart nextPart = MidiPlayerService.getNextPart(midifile, currentPlayingPart);
 		    LOGGER.info("Save part intersection " + position + " for part " + nextPart);
 		    nextPart.setPosition(position.toString());
 		  }
@@ -150,8 +150,8 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 		
 		//check, if all files have a midifile assigned
 		for (AbstractSessionItem sessionItem: presentationContext.getCurrentSession().getItems()) {
-			if (sessionItem instanceof MidiFile) {
-				MidiFile nextMidiFile = (MidiFile) sessionItem;
+			if (sessionItem instanceof Song) {
+				Song nextMidiFile = (Song) sessionItem;
 				if (nextMidiFile.getPath() == null || nextMidiFile.getPath().trim().isEmpty())
 					noMidiFileFoundException.add(nextMidiFile);
 				else {
@@ -181,7 +181,7 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 		
 	}
 	
-	public void sendProgramChange (final MidiFile file) throws InvalidMidiDataException, MidiUnavailableException {
+	public void sendProgramChange (final Song file) throws InvalidMidiDataException, MidiUnavailableException {
 		
 		if (file.getMidicontrol() >= 0) {
         
@@ -201,11 +201,11 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 	}
 
 	public void startNewSong() throws InvalidMidiDataException, IOException, MidiUnavailableException {
-		if (! (presentationContext.getCurrentSessionItem() instanceof MidiFile)) {
+		if (! (presentationContext.getCurrentSessionItem() instanceof Song)) {
 			currentSequence = null;
 			return;
 		}
-		final MidiFile midifile = (MidiFile) presentationContext.getCurrentSessionItem();
+		final Song midifile = (Song) presentationContext.getCurrentSessionItem();
 		
 		sendProgramChange(midifile);
 		
@@ -285,9 +285,9 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 			if (! newPosition.equals(currentPosition)) {
 				currentPosition = newPosition;
 				LOGGER.info("Bar changed to " + newPosition);
-				if (nextItem instanceof MidiFile) {
-				  MidiFile midifile = (MidiFile) nextItem;
-				  final MidiFilePart currentPart = currentSlideCalculator.getCurrentPart(midifile, currentPosition);
+				if (nextItem instanceof Song) {
+				  Song midifile = (Song) nextItem;
+				  final SongPart currentPart = currentSlideCalculator.getCurrentPart(midifile, currentPosition);
 				  if (currentPart != currentPlayingPart) {
 					LOGGER.info ("Slide changes");
 				    

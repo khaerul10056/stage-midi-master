@@ -1,7 +1,7 @@
 package org.mda.presenter;
 
-import mda.MidiFile;
-import mda.MidiFilePart;
+import mda.Song;
+import mda.SongPart;
 
 import org.eclipse.emf.ecore.EObject;
 import org.junit.After;
@@ -12,14 +12,14 @@ import org.mda.ApplicationSession;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
 import org.mda.presenter.adapter.SizeInfo;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
 
 
 public class PresentationContextTest {
 
   private PresentationContext presentationContext;
   private ApplicationSession appsession;
-  private DefaultMidiFilePresenterConfig config;
+  private DefaultPresenterConfig config;
   
 
   @Before
@@ -28,7 +28,7 @@ public class PresentationContextTest {
 	presentationContext = InjectService.getInstance(PresentationContext.class);
 	appsession = InjectService.getInstance(ApplicationSession.class);
     presentationContext.clear();
-    config = InjectService.getInstance(DefaultMidiFilePresenterConfig.class);
+    config = InjectService.getInstance(DefaultPresenterConfig.class);
   }
 
   @After
@@ -40,9 +40,9 @@ public class PresentationContextTest {
   public void testToPart () {
     appsession.load(null);
 
-    MidiFile currentFile = (MidiFile) appsession.getCurrentModel().getSessions().get(0).getItems().get(0);
-    MidiFilePart part1 = currentFile.getParts().get(0);
-    MidiFilePart part2 = currentFile.getParts().get(1);
+    Song currentFile = (Song) appsession.getCurrentModel().getSessions().get(0).getItems().get(0);
+    SongPart part1 = currentFile.getParts().get(0);
+    SongPart part2 = currentFile.getParts().get(1);
     presentationContext.setCurrentSession(appsession.getCurrentModel().getSessions().get(0), config, new SizeInfo (400, 200));
     presentationContext.setCurrentSessionItemIndex(0);
 

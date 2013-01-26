@@ -2,7 +2,7 @@ package org.mda.commons.ui;
 
 import mda.AbstractSessionItem;
 import mda.Gallery;
-import mda.MidiFile;
+import mda.Song;
 import mda.Session;
 
 import org.junit.Assert;
@@ -24,9 +24,9 @@ public class ContentProviderTest {
     final String FIRST = "And the first";
     final String THIRD = "The third at last";
 
-    MidiFile file1 = MidiFileCreator.create().setName(SECOND).get();
-    MidiFile file2 = MidiFileCreator.create().setName(FIRST).get();
-    MidiFile file3 = MidiFileCreator.create().setName(THIRD).get();
+    Song file1 = MidiFileCreator.create().setName(SECOND).get();
+    Song file2 = MidiFileCreator.create().setName(FIRST).get();
+    Song file3 = MidiFileCreator.create().setName(THIRD).get();
 
     Gallery gallery = MidiPlayerService.mf.createGallery();
     gallery.getGalleryItems().add(file1);

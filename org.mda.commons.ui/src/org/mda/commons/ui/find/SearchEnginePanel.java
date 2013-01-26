@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import mda.MidiFile;
+import mda.Song;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -91,7 +91,7 @@ public class SearchEnginePanel  {
 							
 							if (messageBoxResult == SWT.YES) {
 								System.out.println("Yes pressed");
-								MidiFile createSong = MidiPlayerService.createSong(appsession.getCurrentModel(), txt.getText());
+								Song createSong = MidiPlayerService.createSong(appsession.getCurrentModel(), txt.getText());
 								activeSearchResult = new SearchResult(createSong.eClass(), createSong, txt.getText());
 								shell.dispose();
 							}

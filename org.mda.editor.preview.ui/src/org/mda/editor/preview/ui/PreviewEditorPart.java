@@ -2,7 +2,7 @@ package org.mda.editor.preview.ui;
 
 import javax.annotation.PostConstruct;
 
-import mda.MidiFile;
+import mda.Song;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
@@ -36,7 +36,7 @@ public class PreviewEditorPart {
 			
 			@Override
 			public void reload(Object newObject, Object oldObject) {
-				MidiFile newMidiFile = (MidiFile) newObject;
+				Song newMidiFile = (Song) newObject;
 				
 				if (! previewEditorContent.isBuilt()) {
 				  previewEditorContent.build(composite);
@@ -50,7 +50,7 @@ public class PreviewEditorPart {
 			
 			@Override
 			public Class<? extends Object> isRelevant() {
-				return MidiFile.class;
+				return Song.class;
 			}
 		});
 	}

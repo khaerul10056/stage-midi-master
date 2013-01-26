@@ -1,7 +1,7 @@
 package org.mda.editor.preview.ui;
 
 import java.io.File;
-import mda.MidiFile;
+import mda.Song;
 import mda.MidiPlayerRoot;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
@@ -17,7 +17,7 @@ public class TransposeShellTester {
     session.load(null);
     Shell shell = new Shell();
     final MidiPlayerRoot root = MidiPlayerService.loadRootObject(new File("testdata/testmodel.conf"));
-    TransposeShell additionalshell = new TransposeShell(shell, (MidiFile) root.getGallery().getGalleryItems().get(0));
+    TransposeShell additionalshell = new TransposeShell(shell, (Song) root.getGallery().getGalleryItems().get(0));
 
     while (!additionalshell.isDisposed()) {
       if (!shell.getDisplay().readAndDispatch()) {

@@ -80,16 +80,16 @@ public class MidiplayerAdapterFactory extends AdapterFactoryImpl {
 				return createAbstractSessionItemAdapter();
 			}
 			@Override
-			public Adapter caseMidiFile(MidiFile object) {
-				return createMidiFileAdapter();
+			public Adapter caseSong(Song object) {
+				return createSongAdapter();
 			}
 			@Override
-			public Adapter caseMidiFilePart(MidiFilePart object) {
-				return createMidiFilePartAdapter();
+			public Adapter caseSongPart(SongPart object) {
+				return createSongPartAdapter();
 			}
 			@Override
-			public Adapter caseMidiFileTextLine(MidiFileTextLine object) {
-				return createMidiFileTextLineAdapter();
+			public Adapter caseSongTextLine(SongTextLine object) {
+				return createSongTextLineAdapter();
 			}
 			@Override
 			public Adapter caseGallery(Gallery object) {
@@ -100,8 +100,8 @@ public class MidiplayerAdapterFactory extends AdapterFactoryImpl {
 				return createMidiPlayerRootAdapter();
 			}
 			@Override
-			public Adapter caseMidiFileChordPart(MidiFileChordPart object) {
-				return createMidiFileChordPartAdapter();
+			public Adapter caseSongChordPart(SongChordPart object) {
+				return createSongChordPartAdapter();
 			}
 			@Override
 			public Adapter caseConfiguration(Configuration object) {
@@ -168,44 +168,44 @@ public class MidiplayerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link mda.MidiFile <em>Midi File</em>}'.
+	 * Creates a new adapter for an object of class '{@link mda.Song <em>Song</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see mda.MidiFile
+	 * @see mda.Song
 	 * @generated
 	 */
-	public Adapter createMidiFileAdapter() {
+	public Adapter createSongAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link mda.MidiFilePart <em>Midi File Part</em>}'.
+	 * Creates a new adapter for an object of class '{@link mda.SongPart <em>Song Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see mda.MidiFilePart
+	 * @see mda.SongPart
 	 * @generated
 	 */
-	public Adapter createMidiFilePartAdapter() {
+	public Adapter createSongPartAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link mda.MidiFileTextLine <em>Midi File Text Line</em>}'.
+	 * Creates a new adapter for an object of class '{@link mda.SongTextLine <em>Song Text Line</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see mda.MidiFileTextLine
+	 * @see mda.SongTextLine
 	 * @generated
 	 */
-	public Adapter createMidiFileTextLineAdapter() {
+	public Adapter createSongTextLineAdapter() {
 		return null;
 	}
 
@@ -238,16 +238,16 @@ public class MidiplayerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link mda.MidiFileChordPart <em>Midi File Chord Part</em>}'.
+	 * Creates a new adapter for an object of class '{@link mda.SongChordPart <em>Song Chord Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see mda.MidiFileChordPart
+	 * @see mda.SongChordPart
 	 * @generated
 	 */
-	public Adapter createMidiFileChordPartAdapter() {
+	public Adapter createSongChordPartAdapter() {
 		return null;
 	}
 

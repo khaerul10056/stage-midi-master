@@ -1,9 +1,9 @@
 package org.mda.transpose;
 
-import mda.MidiFile;
-import mda.MidiFileChordPart;
-import mda.MidiFilePart;
-import mda.MidiFileTextLine;
+import mda.Song;
+import mda.SongChordPart;
+import mda.SongPart;
+import mda.SongTextLine;
 import org.mda.Chord;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -22,10 +22,10 @@ public class TransposeService {
    * @param to to key
    * @throws InvalidChordException
    */
-  public void transpose (MidiFile song, Pitch from, Pitch to) throws InvalidChordException {
-    for (MidiFilePart nextPart : song.getParts())
-      for (MidiFileTextLine nextLine: nextPart.getTextlines())
-        for (MidiFileChordPart nextChordPart: nextLine.getChordParts())
+  public void transpose (Song song, Pitch from, Pitch to) throws InvalidChordException {
+    for (SongPart nextPart : song.getParts())
+      for (SongTextLine nextLine: nextPart.getTextlines())
+        for (SongChordPart nextChordPart: nextLine.getChordParts())
           transpose(nextChordPart, from, to);
 
     song.setKey(to.getLabel());
@@ -45,7 +45,7 @@ public class TransposeService {
    * @param to  to key
    * @throws InvalidChordException
    */
-  private void transpose (MidiFileChordPart chordPart, Pitch from, Pitch to) throws InvalidChordException {
+  private void transpose (SongChordPart chordPart, Pitch from, Pitch to) throws InvalidChordException {
     if (chordPart.getChord() == null)
       return;
 

@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
 public interface TextPresentationEvent extends AbstractEvent {
 	/**
 	 * Returns the value of the '<em><b>Parts</b></em>' reference list.
-	 * The list contents are of type {@link mda.MidiFilePart}.
+	 * The list contents are of type {@link mda.SongPart}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parts</em>' reference list isn't clear,
@@ -39,6 +39,6 @@ public interface TextPresentationEvent extends AbstractEvent {
 	 * @model
 	 * @generated
 	 */
-	EList<MidiFilePart> getParts();
+	EList<SongPart> getParts();
 
 } // TextPresentationEvent

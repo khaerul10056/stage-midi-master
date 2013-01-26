@@ -6,9 +6,9 @@ import java.util.Comparator;
 import java.util.List;
 
 import mda.AbstractSessionItem;
-import mda.MidiFile;
-import mda.MidiFilePart;
 import mda.Session;
+import mda.Song;
+import mda.SongPart;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 
@@ -37,11 +37,11 @@ public class MidiFileCurrentSlideCalculator {
 		currentSlideInfos.clear();
 		
 		for (AbstractSessionItem nextSessionItem: session.getItems()) {
-			if (nextSessionItem instanceof MidiFile) {
-				MidiFile nextMidiFile = (MidiFile) nextSessionItem;
+			if (nextSessionItem instanceof Song) {
+				Song nextMidiFile = (Song) nextSessionItem;
 				int numberOfBarAssignments = 0;
 				int lastBar = -1;
-				for (MidiFilePart nextPart : nextMidiFile.getParts()) {
+				for (SongPart nextPart : nextMidiFile.getParts()) {
 					if (nextPart.getBar() >= 0)
 						numberOfBarAssignments++;
 					
@@ -84,7 +84,7 @@ public class MidiFileCurrentSlideCalculator {
 	 * @param file file
 	 * @return slideinfos
 	 */
-	private List <MidiFileCurrentSlideInfo> getCurrentSlideInfos (final MidiFile file) {
+	private List <MidiFileCurrentSlideInfo> getCurrentSlideInfos (final Song file) {
 		List<MidiFileCurrentSlideInfo> infos = new ArrayList<MidiFileCurrentSlideInfo>();
 		for (MidiFileCurrentSlideInfo nextinfo: currentSlideInfos) {
 			if (nextinfo.getMidiFile() == file)
@@ -100,7 +100,7 @@ public class MidiFileCurrentSlideCalculator {
 	 * @param bar  bar
 	 * @return current bar
 	 */
-	public MidiFilePart getCurrentPart (final MidiFile currentItem, final Position position) {
+	public SongPart getCurrentPart (final Song currentItem, final Position position) {
 		List<MidiFileCurrentSlideInfo> currentSlideInfos2 = getCurrentSlideInfos(currentItem);
 		for (MidiFileCurrentSlideInfo next: currentSlideInfos2) {
 			Position posNextSlide = next.getPosition();

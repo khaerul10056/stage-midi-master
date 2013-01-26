@@ -3,9 +3,9 @@ package org.mda.struct;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import mda.MidiFile;
-import mda.MidiFilePart;
-import mda.MidiFilePartType;
+import mda.Song;
+import mda.SongPart;
+import mda.SongPartType;
 
 /**
  * This class describes the structure of a midilfile,
@@ -17,11 +17,11 @@ public class MidiFileStruct {
 
   private List <MidiFileStructItem> items = new ArrayList<MidiFileStructItem>();
 
-  public MidiFileStruct (final MidiFile file) {
+  public MidiFileStruct (final Song file) {
     readStruct(file);
   }
 
-  public MidiFileStructItem getItem (final MidiFilePart part) {
+  public MidiFileStructItem getItem (final SongPart part) {
     for (MidiFileStructItem nextItem: getItems()) {
       if (nextItem.getPart().equals(part))
         return nextItem;
@@ -38,11 +38,11 @@ public class MidiFileStruct {
    * @param type type to find
    * @return item or <code>null</code>
    */
-  private MidiFileStructItem getLastShownItem (MidiFilePart contentPart) {
+  private MidiFileStructItem getLastShownItem (SongPart contentPart) {
     MidiFileStructItem markedItem = null;
     for (int i = getItems().size() - 1; i >= 0; i--) {
       MidiFileStructItem prevItem = getItems().get(i);
-      MidiFilePart contentPartCompare = prevItem.getPart().getRefPart() != null ? prevItem.getPart().getRefPart() : prevItem.getPart();
+      SongPart contentPartCompare = prevItem.getPart().getRefPart() != null ? prevItem.getPart().getRefPart() : prevItem.getPart();
       if (!contentPartCompare.equals(contentPart))
         return markedItem;
       else
@@ -56,11 +56,11 @@ public class MidiFileStruct {
    * @param file file
    * @return structitems
    */
-  private void readStruct (final MidiFile file) {
-    HashMap<MidiFilePartType, Integer> partcountsCreated = new HashMap<MidiFilePartType, Integer>();
-    for (MidiFilePart nextPart: file.getParts()) {
+  private void readStruct (final Song file) {
+    HashMap<SongPartType, Integer> partcountsCreated = new HashMap<SongPartType, Integer>();
+    for (SongPart nextPart: file.getParts()) {
 
-      MidiFilePart contentPart = nextPart.getRefPart() != null ? nextPart.getRefPart() : nextPart;
+      SongPart contentPart = nextPart.getRefPart() != null ? nextPart.getRefPart() : nextPart;
       MidiFileStructItem item = getItem(contentPart);
 
       if (item == null) { //if current part was not analyzed, then the current part is a new one, so increment the counter

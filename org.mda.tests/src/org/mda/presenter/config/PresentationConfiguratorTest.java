@@ -13,8 +13,8 @@ import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
 import org.mda.inject.InjectServiceMock;
-import org.mda.presenter.config.DefaultMidiFilePresenterConfig;
-import org.mda.presenter.config.IMidiFilePresenterConfig;
+import org.mda.presenter.config.DefaultPresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 import org.mda.presenter.config.PresentationConfigDefaults;
 import org.mda.presenter.config.PresentationConfigurator;
 import org.mda.presenter.config.PresentationType;
@@ -40,8 +40,8 @@ public class PresentationConfiguratorTest {
     configurator = new PresentationConfigurator();
   }
 
-  private void checkConfiguration (final IMidiFilePresenterConfig config,
-                                   final IMidiFilePresenterConfig compareConfig) {
+  private void checkConfiguration (final IPresenterConfig config,
+                                   final IPresenterConfig compareConfig) {
     Assert.assertEquals(compareConfig.getDefaultBackgroundColor(), config.getDefaultBackgroundColor());
     Assert.assertEquals(compareConfig.getDefaultForegroundColor(), config.getDefaultForegroundColor());
     Assert.assertEquals (compareConfig.getFont(), config.getFont());
@@ -60,8 +60,8 @@ public class PresentationConfiguratorTest {
     Assert.assertEquals (compareConfig.isAutoWrapToNewPage(), config.isAutoWrapToNewPage());
   }
   
-  private DefaultMidiFilePresenterConfig createDefault (PresentationType type) {
-	  DefaultMidiFilePresenterConfig defaultConfig = new DefaultMidiFilePresenterConfig();
+  private DefaultPresenterConfig createDefault (PresentationType type) {
+	  DefaultPresenterConfig defaultConfig = new DefaultPresenterConfig();
 	  
 	  configurator.overwriteConfiguration(defaultConfig, defaults.getAllDefaultSchemes(), type);
 	  return defaultConfig;
@@ -69,8 +69,8 @@ public class PresentationConfiguratorTest {
 
   @Test
   public void dontOverwriteDefault () {
-    DefaultMidiFilePresenterConfig defaultConfig = createDefault(PresentationType.PDF);
-    IMidiFilePresenterConfig configuredConfig = configurator.configure(null, appSession.getCurrentModel(), PresentationType.PDF);
+    DefaultPresenterConfig defaultConfig = createDefault(PresentationType.PDF);
+    IPresenterConfig configuredConfig = configurator.configure(null, appSession.getCurrentModel(), PresentationType.PDF);
 
     checkConfiguration( configuredConfig, defaultConfig);
   }
@@ -83,7 +83,7 @@ public class PresentationConfiguratorTest {
   public void overwriteWithGeneric () {
     appSession.getCurrentModel();
 
-    DefaultMidiFilePresenterConfig defaultConfig = createDefault(PresentationType.PDF);
+    DefaultPresenterConfig defaultConfig = createDefault(PresentationType.PDF);
 
     //Case 2: Generic scheme is for another presentationtype
     PresentationScheme genericSchema = MidiPlayerService.mf.createPresentationScheme();
@@ -95,16 +95,16 @@ public class PresentationConfiguratorTest {
     genericSchema.setShowBackground(! defaultConfig.isShowBackground());
     genericSchema.setShowBlockType(! defaultConfig.isShowBlockType());
     appSession.getCurrentModel().getPresentationschemes().add(genericSchema);
-    IMidiFilePresenterConfig configuredConfig = configurator.configure(null, appSession.getCurrentModel(), PresentationType.PDF);
+    IPresenterConfig configuredConfig = configurator.configure(null, appSession.getCurrentModel(), PresentationType.PDF);
     checkConfiguration( configuredConfig, defaultConfig);
 
     //Case 3: Generic scheme is for this presentationtype
-    DefaultMidiFilePresenterConfig overwrittenGenericExpected  = createDefault(PresentationType.PPT);
+    DefaultPresenterConfig overwrittenGenericExpected  = createDefault(PresentationType.PPT);
     overwrittenGenericExpected.setBackgroundColor(getColorString(SWT.COLOR_BLUE));
     overwrittenGenericExpected.setForegroundColor(getColorString(SWT.COLOR_YELLOW));
     overwrittenGenericExpected.setShowBackground(genericSchema.getShowBackground());
     overwrittenGenericExpected.setShowBlockType(genericSchema.getShowBlockType());
-    IMidiFilePresenterConfig configuredConfigPpt = configurator.configure(null, appSession.getCurrentModel(), PresentationType.PPT);
+    IPresenterConfig configuredConfigPpt = configurator.configure(null, appSession.getCurrentModel(), PresentationType.PPT);
     checkConfiguration( configuredConfigPpt, overwrittenGenericExpected);
   }
 
@@ -113,7 +113,7 @@ public class PresentationConfiguratorTest {
     appSession.getCurrentModel().getUsers().clear();
     User newUser = MidiPlayerService.mf.createUser();
 
-    DefaultMidiFilePresenterConfig defaultConfig  = createDefault(PresentationType.PDF);
+    DefaultPresenterConfig defaultConfig  = createDefault(PresentationType.PDF);
 
     //Case 2: Generic scheme is for another presentationtype
     PresentationScheme genericSchema = MidiPlayerService.mf.createPresentationScheme();
@@ -125,16 +125,16 @@ public class PresentationConfiguratorTest {
 
     newUser.getPresentationschemes().add(genericSchema);
     appSession.getCurrentModel().getUsers().add(newUser);
-    IMidiFilePresenterConfig configuredConfig = configurator.configure(newUser, appSession.getCurrentModel(), PresentationType.PDF);
+    IPresenterConfig configuredConfig = configurator.configure(newUser, appSession.getCurrentModel(), PresentationType.PDF);
     checkConfiguration( configuredConfig, defaultConfig);
 
     //Case 3: Generic scheme is for this presentationtype
-    DefaultMidiFilePresenterConfig overwrittenGenericExpected  = createDefault(PresentationType.PPT);
+    DefaultPresenterConfig overwrittenGenericExpected  = createDefault(PresentationType.PPT);
     overwrittenGenericExpected.setBorder (genericSchema.getBorder());
     overwrittenGenericExpected.setOptimizeEmptyTokens(genericSchema.getOptimizeEmptyTokens());
     overwrittenGenericExpected.setNewPageRespected(genericSchema.getNewPageRespected());
     overwrittenGenericExpected.setPagePerPart(genericSchema.getPagePerPart());
-    IMidiFilePresenterConfig configuredConfigPpt = configurator.configure(newUser, appSession.getCurrentModel(), PresentationType.PPT);
+    IPresenterConfig configuredConfigPpt = configurator.configure(newUser, appSession.getCurrentModel(), PresentationType.PPT);
     checkConfiguration( configuredConfigPpt, overwrittenGenericExpected);
   }
 
@@ -144,7 +144,7 @@ public class PresentationConfiguratorTest {
     appSession.getCurrentModel().getUsers().clear();
     User newUser = MidiPlayerService.mf.createUser();
 
-    DefaultMidiFilePresenterConfig defaultConfig = createDefault(PresentationType.PDF);
+    DefaultPresenterConfig defaultConfig = createDefault(PresentationType.PDF);
 
     PresentationScheme genericSchema = MidiPlayerService.mf.createPresentationScheme();
     genericSchema.setType(PresentationType.PDF.name());
@@ -165,13 +165,13 @@ public class PresentationConfiguratorTest {
     newUser.getPresentationschemes().add(userSchema);
     appSession.getCurrentModel().getUsers().add(newUser);
 
-    DefaultMidiFilePresenterConfig overwrittenGenericExpected  = createDefault(PresentationType.PDF);
+    DefaultPresenterConfig overwrittenGenericExpected  = createDefault(PresentationType.PDF);
     overwrittenGenericExpected.setBorder (genericSchema.getBorder());
     overwrittenGenericExpected.setOptimizeEmptyTokens(genericSchema.getOptimizeEmptyTokens());
     overwrittenGenericExpected.setNewPageRespected(genericSchema.getNewPageRespected());
     overwrittenGenericExpected.setPagePerPart(userSchema.getPagePerPart()); //overwritten by default and reoverwritten by user
     overwrittenGenericExpected.setShowBlockType(userSchema.getShowBlockType()); //overwritten only by user
-    IMidiFilePresenterConfig configuredConfigPpt = configurator.configure(newUser, appSession.getCurrentModel(), PresentationType.PDF);
+    IPresenterConfig configuredConfigPpt = configurator.configure(newUser, appSession.getCurrentModel(), PresentationType.PDF);
     checkConfiguration( configuredConfigPpt, overwrittenGenericExpected);
 
   }

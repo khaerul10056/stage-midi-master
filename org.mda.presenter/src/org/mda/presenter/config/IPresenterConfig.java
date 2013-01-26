@@ -1,14 +1,14 @@
 package org.mda.presenter.config;
 
 
-import mda.MidiFilePartType;
+import mda.SongPartType;
 
 import org.mda.presenter.adapter.ColorInfo;
 import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
 import org.mda.presenter.adapter.SizeInfo;
 
-public interface IMidiFilePresenterConfig {
+public interface IPresenterConfig {
 
 	/**
 	 * getter
@@ -25,7 +25,7 @@ public interface IMidiFilePresenterConfig {
 	 * @param parttype
 	 * @return
 	 */
-	boolean isPartIgnored(final MidiFilePartType parttype);
+	boolean isPartIgnored(final SongPartType parttype);
 
 	IGraphicsContext getGraphicsContext();
 

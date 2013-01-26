@@ -3,7 +3,7 @@ package org.mda.presenter.controller;
 import javax.inject.Inject;
 
 import mda.AbstractSessionItem;
-import mda.MidiFilePart;
+import mda.SongPart;
 
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -36,7 +36,7 @@ public boolean toItem (final AbstractSessionItem sessionItem) {
   }
   
   
-  public boolean toPart(MidiFilePart part) {
+  public boolean toPart(SongPart part) {
 	  return presentationContext.toPart(part);
   }
 

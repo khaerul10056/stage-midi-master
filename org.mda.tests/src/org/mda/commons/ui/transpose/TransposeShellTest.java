@@ -1,6 +1,6 @@
 package org.mda.commons.ui.transpose;
 
-import mda.MidiFile;
+import mda.Song;
 import mda.MidiPlayerRoot;
 
 import org.eclipse.swt.widgets.Shell;
@@ -17,7 +17,7 @@ public class TransposeShellTest {
 	    session.load(null);
 	    MidiPlayerRoot model = session.getCurrentModel();
 	    
-	    MidiFile midifile = ((MidiFile)model.getGallery().getGalleryItems().get(0));
+	    Song midifile = ((Song)model.getGallery().getGalleryItems().get(0));
 	    midifile.setKey("A");
 
 	    Shell shell = new Shell();

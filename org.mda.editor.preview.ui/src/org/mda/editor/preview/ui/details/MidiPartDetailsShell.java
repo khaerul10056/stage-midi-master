@@ -1,7 +1,7 @@
 package org.mda.editor.preview.ui.details;
 
-import mda.MidiFilePart;
-import mda.MidiFilePartType;
+import mda.SongPart;
+import mda.SongPartType;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.jface.viewers.ComboViewer;
@@ -38,7 +38,7 @@ public class MidiPartDetailsShell {
     return new GridData(SWT.FILL, SWT.FILL, false, false);
   }
 
-  public Shell build (final Shell mother, final MidiFilePart part) {
+  public Shell build (final Shell mother, final SongPart part) {
     shell = new Shell (mother);
     shell.setSize(500, 700);
     shell.setText("Details of part " + part.getParttype());
@@ -63,14 +63,14 @@ public class MidiPartDetailsShell {
     final ComboViewer cmbviewer = new ComboViewer(cmbType);
     cmbviewer.setContentProvider(new EnumContentProvider());
     cmbviewer.setLabelProvider(new EnumLabelProvider());
-    cmbviewer.setInput(MidiFilePartType.VALUES);
+    cmbviewer.setInput(SongPartType.VALUES);
     cmbviewer.setSelection(new StructuredSelection(part.getParttype()));
     cmbviewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
       @Override
       public void selectionChanged (SelectionChangedEvent arg0) {
         StructuredSelection select = ((StructuredSelection)cmbviewer.getSelection());
-        MidiFilePartType selectedType = ((MidiFilePartType)select.getFirstElement());
+        SongPartType selectedType = ((SongPartType)select.getFirstElement());
         part.setParttype(selectedType);
 
       }

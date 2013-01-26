@@ -3,8 +3,8 @@ package org.mda.core;
 import java.util.Collection;
 import java.util.List;
 import junit.framework.Assert;
-import mda.MidiFile;
-import mda.MidiFilePartType;
+import mda.Song;
+import mda.SongPartType;
 import org.junit.Test;
 import org.mda.copyright.CopyrightSerializer;
 import org.mda.presenter.ui.test.MidiFileCreator;
@@ -25,9 +25,9 @@ public class CopyrightSerializerTest {
   @Test
   public void noCopyright () {
     MidiFileCreator creator = MidiFileCreator.create();
-    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.part(SongPartType.REFRAIN);
     creator = creator.line().chordAndText("D", "                         ").chordAndText("F", "    ");
-    MidiFile file = creator.get();
+    Song file = creator.get();
     CopyrightSerializer serializer = new CopyrightSerializer();
     Collection<String> serialize = serializer.serialize(file);
     Assert.assertTrue (serialize.isEmpty());
@@ -36,10 +36,10 @@ public class CopyrightSerializerTest {
   @Test
   public void emptyCopyright () {
     MidiFileCreator creator = MidiFileCreator.create();
-    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.part(SongPartType.REFRAIN);
     creator = creator.line().chordAndText("D", "                         ").chordAndText("F", "    ");
     creator = creator.copyright(null, "", "    ", null, null, null, null);
-    MidiFile file = creator.get();
+    Song file = creator.get();
     CopyrightSerializer serializer = new CopyrightSerializer();
     Collection<String> serialize = serializer.serialize(file);
     Assert.assertTrue (serialize.isEmpty());
@@ -50,10 +50,10 @@ public class CopyrightSerializerTest {
 
     MidiFileCreator creator = MidiFileCreator.create();
     creator = creator.setName(name);
-    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.part(SongPartType.REFRAIN);
     creator = creator.line().chordAndText("D", "                         ").chordAndText("F", "    ");
     creator = creator.copyright(ORIGINALTITLE, publisher, publisherInland, writerInlandText, writerMusic, writerText, year);
-    MidiFile file = creator.get();
+    Song file = creator.get();
     CopyrightSerializer serializer = new CopyrightSerializer();
     List<String> serialize = serializer.serialize(file);
     Assert.assertFalse (serialize.isEmpty());
@@ -68,10 +68,10 @@ public class CopyrightSerializerTest {
 
     MidiFileCreator creator = MidiFileCreator.create();
     creator = creator.setName(name);
-    creator = creator.part(MidiFilePartType.REFRAIN);
+    creator = creator.part(SongPartType.REFRAIN);
     creator = creator.line().chordAndText("D", "                         ").chordAndText("F", "    ");
     creator = creator.copyright(ORIGINALTITLE, publisher, publisherInland, writerInlandText, writerMusic, writerMusic, year);
-    MidiFile file = creator.get();
+    Song file = creator.get();
     CopyrightSerializer serializer = new CopyrightSerializer();
     List<String> serialize = serializer.serialize(file);
     Assert.assertFalse (serialize.isEmpty());

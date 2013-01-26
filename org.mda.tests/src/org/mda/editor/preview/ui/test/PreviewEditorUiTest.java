@@ -6,9 +6,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
-import mda.MidiFile;
-import mda.MidiFilePart;
-import mda.MidiFilePartType;
+import mda.Song;
+import mda.SongPart;
+import mda.SongPartType;
 import mda.MidiPlayerRoot;
 
 import org.eclipse.swt.custom.StyledText;
@@ -32,9 +32,9 @@ public class PreviewEditorUiTest extends AbstractEditorTest {
    * @param caretPos   set caret at this position, -1 sets it to the end of the line
    */
   private void mergeCurrentLineAndCheckLines (final int expectedLines, final int focusedLine, int caretPos) {
-    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.REFRAIN);
+    MidiFileCreator creator = MidiFileCreator.create().part(SongPartType.REFRAIN);
     creator = creator.line().text("The first line").line().text("The second line");
-    MidiFile midiFile = creator.get();
+    Song midiFile = creator.get();
     prepareEditor(midiFile);
     
     editor.setCurrentPart(midiFile.getParts().get(0));
@@ -66,7 +66,7 @@ public class PreviewEditorUiTest extends AbstractEditorTest {
 
   @Test
   public void deleteWhenSelected () throws Exception {
-    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    Song song = (Song) root.getGallery().getGalleryItems().get(0);
 
     prepareEditor(song);
     
@@ -87,7 +87,7 @@ public class PreviewEditorUiTest extends AbstractEditorTest {
 
   @Test
   public void stepToEndOfLine () throws Exception {
-    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    Song song = (Song) root.getGallery().getGalleryItems().get(0);
     prepareEditor(song);
     
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
@@ -108,7 +108,7 @@ public class PreviewEditorUiTest extends AbstractEditorTest {
 
   @Test
   public void stepToNextAndPreviousLine () throws Exception {
-    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    Song song = (Song) root.getGallery().getGalleryItems().get(0);
     prepareEditor(song);
     
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
@@ -154,13 +154,13 @@ public class PreviewEditorUiTest extends AbstractEditorTest {
 
 
   private void saveAndShowRoundtrip () {
-    MidiFilePart saveToModel = editor.getContentpanel().saveToModel();
+    SongPart saveToModel = editor.getContentpanel().saveToModel();
     editor.getContentpanel().setCurrentPart(saveToModel);
   }
 
   @Test
   public void splitAndMergeMiddleOfLinePart () throws Exception {
-    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    Song song = (Song) root.getGallery().getGalleryItems().get(0);
     prepareEditor(song);
     
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
@@ -193,7 +193,7 @@ public class PreviewEditorUiTest extends AbstractEditorTest {
   public void splitAndMergeThirdLine () throws Exception {
     final String TEXTLINEORIGINAL  = "Alle Schöpfung singt ein Lob, Du bist mächtig, Du bist groß.";
     final String CHORDLINEORIGINAL = "D    G                   A    D       G                A";
-    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    Song song = (Song) root.getGallery().getGalleryItems().get(0);
     prepareEditor(song);
         
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
@@ -216,7 +216,7 @@ public class PreviewEditorUiTest extends AbstractEditorTest {
 
   @Test
   public void splitLineEndOfChordpart () throws Exception {
-    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    Song song = (Song) root.getGallery().getGalleryItems().get(0);
     prepareEditor(song);
         
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
@@ -258,7 +258,7 @@ public class PreviewEditorUiTest extends AbstractEditorTest {
 
   @Test
   public void splitLineMidChordpart () throws Exception {
-    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    Song song = (Song) root.getGallery().getGalleryItems().get(0);
     prepareEditor(song);
         
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
@@ -295,7 +295,7 @@ public class PreviewEditorUiTest extends AbstractEditorTest {
 
   @Test
   public void splitAndMergeLineAtHome () throws Exception {
-    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    Song song = (Song) root.getGallery().getGalleryItems().get(0);
     prepareEditor(song);
         
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));
@@ -322,9 +322,9 @@ public class PreviewEditorUiTest extends AbstractEditorTest {
 
   @Test
   public void splitAndMergeAtEndOfLine () throws Exception {
-    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS);
+    MidiFileCreator creator = MidiFileCreator.create().part(SongPartType.VERS);
     creator =  creator.line().chordAndText("H", "Dies ist ein Test");
-    MidiFile song = creator.line().chordAndText("H", "another line").get();
+    Song song = creator.line().chordAndText("H", "another line").get();
     prepareEditor(song);
         
     editor.getContentpanel().setCurrentPart(song.getParts().get(0));
@@ -342,8 +342,8 @@ public class PreviewEditorUiTest extends AbstractEditorTest {
 
   @Test
   public void splitAndMergeAtEndOfLastLine () throws Exception {
-    MidiFileCreator creator = MidiFileCreator.create().part(MidiFilePartType.VERS);
-    MidiFile song =  creator.line().chordAndText("H", "Dies ist ein Test").get();
+    MidiFileCreator creator = MidiFileCreator.create().part(SongPartType.VERS);
+    Song song =  creator.line().chordAndText("H", "Dies ist ein Test").get();
     prepareEditor(song);
         
     editor.getContentpanel().setCurrentPart(song.getParts().get(0));
@@ -361,7 +361,7 @@ public class PreviewEditorUiTest extends AbstractEditorTest {
 
   @Test
   public void splitAndMergeLineAtPreEnd () throws Exception {
-    MidiFile song = (MidiFile) root.getGallery().getGalleryItems().get(0);
+    Song song = (Song) root.getGallery().getGalleryItems().get(0);
     prepareEditor(song);
         
     editor.getContentpanel().setCurrentPart(song.getParts().get(1));

@@ -8,10 +8,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 import mda.AbstractSessionItem;
-import mda.MidiFile;
-import mda.MidiFileChordPart;
-import mda.MidiFilePart;
-import mda.MidiFileTextLine;
+import mda.Song;
+import mda.SongChordPart;
+import mda.SongPart;
+import mda.SongTextLine;
 
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
@@ -29,9 +29,9 @@ import org.mda.struct.MidiFileStruct;
 import org.mda.struct.MidiFileStructItem;
 
 
-public class MidiFileSlideCalculator extends SlideCalculator {
+public class SongSlideCalculator extends SlideCalculator {
 
-  private static final Log LOGGER  = LogFactory.getLogger(MidiFileSlideCalculator.class);
+  private static final Log LOGGER  = LogFactory.getLogger(SongSlideCalculator.class);
 
   private float currentX;
 
@@ -54,7 +54,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
   @Override
   public List<Slide> calculate (final AbstractSessionItem sessionitem, final CalculatorPreCondition preCondition) {
     List<Slide> slides = new ArrayList<Slide>();
-    MidiFile midifile = (MidiFile) sessionitem;
+    Song midifile = (Song) sessionitem;
     
     LOGGER.info("PreConditionSize: " + preCondition.getCalculationsize() + "- Config " + getConfig().getDefaultPresentationScreenSize());
 
@@ -97,7 +97,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
     currentY = getConfiguredBorder();
 
-    for (MidiFilePart nextPart : midifile.getParts()) {
+    for (SongPart nextPart : midifile.getParts()) {
       List<Slide> calculatePart = calculatePart(nextPart, preCondition);
       slides.addAll(calculatePart);
     }
@@ -131,7 +131,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
 
 
-  private void addTitle (Slide slide, final MidiFile midifile, final CalculatorPreCondition preCondition) {
+  private void addTitle (Slide slide, final Song midifile, final CalculatorPreCondition preCondition) {
     if (midifile.getName() != null && ! midifile.getName().isEmpty()) {
 
       String name = MidiPlayerService.getTitle(midifile);
@@ -151,7 +151,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     }
   }
 
-  private void init (final MidiFile midifile) {
+  private void init (final Song midifile) {
     if (LOGGER.isDebugEnabled())
       LOGGER.debug("Setting font to size " + getConfig().getFont());
 
@@ -190,11 +190,11 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     return offset + + getIndentBetweenChordAndText();
   }
 
-  private float getOffsetLongestPartType (final MidiFile file, final CalculatorPreCondition preCondition) {
+  private float getOffsetLongestPartType (final Song file, final CalculatorPreCondition preCondition) {
     float length = 0;
     String longestPart = "";
     MidiFileStruct struct = new MidiFileStruct(file);
-    for (MidiFilePart nextPart: file.getParts()) {
+    for (SongPart nextPart: file.getParts()) {
       String label = struct.getItem(nextPart).getLabel();
       if (label != null) {
         SizeInfo currentOffset = getGc().getSize(label, getConfig().getFont());
@@ -210,7 +210,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
     return length + 25;
   }
 
-  private Slide newSlide (final MidiFile midifile, final MidiFilePart part, final MidiFileTextLine firstLine,
+  private Slide newSlide (final Song midifile, final SongPart part, final SongTextLine firstLine,
                           final FontInfo zoomedFont, final CalculatorPreCondition preCondition, final boolean forceNewPage) {
     Slide slide = new Slide(part, firstLine, zoomedFont, forceNewPage);
     slide.setBackgroundImage(imageFile);
@@ -249,8 +249,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
 
 
-  public List<Slide> calculatePart (final MidiFilePart part, final CalculatorPreCondition preCondition) {
-    MidiFile midifile = (MidiFile) part.eContainer();
+  public List<Slide> calculatePart (final SongPart part, final CalculatorPreCondition preCondition) {
+    Song midifile = (Song) part.eContainer();
     init(midifile);
     List <Slide> slides = new ArrayList<Slide>();
     MidiFileStruct struct = new MidiFileStruct(midifile);
@@ -311,8 +311,8 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
     if (! getConfig().isOptimizeEqualParts() || structItem.isContentShown()) {
 
-    List <MidiFileTextLine> textlines = part.getRefPart() != null ? part.getRefPart().getTextlines() : part.getTextlines();
-    for (MidiFileTextLine nextTextLine : textlines ) {
+    List <SongTextLine> textlines = part.getRefPart() != null ? part.getRefPart().getTextlines() : part.getTextlines();
+    for (SongTextLine nextTextLine : textlines ) {
 
 
       if (getConfig().isNewPageRespected() && nextTextLine.isNewSlide()) {
@@ -324,7 +324,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
       List <SlideItem> itemsOfCurrentLine = new ArrayList<SlideItem>();
 
-      for (MidiFileChordPart chordPart : nextTextLine.getChordParts()) {
+      for (SongChordPart chordPart : nextTextLine.getChordParts()) {
 
         boolean newSlideForced = nextTextLine.isNewSlide() && chordPart.equals(nextTextLine.getChordParts().get(0));
 
@@ -516,7 +516,7 @@ public class MidiFileSlideCalculator extends SlideCalculator {
 
   @Override
   public boolean isAssigned (AbstractSessionItem item) {
-    return item instanceof MidiFile;
+    return item instanceof Song;
   }
 
 

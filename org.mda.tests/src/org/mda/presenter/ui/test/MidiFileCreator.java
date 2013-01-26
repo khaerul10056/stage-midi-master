@@ -1,22 +1,22 @@
 package org.mda.presenter.ui.test;
 
 import mda.Copyright;
-import mda.MidiFile;
-import mda.MidiFileChordPart;
-import mda.MidiFilePart;
-import mda.MidiFilePartType;
-import mda.MidiFileTextLine;
+import mda.Song;
+import mda.SongChordPart;
+import mda.SongPart;
+import mda.SongPartType;
+import mda.SongTextLine;
 import mda.MidiplayerFactory;
 
 
 public class MidiFileCreator {
 
-  private MidiFile midifile;
-  private MidiFilePart currentPart;
-  private MidiFileTextLine currentTextLine;
+  private Song midifile;
+  private SongPart currentPart;
+  private SongTextLine currentTextLine;
 
   private MidiFileCreator () {
-    midifile = MidiplayerFactory.eINSTANCE.createMidiFile();
+    midifile = MidiplayerFactory.eINSTANCE.createSong();
   }
 
   public MidiFileCreator setName (final String name) {
@@ -49,8 +49,8 @@ public class MidiFileCreator {
 	  return this;
   }
 
-  public MidiFileCreator part (MidiFilePartType type) {
-    currentPart = MidiplayerFactory.eINSTANCE.createMidiFilePart();
+  public MidiFileCreator part (SongPartType type) {
+    currentPart = MidiplayerFactory.eINSTANCE.createSongPart();
     currentPart.setParttype(type);
     midifile.getParts().add(currentPart);
     currentTextLine = null;
@@ -58,8 +58,8 @@ public class MidiFileCreator {
   }
 
   public MidiFileCreator refPart (final int reference) {
-    currentPart = MidiplayerFactory.eINSTANCE.createMidiFilePart();
-    MidiFilePart refPart = midifile.getParts().get(reference);
+    currentPart = MidiplayerFactory.eINSTANCE.createSongPart();
+    SongPart refPart = midifile.getParts().get(reference);
     currentPart.setParttype(refPart.getParttype());
     currentPart.setRefPart(refPart);
     midifile.getParts().add(currentPart);
@@ -71,7 +71,7 @@ public class MidiFileCreator {
     if (currentPart == null)
       throw new IllegalStateException("You have to add a part before adding a newline");
 
-    currentTextLine = MidiplayerFactory.eINSTANCE.createMidiFileTextLine();
+    currentTextLine = MidiplayerFactory.eINSTANCE.createSongTextLine();
     currentPart.getTextlines().add(currentTextLine);
     return this;
   }
@@ -80,7 +80,7 @@ public class MidiFileCreator {
     if (currentPart == null)
       throw new IllegalStateException("You have to add a part before adding a newline");
 
-    currentTextLine = MidiplayerFactory.eINSTANCE.createMidiFileTextLine();
+    currentTextLine = MidiplayerFactory.eINSTANCE.createSongTextLine();
     currentTextLine.setNewSlide(true);
     currentPart.getTextlines().add(currentTextLine);
     return this;
@@ -98,14 +98,14 @@ public class MidiFileCreator {
     if (currentTextLine == null)
       line();
 
-    MidiFileChordPart createMidiFileChordPart = MidiplayerFactory.eINSTANCE.createMidiFileChordPart();
+    SongChordPart createMidiFileChordPart = MidiplayerFactory.eINSTANCE.createSongChordPart();
     createMidiFileChordPart.setChord(chord);
     createMidiFileChordPart.setText(text);
     currentTextLine.getChordParts().add(createMidiFileChordPart);
     return this;
   }
 
-  public MidiFile get() {
+  public Song get() {
     return midifile;
   }
 
