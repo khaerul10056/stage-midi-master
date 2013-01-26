@@ -13,16 +13,16 @@ import mda.SongPartType;
  * @author oleym
  *
  */
-public class MidiFileStruct {
+public class SongStruct {
 
-  private List <MidiFileStructItem> items = new ArrayList<MidiFileStructItem>();
+  private List <SongStructItem> items = new ArrayList<SongStructItem>();
 
-  public MidiFileStruct (final Song file) {
+  public SongStruct (final Song file) {
     readStruct(file);
   }
 
-  public MidiFileStructItem getItem (final SongPart part) {
-    for (MidiFileStructItem nextItem: getItems()) {
+  public SongStructItem getItem (final SongPart part) {
+    for (SongStructItem nextItem: getItems()) {
       if (nextItem.getPart().equals(part))
         return nextItem;
     }
@@ -38,10 +38,10 @@ public class MidiFileStruct {
    * @param type type to find
    * @return item or <code>null</code>
    */
-  private MidiFileStructItem getLastShownItem (SongPart contentPart) {
-    MidiFileStructItem markedItem = null;
+  private SongStructItem getLastShownItem (SongPart contentPart) {
+    SongStructItem markedItem = null;
     for (int i = getItems().size() - 1; i >= 0; i--) {
-      MidiFileStructItem prevItem = getItems().get(i);
+      SongStructItem prevItem = getItems().get(i);
       SongPart contentPartCompare = prevItem.getPart().getRefPart() != null ? prevItem.getPart().getRefPart() : prevItem.getPart();
       if (!contentPartCompare.equals(contentPart))
         return markedItem;
@@ -61,7 +61,7 @@ public class MidiFileStruct {
     for (SongPart nextPart: file.getParts()) {
 
       SongPart contentPart = nextPart.getRefPart() != null ? nextPart.getRefPart() : nextPart;
-      MidiFileStructItem item = getItem(contentPart);
+      SongStructItem item = getItem(contentPart);
 
       if (item == null) { //if current part was not analyzed, then the current part is a new one, so increment the counter
         Integer integer = partcountsCreated.get(nextPart.getParttype());
@@ -72,14 +72,14 @@ public class MidiFileStruct {
         partcountsCreated.put(nextPart.getParttype(), integer);
       }
 
-      MidiFileStructItem newItem = new MidiFileStructItem();
+      SongStructItem newItem = new SongStructItem();
       newItem.setPart(nextPart); //the part itself, references are not resolved
       newItem.setType(nextPart.getParttype());
       newItem.setIndex(item != null ? item.getIndex() : partcountsCreated.get(nextPart.getParttype())); //REFRAIN2...
       newItem.setContentShown(nextPart.getRefPart() == null);
 
       //.... REFRAIN 3x
-      MidiFileStructItem lastShownItem = getLastShownItem(contentPart);
+      SongStructItem lastShownItem = getLastShownItem(contentPart);
       if (lastShownItem != null) {
         newItem.setContentShown(false);
         newItem.setVisible(false);
@@ -89,14 +89,14 @@ public class MidiFileStruct {
       getItems().add(newItem);
     }
 
-    for (MidiFileStructItem nextItem: getItems()) {
+    for (SongStructItem nextItem: getItems()) {
       Integer count = partcountsCreated.get(nextItem.getType());
       if (count == 1)
         nextItem.setIndex(null);
     }
   }
 
-  public List <MidiFileStructItem> getItems () {
+  public List <SongStructItem> getItems () {
     return items;
   }
 

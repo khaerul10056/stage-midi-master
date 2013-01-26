@@ -4,7 +4,7 @@ import mda.SongPart;
 import mda.SongPartType;
 
 
-public class MidiFileStructItem {
+public class SongStructItem {
 
   private SongPartType type;
 

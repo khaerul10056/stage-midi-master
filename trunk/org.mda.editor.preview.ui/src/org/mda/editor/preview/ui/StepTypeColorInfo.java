@@ -3,7 +3,11 @@ package org.mda.editor.preview.ui;
 import org.eclipse.swt.graphics.Color;
 import mda.SongPartType;
 
-
+/**
+ * color info for any  
+ * @author oleym
+ *
+ */
 public class StepTypeColorInfo {
 
   private final SongPartType parttype;
