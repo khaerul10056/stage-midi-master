@@ -24,6 +24,8 @@ import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
 import org.mda.presenter.adapter.LocationInfo;
 import org.mda.presenter.adapter.SizeInfo;
+import org.mda.presenter.config.DefaultPresenterConfig;
+import org.mda.presenter.config.IPresenterConfig;
 import org.mda.presenter.config.PresentationConfigurator;
 import org.mda.struct.SongStruct;
 import org.mda.struct.SongStructItem;
@@ -45,30 +47,55 @@ public class SongSlideCalculator extends SlideCalculator {
   private ApplicationSession  appSession;
 
   private CopyrightSerializer copyrightSerializer = new CopyrightSerializer();
-
+  
   private float height = -1;
 
   private float maxY = -1;
   
   
+  private int getOptimizedFontSize (final List <Slide> slides,  IPresenterConfig config) {
+	  
+	  int fontSizeCurrent = slides.get(0).getFont().getFontsizeAsInt();
+	  float currentMaxX = 0.0f; 
+	  for (Slide next: slides) {
+		  if (next.getMostRightItem().getXMax() > currentMaxX)
+			  currentMaxX = next.getMostRightItem().getXMax();
+	  }
+      float expectedMaxX = slides.get(0).getSize().getWidth() * config.getAutoSizingPercent() / 100 ;
+      float expectedSize = fontSizeCurrent * expectedMaxX / currentMaxX;
+      
+      LOGGER.info("Calculation of optimized fontsize");
+      LOGGER.info("- current fontsize " + fontSizeCurrent); 
+      LOGGER.info("- currentMaxX      " + currentMaxX);
+      LOGGER.info("- expectedMaxX     " + expectedMaxX);
+      LOGGER.info("- width            " + slides.get(0).getSize().getWidth());
+      LOGGER.info("- optimal size     " + expectedSize);
+      return (int) expectedSize;
+  }
+  
+  
   @Override
-  public List<Slide> calculate (final AbstractSessionItem sessionitem, final CalculatorPreCondition preCondition) {
-    List<Slide> slides = new ArrayList<Slide>();
+  public SlideContainer calculate (final AbstractSessionItem sessionitem, final CalculationParam param, final IPresenterConfig config) {
+	  
+	List <Slide> slides = new ArrayList<Slide>();
+	
+	setConfig(config);
     Song midifile = (Song) sessionitem;
     
-    LOGGER.info("PreConditionSize: " + preCondition.getCalculationsize() + "- Config " + getConfig().getDefaultPresentationScreenSize());
-
     if (height < 0)
-      height = preCondition.getCalculationsize().getHeight();
+      height = param.getPresentationSize().getHeight();
 
     init(midifile);
 
     Collection <SlideItem> copyrightItems = new ArrayList<SlideItem>();
+    
+    if (getConfig().isShowCopyright() && getConfig().getAutoSizingPercent() != null)
+    	throw new IllegalStateException("Autosizing and showing copyright is not yet supported together");
 
     if (getConfig().isShowCopyright()) {
       int copyrightFontsize = getConfig().getFont().getFontsizeAsInt() - 2;
       FontInfo font = new FontInfo ("Arial Alternative", copyrightFontsize);
-      FontInfo zoomedFont = calculateZoomedFont(font, preCondition);
+      FontInfo zoomedFont = calculateZoomedFont(font, param);
       if (LOGGER.isDebugEnabled())
         LOGGER.debug("set font to size " + zoomedFont.getFontsizeAsInt() + " from " + font.getFontsizeAsInt());
 
@@ -80,7 +107,7 @@ public class SongSlideCalculator extends SlideCalculator {
 
       for (String nextCopyrightLine : serialize) {
         SizeInfo copyrightExtend = getGc().getSize(nextCopyrightLine, getConfig().getFont());
-        SizeInfo zoomedSize = calculateZoomedSize(copyrightExtend, preCondition);
+        SizeInfo zoomedSize = calculateZoomedSize(copyrightExtend, param);
         AreaInfo newRectangle = new AreaInfo(currentX, currentY, zoomedSize);
         FontInfo fontDesc = new FontInfo(copyrightFontsize);
         SlideItem titleItem = new SlideItem(newRectangle, nextCopyrightLine, SlideType.COPYRIGHT, null, false, fontDesc, 0);
@@ -96,23 +123,35 @@ public class SongSlideCalculator extends SlideCalculator {
     LOGGER.info("Set MaxY to " + maxY);
 
     currentY = getConfiguredBorder();
-
-    for (SongPart nextPart : midifile.getParts()) {
-      List<Slide> calculatePart = calculatePart(nextPart, preCondition);
-      slides.addAll(calculatePart);
+    
+    
+    //first calculation
+    for (SongPart nextPart : midifile.getParts())
+      slides.addAll(calculatePart(nextPart, param, config));
+    
+    if (! slides.isEmpty() && getConfig().getAutoSizingPercent() != null) {
+      int newSize = getOptimizedFontSize(slides, config);
+  	  LOGGER.info("Setting size of item " + sessionitem.getName() + " to " + newSize + ", before " + config.getFont().getFontsizeAsInt());
+  	  ((DefaultPresenterConfig)config).setFontsize(newSize);
+  	  slides.clear();
+  	  
+  	  for (SongPart nextPart : midifile.getParts()) {
+        slides.addAll(calculatePart(nextPart, param, config));
+  	  }
+  	  
+  	  ((DefaultPresenterConfig)config).setFontsize(null);
     }
-
+    
     for (SlideItem nextCopyright: copyrightItems) {
       Slide lastSlide = slides.get(slides.size() - 1);
       lastSlide.addItem(nextCopyright);
     }
     copyrightItems.clear();
 
-    for (Slide nextSlide: slides) {
-      LOGGER.info(nextSlide.toString());
-    }
+    SlideContainer container = new SlideContainer();
+    container.addSlides(midifile, slides);
 
-    return slides;
+    return container;
   }
 
   /**
@@ -131,13 +170,13 @@ public class SongSlideCalculator extends SlideCalculator {
 
 
 
-  private void addTitle (Slide slide, final Song midifile, final CalculatorPreCondition preCondition) {
+  private void addTitle (Slide slide, final Song midifile, final CalculationParam calcParam) {
     if (midifile.getName() != null && ! midifile.getName().isEmpty()) {
 
       String name = MidiPlayerService.getTitle(midifile);
 
       LocationInfo point = new LocationInfo(currentX, currentY);
-      LocationInfo zoomedPoint = calculateZoomedLocation(point, preCondition);
+      LocationInfo zoomedPoint = calculateZoomedLocation(point, calcParam);
 
       FontInfo descTitle = new FontInfo(getConfig().getFont());
       descTitle.setBold(true);
@@ -190,7 +229,7 @@ public class SongSlideCalculator extends SlideCalculator {
     return offset + + getIndentBetweenChordAndText();
   }
 
-  private float getOffsetLongestPartType (final Song file, final CalculatorPreCondition preCondition) {
+  private float getOffsetLongestPartType (final Song file) {
     float length = 0;
     String longestPart = "";
     SongStruct struct = new SongStruct(file);
@@ -211,10 +250,10 @@ public class SongSlideCalculator extends SlideCalculator {
   }
 
   private Slide newSlide (final Song midifile, final SongPart part, final SongTextLine firstLine,
-                          final FontInfo zoomedFont, final CalculatorPreCondition preCondition, final boolean forceNewPage) {
+                          final FontInfo zoomedFont, final CalculationParam calcParam, final boolean forceNewPage) {
     Slide slide = new Slide(part, firstLine, zoomedFont, forceNewPage);
     slide.setBackgroundImage(imageFile);
-    slide.setSize(preCondition.getCalculationsize());
+    slide.setSize(calcParam.getPresentationSize());
 
     slide.setBackgroundColor(PresentationConfigurator.getColorOrDefaultColor(midifile.getBackgroundColor(), getConfig().getDefaultBackgroundColor()));
     LOGGER.debug("set background to " + slide.getBackgroundColor());
@@ -249,7 +288,8 @@ public class SongSlideCalculator extends SlideCalculator {
 
 
 
-  public List<Slide> calculatePart (final SongPart part, final CalculatorPreCondition preCondition) {
+  public List<Slide> calculatePart (final SongPart part, final CalculationParam calcParam, final IPresenterConfig config) {
+	setConfig(config);
     Song midifile = (Song) part.eContainer();
     init(midifile);
     List <Slide> slides = new ArrayList<Slide>();
@@ -263,9 +303,9 @@ public class SongSlideCalculator extends SlideCalculator {
 
     //TODO centralize fonthandling
     FontInfo font = new FontInfo ("Arial Alternative", getConfig().getFont().getFontsize());
-    float longestTypeOffset = getOffsetLongestPartType(midifile, preCondition);
+    float longestTypeOffset = getOffsetLongestPartType(midifile);
 
-    FontInfo zoomedFont = calculateZoomedFont(font, preCondition);
+    FontInfo zoomedFont = calculateZoomedFont(font, calcParam);
     if (LOGGER.isDebugEnabled())
       LOGGER.debug("set font to size " + zoomedFont.getFontsize() + " from " + font.getFontsize());
 
@@ -275,7 +315,7 @@ public class SongSlideCalculator extends SlideCalculator {
     else
       height += (getLineHeight() / 2);
 
-    Slide slide = newSlide(midifile, part, part.getTextlines().size() > 0 ? part.getTextlines().get(0) : null, zoomedFont, preCondition, isFirstPartInSong);
+    Slide slide = newSlide(midifile, part, part.getTextlines().size() > 0 ? part.getTextlines().get(0) : null, zoomedFont, calcParam, isFirstPartInSong);
     slides.add(slide);
 
     int leftPosDefault = getConfiguredBorder();
@@ -284,7 +324,7 @@ public class SongSlideCalculator extends SlideCalculator {
       currentX = leftPosDefault;
 
       if (getConfig().isShowTitle()) {
-        addTitle(slide, midifile, preCondition);
+        addTitle(slide, midifile, calcParam);
       }
     }
 
@@ -297,8 +337,8 @@ public class SongSlideCalculator extends SlideCalculator {
         float addToY = getOffsetChordToText(currentY, getLineHeight());
         LocationInfo point = new LocationInfo(leftPosDefault, addToY);
 
-        LocationInfo zoomedPoint = calculateZoomedLocation(point, preCondition);
-        SizeInfo zoomedPartTypeExtend = calculateZoomedSize(parttypeExtend, preCondition);
+        LocationInfo zoomedPoint = calculateZoomedLocation(point, calcParam);
+        SizeInfo zoomedPartTypeExtend = calculateZoomedSize(parttypeExtend, calcParam);
 
         AreaInfo textRectangle = new AreaInfo (zoomedPoint, zoomedPartTypeExtend);
         SlideItem newTextItem = new SlideItem(textRectangle, blockType, SlideType.TEXT, null, false, getConfig().getFont(), 0);
@@ -316,7 +356,7 @@ public class SongSlideCalculator extends SlideCalculator {
 
 
       if (getConfig().isNewPageRespected() && nextTextLine.isNewSlide()) {
-        slide = newSlide(midifile, part, nextTextLine,  zoomedFont, preCondition, false);
+        slide = newSlide(midifile, part, nextTextLine,  zoomedFont, calcParam, false);
         slides.add(slide);
       }
 
@@ -352,9 +392,9 @@ public class SongSlideCalculator extends SlideCalculator {
           float addToY = getOffsetChordToText(currentY, getLineHeight());
           float indentToChord = currentY - addToY; //indent between chord and text
           LocationInfo point = new LocationInfo(currentX, addToY);
-          LocationInfo zoomedPoint = calculateZoomedLocation(point, preCondition);
-          SizeInfo zoomedTextExtend = calculateZoomedSize(textExtend, preCondition);
-          LocationInfo zoomedIndent = calculateZoomedLocation(new LocationInfo (indentToChord, 0), preCondition);
+          LocationInfo zoomedPoint = calculateZoomedLocation(point, calcParam);
+          SizeInfo zoomedTextExtend = calculateZoomedSize(textExtend, calcParam);
+          LocationInfo zoomedIndent = calculateZoomedLocation(new LocationInfo (indentToChord, 0), calcParam);
 
           AreaInfo textRectangle = new AreaInfo(zoomedPoint, zoomedTextExtend);
           newTextItem = new SlideItem(textRectangle, text, SlideType.TEXT, null, newSlideForced, getConfig().getFont(), zoomedIndent.getX());
@@ -363,8 +403,8 @@ public class SongSlideCalculator extends SlideCalculator {
 
         if (chord != null && getConfig().isChordPresented()) {
           LocationInfo point = new LocationInfo (currentX, currentY);
-          LocationInfo zoomedPoint = calculateZoomedLocation(point, preCondition);
-          SizeInfo zoomedChordExtend = calculateZoomedSize(chordExtend, preCondition);
+          LocationInfo zoomedPoint = calculateZoomedLocation(point, calcParam);
+          SizeInfo zoomedChordExtend = calculateZoomedSize(chordExtend, calcParam);
 
           AreaInfo  chordRectangle = new AreaInfo(zoomedPoint, zoomedChordExtend);
           SlideItem newItem = new SlideItem(chordRectangle, chord, SlideType.CHORD, newTextItem, newSlideForced, getConfig().getFont(), 0);
@@ -377,7 +417,7 @@ public class SongSlideCalculator extends SlideCalculator {
 
       boolean movingToPreviousLine = false;
       if (! nextTextLine.equals(textlines.get(0))) {
-        movingToPreviousLine = isMovingCurrentItemsToPreviousLineAllowed(slide, itemsOfCurrentLine, preCondition);
+        movingToPreviousLine = isMovingCurrentItemsToPreviousLineAllowed(slide, itemsOfCurrentLine, calcParam);
         if (movingToPreviousLine) {
           moveCurrentItemsToPreviousLine(slide, itemsOfCurrentLine); //optimizing current line to previous line
           slide.previousLine();
@@ -392,8 +432,8 @@ public class SongSlideCalculator extends SlideCalculator {
 
       slide.newLine(); //new line always, because if we move current items to previous line we first step back
 
-      if (isYOutOfPageSize(preCondition) && getConfig().isAutoWrapToNewPage()) {
-        slide = newSlide(midifile, part, nextTextLine,  zoomedFont, preCondition, true);
+      if (isYOutOfPageSize(calcParam) && getConfig().isAutoWrapToNewPage()) {
+        slide = newSlide(midifile, part, nextTextLine,  zoomedFont, calcParam, true);
         slides.add(slide);
       }
 
@@ -412,8 +452,8 @@ public class SongSlideCalculator extends SlideCalculator {
     return slides;
   }
 
-  private boolean isYOutOfPageSize (CalculatorPreCondition preCondition) {
-    float zoomedCurrentY = calculateZoomedLocation(new LocationInfo (currentY, 0), preCondition).getX(); //TODO check, if this is OK
+  private boolean isYOutOfPageSize (CalculationParam calcParam) {
+    float zoomedCurrentY = calculateZoomedLocation(new LocationInfo (currentY, 0), calcParam).getX(); //TODO check, if this is OK
     return zoomedCurrentY > maxY;
   }
 
@@ -480,10 +520,10 @@ public class SongSlideCalculator extends SlideCalculator {
    *
    * @param slide         slide
    * @param currentItems  items of current line
-   * @param preCondition  preCondition
+   * @param calcParam  preCondition
    * @return true/false
    */
-  private boolean isMovingCurrentItemsToPreviousLineAllowed (final Slide slide, final List <SlideItem> currentItems, CalculatorPreCondition preCondition) {
+  private boolean isMovingCurrentItemsToPreviousLineAllowed (final Slide slide, final List <SlideItem> currentItems, CalculationParam calcParam) {
 
     if (! getConfig().isOptimizeLineFilling())
       return false;
@@ -507,10 +547,10 @@ public class SongSlideCalculator extends SlideCalculator {
     for (SlideItem next: currentItems) {
       logtext += next.getText();
     }
-    boolean optimizing = xMaxOfLast + spaceAmountOfCurrentItems < preCondition.getCalculationsize().getWidth() - getConfiguredBorder();
+    boolean optimizing = xMaxOfLast + spaceAmountOfCurrentItems < calcParam.getPresentationSize().getWidth() - getConfiguredBorder();
     if (LOGGER.isDebugEnabled())
     LOGGER.debug("Text <" + logtext + "> needs " + spaceAmountOfCurrentItems +
-                ", appending at " + xMaxOfLast + "calculcationsize is " + preCondition.getCalculationsize().getWidth() + "->optimizing=" + optimizing);
+                ", appending at " + xMaxOfLast + "calculcationsize is " + calcParam.getPresentationSize().getWidth() + "->optimizing=" + optimizing);
     return optimizing;
   }
 

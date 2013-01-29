@@ -23,6 +23,7 @@ import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
 import org.mda.presenter.ui.test.MidiFileCreator;
 
@@ -45,6 +46,7 @@ public class SongSlideCalculatorTest {
   }
 
 
+  
 
   private void checkConsistency (final Slide slide) {
     for (int line = 0; line < slide.getLineCount(); line ++) {
@@ -78,24 +80,63 @@ public class SongSlideCalculatorTest {
   private SongSlideCalculator getCalculator () {
 	  return InjectService.getInstance(SongSlideCalculator.class);
   }
-
+  
+  private CalculationParam getParam () {
+	  return new CalculationParam (new SizeInfo(640, 480)); 
+  }
+  
+  
   @Test
-  public void copyright () {
+  public void coverageIsLinear () {
+	  
+	MidiFileCreator creator = MidiFileCreator.create();
+    creator = creator.part(SongPartType.REFRAIN);
+    creator = creator.line().text("This is a test"); 
+    Song song = creator.get();
+    
+    DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
+    
+    config.setShowCopyright(true);
+    SongSlideCalculator calculator = getCalculator();
+    
+    SlideContainer container = calculator.calculate(song, getParam(), config);
+    Slide slide = container.getSlides().get(0);
+    
+
+    config.setFontsize(config.getFont().getFontsizeAsInt() * 2);
+    SlideContainer container2 = calculator.calculate(song, getParam(), config);
+    Slide slide2 = container2.getSlides().get(0);
+    
+    
+    Assert.assertEquals (slide.getHighestScreenCoverage() * 2, slide2.getHighestScreenCoverage(), 0.1);
+    
+    
+  }
+  
+  @Test
+  public void maxX () {
+	  
+	final String LONGEST_TEXT = "And this is a line, which is the longest line of the world, longer as everything else and much to long to show in one line (at all)";
     MidiFileCreator creator = MidiFileCreator.create();
     creator = creator.part(SongPartType.REFRAIN);
-    creator = creator.line().chordAndText("D", "                         ").chordAndText("F", "    ");
-
-    creator = creator.copyright(null, PUBLISHER, PUBLISHERINLAND, null, null, null, null);
+    creator = creator.line().text("Hello, this is line, which is small"); 
+    creator = creator.line().text("And this is a line, which is longer"); 
+    creator = creator.line().text(LONGEST_TEXT);
     Song song = creator.get();
+    
     DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
+    
     config.setShowCopyright(true);
-    CalculatorPreCondition preCondition = new CalculatorPreCondition();
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
     SongSlideCalculator calculator = getCalculator();
-    calculator.setConfig(config);
-    List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
+    
+    SlideContainer container = calculator.calculate(song, getParam(), config);
+    List<Slide> calculateWithoutBorder = container.getSlides();
     Slide slide = calculateWithoutBorder.get(0);
-    Assert.assertEquals (2, findTokens(slide));
+    SlideItem mostRightFromSlide = slide.getMostRightItem();
+    SlideItem mostRightFromContainer = container.getMostRightItem();
+    
+    Assert.assertEquals (LONGEST_TEXT, mostRightFromSlide.getText());
+    Assert.assertEquals (LONGEST_TEXT, mostRightFromContainer.getText());
   }
 
   @Test
@@ -109,11 +150,8 @@ public class SongSlideCalculatorTest {
     Song song = creator.get();
     DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setShowCopyright(false);
-    CalculatorPreCondition preCondition = new CalculatorPreCondition();
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
     SongSlideCalculator calculator = getCalculator();
-    calculator.setConfig(config);
-    List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
+    List<Slide> calculateWithoutBorder = calculator.calculate(song, getParam(), config).getSlides();
     Slide slide = calculateWithoutBorder.get(0);
     Assert.assertEquals (0, findTokens(slide));
   }
@@ -128,11 +166,7 @@ public class SongSlideCalculatorTest {
     DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setOptimizeLineFilling(false);
     config.setOptimizeEmptyTokens(true);
-    CalculatorPreCondition preCondition = new CalculatorPreCondition();
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    SongSlideCalculator calculator = getCalculator();
-    calculator.setConfig(config);
-    List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
+    List<Slide> calculateWithoutBorder = getCalculator().calculate(song, getParam(), config).getSlides();
     Slide firstSlide = calculateWithoutBorder.get(0);
     LOGGER.info("->" + firstSlide.toString());
     Assert.assertEquals (2, firstSlide.getItems().size());
@@ -153,14 +187,10 @@ public class SongSlideCalculatorTest {
     Song song = creator.get();
     DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setOptimizeLineFilling(false);
-    CalculatorPreCondition preCondition = new CalculatorPreCondition();
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    SongSlideCalculator calculator = getCalculator();
-    calculator.setConfig(config);
-    List<Slide> calculateWithoutBorder = calculator.calculate(song, preCondition);
+    List<Slide> calculateWithoutBorder = calculate(song, config);
 
     config.setBorder(new Integer (BORDER));
-    List<Slide> calculateWithBorder = calculator.calculate(song, preCondition);
+    List<Slide> calculateWithBorder = calculate(song, config);
 
     assertEquals (calculateWithoutBorder.size(), calculateWithBorder.size());
     for (int i = 0; i < calculateWithBorder.size(); i++) {
@@ -197,11 +227,7 @@ public class SongSlideCalculatorTest {
 
     DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setOptimizeLineFilling(false);
-    CalculatorPreCondition preCondition = new CalculatorPreCondition();
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    SongSlideCalculator calculator = getCalculator();
-    calculator.setConfig(config);
-    List<Slide> calculate = calculator.calculate(song, preCondition);
+    List<Slide> calculate = calculate(song, config);
 
     Slide firstSlide = calculate.get(0);
     assertEquals (2, firstSlide.getItems(0).size());   //First case: second line too long, optimizing is disabled
@@ -212,12 +238,10 @@ public class SongSlideCalculatorTest {
     assertEquals (2, secondSlide.getItems(0).size());  //Second case: second line can be optimized, but optimizing is disabled
     assertEquals (1, secondSlide.getItems(1).size());
     checkConsistency(secondSlide);
-
-
+    
     config.setOptimizeLineFilling(true);
-    calculator = getCalculator();
-    calculator.setConfig(config);
-    calculate = calculator.calculate(song, preCondition);
+    
+    calculate = calculate(song, config);
     firstSlide = calculate.get(0);
     assertEquals (2, firstSlide.getItems(0).size());          //First case: second line too long, optimizing is enabled
     assertEquals (1, firstSlide.getItems(1).size());
@@ -242,17 +266,11 @@ public class SongSlideCalculatorTest {
     config.setShowTitle(true);
     config.setSkipEmptySlides(false);
     config.setShowChords(false);
-    CalculatorPreCondition preCondition = new CalculatorPreCondition();
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    SongSlideCalculator calculator = getCalculator();
-    calculator.setConfig(config);
-    List<Slide> calculate = calculator.calculate(song, preCondition);
+    List<Slide> calculate = calculate(song, config);
     assertEquals (3, calculate.size());
 
     config.setSkipEmptySlides(true);
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    calculator.setConfig(config);
-    calculate = calculator.calculate(song, preCondition);
+    calculate = calculate(song, config);
     assertEquals (1, calculate.size());
   }
   @Test
@@ -268,11 +286,7 @@ public class SongSlideCalculatorTest {
     DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setNewPageRespected(false);
     config.setShowTitle(true);
-    CalculatorPreCondition preCondition = new CalculatorPreCondition();
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    SongSlideCalculator calculator = getCalculator();
-    calculator.setConfig(config);
-    List<Slide> calculate = calculator.calculate(song, preCondition);
+    List<Slide> calculate = calculate(song, config);
 
     SlideItem item1 = calculate.get(0).getItems().get(0);
     SlideItem item2 = calculate.get(0).getItems().get(1);
@@ -298,18 +312,11 @@ public class SongSlideCalculatorTest {
     Song song = creator.get();
     DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setNewPageRespected(false);
-    CalculatorPreCondition preCondition = new CalculatorPreCondition();
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    SongSlideCalculator calculator = getCalculator();
-    calculator.setConfig(config);
-    List<Slide> calculate = calculator.calculate(song, preCondition);
+    List<Slide> calculate = calculate(song, config);
     assertEquals(1, calculate.size());
 
     song.getParts().get(0).getTextlines().get(1).setNewSlide(true);
-
-
-
-    calculate = calculator.calculate(song, preCondition);
+    calculate = calculate(song, config);
 
     assertEquals(1, calculate.size());
 
@@ -329,17 +336,12 @@ public class SongSlideCalculatorTest {
     creator = creator.line().chordAndText("G", "thir line on a new slide");
     Song song = creator.get();
     DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
-    CalculatorPreCondition preCondition = new CalculatorPreCondition();
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-
-    SongSlideCalculator calculator = getCalculator();
-    calculator.setConfig(config);
-    List<Slide> calculate = calculator.calculate(song, preCondition);
+    List<Slide> calculate = calculate(song, config);
     assertEquals(1, calculate.size());
 
     song.getParts().get(0).getTextlines().get(1).setNewSlide(true);
 
-    calculate = calculator.calculate(song, preCondition);
+    calculate = calculate(song,  config);
     assertEquals(2, calculate.size());
     assertEquals (calculate.get(0).getItems().get(0).getY(), calculate.get(1).getItems().get(0).getY(), 0.00);
     assertEquals (calculate.get(0).getItems().get(0).getX(), calculate.get(1).getItems().get(0).getX(), 0.00);
@@ -350,12 +352,7 @@ public class SongSlideCalculatorTest {
   public void createChordRelatedPart () throws Exception {
     Song song = MidiFileCreator.create().part(SongPartType.INTRO).line().chordAndText("D", " ").get();
     DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
-    CalculatorPreCondition preCondition = new CalculatorPreCondition();
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-    
-    SongSlideCalculator calculator = getCalculator();
-    calculator.setConfig(config);
-    Slide calculatePart = calculator.calculatePart(song.getParts().get(0), preCondition).get(0);
+    Slide calculatePart = getCalculator().calculatePart(song.getParts().get(0), getParam(), config).get(0);
     assertEquals (1, calculatePart.getTextline(0).length());
   }
 
@@ -363,12 +360,7 @@ public class SongSlideCalculatorTest {
   public void chordRelatedPartWith2Spaces () throws Exception {
     Song song = MidiFileCreator.create().part(SongPartType.INTRO).line().chordAndText("D", "  ").get();
     DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
-    CalculatorPreCondition preCondition = new CalculatorPreCondition();
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-
-    SongSlideCalculator calculator = getCalculator();
-    calculator.setConfig(config);
-    Slide calculatePart = calculator.calculatePart(song.getParts().get(0), preCondition).get(0);
+    Slide calculatePart = getCalculator().calculatePart(song.getParts().get(0), getParam(), config).get(0);
     assertEquals (2, calculatePart.getTextline(0).length());
   }
 
@@ -381,12 +373,8 @@ public class SongSlideCalculatorTest {
 
     DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setAutoWrapToNewPage(false);
-    CalculatorPreCondition preCondition = new CalculatorPreCondition();
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
 
-    SongSlideCalculator calculator = getCalculator();
-    calculator.setConfig(config);
-    Slide calculatePart = calculator.calculatePart(midiFilePart, preCondition).get(0);
+    Slide calculatePart = getCalculator().calculatePart(midiFilePart, getParam(), config).get(0);
 
     assertEquals(midiFilePart.getTextlines().size(), calculatePart.getLineCount());
 
@@ -395,12 +383,8 @@ public class SongSlideCalculatorTest {
   }
 
   private List<Slide> calculate (final Song part, DefaultPresenterConfig config) {
-    CalculatorPreCondition preCondition = new CalculatorPreCondition();
-    preCondition.setCalculationsize(config.getDefaultPresentationScreenSize());
-
-    SongSlideCalculator calculator = getCalculator();
-    calculator.setConfig(config);
-    return calculator.calculate(part, preCondition);
+	  SongSlideCalculator calculator = getCalculator();
+	  return calculator.calculate(part, getParam(), config).getSlides();
   }
 
   @Test

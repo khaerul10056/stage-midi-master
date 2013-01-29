@@ -14,17 +14,17 @@ import mda.AbstractSessionItem;
 import mda.Song;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
-import org.eclipse.swt.graphics.Point;
 import org.mda.ApplicationSession;
 import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.CalculatorPreCondition;
-import org.mda.presenter.SongSlideCalculator;
+import org.mda.presenter.CalculationParam;
 import org.mda.presenter.Slide;
+import org.mda.presenter.SlideContainer;
 import org.mda.presenter.SlideItem;
 import org.mda.presenter.SlideType;
+import org.mda.presenter.SongSlideCalculator;
 import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
@@ -47,13 +47,11 @@ public class PdfExporter extends AbstractExporter {
   @Inject
   private SongSlideCalculator calculator;
   
-  @Inject
-  private CalculatorPreCondition  calcPreCondition;
-
+  
   @Inject
   private ApplicationSession applicationsession;
   
-  private List <Slide> lastSlides = new ArrayList<Slide>();
+  private SlideContainer lastSlides;
 
   @Override
 public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IPresenterConfig config) throws ExportException  {
@@ -63,8 +61,7 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
     DefaultPresenterConfig configImpl = (DefaultPresenterConfig) config;
     configImpl.setFontsize(new Integer (12));
     configImpl.setGraphicsContext(new PDFGraphicsContext());
-    calculator.setConfig(configImpl);
-
+    
     Rectangle pagesizeA4 = PageSize.A4;
     Document document = new Document(PageSize.A4);
 
@@ -77,11 +74,10 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
     float y = pagesizeA4.height();
     LOGGER.info("set size to " + x +","+ y + ")");
     SizeInfo calcSize = new SizeInfo((int)x, (int)y);
-    calcPreCondition.setCalculationsize(calcSize);
-    config.setDefaultPresentationScreenSize(calcSize);
+    CalculationParam param = new CalculationParam(calcSize); 
 
     for (AbstractSessionItem next: items) {
-      export(document, writer, (Song) next);
+      export(document, writer, (Song) next, param, configImpl);
     }
 
     document.close();
@@ -98,13 +94,13 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
 
 
 
-  private void export (final Document doc, final PdfWriter writer, final Song nextItem) throws ExportException {
+  private void export (final Document doc, final PdfWriter writer, final Song nextItem, CalculationParam calcParam, final IPresenterConfig config) throws ExportException {
 
 
 
-    setLastSlides(calculator.calculate(nextItem, calcPreCondition));
+    setLastSlides(calculator.calculate(nextItem, calcParam, config));
 
-    for (Slide nextInternSlide : getLastSlides()) {
+    for (Slide nextInternSlide : getLastSlides().getSlides()) {
 
       if (nextInternSlide.isForceNewPage())  {
       try {
@@ -213,13 +209,13 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
 
 
 
-  public List <Slide> getLastSlides () {
+  public SlideContainer getLastSlides () {
     return lastSlides;
   }
 
 
 
-  private void setLastSlides (List <Slide> lastSlides) {
+  private void setLastSlides (SlideContainer lastSlides) {
     this.lastSlides = lastSlides;
   }
 

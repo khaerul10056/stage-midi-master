@@ -22,8 +22,7 @@ public abstract class SlideCalculator implements ISlideCalculator {
    * set Configuration
    * @param config
    */
-  @Override
-  public void setConfig (IPresenterConfig config) {
+  protected void setConfig (IPresenterConfig config) {
     this.config = config;
   }
 
@@ -37,11 +36,11 @@ public abstract class SlideCalculator implements ISlideCalculator {
    * @param preCondition preCondition
    * @return zoomfactor derived
    */
-  private BigDecimal getZoomFactor (final CalculatorPreCondition preCondition) {
-    BigDecimal zoomFactor = new BigDecimal(preCondition.getCalculationsize().getWidth());
-    BigDecimal zoomedFactor = zoomFactor.divide(new BigDecimal (getConfig().getDefaultPresentationScreenSize().getWidth()), 10, BigDecimal.ROUND_UP);
+  private BigDecimal getZoomFactor (final CalculationParam calcParam) {
+    BigDecimal zoomFactor = new BigDecimal(calcParam.getPresentationSize().getWidth());
+    BigDecimal zoomedFactor = zoomFactor.divide(new BigDecimal (calcParam.getPresentationSize().getWidth()), 10, BigDecimal.ROUND_UP);
     if (LOGGER.isDebugEnabled())
-      LOGGER.debug("set zoom factor " + zoomFactor.toString() + ", " + getConfig().getDefaultPresentationScreenSize() + "-> " + zoomedFactor.toString());
+      LOGGER.debug("set zoom factor " + zoomFactor.toString() + ", " + calcParam.getPresentationSize() + "-> " + zoomedFactor.toString());
     return zoomedFactor;
   }
 
@@ -49,11 +48,11 @@ public abstract class SlideCalculator implements ISlideCalculator {
    * calculates a point relative to the originpoint, meanwhile the zoom-factor is
    * the current editor-size / default-presentation-size
    * @param origin
-   * @param preCondition
+   * @param calcParam
    * @return
    */
-  protected LocationInfo calculateZoomedLocation (final LocationInfo origin, final CalculatorPreCondition preCondition) {
-    BigDecimal zoomFactor = getZoomFactor(preCondition);
+  protected LocationInfo calculateZoomedLocation (final LocationInfo origin, final CalculationParam calcParam) {
+    BigDecimal zoomFactor = getZoomFactor(calcParam);
 
     BigDecimal zoomedWidth = new BigDecimal (origin.getX()).multiply(zoomFactor);
     BigDecimal zoomedHeight = new BigDecimal (origin.getY()).multiply(zoomFactor);
@@ -68,8 +67,8 @@ public abstract class SlideCalculator implements ISlideCalculator {
    * @param preCondition
    * @return
    */
-  protected SizeInfo calculateZoomedSize (final SizeInfo origin, final CalculatorPreCondition preCondition) {
-    BigDecimal zoomFactor = getZoomFactor(preCondition);
+  protected SizeInfo calculateZoomedSize (final SizeInfo origin, final CalculationParam calcParam) {
+    BigDecimal zoomFactor = getZoomFactor(calcParam);
 
     BigDecimal zoomedWidth = new BigDecimal (origin.getWidth()).multiply(zoomFactor);
     BigDecimal zoomedHeight = new BigDecimal (origin.getHeight()).multiply(zoomFactor);
@@ -81,12 +80,12 @@ public abstract class SlideCalculator implements ISlideCalculator {
    * calculates a font relative to the originfont, meanwhile the zoom-factor is the
    * current editor-size / default-presentation-size
    * @param font
-   * @param preCondition
+   * @param calcParam
    * @return
    */
-  protected FontInfo calculateZoomedFont (final FontInfo font, final CalculatorPreCondition preCondition) {
+  protected FontInfo calculateZoomedFont (final FontInfo font, final CalculationParam calcParam) {
 
-    BigDecimal zoomFactor = getZoomFactor(preCondition);
+    BigDecimal zoomFactor = getZoomFactor(calcParam);
     BigDecimal zoomedHeight = new BigDecimal (font.getFontsize()).multiply(zoomFactor);
     
     FontInfo newFont = new FontInfo (font);

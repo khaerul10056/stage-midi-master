@@ -3,11 +3,6 @@ package org.mda.javafx.presenter.javafx;
 
 import java.util.HashMap;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.SequentialTransition;
-import javafx.animation.SequentialTransitionBuilder;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -21,12 +16,12 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextBuilder;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
 import mda.Session;
 
 import org.mda.ApplicationSession;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.CalculationParam;
 import org.mda.presenter.IPresentationView;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.Slide;
@@ -191,18 +186,20 @@ public class BeamerPresenter implements IPresentationView {
 		pane.setVisible(false);
 	}
 
-	public void build(final Session currentSession, boolean onTop, final IPresenterConfig config) {
+	public void build(final Session currentSession, boolean onTop, final IPresenterConfig config, final CalculationParam param) {
 		
 		presentationContext.registerView(this);
-		presentationContext.setCurrentSession(currentSession, config, config.getDefaultPresentationScreenSize());
+		presentationContext.setCurrentSession(currentSession, config, param.getPresentationBounds().getSize());
 		
 		StackPane stackpane = new StackPane();
 		presentationStage = new Stage();
 		presentationStage.initStyle(StageStyle.UNDECORATED);
 		
-		AreaInfo beamerpresenterBounds = monitormanager.getBeamerOrPreviewBounds();
-		presentationStage.setX(beamerpresenterBounds.getX()); 
-		presentationStage.setY(beamerpresenterBounds.getY());
+		AreaInfo beamerpresenterBounds = param.getPresentationBounds() != null ? param.getPresentationBounds() : monitormanager.getBeamerOrPreviewBounds();
+		if (beamerpresenterBounds.getX() >= 0)
+		  presentationStage.setX(beamerpresenterBounds.getX());
+		if (beamerpresenterBounds.getY() >= 0)
+		  presentationStage.setY(beamerpresenterBounds.getY());
 		presentationStage.setWidth(beamerpresenterBounds.getWidth()); 
 		presentationStage.setHeight(beamerpresenterBounds.getHeight());
 		presentationStage.setScene(new Scene (stackpane));
@@ -225,7 +222,7 @@ public class BeamerPresenter implements IPresentationView {
 			addStyle(emptyPane, nextSlide, beamerpresenterBounds);
 		
 			if (applicationSession.getFeatureActivation().isShowGridEnabled())
-			  showGrid(nextPane, config.getDefaultPresentationScreenSize());
+			  showGrid(nextPane, param.getPresentationBounds().getSize());
 	
 			for (SlideItem slideItem : nextSlide.getItems()) {
 				Font font = FontBuilder.create().name(slideItem.getFont().getFontname()).size(slideItem.getFont().getFontsizeAsInt()).build();

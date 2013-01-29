@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -23,6 +24,7 @@ import org.mda.inject.InjectServiceMock;
 import org.mda.javafx.presenter.javafx.BeamerPresenter;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.CalculationParam;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
@@ -94,10 +96,14 @@ public class JavaFxPresenterTester extends Application {
 		grid.add(new Label ("Size: "), 0, 4);
 		grid.add(cmbSize, 1, 4);
 		
+		grid.add(new Label ("Coverage (in %): "), 0, 5);
+		final TextField txtPercentage = new TextField("80");
+		grid.add(txtPercentage, 1, 5);
+		
 		
 		final Button btnOK = new Button("Show");
 		btnOK.setText("Show");
-		grid.add(btnOK, 0, 5);
+		grid.add(btnOK, 0, 6);
 		
 		primaryStage.setScene(new Scene(grid, 300, 250));
 		
@@ -127,7 +133,12 @@ public class JavaFxPresenterTester extends Application {
 				config.setSkipEmptySlides(true);
 				config.setOptimizeLineFilling(false);
 				config.setNewPageRespected(true);
-				config.setDefaultPresentationScreenSize(size);
+				if (txtPercentage.getText().trim().isEmpty())
+				  config.setAutoSizingPercent(null);
+				else
+				  config.setAutoSizingPercent(Integer.valueOf(txtPercentage.getText()));
+				
+				CalculationParam param = new CalculationParam (size);
 				
 
 				PresentationContext presentationContext = InjectService.getInstance(PresentationContext.class);
@@ -137,7 +148,7 @@ public class JavaFxPresenterTester extends Application {
 				presentationContext.registerController(globalKeyRegPresentationController);
 
 				BeamerPresenter beamerPresenter = InjectService.getInstance(BeamerPresenter.class);
-				beamerPresenter.build(currentSession,false, config);
+				beamerPresenter.build(currentSession,false, config, param);
 				
 				
 				

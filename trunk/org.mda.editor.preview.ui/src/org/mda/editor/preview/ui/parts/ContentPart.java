@@ -21,8 +21,6 @@ import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
@@ -38,10 +36,10 @@ import org.mda.editor.preview.ui.PreviewEditorComposite;
 import org.mda.editor.preview.ui.chords.ChordHover;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.CalculatorPreCondition;
-import org.mda.presenter.SongSlideCalculator;
+import org.mda.presenter.CalculationParam;
 import org.mda.presenter.Slide;
 import org.mda.presenter.SlideItem;
+import org.mda.presenter.SongSlideCalculator;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
 
@@ -52,8 +50,6 @@ public class ContentPart extends AbstractPart implements FocusListener {
 
   @com.google.inject.Inject
   private DefaultPresenterConfig config;
-
-  private CalculatorPreCondition             calcPreConditions = new CalculatorPreCondition();            //TODO inject
 
   private final List<TextLine>             textLines         = new ArrayList<TextLine>();
 
@@ -71,6 +67,8 @@ public class ContentPart extends AbstractPart implements FocusListener {
   private int                                currentCaretPosition;
 
   private int                                currentFocusedLine;
+  
+  private SizeInfo partSize = new SizeInfo (640, 480);
 
 
   public static boolean listenersActive = true;
@@ -136,12 +134,15 @@ public void setCurrentPart (SongPart currentPart) {
 
     LOGGER.info("Show part (position " + currentLine + "/" + currentcarePosition);
 
-    calcPreConditions.setCalculationsize(new SizeInfo(size.x, size.y));
     config.setNewPageRespected(false);
     config.setAutoWrapToNewPage(false);
-
-    calculator.setConfig(config);
-    setCalculatePart(calculator.calculatePart(getCurrentPart(), calcPreConditions).get(0));
+    
+    if (size.x >0 && size.y > 0)
+    	partSize = new SizeInfo(size.x, size.y); 
+    
+    CalculationParam param = new CalculationParam(partSize); 
+    
+    setCalculatePart(calculator.calculatePart(getCurrentPart(), param, config).get(0));
 
     //Dispose and clear old textwidgets and chordwidgets
     clearWidgetList(getTextLines());
@@ -177,7 +178,7 @@ public void setCurrentPart (SongPart currentPart) {
       if (currentcarePosition >= 0)
         setCurrentCaretPositionInLine(currentcarePosition, currentLine);
     }
-    return new Point ((int)calcPreConditions.getCalculationsize().getWidth(), (int) calcPreConditions.getCalculationsize().getHeight());
+    return new Point ((int)param.getPresentationSize().getWidth(), (int) param.getPresentationSize().getHeight());
   }
 
   public void saveCurrentCaretSituation () {

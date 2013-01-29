@@ -1,6 +1,5 @@
 package org.mda.export.powerpoint;
 
-import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
@@ -30,6 +29,7 @@ import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.presenter.CalculationParam;
 import org.mda.presenter.adapter.ColorInfo;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.IPresenterConfig;
@@ -54,16 +54,15 @@ public class PptExporter extends AbstractExporter {
 public File export (final Collection<AbstractSessionItem> items, final File exportFile, final IPresenterConfig config) throws ExportException {
     if (! exportFile.getAbsoluteFile().getParentFile().exists())
       exportFile.getParentFile().mkdirs();
+    
+    
 
     SlideShow show = new SlideShow();
-    show.setPageSize(new Dimension(config.getDefaultPresentationScreenSize().getWidthAsInt(), config.getDefaultPresentationScreenSize().getHeightAsInt()));
-
-    getCalculator().setConfig(config);
-    LOG.info("Calculate size " + show.getPageSize().width + "x" + show.getPageSize().height + " from " + getCalculator().getConfig().getDefaultPresentationScreenSize());
-    getCalcPreCondition().setCalculationsize(new SizeInfo (show.getPageSize().width, show.getPageSize().height));
+    
+    CalculationParam param = new CalculationParam(new SizeInfo (640, 480));
 
     for (AbstractSessionItem nextItem : items) {
-      List<org.mda.presenter.Slide> calculate = getCalculator().calculate(nextItem, getCalcPreCondition());
+      List<org.mda.presenter.Slide> calculate = getCalculator().calculate(nextItem, param, config).getSlides();
 
       for (org.mda.presenter.Slide nextInternSlide : calculate) {
         exportSlide(show, nextInternSlide);

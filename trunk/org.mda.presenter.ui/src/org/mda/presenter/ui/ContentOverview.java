@@ -22,11 +22,11 @@ import org.mda.commons.ui.Util;
 import org.mda.inject.InjectService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.CalculatorPreCondition;
+import org.mda.presenter.CalculationParam;
 import org.mda.presenter.IPresentationView;
-import org.mda.presenter.SongSlideCalculator;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.Slide;
+import org.mda.presenter.SongSlideCalculator;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
 
@@ -86,10 +86,9 @@ public class ContentOverview  implements IPresentationView{
 
       if (currentItem instanceof Song) {
         SizeInfo size = new SizeInfo(320, 240);
-        CalculatorPreCondition calcPreCondition = new CalculatorPreCondition();
-        calculator.setConfig(presentationContext.getCurrentConfig());
-        calcPreCondition.setCalculationsize(size);
-        List<Slide> slides = calculator.calculate(currentItem, calcPreCondition);
+        DefaultPresenterConfig config = (DefaultPresenterConfig) presentationContext.getCurrentConfig();
+        CalculationParam param = new CalculationParam(new SizeInfo(320, 240));
+        List<Slide> slides = calculator.calculate(currentItem, param, config).getSlides();
         for (Slide slide: slides) {
           final ContentOverviewPanel overviewPanel = new ContentOverviewPanel(comp, (SongPart) slide.getModelRef(), slide, config);
           InjectService.injectObject(overviewPanel); //TODO make better
