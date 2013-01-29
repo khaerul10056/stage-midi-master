@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link mda.impl.PresentationSchemeImpl#getForegroundColor <em>Foreground Color</em>}</li>
  *   <li>{@link mda.impl.PresentationSchemeImpl#getShowChords <em>Show Chords</em>}</li>
  *   <li>{@link mda.impl.PresentationSchemeImpl#getAutoWrapToNewPage <em>Auto Wrap To New Page</em>}</li>
+ *   <li>{@link mda.impl.PresentationSchemeImpl#getAutosizingPercent <em>Autosizing Percent</em>}</li>
  * </ul>
  * </p>
  *
@@ -385,6 +386,26 @@ public class PresentationSchemeImpl extends EObjectImpl implements PresentationS
 	 * @ordered
 	 */
 	protected Boolean autoWrapToNewPage = AUTO_WRAP_TO_NEW_PAGE_EDEFAULT;
+
+		/**
+	 * The default value of the '{@link #getAutosizingPercent() <em>Autosizing Percent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAutosizingPercent()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Integer AUTOSIZING_PERCENT_EDEFAULT = new Integer(100);
+
+		/**
+	 * The cached value of the '{@link #getAutosizingPercent() <em>Autosizing Percent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAutosizingPercent()
+	 * @generated
+	 * @ordered
+	 */
+	protected Integer autosizingPercent = AUTOSIZING_PERCENT_EDEFAULT;
 
 		/**
 	 * <!-- begin-user-doc -->
@@ -798,6 +819,27 @@ public void setForegroundColor(String newForegroundColor) {
 
 		/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Integer getAutosizingPercent() {
+		return autosizingPercent;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAutosizingPercent(Integer newAutosizingPercent) {
+		Integer oldAutosizingPercent = autosizingPercent;
+		autosizingPercent = newAutosizingPercent;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.PRESENTATION_SCHEME__AUTOSIZING_PERCENT, oldAutosizingPercent, autosizingPercent));
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -838,6 +880,8 @@ public void setForegroundColor(String newForegroundColor) {
 				return getShowChords();
 			case MidiplayerPackage.PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE:
 				return getAutoWrapToNewPage();
+			case MidiplayerPackage.PRESENTATION_SCHEME__AUTOSIZING_PERCENT:
+				return getAutosizingPercent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -900,6 +944,9 @@ public void setForegroundColor(String newForegroundColor) {
 				return;
 			case MidiplayerPackage.PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE:
 				setAutoWrapToNewPage((Boolean)newValue);
+				return;
+			case MidiplayerPackage.PRESENTATION_SCHEME__AUTOSIZING_PERCENT:
+				setAutosizingPercent((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -964,6 +1011,9 @@ public void setForegroundColor(String newForegroundColor) {
 			case MidiplayerPackage.PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE:
 				setAutoWrapToNewPage(AUTO_WRAP_TO_NEW_PAGE_EDEFAULT);
 				return;
+			case MidiplayerPackage.PRESENTATION_SCHEME__AUTOSIZING_PERCENT:
+				setAutosizingPercent(AUTOSIZING_PERCENT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1010,6 +1060,8 @@ public void setForegroundColor(String newForegroundColor) {
 				return SHOW_CHORDS_EDEFAULT == null ? showChords != null : !SHOW_CHORDS_EDEFAULT.equals(showChords);
 			case MidiplayerPackage.PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE:
 				return AUTO_WRAP_TO_NEW_PAGE_EDEFAULT == null ? autoWrapToNewPage != null : !AUTO_WRAP_TO_NEW_PAGE_EDEFAULT.equals(autoWrapToNewPage);
+			case MidiplayerPackage.PRESENTATION_SCHEME__AUTOSIZING_PERCENT:
+				return AUTOSIZING_PERCENT_EDEFAULT == null ? autosizingPercent != null : !AUTOSIZING_PERCENT_EDEFAULT.equals(autosizingPercent);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1058,6 +1110,8 @@ public void setForegroundColor(String newForegroundColor) {
 		result.append(showChords);
 		result.append(", autoWrapToNewPage: ");
 		result.append(autoWrapToNewPage);
+		result.append(", autosizingPercent: ");
+		result.append(autosizingPercent);
 		result.append(')');
 		return result.toString();
 	}

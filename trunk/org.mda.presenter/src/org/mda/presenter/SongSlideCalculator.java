@@ -61,7 +61,7 @@ public class SongSlideCalculator extends SlideCalculator {
 		  if (next.getMostRightItem().getXMax() > currentMaxX)
 			  currentMaxX = next.getMostRightItem().getXMax();
 	  }
-      float expectedMaxX = slides.get(0).getSize().getWidth() * config.getAutoSizingPercent() / 100 ;
+      float expectedMaxX = slides.get(0).getSize().getWidth() * config.getAutosizingPercent() / 100 ;
       float expectedSize = fontSizeCurrent * expectedMaxX / currentMaxX;
       
       LOGGER.info("Calculation of optimized fontsize");
@@ -89,7 +89,7 @@ public class SongSlideCalculator extends SlideCalculator {
 
     Collection <SlideItem> copyrightItems = new ArrayList<SlideItem>();
     
-    if (getConfig().isShowCopyright() && getConfig().getAutoSizingPercent() != null)
+    if (getConfig().isShowCopyright() && getConfig().getAutosizingPercent() != null)
     	throw new IllegalStateException("Autosizing and showing copyright is not yet supported together");
 
     if (getConfig().isShowCopyright()) {
@@ -129,7 +129,7 @@ public class SongSlideCalculator extends SlideCalculator {
     for (SongPart nextPart : midifile.getParts())
       slides.addAll(calculatePart(nextPart, param, config));
     
-    if (! slides.isEmpty() && getConfig().getAutoSizingPercent() != null) {
+    if (! slides.isEmpty() && getConfig().getAutosizingPercent() != null) {
       int newSize = getOptimizedFontSize(slides, config);
   	  LOGGER.info("Setting size of item " + sessionitem.getName() + " to " + newSize + ", before " + config.getFont().getFontsizeAsInt());
   	  ((DefaultPresenterConfig)config).setFontsize(newSize);

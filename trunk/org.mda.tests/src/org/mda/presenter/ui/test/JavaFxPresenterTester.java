@@ -134,15 +134,13 @@ public class JavaFxPresenterTester extends Application {
 				config.setOptimizeLineFilling(false);
 				config.setNewPageRespected(true);
 				if (txtPercentage.getText().trim().isEmpty())
-				  config.setAutoSizingPercent(null);
+				  config.setAutosizingPercent(null);
 				else
-				  config.setAutoSizingPercent(Integer.valueOf(txtPercentage.getText()));
+				  config.setAutosizingPercent(Integer.valueOf(txtPercentage.getText()));
 				
 				CalculationParam param = new CalculationParam (size);
-				
-
 				PresentationContext presentationContext = InjectService.getInstance(PresentationContext.class);
-				presentationContext.setCurrentSession(currentSession, config, size);
+				presentationContext.setCurrentSession(currentSession, config, param);
 
 				final GlobalKeyRegistryPresentationController globalKeyRegPresentationController = new GlobalKeyRegistryPresentationController();
 				presentationContext.registerController(globalKeyRegPresentationController);

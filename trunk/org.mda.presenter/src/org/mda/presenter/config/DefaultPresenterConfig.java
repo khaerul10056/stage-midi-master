@@ -7,7 +7,6 @@ import mda.SongPartType;
 import mda.impl.PresentationSchemeImpl;
 
 import org.mda.ApplicationSession;
-import org.mda.presenter.adapter.AreaInfo;
 import org.mda.presenter.adapter.ColorInfo;
 import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
@@ -34,12 +33,6 @@ public class DefaultPresenterConfig extends PresentationSchemeImpl implements IP
    */
   private Integer fontsize;
   
-  private Integer autosizingPercent;
-
-
-
-private AreaInfo bounds;
- 
 
   @Override
   public FontInfo getFont () {
@@ -150,24 +143,17 @@ public boolean isOptimizeEmptyTokens () {
     return getOptimizeEmptyTokens() != null ? getOptimizeEmptyTokens().booleanValue() : false;
   }
 
-  @Override
-  public boolean isShowCopyright () {
+@Override
+public boolean isShowCopyright () {
     return getShowCopyright() != null ? getShowCopyright().booleanValue(): false;
-  }
+}
 
   @Override
 public boolean isAutoWrapToNewPage () {
     return getAutoWrapToNewPage() != null ? getAutoWrapToNewPage().booleanValue() : false;
   }
   
-  public void setAutoSizingPercent (final Integer percent) {
-	  this.autosizingPercent = percent;
-  }
 
-@Override
-public Integer getAutoSizingPercent() {
-	return autosizingPercent;
-}
 
 
 }

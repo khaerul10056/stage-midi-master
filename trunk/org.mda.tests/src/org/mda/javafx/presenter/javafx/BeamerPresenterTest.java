@@ -21,6 +21,7 @@ import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
+import org.mda.presenter.CalculationParam;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.SpecialSlide;
 import org.mda.presenter.adapter.SizeInfo;
@@ -55,7 +56,8 @@ public class BeamerPresenterTest {
 
 	  @Before
 	  public void before () {
-	    presentationContext.setCurrentSession(session, config, new SizeInfo (400, 200));
+		CalculationParam param = new CalculationParam(new SizeInfo(400, 200));
+	    presentationContext.setCurrentSession(session, config, param);
 	    controller = InjectService.getInstance(DefaultPresentationController.class);
 	    presentationContext.registerController(controller);
 	    

@@ -189,7 +189,7 @@ public class BeamerPresenter implements IPresentationView {
 	public void build(final Session currentSession, boolean onTop, final IPresenterConfig config, final CalculationParam param) {
 		
 		presentationContext.registerView(this);
-		presentationContext.setCurrentSession(currentSession, config, param.getPresentationBounds().getSize());
+		presentationContext.setCurrentSession(currentSession, config, param);
 		
 		StackPane stackpane = new StackPane();
 		presentationStage = new Stage();

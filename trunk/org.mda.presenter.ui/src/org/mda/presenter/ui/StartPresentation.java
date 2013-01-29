@@ -27,6 +27,7 @@ import org.mda.midi.MidiPlayer;
 import org.mda.midi.MidiplayerMode;
 import org.mda.midi.NoMidiDeviceConfiguredException;
 import org.mda.midi.NoMidiFileFoundException;
+import org.mda.presenter.CalculationParam;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.IPresenterConfig;
@@ -79,7 +80,8 @@ public class StartPresentation   {
     beamerpresenter.getShell().setEnabled(true);
     
     SizeInfo sizeinfo = new SizeInfo(beamerpresenter.getShell().getSize().x, beamerpresenter.getShell().getSize().y);
-    presentationContext.setCurrentSession(applicationSession.getCurrentSession(), config, sizeinfo);
+    CalculationParam param = new CalculationParam(sizeinfo);
+    presentationContext.setCurrentSession(applicationSession.getCurrentSession(), config, param);
     presentationContext.registerView(beamerpresenter);
     presentationContext.registerController(globalkeycontroller);    //Register global controller
     
