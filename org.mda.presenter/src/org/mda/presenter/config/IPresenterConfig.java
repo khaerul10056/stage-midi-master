@@ -3,12 +3,14 @@ package org.mda.presenter.config;
 
 import mda.SongPartType;
 
+import org.mda.presenter.adapter.AreaInfo;
 import org.mda.presenter.adapter.ColorInfo;
 import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
-import org.mda.presenter.adapter.SizeInfo;
 
 public interface IPresenterConfig {
+	
+	
 
 	/**
 	 * getter
@@ -34,13 +36,6 @@ public interface IPresenterConfig {
 	ColorInfo getDefaultForegroundColor();
 
 	FontInfo getFont();
-
-	/**
-	 * get default-size of presentation screen
-	 * 
-	 * @return presentation screen size
-	 */
-	SizeInfo getDefaultPresentationScreenSize();
 
 	/**
 	 * returns if the background image should be shown
@@ -137,7 +132,8 @@ public interface IPresenterConfig {
 	boolean isOptimizeEmptyTokens();
 
 	boolean isAutoWrapToNewPage();
+	
+	Integer getAutoSizingPercent ();
 
-	void setDefaultPresentationScreenSize(SizeInfo calcSize);
 
 }

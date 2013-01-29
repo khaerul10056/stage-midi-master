@@ -3,15 +3,14 @@ package org.mda.presenter.config;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import mda.SongPartType;
 import mda.impl.PresentationSchemeImpl;
 
 import org.mda.ApplicationSession;
+import org.mda.presenter.adapter.AreaInfo;
 import org.mda.presenter.adapter.ColorInfo;
 import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
-import org.mda.presenter.adapter.SizeInfo;
 
 import com.google.inject.Inject;
 
@@ -19,8 +18,6 @@ import com.google.inject.Inject;
 public class DefaultPresenterConfig extends PresentationSchemeImpl implements IPresenterConfig {
 
   
-
-  private SizeInfo                  defaultPresentationScreenSize = new SizeInfo (1280, 800); //TODO make better
 
   private List<SongPartType> partsToIgnore   = new ArrayList<SongPartType>();
 
@@ -36,6 +33,12 @@ public class DefaultPresenterConfig extends PresentationSchemeImpl implements IP
    * configuration to define the used fontsize
    */
   private Integer fontsize;
+  
+  private Integer autosizingPercent;
+
+
+
+private AreaInfo bounds;
  
 
   @Override
@@ -63,10 +66,7 @@ public class DefaultPresenterConfig extends PresentationSchemeImpl implements IP
     return partsToIgnore.contains(parttype);
   }
 
-  @Override
-  public SizeInfo getDefaultPresentationScreenSize () {
-    return defaultPresentationScreenSize;
-  }
+  
   
   @Override
   public IGraphicsContext getGraphicsContext () {
@@ -79,10 +79,7 @@ public class DefaultPresenterConfig extends PresentationSchemeImpl implements IP
     this.graphicsContext = graphicsContext;
   }
   
-  @Override
-  public void setDefaultPresentationScreenSize (SizeInfo defaultPresentationScreenSize) {
-	    this.defaultPresentationScreenSize = defaultPresentationScreenSize;
-  }
+  
   
   
   //Convience Methods for presentationscheme
@@ -162,6 +159,15 @@ public boolean isOptimizeEmptyTokens () {
 public boolean isAutoWrapToNewPage () {
     return getAutoWrapToNewPage() != null ? getAutoWrapToNewPage().booleanValue() : false;
   }
+  
+  public void setAutoSizingPercent (final Integer percent) {
+	  this.autosizingPercent = percent;
+  }
+
+@Override
+public Integer getAutoSizingPercent() {
+	return autosizingPercent;
+}
 
 
 }

@@ -77,7 +77,7 @@ public class TestPdfExporter {
 
     exporter.export(sessionitems, tmpFile, config);
 
-    List<Slide> lastSlides = exporter.getLastSlides();
+    List<Slide> lastSlides = exporter.getLastSlides().getSlides();
     Slide versSlide = lastSlides.get(1);
 
     LOG.info(versSlide.toString());
@@ -111,7 +111,7 @@ public class TestPdfExporter {
 
     exporter.export(sessionitems, tmpFile, config);
 
-    List<Slide> lastSlides = exporter.getLastSlides();
+    List<Slide> lastSlides = exporter.getLastSlides().getSlides();
 
     Slide versSlide = lastSlides.get(1);
 

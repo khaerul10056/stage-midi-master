@@ -32,7 +32,7 @@ public class PresentationContext implements IPresentationContext {
   private int currentSessionItemIndex = 0;
   private int currentSlideIndex = 0;
 
-  private CalculatorPreCondition calcPreCondition;
+  private CalculationParam calcParam;
   private IPresenterConfig config;
 
   private SpecialSlide specialSlide = null;
@@ -78,8 +78,7 @@ public class PresentationContext implements IPresentationContext {
     this.currentViewingSession = currentSession;
     this.config = config;
     //((DefaultMidiFileContentEditorConfig)this.config).setSkipEmptySlides(Boolean.FALSE); //TODO guggn, ob das OK ist
-    calcPreCondition = new CalculatorPreCondition();
-    calcPreCondition.setCalculationsize(size);
+    calcParam = new CalculationParam(size);
     slidesPerItem = calculateSlides (currentSession);
     LOGGER.info("set current session " + currentSession.getName() + " at presentationcontext calculation finished");
   }
@@ -94,7 +93,7 @@ public class PresentationContext implements IPresentationContext {
     LOGGER.info("Closing presentationsession");
     this.currentViewingSession = null;
     this.config = null;
-    calcPreCondition = null;
+    calcParam = null;
     slidesPerItem = null;
     //imagecache.clear();
 
@@ -200,7 +199,7 @@ public class PresentationContext implements IPresentationContext {
     calculator.setConfig(config);
 
     for (AbstractSessionItem nextItem: session.getItems()) {
-      List<Slide> calculate = calculator.calculate(nextItem, calcPreCondition);
+      List<Slide> calculate = calculator.calculate(nextItem, calcParam, config).getSlides();
       slidesPerItem.put(nextItem, calculate);
     }
 

@@ -364,24 +364,6 @@ public class PreviewEditorTest extends AbstractEditorTest {
 
 
   @Test
-  public void zoom () {
-    Song song = (Song) root.getGallery().getGalleryItems().get(0);
-    prepareEditor(song);
-    
-    shell.setSize(new Point (800, 1600));
-    editor.getContentpanel().setCurrentPart(song.getParts().get(0));
-
-    int height = editor.getContentpanel().getCurrentSlide().getFont().getFontsize();
-
-    shell.setSize(new Point (400, 800));
-
-    int heightNew = editor.getContentpanel().getCurrentSlide().getFont().getFontsize();
-
-    assertEquals(height, heightNew * 2);
-  }
-
-
-  @Test
   public void stepToPart () throws Exception {
     Song song = (Song) root.getGallery().getGalleryItems().get(0);
     prepareEditor(song);    

@@ -13,11 +13,6 @@ import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.Utils;
 import org.mda.inject.InjectServiceMock;
-import org.mda.presenter.config.DefaultPresenterConfig;
-import org.mda.presenter.config.IPresenterConfig;
-import org.mda.presenter.config.PresentationConfigDefaults;
-import org.mda.presenter.config.PresentationConfigurator;
-import org.mda.presenter.config.PresentationType;
 
 public class PresentationConfiguratorTest {
 
@@ -45,7 +40,6 @@ public class PresentationConfiguratorTest {
     Assert.assertEquals(compareConfig.getDefaultBackgroundColor(), config.getDefaultBackgroundColor());
     Assert.assertEquals(compareConfig.getDefaultForegroundColor(), config.getDefaultForegroundColor());
     Assert.assertEquals (compareConfig.getFont(), config.getFont());
-    Assert.assertEquals (compareConfig.getDefaultPresentationScreenSize(), config.getDefaultPresentationScreenSize());
     Assert.assertEquals (compareConfig.isShowBackground(), config.isShowBackground());
     Assert.assertEquals (compareConfig.isShowBlockType(), config.isShowBlockType());
     Assert.assertEquals (compareConfig.isPagePerPart(), config.isPagePerPart());

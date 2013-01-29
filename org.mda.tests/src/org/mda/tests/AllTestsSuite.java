@@ -42,6 +42,7 @@ import org.mda.midi.mapping.MappingServiceTest;
 import org.mda.midi.ui.MidiDeviceContentProviderTest;
 import org.mda.presenter.SongSlideCalculatorTest;
 import org.mda.presenter.PresentationContextTest;
+import org.mda.presenter.SlideContainerTest;
 import org.mda.presenter.config.PresentationConfiguratorTest;
 import org.mda.presenter.ui.config.PresentationSchemaEditorBuilderTest;
 import org.mda.presenter.ui.test.ContentOverviewTest;
@@ -103,6 +104,7 @@ import org.mda.transpose.TransposeTest;
   SongSlideCalculatorTest.class,
   BeamerPresenterTest.class,
   PresentationConfiguratorTest.class,
+  SlideContainerTest.class,
   
   
   //JavaFX

@@ -20,10 +20,8 @@ import org.mda.commons.ui.Util;
 import org.mda.commons.ui.imagecache.ImageCache;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.CalculatorPreCondition;
 import org.mda.presenter.Slide;
 import org.mda.presenter.SlideItem;
-import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.IPresenterConfig;
 
 
@@ -38,8 +36,6 @@ public class ContentOverviewPanel extends Composite  {
   private File currentShownImageAsFile = null;
 
   private Slide currentSlide = null;
-  
-  private CalculatorPreCondition calcPreCondition;
   
   private ColorResolver colorresolver = new ColorResolver();
 
@@ -83,7 +79,7 @@ public void setSize (final int weight, final int height) {
 
     super.setSize(weight, height);
     LOGGER.debug("set size of Contentoverviewpanel to " + getSize().x + "x" + getSize().y);
-    calcPreCondition.setCalculationsize(new SizeInfo (getBounds().width, getBounds().height));
+    //calcPreCondition.setCalculationsize(new SizeInfo (getBounds().width, getBounds().height));
   }
 
   public ContentOverviewPanel (Composite parent, SongPart part, Slide calculatedSlide, IPresenterConfig config) {

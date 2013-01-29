@@ -44,6 +44,31 @@ public class Slide {
     this.font = font;
     this.forceNewPage = forceNewPage;
   }
+  
+  /**
+   * gets a value that shows how much of the complete size is covered by the items 
+   * @return
+   */
+  public float getHighestScreenCoverage () {
+	  SlideItem mostRightItem = getMostRightItem(); 
+	  return mostRightItem.getXMax() / size.getWidth();
+  }
+  
+  /**
+   * getter gets item which ends most right
+   * @return item 
+   */
+  public SlideItem getMostRightItem () {
+	  SlideItem chosen = null; 
+	  
+	  for (SlideItem next: getItems()) {
+		  if (chosen == null || next.getXMax() > chosen.getXMax())
+			  chosen = next; 
+	  }
+	  
+	  return chosen;
+	  
+  }
 
   /**
    * returns if the current slide is empty.
@@ -221,7 +246,7 @@ public class Slide {
 public String toString () {
     StringBuilder builder = new StringBuilder();
 
-    builder.append("Part " + modelRef + "\nX: " + getSize().getWidth() + "/" + getSize().getHeight() + "\n");
+    builder.append("Part " + modelRef + "\nSize: " + getSize() + "\n");
 
     for (SlideItem nextItem : getItems()) {
       builder.append(nextItem.toString() + "\n");
@@ -249,6 +274,7 @@ public String toString () {
   public ColorInfo getForegroundColor () {
     return foregroundColor;
   }
+  
 
   public void setForegroundColor (ColorInfo foregroundColor) {
     this.foregroundColor = foregroundColor;
