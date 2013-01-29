@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mda.PresentationScheme#getForegroundColor <em>Foreground Color</em>}</li>
  *   <li>{@link mda.PresentationScheme#getShowChords <em>Show Chords</em>}</li>
  *   <li>{@link mda.PresentationScheme#getAutoWrapToNewPage <em>Auto Wrap To New Page</em>}</li>
+ *   <li>{@link mda.PresentationScheme#getAutosizingPercent <em>Autosizing Percent</em>}</li>
  * </ul>
  * </p>
  *
@@ -482,5 +483,32 @@ public interface PresentationScheme extends EObject {
 	 * @generated
 	 */
 	void setAutoWrapToNewPage(Boolean value);
+
+		/**
+	 * Returns the value of the '<em><b>Autosizing Percent</b></em>' attribute.
+	 * The default value is <code>"100"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Autosizing Percent</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Autosizing Percent</em>' attribute.
+	 * @see #setAutosizingPercent(Integer)
+	 * @see mda.MidiplayerPackage#getPresentationScheme_AutosizingPercent()
+	 * @model default="100"
+	 * @generated
+	 */
+	Integer getAutosizingPercent();
+
+		/**
+	 * Sets the value of the '{@link mda.PresentationScheme#getAutosizingPercent <em>Autosizing Percent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Autosizing Percent</em>' attribute.
+	 * @see #getAutosizingPercent()
+	 * @generated
+	 */
+	void setAutosizingPercent(Integer value);
 
 } // PresentationScheme

@@ -946,13 +946,22 @@ public interface MidiplayerPackage extends EPackage {
 	int PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE = 16;
 
 				/**
+	 * The feature id for the '<em><b>Autosizing Percent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRESENTATION_SCHEME__AUTOSIZING_PERCENT = 17;
+
+				/**
 	 * The number of structural features of the '<em>Presentation Scheme</em>' class.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  int PRESENTATION_SCHEME_FEATURE_COUNT = 17;
+  int PRESENTATION_SCHEME_FEATURE_COUNT = 18;
 
   /**
 	 * The meta object id for the '{@link mda.SongPartType <em>Song Part Type</em>}' enum.
@@ -1877,6 +1886,17 @@ public interface MidiplayerPackage extends EPackage {
 	EAttribute getPresentationScheme_AutoWrapToNewPage();
 
 				/**
+	 * Returns the meta object for the attribute '{@link mda.PresentationScheme#getAutosizingPercent <em>Autosizing Percent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Autosizing Percent</em>'.
+	 * @see mda.PresentationScheme#getAutosizingPercent()
+	 * @see #getPresentationScheme()
+	 * @generated
+	 */
+	EAttribute getPresentationScheme_AutosizingPercent();
+
+				/**
 	 * Returns the meta object for enum '{@link mda.SongPartType <em>Song Part Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2607,6 +2627,14 @@ public interface MidiplayerPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE = eINSTANCE.getPresentationScheme_AutoWrapToNewPage();
+
+								/**
+		 * The meta object literal for the '<em><b>Autosizing Percent</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PRESENTATION_SCHEME__AUTOSIZING_PERCENT = eINSTANCE.getPresentationScheme_AutosizingPercent();
 
 								/**
 		 * The meta object literal for the '{@link mda.SongPartType <em>Song Part Type</em>}' enum.

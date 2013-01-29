@@ -13,6 +13,7 @@ import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
+import org.mda.presenter.CalculationParam;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
@@ -43,7 +44,8 @@ public class ContentOverviewTest {
   @Test
   public void testContentOverview () throws Exception {
     instance.load(null);
-    presentationContext.setCurrentSession(instance.getCurrentModel().getSessions().get(0), config, new SizeInfo(400, 200));
+    CalculationParam param = new CalculationParam(new SizeInfo(400, 200));
+    presentationContext.setCurrentSession(instance.getCurrentModel().getSessions().get(0), config, param);
     overview.build(new Shell());
     overview.refresh();
     Assert.assertTrue (overview.getPreviewParts().get(0).isSelected());
@@ -67,7 +69,8 @@ public class ContentOverviewTest {
     session.getItems().add(song);
     song.getParts().get(0).getTextlines().get(2).setNewSlide(true);
 
-    presentationContext.setCurrentSession(session, config, new SizeInfo(400, 200));
+    CalculationParam param = new CalculationParam(new SizeInfo(400, 200));
+    presentationContext.setCurrentSession(session, config, param);
 
     ContentOverview overview = getContentOverview();
     overview.build(new Shell());
@@ -109,7 +112,8 @@ public class ContentOverviewTest {
     session.getItems().add(song1);
     session.getItems().add(song2);
 
-    presentationContext.setCurrentSession(session, config, new SizeInfo(400, 200));
+    CalculationParam param = new CalculationParam(new SizeInfo(400, 200));
+    presentationContext.setCurrentSession(session, config, param);
     presentationContext.setCurrentSessionItemIndex(1);
 
     ContentOverview overview = getContentOverview();

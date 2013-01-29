@@ -43,7 +43,8 @@ public class PresentationContextTest {
     Song currentFile = (Song) appsession.getCurrentModel().getSessions().get(0).getItems().get(0);
     SongPart part1 = currentFile.getParts().get(0);
     SongPart part2 = currentFile.getParts().get(1);
-    presentationContext.setCurrentSession(appsession.getCurrentModel().getSessions().get(0), config, new SizeInfo (400, 200));
+    CalculationParam param = new CalculationParam(new SizeInfo(400, 200));
+    presentationContext.setCurrentSession(appsession.getCurrentModel().getSessions().get(0), config, param);
     presentationContext.setCurrentSessionItemIndex(0);
 
     Slide slide = presentationContext.getCurrentSlide();

@@ -25,7 +25,8 @@ public class CalculationParam {
 
 	public void setPresentationBounds(final AreaInfo areainfo) {
 		this.bounds = areainfo;
-
 	}
+	
+	
 
 }

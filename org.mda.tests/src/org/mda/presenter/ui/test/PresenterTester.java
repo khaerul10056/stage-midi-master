@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
+import org.mda.presenter.CalculationParam;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
@@ -78,7 +79,8 @@ public class PresenterTester extends Shell {
         config.setShowBlockType(chkWithBlocktypes.getSelection());
 
         PresentationContext  presentationContext = new PresentationContext();
-        presentationContext.setCurrentSession(currentSession, config, size);
+        CalculationParam param = new CalculationParam(size);
+        presentationContext.setCurrentSession(currentSession, config, param);
 
         final GlobalKeyRegistryPresentationController globalKeyRegPresentationController = new GlobalKeyRegistryPresentationController();
         presentationContext.registerController(globalKeyRegPresentationController);

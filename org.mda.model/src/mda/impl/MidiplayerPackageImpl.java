@@ -1010,6 +1010,15 @@ public EAttribute getPresentationScheme_ForegroundColor() {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPresentationScheme_AutosizingPercent() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(17);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getSongPartType() {
 		return songPartTypeEEnum;
 	}
@@ -1156,6 +1165,7 @@ public EEnum getUserType() {
 		createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__FOREGROUND_COLOR);
 		createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__SHOW_CHORDS);
 		createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE);
+		createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__AUTOSIZING_PERCENT);
 
 		// Create enums
 		songPartTypeEEnum = createEEnum(SONG_PART_TYPE);
@@ -1287,6 +1297,7 @@ public EEnum getUserType() {
 		initEAttribute(getPresentationScheme_ForegroundColor(), ecorePackage.getEString(), "foregroundColor", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPresentationScheme_ShowChords(), ecorePackage.getEBooleanObject(), "showChords", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPresentationScheme_AutoWrapToNewPage(), ecorePackage.getEBooleanObject(), "autoWrapToNewPage", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPresentationScheme_AutosizingPercent(), ecorePackage.getEIntegerObject(), "autosizingPercent", "100", 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(songPartTypeEEnum, SongPartType.class, "SongPartType");

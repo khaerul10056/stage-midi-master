@@ -5,16 +5,12 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-
 import mda.AbstractSessionItem;
-import mda.SongPart;
 import mda.Session;
+import mda.SongPart;
 
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.IPresentationContext;
-import org.mda.presenter.IPresentationController;
-import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.IPresenterConfig;
 
 import com.google.inject.Inject;
@@ -73,12 +69,12 @@ public class PresentationContext implements IPresentationContext {
       slidesPerItem.clear();
   }
 
-  public void setCurrentSession (Session currentSession, final IPresenterConfig config, SizeInfo size) {
+  public void setCurrentSession (Session currentSession, final IPresenterConfig config, CalculationParam param) {
     LOGGER.info("set current session " + currentSession.getName() + " at presentationcontext");
     this.currentViewingSession = currentSession;
     this.config = config;
+    this.calcParam = param;
     //((DefaultMidiFileContentEditorConfig)this.config).setSkipEmptySlides(Boolean.FALSE); //TODO guggn, ob das OK ist
-    calcParam = new CalculationParam(size);
     slidesPerItem = calculateSlides (currentSession);
     LOGGER.info("set current session " + currentSession.getName() + " at presentationcontext calculation finished");
   }
