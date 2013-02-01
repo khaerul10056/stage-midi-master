@@ -9,14 +9,7 @@ public class MonitorManager {
 	
     
 	public Monitor getPrimaryMonitor () {
-		for (Monitor nextMonitor: Display.getCurrent().getMonitors()) {
-	      if (nextMonitor.equals(Display.getCurrent().getPrimaryMonitor())) {
-	        return nextMonitor;
-	      }
-	    }
-		
-		return null;
-		
+		return Display.getCurrent().getPrimaryMonitor();
 	}
 	
 	public Monitor getSecondaryMonitor () {

@@ -175,5 +175,10 @@ public class BeamerPresenter implements IPresentationView {
     return presentationContext.getCurrentSessionItem();
   }
 
+@Override
+public boolean isFocused() {
+	return shell.isFocusControl();
+}
+
 
 }

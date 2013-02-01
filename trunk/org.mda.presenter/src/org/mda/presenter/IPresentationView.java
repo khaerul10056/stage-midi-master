@@ -13,6 +13,11 @@ public interface IPresentationView {
    * refresh the view, for example if next slide is shown
    */
   void refresh ();
+  
+  /**
+   * returns, if the component is focused
+   */
+  boolean isFocused ();
 
 
 

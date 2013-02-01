@@ -100,7 +100,8 @@ public class HelloJavaFXWorld extends Application
         songview.build(this);
         final Accordion accordion = new Accordion ();
         VBox vbox = new VBox(0); // spacing = 8
-        vbox.getChildren().addAll(menubar, toolbar, accordion);
+        vbox.getChildren().addAll(//menubar, //toolbar, 
+        							accordion);
         accordion.getPanes().addAll(modelview.getPane(), sessionView.getPane(), songview.getPane());
         accordion.setExpandedPane(modelview.getPane());
         VBox.setVgrow(accordion, Priority.ALWAYS);
@@ -111,6 +112,7 @@ public class HelloJavaFXWorld extends Application
         URL url = getClass().getResource("/css/default.css");
         scene.getStylesheets().add("css/default.css");
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.show();
         
     }
