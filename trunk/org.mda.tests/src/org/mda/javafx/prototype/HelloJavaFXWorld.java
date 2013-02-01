@@ -1,33 +1,63 @@
 package org.mda.javafx.prototype;
 
+import java.net.URL;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.MenuItemBuilder;
 import javafx.scene.control.ToolBar;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.VBoxBuilder;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextBuilder;
 import javafx.stage.Stage;
 
-import com.sun.javafx.tk.FontMetrics;
-import com.sun.javafx.tk.Toolkit;
+
+import org.mda.ApplicationSession;
+import org.mda.inject.InjectService;
+import org.mda.inject.InjectServiceMock;
+
+import com.google.inject.Inject;
 
 /**
  *
  */
 public class HelloJavaFXWorld extends Application
 {
+	
+	@Inject
+	public ApplicationSession appSession;
+	
+	
+    @Inject
+	private ModelView modelview;
+    
+    @Inject
+	private SessionView sessionView;
+    
+    @Inject
+	private SongView songview;
+	
+	
+	public ModelView getModelView () {
+		return modelview;
+	}
+	
+	public SessionView getSessionView () {
+		return sessionView;
+	}
+	
+	public SongView getSongView () {
+		return songview;
+	}
+
+
 
 	public ToolBar createToolbar () {
 		Button btnRun = new Button("Run");
@@ -38,15 +68,15 @@ public class HelloJavaFXWorld extends Application
     @Override
     public void start(final Stage stage) throws Exception
     {
+    	
+    	InjectServiceMock.initialize();
+    	InjectService.injectObject(this);
+    	
+    	
+    	appSession.load(null);
 
     	MenuBar menubar = new MenuBar();
     	Menu mnuGlobal = new Menu("Global");
-    	Text text = new Text ("Hello");
-    	FontMetrics fontMetrics = Toolkit.getToolkit().getFontLoader().getFontMetrics(text.getFont());
-    	fontMetrics.computeStringWidth("Hello");
-    	fontMetrics.getMaxAscent();
-    	
-    	
     	
 
     	MenuItem mnuItem = MenuItemBuilder.create().text("Exit").onAction(new EventHandler<ActionEvent>() {
@@ -62,27 +92,30 @@ public class HelloJavaFXWorld extends Application
     	mnuGlobal.getItems().add(mnuItem);
     	menubar.getMenus().add(mnuGlobal);
 
-
-
-
         ToolBar toolbar = createToolbar();
         toolbar.prefWidthProperty().bind(stage.widthProperty());
-
-        Pane drecksPane = new Pane();
-        Font font = new Font ("Arial", 48);
-        for (int i = 0; i< 100; i++) {
-          Text normalText = TextBuilder.create().text("Wasn des fuern Zeuch").font(font).build();
-          normalText.setLayoutX(20); 
-          normalText.setLayoutY(40 * i);
-          drecksPane.getChildren().add(normalText);
-        }
         
-        final Scene scene = new Scene(drecksPane, 800, 400, Color.CORNSILK);
+        modelview.build(this);
+        sessionView.build(this); 
+        songview.build(this);
+        final Accordion accordion = new Accordion ();
+        VBox vbox = new VBox(0); // spacing = 8
+        vbox.getChildren().addAll(menubar, toolbar, accordion);
+        accordion.getPanes().addAll(modelview.getPane(), sessionView.getPane(), songview.getPane());
+        accordion.setExpandedPane(modelview.getPane());
+        VBox.setVgrow(accordion, Priority.ALWAYS);
+ 
+        final Scene scene = new Scene(vbox, 800, 400, Color.BLACK);
 
         stage.setTitle("HelloWorld in JavaFX 2.0");
+        URL url = getClass().getResource("/css/default.css");
+        scene.getStylesheets().add("css/default.css");
         stage.setScene(scene);
         stage.show();
+        
     }
+    
+    
 
     public static void main(String[] args)
     {
