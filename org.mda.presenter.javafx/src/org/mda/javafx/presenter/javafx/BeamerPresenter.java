@@ -261,4 +261,9 @@ public class BeamerPresenter implements IPresentationView {
 	
 	}
 
+	@Override
+	public boolean isFocused() {
+		return currentPane.isFocused();
+	}
+
 }

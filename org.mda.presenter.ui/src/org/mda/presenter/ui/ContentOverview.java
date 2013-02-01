@@ -130,5 +130,10 @@ public class ContentOverview  implements IPresentationView{
 
   }
 
+@Override
+public boolean isFocused() {
+	return comp.isFocusControl();
+}
+
 
 }

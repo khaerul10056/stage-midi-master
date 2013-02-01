@@ -13,6 +13,8 @@ import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.config.IPresenterConfig;
 
+import sun.awt.DisplayChangedListener;
+
 import com.google.inject.Inject;
 
 public class PresentationContext implements IPresentationContext {
@@ -313,6 +315,7 @@ public class PresentationContext implements IPresentationContext {
         nextView.refresh();
       }
     }
+    
     return itemFound;
   }
 

@@ -235,6 +235,7 @@ public class ApplicationSession {
 
   public void setCurrentSession (Session currentSession) {
     getModelEvents().setCurrentModelElement(Session.class, currentSession);
+    setCurrentMidifile(null);
   }
 
 

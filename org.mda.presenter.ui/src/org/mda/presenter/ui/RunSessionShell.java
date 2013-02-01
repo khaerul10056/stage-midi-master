@@ -22,7 +22,6 @@ import org.mda.ApplicationSession;
 import org.mda.Utils;
 import org.mda.commons.ui.ContentProvider;
 import org.mda.commons.ui.LabelProvider;
-import org.mda.commons.ui.MonitorManager;
 import org.mda.commons.ui.Util;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -49,9 +48,6 @@ public class RunSessionShell implements IPresentationView {
 	@Inject
 	private DefaultPresentationController controller;
 	
-	@Inject
-	private MonitorManager monitorManager;
-
 	private ToolBar toolbar;
 	
 	@Inject
@@ -164,9 +160,9 @@ public class RunSessionShell implements IPresentationView {
 	}
 	
 	public Shell build (final Shell parent) {
-		shell = new Shell (parent,SWT.NONE);
+		shell = new Shell (SWT.NONE);
 		Util.disableEscOnComponent(shell);
-		shell.setBounds(monitorManager.getPrimaryMonitor().getBounds());
+		shell.setBounds(parent.getBounds());
 		
 		LOGGER.info("Build RunSessionShell at " + shell.getBounds() + "(parent: " + parent.getBounds() + ")");
 		
@@ -223,8 +219,6 @@ public class RunSessionShell implements IPresentationView {
 			}
 		});
 		
-		LOGGER.info("Build RunSessionShell at " + shell.getBounds() + "(parent: " + parent.getBounds() + ")");
-		shell.setBounds(monitorManager.getPrimaryMonitor().getBounds());
 		overview.refresh();
 		
 		return shell;
@@ -249,6 +243,11 @@ public class RunSessionShell implements IPresentationView {
 	public void refresh() {
 		treModel.select(presentationContext.getCurrentSessionItemIndex());
 		overview.getComp().setFocus();
+	}
+
+	@Override
+	public boolean isFocused() {
+		return overview.getComp().isFocusControl();
 	}
 	
 
