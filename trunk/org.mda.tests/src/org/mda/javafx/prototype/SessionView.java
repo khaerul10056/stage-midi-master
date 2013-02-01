@@ -2,6 +2,7 @@ package org.mda.javafx.prototype;
 
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
@@ -33,11 +34,12 @@ public class SessionView  {
 	  BorderPane content = new BorderPane();
 	  
       lvSessionItems = new ListView<AbstractSessionItem>();
-      lvSessionItems.setMinWidth(400);
+      lvSessionItems.setMinWidth(600);
       lvSessionItems.setMaxWidth(600);
       content.setLeft(lvSessionItems);
       content.setCenter(new Text ("Song"));
 	  pane = new TitledPane("Session", content);
+	  BorderPane.setMargin(lvSessionItems, new Insets(10, 10, 20, 10));
 	  lvSessionItems.setCellFactory(new Callback<ListView<AbstractSessionItem>, ListCell<AbstractSessionItem>>() {
           @Override 
           public ListCell<AbstractSessionItem> call(ListView<AbstractSessionItem> list) {

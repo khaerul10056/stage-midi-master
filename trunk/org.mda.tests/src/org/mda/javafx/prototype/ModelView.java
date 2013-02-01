@@ -4,6 +4,7 @@ package org.mda.javafx.prototype;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -34,8 +35,10 @@ public class ModelView {
 	  BorderPane content = new BorderPane();
       ObservableList<Session> favourites = FXCollections.observableArrayList(appSession.getCurrentModel().getSessions());
       lvFavourites = new ListView<Session>(favourites);
-      lvFavourites.setMaxHeight(125);
+      lvFavourites.setMaxHeight(200);
       lvFavourites.setMaxWidth(600);
+      BorderPane.setMargin(lvFavourites, new Insets(10, 10, 10, 10));
+     
       content.setTop(lvFavourites);
       content.setCenter(new Text ("Model"));
       content.setBottom(new Button("Default"));
