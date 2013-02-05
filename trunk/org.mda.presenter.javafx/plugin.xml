@@ -2,6 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
  <extension point="org.mda.core.injected">
-   <injected interface="org.mda.javafx.presenter.javafx.PresenterJavaFxModule"/>
+   <injected interface="org.mda.javafx.presenter.PresenterJavaFxModule"/>
  </extension>
 </plugin>
