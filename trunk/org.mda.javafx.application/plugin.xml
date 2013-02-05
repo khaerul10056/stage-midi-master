@@ -1,0 +1,37 @@
+<plugin>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.mda.javafx.application.mdafx"
+            name="MIDI Driven Application">
+         <property
+               name="appName"
+               value="MIDI Driven Application">
+         </property>
+         <property
+               name="windowImages"
+               value="icons/alt_window_16.gif,icons/alt_window_32.gif">
+         </property>
+      </product>
+   </extension>
+   <extension point="org.mda.core.injected">
+      <injected interface="org.mda.javafx.application.ApplicationModule">
+      </injected>
+  </extension>
+   <extension
+         id="mdafx"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            cardinality="singleton-global"
+            thread="main"
+            visible="true">
+         <run
+               class="org.mda.javafx.application.MdaJavaFXApp">
+         </run>
+      </application>
+   </extension>
+   
+   
+
+</plugin>
