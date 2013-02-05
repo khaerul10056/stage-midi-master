@@ -29,8 +29,8 @@ public class SessionView  {
 	@Inject
 	private ApplicationSession appSession;
 	
-	//@Inject
-	//private Set<ISessionViewAction>  sessionActions;
+	@Inject
+	private Set<ISessionViewAction>  sessionActions;
 	
 	private ListView <AbstractSessionItem> lvSessionItems;
 	
@@ -43,9 +43,9 @@ public class SessionView  {
       content.setLeft(lvSessionItems);
       content.setCenter(new Text ("Song"));
       
-//      ActionPane actionPane = new ActionPane();
-//      actionPane.addActions(sessionActions);
-      //content.setTop(actionPane.getPane());
+      ActionPane actionPane = new ActionPane();
+      actionPane.addActions(sessionActions);
+      content.setTop(actionPane.getPane());
       
 	  pane = new TitledPane("Session", content);
 	  BorderPane.setMargin(lvSessionItems, new Insets(10, 10, 20, 10));
