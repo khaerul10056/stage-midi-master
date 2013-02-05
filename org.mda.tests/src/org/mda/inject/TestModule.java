@@ -9,7 +9,7 @@ import org.mda.commons.ui.UIHandler;
 import org.mda.commons.ui.UIHandler4Test;
 import org.mda.export.MailingAdapter;
 import org.mda.export.MailingAdapter4Test;
-import org.mda.javafx.presenter.javafx.JavaFXGraphicsContext;
+import org.mda.javafx.presenter.JavaFXGraphicsContext;
 import org.mda.presenter.IPresentationContext;
 import org.mda.presenter.IPresentationController;
 import org.mda.presenter.PresentationContext;
