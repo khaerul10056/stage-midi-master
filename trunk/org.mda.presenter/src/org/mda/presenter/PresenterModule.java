@@ -11,8 +11,7 @@ public class PresenterModule implements Module {
 
 	@Override
 	public void configure(Binder binder) {
-		binder.bind(IPresenterConfig.class).to(DefaultPresenterConfig.class);
-		binder.bind(PresentationContext.class).in(Singleton.class);
+		
 	}
 
 }

@@ -53,3 +53,7 @@ Import-Package:
  javafx.stage;version="2.2.0",
  javafx.util;version="2.2.0",
  javafx.util.converter;version="2.2.0"
+Export-Package: org.mda.javafx.api,
+ org.mda.javafx.application,
+ org.mda.javafx.common,
+ org.mda.javafx.editor
