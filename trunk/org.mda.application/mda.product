@@ -26,6 +26,7 @@
    </vm>
 
    <plugins>
+      <plugin id="at.bestsolution.efxclipse.runtime.osgi" fragment="true"/>
       <plugin id="com.google.inject"/>
       <plugin id="com.google.inject.assistedinject" fragment="true"/>
       <plugin id="com.google.inject.multibindings" fragment="true"/>

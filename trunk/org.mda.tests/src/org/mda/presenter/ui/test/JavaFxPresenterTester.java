@@ -21,7 +21,7 @@ import mda.Session;
 import org.mda.ApplicationSession;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
-import org.mda.javafx.presenter.javafx.BeamerPresenter;
+import org.mda.javafx.presenter.BeamerPresenter;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.CalculationParam;

@@ -150,7 +150,8 @@ public class ApplicationSession {
   public void save (final File configFile)  {
 	LOGGER.info("Saving configs in " + configFile.getAbsolutePath());
     sessionProps.put(PROP_LASTMODELFILE, getLastModelPath().toString());
-    sessionProps.put(PROP_LASTSESSION, getCurrentSession().getName());
+    if (getCurrentSession() != null)
+      sessionProps.put(PROP_LASTSESSION, getCurrentSession().getName());
 
     try {
       sessionProps.store(new FileOutputStream(getConfigFile()), "properties saved by MDA");

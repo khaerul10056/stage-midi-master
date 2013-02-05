@@ -20,7 +20,7 @@ public class InjectService {
 
 	private static final Log LOGGER = LogFactory.getLogger(InjectService.class);
 
-	static Collection<Module> cachedModules;
+	public static Collection<Module> cachedModules;
 	
 	private static Injector injector;
 
