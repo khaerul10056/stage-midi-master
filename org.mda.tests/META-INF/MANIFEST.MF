@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Tests
+Bundle-Name: org.mda.tests
 Bundle-SymbolicName: org.mda.tests
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.junit,
