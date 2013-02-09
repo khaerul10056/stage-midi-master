@@ -6,7 +6,6 @@ import java.util.List;
 import mda.Song;
 import mda.SongPart;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -18,7 +17,6 @@ import org.mda.editor.preview.ui.StepTypeColorer;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
-@Creatable
 public class SlideListPart extends AbstractPart  {
 
   private static final Log LOGGER  = LogFactory.getLogger(SlideListPart.class);

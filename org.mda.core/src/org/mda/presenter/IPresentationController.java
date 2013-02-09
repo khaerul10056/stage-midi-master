@@ -3,15 +3,13 @@ package org.mda.presenter;
 import mda.AbstractSessionItem;
 import mda.SongPart;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
-
 
 /**
  * Defines the functionality of a controller which can control this presentation
  * @author oleym
  *
  */
-@Creatable
+
 public interface IPresentationController {
 	
   /**

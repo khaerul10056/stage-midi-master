@@ -10,7 +10,6 @@ import mda.SongChordPart;
 import mda.SongPart;
 import mda.SongTextLine;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ExtendedModifyEvent;
 import org.eclipse.swt.custom.ExtendedModifyListener;
@@ -43,7 +42,7 @@ import org.mda.presenter.SongSlideCalculator;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
 
-@Creatable
+
 public class ContentPart extends AbstractPart implements FocusListener {
 
   private static final Log                   LOGGER            = LogFactory.getLogger(ContentPart.class);

@@ -6,7 +6,6 @@ import mda.AdditionalType;
 import mda.Copyright;
 import mda.Song;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -35,7 +34,7 @@ import org.mda.commons.ui.additionals.AdditionalShell;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
-@Creatable
+
 public class MidiFileDetailsShell  {
 
   private Song midifile;

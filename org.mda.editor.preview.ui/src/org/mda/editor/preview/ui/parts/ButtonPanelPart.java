@@ -16,7 +16,6 @@ import javax.inject.Inject;
 
 import mda.SongPart;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -26,7 +25,6 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.mda.MidiPlayerService;
 import org.mda.commons.ui.transpose.TransposeShell;
@@ -36,7 +34,7 @@ import org.mda.editor.preview.ui.details.MidiFileDetailsShell;
 import org.mda.editor.preview.ui.details.MidiPartDetailsShell;
 import org.mda.editor.preview.ui.newpart.NewPartShell;
 
-@Creatable
+
 public class ButtonPanelPart extends AbstractPart implements SelectionListener {
 
   private Button btnSplit;

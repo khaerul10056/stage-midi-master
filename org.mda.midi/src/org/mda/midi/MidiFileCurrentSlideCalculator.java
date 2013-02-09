@@ -10,14 +10,12 @@ import mda.Session;
 import mda.Song;
 import mda.SongPart;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
-
 /**
  * calculates the current part for a special bar in a special midifile
  * @author mao
  *
  */
-@Creatable
+
 public class MidiFileCurrentSlideCalculator {
 	
 	/**

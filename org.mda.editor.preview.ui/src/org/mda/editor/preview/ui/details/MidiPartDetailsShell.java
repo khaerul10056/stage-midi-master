@@ -3,7 +3,6 @@ package org.mda.editor.preview.ui.details;
 import mda.SongPart;
 import mda.SongPartType;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -15,7 +14,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-@Creatable
+
 public class MidiPartDetailsShell {
 
 

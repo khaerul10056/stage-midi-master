@@ -4,7 +4,6 @@ import javax.annotation.PostConstruct;
 
 import mda.Song;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -15,7 +14,7 @@ import org.mda.listeners.IModelElementReloadListener;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
-@Creatable
+
 public class PreviewEditorPart {
 
 	private static final Log LOGGER = LogFactory.getLogger(PreviewEditorPart.class);

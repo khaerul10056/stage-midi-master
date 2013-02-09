@@ -25,7 +25,6 @@ import mda.Configuration;
 import mda.MidiPlayerRoot;
 import mda.User;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.mda.ApplicationSession;
 import org.mda.export.pdf.PdfExporter;
 import org.mda.logging.Log;
@@ -34,7 +33,7 @@ import org.mda.presenter.config.IPresenterConfig;
 import org.mda.presenter.config.PresentationConfigurator;
 import org.mda.presenter.config.PresentationType;
 
-@Creatable
+
 public class ExportEngine {
 
   @Inject

@@ -8,7 +8,6 @@ import javax.mail.MessagingException;
 import mda.Configuration;
 import mda.User;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.layout.GridData;
@@ -27,7 +26,6 @@ import org.mda.export.ExportResult;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 
-@Creatable
 public class SendSongbooksShell {
 	
 	  Text txtMailtext;
