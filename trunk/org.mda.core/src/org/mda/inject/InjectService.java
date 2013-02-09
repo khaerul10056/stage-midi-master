@@ -62,7 +62,7 @@ public class InjectService {
 			}
 			
 			} catch (Exception e) {
-				throw new IllegalStateException("Error while injection phase: " + e);
+				throw new IllegalStateException("Error while injection phase: ", e);
 			}
 			
 			
@@ -92,6 +92,7 @@ public class InjectService {
 		if (bundle == null)
 			return null;
 		try {
+			LOGGER.info("Loading class " + name + " in bundle " + bundleName);
 			modelrepoClass = bundle.loadClass(name);
 		} catch (ClassNotFoundException e) {
 			try {

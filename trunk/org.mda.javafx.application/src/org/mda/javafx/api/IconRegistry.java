@@ -35,6 +35,9 @@ public class IconRegistry {
 	 */
 	public void registerIcons (Bundle bundle) {
 		Enumeration<String> entry = bundle.getEntryPaths("/icons/");
+		if (entry == null)
+			return;
+		
 		while (entry.hasMoreElements()) {
 		  String nextElement = entry.nextElement();
 		  String name = nextElement.substring(6, nextElement.length()); //icons-package is removed
