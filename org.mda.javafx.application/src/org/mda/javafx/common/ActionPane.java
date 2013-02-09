@@ -2,18 +2,26 @@ package org.mda.javafx.common;
 
 import java.util.Set;
 
-import org.mda.javafx.api.IAction;
-
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+
+import org.mda.javafx.api.IAction;
+import org.mda.javafx.api.IconRegistry;
+
+import com.google.inject.Inject;
 
 
 
 public class ActionPane {
 
 	
+	@Inject
+	private IconRegistry iconregistry;
 	
 	private HBox actionpane;
 
@@ -25,9 +33,19 @@ public class ActionPane {
 	}
 	
 	public void addActions (Set<? extends IAction> actions) {
-		for (IAction nextAction: actions) {
-		  Button btn = new Button(nextAction.getName()); 
+		for (final IAction nextAction: actions) {
+		  Button btn = new Button(nextAction.getName());
+		  
+		  if (nextAction.getIcon() != null) 
+			btn.setGraphic(new ImageView(nextAction.getIcon()));
+		  
 		  actionpane.getChildren().add(btn);
+		  btn.setOnAction(new EventHandler<ActionEvent>() {
+		        @Override
+		        public void handle(ActionEvent event) {
+		            nextAction.execute(actionpane);
+		        }
+		    });
 		  
 		}
 	}
