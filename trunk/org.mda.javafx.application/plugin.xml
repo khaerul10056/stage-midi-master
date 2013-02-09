@@ -15,10 +15,7 @@
          </property>
       </product>
    </extension>
-   <extension point="org.mda.core.injected">
-      <injected interface="org.mda.javafx.application.ApplicationModule">
-      </injected>
-  </extension>
+   
    <extension
          id="mdafx"
          point="org.eclipse.core.runtime.applications">

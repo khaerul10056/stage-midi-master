@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.mda.ApplicationSession;
 import org.mda.inject.InjectService;
+import org.mda.javafx.autoconfig.AutomaticPluginConfigurator;
 
 import at.bestsolution.efxclipse.runtime.application.AbstractJFXApplication;
 
@@ -30,6 +31,8 @@ public class MdaJavaFXApp extends AbstractJFXApplication {
 	@Inject
 	public ApplicationSession appSession;
 	
+	@Inject
+    private UISession uiSession;
 	
     @Inject
 	private ModelView modelview;
@@ -39,6 +42,11 @@ public class MdaJavaFXApp extends AbstractJFXApplication {
     
     @Inject
 	private SongView songview;
+    
+    @Inject
+    private AutomaticPluginConfigurator configurator;
+
+	private Scene scene;
 	
 	
 	public ModelView getModelView () {
@@ -67,6 +75,8 @@ public class MdaJavaFXApp extends AbstractJFXApplication {
 	protected void jfxStart(IApplicationContext arg0, Application app, final Stage stage) {
 		
     	InjectService.injectObject(this);
+    	
+    	configurator.configure("org.mda");	//load icons in icon registry, i18n, css and so on
     	
     	appSession.load(null);
 
@@ -101,7 +111,8 @@ public class MdaJavaFXApp extends AbstractJFXApplication {
         accordion.setExpandedPane(modelview.getPane());
         VBox.setVgrow(accordion, Priority.ALWAYS);
  
-        final Scene scene = new Scene(vbox, 800, 400, Color.BLACK);
+        scene = new Scene(vbox, 800, 400, Color.BLACK);
+        uiSession.setMainStage(stage);
 
         stage.setTitle("MDA");
         String cssUrl = getClass().getClassLoader().getResource("css/default.css").toExternalForm();
@@ -123,6 +134,10 @@ public class MdaJavaFXApp extends AbstractJFXApplication {
             scene.setOnKeyPressed(keyEventHandler);
             scene.setOnKeyReleased(keyEventHandler);
     }
+	
+	public Scene getScene () {
+		return scene;
+	}
 
 	
 

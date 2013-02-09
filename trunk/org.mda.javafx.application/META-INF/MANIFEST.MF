@@ -8,7 +8,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.mda.core;bundle-version="1.0.0",
  com.google.inject;bundle-version="3.0.0",
- at.bestsolution.efxclipse.runtime.application;bundle-version="0.8.0"
+ at.bestsolution.efxclipse.runtime.application
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: 
