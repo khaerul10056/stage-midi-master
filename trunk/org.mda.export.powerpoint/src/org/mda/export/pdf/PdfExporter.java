@@ -4,16 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import javax.inject.Inject;
 
 import mda.AbstractSessionItem;
 import mda.Song;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.mda.ApplicationSession;
 import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
@@ -39,7 +36,7 @@ import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfWriter;
 
 
-@Creatable
+
 public class PdfExporter extends AbstractExporter {
 
   private static final Log LOGGER  = LogFactory.getLogger(PdfExporter.class);

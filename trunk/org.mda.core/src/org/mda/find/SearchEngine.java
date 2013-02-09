@@ -3,10 +3,9 @@ package org.mda.find;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.emf.ecore.EObject;
 
-@Creatable
+
 public class SearchEngine {
 	
 	private List <ISearchStrategy> strategies = new ArrayList<ISearchStrategy>(); 

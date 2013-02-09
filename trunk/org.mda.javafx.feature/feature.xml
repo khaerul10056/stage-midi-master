@@ -23,7 +23,6 @@
       <import plugin="com.google.inject" version="3.0.0" match="greaterOrEqual"/>
       <import plugin="at.bestsolution.efxclipse.runtime.application" version="0.8.0" match="greaterOrEqual"/>
       <import plugin="at.bestsolution.efxclipse.runtime.javafx" version="2.2.0" match="greaterOrEqual"/>
-      <import plugin="org.mda.commons.ui" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.mda.presenter" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.mda.javafx.application" version="1.0.0" match="greaterOrEqual"/>
    </requires>

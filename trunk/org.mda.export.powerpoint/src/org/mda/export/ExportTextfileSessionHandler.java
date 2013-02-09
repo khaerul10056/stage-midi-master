@@ -4,7 +4,6 @@ import java.io.File;
 
 import mda.Session;
 
-import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.mda.ApplicationSession;
@@ -30,7 +29,6 @@ public class ExportTextfileSessionHandler {
 	private ApplicationSession session;
 	
 	
-	@Execute
 	public void execute(Shell mother) {
 		InjectService.injectObject(this);
 

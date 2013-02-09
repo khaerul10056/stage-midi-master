@@ -7,7 +7,6 @@ import java.util.List;
 import mda.MidiPlayerRoot;
 import mda.UserType;
 
-import org.eclipse.e4.core.di.annotations.Execute;
 import org.mda.ApplicationSession;
 import org.mda.inject.InjectService;
 import org.mda.logging.Log;
@@ -24,7 +23,6 @@ public class ImportHandler {
   @Inject
   private ApplicationSession session;
 
-  @Execute
   public Object execute() {
 	InjectService.injectObject(this);
     MidiPlayerRoot currentModel = session.getCurrentModel();

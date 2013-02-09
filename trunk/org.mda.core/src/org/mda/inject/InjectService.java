@@ -25,24 +25,47 @@ public class InjectService {
 	private static Injector injector;
 
 	public static Collection<Module> setupModules() {
+		boolean initialising = false;
+		
 		if (cachedModules == null) {
+			initialising = true;
+			
+			try {
 			cachedModules = new ArrayList<Module>();
 			IExtensionRegistry registry = RegistryFactory.getRegistry();
 			IExtensionPoint extensionPoint = registry.getExtensionPoint("org.mda.core.injected");
 			IConfigurationElement[] configurationElements = extensionPoint.getConfigurationElements();
+			
+			//ApplicationModule must be injected first
+			String appBundle = "org.mda.javafx.application"; 
+			Class injectAppModuleClass = loadClass(appBundle, "org.mda.javafx.application.ApplicationModule");
+			if (injectAppModuleClass != null) {
+			  LOGGER.info("Configure application module " + injectAppModuleClass.getName());
+			  Module newAppModule = (Module) injectAppModuleClass.newInstance();
+			  cachedModules.add(newAppModule);
+			}
+			else
+				LOGGER.error("Application Bundle " + appBundle + " not found");
+			
+			
+			
 			for (IConfigurationElement nextElement : configurationElements) {
 				if (nextElement.getName().equals("injected")) {
 					String nextInterface = nextElement.getAttribute("interface");
-					LOGGER.info("Configure differ " + nextInterface);
-					try {
-						Class injectModuleClass = loadClass(nextElement, nextInterface);
+					LOGGER.info("Configure module " + nextInterface);
+					
+						Class injectModuleClass = loadClass(nextElement.getContributor().getName(), nextInterface);
 						Module newModule = (Module) injectModuleClass.newInstance();
 						cachedModules.add(newModule);
-					} catch (Exception e) {
-						LOGGER.error("Error initialising partworker " + nextInterface, e);
-					}
+				
 				}
 			}
+			
+			} catch (Exception e) {
+				throw new IllegalStateException("Error while injection phase: " + e);
+			}
+			
+			
 			
 		}
 		
@@ -62,10 +85,12 @@ public class InjectService {
 	 *            classname
 	 * @return class <code>not null</code>
 	 */
-	private static Class loadClass(final IConfigurationElement element,String name) {
+	private static Class loadClass(final String bundleName, String name) {
 
 		Class modelrepoClass = null;
-		Bundle bundle = Platform.getBundle(element.getContributor().getName());
+		Bundle bundle = Platform.getBundle(bundleName);
+		if (bundle == null)
+			return null;
 		try {
 			modelrepoClass = bundle.loadClass(name);
 		} catch (ClassNotFoundException e) {

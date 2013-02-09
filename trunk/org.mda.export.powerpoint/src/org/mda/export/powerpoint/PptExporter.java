@@ -20,7 +20,6 @@ import org.apache.poi.hslf.model.TextBox;
 import org.apache.poi.hslf.model.TextShape;
 import org.apache.poi.hslf.usermodel.RichTextRun;
 import org.apache.poi.hslf.usermodel.SlideShow;
-import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
@@ -34,7 +33,7 @@ import org.mda.presenter.adapter.ColorInfo;
 import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.IPresenterConfig;
 
-@Creatable
+
 public class PptExporter extends AbstractExporter {
 
   private final static Log LOG = LogFactory.getLogger(PptExporter.class);
