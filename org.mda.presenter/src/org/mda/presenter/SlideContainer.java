@@ -41,6 +41,21 @@ public class SlideContainer {
 		  
 	  }
 	  
+	  /**
+	   * finds the current slide by a slide which is calculated by 
+	   * another SongSlideCalculator (must equal the modelref)
+	   * @param currentEqualsSlide  slide which is equaled
+	   * @return  slide
+	   */
+	  public Slide getSlide (final Slide currentEqualsSlide) {
+		  for (Slide next: getSlides()) {
+			  if (next.getModelRef().equals(currentEqualsSlide.getModelRef()))
+				  return next;
+		  }
+		  
+		  return null;
+	  }
+	  
 	  
 	  /**
 	   * gets all items of all slides in the container
@@ -86,6 +101,8 @@ public class SlideContainer {
 		
 		return slide;
 	}
+	
+	
 	
 	public List<Slide> getSlides () {
 		ArrayList<Slide> completeListe = new ArrayList<Slide>();

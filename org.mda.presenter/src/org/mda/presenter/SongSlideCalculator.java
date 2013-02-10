@@ -8,6 +8,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import mda.AbstractSessionItem;
+import mda.Session;
 import mda.Song;
 import mda.SongChordPart;
 import mda.SongPart;
@@ -73,6 +74,15 @@ public class SongSlideCalculator extends SlideCalculator {
       return (int) expectedSize;
   }
   
+  
+  public SlideContainer calculate (final Session session, final CalculationParam param, final IPresenterConfig config) {
+	  SlideContainer newContainer = new SlideContainer();
+	  for (AbstractSessionItem nextItem: session.getItems()) {
+		  newContainer.addContainer(calculate(nextItem, param, config));
+	  }
+	  
+	  return newContainer;
+  }
   
   @Override
   public SlideContainer calculate (final AbstractSessionItem sessionitem, final CalculationParam param, final IPresenterConfig config) {
