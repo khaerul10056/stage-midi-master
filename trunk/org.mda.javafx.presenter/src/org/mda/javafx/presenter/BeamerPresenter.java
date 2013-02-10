@@ -38,6 +38,8 @@ public class BeamerPresenter implements IPresentationView {
 	
 	private static final Log LOGGER  = LogFactory.getLogger(BeamerPresenter.class);
 	
+	
+	//TODO make set from outside
 	@Inject
 	private MonitorManager monitormanager;
 	
@@ -49,7 +51,6 @@ public class BeamerPresenter implements IPresentationView {
 	
 	@Inject
 	ColorResolver colorResolver;
-	
 	@Inject
 	BackgroundImageResolver backgroundImageResolver;
 	
