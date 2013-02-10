@@ -13,8 +13,6 @@ import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.config.IPresenterConfig;
 
-import sun.awt.DisplayChangedListener;
-
 import com.google.inject.Inject;
 
 public class PresentationContext implements IPresentationContext {
@@ -183,6 +181,7 @@ public class PresentationContext implements IPresentationContext {
   public Slide getCurrentSlide () {
     return slidesPerItem.get(getCurrentSessionItem()).get(currentSlideIndex);
   }
+  
   
   public List <Slide> getSlides () {
 	  List <Slide> completeListe = new ArrayList<Slide>(); 
