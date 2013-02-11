@@ -45,6 +45,13 @@ public class Slide {
     this.forceNewPage = forceNewPage;
   }
   
+  public boolean equals (final Object object) {
+	  if (!( object instanceof Slide))
+		  return false;
+	  Slide compareSlide = (Slide) object;
+	  return (compareSlide.getModelRef().equals(modelRef) && compareSlide.getFirstLineModelRef().equals(firstLineModelRef));
+  }
+  
   /**
    * gets a value that shows how much of the complete size is covered by the items 
    * @return
