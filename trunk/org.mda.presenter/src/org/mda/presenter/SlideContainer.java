@@ -103,6 +103,11 @@ public class SlideContainer {
 	}
 	
 	
+	public boolean isSlideAssignedToItem (Slide slide, AbstractSessionItem sessionitem) {
+		List <Slide> slides = slidesPerItem.get(sessionitem);
+		return slides.contains(slide);
+	}
+	
 	
 	public List<Slide> getSlides () {
 		ArrayList<Slide> completeListe = new ArrayList<Slide>();
