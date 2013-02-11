@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextBuilder;
 
 import org.mda.ApplicationSession;
+import org.mda.javafx.presenter.BackgroundImageResolver;
 import org.mda.javafx.presenter.ColorResolver;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -44,6 +45,19 @@ public class PreviewPane {
 	@Inject
 	private ColorResolver colorResolver;
 	
+	@Inject
+	private BackgroundImageResolver backgroundImageResolver;
+
+	private SlideContainer container;
+	
+	
+	private void addStyle (final Pane pane, final Slide slide, AreaInfo beamerpresenterBounds) {
+		if (slide.getBackgroundImageFile() != null)
+			  pane.setStyle(backgroundImageResolver.getBackgroundImageCss(slide.getBackgroundImageFile(), beamerpresenterBounds.getSize()));
+			else
+			  pane.setStyle(colorResolver.getBackground(slide.getBackgroundColor()));
+		pane.setVisible(false);
+	}
 	
 	public HashMap<Slide, Pane> build (final Slide slide, final SizeInfo sizeinfo) {
 		
@@ -52,13 +66,17 @@ public class PreviewPane {
 		PresentationConfigurator configurator = new PresentationConfigurator();
 	    DefaultPresenterConfig config = (DefaultPresenterConfig) configurator.configure(null, appsession.getCurrentModel(), PresentationType.SCREEN);
 	    
-	    SlideContainer container = calculator.calculate(context.getCurrentSession(), calcParam, config);
+	    setContainer(calculator.calculate(context.getCurrentSession(), calcParam, config));
 	    
 	    HashMap <Slide, Pane> allPanes = new HashMap<Slide, Pane>();
-	    for (Slide nextSlide : container.getSlides()) {
+	    for (Slide nextSlide : getContainer().getSlides()) {
 	    	
 	    	Pane nextPane = PaneBuilder.create().build();
 			nextPane.setPrefSize(sizeinfo.getWidth(),  sizeinfo.getHeight());
+			nextPane.setMinSize(sizeinfo.getWidth(), sizeinfo.getHeight());
+			nextPane.setMaxSize(sizeinfo.getWidth(), sizeinfo.getHeight());
+			
+			addStyle(nextPane, nextSlide, calcParam.getPresentationBounds());
 			
 	    	for (SlideItem slideItem : nextSlide.getItems()) {
 				Font font = FontBuilder.create().name(slideItem.getFont().getFontname()).size(slideItem.getFont().getFontsizeAsInt()).build();
@@ -81,10 +99,13 @@ public class PreviewPane {
 		
 		return allPanes;
 	}
-	
-	public void refresh () {
-		
-		
+
+	public SlideContainer getContainer() {
+		return container;
+	}
+
+	private void setContainer(SlideContainer container) {
+		this.container = container;
 	}
 	
 }

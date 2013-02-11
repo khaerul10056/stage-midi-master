@@ -1,6 +1,7 @@
 package org.mda.javafx.presentationcontrol;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -11,6 +12,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 import javafx.stage.StageBuilder;
+import mda.AbstractSessionItem;
+import mda.Session;
 
 import org.mda.javafx.application.UISession;
 import org.mda.presenter.IPresentationView;
@@ -45,9 +48,10 @@ public class PresentationControlView implements IPresentationView{
 
 	private HashMap<Slide, Pane> subpreviewPanes;
 	
+	private HashMap<AbstractSessionItem, TilePane> subpreviewTilePanes = new HashMap<AbstractSessionItem, TilePane>();
+	
 	
 	public void build () {
-		
 		  borderPane = new BorderPane();
 		  
 		  borderPane.setTop(new Button ("Buttons"));
@@ -63,20 +67,33 @@ public class PresentationControlView implements IPresentationView{
 		  stage.requestFocus();
 
 		  //Main Previewpane
-		  mainpreviewPanes = mainPreviewPaneBuilder.build(null, new SizeInfo(400,  300));
+		  mainpreviewPanes = mainPreviewPaneBuilder.build(null, new SizeInfo(800, 600));
 		  StackPane mainPreviewStackpane = new StackPane();
 		  mainPreviewStackpane.getChildren().addAll(mainpreviewPanes.values());
 		  borderPane.setCenter(mainPreviewStackpane);
 		  
-		  //Sub Previewpanes
+		  //Sub Previewpanes, adding a TilePane per sessionitem
+		  Session session = context.getCurrentSession();
 		  subpreviewPanes = subPreviewPaneBuilder.build(null, new SizeInfo(80, 60));
-		  TilePane tile = new TilePane();
-		  tile.setPadding(new Insets(5, 0, 5, 0));
-		  tile.setVgap(4);
-		  tile.setHgap(4);
-		  tile.setPrefColumns(2);
-		  tile.getChildren().addAll(subpreviewPanes.values());
-		  borderPane.setBottom(tile);
+		  StackPane subPreviewStackpane = new StackPane();
+		  for (AbstractSessionItem nextSessionItem : session.getItems()) {
+			  List<Slide> slides = subPreviewPaneBuilder.getContainer().getSlides(nextSessionItem);
+			  TilePane tile = new TilePane();
+			  tile.setPadding(new Insets(5, 0, 5, 0));
+			  tile.setVgap(8);
+			  tile.setHgap(8);
+			  tile.setPrefColumns(10);
+			  for (Slide next: slides) {
+				Pane nextPane = subpreviewPanes.get(next);
+				nextPane.setVisible(true);
+			    tile.getChildren().add(nextPane);
+			  }
+			  subpreviewTilePanes.put(nextSessionItem, tile);
+			  subPreviewStackpane.getChildren().add(tile);
+			  
+		  }
+		  subPreviewStackpane.setVisible(true);
+		  borderPane.setBottom(subPreviewStackpane);
 		  
 		  Scene mainScene = uiSession.getMainStage().getScene();
 		  stage.setX(mainScene.getX());
@@ -102,23 +119,31 @@ public class PresentationControlView implements IPresentationView{
 	public void refresh() {
 		
 		Slide currentPresentationSlide = context.getCurrentSlide();
+		AbstractSessionItem currentSessionItem = context.getCurrentSessionItem();
 		
+		//set current mainpreview visible
 		for (Slide nextSlide: mainpreviewPanes.keySet()) {
 			Pane pane = mainpreviewPanes.get(nextSlide);
-			boolean currentSlide = currentPresentationSlide.getModelRef().equals(nextSlide.getModelRef());
+			boolean currentSlide = currentPresentationSlide.equals(nextSlide);
 			pane.setVisible(currentSlide);
-			
 		}
 		
-		for (Slide nextSlide: subpreviewPanes.keySet()) {
+		//set current tilepane visible
+		TilePane currentTilePane = subpreviewTilePanes.get(currentSessionItem);
+		for (TilePane nextTilePane : subpreviewTilePanes.values()) {
+			boolean isCurrentTilePane = (nextTilePane == currentTilePane);
+			nextTilePane.setVisible(isCurrentTilePane);
+		}
+		
+		//set all opacities of non current items of current tilepane darker 
+		for (Slide nextSlide: subPreviewPaneBuilder.getContainer().getSlides(currentSessionItem)) {
 			Pane pane = subpreviewPanes.get(nextSlide);
-			boolean currentSlide = currentPresentationSlide.getModelRef().equals(nextSlide.getModelRef());
+			
+			boolean currentSlide = currentPresentationSlide.equals(nextSlide);
 			if (currentSlide)
 			  pane.setOpacity(1.0);
 			else
-			  pane.setOpacity(0.7);
-			pane.setVisible(true);
-			
+			  pane.setOpacity(0.5);
 		}
 		
 	}
