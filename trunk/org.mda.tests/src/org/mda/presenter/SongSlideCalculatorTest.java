@@ -21,9 +21,9 @@ import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
+import org.mda.measurement.SizeInfo;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
 import org.mda.presenter.ui.test.MidiFileCreator;
 

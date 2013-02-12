@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
-import org.mda.presenter.adapter.SizeInfo;
+import org.mda.measurement.SizeInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
 
 

@@ -21,10 +21,10 @@ import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.inject.InjectService;
 import org.mda.inject.InjectServiceMock;
+import org.mda.measurement.SizeInfo;
 import org.mda.presenter.CalculationParam;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.SpecialSlide;
-import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
 
 public class BeamerPresenterTest {
