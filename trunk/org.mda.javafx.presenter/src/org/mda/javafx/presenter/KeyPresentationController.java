@@ -14,7 +14,7 @@ public class KeyPresentationController extends DefaultPresentationController imp
 
 	@Override
 	public void handle(KeyEvent e) {
-		LOGGER.info("GlobalKeyRegistryPresentationController recieved key " + e.getText()); // TODO + Util.logEvent(e));
+		LOGGER.info("GlobalKeyRegistryPresentationController recieved key " + e.getText() + "-" + e.getCode().getName()); // TODO + Util.logEvent(e));
 		
 		
     	
