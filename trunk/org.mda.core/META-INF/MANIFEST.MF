@@ -12,6 +12,7 @@ Export-Package: org.mda,
  org.mda.inject,
  org.mda.listeners,
  org.mda.logging,
+ org.mda.measurement,
  org.mda.presenter,
  org.mda.struct,
  org.mda.transpose

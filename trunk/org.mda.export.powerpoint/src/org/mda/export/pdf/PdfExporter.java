@@ -14,6 +14,7 @@ import mda.Song;
 import org.mda.ApplicationSession;
 import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
+import org.mda.measurement.SizeInfo;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.CalculationParam;
@@ -23,7 +24,6 @@ import org.mda.presenter.SlideItem;
 import org.mda.presenter.SlideType;
 import org.mda.presenter.SongSlideCalculator;
 import org.mda.presenter.adapter.FontInfo;
-import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
 import org.mda.presenter.config.IPresenterConfig;
 

@@ -26,11 +26,11 @@ import org.mda.ApplicationSession;
 import org.mda.Utils;
 import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
+import org.mda.measurement.SizeInfo;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.CalculationParam;
 import org.mda.presenter.adapter.ColorInfo;
-import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.IPresenterConfig;
 
 
