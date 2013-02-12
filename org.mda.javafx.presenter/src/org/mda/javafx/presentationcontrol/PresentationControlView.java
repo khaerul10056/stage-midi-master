@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -16,10 +17,15 @@ import mda.AbstractSessionItem;
 import mda.Session;
 
 import org.mda.javafx.application.UISession;
+import org.mda.javafx.presenter.KeyPresentationController;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
+import org.mda.measurement.SizeInfo;
 import org.mda.presenter.IPresentationView;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.Slide;
-import org.mda.presenter.adapter.SizeInfo;
+
+import sun.rmi.log.LogHandler;
 
 import com.google.inject.Inject;
 
@@ -48,17 +54,24 @@ public class PresentationControlView implements IPresentationView{
 
 	private HashMap<Slide, Pane> subpreviewPanes;
 	
+	@Inject
+	KeyPresentationController keycontroller;
+	
 	private HashMap<AbstractSessionItem, TilePane> subpreviewTilePanes = new HashMap<AbstractSessionItem, TilePane>();
+	
+	private static final Log LOGGER  = LogFactory.getLogger(PresentationControlView.class);
 	
 	
 	public void build () {
 		  borderPane = new BorderPane();
 		  
-		  borderPane.setTop(new Button ("Buttons"));
-		  borderPane.setCenter(new Button ("Current screen"));
-		  borderPane.setLeft(new Button ("Previous"));
-		  borderPane.setRight(new Button ("Next"));
-		  borderPane.setBottom(new Button ("Previews"));
+		  Button btn = new Button ("Buttons");
+		  btn.setFocusTraversable(false);
+		  borderPane.setTop(btn);
+//		  borderPane.setCenter(new Button ("Current screen"));
+//		  borderPane.setLeft(new Button ("Previous"));
+//		  borderPane.setRight(new Button ("Next"));
+//		  borderPane.setBottom(new Button ("Previews"));
 		
 		  Scene scene = new Scene(borderPane); 
 		  Stage stage = StageBuilder.create().build();
@@ -101,6 +114,8 @@ public class PresentationControlView implements IPresentationView{
 		  stage.setWidth(mainScene.getWidth());
 		  stage.setHeight(mainScene.getHeight());
 		  
+		  context.registerController(keycontroller);
+		  stage.addEventHandler(KeyEvent.KEY_PRESSED, keycontroller );
 		  
 		  stage.show();
 		  
@@ -111,6 +126,7 @@ public class PresentationControlView implements IPresentationView{
 
 	@Override
 	public void end() {
+		context.deregisterController(keycontroller.getClass());
 		context.deregisterView(getClass());
 	}
 

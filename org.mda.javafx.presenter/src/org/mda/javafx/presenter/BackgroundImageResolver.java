@@ -5,7 +5,7 @@ import java.net.MalformedURLException;
 
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.adapter.SizeInfo;
+import org.mda.measurement.SizeInfo;
 
 public class BackgroundImageResolver {
 

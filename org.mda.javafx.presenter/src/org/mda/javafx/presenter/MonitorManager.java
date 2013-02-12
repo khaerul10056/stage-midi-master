@@ -4,8 +4,8 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 
+import org.mda.measurement.SizeInfo;
 import org.mda.presenter.adapter.AreaInfo;
-import org.mda.presenter.adapter.SizeInfo;
 
 
 public class MonitorManager {

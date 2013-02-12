@@ -4,7 +4,6 @@ package org.mda.javafx.presenter;
 import java.util.HashMap;
 
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.PaneBuilder;
 import javafx.scene.layout.StackPane;
@@ -19,6 +18,7 @@ import javafx.stage.StageStyle;
 import mda.Session;
 
 import org.mda.ApplicationSession;
+import org.mda.measurement.SizeInfo;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.CalculationParam;
@@ -29,7 +29,6 @@ import org.mda.presenter.SlideItem;
 import org.mda.presenter.SpecialSlide;
 import org.mda.presenter.adapter.AreaInfo;
 import org.mda.presenter.adapter.ColorInfo;
-import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.IPresenterConfig;
 
 import com.google.inject.Inject;
@@ -38,8 +37,6 @@ public class BeamerPresenter implements IPresentationView {
 	
 	private static final Log LOGGER  = LogFactory.getLogger(BeamerPresenter.class);
 	
-	
-	//TODO make set from outside
 	@Inject
 	private MonitorManager monitormanager;
 	
@@ -54,8 +51,7 @@ public class BeamerPresenter implements IPresentationView {
 	@Inject
 	BackgroundImageResolver backgroundImageResolver;
 	
-	@Inject
-	KeyPresentationController keycontroller;
+	
 	
 	
     private HashMap<Slide, Pane> panesPerSlide = new HashMap<Slide, Pane>();
@@ -69,7 +65,7 @@ public class BeamerPresenter implements IPresentationView {
 	
 	@Override
 	public void end() {
-		presentationContext.deregisterController(keycontroller.getClass());
+		
 		presentationContext.deregisterView(getClass());
 		presentationStage.close();
 	}
@@ -254,8 +250,7 @@ public class BeamerPresenter implements IPresentationView {
 
 		currentPane.setVisible(true);
 		
-		presentationContext.registerController(keycontroller);
-		presentationStage.addEventHandler(KeyEvent.KEY_PRESSED, keycontroller );
+		
 		presentationStage.show();
 		
 		

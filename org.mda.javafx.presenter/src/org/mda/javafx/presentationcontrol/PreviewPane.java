@@ -2,6 +2,7 @@ package org.mda.javafx.presentationcontrol;
 
 import java.util.HashMap;
 
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.PaneBuilder;
 import javafx.scene.text.Font;
@@ -10,6 +11,8 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextBuilder;
 
 import org.mda.ApplicationSession;
+import org.mda.measurement.SizeInfo;
+import org.mda.javafx.imagecache.ImageCache;
 import org.mda.javafx.presenter.BackgroundImageResolver;
 import org.mda.javafx.presenter.ColorResolver;
 import org.mda.logging.Log;
@@ -21,7 +24,6 @@ import org.mda.presenter.SlideContainer;
 import org.mda.presenter.SlideItem;
 import org.mda.presenter.SongSlideCalculator;
 import org.mda.presenter.adapter.AreaInfo;
-import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
 import org.mda.presenter.config.PresentationConfigurator;
 import org.mda.presenter.config.PresentationType;
@@ -50,12 +52,22 @@ public class PreviewPane {
 
 	private SlideContainer container;
 	
+	@Inject
+	private ImageCache imageCache;
+	
 	
 	private void addStyle (final Pane pane, final Slide slide, AreaInfo beamerpresenterBounds) {
-		if (slide.getBackgroundImageFile() != null)
-			  pane.setStyle(backgroundImageResolver.getBackgroundImageCss(slide.getBackgroundImageFile(), beamerpresenterBounds.getSize()));
-			else
-			  pane.setStyle(colorResolver.getBackground(slide.getBackgroundColor()));
+		if (slide.getBackgroundImageFile() != null) {
+			ImageView imageView = new ImageView(imageCache.getImage(slide.getBackgroundImageFile(), beamerpresenterBounds.getSize()));
+			imageView.setFitWidth(beamerpresenterBounds.getWidth());
+			imageView.setFitHeight(beamerpresenterBounds.getHeight());
+			//imageView.setPreserveRatio(true);
+			imageView.setSmooth(true);
+			imageView.setCache(true);
+			pane.getChildren().add(imageView);
+		}
+		else
+		  pane.setStyle(colorResolver.getBackground(slide.getBackgroundColor()));
 		pane.setVisible(false);
 	}
 	
