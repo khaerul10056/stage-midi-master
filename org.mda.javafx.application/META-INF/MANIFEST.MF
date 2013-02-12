@@ -55,5 +55,7 @@ Import-Package:
  javafx.util.converter;version="2.2.0"
 Export-Package: org.mda.javafx.api,
  org.mda.javafx.application,
+ org.mda.javafx.autoconfig,
  org.mda.javafx.common,
- org.mda.javafx.editor
+ org.mda.javafx.editor,
+ org.mda.javafx.imagecache
