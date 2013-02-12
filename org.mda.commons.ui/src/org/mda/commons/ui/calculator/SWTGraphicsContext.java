@@ -5,9 +5,9 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
+import org.mda.measurement.SizeInfo;
 import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
-import org.mda.presenter.adapter.SizeInfo;
 
 
 public class SWTGraphicsContext implements IGraphicsContext {
