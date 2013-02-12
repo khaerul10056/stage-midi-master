@@ -8,9 +8,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.mda.Utils;
+import org.mda.measurement.SizeInfo;
 import org.mda.presenter.adapter.ColorInfo;
 import org.mda.presenter.adapter.FontInfo;
-import org.mda.presenter.adapter.SizeInfo;
 
 /** dataobject containing information created for a slide,
  * e.g. the text with all it's layoutdata

@@ -2,11 +2,11 @@ package org.mda.presenter;
 
 import java.math.BigDecimal;
 
+import org.mda.measurement.SizeInfo;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.LocationInfo;
-import org.mda.presenter.adapter.SizeInfo;
 import org.mda.presenter.config.IPresenterConfig;
 
 

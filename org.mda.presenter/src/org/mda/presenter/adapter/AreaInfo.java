@@ -1,5 +1,8 @@
 package org.mda.presenter.adapter;
 
+import org.mda.measurement.SizeInfo;
+
+
 public class AreaInfo {
 	
 	private final LocationInfo location; 
