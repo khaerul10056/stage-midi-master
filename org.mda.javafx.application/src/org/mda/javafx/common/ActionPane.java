@@ -11,17 +11,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 import org.mda.javafx.api.IAction;
-import org.mda.javafx.api.IconRegistry;
-
-import com.google.inject.Inject;
 
 
 
 public class ActionPane {
 
 	
-	@Inject
-	private IconRegistry iconregistry;
+	
 	
 	private HBox actionpane;
 
