@@ -2,6 +2,7 @@ package org.mda.javafx.presentationcontrol;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBuilder;
 import javafx.scene.layout.HBox;
@@ -13,7 +14,7 @@ import org.mda.presenter.controller.DefaultPresentationController;
 public class ActionButtonPane {
 	
 	public Pane build (final DefaultPresentationController defaultController) {
-		HBox nextPane = HBoxBuilder.create().build();
+		HBox nextPane = HBoxBuilder.create().alignment(Pos.CENTER).spacing(20).build();
 		
 		Button btnWhite = createButton("White");
 		btnWhite.setOnAction(new EventHandler<ActionEvent>() {

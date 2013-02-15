@@ -8,9 +8,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.HBoxBuilder;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 import javafx.stage.StageBuilder;
 import mda.AbstractSessionItem;
@@ -51,10 +52,10 @@ public class PresentationControlView implements IPresentationView{
 	private ActionButtonPane actionButtonPaneBuilder;
 	
 	@Inject
-	private NavigationLeftPane navigationLeftPaneBuilder;
+	private NavigationLeftPaneBuilder navigationLeftPaneBuilder;
 	
 	@Inject
-	private NavigationRightPane navigationRightPaneBuilder;
+	private NavigationRightPaneBuilder navigationRightPaneBuilder;
 
 	private BorderPane borderPane;
 	
@@ -68,14 +69,14 @@ public class PresentationControlView implements IPresentationView{
 	@Inject
 	DefaultPresentationController defaultcontroller;
 	
-	private HashMap<AbstractSessionItem, TilePane> subpreviewTilePanes = new HashMap<AbstractSessionItem, TilePane>();
+	private HashMap<AbstractSessionItem, Pane> subpreviewTilePanes = new HashMap<AbstractSessionItem, Pane>();
 	
 	private static final Log LOGGER  = LogFactory.getLogger(PresentationControlView.class);
 	
 	
 	public void build () {
 		  borderPane = new BorderPane();
-		  borderPane.setId("presentationcontrolview");
+		  borderPane.setId("presentationcontrol");
 		  
 		  Pane actionButtonPane = actionButtonPaneBuilder.build(defaultcontroller);
 		  Pane rightNavigationPane = navigationRightPaneBuilder.build(defaultcontroller);
@@ -88,7 +89,9 @@ public class PresentationControlView implements IPresentationView{
 		  borderPane.setTop(actionButtonPane);
 		  borderPane.setRight(rightNavigationPane);
 		  borderPane.setLeft(leftNavigationPane);
-		  Scene scene = new Scene(borderPane); 
+		  Scene scene = new Scene(borderPane);
+		  scene.getStylesheets().addAll(uiSession.getMainStage().getScene().getStylesheets());
+		  
 		  Stage stage = StageBuilder.create().build();
 		  stage.setScene(scene);
 		  stage.setFullScreen(true);
@@ -104,24 +107,21 @@ public class PresentationControlView implements IPresentationView{
 		  
 		  //Sub Previewpanes, adding a TilePane per sessionitem
 		  Session session = context.getCurrentSession();
-		  subpreviewPanes = subPreviewPaneBuilder.build(null, new SizeInfo(80, 60));
+		  subpreviewPanes = subPreviewPaneBuilder.build(null, new SizeInfo(300, 200));
 		  StackPane subPreviewStackpane = new StackPane();
 		  BorderPane.setAlignment(subPreviewStackpane, Pos.CENTER);
 		  
 		  for (AbstractSessionItem nextSessionItem : session.getItems()) {
 			  List<Slide> slides = subPreviewPaneBuilder.getContainer().getSlides(nextSessionItem);
-			  TilePane tile = new TilePane();
-			  tile.setPadding(new Insets(5, 0, 5, 0));
-			  tile.setVgap(8);
-			  tile.setHgap(8);
-			  tile.setPrefColumns(10);
+			  HBox subPreviews = HBoxBuilder.create().alignment(Pos.CENTER).spacing(30).build();
+			  subPreviews.setPadding(new Insets(5, 0, 5, 0));
 			  for (Slide next: slides) {
 				Pane nextPane = subpreviewPanes.get(next);
 				nextPane.setVisible(true);
-			    tile.getChildren().add(nextPane);
+			    subPreviews.getChildren().add(nextPane);
 			  }
-			  subpreviewTilePanes.put(nextSessionItem, tile);
-			  subPreviewStackpane.getChildren().add(tile);
+			  subpreviewTilePanes.put(nextSessionItem, subPreviews);
+			  subPreviewStackpane.getChildren().add(subPreviews);
 			  
 		  }
 		  subPreviewStackpane.setVisible(true);
@@ -170,10 +170,11 @@ public class PresentationControlView implements IPresentationView{
 		}
 		
 		//set current tilepane visible
-		TilePane currentTilePane = subpreviewTilePanes.get(currentSessionItem);
-		for (TilePane nextTilePane : subpreviewTilePanes.values()) {
+		Pane currentTilePane = subpreviewTilePanes.get(currentSessionItem);
+		for (Pane nextTilePane : subpreviewTilePanes.values()) {
 			boolean isCurrentTilePane = (nextTilePane == currentTilePane);
 			nextTilePane.setVisible(isCurrentTilePane);
+			
 		}
 		
 		//set all opacities of non current items of current tilepane darker 
@@ -186,6 +187,7 @@ public class PresentationControlView implements IPresentationView{
 			else
 			  pane.setOpacity(0.5);
 		}
+		
 		
 	}
 
