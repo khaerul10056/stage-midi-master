@@ -4,6 +4,7 @@ package org.mda.javafx.presenter;
 import java.util.HashMap;
 
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.PaneBuilder;
 import javafx.scene.layout.StackPane;
@@ -19,6 +20,7 @@ import mda.Session;
 
 import org.mda.ApplicationSession;
 import org.mda.measurement.SizeInfo;
+import org.mda.javafx.imagecache.ImageCache;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.CalculationParam;
@@ -48,8 +50,12 @@ public class BeamerPresenter implements IPresentationView {
 	
 	@Inject
 	ColorResolver colorResolver;
+	
 	@Inject
 	BackgroundImageResolver backgroundImageResolver;
+	
+	@Inject
+	private ImageCache imageCache;
 	
 	
 	
@@ -176,10 +182,16 @@ public class BeamerPresenter implements IPresentationView {
 	}
 	
 	private void addStyle (final Pane pane, final Slide slide, AreaInfo beamerpresenterBounds) {
-		if (slide.getBackgroundImageFile() != null)
-			  pane.setStyle(backgroundImageResolver.getBackgroundImageCss(slide.getBackgroundImageFile(), beamerpresenterBounds.getSize()));
-			else
-			  pane.setStyle(colorResolver.getBackground(slide.getBackgroundColor()));
+		if (slide.getBackgroundImageFile() != null) {
+			ImageView imageView = new ImageView(imageCache.getImage(slide.getBackgroundImageFile(),beamerpresenterBounds.getSize()));
+			imageView.setFitWidth(beamerpresenterBounds.getWidth());
+			imageView.setFitHeight(beamerpresenterBounds.getHeight());
+			imageView.setSmooth(true);
+			imageView.setCache(true);
+			pane.getChildren().add(imageView);
+		} else
+			pane.setStyle(colorResolver.getBackground(slide
+					.getBackgroundColor()));
 		pane.setVisible(false);
 	}
 

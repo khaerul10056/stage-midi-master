@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -24,8 +24,7 @@ import org.mda.measurement.SizeInfo;
 import org.mda.presenter.IPresentationView;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.Slide;
-
-import sun.rmi.log.LogHandler;
+import org.mda.presenter.controller.DefaultPresentationController;
 
 import com.google.inject.Inject;
 
@@ -47,6 +46,15 @@ public class PresentationControlView implements IPresentationView{
 	
 	@Inject
 	private PreviewPane subPreviewPaneBuilder;
+	
+	@Inject
+	private ActionButtonPane actionButtonPaneBuilder;
+	
+	@Inject
+	private NavigationLeftPane navigationLeftPaneBuilder;
+	
+	@Inject
+	private NavigationRightPane navigationRightPaneBuilder;
 
 	private BorderPane borderPane;
 	
@@ -57,6 +65,9 @@ public class PresentationControlView implements IPresentationView{
 	@Inject
 	KeyPresentationController keycontroller;
 	
+	@Inject
+	DefaultPresentationController defaultcontroller;
+	
 	private HashMap<AbstractSessionItem, TilePane> subpreviewTilePanes = new HashMap<AbstractSessionItem, TilePane>();
 	
 	private static final Log LOGGER  = LogFactory.getLogger(PresentationControlView.class);
@@ -64,20 +75,26 @@ public class PresentationControlView implements IPresentationView{
 	
 	public void build () {
 		  borderPane = new BorderPane();
+		  borderPane.setId("presentationcontrolview");
 		  
-		  Button btn = new Button ("Buttons");
-		  btn.setFocusTraversable(false);
-		  borderPane.setTop(btn);
-//		  borderPane.setCenter(new Button ("Current screen"));
-//		  borderPane.setLeft(new Button ("Previous"));
-//		  borderPane.setRight(new Button ("Next"));
-//		  borderPane.setBottom(new Button ("Previews"));
-		
+		  Pane actionButtonPane = actionButtonPaneBuilder.build(defaultcontroller);
+		  Pane rightNavigationPane = navigationRightPaneBuilder.build(defaultcontroller);
+		  Pane leftNavigationPane = navigationLeftPaneBuilder.build(defaultcontroller);
+		  
+		  BorderPane.setAlignment(actionButtonPane, Pos.CENTER);
+		  BorderPane.setAlignment(rightNavigationPane, Pos.CENTER);
+		  BorderPane.setAlignment(leftNavigationPane, Pos.CENTER);
+		  
+		  borderPane.setTop(actionButtonPane);
+		  borderPane.setRight(rightNavigationPane);
+		  borderPane.setLeft(leftNavigationPane);
 		  Scene scene = new Scene(borderPane); 
 		  Stage stage = StageBuilder.create().build();
 		  stage.setScene(scene);
 		  stage.setFullScreen(true);
 		  stage.requestFocus();
+		  
+		  
 
 		  //Main Previewpane
 		  mainpreviewPanes = mainPreviewPaneBuilder.build(null, new SizeInfo(800, 600));
@@ -89,6 +106,8 @@ public class PresentationControlView implements IPresentationView{
 		  Session session = context.getCurrentSession();
 		  subpreviewPanes = subPreviewPaneBuilder.build(null, new SizeInfo(80, 60));
 		  StackPane subPreviewStackpane = new StackPane();
+		  BorderPane.setAlignment(subPreviewStackpane, Pos.CENTER);
+		  
 		  for (AbstractSessionItem nextSessionItem : session.getItems()) {
 			  List<Slide> slides = subPreviewPaneBuilder.getContainer().getSlides(nextSessionItem);
 			  TilePane tile = new TilePane();
@@ -117,6 +136,10 @@ public class PresentationControlView implements IPresentationView{
 		  context.registerController(keycontroller);
 		  stage.addEventHandler(KeyEvent.KEY_PRESSED, keycontroller );
 		  
+		  
+		  
+		  context.registerController(defaultcontroller);
+		  
 		  stage.show();
 		  
 		  refresh();
@@ -127,7 +150,9 @@ public class PresentationControlView implements IPresentationView{
 	@Override
 	public void end() {
 		context.deregisterController(keycontroller.getClass());
+		context.deregisterController(defaultcontroller.getClass());
 		context.deregisterView(getClass());
+		
 	}
 
 

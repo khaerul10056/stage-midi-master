@@ -31,6 +31,12 @@ public class KeyPresentationController extends DefaultPresentationController imp
           //midiplayer.savePartIntersection(); TODO
           nextSlide();
         }
+        
+        if (e.getCode().equals(KeyCode.HOME))
+        	toBeginning();
+        
+        if (e.getCode().equals(KeyCode.END))
+        	toEnd();
 
         if (e.getCode().equals(KeyCode.LEFT) && ! e.isShiftDown())
           previousSlide();
