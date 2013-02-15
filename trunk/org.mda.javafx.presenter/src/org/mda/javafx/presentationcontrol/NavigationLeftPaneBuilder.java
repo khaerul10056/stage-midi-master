@@ -2,38 +2,35 @@ package org.mda.javafx.presentationcontrol;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBuilder;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.VBoxBuilder;
 
+import org.mda.javafx.presenter.IPresenterIconConst;
 import org.mda.presenter.controller.DefaultPresentationController;
 
-public class NavigationLeftPane {
+public class NavigationLeftPaneBuilder extends AbstractControlViewPaneBuilder implements IPresenterIconConst {
 	
 	
 	
 	public Pane build (final DefaultPresentationController defaultController) {
-		VBox nextPane = VBoxBuilder.create().build();
-		VBox.setMargin(nextPane, new Insets (10, 10, 10, 10));
+		VBox nextPane = createVBox(10, 40);
 		
-		Button btnNextSlide = createButton("Previous slide");
+		Button btnNextSlide = createButton(null, ICON_PREVIOUS);
 		btnNextSlide.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
 				defaultController.previousSlide();				
 			}
 		});
-		Button btnNextSong = createButton("Previous song");
+		Button btnNextSong = createButton(null, ICON_PREVIOUS_SONG);
 		btnNextSong.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
 				defaultController.previousSong();				
 			}
 		});
-		Button btnBeginning = createButton("Beginning");
+		Button btnBeginning = createButton(null, ICON_FIRST);
 		btnBeginning.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -47,11 +44,5 @@ public class NavigationLeftPane {
 		return nextPane;
 	}
 	
-	Button createButton (final String name) {
-		Button btn = ButtonBuilder.create().build();
-		btn.setFocusTraversable(false);
-		btn.setText(name);
-		return btn;
-	}
 
 }
