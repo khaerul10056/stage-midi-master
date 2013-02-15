@@ -25,7 +25,7 @@ public class GlobalKeyRegistryPresentationController extends DefaultPresentation
   private MidiPlayer midiplayer ;
 
   private Listener listener;
-
+  
   public GlobalKeyRegistryPresentationController () {
     this.display = Display.getCurrent();
     this.listener = createListener();

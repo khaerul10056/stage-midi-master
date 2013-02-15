@@ -226,6 +226,16 @@ public class PresentationContext implements IPresentationContext {
     LOGGER.info("Next to " + currentSessionItemIndex + ", " + currentSlideIndex);
     return action;
   }
+  
+  public void toBeginning () {
+	  currentSessionItemIndex = 0;
+	  currentSlideIndex = 0;
+  }
+  
+  public void toEnd () {
+	  currentSessionItemIndex = getCurrentSession().getItems().size() - 1;
+	  currentSlideIndex = 0;	  
+  }
 
   public boolean previousSong ()  {
     if (currentSessionItemIndex == 0)
