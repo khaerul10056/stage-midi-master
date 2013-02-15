@@ -30,4 +30,10 @@
   -fx-font: 18pt "Arial" ;
 }
 
+#presentationcontrol {
+	-fx-background-color: #000000;
+}
+
+
+
 
