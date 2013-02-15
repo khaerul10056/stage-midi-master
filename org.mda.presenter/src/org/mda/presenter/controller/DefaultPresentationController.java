@@ -79,6 +79,16 @@ public boolean previousSlide () {
       toItem(presentationContext.getCurrentSessionItem());
     return done;
   }
+  
+  public void toBeginning () {
+	    presentationContext.toBeginning();
+	    toItem(presentationContext.getCurrentSessionItem());
+  }
+  
+  public void toEnd ()  {
+	  presentationContext.toEnd();
+	  toItem(presentationContext.getCurrentSessionItem());
+  }
 
   public boolean nextSong () {
     boolean done = presentationContext.nextSong();
