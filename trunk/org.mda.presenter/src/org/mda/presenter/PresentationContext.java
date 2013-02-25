@@ -182,6 +182,10 @@ public class PresentationContext implements IPresentationContext {
     return slidesPerItem.get(getCurrentSessionItem()).get(currentSlideIndex);
   }
   
+  public int getCurrentSlideIndex () {
+	  return currentSlideIndex;
+  }
+  
   
   public List <Slide> getSlides () {
 	  List <Slide> completeListe = new ArrayList<Slide>(); 
