@@ -1,17 +1,19 @@
 package org.mda.javafx.presentationcontrol;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.HBoxBuilder;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageBuilder;
 import mda.AbstractSessionItem;
@@ -69,7 +71,9 @@ public class PresentationControlView implements IPresentationView{
 	@Inject
 	DefaultPresentationController defaultcontroller;
 	
-	private HashMap<AbstractSessionItem, Pane> subpreviewTilePanes = new HashMap<AbstractSessionItem, Pane>();
+	
+	
+	private HashMap<AbstractSessionItem, PictureGallery> pictureGalleries = new HashMap<AbstractSessionItem, PictureGallery>();
 	
 	private static final Log LOGGER  = LogFactory.getLogger(PresentationControlView.class);
 	
@@ -97,35 +101,39 @@ public class PresentationControlView implements IPresentationView{
 		  stage.setFullScreen(true);
 		  stage.requestFocus();
 		  
-		  
-
 		  //Main Previewpane
 		  mainpreviewPanes = mainPreviewPaneBuilder.build(null, new SizeInfo(800, 600));
 		  StackPane mainPreviewStackpane = new StackPane();
 		  mainPreviewStackpane.getChildren().addAll(mainpreviewPanes.values());
 		  borderPane.setCenter(mainPreviewStackpane);
 		  
-		  //Sub Previewpanes, adding a TilePane per sessionitem
+		  //Sub Previewpanes, adding a VBox pane per sessionitem
 		  Session session = context.getCurrentSession();
-		  subpreviewPanes = subPreviewPaneBuilder.build(null, new SizeInfo(300, 200));
-		  StackPane subPreviewStackpane = new StackPane();
-		  BorderPane.setAlignment(subPreviewStackpane, Pos.CENTER);
+		  subpreviewPanes = subPreviewPaneBuilder.build(null, new SizeInfo(400, 300));
+		  StackPane pictureGalleryStackPane = new StackPane();
+		  
 		  
 		  for (AbstractSessionItem nextSessionItem : session.getItems()) {
 			  List<Slide> slides = subPreviewPaneBuilder.getContainer().getSlides(nextSessionItem);
-			  HBox subPreviews = HBoxBuilder.create().alignment(Pos.CENTER).spacing(30).build();
-			  subPreviews.setPadding(new Insets(5, 0, 5, 0));
+			  Collection <Pane> panes = new ArrayList<Pane>();
 			  for (Slide next: slides) {
 				Pane nextPane = subpreviewPanes.get(next);
 				nextPane.setVisible(true);
-			    subPreviews.getChildren().add(nextPane);
+			    panes.add(nextPane);
 			  }
-			  subpreviewTilePanes.put(nextSessionItem, subPreviews);
-			  subPreviewStackpane.getChildren().add(subPreviews);
+			  
+			  PictureGallery pictureGallery = new PictureGallery(uiSession.getMainStage(), panes, slides.get(0).getSize().getWidthAsInt());
+			  
+			  
+			  
+			  pictureGalleries.put(nextSessionItem, pictureGallery);
+			  pictureGalleryStackPane.getChildren().add(pictureGallery);
 			  
 		  }
-		  subPreviewStackpane.setVisible(true);
-		  borderPane.setBottom(subPreviewStackpane);
+		  pictureGalleryStackPane.setVisible(true);
+		  
+		  borderPane.setBottom(pictureGalleryStackPane);
+		  BorderPane.setAlignment(pictureGalleryStackPane, Pos.CENTER_LEFT);
 		  
 		  Scene mainScene = uiSession.getMainStage().getScene();
 		  stage.setX(mainScene.getX());
@@ -160,6 +168,7 @@ public class PresentationControlView implements IPresentationView{
 	public void refresh() {
 		
 		Slide currentPresentationSlide = context.getCurrentSlide();
+		int indexOfCurrentSlide = context.getCurrentSlideIndex();
 		AbstractSessionItem currentSessionItem = context.getCurrentSessionItem();
 		
 		//set current mainpreview visible
@@ -170,23 +179,23 @@ public class PresentationControlView implements IPresentationView{
 		}
 		
 		//set current tilepane visible
-		Pane currentTilePane = subpreviewTilePanes.get(currentSessionItem);
-		for (Pane nextTilePane : subpreviewTilePanes.values()) {
-			boolean isCurrentTilePane = (nextTilePane == currentTilePane);
-			nextTilePane.setVisible(isCurrentTilePane);
-			
+		PictureGallery currentTilePane = pictureGalleries.get(currentSessionItem);
+		currentTilePane.setCurrentPicture (indexOfCurrentSlide);
+		for (PictureGallery nextGallery : pictureGalleries.values()) {
+			boolean isCurrentTilePane = (nextGallery == currentTilePane);
+			nextGallery.setVisible(isCurrentTilePane);
 		}
 		
-		//set all opacities of non current items of current tilepane darker 
-		for (Slide nextSlide: subPreviewPaneBuilder.getContainer().getSlides(currentSessionItem)) {
-			Pane pane = subpreviewPanes.get(nextSlide);
-			
-			boolean currentSlide = currentPresentationSlide.equals(nextSlide);
-			if (currentSlide)
-			  pane.setOpacity(1.0);
-			else
-			  pane.setOpacity(0.5);
-		}
+//		//set all opacities of non current items of current tilepane darker 
+//		for (Slide nextSlide: subPreviewPaneBuilder.getContainer().getSlides(currentSessionItem)) {
+//			Pane pane = subpreviewPanes.get(nextSlide);
+//			
+//			boolean currentSlide = currentPresentationSlide.equals(nextSlide);
+//			if (currentSlide)
+//			  pane.setOpacity(1.0);
+//			else
+//			  pane.setOpacity(0.5);
+//		}
 		
 		
 	}
