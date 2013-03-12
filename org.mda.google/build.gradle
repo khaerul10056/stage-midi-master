@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':org.mda.core')
+    compile fileTree(dir: 'lib', include: '**/*.jar')
+}

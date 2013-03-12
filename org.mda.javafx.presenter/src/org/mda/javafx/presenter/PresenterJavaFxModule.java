@@ -17,16 +17,18 @@ public class PresenterJavaFxModule implements Module {
 	
 	private static final Log LOGGER = LogFactory.getLogger(PresenterJavaFxModule.class);
 	
+
 	@Override
 	public void configure(Binder binder) {
-		LOGGER.info("Configure " + getClass().getName());
+        LOGGER.info("Configure " + getClass().getName());
 		
 		Multibinder<ISessionViewAction> uriBinder = Multibinder.newSetBinder(binder, ISessionViewAction.class);
-	    uriBinder.addBinding().to(StartPresentationAction.class);
+		uriBinder.addBinding().to(StartPresentationAction.class);
 		
 		binder.bind(PresentationContext.class).in(Singleton.class);
 		binder.bind(IPresenterConfig.class).to(DefaultPresenterConfig.class);
 		binder.bind(IGraphicsContext.class).to(JavaFXGraphicsContext.class);
+		
 	}
 
 	

@@ -8,8 +8,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,12 +17,9 @@ import java.util.TreeMap;
 import mda.SongChordPart;
 import mda.SongPartType;
 
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.resources.ImageDescriptor;
 
 public class Utils {
 
@@ -96,9 +91,7 @@ public class Utils {
 	  return before.replaceAll("\\s","");
   }
 
-  public static String colorToString (final Color color) {
-    return color.getGreen() + "x" + color.getRed() + "x" + color.getBlue();
-  }
+  
 
   public static String fillString (final String text, final int length) {
     int filler = length - text.length();
@@ -108,9 +101,7 @@ public class Utils {
     return builder.toString();
   }
 
-  public static java.awt.Color toAwtColor (final Color color) {
-    return new java.awt.Color (color.getRed(), color.getGreen(), color.getBlue());
-  }
+  
   
   
 
@@ -120,53 +111,12 @@ public class Utils {
       builder.append (" ");
     return builder.toString();
   }
-  public static Color stringToColor (final String colorAsString, final Color defaultColor) {
-    if (colorAsString == null) {
-      if (defaultColor == null)
-        throw new IllegalStateException("Color " + colorAsString + " is null and defaultcolor is null");
+  
 
-      return defaultColor;
-    }
+  
 
-    String [] colors = colorAsString.split("x");
-    if (colors.length != 3) {
-      if (defaultColor == null)
-        throw new IllegalStateException("Color " + colorAsString + " is not usable (no gradients) and defaultcolor is null");
-      return defaultColor;
-    }
-
-    int green = Integer.parseInt(colors [0]);
-    int red = Integer.parseInt(colors [1]);
-    int blue = Integer.parseInt(colors [2]);
-
-    return new Color (Display.getCurrent(), red, green, blue);
-  }
-
-  public static Image loadImageFromProject (final String id) {
-      URL url = Utils.class.getResource("/org/mda/icons/" + id);
-      ImageDescriptor image = ImageDescriptor.createFromURL(url);
-      if (image.getClass().getSimpleName().equals("MissingImageDescriptor")) {
-        LOGGER.warn("Image " + id + " not found");
-        return null;
-      }
-      else
-        return image.createImage();
-  }
-
-  public static Image loadImageFromProject (final File file) {
-      ImageDescriptor image;
-      try {
-        image = ImageDescriptor.createFromURL(file.toURI().toURL());
-      }
-      catch (MalformedURLException e) {
-        return null;
-      }
-      if (image.getClass().getSimpleName().equals("MissingImageDescriptor")) {
-        LOGGER.warn("Image " + file.getAbsolutePath() + " not found");
-        return null;
-      }
-      else
-        return image.createImage();
+  public static ImageDescriptor loadImageFromProject (final File file) {
+      return null; //TODO
   }
 
   /**

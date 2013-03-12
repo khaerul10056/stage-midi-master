@@ -1,13 +1,9 @@
 package org.mda.presenter;
 
-import org.mda.presenter.config.DefaultPresenterConfig;
-import org.mda.presenter.config.IPresenterConfig;
-
 import com.google.inject.Binder;
 import com.google.inject.Module;
-import com.google.inject.Singleton;
 
-public class PresenterModule implements Module {
+public class PresenterModule  implements Module {
 
 	@Override
 	public void configure(Binder binder) {

@@ -6,9 +6,12 @@ import com.google.inject.Singleton;
 
 public class CoreModule implements Module {
 
+	
+
 	@Override
 	public void configure(Binder binder) {
 		binder.bind(ApplicationSession.class).in(Singleton.class);
+		
 	}
 
 }

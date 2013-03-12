@@ -47,13 +47,11 @@ public class ApplicationSession {
   
   private ModelEvents modelEvents = new ModelEvents();
   
-  private UIState uistate = new UIState ();
- 
   
-  public UIState getUiState () {
-	  return uistate;
-  }
-  
+  /**
+   * getter  
+   * @return modelevents
+   */
   public ModelEvents getModelEvents () {
 	  return modelEvents;
   }
