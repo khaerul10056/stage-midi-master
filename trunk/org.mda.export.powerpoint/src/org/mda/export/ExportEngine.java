@@ -9,7 +9,7 @@ import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
-import javax.inject.Inject;
+
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -32,6 +32,8 @@ import org.mda.logging.LogFactory;
 import org.mda.presenter.config.IPresenterConfig;
 import org.mda.presenter.config.PresentationConfigurator;
 import org.mda.presenter.config.PresentationType;
+
+import com.google.inject.Inject;
 
 
 public class ExportEngine {

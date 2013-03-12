@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import mda.AbstractSessionItem;
 
 import org.apache.poi.hslf.model.Fill;
@@ -20,18 +18,17 @@ import org.apache.poi.hslf.model.TextBox;
 import org.apache.poi.hslf.model.TextShape;
 import org.apache.poi.hslf.usermodel.RichTextRun;
 import org.apache.poi.hslf.usermodel.SlideShow;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
-import org.mda.Utils;
 import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
-import org.mda.measurement.SizeInfo;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.measurement.SizeInfo;
 import org.mda.presenter.CalculationParam;
 import org.mda.presenter.adapter.ColorInfo;
 import org.mda.presenter.config.IPresenterConfig;
+
+import com.google.inject.Inject;
 
 
 public class PptExporter extends AbstractExporter {
@@ -122,7 +119,7 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
       if (song.getForegroundColor() != null)
         rt.setFontColor(toAwtColor(song.getForegroundColor()));
       else
-        rt.setFontColor(Utils.toAwtColor(Display.getDefault().getSystemColor(SWT.COLOR_WHITE)));
+        rt.setFontColor(toAwtColor(ColorInfo.WHITE));
 
       Rectangle2D rect = new Rectangle();
       rect.setRect(10, y, show.getPageSize().getWidth() - 10, song.getItems().get(0).getHeight());

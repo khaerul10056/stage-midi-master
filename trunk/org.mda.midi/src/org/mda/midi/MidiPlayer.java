@@ -17,11 +17,10 @@ import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
 
 import mda.AbstractSessionItem;
+import mda.Session;
 import mda.Song;
 import mda.SongPart;
-import mda.Session;
 
-import org.eclipse.swt.widgets.Display;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.additionals.Additional;
@@ -212,15 +211,14 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 		currentSequence = sequences.get(midifile);
 		LOGGER.info("Starting new song " + midifile.getName() + "-" + currentSequence);
 
-	    Display.getDefault().asyncExec(new Runnable() {
-	            public void run() {
+	    
 	            	if (midifile.getParts().size() > 0) {
 	            	LOGGER.info("Send toPart 0 for midifile " + midifile.getName());
 	            	  currentPlayingPart = midifile.getParts().get(0);
 	            	  presentationController.toPart(currentPlayingPart);
 	            	}
-	            }
-	    });
+	            
+	    
 	    
 		if (getSequencer() != null) {
 			getSequencer().close();
@@ -253,12 +251,10 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 		for (final AbstractSessionItem nextItem: getCurrentSession().getItems()) {
 		
 		  LOGGER.info("Session is not empty, start new song " + nextItem.getName());
-		  Display.getDefault().syncExec(new Runnable() {
-	          public void run() {
-	            LOGGER.info("Trigger toItem " + nextItem.getName());
-	            presentationController.toItem(nextItem);
-	          }
-	      });
+		  
+	      LOGGER.info("Trigger toItem " + nextItem.getName());
+	      presentationController.toItem(nextItem);
+	      
 
 
 		  try {
@@ -291,14 +287,9 @@ public class MidiPlayer implements Runnable, LineListener, MetaEventListener {
 				  if (currentPart != currentPlayingPart) {
 					LOGGER.info ("Slide changes");
 				    
-					if (isRunning()) {
-				    Display.getDefault().asyncExec(new Runnable() {
-			            public void run() {
-			            	presentationController.toPart(currentPart);
-			            }
-			        });
-					}
-				    
+					if (isRunning()) 
+				      	presentationController.toPart(currentPart);
+			        
 				    currentPlayingPart = currentPart;
 				    
 			  	  }

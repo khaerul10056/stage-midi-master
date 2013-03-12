@@ -2,14 +2,14 @@ package org.mda.javafx.api;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Enumeration;
 import java.util.HashMap;
 
 import javafx.scene.image.Image;
 
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.osgi.framework.Bundle;
+
+
 
 /**
  * Registry to hold automatically loaded icons by convention
@@ -33,20 +33,21 @@ public class IconRegistry {
 	 * 
 	 * @param plugin
 	 */
-	public void registerIcons (Bundle bundle) {
-		Enumeration<String> entry = bundle.getEntryPaths("/icons/");
-		if (entry == null)
-			return;
-		
-		while (entry.hasMoreElements()) {
-		  String nextElement = entry.nextElement();
-		  String name = nextElement.substring(6, nextElement.length()); //icons-package is removed
-		  if (registeredImages.get(name) != null)
-			throw new IllegalStateException("Icon with name " + name + " already registered");
-		  LOGGER.info("Load icon " + nextElement + " with name " + name + " in plugin " + bundle.getSymbolicName());
-		  registeredImages.put(name, bundle.getEntry(nextElement));
-		}
-	}
+	//public void registerIcons (Bundle bundle) {
+		//TODO make
+//		Enumeration<String> entry = bundle.getEntryPaths("/icons/");
+//		if (entry == null)
+//			return;
+//		
+//		while (entry.hasMoreElements()) {
+//		  String nextElement = entry.nextElement();
+//		  String name = nextElement.substring(6, nextElement.length()); //icons-package is removed
+//		  if (registeredImages.get(name) != null)
+//			throw new IllegalStateException("Icon with name " + name + " already registered");
+//		  LOGGER.info("Load icon " + nextElement + " with name " + name + " in plugin " + bundle.getSymbolicName());
+//		  registeredImages.put(name, bundle.getEntry(nextElement));
+//		}
+	//}
 	
 	/**
 	 * gets the icon with the given key, 

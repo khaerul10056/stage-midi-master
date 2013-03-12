@@ -1,0 +1,26 @@
+subprojects {
+
+ def javaFxHome = "${System.properties['java.home']}";
+
+ group = 'org.mda'
+
+ apply {
+  plugin 'java'
+  plugin 'eclipse'
+ }
+
+ repositories {
+  mavenCentral()
+ }
+
+ sourceSets {
+   main{
+    java{ srcDirs = ["src"]  }
+    resources { srcDirs = [ "resources"] }
+   }
+
+ }
+
+
+}
+

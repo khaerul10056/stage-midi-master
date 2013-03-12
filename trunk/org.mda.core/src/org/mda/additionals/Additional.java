@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Logger;
 import mda.AdditionalType;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.ImageData;
-import org.eclipse.swt.widgets.Display;
+
 
 
 public class Additional {
@@ -73,18 +71,7 @@ public boolean equals (final Object object) {
     return type.getName().toLowerCase() + "#" + name + "#" + suffix.name().toLowerCase();
   }
 
-  public Image getImage () {
-    return getPreviewHandler().getImage(getFile(), getKey());
-  }
-
-  public Image getImageScaled (int width, int height) {
-    if (getImage() == null)
-      return getImage();
-
-    ImageData scaledTo = getImage().getImageData().scaledTo(width, height);
-    LOGGER.info("Creating new image with scale " + width + "x" + height);
-    return new Image (Display.getDefault(), scaledTo);
-  }
+  
 
   public AdditionalSuffix getSuffix () {
     return suffix;

@@ -1,5 +1,7 @@
 package org.mda.javafx.application;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,16 +19,19 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import org.eclipse.equinox.app.IApplicationContext;
 import org.mda.ApplicationSession;
 import org.mda.inject.InjectService;
 import org.mda.javafx.autoconfig.AutomaticPluginConfigurator;
-
-import at.bestsolution.efxclipse.runtime.application.AbstractJFXApplication;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
+import org.mda.plugins.PluginManager;
 
 import com.google.inject.Inject;
 
-public class MdaJavaFXApp extends AbstractJFXApplication {
+public class MdaJavaFXApp extends Application {
+	
+	private static final Log LOGGER = LogFactory.getLogger(MdaJavaFXApp.class);
+
 
 	@Inject
 	public ApplicationSession appSession;
@@ -70,11 +75,19 @@ public class MdaJavaFXApp extends AbstractJFXApplication {
 		return toolbar;
 	}
 	
-	
-	@Override
-	protected void jfxStart(IApplicationContext arg0, Application app, final Stage stage) {
-		
+	public static void main(String[] args) {
+        launch(args);
+    }
+    
+    @Override
+    public void start(final Stage stage) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    	try {
+    	
+    	PluginManager manager = new PluginManager(); 
+    	manager.loadPlugins();
+    	
     	InjectService.injectObject(this);
+        
     	
     	configurator.configure("org.mda");	//load icons in icon registry, i18n, css and so on
     	
@@ -133,6 +146,10 @@ public class MdaJavaFXApp extends AbstractJFXApplication {
          
             scene.setOnKeyPressed(keyEventHandler);
             scene.setOnKeyReleased(keyEventHandler);
+            
+    	} catch (Exception e) {
+    		LOGGER.error(e.toString(), e);
+    	}
     }
 	
 	public Scene getScene () {

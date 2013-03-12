@@ -1,0 +1,3755 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.mda.model:MidiPlayerRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda.model="org.mda.model">
+  <gallery>
+    <galleryItems xsi:type="org.mda.model:Song" name="Alle Schoepfung staunt und preist.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="image#tafelberg-sonnenuntergang-a#jpg">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="   " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text=" " chord="G"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="11">
+        <textlines>
+          <chordParts text="Alle " chord="D"/>
+          <chordParts text="Sch&#xf6;pfung staunt und " chord="G"/>
+          <chordParts text="preist, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="betet an in " chord="D"/>
+          <chordParts text="Wahrheit und in " chord="G"/>
+          <chordParts text="Geist, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Ehre " chord="h"/>
+          <chordParts text="Dir auf Deinem " chord="G"/>
+          <chordParts text="Thron, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Jesus, " chord="h"/>
+          <chordParts text="Gottes " chord="A"/>
+          <chordParts text="Sohn. " chord="G"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Alle " chord="D"/>
+          <chordParts text="Sch&#xf6;pfung singt ein " chord="G"/>
+          <chordParts text="Lob, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Du bist " chord="D"/>
+          <chordParts text="m&#xe4;chtig, Du bist " chord="G"/>
+          <chordParts text="gro&#xdf;. " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Du bist " chord="h"/>
+          <chordParts text="Gott und Du reg" chord="G"/>
+          <chordParts text="ierst " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="bis in " chord="h"/>
+          <chordParts text="Ewig" chord="A"/>
+          <chordParts text="keit." chord="G"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+      </parts>
+      <parts bar="43">
+        <textlines>
+          <chordParts text="Gott ist " chord=""/>
+          <chordParts text="gro&#xdf;, und sein " chord="D"/>
+          <chordParts text="Lob" chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="f&#xfc;llt die " chord=""/>
+          <chordParts text="Erde und den " chord="A"/>
+          <chordParts text="Himmel" chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="alle " chord=""/>
+          <chordParts text="Welt erhebt den" chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Namen uns'res " chord="G"/>
+          <chordParts text="Herrn." chord="A"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="Gott ist " chord=""/>
+          <chordParts text="gro&#xdf;, singt sein " chord="D"/>
+          <chordParts text="Lob" chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="in alle " chord=""/>
+          <chordParts text="Welt, mit dem " chord="A"/>
+          <chordParts text="Himmel" chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="denn wir " chord=""/>
+          <chordParts text="leben f&#xfc;r die " chord="h"/>
+          <chordParts text="Ehre unsres " chord="G"/>
+          <chordParts text="Herrn," chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="die Ehre unsres " chord=""/>
+          <chordParts text="Herrn." chord="G"/>
+        </textlines>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL" bar="59">
+        <textlines>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="67">
+        <textlines>
+          <chordParts text="Jesus, " chord="D"/>
+          <chordParts text="h&#xf6;r unser Ge" chord="G"/>
+          <chordParts text="bet, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="zeig uns " chord="D"/>
+          <chordParts text="wie man richtig " chord="G"/>
+          <chordParts text="lebt. " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Feuer " chord="h"/>
+          <chordParts text="Gottes leuchte " chord="G"/>
+          <chordParts text="hell, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="das " chord=""/>
+          <chordParts text="al" chord="h"/>
+          <chordParts text="le " chord="A"/>
+          <chordParts text="Welt es h&#xf6;rt und " chord="G"/>
+          <chordParts text="singt. " chord="A"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.0/@parts.3">
+        <textlines/>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL" bar="99" refPart="//@gallery/@galleryItems.0/@parts.4">
+        <textlines>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE" bar="107">
+        <textlines>
+          <chordParts text="Heilig " chord="D"/>
+          <chordParts text="ist der " chord="G"/>
+          <chordParts text="Herr, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="die Sch&#xf6;pfung " chord=""/>
+          <chordParts text="singt, " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="die Sch&#xf6;pfung " chord="G"/>
+          <chordParts text="singt. " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Heilig " chord="D"/>
+          <chordParts text="ist der " chord="G"/>
+          <chordParts text="Herr, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="die Sch&#xf6;pfung " chord=""/>
+          <chordParts text="singt, " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="die Sch&#xf6;pfung " chord="G"/>
+          <chordParts text="singt. " chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE" bar="123" refPart="//@gallery/@galleryItems.0/@parts.8">
+        <textlines/>
+      </parts>
+      <parts parttype="BRIDGE" bar="139" refPart="//@gallery/@galleryItems.0/@parts.8">
+        <textlines>
+          <chordParts text="Heilig " chord="D"/>
+          <chordParts text="ist der " chord="G"/>
+          <chordParts text="Herr, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="die Sch&#xf6;pfung " chord=""/>
+          <chordParts text="singt, " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="die Sch&#xf6;pfung " chord="G"/>
+          <chordParts text="singt. " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Heilig " chord="D"/>
+          <chordParts text="ist der " chord="G"/>
+          <chordParts text="Herr, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="die Sch&#xf6;pfung " chord=""/>
+          <chordParts text="singt, " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="die Sch&#xf6;pfung " chord="G"/>
+          <chordParts text="singt. " chord="A"/>
+        </textlines>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.0/@parts.3">
+        <textlines>
+          <chordParts text="Gott ist " chord=""/>
+          <chordParts text="gro&#xdf;, und sein " chord="D"/>
+          <chordParts text="Lob " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="erf&#xfc;llt die " chord=""/>
+          <chordParts text="Erde und den " chord="A"/>
+          <chordParts text="Himmel" chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="alle " chord=""/>
+          <chordParts text="Welt erhebt den " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Namen uns'res " chord="G"/>
+          <chordParts text="Herrn. " chord="A"/>
+        </textlines>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.0/@parts.3">
+        <textlines/>
+      </parts>
+      <parts parttype="EXTRO" bar="187">
+        <textlines>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="    " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="   " chord="G"/>
+          <chordParts text=" " chord="D"/>
+        </textlines>
+      </parts>
+      <copyright originaltitle="God is great" writerMusic="Marty Sampson" writerText="Marty Sampson" writerInlandText="Daniel Jacobi" year="2001" publisher="Hillsong Music Publishing" publisherInland="CopyCare Deutschland, 71087 Holzgerlingen"/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Blessed be your name.mid" path="/home/oleym/privat/soundOfFaith/midi">
+      <parts parttype="INTRO" bar="1">
+        <textlines>
+          <chordParts text=" " chord="H"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="5">
+        <textlines>
+          <chordParts text="Blessed " chord="H"/>
+          <chordParts text="be your name" chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="in the " chord=""/>
+          <chordParts text="land that is " chord="g#"/>
+          <chordParts text="plentiful," chord="E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="where your " chord=""/>
+          <chordParts text="streams of a" chord="H"/>
+          <chordParts text="bundance flow," chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="blessed be your name." chord="E"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="Blessed " chord="H"/>
+          <chordParts text="be your name," chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="when I'm " chord=""/>
+          <chordParts text="found in the " chord="g#"/>
+          <chordParts text="desert place," chord="E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="though I " chord=""/>
+          <chordParts text="walk through the " chord="H"/>
+          <chordParts text="wilderness," chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="blessed be your name." chord="E"/>
+        </textlines>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL" bar="21">
+        <textlines>
+          <chordParts text="Every blessing " chord="H"/>
+          <chordParts text="you pour out " chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I'll " chord=""/>
+          <chordParts text="turn back to " chord="g#"/>
+          <chordParts text="praise," chord="E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="When the darkness " chord="H"/>
+          <chordParts text="closes in, " chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Lord " chord=""/>
+          <chordParts text="still I will " chord="g#"/>
+          <chordParts text="say." chord="E"/>
+        </textlines>
+      </parts>
+      <parts bar="29">
+        <textlines>
+          <chordParts text="Blessed be the " chord=""/>
+          <chordParts text="name of the " chord="H"/>
+          <chordParts text="Lord, " chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="blessed be your " chord=""/>
+          <chordParts text="name," chord="g#"/>
+          <chordParts text=" " chord="E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Blessed be the " chord=""/>
+          <chordParts text="name of the " chord="H"/>
+          <chordParts text="Lord, " chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Blessed be your " chord=""/>
+          <chordParts text="glor" chord="g#"/>
+          <chordParts text="ious " chord="F#"/>
+          <chordParts text="name." chord="E"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="38">
+        <textlines>
+          <chordParts text="Blessed " chord="H"/>
+          <chordParts text="be your name, " chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="when the " chord=""/>
+          <chordParts text="sun's shining " chord="g#"/>
+          <chordParts text="down on me, " chord="E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="When the " chord=""/>
+          <chordParts text="world's all as " chord="H"/>
+          <chordParts text="it should be, " chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="blessed be your name. " chord="E"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="Blessed " chord="H"/>
+          <chordParts text="be your name " chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="on the " chord=""/>
+          <chordParts text="road marked with " chord="g#"/>
+          <chordParts text="suffering, " chord="E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Though there's " chord=""/>
+          <chordParts text="pain in the " chord="H"/>
+          <chordParts text="offering, " chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="blessed be your name. " chord="E"/>
+        </textlines>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL" bar="54" refPart="//@gallery/@galleryItems.1/@parts.2">
+        <textlines/>
+      </parts>
+      <parts bar="62" refPart="//@gallery/@galleryItems.1/@parts.3">
+        <textlines/>
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.1/@parts.3">
+        <textlines/>
+      </parts>
+      <parts parttype="BRIDGE" bar="79">
+        <textlines>
+          <chordParts text="You " chord=""/>
+          <chordParts text="give and take a" chord="H"/>
+          <chordParts text="way, " chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="you " chord=""/>
+          <chordParts text="give and take a" chord="g#"/>
+          <chordParts text="way, " chord="E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="My " chord=""/>
+          <chordParts text="heart will chose to " chord="H"/>
+          <chordParts text="say, " chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Lord, " chord=""/>
+          <chordParts text="blessed be your " chord="g#"/>
+          <chordParts text="name." chord="E"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE" bar="87" refPart="//@gallery/@galleryItems.1/@parts.8">
+        <textlines>
+          <chordParts text="You " chord=""/>
+          <chordParts text="give and take a" chord="H"/>
+          <chordParts text="way, " chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="you " chord=""/>
+          <chordParts text="give and take a" chord="g#"/>
+          <chordParts text="way, " chord="E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="My " chord=""/>
+          <chordParts text="heart will chose to " chord="H"/>
+          <chordParts text="say, " chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Lord, " chord=""/>
+          <chordParts text="blessed be your " chord="g#"/>
+          <chordParts text="name." chord="E"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE" bar="95" refPart="//@gallery/@galleryItems.1/@parts.8">
+        <textlines/>
+      </parts>
+      <parts parttype="BRIDGE" refPart="//@gallery/@galleryItems.1/@parts.8">
+        <textlines/>
+      </parts>
+      <parts parttype="BRIDGE" refPart="//@gallery/@galleryItems.1/@parts.8">
+        <textlines/>
+      </parts>
+      <parts parttype="BRIDGE" refPart="//@gallery/@galleryItems.1/@parts.8">
+        <textlines/>
+      </parts>
+      <copyright writerMusic="Matt Redman &amp; Beth Redman" writerText="Matt Redman &amp; Beth Redman" year="2002" publisher="Thankyou Music (kingswaysongs.com)" publisherInland="SCM H&#xe4;nssler, 71087 Holzgerlingen"/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Breathe.mid" path="/home/oleym/privat/soundOfFaith/midi">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text="  " chord="F"/>
+          <chordParts text="     " chord="Bb/F"/>
+          <chordParts text="  " chord="F"/>
+          <chordParts text="    " chord="Bb/F"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="2">
+        <textlines>
+          <chordParts text="This is the " chord="F"/>
+          <chordParts text="air I breathe, " chord="Bb/F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="this is the " chord="F"/>
+          <chordParts text="air I breathe, " chord="Bb/F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Your " chord="F"/>
+          <chordParts text="holy " chord="C/E"/>
+          <chordParts text="presenc" chord="d"/>
+          <chordParts text="e " chord="C"/>
+          <chordParts text="living" chord="Bb"/>
+          <chordParts text=" in m" chord="d"/>
+          <chordParts text="e. " chord="C"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="This is my " chord="F"/>
+          <chordParts text="daily bread," chord="Bb/F"/>
+        </textlines>
+      </parts>
+      <parts bar="18">
+        <textlines>
+          <chordParts text="And " chord=""/>
+          <chordParts text="I " chord="F"/>
+          <chordParts text="       " chord="C/E"/>
+          <chordParts text="    " chord="d"/>
+          <chordParts text="    I'm desperate " chord="C"/>
+          <chordParts text="for you," chord="Bb"/>
+          <chordParts text="   " chord="d"/>
+          <chordParts text="  " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="and " chord=""/>
+          <chordParts text="I," chord="F"/>
+          <chordParts text="       " chord="C/E"/>
+          <chordParts text="    " chord="d"/>
+          <chordParts text="    I'm lost with" chord="C"/>
+          <chordParts text="out you." chord="Bb"/>
+          <chordParts text="   " chord="d"/>
+          <chordParts text="  " chord="C"/>
+        </textlines>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL" bar="26">
+        <textlines>
+          <chordParts text="   " chord="Bb"/>
+          <chordParts text="  " chord="F"/>
+          <chordParts text="  " chord="C"/>
+          <chordParts text="   " chord="Bb"/>
+          <chordParts text="  " chord="F"/>
+          <chordParts text=" " chord="C"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" refPart="//@gallery/@galleryItems.2/@parts.1">
+        <textlines/>
+      </parts>
+      <parts parttype="VERS" refPart="//@gallery/@galleryItems.2/@parts.2">
+        <textlines/>
+      </parts>
+      <parts bar="46" refPart="//@gallery/@galleryItems.2/@parts.3">
+        <textlines/>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL" bar="62">
+        <textlines>
+          <chordParts text="   " chord="Bb"/>
+          <chordParts text="  " chord="d"/>
+          <chordParts text="   " chord="C"/>
+          <chordParts text="   " chord="Bb"/>
+          <chordParts text="  " chord="d"/>
+          <chordParts text="   " chord="C"/>
+          <chordParts text="   " chord="Bb"/>
+          <chordParts text="  " chord="d"/>
+          <chordParts text="   " chord="C"/>
+          <chordParts text="   " chord="Bb"/>
+          <chordParts text="  " chord="d"/>
+          <chordParts text=" " chord="C"/>
+        </textlines>
+      </parts>
+      <parts bar="70" refPart="//@gallery/@galleryItems.2/@parts.3">
+        <textlines>
+          <chordParts text="And " chord=""/>
+          <chordParts text="I " chord="F"/>
+          <chordParts text="       " chord="C/E"/>
+          <chordParts text="    " chord="d"/>
+          <chordParts text="    I'm desperate " chord="C"/>
+          <chordParts text="for you," chord="Bb"/>
+          <chordParts text="   " chord="d"/>
+          <chordParts text="  " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="and " chord=""/>
+          <chordParts text="I," chord="F"/>
+          <chordParts text="       " chord="C/E"/>
+          <chordParts text="    " chord="d"/>
+          <chordParts text="    I'm lost with" chord="C"/>
+          <chordParts text="out you." chord="Bb"/>
+          <chordParts text="   " chord="d"/>
+          <chordParts text="  " chord="C"/>
+        </textlines>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL" bar="78">
+        <textlines>
+          <chordParts text="I'm lost with" chord=""/>
+          <chordParts text="out you," chord="Bb"/>
+          <chordParts text="   " chord="d"/>
+          <chordParts text="  " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I'm lost wit" chord=""/>
+          <chordParts text="hout you" chord="Bb"/>
+          <chordParts text=",  " chord="d"/>
+          <chordParts text=" " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I'm lost wit" chord=""/>
+          <chordParts text="hout you" chord="Bb"/>
+          <chordParts text=", " chord="d"/>
+          <chordParts text="  " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="father, I'm " chord=""/>
+          <chordParts text="lost " chord="Bb"/>
+          <chordParts text="without " chord="d"/>
+          <chordParts text="you. " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="This is the " chord="F"/>
+          <chordParts text="air I breathe, " chord="Bb/F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="this is the " chord="F"/>
+          <chordParts text="air I " chord="Bb/F"/>
+          <chordParts text="breathe." chord="F"/>
+          <chordParts text="     " chord="Bb/F"/>
+          <chordParts text=" " chord="F"/>
+        </textlines>
+      </parts>
+      <copyright writerMusic="Marie Barnett" writerText="Marie Barnett" year="1995" publisher="Mercy/Vineyard Publishing" publisherInland="SCM H&#xe4;nssler, 71087 Holzgerlingen"/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Der Herr segne Dich.mid" path="/home/oleym/privat/soundOfFaith/midi">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text="  " chord="C"/>
+          <chordParts text="    " chord="G/C"/>
+          <chordParts text="    " chord="F/C"/>
+          <chordParts text="  " chord="C"/>
+          <chordParts text="    " chord="C/E"/>
+          <chordParts text="  " chord="F"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text=" " chord="C"/>
+        </textlines>
+      </parts>
+      <parts bar="10">
+        <textlines>
+          <chordParts text="Der Herr " chord=""/>
+          <chordParts text="segne dich, be" chord="C"/>
+          <chordParts text="h&#xfc;te dich, " chord="G/C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="lasse sein Angesicht " chord="F/C"/>
+          <chordParts text="leuchten &#xfc;ber " chord="C"/>
+          <chordParts text="dir," chord="C/E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und der " chord=""/>
+          <chordParts text="Herr " chord="F"/>
+          <chordParts text="sei dir " chord="G"/>
+          <chordParts text="gn&#xe4;di" chord="C"/>
+          <chordParts text="g.  " chord="G/C"/>
+          <chordParts text="    " chord="F/C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Er er" chord=""/>
+          <chordParts text="hebe sein Angesicht " chord="C"/>
+          <chordParts text="&#xfc;ber dich " chord="G/C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und er" chord=""/>
+          <chordParts text="f&#xfc;lle dein Herz mit " chord="F/C"/>
+          <chordParts text="seinem Licht," chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="tiefer " chord="C/E"/>
+          <chordParts text="Fri" chord="F"/>
+          <chordParts text="ede begl" chord="G"/>
+          <chordParts text="eite dich." chord="C"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="26">
+        <textlines>
+          <chordParts text="Ob Du " chord=""/>
+          <chordParts text="ausgehst oder " chord="E"/>
+          <chordParts text="heimkommst, " chord="E/G#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="ob du " chord=""/>
+          <chordParts text="wach bist oder " chord="a"/>
+          <chordParts text="schl&#xe4;fst," chord="a/G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="sei ge" chord=""/>
+          <chordParts text="segnet und ge" chord="d"/>
+          <chordParts text="st&#xe4;rkt " chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="durch seinen " chord=""/>
+          <chordParts text="Geist," chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Ob du " chord=""/>
+          <chordParts text="in das Tal hi" chord="E"/>
+          <chordParts text="nab schaust " chord="E/G#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="oder " chord=""/>
+          <chordParts text="Berge vor dir " chord="a"/>
+          <chordParts text="stehn," chord="a/G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="m&#xf6;gest " chord=""/>
+          <chordParts text="du den n&#xe4;chsten " chord="F"/>
+          <chordParts text="Schritt " chord="d"/>
+        </textlines>
+        <textlines>
+          <chordParts text="in seinem " chord=""/>
+          <chordParts text="Segen gehen. " chord="G"/>
+          <chordParts text="    " chord="F/G"/>
+          <chordParts text=" " chord="G"/>
+        </textlines>
+      </parts>
+      <parts bar="43" refPart="//@gallery/@galleryItems.3/@parts.1">
+        <textlines/>
+      </parts>
+      <parts parttype="VERS" bar="59">
+        <textlines>
+          <chordParts text="Ob die " chord=""/>
+          <chordParts text="Menschen, die du " chord="E"/>
+          <chordParts text="liebst, " chord="E/G#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="dies er" chord=""/>
+          <chordParts text="widern oder " chord="a"/>
+          <chordParts text="nicht," chord="a/G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="sei ein " chord=""/>
+          <chordParts text="Segen " chord="d"/>
+        </textlines>
+        <textlines>
+          <chordParts text="durch die " chord=""/>
+          <chordParts text="Gnade deines " chord="F"/>
+          <chordParts text="Herrn," chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="ob die " chord=""/>
+          <chordParts text="Tr&#xe4;ume die du" chord="E"/>
+          <chordParts text=" tr&#xe4;umtest, " chord="E/G#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="noch verhe" chord=""/>
+          <chordParts text="i&#xdf;ungsvoll be" chord="a"/>
+          <chordParts text="stehn," chord="a/G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="oder " chord=""/>
+          <chordParts text="l&#xe4;ngst schon nicht mehr " chord="F"/>
+          <chordParts text="f&#xfc;r dich " chord="d"/>
+        </textlines>
+        <textlines>
+          <chordParts text="wie ein " chord=""/>
+          <chordParts text="Traum aussehn," chord="G"/>
+        </textlines>
+      </parts>
+      <parts bar="76" refPart="//@gallery/@galleryItems.3/@parts.1">
+        <textlines>
+          <chordParts text="Der Herr " chord=""/>
+          <chordParts text="segne dich, be" chord="C"/>
+          <chordParts text="h&#xfc;te dich, " chord="G/C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="lasse sein Angesicht " chord="F/C"/>
+          <chordParts text="leuchten &#xfc;ber " chord="C"/>
+          <chordParts text="dir," chord="C/E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und der " chord=""/>
+          <chordParts text="Herr " chord="F"/>
+          <chordParts text="sei dir " chord="G"/>
+          <chordParts text="gn&#xe4;di" chord="C"/>
+          <chordParts text="g.  " chord="G/C"/>
+          <chordParts text="    " chord="F/C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Er er" chord=""/>
+          <chordParts text="hebe sein Angesicht " chord="C"/>
+          <chordParts text="&#xfc;ber dich " chord="G/C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und er" chord=""/>
+          <chordParts text="f&#xfc;lle dein Herz mit " chord="F/C"/>
+          <chordParts text="seinem Licht," chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="tiefer " chord="C/E"/>
+          <chordParts text="Fri" chord="F"/>
+          <chordParts text="ede begl" chord="G"/>
+          <chordParts text="eite dich." chord="C"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE" bar="92">
+        <textlines>
+          <chordParts text="Frie" chord="Eb"/>
+          <chordParts text="de mit " chord="F"/>
+          <chordParts text="dir, " chord="C"/>
+          <chordParts text="Fried" chord="Eb"/>
+          <chordParts text="e mit " chord="F"/>
+          <chordParts text="dir, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Frie" chord="Eb"/>
+          <chordParts text="de mit " chord="F"/>
+          <chordParts text="dir, " chord="C"/>
+          <chordParts text="Frie" chord="Eb"/>
+          <chordParts text="de mit " chord="F"/>
+          <chordParts text="dir." chord="C"/>
+        </textlines>
+      </parts>
+      <parts bar="110" refPart="//@gallery/@galleryItems.3/@parts.1">
+        <textlines>
+          <chordParts text="Der Herr " chord=""/>
+          <chordParts text="segne dich, be" chord="C"/>
+          <chordParts text="h&#xfc;te dich, " chord="G/C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="lasse sein Angesicht " chord="F/C"/>
+          <chordParts text="leuchten &#xfc;ber " chord="C"/>
+          <chordParts text="dir," chord="C/E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und der " chord=""/>
+          <chordParts text="Herr " chord="F"/>
+          <chordParts text="sei dir " chord="G"/>
+          <chordParts text="gn&#xe4;di" chord="C"/>
+          <chordParts text="g.  " chord="G/C"/>
+          <chordParts text="    " chord="F/C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Er er" chord=""/>
+          <chordParts text="hebe sein Angesicht " chord="C"/>
+          <chordParts text="&#xfc;ber dich " chord="G/C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und er" chord=""/>
+          <chordParts text="f&#xfc;lle dein Herz mit " chord="F/C"/>
+          <chordParts text="seinem Licht," chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="tiefer " chord="C/E"/>
+          <chordParts text="Fri" chord="F"/>
+          <chordParts text="ede begl" chord="G"/>
+          <chordParts text="eite dich." chord="C"/>
+        </textlines>
+      </parts>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Ehre sei dem Herrn.mid" path="/home/oleym/privat/soundOfFaith/midi" pic="image#weltall#jpg">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="       " chord="F#"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="F#"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="12">
+        <textlines>
+          <chordParts text="Wer h&#xe4;lt das All in seiner Hand," chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="wer schuf das Licht "/>
+        </textlines>
+        <textlines>
+          <chordParts text="durch sein " chord=""/>
+          <chordParts text="m&#xe4;chtiges " chord="D"/>
+          <chordParts text="Wort." chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Wer weckt das Leben in uns," chord="h"/>
+          <chordParts text="  " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und " chord=""/>
+          <chordParts text="wer bewegt die " chord="G"/>
+          <chordParts text="Welt, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="ihn laut zu " chord=""/>
+          <chordParts text="ehren. " chord="F#"/>
+        </textlines>
+      </parts>
+      <parts bar="22">
+        <textlines>
+          <chordParts text="Ehre sei dem " chord=""/>
+          <chordParts text="Herrn" chord="h"/>
+          <chordParts text=", " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="betet an den " chord="G"/>
+          <chordParts text="Gott der uns er" chord="D"/>
+          <chordParts text="rettet." chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Ehre sei dem " chord=""/>
+          <chordParts text="Herrn" chord="h"/>
+          <chordParts text=", " chord="A"/>
+          <chordParts text="preiset ihn, " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="denn " chord=""/>
+          <chordParts text="er regiert die " chord="D"/>
+          <chordParts text="V&#xf6;lker. " chord="A"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="Er ist " chord=""/>
+          <chordParts text="weise und w&#xfc;rdig, " chord="e"/>
+        </textlines>
+        <textlines>
+          <chordParts text="er ist " chord=""/>
+          <chordParts text="wunder" chord="h"/>
+          <chordParts text="bar und " chord="A"/>
+          <chordParts text="gro&#xdf;, " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="darum " chord=""/>
+          <chordParts text="beten wir " chord="e"/>
+          <chordParts text="an, Ehre sei dem " chord="F#"/>
+          <chordParts text="Herrn." chord="h"/>
+        </textlines>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL">
+        <textlines>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text=" " chord="G"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="40">
+        <textlines>
+          <chordParts text="Wer h&#xe4;lt die seinen in der Hand" chord="h"/>
+          <chordParts text="," chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="wer ist der Weg, f&#xfc;hrt zum " chord="G"/>
+          <chordParts text="herrlichen " chord="D"/>
+          <chordParts text="Ort." chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Und wer ber&#xfc;hrt unser Herz," chord="h"/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und " chord=""/>
+          <chordParts text="wer bewegt die " chord="G"/>
+          <chordParts text="Welt," chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="ihn laut zu " chord=""/>
+          <chordParts text="Ehren." chord="F#"/>
+        </textlines>
+      </parts>
+      <parts bar="50" refPart="//@gallery/@galleryItems.4/@parts.2">
+        <textlines/>
+      </parts>
+      <parts parttype="SOLO" bar="64">
+        <textlines>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="    " chord="A"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="     " chord="A"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="    " chord="A"/>
+          <chordParts text="  " chord="e"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="    " chord="G"/>
+          <chordParts text="  " chord="e"/>
+          <chordParts text="   " chord="F#"/>
+        </textlines>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.4/@parts.2">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.4/@parts.2">
+        <textlines>
+          <chordParts text="Ehre sei dem " chord=""/>
+          <chordParts text="Herrn" chord="h"/>
+          <chordParts text=", " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="betet an den " chord="G"/>
+          <chordParts text="Gott der uns er" chord="D"/>
+          <chordParts text="rettet." chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Ehre sei dem " chord=""/>
+          <chordParts text="Herrn" chord="h"/>
+          <chordParts text=", " chord="A"/>
+          <chordParts text="preiset ihn, " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="denn " chord=""/>
+          <chordParts text="er regiert die " chord="D"/>
+          <chordParts text="V&#xf6;lker. " chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="EXTRO">
+        <textlines>
+          <chordParts text="Ehre sei dem " chord=""/>
+          <chordParts text="Herrn" chord="h"/>
+          <chordParts text=", " chord="A"/>
+          <chordParts text="  Ehre sei dem " chord="G"/>
+          <chordParts text="Herrn, " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="   " chord="G"/>
+          <chordParts text="     " chord="f#/h"/>
+        </textlines>
+      </parts>
+      <copyright/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Er kam zu uns - Er ist Herr.mid" path="MidiFile#Er kam zu uns - Er ist Herr#mid" key="C" midicontrol="1">
+      <parts parttype="INTRO" bar="2">
+        <textlines>
+          <chordParts text="  " chord="C"/>
+          <chordParts text="  " chord="F"/>
+          <chordParts text="  " chord="C"/>
+          <chordParts text="   " chord="e"/>
+          <chordParts text="  " chord="F"/>
+          <chordParts text="  " chord="a"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="d"/>
+          <chordParts text="     " chord="C/E"/>
+          <chordParts text="  " chord="F"/>
+          <chordParts text="    " chord="F/G"/>
+          <chordParts text=" " chord="C"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="18">
+        <textlines>
+          <chordParts text="Es gibt be" chord=""/>
+          <chordParts text="dingungslose Liebe, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="die alles tr&#xe4;gt und nie vergeht. "/>
+        </textlines>
+        <textlines>
+          <chordParts text="Und uner" chord=""/>
+          <chordParts text="sch&#xfc;tterliche Hoffnung, " chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="die jeden " chord=""/>
+          <chordParts text="Test der Zeit besteht. " chord="C"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="Es gibt ein " chord=""/>
+          <chordParts text="Licht, das uns den " chord="e"/>
+          <chordParts text="Weg weist, " chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="auch wenn wir " chord=""/>
+          <chordParts text="jetzt nicht alles " chord="a"/>
+          <chordParts text="sehn, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="es gibt " chord=""/>
+          <chordParts text="Gewissheit unsres " chord="d"/>
+          <chordParts text="Glaubens, " chord="C/E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="auch wenn wir " chord=""/>
+          <chordParts text="manches " chord="F"/>
+          <chordParts text="nicht vers" chord="F/G"/>
+          <chordParts text="tehn. " chord="C"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="34">
+        <textlines>
+          <chordParts text="Es gibt Ver" chord=""/>
+          <chordParts text="s&#xf6;hnung, selbst f&#xfc;r Feinde, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und echten Frieden nach dem Streit, "/>
+        </textlines>
+        <textlines>
+          <chordParts text="Vergebung " chord=""/>
+          <chordParts text="f&#xfc;r die schlimmsten S&#xfc;nden, " chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="ein neuer " chord=""/>
+          <chordParts text="Anfang jederzeit. " chord="C"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="Es gibt ein " chord=""/>
+          <chordParts text="e'wges Reich des " chord="e"/>
+          <chordParts text="Friedens, " chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="in uns'rer " chord=""/>
+          <chordParts text="Mitte lebt es " chord="a"/>
+          <chordParts text="schon, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="ein St&#xfc;ck vom " chord=""/>
+          <chordParts text="Himmel hier auf " chord="d"/>
+          <chordParts text="Erden, " chord="C/E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="in Jesus " chord=""/>
+          <chordParts text="Christus, " chord="F"/>
+          <chordParts text="Gottes " chord="F/G"/>
+          <chordParts text="Sohn." chord="C"/>
+        </textlines>
+      </parts>
+      <parts bar="50">
+        <textlines>
+          <chordParts text="Er ist das " chord=""/>
+          <chordParts text="Zentrum " chord="G"/>
+          <chordParts text="der Gesch" chord="F"/>
+          <chordParts text="ichte, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="er ist der " chord=""/>
+          <chordParts text="Anker " chord="C/G"/>
+          <chordParts text="in der " chord="E/G#"/>
+          <chordParts text="Zeit, " chord="a"/>
+        </textlines>
+        <textlines>
+          <chordParts text="er ist der " chord="a/G"/>
+          <chordParts text="Ursprung allen " chord="F"/>
+          <chordParts text="Lebens " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und unser " chord=""/>
+          <chordParts text="Ziel in " chord="C/G"/>
+          <chordParts text="Ewigkei" chord="E/G#"/>
+          <chordParts text="t, " chord="a"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und unser " chord="F"/>
+          <chordParts text="Ziel in Ewig" chord="F/G"/>
+          <chordParts text="keit." chord="C"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="61">
+        <textlines>
+          <chordParts text="Es gibt die " chord=""/>
+          <chordParts text="wunderbare Heilung, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="die letzte Rettung in der Not, "/>
+        </textlines>
+        <textlines>
+          <chordParts text="und es gibt " chord=""/>
+          <chordParts text="Trost in Schmerz und Leiden, " chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="ewiges " chord=""/>
+          <chordParts text="Leben nach dem Tod, " chord="C"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="es gibt Ge" chord=""/>
+          <chordParts text="rechtigkeit f&#xfc;r " chord="e"/>
+          <chordParts text="alle, " chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="f&#xfc;r unsre " chord=""/>
+          <chordParts text="Treue ewgen " chord="a"/>
+          <chordParts text="Lohn, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="es gibt ein " chord=""/>
+          <chordParts text="Hochzeitsmahl f&#xfc;r " chord="d"/>
+          <chordParts text="immer " chord="C/E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="mit Jesus " chord=""/>
+          <chordParts text="Christus, " chord="F"/>
+          <chordParts text="Gottes " chord="F/G"/>
+          <chordParts text="Sohn." chord="C"/>
+        </textlines>
+      </parts>
+      <parts bar="77">
+        <textlines>
+          <chordParts text="Er ist das " chord=""/>
+          <chordParts text="Zentrum " chord="G"/>
+          <chordParts text="der Ge" chord="F"/>
+          <chordParts text="schichte, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="er ist der " chord=""/>
+          <chordParts text="Anker " chord="C/G"/>
+          <chordParts text="in der " chord="E/G#"/>
+          <chordParts text="Zeit, " chord="a"/>
+        </textlines>
+        <textlines>
+          <chordParts text="er ist der " chord="a/G"/>
+          <chordParts text="Ursprung allen " chord="F"/>
+          <chordParts text="Lebens " chord="C/E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und unser " chord=""/>
+          <chordParts text="Ziel in " chord="C/G"/>
+          <chordParts text="Ewigke" chord="E/G#"/>
+          <chordParts text="it, " chord="a"/>
+        </textlines>
+      </parts>
+      <parts>
+        <textlines>
+          <chordParts text="Er ist das " chord=""/>
+          <chordParts text="Zentrum " chord="G"/>
+          <chordParts text="der Ge" chord="F"/>
+          <chordParts text="schichte, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="er ist der " chord=""/>
+          <chordParts text="Anker " chord="C/G"/>
+          <chordParts text="in der " chord="E/G#"/>
+          <chordParts text="Zeit, " chord="a"/>
+        </textlines>
+        <textlines>
+          <chordParts text="er ist der " chord="a/G"/>
+          <chordParts text="Ursprung allen " chord="F"/>
+          <chordParts text="Lebens " chord="C/E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und unser " chord=""/>
+          <chordParts text="Ziel in " chord="C/G"/>
+          <chordParts text="Ewigkei" chord="E/G#"/>
+          <chordParts text="t, " chord="a"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und unser " chord="F"/>
+          <chordParts text="Ziel in Ewig" chord="F/G"/>
+          <chordParts text="keit." chord="C"/>
+        </textlines>
+      </parts>
+      <parts parttype="SOLO" bar="96">
+        <textlines>
+          <chordParts text="  " chord="C"/>
+          <chordParts text="  " chord="F"/>
+          <chordParts text="  " chord="C"/>
+          <chordParts text="   " chord="e"/>
+          <chordParts text="  " chord="F"/>
+          <chordParts text="  " chord="a"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="   " chord="C"/>
+          <chordParts text="  " chord="F"/>
+          <chordParts text="    " chord="F/G"/>
+          <chordParts text=" " chord="C"/>
+        </textlines>
+      </parts>
+      <parts bar="112" refPart="//@gallery/@galleryItems.5/@parts.3">
+        <textlines>
+          <chordParts text="Er ist das " chord=""/>
+          <chordParts text="Zentrum " chord="G"/>
+          <chordParts text="der Gesch" chord="F"/>
+          <chordParts text="ichte, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="er ist der " chord=""/>
+          <chordParts text="Anker " chord="C/G"/>
+          <chordParts text="in der " chord="E/G#"/>
+          <chordParts text="Zeit, " chord="a"/>
+        </textlines>
+        <textlines>
+          <chordParts text="er ist der " chord="a/G"/>
+          <chordParts text="Ursprung allen " chord="F"/>
+          <chordParts text="Lebens " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und unser " chord=""/>
+          <chordParts text="Ziel in " chord="C/G"/>
+          <chordParts text="Ewigkei" chord="E/G#"/>
+          <chordParts text="t, " chord="a"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und unser " chord="F"/>
+          <chordParts text="Ziel in Ewig" chord="F/G"/>
+          <chordParts text="keit" chord="C"/>
+        </textlines>
+      </parts>
+      <copyright writerMusic="Albert Frey" writerText="Albert Frey" year="2000" publisher="SCM H&#xe4;nssler, 71087 Holzgerlingen"/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="For all you've done.mid" path="/home/oleym/privat/soundOfFaith/midi">
+      <parts parttype="INTRO" bar="2">
+        <textlines>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="     " chord="Dsus"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="     " chord="Dsus"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="     " chord="Dsus"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="    " chord="Dsus"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="14">
+        <textlines>
+          <chordParts text="My saviour, redeemer, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="lifted me from the miry clay, "/>
+        </textlines>
+        <textlines>
+          <chordParts text="Almighty, forever, "/>
+        </textlines>
+        <textlines>
+          <chordParts text="I will never be the same, "/>
+        </textlines>
+        <textlines>
+          <chordParts text="'Cause you came " chord=""/>
+          <chordParts text="near, " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="from the ever" chord=""/>
+          <chordParts text="lasting " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="to the world we " chord=""/>
+          <chordParts text="live. " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="The father's only" chord=""/>
+          <chordParts text=" son." chord="A"/>
+        </textlines>
+      </parts>
+      <parts bar="30">
+        <textlines>
+          <chordParts text="You " chord=""/>
+          <chordParts text="lived and you " chord="D"/>
+          <chordParts text="died, " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="and you " chord=""/>
+          <chordParts text="rose again on " chord="h"/>
+          <chordParts text="high, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="you " chord=""/>
+          <chordParts text="opened the " chord="D"/>
+          <chordParts text="way, " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="for the " chord=""/>
+          <chordParts text="world to live a" chord="G/H"/>
+          <chordParts text="gain, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="hallel" chord=""/>
+          <chordParts text="ujah, " chord="G"/>
+          <chordParts text="for all you've " chord="A"/>
+          <chordParts text="done. " chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="44" refPart="//@gallery/@galleryItems.6/@parts.1">
+        <textlines/>
+      </parts>
+      <parts bar="60" refPart="//@gallery/@galleryItems.6/@parts.2">
+        <textlines>
+          <chordParts text="You " chord=""/>
+          <chordParts text="lived and you " chord="D"/>
+          <chordParts text="died, " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="and you " chord=""/>
+          <chordParts text="rose again on " chord="h"/>
+          <chordParts text="high, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="you " chord=""/>
+          <chordParts text="opened the " chord="D"/>
+          <chordParts text="way, " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="for the " chord=""/>
+          <chordParts text="world to live a" chord="G/H"/>
+          <chordParts text="gain, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="hallel" chord=""/>
+          <chordParts text="ujah, " chord="G"/>
+          <chordParts text="for all you've " chord="A"/>
+          <chordParts text="done. " chord="D"/>
+        </textlines>
+      </parts>
+      <parts>
+        <textlines>
+          <chordParts text="You " chord=""/>
+          <chordParts text="lived and you " chord="D"/>
+          <chordParts text="died, " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="and you " chord=""/>
+          <chordParts text="rose again on " chord="h"/>
+          <chordParts text="high, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="you " chord=""/>
+          <chordParts text="opened the " chord="D"/>
+          <chordParts text="way," chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="for the " chord=""/>
+          <chordParts text="world to live a" chord="G/H"/>
+          <chordParts text="gain, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="halle" chord=""/>
+          <chordParts text="lujah, " chord="G"/>
+          <chordParts text="for all you've done. " chord="A"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text=" " chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="SOLO" bar="84">
+        <textlines>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE" bar="98">
+        <textlines>
+          <chordParts text="'Cause you came " chord=""/>
+          <chordParts text="near," chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="from the ever" chord=""/>
+          <chordParts text="lasting" chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="to the world we " chord=""/>
+          <chordParts text="live." chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="The father's only " chord=""/>
+          <chordParts text="son." chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE" refPart="//@gallery/@galleryItems.6/@parts.7">
+        <textlines/>
+      </parts>
+      <parts bar="114" refPart="//@gallery/@galleryItems.6/@parts.2">
+        <textlines/>
+      </parts>
+      <parts>
+        <textlines>
+          <chordParts text="You " chord=""/>
+          <chordParts text="lived and you " chord="D"/>
+          <chordParts text="died, " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="and you " chord=""/>
+          <chordParts text="rose again on " chord="h"/>
+          <chordParts text="high. " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="You " chord=""/>
+          <chordParts text="opened the " chord="D"/>
+          <chordParts text="way, " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="for the " chord=""/>
+          <chordParts text="world to live " chord="G/H"/>
+          <chordParts text="again, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="halle" chord=""/>
+          <chordParts text="lujah," chord="h"/>
+          <chordParts text=" for all you've " chord="A"/>
+          <chordParts text="do" chord="G"/>
+          <chordParts text="ne, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="halle" chord=""/>
+          <chordParts text="lujah," chord="h"/>
+          <chordParts text=" for all you've " chord="A"/>
+          <chordParts text="do" chord="G"/>
+          <chordParts text="ne, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="halle" chord=""/>
+          <chordParts text="lujah," chord="h"/>
+          <chordParts text=" for all you've " chord="A"/>
+          <chordParts text="do" chord="G"/>
+          <chordParts text="ne, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="halle" chord=""/>
+          <chordParts text="lujah," chord="h"/>
+          <chordParts text=" for all you've " chord="A"/>
+          <chordParts text="do" chord="G"/>
+          <chordParts text="ne, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="halle" chord=""/>
+          <chordParts text="lujah," chord="h"/>
+          <chordParts text=" for all you've " chord="A"/>
+          <chordParts text="done." chord="G"/>
+        </textlines>
+      </parts>
+      <copyright writerMusic="Reuben Morgan" writerText="Reuben Morgan" year="2004" publisher="Hillsong Music Publishing" publisherInland="CopyCare Deutschland, 71087 Holzgerlingen"/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Jesus in my house.mid" path="/home/oleym/privat/soundOfFaith/midi" backgroundColor="255x255x255" foregroundColor="0x0x0" pic="image#hearthands#jpg">
+      <parts parttype="INTRO" bar="3">
+        <textlines>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="   " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="   " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="   " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text=" " chord="G"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="27">
+        <textlines>
+          <chordParts text="Thank you heavenly " chord="D"/>
+          <chordParts text="father " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="for your " chord=""/>
+          <chordParts text="love for " chord="D"/>
+          <chordParts text="me, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I'm forever " chord="D"/>
+          <chordParts text="grateful " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="that you " chord=""/>
+          <chordParts text="sacrif" chord="D"/>
+          <chordParts text="iced your " chord="A"/>
+          <chordParts text="son. " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="You saved my " chord="D"/>
+          <chordParts text="soul " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="and changed my " chord=""/>
+          <chordParts text="destin" chord="D"/>
+          <chordParts text="y, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Thank you God for " chord="G"/>
+          <chordParts text="Jesus in " chord="A"/>
+          <chordParts text="me. " chord="D"/>
+        </textlines>
+      </parts>
+      <parts bar="43">
+        <textlines>
+          <chordParts text="I'm so glad that " chord=""/>
+          <chordParts text="Jesus " chord="G"/>
+          <chordParts text="lives in my " chord="A"/>
+          <chordParts text="house, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Good to know that " chord=""/>
+          <chordParts text="he is " chord="G"/>
+          <chordParts text="here with me " chord="A"/>
+          <chordParts text="now, " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="All of my " chord=""/>
+          <chordParts text="life, Jesus in " chord="G"/>
+          <chordParts text="me, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Jesus in my " chord=""/>
+          <chordParts text="house, " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="All of my " chord=""/>
+          <chordParts text="life, and " chord="G"/>
+          <chordParts text="always will " chord="A"/>
+          <chordParts text="be. " chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL" bar="57">
+        <textlines>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="   " chord="A"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="65">
+        <textlines>
+          <chordParts text="Thank you for the " chord="D"/>
+          <chordParts text="purpose " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="you have " chord=""/>
+          <chordParts text="placed in " chord="D"/>
+          <chordParts text="me. " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Thank you for for" chord="D"/>
+          <chordParts text="giveness " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="and the " chord=""/>
+          <chordParts text="chance to " chord="D"/>
+          <chordParts text="start ag" chord="A"/>
+          <chordParts text="ain. " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I face the " chord="D"/>
+          <chordParts text="future knowing " chord="G"/>
+          <chordParts text="I will " chord="D"/>
+          <chordParts text="be, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="safe and sound with " chord="G"/>
+          <chordParts text="Jesus in " chord="A"/>
+          <chordParts text="me. " chord="D"/>
+        </textlines>
+      </parts>
+      <parts bar="81" refPart="//@gallery/@galleryItems.7/@parts.2">
+        <textlines/>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL" bar="95" refPart="//@gallery/@galleryItems.7/@parts.3">
+        <textlines/>
+      </parts>
+      <parts parttype="VERS" bar="103" refPart="//@gallery/@galleryItems.7/@parts.4">
+        <textlines>
+          <chordParts text="Thank you for the " chord="D"/>
+          <chordParts text="purpose " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="you have " chord=""/>
+          <chordParts text="placed in " chord="D"/>
+          <chordParts text="me. " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Thank you for for" chord="D"/>
+          <chordParts text="giveness " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="and the " chord=""/>
+          <chordParts text="chance to " chord="D"/>
+          <chordParts text="start ag" chord="A"/>
+          <chordParts text="ain. " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I face the " chord="D"/>
+          <chordParts text="future knowing " chord="G"/>
+          <chordParts text="I will " chord="D"/>
+          <chordParts text="be, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="safe and sound with " chord="G"/>
+          <chordParts text="Jesus in " chord="A"/>
+          <chordParts text="me. " chord="D"/>
+        </textlines>
+      </parts>
+      <parts bar="119" refPart="//@gallery/@galleryItems.7/@parts.2">
+        <textlines/>
+      </parts>
+      <parts bar="135" refPart="//@gallery/@galleryItems.7/@parts.2">
+        <textlines/>
+      </parts>
+      <copyright/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Open the eyes.mid" path="MidiFile#Open the eyes#mid" midicontrol="1">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="     " chord="A/C#"/>
+          <chordParts text="    " chord="G/H"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="     " chord="D"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="     " chord="A/C#"/>
+          <chordParts text="    " chord="G/H"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text=" " chord="D"/>
+        </textlines>
+      </parts>
+      <parts bar="10">
+        <textlines>
+          <chordParts text="Open the eyes of my heart, Lord," chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="open the eyes of my heart," chord="A/D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I want to " chord=""/>
+          <chordParts text="see you," chord="G/D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I want to " chord=""/>
+          <chordParts text="see You." chord="D"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="Open the eyes of my heart, Lord,"/>
+        </textlines>
+        <textlines>
+          <chordParts text="open the eyes of my heart," chord="A/D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I want to " chord=""/>
+          <chordParts text="see you," chord="G/D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I want to " chord=""/>
+          <chordParts text="see You." chord="D"/>
+        </textlines>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.8/@parts.1">
+        <textlines/>
+      </parts>
+      <parts parttype="VERS" bar="42">
+        <textlines>
+          <chordParts text="To see You " chord=""/>
+          <chordParts text="high and lifted " chord="A"/>
+          <chordParts text="up " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="shinin' in the light of Your " chord="G"/>
+          <chordParts text="glory" chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Pour out Your power and " chord=""/>
+          <chordParts text="love " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="as we sing " chord=""/>
+          <chordParts text="holy, holy, " chord="G"/>
+          <chordParts text="holy." chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" refPart="//@gallery/@galleryItems.8/@parts.3">
+        <textlines/>
+      </parts>
+      <parts parttype="BRIDGE" bar="59">
+        <textlines>
+          <chordParts text="Holy holy holy, " chord="D"/>
+          <chordParts text="holy holy holy " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="holy holy " chord="G/H"/>
+          <chordParts text="holy, I want to " chord="G"/>
+          <chordParts text="see You" chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Holy holy holy, " chord="D"/>
+          <chordParts text="holy holy holy " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="holy holy " chord="G/H"/>
+          <chordParts text="holy, I want to " chord="G"/>
+          <chordParts text="see You" chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE" refPart="//@gallery/@galleryItems.8/@parts.5">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.8/@parts.1">
+        <textlines/>
+      </parts>
+      <parts parttype="VERS" bar="117" refPart="//@gallery/@galleryItems.8/@parts.3">
+        <textlines/>
+      </parts>
+      <parts parttype="VERS" refPart="//@gallery/@galleryItems.8/@parts.3">
+        <textlines/>
+      </parts>
+      <parts parttype="BRIDGE" refPart="//@gallery/@galleryItems.8/@parts.5">
+        <textlines/>
+      </parts>
+      <parts parttype="BRIDGE" refPart="//@gallery/@galleryItems.8/@parts.5">
+        <textlines>
+          <chordParts text="Holy holy holy, " chord="D"/>
+          <chordParts text="holy holy holy " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="holy holy " chord="G/H"/>
+          <chordParts text="holy, I want to " chord="G"/>
+          <chordParts text="see You" chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Holy holy holy, " chord="D"/>
+          <chordParts text="holy holy holy " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="holy holy " chord="G/H"/>
+          <chordParts text="holy, I want to " chord="G"/>
+          <chordParts text="see You" chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="EXTRO">
+        <textlines>
+          <chordParts text="I want to see you, I want to see you, "/>
+        </textlines>
+        <textlines>
+          <chordParts text="I want to see you."/>
+        </textlines>
+      </parts>
+      <copyright/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Unbeschreiblich tief.mid" path="/home/oleym/privat/soundOfFaith/midi">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Unbeschreiblich tief ist deine " chord="A"/>
+          <chordParts text="Liebe" chord="c#/A"/>
+          <chordParts text=",   " chord="f#/A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="endlos " chord=""/>
+          <chordParts text="weit wie das " chord="D/A"/>
+          <chordParts text="Meer." chord="E/A"/>
+          <chordParts text="  " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Deine Treue reicht bis zu den " chord="A"/>
+          <chordParts text="Wolke" chord="c#/A"/>
+          <chordParts text="n,  " chord="f#/A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und dein " chord=""/>
+          <chordParts text="Wort bleibt be" chord="D/A"/>
+          <chordParts text="steh'n." chord="E/A"/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+      </parts>
+      <parts>
+        <textlines>
+          <chordParts text="Ehre sei " chord="D"/>
+          <chordParts text="Gott, " chord="A/C#"/>
+          <chordParts text="jeder wird " chord="D"/>
+          <chordParts text="singen, " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Ehre sei " chord="C"/>
+          <chordParts text="Gott in der " chord="G/H"/>
+          <chordParts text="H&#xf6;he" chord="E"/>
+        </textlines>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL">
+        <textlines>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" refPart="//@gallery/@galleryItems.9/@parts.1">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.9/@parts.2">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.9/@parts.2">
+        <textlines/>
+      </parts>
+      <parts parttype="SOLO">
+        <textlines>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="   " chord="f#"/>
+          <chordParts text="    " chord="E"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="   " chord="f#"/>
+          <chordParts text="    " chord="E"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="   " chord="f#"/>
+          <chordParts text="    " chord="E"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="   " chord="f#"/>
+          <chordParts text=" " chord="E"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE">
+        <textlines>
+          <chordParts text="Kommt, betet " chord="D"/>
+          <chordParts text="an,  " chord="A/C#"/>
+          <chordParts text="Jesus  den " chord="D"/>
+          <chordParts text="Retter, " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="K&#xf6;nig f&#xfc;r " chord="C"/>
+          <chordParts text="immer Am" chord="G/H"/>
+          <chordParts text="en," chord="E"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE" refPart="//@gallery/@galleryItems.9/@parts.8">
+        <textlines/>
+      </parts>
+      <parts parttype="BRIDGE" refPart="//@gallery/@galleryItems.9/@parts.8">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.9/@parts.2">
+        <textlines>
+          <chordParts text="Ehre sei " chord="D"/>
+          <chordParts text="Gott, " chord="A/C#"/>
+          <chordParts text="jeder wird " chord="D"/>
+          <chordParts text="singen, " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Ehre sei " chord="C"/>
+          <chordParts text="Gott in der " chord="G/H"/>
+          <chordParts text="H&#xf6;he" chord="E"/>
+        </textlines>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.9/@parts.2">
+        <textlines>
+          <chordParts text="Ehre sei " chord="D"/>
+          <chordParts text="Gott, " chord="A/C#"/>
+          <chordParts text="jeder wird " chord="D"/>
+          <chordParts text="singen, " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Ehre sei " chord="C"/>
+          <chordParts text="Gott in der " chord="G/H"/>
+          <chordParts text="H&#xf6;he" chord="E"/>
+        </textlines>
+      </parts>
+      <parts parttype="EXTRO">
+        <textlines>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="       " chord="A/C#"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="       " chord="A/C#"/>
+          <chordParts text="  " chord="C"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="      " chord="c#"/>
+          <chordParts text="  " chord="C"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="      " chord="c#"/>
+          <chordParts text="  " chord="C"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text=" " chord="E"/>
+        </textlines>
+      </parts>
+      <copyright originaltitle="Highest" writerMusic="Reuben Morgan" writerText="Reuben Morgan" writerInlandText="Agnes Linnert &amp; Antje Janzen" year="2002" publisher="Hillsong Music Publishing" publisherInland="CopyCare Deutschland, 71087 Holzgerlingen"/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="We have a vision.mid" path="MidiFile#We have a vision#mid" midicontrol="6">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="4" position="3/2">
+        <textlines>
+          <chordParts text="We have a " chord=""/>
+          <chordParts text="vision for this nation, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="we share a dream for this " chord=""/>
+          <chordParts text="lan" chord="e7"/>
+          <chordParts text="d, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="We join with " chord=""/>
+          <chordParts text="angels in celebration, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="by " chord=""/>
+          <chordParts text="faith we " chord="e7"/>
+          <chordParts text="speak re" chord="D/F#"/>
+          <chordParts text="vival " chord="G7"/>
+          <chordParts text="to this " chord="A"/>
+          <chordParts text="land. " chord="D"/>
+        </textlines>
+      </parts>
+      <parts bar="20" position="18/3">
+        <textlines>
+          <chordParts text="Where every " chord=""/>
+          <chordParts text="knee shall " chord="h"/>
+          <chordParts text="bow " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="to worship " chord=""/>
+          <chordParts text="you, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="and every " chord=""/>
+          <chordParts text="tongue con" chord="h"/>
+          <chordParts text="fess " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="that you are " chord=""/>
+          <chordParts text="lord, " chord="A"/>
+        </textlines>
+      </parts>
+      <parts bar="28" position="26/3">
+        <textlines>
+          <chordParts text="Give " chord=""/>
+          <chordParts text="us an open " chord="h"/>
+          <chordParts text="heaven, " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="a" chord=""/>
+          <chordParts text="noint our prayers this " chord="h"/>
+          <chordParts text="day, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="and " chord=""/>
+          <chordParts text="move your " chord="e"/>
+          <chordParts text="sovereign " chord="D/F#"/>
+          <chordParts text="hand, " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="a" chord=""/>
+          <chordParts text="cross this " chord="A"/>
+          <chordParts text="nation. " chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="36" refPart="//@gallery/@galleryItems.10/@parts.1" position="34/2">
+        <textlines/>
+      </parts>
+      <parts bar="52" refPart="//@gallery/@galleryItems.10/@parts.2" position="50/1">
+        <textlines/>
+      </parts>
+      <parts bar="60" refPart="//@gallery/@galleryItems.10/@parts.3" position="58/3">
+        <textlines/>
+      </parts>
+      <parts parttype="SOLO" bar="68" position="67/0">
+        <textlines>
+          <chordParts text="     " chord="D"/>
+          <chordParts text="     " chord="e/F#"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text=" " chord="D"/>
+        </textlines>
+      </parts>
+      <parts bar="84" refPart="//@gallery/@galleryItems.10/@parts.2" position="82/2">
+        <textlines/>
+      </parts>
+      <parts bar="92" position="91/1">
+        <textlines>
+          <chordParts text="Give " chord=""/>
+          <chordParts text="us an open " chord="h"/>
+          <chordParts text="heaven, " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="a" chord=""/>
+          <chordParts text="noint our prayers this " chord="h"/>
+          <chordParts text="day, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="and " chord=""/>
+          <chordParts text="move your " chord="e"/>
+          <chordParts text="sovereign " chord="D/F#"/>
+          <chordParts text="hand " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="across this " chord="A"/>
+          <chordParts text="nation," chord="h"/>
+        </textlines>
+      </parts>
+      <parts bar="100" position="98/2">
+        <textlines>
+          <chordParts text="and " chord=""/>
+          <chordParts text="move your " chord="e"/>
+          <chordParts text="sovereign " chord="D/F#"/>
+          <chordParts text="hand " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="a" chord=""/>
+          <chordParts text="cross this " chord="A"/>
+          <chordParts text="nation, " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="and " chord=""/>
+          <chordParts text="move your " chord="e"/>
+          <chordParts text="sovereign " chord="D/F#"/>
+          <chordParts text="hand " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="a" chord=""/>
+          <chordParts text="cross this " chord="A"/>
+          <chordParts text="nation." chord="D"/>
+        </textlines>
+      </parts>
+      <copyright/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="When I worship you.mid" path="/home/oleym/privat/soundOfFaith/midi">
+      <parts parttype="INTRO" bar="2">
+        <textlines>
+          <chordParts text="   " chord="Bb"/>
+          <chordParts text="  " chord="g"/>
+          <chordParts text="    " chord="Eb"/>
+          <chordParts text="   " chord="Bb"/>
+          <chordParts text="  " chord="g"/>
+          <chordParts text="  " chord="Eb"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="10">
+        <textlines>
+          <chordParts text="When I sing my " chord="Bb"/>
+          <chordParts text="praise to " chord="Eb/Bb"/>
+          <chordParts text="you, " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I am lifted up to " chord=""/>
+          <chordParts text="higher " chord="Eb"/>
+          <chordParts text="ground, " chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="something happens " chord="Bb"/>
+          <chordParts text="in my " chord="Eb/Bb"/>
+          <chordParts text="soul, " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="when I " chord=""/>
+          <chordParts text="lift my voice to " chord="g"/>
+          <chordParts text="worship " chord="F"/>
+          <chordParts text="you. " chord="Bb"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE">
+        <textlines>
+          <chordParts text="Feels like " chord="F/Bb"/>
+          <chordParts text="sunshine " chord="Bb"/>
+          <chordParts text="on my " chord="F/Bb"/>
+          <chordParts text="face, " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="a pour " chord="Eb"/>
+          <chordParts text="breeze in the " chord="F/D"/>
+          <chordParts text="desert " chord="Eb"/>
+          <chordParts text="place. " chord="F"/>
+        </textlines>
+      </parts>
+      <parts bar="22">
+        <textlines>
+          <chordParts text="When I worship you, " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="heaven comes to me, " chord="Eb"/>
+          <chordParts text="heaven comes to me. " chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="When I worship you, " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="heaven comes to me, " chord="Eb"/>
+          <chordParts text="heaven comes to me. " chord="F"/>
+        </textlines>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL" bar="30">
+        <textlines>
+          <chordParts text="   " chord="Bb"/>
+          <chordParts text="  " chord="g"/>
+          <chordParts text="    " chord="Eb"/>
+          <chordParts text="   " chord="Bb"/>
+          <chordParts text="  " chord="g"/>
+          <chordParts text=" " chord="Eb"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" bar="38">
+        <textlines>
+          <chordParts text="Heaven is wher" chord="Bb"/>
+          <chordParts text="e I be" chord="Eb/Bb"/>
+          <chordParts text="long, " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="were the angels sit be" chord=""/>
+          <chordParts text="fore your " chord="Eb"/>
+          <chordParts text="throne, " chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I am caught up " chord="Bb"/>
+          <chordParts text="in their " chord="Eb/Bb"/>
+          <chordParts text="sound, " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="when I " chord=""/>
+          <chordParts text="lift my voice to " chord="g"/>
+          <chordParts text="worship " chord="F"/>
+          <chordParts text="you. " chord="Bb"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE">
+        <textlines>
+          <chordParts text="From be" chord="F/Bb"/>
+          <chordParts text="yond where " chord="Bb"/>
+          <chordParts text="eyes can " chord="F/Bb"/>
+          <chordParts text="see, " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="love is " chord="Eb"/>
+          <chordParts text="puring " chord="F/D"/>
+          <chordParts text="over " chord="Eb"/>
+          <chordParts text="me. " chord="F"/>
+        </textlines>
+      </parts>
+      <parts bar="51" refPart="//@gallery/@galleryItems.11/@parts.3">
+        <textlines/>
+      </parts>
+      <parts parttype="BRIDGE" bar="59">
+        <textlines>
+          <chordParts text="Love is " chord="Eb"/>
+          <chordParts text="pouring " chord="Bb/D"/>
+          <chordParts text="over " chord="Eb"/>
+          <chordParts text="me, " chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="love is " chord="Eb"/>
+          <chordParts text="pouring " chord="Bb/D"/>
+          <chordParts text="over " chord="Eb"/>
+          <chordParts text="me, " chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="love is " chord="Eb"/>
+          <chordParts text="pouring " chord="Bb/D"/>
+          <chordParts text="over " chord="Eb"/>
+          <chordParts text="me, " chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="your love is " chord="Eb"/>
+          <chordParts text="pouring " chord="Bb/D"/>
+          <chordParts text="over " chord="Eb"/>
+          <chordParts text="me." chord="F"/>
+        </textlines>
+      </parts>
+      <parts bar="67">
+        <textlines>
+          <chordParts text="When I worship you, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="heaven comes to me, " chord="F"/>
+          <chordParts text="heaven comes to me. " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="When I worship you, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="heaven comes to me, " chord="F"/>
+          <chordParts text="heaven comes to me. " chord="G"/>
+        </textlines>
+      </parts>
+      <parts bar="72" refPart="//@gallery/@galleryItems.11/@parts.9">
+        <textlines/>
+      </parts>
+      <parts bar="80" refPart="//@gallery/@galleryItems.11/@parts.9">
+        <textlines/>
+      </parts>
+      <parts parttype="VERS" bar="94">
+        <textlines>
+          <chordParts text="When I sing my " chord="C"/>
+          <chordParts text="praise to " chord="F/C"/>
+          <chordParts text="you, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I am lifted up to " chord=""/>
+          <chordParts text="higher " chord="F"/>
+          <chordParts text="ground, " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="something happens " chord="C"/>
+          <chordParts text="in my " chord="F/C"/>
+          <chordParts text="soul, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="when I " chord=""/>
+          <chordParts text="lift my voice to " chord="a"/>
+          <chordParts text="worship " chord="G"/>
+          <chordParts text="you. " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="when I " chord=""/>
+          <chordParts text="lift my voice to " chord="a"/>
+          <chordParts text="worship " chord="G"/>
+          <chordParts text="you," chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="when I " chord=""/>
+          <chordParts text="lift my voice to worsh" chord="a"/>
+          <chordParts text="ip " chord="G"/>
+          <chordParts text="you." chord="C"/>
+        </textlines>
+      </parts>
+      <copyright writerMusic="Noel &amp; Tricia Richards" writerText="Noel &amp; Tricia Richards" year="1999" publisher="Kingsway's Thankyou Music" publisherInland="CopyCare Deutschland, 71087 Holzgerlingen"/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Be my center">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="    " chord="G/D"/>
+          <chordParts text=" " chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Jesus, be the centre, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="be my " chord=""/>
+          <chordParts text="source, be my " chord="A/D"/>
+          <chordParts text="light, Je" chord="G/D"/>
+          <chordParts text="sus. " chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Jesus, be the centre, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="be my " chord=""/>
+          <chordParts text="hope, be my " chord="A/D"/>
+          <chordParts text="song, Je" chord="G/D"/>
+          <chordParts text="sus. " chord="D"/>
+        </textlines>
+      </parts>
+      <parts>
+        <textlines>
+          <chordParts text="Be the " chord=""/>
+          <chordParts text="fire in my " chord="A"/>
+          <chordParts text="heart, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Be the " chord=""/>
+          <chordParts text="wind in these " chord="A"/>
+          <chordParts text="sails, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Be the " chord=""/>
+          <chordParts text="reason that I " chord="A"/>
+          <chordParts text="live, " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Je" chord=""/>
+          <chordParts text="sus, " chord="A"/>
+          <chordParts text="Je" chord="G"/>
+          <chordParts text="sus. " chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Jesus, be my vision, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="be my " chord=""/>
+          <chordParts text="path, be my " chord="A/D"/>
+          <chordParts text="guide, Je" chord="G/H"/>
+          <chordParts text="sus. " chord="D"/>
+        </textlines>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.12/@parts.3">
+        <textlines/>
+      </parts>
+      <parts parttype="SOLO">
+        <textlines>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="    " chord="G/H"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="    " chord="G/H"/>
+          <chordParts text=" " chord="D"/>
+        </textlines>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.12/@parts.3">
+        <textlines>
+          <chordParts text="Be the " chord=""/>
+          <chordParts text="fire in my " chord="A"/>
+          <chordParts text="heart, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Be the " chord=""/>
+          <chordParts text="wind in these " chord="A"/>
+          <chordParts text="sails, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Be the " chord=""/>
+          <chordParts text="reason that I " chord="A"/>
+          <chordParts text="live, " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Je" chord=""/>
+          <chordParts text="sus, " chord="A"/>
+          <chordParts text="Je" chord="G"/>
+          <chordParts text="sus. " chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Jesus, be the centre, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="be my " chord=""/>
+          <chordParts text="source, be my " chord="A/D"/>
+          <chordParts text="light, Je" chord="G/D"/>
+          <chordParts text="sus. " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="be my " chord=""/>
+          <chordParts text="source, be my " chord="A/D"/>
+          <chordParts text="light, Je" chord="G/D"/>
+          <chordParts text="sus. " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Jesus, Jesus."/>
+        </textlines>
+        <textlines>
+          <chordParts text="Jesus, Jesus."/>
+        </textlines>
+      </parts>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Gro&#xdf; und herrlich">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text=" " chord="H"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Preist ihn, ihr Himmel und h&#xf6;here Welt," chord="H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="singt ihm, ihr Engel, was ihm wohlgef&#xe4;llt! "/>
+        </textlines>
+        <textlines>
+          <chordParts text="Alle Welt soll " chord="E"/>
+          <chordParts text="jubeln!" chord="H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Preist ihn, ihr Sterne und Sonne und Mond, "/>
+        </textlines>
+        <textlines>
+          <chordParts text="singt ihm, der Himmel und Erde bewohnt! "/>
+        </textlines>
+        <textlines>
+          <chordParts text="Alle Welt soll " chord="E"/>
+          <chordParts text="jubeln!" chord="H"/>
+        </textlines>
+      </parts>
+      <parts>
+        <textlines>
+          <chordParts text="Gro&#xdf; und herrlich, " chord="H"/>
+          <chordParts text="ihm sei Ehre! " chord="g#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Voller Gnade, " chord="E"/>
+          <chordParts text="Himmelsk&#xf6;" chord="g#"/>
+          <chordParts text="nig! " chord="F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Stark und m&#xe4;chtig, " chord="H"/>
+          <chordParts text="er tut Wunder, " chord="g#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Zions Herrscher, " chord="E"/>
+          <chordParts text="K&#xf6;nig der ga" chord="g#"/>
+          <chordParts text="nzen " chord="F#"/>
+          <chordParts text="Welt. " chord="H"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" refPart="//@gallery/@galleryItems.13/@parts.1">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.13/@parts.2">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.13/@parts.2">
+        <textlines/>
+      </parts>
+      <parts parttype="EXTRO">
+        <textlines>
+          <chordParts text="Oh.... oh.... oh..... "/>
+        </textlines>
+        <textlines>
+          <chordParts text="gro&#xdf; und herrlich bist du, "/>
+        </textlines>
+        <textlines>
+          <chordParts text="ja..... gro&#xdf; und " chord=""/>
+          <chordParts text="her" chord="E"/>
+          <chordParts text="rlich. " chord="D"/>
+        </textlines>
+      </parts>
+      <copyright originaltitle="Great in Power" writerMusic="Russell Fragar" writerText="Russell Fragar" writerInlandText="Manuel Steinhoff" year="1998" publisher="Hillsong Music Publishing" publisherInland="CopyCare Deutschland, 71087 Holzgerlingen"/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Give me love">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="E"/>
+          <chordParts text="    " chord="G/A"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="    " chord="G/D"/>
+          <chordParts text=" " chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Give me " chord=""/>
+          <chordParts text="love in my " chord="D"/>
+          <chordParts text="heart, " chord="G/A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="give me " chord="A7"/>
+          <chordParts text="love." chord="D"/>
+          <chordParts text="    " chord="G/D"/>
+          <chordParts text=" " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Give me " chord=""/>
+          <chordParts text="love in my " chord="D/F#"/>
+          <chordParts text="heart, " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Lord your " chord=""/>
+          <chordParts text="lov" chord="A4"/>
+          <chordParts text="e, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Give me " chord=""/>
+          <chordParts text="love that " chord="C/D"/>
+          <chordParts text="everyone can " chord="H7"/>
+          <chordParts text="see, " chord="e7"/>
+        </textlines>
+        <textlines>
+          <chordParts text="you're the love in " chord="g7"/>
+          <chordParts text="me, " chord="D/A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Give me " chord=""/>
+          <chordParts text="love, " chord="E9/G#"/>
+          <chordParts text="Lord, " chord="e7"/>
+          <chordParts text="give me " chord="A7"/>
+          <chordParts text="love." chord="D"/>
+          <chordParts text="    " chord="G/D"/>
+          <chordParts text=" " chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE">
+        <textlines>
+          <chordParts text="   " chord="D7"/>
+          <chordParts text="   " chord="G7"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="   " chord="D"/>
+          <chordParts text="    " chord="G/A"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="     " chord="D/F#"/>
+          <chordParts text="     " chord="D/G#"/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" refPart="//@gallery/@galleryItems.14/@parts.1">
+        <textlines/>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Give me " chord=""/>
+          <chordParts text="peace in my " chord="D"/>
+          <chordParts text="heart, " chord="G/A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="give me " chord="A7"/>
+          <chordParts text="peace." chord="D"/>
+          <chordParts text="    " chord="G/D"/>
+          <chordParts text=" " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Give me " chord=""/>
+          <chordParts text="peace in my " chord="D/F#"/>
+          <chordParts text="life, " chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Lord your " chord=""/>
+          <chordParts text="pea" chord="A4"/>
+          <chordParts text="ce, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Give me " chord=""/>
+          <chordParts text="peace that " chord="C/D"/>
+          <chordParts text="everyone can " chord="H7"/>
+          <chordParts text="see, " chord="e7"/>
+        </textlines>
+        <textlines>
+          <chordParts text="you're the peace in " chord="g7"/>
+          <chordParts text="me, " chord="D/A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Give me " chord=""/>
+          <chordParts text="peace, " chord="E9/G#"/>
+          <chordParts text="Lord, " chord="e7"/>
+          <chordParts text="give me " chord="A7"/>
+          <chordParts text="peace." chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE">
+        <textlines>
+          <chordParts text="     " chord="D/F#"/>
+          <chordParts text="   " chord="H7"/>
+          <chordParts text="   " chord="e7"/>
+          <chordParts text="   " chord="g7"/>
+          <chordParts text="    " chord="D/A"/>
+          <chordParts text="   " chord="A4"/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Give me " chord=""/>
+          <chordParts text="joy in my " chord="D"/>
+          <chordParts text="life, " chord="G/A"/>
+          <chordParts text="give me " chord="A7"/>
+          <chordParts text="joy." chord="D"/>
+          <chordParts text="    " chord="G/D"/>
+          <chordParts text=" " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Give me " chord=""/>
+          <chordParts text="joy in my " chord="D/F#"/>
+          <chordParts text="life, Lord your " chord="G"/>
+          <chordParts text="joy," chord="A4"/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Give me " chord=""/>
+          <chordParts text="joy that " chord="C/D"/>
+          <chordParts text="everyone can " chord="H7"/>
+          <chordParts text="see, " chord="e7"/>
+          <chordParts text="you're the joy in " chord="g7"/>
+          <chordParts text="me, " chord="D/A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Give me " chord=""/>
+          <chordParts text="joy,  " chord="E9/G#"/>
+          <chordParts text="Lord, " chord="e7"/>
+          <chordParts text="give me " chord="A7"/>
+          <chordParts text="joy." chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Give me " chord=""/>
+          <chordParts text="joy that " chord="C/D"/>
+          <chordParts text="everyone can " chord="H7"/>
+          <chordParts text="see, " chord="e7"/>
+          <chordParts text="you're the joy in " chord="g7"/>
+          <chordParts text="me, " chord="D/A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Give me " chord=""/>
+          <chordParts text="joy,  " chord="E9/G#"/>
+          <chordParts text="Lord, " chord="e7"/>
+          <chordParts text="give me " chord="A7"/>
+          <chordParts text="joy." chord="D"/>
+        </textlines>
+      </parts>
+      <copyright writerMusic="Lukas Di Nunzio" writerText="Lukas Di Nunzio" year="1997" publisher="SCM H&#xe4;nssler, 71087 Holzgerlingen"/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Jesus, Erl&#xf6;ser der Welt">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="    " chord="h"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="   " chord="h"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text=" " chord="G"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Was f&#xfc;r ein " chord=""/>
+          <chordParts text="Mensch" chord="G"/>
+          <chordParts text=", " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="dem Wind und " chord=""/>
+          <chordParts text="Wellen ge" chord="A"/>
+          <chordParts text="horchen, " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="was f&#xfc;r ein " chord=""/>
+          <chordParts text="Mensch" chord="G"/>
+          <chordParts text=", " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="der auf dem " chord=""/>
+          <chordParts text="Wasser " chord="A"/>
+          <chordParts text="geht," chord="h"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="was f&#xfc;r ein " chord=""/>
+          <chordParts text="Mensch" chord="G"/>
+          <chordParts text=", " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="der Wasser " chord=""/>
+          <chordParts text="in Wein ver" chord="A"/>
+          <chordParts text="wandelt, " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Brot und Fisch v" chord="A"/>
+          <chordParts text="ermehrt." chord="G"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Was f&#xfc;r ein " chord=""/>
+          <chordParts text="Mensch" chord="G"/>
+          <chordParts text=", " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="der die Ge" chord=""/>
+          <chordParts text="fangenen " chord="A"/>
+          <chordParts text="freimacht," chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="was f&#xfc;r ein " chord=""/>
+          <chordParts text="Mensch" chord="G"/>
+          <chordParts text=", " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="der selbst den " chord=""/>
+          <chordParts text="Tod be" chord="A"/>
+          <chordParts text="zwingt, " chord="h"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="was f&#xfc;r ein " chord=""/>
+          <chordParts text="Mensch" chord="G"/>
+          <chordParts text=", " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="der allen " chord=""/>
+          <chordParts text="Armen und " chord="A"/>
+          <chordParts text="Schwachen " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="frohe Botschaft " chord="A"/>
+          <chordParts text="bringt. " chord="G"/>
+        </textlines>
+      </parts>
+      <parts>
+        <textlines>
+          <chordParts text="Jesu" chord="A"/>
+          <chordParts text="s, " chord="h"/>
+          <chordParts text="Er" chord="A"/>
+          <chordParts text="l&#xf6;ser der " chord="G"/>
+          <chordParts text="Welt, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Du bist " chord=""/>
+          <chordParts text="Chris" chord="A"/>
+          <chordParts text="tus, " chord="h"/>
+          <chordParts text="der " chord="A"/>
+          <chordParts text="Fels der uns " chord="G"/>
+          <chordParts text="h&#xe4;lt." chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Gott ist " chord=""/>
+          <chordParts text="mit " chord="A"/>
+          <chordParts text="uns, " chord="h"/>
+          <chordParts text="er " chord="A"/>
+          <chordParts text="selbst kommt zur " chord="G"/>
+          <chordParts text="Welt, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="das " chord=""/>
+          <chordParts text="Licht das die " chord="C"/>
+          <chordParts text="Nacht er" chord="G/H"/>
+          <chordParts text="hellt" chord="Asus"/>
+          <chordParts text="." chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Was f&#xfc;r ein " chord=""/>
+          <chordParts text="Gott" chord="G"/>
+          <chordParts text=", " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="der zu uns " chord=""/>
+          <chordParts text="kommt um zu dienen, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="was f&#xfc;r ein " chord=""/>
+          <chordParts text="Gott" chord="G"/>
+          <chordParts text=", " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="der klein wird, wie ein Kind. "/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="Was f&#xfc;r ein " chord=""/>
+          <chordParts text="Gott" chord="G"/>
+          <chordParts text=", " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="der alle " chord=""/>
+          <chordParts text="Schuld dieser " chord="A"/>
+          <chordParts text="Erde " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="f&#xfc;r uns auf sich " chord="A"/>
+          <chordParts text="nimmt. " chord="G"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Was f&#xfc;r ein " chord=""/>
+          <chordParts text="Gott" chord="G"/>
+          <chordParts text=", " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="der mit uns " chord=""/>
+          <chordParts text="sein neues " chord="A"/>
+          <chordParts text="Reich baut, " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="was f&#xfc;r ein " chord=""/>
+          <chordParts text="Gott" chord="G"/>
+          <chordParts text=", " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="der uns das " chord=""/>
+          <chordParts text="Erbe " chord="A"/>
+          <chordParts text="gibt, " chord="h"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="was f&#xfc;r ein " chord=""/>
+          <chordParts text="Gott" chord="G"/>
+          <chordParts text=", " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="der uns als " chord=""/>
+          <chordParts text="S&#xf6;hne und " chord="A"/>
+          <chordParts text="T&#xf6;chter " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="unbeschreiblich " chord="A"/>
+          <chordParts text="liebt. " chord="G"/>
+        </textlines>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.15/@parts.3">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.15/@parts.3">
+        <textlines/>
+      </parts>
+      <parts parttype="SOLO">
+        <textlines>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="    " chord="h"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text=" " chord="h"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Was f&#xfc;r ein " chord=""/>
+          <chordParts text="Mensch," chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text=" " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="was f&#xfc;r ein " chord=""/>
+          <chordParts text="Gott," chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text=" " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="was f&#xfc;r ein " chord=""/>
+          <chordParts text="Mensch," chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="  " chord="h"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="was f&#xfc;r ein " chord=""/>
+          <chordParts text="Gott," chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text=" " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="was f&#xfc;r ein " chord=""/>
+          <chordParts text="Mensch" chord="G"/>
+          <chordParts text=", " chord="D"/>
+          <chordParts text="Je" chord="A"/>
+          <chordParts text="sus, " chord="h"/>
+        </textlines>
+        <textlines>
+          <chordParts text="was f&#xfc;r ein " chord=""/>
+          <chordParts text="Gott" chord="G"/>
+          <chordParts text=", " chord="D"/>
+          <chordParts text="Je" chord="A"/>
+          <chordParts text="sus." chord="h"/>
+        </textlines>
+      </parts>
+      <parts>
+        <textlines>
+          <chordParts text="Je" chord="A"/>
+          <chordParts text="sus, " chord="h"/>
+          <chordParts text="Er" chord="A"/>
+          <chordParts text="l&#xf6;ser der " chord="G"/>
+          <chordParts text="Welt, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Du bist " chord=""/>
+          <chordParts text="Chris" chord="A"/>
+          <chordParts text="tus, " chord="h"/>
+          <chordParts text="der " chord="A"/>
+          <chordParts text="Fels der uns " chord="G"/>
+          <chordParts text="h&#xe4;lt." chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Gott ist " chord=""/>
+          <chordParts text="mit " chord="A"/>
+          <chordParts text="uns, " chord="h"/>
+          <chordParts text="er " chord="A"/>
+          <chordParts text="selbst kommt zur " chord="G"/>
+          <chordParts text="Welt, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="das " chord=""/>
+          <chordParts text="Licht das die " chord="C"/>
+          <chordParts text="Nacht er" chord="G/H"/>
+          <chordParts text="hellt" chord="Asus"/>
+          <chordParts text="." chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Was f&#xfc;r ein " chord=""/>
+          <chordParts text="Go" chord="G"/>
+          <chordParts text="tt,   " chord="D"/>
+          <chordParts text="Je" chord="A"/>
+          <chordParts text="sus." chord="h"/>
+        </textlines>
+      </parts>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Lord I lift your name on high" pic="image#JesuKreuz#jpg">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text="  " chord="F"/>
+          <chordParts text="  " chord="C"/>
+          <chordParts text="     " chord="Bb"/>
+          <chordParts text="  " chord="F"/>
+          <chordParts text="  " chord="C"/>
+          <chordParts text="     " chord="Bb"/>
+          <chordParts text="  " chord="F"/>
+          <chordParts text="  " chord="C"/>
+          <chordParts text="     " chord="Bb"/>
+          <chordParts text="  " chord="F"/>
+          <chordParts text="  " chord="C"/>
+          <chordParts text="  " chord="Bb"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Herr, Dein Name sei er" chord="F"/>
+          <chordParts text="h&#xf6;" chord="C"/>
+          <chordParts text="ht, " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Herr ich singe dir zu " chord="F"/>
+          <chordParts text="Ehre," chord="C"/>
+          <chordParts text="  " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Danke, da&#xdf; du in mir " chord="F"/>
+          <chordParts text="le" chord="C"/>
+          <chordParts text="bst, " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="danke f&#xfc;r deine " chord="F"/>
+          <chordParts text="Erl&#xf6;sung" chord="C"/>
+          <chordParts text=". " chord="Bb"/>
+        </textlines>
+      </parts>
+      <parts>
+        <textlines>
+          <chordParts text="Du kamst vom " chord="F"/>
+          <chordParts text="Himmel he" chord="Bb"/>
+          <chordParts text="rab, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="zeigt " chord=""/>
+          <chordParts text="uns den " chord="Bb"/>
+          <chordParts text="Weg" chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Herr du " chord=""/>
+          <chordParts text="hast am Kreuz be" chord="Bb"/>
+          <chordParts text="zahlt," chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="f&#xfc;r " chord=""/>
+          <chordParts text="meine " chord="Bb"/>
+          <chordParts text="Schuld. " chord="F"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="Und sie " chord=""/>
+          <chordParts text="legten dich ins " chord="Bb"/>
+          <chordParts text="Grab, " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="doch du " chord=""/>
+          <chordParts text="stiegst zum Himmel " chord="d"/>
+          <chordParts text="auf, " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Herr, dein " chord=""/>
+          <chordParts text="Name sei er" chord="C"/>
+          <chordParts text="h&#xf6;ht. " chord="F"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Lord I lift Your name on " chord="F"/>
+          <chordParts text="hi" chord="C"/>
+          <chordParts text="gh, " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Lord I love to sing Your " chord="F"/>
+          <chordParts text="praises" chord="C"/>
+          <chordParts text="  " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I'm so glad Your in my " chord="F"/>
+          <chordParts text="li" chord="C"/>
+          <chordParts text="fe " chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="I'm so glad You came to " chord="F"/>
+          <chordParts text="save us" chord="C"/>
+          <chordParts text="  " chord="Bb"/>
+        </textlines>
+      </parts>
+      <parts>
+        <textlines>
+          <chordParts text="You came from " chord="F"/>
+          <chordParts text="Heaven to " chord="Bb"/>
+          <chordParts text="earth " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="To " chord=""/>
+          <chordParts text="show the " chord="Bb"/>
+          <chordParts text="way" chord="F"/>
+        </textlines>
+        <textlines>
+          <chordParts text="From the " chord=""/>
+          <chordParts text="earth to the " chord="Bb"/>
+          <chordParts text="cross " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="My " chord=""/>
+          <chordParts text="debt to " chord="Bb"/>
+          <chordParts text="pay" chord="F"/>
+        </textlines>
+        <textlines newSlide="true">
+          <chordParts text="From the " chord=""/>
+          <chordParts text="cross to the " chord="Bb"/>
+          <chordParts text="grave " chord="C"/>
+        </textlines>
+        <textlines>
+          <chordParts text="From the " chord=""/>
+          <chordParts text="grave to the " chord="d"/>
+          <chordParts text="sky" chord="Bb"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Lord I " chord=""/>
+          <chordParts text="lift Your name on " chord="C"/>
+          <chordParts text="high." chord="F"/>
+        </textlines>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL">
+        <textlines>
+          <chordParts text="   " chord="Ab"/>
+          <chordParts text="   " chord="Db"/>
+          <chordParts text="   " chord="Eb"/>
+          <chordParts text="Lift your name on " chord="Db"/>
+          <chordParts text="high" chord="Ab"/>
+        </textlines>
+        <textlines>
+          <chordParts text="   " chord="Ab"/>
+          <chordParts text="   " chord="Db"/>
+          <chordParts text="   " chord="Eb"/>
+          <chordParts text="Lift your name on " chord="Db"/>
+          <chordParts text="high" chord="Ab"/>
+        </textlines>
+        <textlines>
+          <chordParts text="   " chord="Ab"/>
+          <chordParts text="   " chord="Db"/>
+          <chordParts text="   " chord="Eb"/>
+          <chordParts text="Lift your name on " chord="Db"/>
+          <chordParts text="high" chord="Ab"/>
+        </textlines>
+        <textlines>
+          <chordParts text="   " chord="Ab"/>
+          <chordParts text="   " chord="Db"/>
+          <chordParts text="   " chord="Eb"/>
+          <chordParts text="Lift your name on " chord="Db"/>
+          <chordParts text="high" chord="Ab"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" refPart="//@gallery/@galleryItems.16/@parts.3">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.16/@parts.4">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.16/@parts.4">
+        <textlines/>
+      </parts>
+      <copyright writerMusic="Rick Founds" writerText="Rick Founds" writerInlandText="Karin Geitz" year="1989" publisher="Maranatha! Praise" publisherInland="CopyCare Deutschland, 71087 Holzgerlingen"/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Singt dem Herrn ein neues Lied">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text="  " chord="H"/>
+          <chordParts text="    " chord="E/H"/>
+          <chordParts text="  " chord="H"/>
+          <chordParts text="  " chord="E"/>
+          <chordParts text="   " chord="F#"/>
+          <chordParts text="  " chord="H"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="     " chord="E/G#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="  " chord="H"/>
+          <chordParts text="    " chord="E/H"/>
+          <chordParts text="  " chord="H"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="     " chord="E/G#"/>
+          <chordParts text=" " chord="H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="  " chord="H"/>
+          <chordParts text="    " chord="E/H"/>
+          <chordParts text="  " chord="H"/>
+          <chordParts text="  " chord="E"/>
+          <chordParts text="   " chord="F#"/>
+          <chordParts text="  " chord="H"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="    " chord="E/G#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="  " chord="H"/>
+          <chordParts text="    " chord="E/H"/>
+          <chordParts text="  " chord="H"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="     " chord="E/G#"/>
+          <chordParts text=" " chord="H"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Singt dem Herrn ein neues Lied, " chord="H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="wir " chord=""/>
+          <chordParts text="sin" chord="E"/>
+          <chordParts text="gen dem " chord="F#"/>
+          <chordParts text="Herrn" chord="H"/>
+          <chordParts text=". " chord="A"/>
+          <chordParts text="    " chord="E/G#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Ihm der uns die Kraft zu Leben gibt, " chord="H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="wir " chord=""/>
+          <chordParts text="sin" chord="A"/>
+          <chordParts text="gen dem " chord="E/G#"/>
+          <chordParts text="Herrn. " chord="H"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="&#xd6;ffnet Eure Herzen weit, " chord="H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="wir " chord=""/>
+          <chordParts text="sin" chord="E"/>
+          <chordParts text="gen dem " chord="F#"/>
+          <chordParts text="Herrn." chord="H"/>
+          <chordParts text="  " chord="A"/>
+          <chordParts text="    " chord="E/G#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Atmet ein den Hauch der Ewigkeit, " chord="H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="wir " chord=""/>
+          <chordParts text="sin" chord="A"/>
+          <chordParts text="gen dem " chord="E/G#"/>
+          <chordParts text="Herrn. " chord="H"/>
+        </textlines>
+      </parts>
+      <parts>
+        <textlines>
+          <chordParts text="Voller " chord="E/H"/>
+          <chordParts text="Freude mit " chord="H"/>
+          <chordParts text="aller " chord="E/H"/>
+          <chordParts text="St&#xe4;rke, " chord="H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="singen wir zusammen, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="preisen Deinen Namen, "/>
+        </textlines>
+        <textlines>
+          <chordParts text="wir be" chord="E/H"/>
+          <chordParts text="wundern " chord="H"/>
+          <chordParts text="Deine " chord="E/H"/>
+          <chordParts text="Werke, " chord="H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und wir beten vor Dir " chord="A"/>
+          <chordParts text="an, " chord="E/G#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Herr " chord="D"/>
+          <chordParts text="der " chord="A"/>
+          <chordParts text="Herrn." chord="H"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" refPart="//@gallery/@galleryItems.17/@parts.1">
+        <textlines/>
+      </parts>
+      <parts parttype="VERS" refPart="//@gallery/@galleryItems.17/@parts.2">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.17/@parts.3">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.17/@parts.3">
+        <textlines/>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL">
+        <textlines>
+          <chordParts text="Herr der " chord=""/>
+          <chordParts text="Herrn, Herr der " chord="E/G#"/>
+          <chordParts text="Herr" chord="e/G"/>
+          <chordParts text="n" chord="A"/>
+        </textlines>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.17/@parts.3">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.17/@parts.3">
+        <textlines>
+          <chordParts text="Voller " chord="E/H"/>
+          <chordParts text="Freude mit " chord="H"/>
+          <chordParts text="aller " chord="E/H"/>
+          <chordParts text="St&#xe4;rke, " chord="H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="singen wir zusammen, " chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="preisen Deinen Namen, "/>
+        </textlines>
+        <textlines>
+          <chordParts text="wir be" chord="E/H"/>
+          <chordParts text="wundern " chord="H"/>
+          <chordParts text="Deine " chord="E/H"/>
+          <chordParts text="Werke, " chord="H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und wir beten vor Dir " chord="A"/>
+          <chordParts text="an, " chord="E/G#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Herr " chord="D"/>
+          <chordParts text="der " chord="A"/>
+          <chordParts text="Herrn." chord="H"/>
+        </textlines>
+      </parts>
+      <parts parttype="ZWISCHENSPIEL" refPart="//@gallery/@galleryItems.17/@parts.8">
+        <textlines>
+          <chordParts text="Herr der " chord=""/>
+          <chordParts text="Herrn, Herr der " chord="E/G#"/>
+          <chordParts text="Herr" chord="e/G"/>
+          <chordParts text="n" chord="A"/>
+        </textlines>
+      </parts>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Komm zu Jesus">
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Ver" chord=""/>
+          <chordParts text="wundet, " chord="G"/>
+          <chordParts text="schwach, ein " chord="G/A"/>
+          <chordParts text="S&#xfc;nder," chord="G/H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="ver" chord=""/>
+          <chordParts text="loren " chord="D"/>
+          <chordParts text="wenn Du " chord="D/E"/>
+          <chordParts text="stirbst," chord="D/F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="doch " chord=""/>
+          <chordParts text="heb den Kopf," chord="a"/>
+        </textlines>
+        <textlines>
+          <chordParts text="weil " chord="a/H"/>
+          <chordParts text="Liebe " chord="C"/>
+          <chordParts text="um Dich " chord="C/A"/>
+          <chordParts text="wirbt." chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Komm zu " chord=""/>
+          <chordParts text="Jesus, komm zu " chord="Gsus"/>
+          <chordParts text="Jesus," chord="C2"/>
+        </textlines>
+        <textlines>
+          <chordParts text="komm zu " chord=""/>
+          <chordParts text="Jesu" chord="G/D"/>
+          <chordParts text="s und " chord="D"/>
+          <chordParts text="leb." chord="G"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Jetzt " chord=""/>
+          <chordParts text="ist die " chord="G"/>
+          <chordParts text="Last ver" chord="G/A"/>
+          <chordParts text="schwunden, " chord="G/H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="ins " chord=""/>
+          <chordParts text="tiefste " chord="D"/>
+          <chordParts text="Meer ver" chord="D/E"/>
+          <chordParts text="senkt, " chord="D/F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="sein " chord=""/>
+          <chordParts text="Tod hat " chord="a"/>
+          <chordParts text="Dir " chord="a/H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="das " chord=""/>
+          <chordParts text="Leben " chord="C"/>
+          <chordParts text="neu ge" chord="C/A"/>
+          <chordParts text="schenkt, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Nun sing zu " chord=""/>
+          <chordParts text="Jesus, sing zu " chord="Gsus"/>
+          <chordParts text="Jesus, " chord="C2"/>
+        </textlines>
+        <textlines>
+          <chordParts text="sing zu " chord=""/>
+          <chordParts text="Jesu" chord="G/D"/>
+          <chordParts text="s und " chord="D"/>
+          <chordParts text="leb." chord="G"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Hab " chord=""/>
+          <chordParts text="keine " chord="G"/>
+          <chordParts text="Angst zu " chord="G/A"/>
+          <chordParts text="krabbeln " chord="G/H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="als " chord=""/>
+          <chordParts text="neuge" chord="D"/>
+          <chordParts text="bor'nes " chord="D/E"/>
+          <chordParts text="Kind, " chord="D/F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="ver" chord=""/>
+          <chordParts text="giss nicht, " chord="a"/>
+          <chordParts text="manchmal " chord="a/H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="fallen " chord="C"/>
+          <chordParts text="wir auch " chord="C/A"/>
+          <chordParts text="hin, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="dann fall auf " chord=""/>
+          <chordParts text="Jesus, fall auf " chord="Gsus"/>
+          <chordParts text="Jesus, " chord="C2"/>
+        </textlines>
+        <textlines>
+          <chordParts text="fall auf " chord=""/>
+          <chordParts text="Jesu" chord="G/D"/>
+          <chordParts text="s und " chord="D"/>
+          <chordParts text="leb" chord="G"/>
+          <chordParts text="   " chord="C/G"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Dein " chord=""/>
+          <chordParts text="Weg ist " chord="G"/>
+          <chordParts text="manchmal " chord="G/A"/>
+          <chordParts text="einsam, " chord="G/H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="ge" chord=""/>
+          <chordParts text="pflastert " chord="D"/>
+          <chordParts text="auch mit " chord="D/E"/>
+          <chordParts text="Schmerz, " chord="D/F#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="dein " chord=""/>
+          <chordParts text="Himmel " chord="a"/>
+          <chordParts text="schwarz " chord="a/H"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und " chord=""/>
+          <chordParts text="tr&#xe4;nen" chord="C"/>
+          <chordParts text="voll dein " chord="C/A"/>
+          <chordParts text="Herz, " chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="dann schrei zu " chord=""/>
+          <chordParts text="Jesus, schrei zu " chord="Gsus"/>
+          <chordParts text="Jesus, " chord="C2"/>
+        </textlines>
+        <textlines>
+          <chordParts text="schrei zu " chord=""/>
+          <chordParts text="Jesu" chord="G/D"/>
+          <chordParts text="s und " chord="D"/>
+          <chordParts text="leb. " chord="C/E"/>
+          <chordParts text="     " chord="D/F#"/>
+          <chordParts text="    " chord="E/G#"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Und wenn " chord=""/>
+          <chordParts text="Liebe " chord="A"/>
+          <chordParts text="&#xfc;ber" chord="A/H"/>
+          <chordParts text="sprudelt, " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Mu" chord=""/>
+          <chordParts text="sik die " chord="E"/>
+          <chordParts text="Nacht er" chord="E/F#"/>
+          <chordParts text="f&#xfc;llt, " chord="E/G#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="die " chord=""/>
+          <chordParts text="Freude " chord="h"/>
+          <chordParts text="deine " chord="h/C#"/>
+          <chordParts text="Leiden" chord="D"/>
+          <chordParts text="schaft ent" chord="D/H"/>
+          <chordParts text="h&#xfc;llt, " chord="E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="dann tanz f&#xfc;r " chord=""/>
+          <chordParts text="Jesus, tanz f&#xfc;r " chord="Asus"/>
+          <chordParts text="Jesus, " chord="D2"/>
+        </textlines>
+        <textlines>
+          <chordParts text="tanz f&#xfc;r " chord=""/>
+          <chordParts text="Jesu" chord="A/E"/>
+          <chordParts text="s und " chord="E"/>
+          <chordParts text="leb, oh_" chord="A"/>
+          <chordParts text="__" chord="D"/>
+          <chordParts text="____" chord="A/E"/>
+          <chordParts text="__" chord="E"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Und " chord=""/>
+          <chordParts text="mit dem " chord="A"/>
+          <chordParts text="letzten " chord="A/H"/>
+          <chordParts text="Herzschlag, " chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="sage " chord="E"/>
+          <chordParts text="Lebew" chord="E/F#"/>
+          <chordParts text="ohl," chord="E/G#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="geh in " chord="h"/>
+          <chordParts text="Frieden, " chord="h/C#"/>
+          <chordParts text="denn er " chord="D"/>
+          <chordParts text="wartet " chord="D/H"/>
+          <chordParts text="schon, " chord="E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="flieg heim zu " chord=""/>
+          <chordParts text="Jesus, heim zu " chord="Asus"/>
+          <chordParts text="Jesus, heim zu " chord="D2"/>
+          <chordParts text="Jesu" chord="A/E"/>
+          <chordParts text="s und " chord="E"/>
+          <chordParts text="leb. " chord="A/C#"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="    " chord="A/E"/>
+          <chordParts text=" " chord="E"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Flieg heim zu " chord=""/>
+          <chordParts text="Jesus, flieg heim zu " chord="Asus"/>
+          <chordParts text="Jesus, " chord="D2"/>
+        </textlines>
+        <textlines>
+          <chordParts text="flieg heim zu " chord=""/>
+          <chordParts text="Jesu" chord="A/E"/>
+          <chordParts text="s und " chord="E"/>
+          <chordParts text="leb." chord="A"/>
+        </textlines>
+      </parts>
+      <copyright originaltitle="Untitled Hymn, Come to Jesus" writerMusic="Chris Rice" writerText="Chris Rice" writerInlandText="Andrea Adams-Frey" year="2003" publisher="Clumsy Fly Music" publisherInland="CopyCare Deutschland, 71087 Holzgerlingen"/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Mein Retter, Erl&#xf6;ser">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text="   " chord="D"/>
+          <chordParts text="     " chord="Dsus"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="     " chord="Dsus"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="     " chord="Dsus"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="    " chord="Dsus"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text="Mein Retter, Erl&#xf6;ser," chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="du zogst mich aus der Finsternis."/>
+        </textlines>
+        <textlines>
+          <chordParts text="Du handelst allm&#xe4;chtig,"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Nun bleibt nichts mehr wie es war."/>
+        </textlines>
+        <textlines>
+          <chordParts text="Du kamst zu " chord=""/>
+          <chordParts text="uns, her aus Ewig" chord="h"/>
+          <chordParts text="keiten" chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="auf die Erde " chord=""/>
+          <chordParts text="hier," chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Du selbst der Gottes" chord=""/>
+          <chordParts text="sohn." chord="A"/>
+        </textlines>
+      </parts>
+      <parts>
+        <textlines>
+          <chordParts text="Weil Du " chord=""/>
+          <chordParts text="lebst, weil du " chord="D"/>
+          <chordParts text="starbst," chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="weil Du " chord=""/>
+          <chordParts text="auferstanden " chord="G/H"/>
+          <chordParts text="bist," chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und die " chord=""/>
+          <chordParts text="T&#xfc;r hin zu " chord="D"/>
+          <chordParts text="Gott" chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="nun durch " chord=""/>
+          <chordParts text="dich ge&#xf6;ffnet " chord="G/H"/>
+          <chordParts text="ist," chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Halle" chord=""/>
+          <chordParts text="lujah," chord="G"/>
+          <chordParts text=" sei Dir der " chord="A"/>
+          <chordParts text="Dank." chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS" refPart="//@gallery/@galleryItems.19/@parts.1">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.19/@parts.2">
+        <textlines/>
+      </parts>
+      <parts>
+        <textlines>
+          <chordParts text="Weil Du " chord=""/>
+          <chordParts text="lebst, weil du " chord="D"/>
+          <chordParts text="starbst," chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="weil Du " chord=""/>
+          <chordParts text="auferstanden " chord="G/H"/>
+          <chordParts text="bist," chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und die " chord=""/>
+          <chordParts text="T&#xfc;r hin zu " chord="D"/>
+          <chordParts text="Gott" chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="nun durch " chord=""/>
+          <chordParts text="dich ge&#xf6;ffnet " chord="G/H"/>
+          <chordParts text="ist," chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Halle" chord=""/>
+          <chordParts text="lujah," chord="G"/>
+          <chordParts text=" sei Dir der " chord="A"/>
+          <chordParts text="Dank.  " chord="h"/>
+          <chordParts text="   " chord="G"/>
+          <chordParts text=" " chord="D"/>
+        </textlines>
+      </parts>
+      <parts parttype="SOLO">
+        <textlines>
+          <chordParts text="  " chord="D"/>
+          <chordParts text="  " chord="h"/>
+          <chordParts text="  " chord="G"/>
+          <chordParts text="  " chord="D"/>
+          <chordParts text=" " chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE">
+        <textlines>
+          <chordParts text="Du kamst zu " chord=""/>
+          <chordParts text="uns, her aus Ewig" chord="h"/>
+          <chordParts text="keiten" chord="G"/>
+        </textlines>
+        <textlines>
+          <chordParts text="auf die Erde " chord=""/>
+          <chordParts text="hier," chord="D"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Du selbst der Gottes" chord=""/>
+          <chordParts text="sohn." chord="A"/>
+        </textlines>
+      </parts>
+      <parts parttype="BRIDGE" refPart="//@gallery/@galleryItems.19/@parts.7">
+        <textlines/>
+      </parts>
+      <parts refPart="//@gallery/@galleryItems.19/@parts.2">
+        <textlines/>
+      </parts>
+      <parts>
+        <textlines>
+          <chordParts text="Weil Du " chord=""/>
+          <chordParts text="lebst, weil du " chord="D"/>
+          <chordParts text="starbst," chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="weil Du " chord=""/>
+          <chordParts text="auferstanden " chord="h"/>
+          <chordParts text="bist," chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="und die " chord=""/>
+          <chordParts text="T&#xfc;r hin zu " chord="D"/>
+          <chordParts text="Gott" chord="A/C#"/>
+        </textlines>
+        <textlines>
+          <chordParts text="nun durch " chord=""/>
+          <chordParts text="dich ge&#xf6;ffnet " chord="h"/>
+          <chordParts text="ist," chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Halle" chord=""/>
+          <chordParts text="lujah," chord="G"/>
+          <chordParts text=" sei Dir der " chord="A"/>
+          <chordParts text="Da" chord="G"/>
+          <chordParts text="nk." chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Halle" chord=""/>
+          <chordParts text="lujah," chord="G"/>
+          <chordParts text=" sei Dir der " chord="A"/>
+          <chordParts text="Da" chord="G"/>
+          <chordParts text="nk," chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Halle" chord=""/>
+          <chordParts text="lujah," chord="G"/>
+          <chordParts text=" sei Dir der " chord="A"/>
+          <chordParts text="Da" chord="G"/>
+          <chordParts text="nk," chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Halle" chord=""/>
+          <chordParts text="lujah," chord="G"/>
+          <chordParts text=" sei Dir der " chord="A"/>
+          <chordParts text="Da" chord="G"/>
+          <chordParts text="nk," chord="A"/>
+        </textlines>
+        <textlines>
+          <chordParts text="Halle" chord=""/>
+          <chordParts text="lujah," chord="G"/>
+          <chordParts text=" sei Dir der " chord="A"/>
+          <chordParts text="Dank." chord="G"/>
+        </textlines>
+      </parts>
+      <copyright originaltitle="For all you've done" writerMusic="Reuben Morgan" writerText="Reuben Morgan" year="2004" publisher="Hillsong Music Publishing" publisherInland="CopyCare Deutschland, 71087 Holzgerlingen"/>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Your name is holy">
+      <parts parttype="VERS">
+        <textlines>
+          <chordParts text=" "/>
+        </textlines>
+      </parts>
+    </galleryItems>
+    <galleryItems xsi:type="org.mda.model:Song" name="Komm zum Kreuz">
+      <parts parttype="INTRO">
+        <textlines>
+          <chordParts text="E A H E     E A H E     E A H E     E A H E"/>
+        </textlines>
+        <textlines>
+          <chordParts text=""/>
+        </textlines>
+      </parts>
+      <parts parttype="VERS">
+        <textlines/>
+      </parts>
+      <parts>
+        <textlines/>
+      </parts>
+    </galleryItems>
+  </gallery>
+  <sessions name="Burgkunstadt 2012" items="//@gallery/@galleryItems.10 //@gallery/@galleryItems.8 //@gallery/@galleryItems.5"/>
+  <sessions name="Zeltmission 2012" items="//@gallery/@galleryItems.8 //@gallery/@galleryItems.7 //@gallery/@galleryItems.4 //@gallery/@galleryItems.16 //@gallery/@galleryItems.1 //@gallery/@galleryItems.13 //@gallery/@galleryItems.17 //@gallery/@galleryItems.15 //@gallery/@galleryItems.19 //@gallery/@galleryItems.0"/>
+  <sessions name="Wirsberg" items="//@gallery/@galleryItems.7 //@gallery/@galleryItems.12 //@gallery/@galleryItems.16 //@gallery/@galleryItems.8 //@gallery/@galleryItems.3 //@gallery/@galleryItems.21 //@gallery/@galleryItems.1"/>
+  <config screenIDPresentation=":0.0" screenIDAdmin=":0.1" pdfExportPath="exportedFiles" additionalsPath="additionals" fontsize="65" mailtextSendSongbook="Hallo, &#xA;dies ist ein Text" mailserverUrl="mail.gmx.net" mailserverUser="oleys@gmx.de" mailserverPassword="Momopomo351977" mailsubjectSendSongbook="Neueste Version der Liedertexte" mididevice="M1 [hw:1,0,0]#Real Time Sequencer"/>
+  <users mail="khd.rausch@t-online.de" name="Rausch" firstname="Dieter">
+    <presentationschemes type="SCREEN"/>
+  </users>
+  <users mail="biz.heidi-huebner@web.de" name="H&#xfc;bner" firstname="Heidi"/>
+  <users mail="Gabriele.Beetz@gmx.de" name="Beetz" firstname="Gabi"/>
+  <users mail="renate.meinel@gmx.de" name="Meinel" firstname="Renate"/>
+  <users mail="gabyhllein@yahoo.de" name="H&#xf6;llein" firstname="Gaby"/>
+  <users mail="Ursula.Schwemmlein@t-online.de " name="Schwemmlein" firstname="Ursula"/>
+  <users mail="markus.oley@t-online.de" name="" firstname="Loopback" sendSongbook="true">
+    <presentationschemes type="PPT"/>
+  </users>
+  <presentationschemes type="SCREEN"/>
+  <presentationschemes type="PPT"/>
+  <presentationschemes showTitle="false" type="PDF"/>
+</org.mda.model:MidiPlayerRoot>

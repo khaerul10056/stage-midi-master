@@ -2,12 +2,13 @@ package org.mda.additionals;
 
 import java.io.File;
 import java.util.Collection;
-import org.eclipse.swt.graphics.Image;
+
+import org.mda.resources.ImageDescriptor;
 
 
 public interface IPreviewHandler {
 
-  public Image getImage (File file, String key);
+  public ImageDescriptor getImage (File file, String key);
 
   public Collection <AdditionalSuffix> getSupportedSuffixes ();
 

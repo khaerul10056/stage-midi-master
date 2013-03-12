@@ -2,13 +2,14 @@ package org.mda.additionals;
 
 import java.io.File;
 import java.util.Collection;
-import org.eclipse.swt.graphics.Image;
+
+import org.mda.resources.ImageDescriptor;
 
 
 public class NoPreviewHandler implements IPreviewHandler {
 
   @Override
-  public Image getImage (File file, final String key) {
+  public ImageDescriptor getImage (File file, final String key) {
     return null;
   }
 
