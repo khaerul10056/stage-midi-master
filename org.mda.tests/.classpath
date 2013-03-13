@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="lib" path="lib/mockito-all-1.8.5.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry kind="src" path="/org.mda.model" exported="true"/>
+	<classpathentry kind="src" path="/org.mda.core" exported="true"/>
+	<classpathentry kind="src" path="/org.mda.export.powerpoint" exported="true"/>
+	<classpathentry kind="src" path="/org.mda.google" exported="true"/>
+	<classpathentry kind="src" path="/org.mda.javafx.application" exported="true"/>
+	<classpathentry kind="src" path="/org.mda.javafx.presenter" exported="true"/>
+	<classpathentry kind="src" path="/org.mda.midi" exported="true"/>
+	<classpathentry kind="src" path="/org.mda.presenter" exported="true"/>
 </classpath>
