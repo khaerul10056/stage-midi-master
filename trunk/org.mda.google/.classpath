@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="output" path="bin"/>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
 	<classpathentry kind="src" path="/org.mda.core" exported="true"/>
 	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/smm.git/org.mda.google/lib/gdata-calendar-2.0.jar" exported="true"/>
