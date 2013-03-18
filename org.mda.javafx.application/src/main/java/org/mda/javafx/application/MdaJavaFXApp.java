@@ -124,14 +124,14 @@ public class MdaJavaFXApp extends Application {
         accordion.setExpandedPane(modelview.getPane());
         VBox.setVgrow(accordion, Priority.ALWAYS);
  
-        scene = new Scene(vbox, 800, 400, Color.BLACK);
+        scene = new Scene(vbox, 1400, 800, Color.BLACK);
         uiSession.setMainStage(stage);
 
         stage.setTitle("MDA");
         String cssUrl = getClass().getClassLoader().getResource("css/default.css").toExternalForm();
         scene.getStylesheets().add(cssUrl);
         stage.setScene(scene);
-        stage.setFullScreen(true);
+        //stage.setFullScreen(true);
         stage.show();
         
         
