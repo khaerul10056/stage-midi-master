@@ -1,4 +1,4 @@
-package org.mda.javafx.starter;
+package org.mda.starter;
 
 
 

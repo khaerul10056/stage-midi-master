@@ -1,18 +1,54 @@
+
+apply plugin: 'java'
 subprojects {
 
- def javaFxHome = "${System.properties['java.home']}";
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+ def javaHome = "${System.properties['java.home']}";
 
  group = 'org.mda'
 
- apply {
-  plugin 'java'
-  plugin 'eclipse'
- }
 
  repositories {
   mavenCentral()
  }
+}
+
+task application(dependsOn: ':jar') << {
+
+  allprojects { nextProject-> 
+
+
+   def toPath
+   if (nextProject.name.equals("org.mda.bootstrap"))
+    toPath = "$rootDir/build/application/lib"
+   else 
+    toPath = "$rootDir/build/application/plugins"
+
+   copy {
+      from nextProject.configurations.compile
+      into toPath
+   }
+   copy {
+      from file ('build/libs/')
+      into toPath
+      include '**/*.jar'
+   }
+   copy {
+      from file ('lib/')
+      into toPath
+      include '**/*.jar'
+   }
+
+  } 
+
+  copy {
+    from 'org.mda.bootstrap' 
+    into "$rootDir/build/application/bin"
+    include 'startMda*'
+  }
+
 
 
 }
-
