@@ -93,11 +93,9 @@ public class ApplicationSession {
 
   public void load (String originpath) {
 
-    File path = null;
-    if (path == null)
-      path = new File (System.getProperty("user.dir"));
+    File path = new File (originpath != null ? originpath : System.getProperty("user.home"));
 
-    LOGGER.info("Setting current path to " + path);
+    LOGGER.info("Setting current path to " + path + "(from " + originpath + ")");
 
     if (sessionProps.isEmpty()) {
 
@@ -117,7 +115,7 @@ public class ApplicationSession {
         }
       }
 
-      setDefaultOnDemand(sessionProps, PROP_LASTMODELFILE, "mda.model.xml");
+      setDefaultOnDemand(sessionProps, PROP_LASTMODELFILE, new File (confPath.getAbsolutePath(), "mda.model.xml").getAbsolutePath());
       setDefaultOnDemand(sessionProps, PROP_ENABLEGRID, "false");
       setDefaultOnDemand(sessionProps, PROP_SHOWWHITESPACES, "false");
       setDefaultOnDemand(sessionProps, PROP_PRESENTATIONALWAYSONTOP, "true");
@@ -125,8 +123,6 @@ public class ApplicationSession {
 
       //Read the modelfile that was used at last start
       String property = sessionProps.getProperty(PROP_LASTMODELFILE);
-      if (originpath != null)
-        property = originpath;
 
       setLastModelPath(new File (property));
       getFeatureActivation().setShowGridEnabled(Boolean.valueOf(sessionProps.getProperty(PROP_ENABLEGRID)));

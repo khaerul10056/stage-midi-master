@@ -3,6 +3,7 @@ package org.mda.plugins;
 import java.io.File;
 import java.io.IOException;
 import java.lang.annotation.Inherited;
+import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.net.URLStreamHandlerFactory;
@@ -11,9 +12,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
-
-import org.mda.logging.Log;
-import org.mda.logging.LogFactory;
 
 
 
@@ -28,19 +26,14 @@ import org.mda.logging.LogFactory;
  */
 public class PluginClassloader extends URLClassLoader {
 
-  /**
-   * Logger.
-   */
-	private static final Log LOG = LogFactory.getLogger(PluginClassloader.class);
+  
 
   /**
    * {@inheritDoc}
    */
   public PluginClassloader(URL[] urls, ClassLoader parent) {
-    super(urls, parent);
-    if (LOG.isInfoEnabled()) {
-      LOG.info("PluginClassLoader: instance=" + super.toString() + "; URLs=" + Arrays.toString(urls) + "; parent=" + parent);
-    }
+	super(urls, parent);
+    System.out.println("PluginClassLoader: instance=" + super.toString() + "; URLs=" + Arrays.toString(urls) + "; parent=" + parent);
   }
 
   /**
@@ -48,9 +41,8 @@ public class PluginClassloader extends URLClassLoader {
    */
   public PluginClassloader(URL[] urls) {
     super(urls);
-    if (LOG.isInfoEnabled()) {
-      LOG.info("PluginClassLoader: instance=" + this + "; URLs=" + Arrays.toString(urls));
-    }
+    System.out.println("PluginClassLoader: instance=" + this + "; URLs=" + Arrays.toString(urls));
+    
   }
 
   /**
@@ -58,10 +50,9 @@ public class PluginClassloader extends URLClassLoader {
    */
   public PluginClassloader(URL[] urls, ClassLoader parent, URLStreamHandlerFactory factory) {
     super(urls, parent, factory);
-    if (LOG.isInfoEnabled()) {
-      LOG.info("PluginClassLoader: instance=" + this + "; URLs=" + Arrays.toString(urls) + "; parent=" + parent
-          + "; urlStreamHandlerFactory=" + factory);
-    }
+    
+    	System.out.println("PluginClassLoader: instance=" + this + "; URLs=" + Arrays.toString(urls) + "; parent=" + parent + "; urlStreamHandlerFactory=" + factory);
+    
   }
 
   /**
@@ -77,26 +68,18 @@ public class PluginClassloader extends URLClassLoader {
 	    if (loadedClass == null) {
 	      try {
 	        loadedClass = findClass(name);
-	        if (LOG.isDebugEnabled()) {
-	          LOG.debug("loadClass: Klasse gefunden! classLoader=" + this + "; name=" + name);
-	        }
 	      } catch (ClassNotFoundException ignore) {
-	        if (LOG.isDebugEnabled()) {
-	          LOG.debug("loadClass: Klasse nicht gefunden! classLoader=" + this + "; name=" + name);
-	        }
+	        	//System.out.println("loadClass: Klasse nicht gefunden! classLoader=" + this + "; name=" + name);
 	      }
 	    } else {
-	      if (LOG.isDebugEnabled()) {
-	        LOG.debug("loadClass: zustaendig! name=" + name);
-	      }
+	    	//System.out.println("loadClass: zustaendig! name=" + name);
 	    }
 
 	    // So, jetzt delegieren wir an den Parent, weil wir die Klasse nicht laden konnten
 	    if (loadedClass == null) {
 	      loadedClass = super.loadClass(name);
-	      if (LOG.isDebugEnabled()) {
-	        LOG.debug("loadClass: delegiert! classLoader=" + this + "; name=" + name + "; loadedClass=" + loadedClass);
-	      }
+	      //System.out.println("loadClass: delegiert! classLoader=" + this + "; name=" + name + "; loadedClass=" + loadedClass);
+	     
 	    }
 
 	    return loadedClass;
@@ -126,11 +109,16 @@ public Enumeration<URL> getResources(String name) throws IOException {
 	Collection <URL> urls = new ArrayList<URL>();
 	
 	for (URL next: getURLs()) {
-		if (next.getPath().endsWith(".jar")) 
-			LOG.error("Loading resources from jarfile is not yet supported ( " + next.toString() + ")");
+		if (next.getPath().endsWith(".jar")) { 
+			URL jarUrl = new URL ("jar:" + new File (next.getPath()).toURI().toURL().toExternalForm() + "!/" + name);
+			System.out.println("Check Jar URL " + jarUrl.toString());
+			final JarURLConnection connection = (JarURLConnection) jarUrl.openConnection();
+			if (connection.getContentLength() > 0)
+			    urls.add(jarUrl);
+		}
 		else {
 			File file = new File (next.getPath() + File.separator + name);
-			LOG.info("Check URL " + file.getAbsolutePath());
+			System.out.println("Check File URL " + file.getAbsolutePath());
 			if (file.exists())
 				urls.add(file.toURI().toURL());
 		}

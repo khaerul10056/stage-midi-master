@@ -6,22 +6,19 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.mda.logging.Log;
-import org.mda.logging.LogFactory;
-
 /**
  * Creates a plugin classloader from all plugins
  * @author OleyMa
  *
  */
 public class PluginInitializer {
-	private static final Log LOGGER = LogFactory.getLogger(PluginManager.class);
+	
 	
 	private Collection<IPluginFinderStrategy> pluginFinderStrategies = new ArrayList<IPluginFinderStrategy>();
 	
 	public PluginInitializer() {
 		pluginFinderStrategies.add(new DevBasedPluginFinderStrategy());
-		//TODO AppBased
+		pluginFinderStrategies.add(new AppBasedPluginFinderStrategy());
 	}
 	
 	
@@ -36,15 +33,25 @@ public class PluginInitializer {
 	 */
 	public PluginClassloader createPluginClassloader (final File file) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException{
 		
+		System.out.println ("Find plugins in path <" + file.getAbsolutePath() + ">");
+		
 		URL [] urls = null;
 
 		for (IPluginFinderStrategy nextStrategy : pluginFinderStrategies) {
 			if (nextStrategy.isUsed(file)) {
 				if (urls != null)
 					throw new IllegalStateException("Multiple pluginfinder strategies registered for path " + file.getAbsolutePath());
-				else
+				else {
 					urls = nextStrategy.findPlugins(file);
+					if (urls != null) {
+						for (URL next: urls) {
+							System.out.println ("Found plugin " + next.toString());
+						}
+					}
+				}
 			}
+			else
+				System.out.println ("PluginFinderStrategy " + nextStrategy.getClass().getName() + " not used");
 		}
 		
 		PluginClassloader pluginClassloader = new PluginClassloader(urls, getClass().getClassLoader());

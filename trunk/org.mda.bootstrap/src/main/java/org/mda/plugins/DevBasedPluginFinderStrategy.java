@@ -1,7 +1,6 @@
 package org.mda.plugins;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -9,19 +8,13 @@ import java.util.Collection;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
-import org.mda.logging.Log;
-import org.mda.logging.LogFactory;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 public class DevBasedPluginFinderStrategy implements IPluginFinderStrategy {
 
-	private static final Log LOGGER = LogFactory.getLogger(DevBasedPluginFinderStrategy.class);
 
 	@Override
 	public URL[] findPlugins(File path) throws MalformedURLException {
@@ -29,11 +22,10 @@ public class DevBasedPluginFinderStrategy implements IPluginFinderStrategy {
 		
 		
 			File mainPath = getMainPath(path);
-			if (LOGGER.isDebugEnabled())
-			  LOGGER.debug("Find plugins in path " + mainPath.getAbsolutePath());
+ 		    System.out.println("Find plugins in path " + mainPath.getAbsolutePath());
 			for (File next: mainPath.listFiles()) {
 				
-				LOGGER.info("Find plugins in path " + next.getAbsolutePath());
+				System.out.println("Find plugins in path " + next.getAbsolutePath());
 				if (next.isDirectory() && ! next.getName().startsWith(".")) {
 				  addPath(plugins, next, "bin");
 				  addPath(plugins, next, "src");
@@ -70,13 +62,13 @@ public class DevBasedPluginFinderStrategy implements IPluginFinderStrategy {
 			  
 			  URL url = new File (pathNode.getNodeValue()).toURI().toURL();
 			  collectedPaths.add(url);
-			  LOGGER.info("Adding url " + url + " to urls");
+			  System.out.println("Adding url " + url + " to urls");
 			}
 			
 		
 		}
 		} catch (Exception e) {
-			LOGGER.error(e.toString(), e);
+			e.printStackTrace();
 		}
 	}
 	
@@ -91,8 +83,7 @@ public class DevBasedPluginFinderStrategy implements IPluginFinderStrategy {
 		File nextBinPath = new File (mainPath, lastPathName); 
 		if (nextBinPath.exists()) {
 			collectedPaths.add(nextBinPath.toURI().toURL());
-			  if (LOGGER.isDebugEnabled())
-			    LOGGER.debug("Adding url " + nextBinPath.getAbsolutePath() + " to urls");
+			System.out.println("Adding url " + nextBinPath.getAbsolutePath() + " to urls");
 		}
 		
 	}

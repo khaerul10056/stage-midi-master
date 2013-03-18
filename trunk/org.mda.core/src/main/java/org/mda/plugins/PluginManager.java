@@ -42,6 +42,7 @@ public class PluginManager {
 				
 				InjectService.cachedModules.add(loadedmodule);
 				LOGGER.info("Found plugin " + nextURL.toString() + " with injection startup module " + module);
+				System.out.println("Found plugin " + nextURL.toString() + " with injection startup module " + module);
 				
 			}
 			
