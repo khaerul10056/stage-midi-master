@@ -213,6 +213,8 @@ public class SongSlideCalculator extends SlideCalculator {
           LOGGER.info("Load pic from " + picAsFile.getAbsolutePath());
           imageFile = picAsFile;
         }
+        else
+          LOGGER.warn("Pic " + picAsFile.getAbsolutePath() + " doesn't exist");
       }
     }
     else {

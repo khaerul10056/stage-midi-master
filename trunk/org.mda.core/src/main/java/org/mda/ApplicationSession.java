@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.util.Properties;
 
 import mda.Configuration;
-import mda.Song;
 import mda.MidiPlayerRoot;
 import mda.Session;
+import mda.Song;
 
 import org.mda.additionals.AdditionalsHandler;
 import org.mda.listeners.ModelEvents;
@@ -76,10 +76,16 @@ public class ApplicationSession {
    * @return Configpath
    */
   public File getOrCreateConfigPath (File basepath) {
-    File confPath = new File (basepath.getAbsolutePath() + File.separator + ".mda");
+	File basepathReal = basepath != null ? basepath : new File (System.getProperty("user.home"));
+
+    File confPath = new File (basepathReal, ".mda");
     if (! confPath.exists())
       confPath.mkdirs();
     return confPath;
+  }
+  
+  public File getOrCreateConfigPath () {
+	  return getOrCreateConfigPath(null);
   }
   
   
@@ -90,6 +96,8 @@ public class ApplicationSession {
     if (value == null)
       properties.setProperty(key, defaultValue);
   }
+  
+  
 
   public void load (String originpath) {
 
@@ -162,6 +170,8 @@ public class ApplicationSession {
   }
 
   public AdditionalsHandler getAdditionalsHandler () {
+	  
+	  
     if (additionalsHandler == null)
       additionalsHandler = new AdditionalsHandler(getAdditionalsPath());
 
@@ -169,7 +179,9 @@ public class ApplicationSession {
   }
 
   public File getAdditionalsPath () {
-    return new File (model.getConfig().getAdditionalsPath());
+	File additionalsPath = new File (getOrCreateConfigPath(null), "additionals");
+	
+    return additionalsPath;
   }
 
 
