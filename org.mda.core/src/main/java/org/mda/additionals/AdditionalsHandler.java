@@ -27,7 +27,7 @@ public class AdditionalsHandler {
 
   public Additional findByKey (final String key) {
     readOnDemand();
-    LOGGER.info("Find additional by key " + key);
+    LOGGER.info("Find additional by key " + key );
     String [] keyArray = key.split("#");
     if (keyArray.length != 3)
       return null;
@@ -39,9 +39,13 @@ public class AdditionalsHandler {
     Additional compareAdditional = new Additional(null, typeFound, name, suffixFound);
 
     for (Additional additional : additionals) {
-      if (additional.equals(compareAdditional))
+      if (additional.equals(compareAdditional)) {
+    	  LOGGER.info("Found additional " + additional.getFile().getAbsolutePath());
           return additional;
+      }
     }
+    
+    LOGGER.warn("Additional " + key + " not found (All together " + additionals.size() + " additionals found in additionalspath " + additionalsPath.getAbsolutePath() + ")");
 
     return null;
   }

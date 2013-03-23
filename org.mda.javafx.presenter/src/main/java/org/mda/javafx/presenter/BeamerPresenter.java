@@ -19,10 +19,10 @@ import javafx.stage.StageStyle;
 import mda.Session;
 
 import org.mda.ApplicationSession;
-import org.mda.measurement.SizeInfo;
 import org.mda.javafx.imagecache.ImageCache;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.measurement.SizeInfo;
 import org.mda.presenter.CalculationParam;
 import org.mda.presenter.IPresentationView;
 import org.mda.presenter.PresentationContext;
@@ -50,9 +50,6 @@ public class BeamerPresenter implements IPresentationView {
 	
 	@Inject
 	ColorResolver colorResolver;
-	
-	@Inject
-	BackgroundImageResolver backgroundImageResolver;
 	
 	@Inject
 	private ImageCache imageCache;
@@ -183,6 +180,7 @@ public class BeamerPresenter implements IPresentationView {
 	
 	private void addStyle (final Pane pane, final Slide slide, AreaInfo beamerpresenterBounds) {
 		if (slide.getBackgroundImageFile() != null) {
+			LOGGER.info("Load backgroundimage " + slide.getBackgroundColor());
 			ImageView imageView = new ImageView(imageCache.getImage(slide.getBackgroundImageFile(),beamerpresenterBounds.getSize()));
 			imageView.setFitWidth(beamerpresenterBounds.getWidth());
 			imageView.setFitHeight(beamerpresenterBounds.getHeight());
