@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda.impl;
 
@@ -32,7 +28,7 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 */
 	public static MidiplayerFactory init() {
 		try {
-			MidiplayerFactory theMidiplayerFactory = (MidiplayerFactory)EPackage.Registry.INSTANCE.getEFactory("org.mda.model"); 
+			MidiplayerFactory theMidiplayerFactory = (MidiplayerFactory)EPackage.Registry.INSTANCE.getEFactory(MidiplayerPackage.eNS_URI);
 			if (theMidiplayerFactory != null) {
 				return theMidiplayerFactory;
 			}
@@ -72,6 +68,7 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 			case MidiplayerPackage.USER: return createUser();
 			case MidiplayerPackage.COPYRIGHT: return createCopyright();
 			case MidiplayerPackage.PRESENTATION_SCHEME: return createPresentationScheme();
+			case MidiplayerPackage.SPECIAL_MEDIA: return createSpecialMedia();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -120,7 +117,6 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Session createSession() {
 		SessionImpl session = new SessionImpl();
 		return session;
@@ -161,7 +157,6 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Gallery createGallery() {
 		GalleryImpl gallery = new GalleryImpl();
 		return gallery;
@@ -172,7 +167,6 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public MidiPlayerRoot createMidiPlayerRoot() {
 		MidiPlayerRootImpl midiPlayerRoot = new MidiPlayerRootImpl();
 		return midiPlayerRoot;
@@ -190,49 +184,55 @@ public class MidiplayerFactoryImpl extends EFactoryImpl implements MidiplayerFac
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public Configuration createConfiguration() {
+	public Configuration createConfiguration() {
 		ConfigurationImpl configuration = new ConfigurationImpl();
 		return configuration;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public User createUser() {
+	public User createUser() {
 		UserImpl user = new UserImpl();
 		return user;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public Copyright createCopyright() {
+	public Copyright createCopyright() {
 		CopyrightImpl copyright = new CopyrightImpl();
 		return copyright;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public PresentationScheme createPresentationScheme() {
+	public PresentationScheme createPresentationScheme() {
 		PresentationSchemeImpl presentationScheme = new PresentationSchemeImpl();
 		return presentationScheme;
 	}
 
-  /**
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SpecialMedia createSpecialMedia() {
+		SpecialMediaImpl specialMedia = new SpecialMediaImpl();
+		return specialMedia;
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -243,7 +243,7 @@ public PresentationScheme createPresentationScheme() {
 		return result;
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -252,52 +252,51 @@ public PresentationScheme createPresentationScheme() {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public AdditionalType createAdditionalTypeFromString(EDataType eDataType, String initialValue) {
+	public AdditionalType createAdditionalTypeFromString(EDataType eDataType, String initialValue) {
 		AdditionalType result = AdditionalType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String convertAdditionalTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertAdditionalTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public UserType createUserTypeFromString(EDataType eDataType, String initialValue) {
+	public UserType createUserTypeFromString(EDataType eDataType, String initialValue) {
 		UserType result = UserType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public String convertUserTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	public String convertUserTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MidiplayerPackage getMidiplayerPackage() {
 		return (MidiplayerPackage)getEPackage();
 	}

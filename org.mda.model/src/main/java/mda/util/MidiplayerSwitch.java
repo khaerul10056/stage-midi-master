@@ -1,24 +1,12 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda.util;
 
 import mda.*;
-import mda.AbstractSessionItem;
-import mda.Configuration;
-import mda.Gallery;
-import mda.Song;
-import mda.SongChordPart;
-import mda.SongPart;
-import mda.SongTextLine;
-import mda.MidiPlayerRoot;
-import mda.MidiplayerPackage;
-import mda.Session;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
 
 /**
@@ -58,17 +46,17 @@ public class MidiplayerSwitch<T> extends Switch<T> {
 	/**
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @parameter ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
-  @Override
-  protected boolean isSwitchFor(EPackage ePackage) {
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage) {
 		return ePackage == modelPackage;
 	}
 
-  /**
+	/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,7 +64,7 @@ public class MidiplayerSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	@Override
-  protected T doSwitch(int classifierID, EObject theEObject) {
+	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case MidiplayerPackage.SESSION: {
 				Session session = (Session)theEObject;
@@ -148,6 +136,13 @@ public class MidiplayerSwitch<T> extends Switch<T> {
 			case MidiplayerPackage.PRESENTATION_SCHEME: {
 				PresentationScheme presentationScheme = (PresentationScheme)theEObject;
 				T result = casePresentationScheme(presentationScheme);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MidiplayerPackage.SPECIAL_MEDIA: {
+				SpecialMedia specialMedia = (SpecialMedia)theEObject;
+				T result = caseSpecialMedia(specialMedia);
+				if (result == null) result = caseAbstractSessionItem(specialMedia);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -278,64 +273,79 @@ public class MidiplayerSwitch<T> extends Switch<T> {
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Configuration</em>'.
 	 * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-  public T caseConfiguration(Configuration object) {
+	public T caseConfiguration(Configuration object) {
 		return null;
 	}
 
-  /**
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>User</em>'.
 	 * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>User</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-  public T caseUser(User object) {
+	public T caseUser(User object) {
 		return null;
 	}
 
-  /**
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Copyright</em>'.
 	 * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Copyright</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-  public T caseCopyright(Copyright object) {
+	public T caseCopyright(Copyright object) {
 		return null;
 	}
 
-  /**
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Presentation Scheme</em>'.
 	 * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Presentation Scheme</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-  public T casePresentationScheme(PresentationScheme object) {
+	public T casePresentationScheme(PresentationScheme object) {
 		return null;
 	}
 
-  /**
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Special Media</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Special Media</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSpecialMedia(SpecialMedia object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -347,7 +357,7 @@ public class MidiplayerSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	@Override
-  public T defaultCase(EObject object) {
+	public T defaultCase(EObject object) {
 		return null;
 	}
 

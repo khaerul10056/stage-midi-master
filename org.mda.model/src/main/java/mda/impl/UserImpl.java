@@ -1,23 +1,25 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda.impl;
 
 import java.util.Collection;
+
 import mda.MidiplayerPackage;
 import mda.PresentationScheme;
 import mda.User;
 import mda.UserType;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -41,313 +43,300 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class UserImpl extends EObjectImpl implements User {
-  /**
+	/**
 	 * The default value of the '{@link #getMail() <em>Mail</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getMail()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String MAIL_EDEFAULT = null;
+	protected static final String MAIL_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getMail() <em>Mail</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getMail()
 	 * @generated
 	 * @ordered
 	 */
-  protected String mail = MAIL_EDEFAULT;
+	protected String mail = MAIL_EDEFAULT;
 
-  /**
+	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String NAME_EDEFAULT = null;
+	protected static final String NAME_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-  protected String name = NAME_EDEFAULT;
+	protected String name = NAME_EDEFAULT;
 
-  /**
+	/**
 	 * The default value of the '{@link #getFirstname() <em>Firstname</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getFirstname()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String FIRSTNAME_EDEFAULT = null;
+	protected static final String FIRSTNAME_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getFirstname() <em>Firstname</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getFirstname()
 	 * @generated
 	 * @ordered
 	 */
-  protected String firstname = FIRSTNAME_EDEFAULT;
+	protected String firstname = FIRSTNAME_EDEFAULT;
 
-  /**
+	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final UserType TYPE_EDEFAULT = UserType.MEMBER;
+	protected static final UserType TYPE_EDEFAULT = UserType.MEMBER;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-  protected UserType type = TYPE_EDEFAULT;
+	protected UserType type = TYPE_EDEFAULT;
 
-  /**
+	/**
 	 * The default value of the '{@link #isSendSongbook() <em>Send Songbook</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isSendSongbook()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final boolean SEND_SONGBOOK_EDEFAULT = false;
+	protected static final boolean SEND_SONGBOOK_EDEFAULT = false;
 
-  /**
+	/**
 	 * The cached value of the '{@link #isSendSongbook() <em>Send Songbook</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #isSendSongbook()
 	 * @generated
 	 * @ordered
 	 */
-  protected boolean sendSongbook = SEND_SONGBOOK_EDEFAULT;
+	protected boolean sendSongbook = SEND_SONGBOOK_EDEFAULT;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getPresentationschemes() <em>Presentationschemes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getPresentationschemes()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<PresentationScheme> presentationschemes;
+	protected EList<PresentationScheme> presentationschemes;
 
-  /**
+	/**
 	 * The default value of the '{@link #getDefaultPresentationType() <em>Default Presentation Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getDefaultPresentationType()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String DEFAULT_PRESENTATION_TYPE_EDEFAULT = null;
+	protected static final String DEFAULT_PRESENTATION_TYPE_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getDefaultPresentationType() <em>Default Presentation Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getDefaultPresentationType()
 	 * @generated
 	 * @ordered
 	 */
-  protected String defaultPresentationType = DEFAULT_PRESENTATION_TYPE_EDEFAULT;
+	protected String defaultPresentationType = DEFAULT_PRESENTATION_TYPE_EDEFAULT;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected UserImpl() {
+	protected UserImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
 		return MidiplayerPackage.Literals.USER;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getMail() {
+	public String getMail() {
 		return mail;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setMail(String newMail) {
+	public void setMail(String newMail) {
 		String oldMail = mail;
 		mail = newMail;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.USER__MAIL, oldMail, mail));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getName() {
+	public String getName() {
 		return name;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setName(String newName) {
+	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.USER__NAME, oldName, name));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getFirstname() {
+	public String getFirstname() {
 		return firstname;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setFirstname(String newFirstname) {
+	public void setFirstname(String newFirstname) {
 		String oldFirstname = firstname;
 		firstname = newFirstname;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.USER__FIRSTNAME, oldFirstname, firstname));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public UserType getType() {
+	public UserType getType() {
 		return type;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setType(UserType newType) {
+	public void setType(UserType newType) {
 		UserType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.USER__TYPE, oldType, type));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public boolean isSendSongbook() {
+	public boolean isSendSongbook() {
 		return sendSongbook;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setSendSongbook(boolean newSendSongbook) {
+	public void setSendSongbook(boolean newSendSongbook) {
 		boolean oldSendSongbook = sendSongbook;
 		sendSongbook = newSendSongbook;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.USER__SEND_SONGBOOK, oldSendSongbook, sendSongbook));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public EList<PresentationScheme> getPresentationschemes() {
+	public EList<PresentationScheme> getPresentationschemes() {
 		if (presentationschemes == null) {
 			presentationschemes = new EObjectContainmentEList<PresentationScheme>(PresentationScheme.class, this, MidiplayerPackage.USER__PRESENTATIONSCHEMES);
 		}
 		return presentationschemes;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getDefaultPresentationType() {
+	public String getDefaultPresentationType() {
 		return defaultPresentationType;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setDefaultPresentationType(String newDefaultPresentationType) {
+	public void setDefaultPresentationType(String newDefaultPresentationType) {
 		String oldDefaultPresentationType = defaultPresentationType;
 		defaultPresentationType = newDefaultPresentationType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.USER__DEFAULT_PRESENTATION_TYPE, oldDefaultPresentationType, defaultPresentationType));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case MidiplayerPackage.USER__PRESENTATIONSCHEMES:
 				return ((InternalEList<?>)getPresentationschemes()).basicRemove(otherEnd, msgs);
@@ -355,13 +344,13 @@ public void setDefaultPresentationType(String newDefaultPresentationType) {
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MidiplayerPackage.USER__MAIL:
 				return getMail();
@@ -381,14 +370,14 @@ public void setDefaultPresentationType(String newDefaultPresentationType) {
 		return super.eGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue) {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MidiplayerPackage.USER__MAIL:
 				setMail((String)newValue);
@@ -416,13 +405,13 @@ public void setDefaultPresentationType(String newDefaultPresentationType) {
 		super.eSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MidiplayerPackage.USER__MAIL:
 				setMail(MAIL_EDEFAULT);
@@ -449,13 +438,13 @@ public void setDefaultPresentationType(String newDefaultPresentationType) {
 		super.eUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case MidiplayerPackage.USER__MAIL:
 				return MAIL_EDEFAULT == null ? mail != null : !MAIL_EDEFAULT.equals(mail);
@@ -475,13 +464,13 @@ public void setDefaultPresentationType(String newDefaultPresentationType) {
 		return super.eIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public String toString() {
+	@Override
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

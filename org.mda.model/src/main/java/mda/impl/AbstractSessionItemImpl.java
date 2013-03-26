@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda.impl;
 
@@ -76,44 +72,44 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
 	/**
 	 * The default value of the '{@link #getBackgroundColor() <em>Background Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getBackgroundColor()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String BACKGROUND_COLOR_EDEFAULT = null;
+	protected static final String BACKGROUND_COLOR_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getBackgroundColor() <em>Background Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getBackgroundColor()
 	 * @generated
 	 * @ordered
 	 */
-  protected String backgroundColor = BACKGROUND_COLOR_EDEFAULT;
+	protected String backgroundColor = BACKGROUND_COLOR_EDEFAULT;
 
-  /**
+	/**
 	 * The default value of the '{@link #getForegroundColor() <em>Foreground Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getForegroundColor()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String FOREGROUND_COLOR_EDEFAULT = null;
+	protected static final String FOREGROUND_COLOR_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getForegroundColor() <em>Foreground Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getForegroundColor()
 	 * @generated
 	 * @ordered
 	 */
-  protected String foregroundColor = FOREGROUND_COLOR_EDEFAULT;
+	protected String foregroundColor = FOREGROUND_COLOR_EDEFAULT;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -137,7 +133,6 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getName() {
 		return name;
 	}
@@ -147,7 +142,6 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -160,7 +154,6 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getPath() {
 		return path;
 	}
@@ -170,7 +163,6 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setPath(String newPath) {
 		String oldPath = path;
 		path = newPath;
@@ -180,51 +172,47 @@ public abstract class AbstractSessionItemImpl extends EObjectImpl implements Abs
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getBackgroundColor() {
+	public String getBackgroundColor() {
 		return backgroundColor;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setBackgroundColor(String newBackgroundColor) {
+	public void setBackgroundColor(String newBackgroundColor) {
 		String oldBackgroundColor = backgroundColor;
 		backgroundColor = newBackgroundColor;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.ABSTRACT_SESSION_ITEM__BACKGROUND_COLOR, oldBackgroundColor, backgroundColor));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getForegroundColor() {
+	public String getForegroundColor() {
 		return foregroundColor;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setForegroundColor(String newForegroundColor) {
+	public void setForegroundColor(String newForegroundColor) {
 		String oldForegroundColor = foregroundColor;
 		foregroundColor = newForegroundColor;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.ABSTRACT_SESSION_ITEM__FOREGROUND_COLOR, oldForegroundColor, foregroundColor));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

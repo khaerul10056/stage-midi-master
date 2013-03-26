@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda;
 
@@ -14,7 +10,7 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Midi File Part Type</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Song Part Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * @see mda.MidiplayerPackage#getSongPartType()
@@ -60,31 +56,37 @@ public enum SongPartType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SOLO(3, "SOLO", "SOLO"), /**
+	SOLO(3, "SOLO", "SOLO"),
+
+	/**
 	 * The '<em><b>ZWISCHENSPIEL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #ZWISCHENSPIEL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-  ZWISCHENSPIEL(4, "ZWISCHENSPIEL", "ZWISCHENSPIEL"), /**
+	ZWISCHENSPIEL(4, "ZWISCHENSPIEL", "ZWISCHENSPIEL"),
+
+	/**
 	 * The '<em><b>INTRO</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #INTRO_VALUE
 	 * @generated
 	 * @ordered
 	 */
-  INTRO(5, "INTRO", "INTRO"), /**
+	INTRO(5, "INTRO", "INTRO"),
+
+	/**
 	 * The '<em><b>EXTRO</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #EXTRO_VALUE
 	 * @generated
 	 * @ordered
 	 */
-  EXTRO(6, "EXTRO", "EXTRO");
+	EXTRO(6, "EXTRO", "EXTRO");
 
 	/**
 	 * The '<em><b>REFRAIN</b></em>' literal value.
@@ -149,49 +151,49 @@ public enum SongPartType implements Enumerator {
 	/**
 	 * The '<em><b>ZWISCHENSPIEL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of '<em><b>ZWISCHENSPIEL</b></em>' literal object isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ZWISCHENSPIEL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @see #ZWISCHENSPIEL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-  public static final int ZWISCHENSPIEL_VALUE = 4;
+	public static final int ZWISCHENSPIEL_VALUE = 4;
 
-  /**
+	/**
 	 * The '<em><b>INTRO</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of '<em><b>INTRO</b></em>' literal object isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>INTRO</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @see #INTRO
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-  public static final int INTRO_VALUE = 5;
+	public static final int INTRO_VALUE = 5;
 
-  /**
+	/**
 	 * The '<em><b>EXTRO</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of '<em><b>EXTRO</b></em>' literal object isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>EXTRO</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @see #EXTRO
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-  public static final int EXTRO_VALUE = 6;
+	public static final int EXTRO_VALUE = 6;
 
-  /**
+	/**
 	 * An array of all the '<em><b>Song Part Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -305,7 +307,6 @@ public enum SongPartType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public int getValue() {
 	  return value;
 	}
@@ -315,7 +316,6 @@ public enum SongPartType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getName() {
 	  return name;
 	}
@@ -325,7 +325,6 @@ public enum SongPartType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getLiteral() {
 	  return literal;
 	}
@@ -341,4 +340,4 @@ public enum SongPartType implements Enumerator {
 		return literal;
 	}
 	
-} //MidiFilePartType
+} //SongPartType

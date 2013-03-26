@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda;
 
@@ -12,7 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Midi File Part</b></em>'.
+ * A representation of the model object '<em><b>Song Part</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -76,59 +72,59 @@ public interface SongPart extends EObject {
 	 */
 	void setParttype(SongPartType value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Bar</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Bar</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bar</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bar</em>' attribute.
 	 * @see #setBar(int)
 	 * @see mda.MidiplayerPackage#getSongPart_Bar()
 	 * @model
 	 * @generated
 	 */
-  int getBar();
+	int getBar();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.SongPart#getBar <em>Bar</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Bar</em>' attribute.
 	 * @see #getBar()
 	 * @generated
 	 */
-  void setBar(int value);
+	void setBar(int value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Ref Part</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Ref Part</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ref Part</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ref Part</em>' reference.
 	 * @see #setRefPart(SongPart)
 	 * @see mda.MidiplayerPackage#getSongPart_RefPart()
 	 * @model
 	 * @generated
 	 */
-  SongPart getRefPart();
+	SongPart getRefPart();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.SongPart#getRefPart <em>Ref Part</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Ref Part</em>' reference.
 	 * @see #getRefPart()
 	 * @generated
 	 */
-  void setRefPart(SongPart value);
+	void setRefPart(SongPart value);
 
-		/**
+	/**
 	 * Returns the value of the '<em><b>Position</b></em>' attribute.
 	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
@@ -145,7 +141,7 @@ public interface SongPart extends EObject {
 	 */
 	String getPosition();
 
-		/**
+	/**
 	 * Sets the value of the '{@link mda.SongPart#getPosition <em>Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -155,4 +151,4 @@ public interface SongPart extends EObject {
 	 */
 	void setPosition(String value);
 
-} // MidiFilePart
+} // SongPart

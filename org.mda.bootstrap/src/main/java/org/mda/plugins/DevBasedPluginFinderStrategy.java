@@ -27,9 +27,10 @@ public class DevBasedPluginFinderStrategy implements IPluginFinderStrategy {
 				
 				System.out.println("Find plugins in path " + next.getAbsolutePath());
 				if (next.isDirectory() && ! next.getName().startsWith(".")) {
+				  addPath(plugins, next, null);
+				  addPath(plugins, next, "src/main/resources");
+				  addPath(plugins, next, "src/main/java");
 				  addPath(plugins, next, "bin");
-				  addPath(plugins, next, "src");
-				  addPath(plugins, next, "icons");
 				  addDependencies(plugins, new File (next, ".classpath"));
 				}
 			}		
@@ -80,7 +81,8 @@ public class DevBasedPluginFinderStrategy implements IPluginFinderStrategy {
 	 * @throws MalformedURLException if the url was malformed
 	 */
 	private void addPath (final Collection<URL> collectedPaths, final File mainPath, final String lastPathName) throws MalformedURLException {
-		File nextBinPath = new File (mainPath, lastPathName); 
+		
+		File nextBinPath = lastPathName != null ? new File (mainPath, lastPathName): mainPath; 
 		if (nextBinPath.exists()) {
 			collectedPaths.add(nextBinPath.toURI().toURL());
 			System.out.println("Adding url " + nextBinPath.getAbsolutePath() + " to urls");

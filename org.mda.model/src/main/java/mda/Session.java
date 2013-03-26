@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda;
 
@@ -60,7 +56,7 @@ public interface Session extends EObject {
 	 * The list contents are of type {@link mda.AbstractSessionItem}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Items</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Items</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

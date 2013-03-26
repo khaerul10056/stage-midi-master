@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda.impl;
 
@@ -14,8 +10,8 @@ import mda.MidiPlayerRoot;
 import mda.MidiplayerPackage;
 import mda.PresentationScheme;
 import mda.Session;
-
 import mda.User;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -71,34 +67,34 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
 	/**
 	 * The cached value of the '{@link #getConfig() <em>Config</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getConfig()
 	 * @generated
 	 * @ordered
 	 */
-  protected Configuration config;
+	protected Configuration config;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getUsers() <em>Users</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getUsers()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<User> users;
+	protected EList<User> users;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getPresentationschemes() <em>Presentationschemes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getPresentationschemes()
 	 * @generated
 	 * @ordered
 	 */
-  protected EList<PresentationScheme> presentationschemes;
+	protected EList<PresentationScheme> presentationschemes;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -122,7 +118,6 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Gallery getGallery() {
 		return gallery;
 	}
@@ -147,7 +142,6 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setGallery(Gallery newGallery) {
 		if (newGallery != gallery) {
 			NotificationChain msgs = null;
@@ -167,7 +161,6 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Session> getSessions() {
 		if (sessions == null) {
 			sessions = new EObjectContainmentEList<Session>(Session.class, this, MidiplayerPackage.MIDI_PLAYER_ROOT__SESSIONS);
@@ -177,20 +170,19 @@ public class MidiPlayerRootImpl extends EObjectImpl implements MidiPlayerRoot {
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public Configuration getConfig() {
+	public Configuration getConfig() {
 		return config;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain basicSetConfig(Configuration newConfig, NotificationChain msgs) {
+	public NotificationChain basicSetConfig(Configuration newConfig, NotificationChain msgs) {
 		Configuration oldConfig = config;
 		config = newConfig;
 		if (eNotificationRequired()) {
@@ -200,13 +192,12 @@ public Configuration getConfig() {
 		return msgs;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setConfig(Configuration newConfig) {
+	public void setConfig(Configuration newConfig) {
 		if (newConfig != config) {
 			NotificationChain msgs = null;
 			if (config != null)
@@ -220,33 +211,31 @@ public void setConfig(Configuration newConfig) {
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.MIDI_PLAYER_ROOT__CONFIG, newConfig, newConfig));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public EList<User> getUsers() {
+	public EList<User> getUsers() {
 		if (users == null) {
 			users = new EObjectContainmentEList<User>(User.class, this, MidiplayerPackage.MIDI_PLAYER_ROOT__USERS);
 		}
 		return users;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public EList<PresentationScheme> getPresentationschemes() {
+	public EList<PresentationScheme> getPresentationschemes() {
 		if (presentationschemes == null) {
 			presentationschemes = new EObjectContainmentEList<PresentationScheme>(PresentationScheme.class, this, MidiplayerPackage.MIDI_PLAYER_ROOT__PRESENTATIONSCHEMES);
 		}
 		return presentationschemes;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

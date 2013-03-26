@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda;
 
@@ -22,83 +18,83 @@ import org.eclipse.emf.common.util.Enumerator;
  * @generated
  */
 public enum UserType implements Enumerator {
-  /**
+	/**
 	 * The '<em><b>MEMBER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #MEMBER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-  MEMBER(0, "MEMBER", "MEMBER"),
+	MEMBER(0, "MEMBER", "MEMBER"),
 
-  /**
+	/**
 	 * The '<em><b>FRIEND</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #FRIEND_VALUE
 	 * @generated
 	 * @ordered
 	 */
-  FRIEND(0, "FRIEND", "FRIEND");
+	FRIEND(0, "FRIEND", "FRIEND");
 
-  /**
+	/**
 	 * The '<em><b>MEMBER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of '<em><b>MEMBER</b></em>' literal object isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MEMBER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @see #MEMBER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-  public static final int MEMBER_VALUE = 0;
+	public static final int MEMBER_VALUE = 0;
 
-  /**
+	/**
 	 * The '<em><b>FRIEND</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of '<em><b>FRIEND</b></em>' literal object isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FRIEND</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @see #FRIEND
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-  public static final int FRIEND_VALUE = 0;
+	public static final int FRIEND_VALUE = 0;
 
-  /**
+	/**
 	 * An array of all the '<em><b>User Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private static final UserType[] VALUES_ARRAY =
-    new UserType[] {
+	private static final UserType[] VALUES_ARRAY =
+		new UserType[] {
 			MEMBER,
 			FRIEND,
 		};
 
-  /**
+	/**
 	 * A public read-only list of all the '<em><b>User Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static final List<UserType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<UserType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-  /**
+	/**
 	 * Returns the '<em><b>User Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static UserType get(String literal) {
+	public static UserType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			UserType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
@@ -108,13 +104,13 @@ public enum UserType implements Enumerator {
 		return null;
 	}
 
-  /**
+	/**
 	 * Returns the '<em><b>User Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static UserType getByName(String name) {
+	public static UserType getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			UserType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
@@ -124,91 +120,88 @@ public enum UserType implements Enumerator {
 		return null;
 	}
 
-  /**
+	/**
 	 * Returns the '<em><b>User Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public static UserType get(int value) {
+	public static UserType get(int value) {
 		switch (value) {
 			case MEMBER_VALUE: return MEMBER;
 		}
 		return null;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private final int value;
+	private final int value;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private final String name;
+	private final String name;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private final String literal;
+	private final String literal;
 
-  /**
+	/**
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private UserType(int value, String name, String literal) {
+	private UserType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public int getValue() {
+	public int getValue() {
 	  return value;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getName() {
+	public String getName() {
 	  return name;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getLiteral() {
+	public String getLiteral() {
 	  return literal;
 	}
 
-  /**
+	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public String toString() {
+	@Override
+	public String toString() {
 		return literal;
 	}
-  
+	
 } //UserType

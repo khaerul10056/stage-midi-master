@@ -33,21 +33,13 @@ public class IconRegistry {
 	 * 
 	 * @param plugin
 	 */
-	//public void registerIcons (Bundle bundle) {
-		//TODO make
-//		Enumeration<String> entry = bundle.getEntryPaths("/icons/");
-//		if (entry == null)
-//			return;
-//		
-//		while (entry.hasMoreElements()) {
-//		  String nextElement = entry.nextElement();
-//		  String name = nextElement.substring(6, nextElement.length()); //icons-package is removed
-//		  if (registeredImages.get(name) != null)
-//			throw new IllegalStateException("Icon with name " + name + " already registered");
-//		  LOGGER.info("Load icon " + nextElement + " with name " + name + " in plugin " + bundle.getSymbolicName());
-//		  registeredImages.put(name, bundle.getEntry(nextElement));
-//		}
-	//}
+	public void registerIcon (URL url) {
+		String urlAsString = url.toExternalForm();
+		int indexFrom = urlAsString.lastIndexOf("/") + 1;
+		String name = urlAsString.substring(indexFrom);
+		LOGGER.info("Register icon <" + url + "> with name <" + name + ">");
+		registeredImages.put(name, url);
+	}
 	
 	/**
 	 * gets the icon with the given key, 

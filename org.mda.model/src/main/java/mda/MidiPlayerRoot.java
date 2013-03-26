@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda;
 
@@ -73,62 +69,62 @@ public interface MidiPlayerRoot extends EObject {
 	 */
 	EList<Session> getSessions();
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Config</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Config</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Config</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Config</em>' containment reference.
 	 * @see #setConfig(Configuration)
 	 * @see mda.MidiplayerPackage#getMidiPlayerRoot_Config()
 	 * @model containment="true"
 	 * @generated
 	 */
-  Configuration getConfig();
+	Configuration getConfig();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.MidiPlayerRoot#getConfig <em>Config</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Config</em>' containment reference.
 	 * @see #getConfig()
 	 * @generated
 	 */
-  void setConfig(Configuration value);
+	void setConfig(Configuration value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Users</b></em>' containment reference list.
 	 * The list contents are of type {@link mda.User}.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Users</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Users</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Users</em>' containment reference list.
 	 * @see mda.MidiplayerPackage#getMidiPlayerRoot_Users()
 	 * @model containment="true"
 	 * @generated
 	 */
-  EList<User> getUsers();
+	EList<User> getUsers();
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Presentationschemes</b></em>' containment reference list.
 	 * The list contents are of type {@link mda.PresentationScheme}.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Presentationschemes</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Presentationschemes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Presentationschemes</em>' containment reference list.
 	 * @see mda.MidiplayerPackage#getMidiPlayerRoot_Presentationschemes()
 	 * @model containment="true"
 	 * @generated
 	 */
-  EList<PresentationScheme> getPresentationschemes();
+	EList<PresentationScheme> getPresentationschemes();
 
 } // MidiPlayerRoot

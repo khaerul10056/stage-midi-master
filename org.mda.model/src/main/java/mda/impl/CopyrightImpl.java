@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda.impl;
 
@@ -36,333 +32,319 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * @generated
  */
 public class CopyrightImpl extends EObjectImpl implements Copyright {
-  /**
+	/**
 	 * The default value of the '{@link #getOriginaltitle() <em>Originaltitle</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOriginaltitle()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String ORIGINALTITLE_EDEFAULT = null;
+	protected static final String ORIGINALTITLE_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getOriginaltitle() <em>Originaltitle</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOriginaltitle()
 	 * @generated
 	 * @ordered
 	 */
-  protected String originaltitle = ORIGINALTITLE_EDEFAULT;
+	protected String originaltitle = ORIGINALTITLE_EDEFAULT;
 
-  /**
+	/**
 	 * The default value of the '{@link #getWriterMusic() <em>Writer Music</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getWriterMusic()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String WRITER_MUSIC_EDEFAULT = null;
+	protected static final String WRITER_MUSIC_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getWriterMusic() <em>Writer Music</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getWriterMusic()
 	 * @generated
 	 * @ordered
 	 */
-  protected String writerMusic = WRITER_MUSIC_EDEFAULT;
+	protected String writerMusic = WRITER_MUSIC_EDEFAULT;
 
-  /**
+	/**
 	 * The default value of the '{@link #getWriterText() <em>Writer Text</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getWriterText()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String WRITER_TEXT_EDEFAULT = null;
+	protected static final String WRITER_TEXT_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getWriterText() <em>Writer Text</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getWriterText()
 	 * @generated
 	 * @ordered
 	 */
-  protected String writerText = WRITER_TEXT_EDEFAULT;
+	protected String writerText = WRITER_TEXT_EDEFAULT;
 
-  /**
+	/**
 	 * The default value of the '{@link #getWriterInlandText() <em>Writer Inland Text</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getWriterInlandText()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String WRITER_INLAND_TEXT_EDEFAULT = null;
+	protected static final String WRITER_INLAND_TEXT_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getWriterInlandText() <em>Writer Inland Text</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getWriterInlandText()
 	 * @generated
 	 * @ordered
 	 */
-  protected String writerInlandText = WRITER_INLAND_TEXT_EDEFAULT;
+	protected String writerInlandText = WRITER_INLAND_TEXT_EDEFAULT;
 
-  /**
+	/**
 	 * The default value of the '{@link #getYear() <em>Year</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getYear()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final int YEAR_EDEFAULT = 0;
+	protected static final int YEAR_EDEFAULT = 0;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getYear() <em>Year</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getYear()
 	 * @generated
 	 * @ordered
 	 */
-  protected int year = YEAR_EDEFAULT;
+	protected int year = YEAR_EDEFAULT;
 
-  /**
+	/**
 	 * The default value of the '{@link #getPublisher() <em>Publisher</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getPublisher()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String PUBLISHER_EDEFAULT = null;
+	protected static final String PUBLISHER_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getPublisher() <em>Publisher</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getPublisher()
 	 * @generated
 	 * @ordered
 	 */
-  protected String publisher = PUBLISHER_EDEFAULT;
+	protected String publisher = PUBLISHER_EDEFAULT;
 
-  /**
+	/**
 	 * The default value of the '{@link #getPublisherInland() <em>Publisher Inland</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getPublisherInland()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String PUBLISHER_INLAND_EDEFAULT = null;
+	protected static final String PUBLISHER_INLAND_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getPublisherInland() <em>Publisher Inland</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getPublisherInland()
 	 * @generated
 	 * @ordered
 	 */
-  protected String publisherInland = PUBLISHER_INLAND_EDEFAULT;
+	protected String publisherInland = PUBLISHER_INLAND_EDEFAULT;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected CopyrightImpl() {
+	protected CopyrightImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
 		return MidiplayerPackage.Literals.COPYRIGHT;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getOriginaltitle() {
+	public String getOriginaltitle() {
 		return originaltitle;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setOriginaltitle(String newOriginaltitle) {
+	public void setOriginaltitle(String newOriginaltitle) {
 		String oldOriginaltitle = originaltitle;
 		originaltitle = newOriginaltitle;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.COPYRIGHT__ORIGINALTITLE, oldOriginaltitle, originaltitle));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getWriterMusic() {
+	public String getWriterMusic() {
 		return writerMusic;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setWriterMusic(String newWriterMusic) {
+	public void setWriterMusic(String newWriterMusic) {
 		String oldWriterMusic = writerMusic;
 		writerMusic = newWriterMusic;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.COPYRIGHT__WRITER_MUSIC, oldWriterMusic, writerMusic));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getWriterText() {
+	public String getWriterText() {
 		return writerText;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setWriterText(String newWriterText) {
+	public void setWriterText(String newWriterText) {
 		String oldWriterText = writerText;
 		writerText = newWriterText;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.COPYRIGHT__WRITER_TEXT, oldWriterText, writerText));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getWriterInlandText() {
+	public String getWriterInlandText() {
 		return writerInlandText;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setWriterInlandText(String newWriterInlandText) {
+	public void setWriterInlandText(String newWriterInlandText) {
 		String oldWriterInlandText = writerInlandText;
 		writerInlandText = newWriterInlandText;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.COPYRIGHT__WRITER_INLAND_TEXT, oldWriterInlandText, writerInlandText));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public int getYear() {
+	public int getYear() {
 		return year;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setYear(int newYear) {
+	public void setYear(int newYear) {
 		int oldYear = year;
 		year = newYear;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.COPYRIGHT__YEAR, oldYear, year));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getPublisher() {
+	public String getPublisher() {
 		return publisher;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setPublisher(String newPublisher) {
+	public void setPublisher(String newPublisher) {
 		String oldPublisher = publisher;
 		publisher = newPublisher;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.COPYRIGHT__PUBLISHER, oldPublisher, publisher));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getPublisherInland() {
+	public String getPublisherInland() {
 		return publisherInland;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setPublisherInland(String newPublisherInland) {
+	public void setPublisherInland(String newPublisherInland) {
 		String oldPublisherInland = publisherInland;
 		publisherInland = newPublisherInland;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.COPYRIGHT__PUBLISHER_INLAND, oldPublisherInland, publisherInland));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MidiplayerPackage.COPYRIGHT__ORIGINALTITLE:
 				return getOriginaltitle();
@@ -382,13 +364,13 @@ public void setPublisherInland(String newPublisherInland) {
 		return super.eGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eSet(int featureID, Object newValue) {
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MidiplayerPackage.COPYRIGHT__ORIGINALTITLE:
 				setOriginaltitle((String)newValue);
@@ -415,13 +397,13 @@ public void setPublisherInland(String newPublisherInland) {
 		super.eSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MidiplayerPackage.COPYRIGHT__ORIGINALTITLE:
 				setOriginaltitle(ORIGINALTITLE_EDEFAULT);
@@ -448,13 +430,13 @@ public void setPublisherInland(String newPublisherInland) {
 		super.eUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case MidiplayerPackage.COPYRIGHT__ORIGINALTITLE:
 				return ORIGINALTITLE_EDEFAULT == null ? originaltitle != null : !ORIGINALTITLE_EDEFAULT.equals(originaltitle);
@@ -474,13 +456,13 @@ public void setPublisherInland(String newPublisherInland) {
 		return super.eIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public String toString() {
+	@Override
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

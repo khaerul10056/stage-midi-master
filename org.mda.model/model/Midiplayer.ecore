@@ -134,4 +134,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="autosizingPercent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
         defaultValueLiteral="100"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SpecialMedia" eSuperTypes="#//AbstractSessionItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>
