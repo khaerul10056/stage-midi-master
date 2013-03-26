@@ -1,8 +1,13 @@
 package org.mda.javafx.autoconfig;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+
 import org.mda.javafx.api.IconRegistry;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.plugins.PluginInfo;
 
 import com.google.inject.Inject;
 
@@ -16,7 +21,19 @@ public class AutomaticPluginConfigurator {
 	//i18n
 	
 	
-	public void configure (final String startsWith) {
+	public void configure (final List<PluginInfo> plugins) throws IOException {
+		
+		LOGGER.info("Start configuring plugins");
+
+		for (PluginInfo next: plugins) {
+			LOGGER.info("Configure plugin " + next.getModule().getClass());
+			for (URL nextIcon: next.getIcons()) {
+				iconregistry.registerIcon(nextIcon);
+			}
+		}
+		
+		
+		LOGGER.info("Finished configuring plugins");
 //	    if (true)
 //	    	throw new IllegalStateException("not yet implemented");
 		

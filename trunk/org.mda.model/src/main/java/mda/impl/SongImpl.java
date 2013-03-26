@@ -5,9 +5,9 @@ package mda.impl;
 import java.util.Collection;
 
 import mda.Copyright;
-import mda.SongPart;
 import mda.MidiplayerPackage;
 import mda.Song;
+import mda.SongPart;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;

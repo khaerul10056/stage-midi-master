@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda;
 
@@ -42,397 +38,397 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface PresentationScheme extends EObject {
-  /**
+	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_Name()
 	 * @model
 	 * @generated
 	 */
-  String getName();
+	String getName();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
-  void setName(String value);
+	void setName(String value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Show Background</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Show Background</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Show Background</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Show Background</em>' attribute.
 	 * @see #setShowBackground(Boolean)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_ShowBackground()
 	 * @model
 	 * @generated
 	 */
-  Boolean getShowBackground();
+	Boolean getShowBackground();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getShowBackground <em>Show Background</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Show Background</em>' attribute.
 	 * @see #getShowBackground()
 	 * @generated
 	 */
-  void setShowBackground(Boolean value);
+	void setShowBackground(Boolean value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Show Block Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Show Block Type</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Show Block Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Show Block Type</em>' attribute.
 	 * @see #setShowBlockType(Boolean)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_ShowBlockType()
 	 * @model
 	 * @generated
 	 */
-  Boolean getShowBlockType();
+	Boolean getShowBlockType();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getShowBlockType <em>Show Block Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Show Block Type</em>' attribute.
 	 * @see #getShowBlockType()
 	 * @generated
 	 */
-  void setShowBlockType(Boolean value);
+	void setShowBlockType(Boolean value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Page Per Part</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Page Per Part</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Page Per Part</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Page Per Part</em>' attribute.
 	 * @see #setPagePerPart(Boolean)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_PagePerPart()
 	 * @model
 	 * @generated
 	 */
-  Boolean getPagePerPart();
+	Boolean getPagePerPart();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getPagePerPart <em>Page Per Part</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Page Per Part</em>' attribute.
 	 * @see #getPagePerPart()
 	 * @generated
 	 */
-  void setPagePerPart(Boolean value);
+	void setPagePerPart(Boolean value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>New Page Respected</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>New Page Respected</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>New Page Respected</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>New Page Respected</em>' attribute.
 	 * @see #setNewPageRespected(Boolean)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_NewPageRespected()
 	 * @model
 	 * @generated
 	 */
-  Boolean getNewPageRespected();
+	Boolean getNewPageRespected();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getNewPageRespected <em>New Page Respected</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>New Page Respected</em>' attribute.
 	 * @see #getNewPageRespected()
 	 * @generated
 	 */
-  void setNewPageRespected(Boolean value);
+	void setNewPageRespected(Boolean value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Show Title</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Show Title</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Show Title</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Show Title</em>' attribute.
 	 * @see #setShowTitle(Boolean)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_ShowTitle()
 	 * @model
 	 * @generated
 	 */
-  Boolean getShowTitle();
+	Boolean getShowTitle();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getShowTitle <em>Show Title</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Show Title</em>' attribute.
 	 * @see #getShowTitle()
 	 * @generated
 	 */
-  void setShowTitle(Boolean value);
+	void setShowTitle(Boolean value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Show Copyright</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Show Copyright</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Show Copyright</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Show Copyright</em>' attribute.
 	 * @see #setShowCopyright(Boolean)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_ShowCopyright()
 	 * @model
 	 * @generated
 	 */
-  Boolean getShowCopyright();
+	Boolean getShowCopyright();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getShowCopyright <em>Show Copyright</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Show Copyright</em>' attribute.
 	 * @see #getShowCopyright()
 	 * @generated
 	 */
-  void setShowCopyright(Boolean value);
+	void setShowCopyright(Boolean value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Skip Empty Slides</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Skip Empty Slides</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Skip Empty Slides</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Skip Empty Slides</em>' attribute.
 	 * @see #setSkipEmptySlides(Boolean)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_SkipEmptySlides()
 	 * @model
 	 * @generated
 	 */
-  Boolean getSkipEmptySlides();
+	Boolean getSkipEmptySlides();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getSkipEmptySlides <em>Skip Empty Slides</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Skip Empty Slides</em>' attribute.
 	 * @see #getSkipEmptySlides()
 	 * @generated
 	 */
-  void setSkipEmptySlides(Boolean value);
+	void setSkipEmptySlides(Boolean value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Optimize Line Filling</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Optimize Line Filling</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Optimize Line Filling</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Optimize Line Filling</em>' attribute.
 	 * @see #setOptimizeLineFilling(Boolean)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_OptimizeLineFilling()
 	 * @model
 	 * @generated
 	 */
-  Boolean getOptimizeLineFilling();
+	Boolean getOptimizeLineFilling();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getOptimizeLineFilling <em>Optimize Line Filling</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Optimize Line Filling</em>' attribute.
 	 * @see #getOptimizeLineFilling()
 	 * @generated
 	 */
-  void setOptimizeLineFilling(Boolean value);
+	void setOptimizeLineFilling(Boolean value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Optimize Equal Parts</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Optimize Equal Parts</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Optimize Equal Parts</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Optimize Equal Parts</em>' attribute.
 	 * @see #setOptimizeEqualParts(Boolean)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_OptimizeEqualParts()
 	 * @model
 	 * @generated
 	 */
-  Boolean getOptimizeEqualParts();
+	Boolean getOptimizeEqualParts();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getOptimizeEqualParts <em>Optimize Equal Parts</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Optimize Equal Parts</em>' attribute.
 	 * @see #getOptimizeEqualParts()
 	 * @generated
 	 */
-  void setOptimizeEqualParts(Boolean value);
+	void setOptimizeEqualParts(Boolean value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Optimize Empty Tokens</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Optimize Empty Tokens</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Optimize Empty Tokens</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Optimize Empty Tokens</em>' attribute.
 	 * @see #setOptimizeEmptyTokens(Boolean)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_OptimizeEmptyTokens()
 	 * @model
 	 * @generated
 	 */
-  Boolean getOptimizeEmptyTokens();
+	Boolean getOptimizeEmptyTokens();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getOptimizeEmptyTokens <em>Optimize Empty Tokens</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Optimize Empty Tokens</em>' attribute.
 	 * @see #getOptimizeEmptyTokens()
 	 * @generated
 	 */
-  void setOptimizeEmptyTokens(Boolean value);
+	void setOptimizeEmptyTokens(Boolean value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Border</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Border</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Border</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Border</em>' attribute.
 	 * @see #setBorder(Integer)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_Border()
 	 * @model
 	 * @generated
 	 */
-  Integer getBorder();
+	Integer getBorder();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getBorder <em>Border</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Border</em>' attribute.
 	 * @see #getBorder()
 	 * @generated
 	 */
-  void setBorder(Integer value);
+	void setBorder(Integer value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Type</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_Type()
 	 * @model
 	 * @generated
 	 */
-  String getType();
+	String getType();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
 	 * @see #getType()
 	 * @generated
 	 */
-  void setType(String value);
+	void setType(String value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Background Color</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Background Color</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Background Color</em>' attribute.
 	 * @see #setBackgroundColor(String)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_BackgroundColor()
 	 * @model
 	 * @generated
 	 */
-  String getBackgroundColor();
+	String getBackgroundColor();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getBackgroundColor <em>Background Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Background Color</em>' attribute.
 	 * @see #getBackgroundColor()
 	 * @generated
 	 */
-  void setBackgroundColor(String value);
+	void setBackgroundColor(String value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Foreground Color</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Foreground Color</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Foreground Color</em>' attribute.
 	 * @see #setForegroundColor(String)
 	 * @see mda.MidiplayerPackage#getPresentationScheme_ForegroundColor()
 	 * @model
 	 * @generated
 	 */
-  String getForegroundColor();
+	String getForegroundColor();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getForegroundColor <em>Foreground Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Foreground Color</em>' attribute.
 	 * @see #getForegroundColor()
 	 * @generated
 	 */
-  void setForegroundColor(String value);
+	void setForegroundColor(String value);
 
-		/**
+	/**
 	 * Returns the value of the '<em><b>Show Chords</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -448,7 +444,7 @@ public interface PresentationScheme extends EObject {
 	 */
 	Boolean getShowChords();
 
-		/**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getShowChords <em>Show Chords</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -458,7 +454,7 @@ public interface PresentationScheme extends EObject {
 	 */
 	void setShowChords(Boolean value);
 
-		/**
+	/**
 	 * Returns the value of the '<em><b>Auto Wrap To New Page</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -474,7 +470,7 @@ public interface PresentationScheme extends EObject {
 	 */
 	Boolean getAutoWrapToNewPage();
 
-		/**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getAutoWrapToNewPage <em>Auto Wrap To New Page</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -484,7 +480,7 @@ public interface PresentationScheme extends EObject {
 	 */
 	void setAutoWrapToNewPage(Boolean value);
 
-		/**
+	/**
 	 * Returns the value of the '<em><b>Autosizing Percent</b></em>' attribute.
 	 * The default value is <code>"100"</code>.
 	 * <!-- begin-user-doc -->
@@ -501,7 +497,7 @@ public interface PresentationScheme extends EObject {
 	 */
 	Integer getAutosizingPercent();
 
-		/**
+	/**
 	 * Sets the value of the '{@link mda.PresentationScheme#getAutosizingPercent <em>Autosizing Percent</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

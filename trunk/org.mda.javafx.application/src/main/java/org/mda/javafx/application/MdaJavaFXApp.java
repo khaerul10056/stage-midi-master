@@ -1,6 +1,7 @@
 package org.mda.javafx.application;
 
 import java.io.IOException;
+import java.util.List;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -24,6 +25,7 @@ import org.mda.inject.InjectService;
 import org.mda.javafx.autoconfig.AutomaticPluginConfigurator;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.plugins.PluginInfo;
 import org.mda.plugins.PluginManager;
 
 import com.google.inject.Inject;
@@ -84,12 +86,12 @@ public class MdaJavaFXApp extends Application {
     	try {
     	
     	PluginManager manager = new PluginManager(); 
-    	manager.loadPlugins();
+    	List<PluginInfo> plugins = manager.loadPlugins();
     	
     	InjectService.injectObject(this);
         
     	
-    	configurator.configure("org.mda");	//load icons in icon registry, i18n, css and so on
+    	configurator.configure(plugins);	//load icons in icon registry, i18n, css and so on
     	
     	appSession.load(null);
 

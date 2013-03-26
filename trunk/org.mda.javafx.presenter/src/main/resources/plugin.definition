@@ -1,1 +1,2 @@
 startupmodule=org.mda.javafx.presenter.PresenterJavaFxModule
+icons=	org.mda.javafx.presenter.add32.png, org.mda.javafx.presenter.delete32.png, org.mda.javafx.presenter.first128.png, org.mda.javafx.presenter.help32.png, org.mda.javafx.presenter.last128.png, org.mda.javafx.presenter.next128.png, org.mda.javafx.presenter.nextsong128.png, org.mda.javafx.presenter.pause32.png, org.mda.javafx.presenter.play32.png, org.mda.javafx.presenter.previous128.png, org.mda.javafx.presenter.previoussong128.png

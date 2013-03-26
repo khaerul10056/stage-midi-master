@@ -1,20 +1,16 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda.impl;
 
 import mda.Configuration;
 import mda.MidiplayerPackage;
-
 import mda.Session;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -43,57 +39,57 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * @generated
  */
 public class ConfigurationImpl extends EObjectImpl implements Configuration {
-  /**
+	/**
 	 * The default value of the '{@link #getScreenIDPresentation() <em>Screen ID Presentation</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getScreenIDPresentation()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String SCREEN_ID_PRESENTATION_EDEFAULT = null;
+	protected static final String SCREEN_ID_PRESENTATION_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getScreenIDPresentation() <em>Screen ID Presentation</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getScreenIDPresentation()
 	 * @generated
 	 * @ordered
 	 */
-  protected String screenIDPresentation = SCREEN_ID_PRESENTATION_EDEFAULT;
+	protected String screenIDPresentation = SCREEN_ID_PRESENTATION_EDEFAULT;
 
-  /**
+	/**
 	 * The default value of the '{@link #getScreenIDAdmin() <em>Screen ID Admin</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getScreenIDAdmin()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String SCREEN_ID_ADMIN_EDEFAULT = null;
+	protected static final String SCREEN_ID_ADMIN_EDEFAULT = null;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getScreenIDAdmin() <em>Screen ID Admin</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getScreenIDAdmin()
 	 * @generated
 	 * @ordered
 	 */
-  protected String screenIDAdmin = SCREEN_ID_ADMIN_EDEFAULT;
+	protected String screenIDAdmin = SCREEN_ID_ADMIN_EDEFAULT;
 
-  /**
+	/**
 	 * The cached value of the '{@link #getLastSession() <em>Last Session</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getLastSession()
 	 * @generated
 	 * @ordered
 	 */
-  protected Session lastSession;
+	protected Session lastSession;
 
-  /**
+	/**
 	 * The default value of the '{@link #getPdfExportPath() <em>Pdf Export Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103,7 +99,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 */
 	protected static final String PDF_EXPORT_PATH_EDEFAULT = null;
 
-		/**
+	/**
 	 * The cached value of the '{@link #getPdfExportPath() <em>Pdf Export Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,47 +109,47 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 */
 	protected String pdfExportPath = PDF_EXPORT_PATH_EDEFAULT;
 
-		/**
+	/**
 	 * The default value of the '{@link #getAdditionalsPath() <em>Additionals Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getAdditionalsPath()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final String ADDITIONALS_PATH_EDEFAULT = null;
+	protected static final String ADDITIONALS_PATH_EDEFAULT = null;
 
-    /**
+	/**
 	 * The cached value of the '{@link #getAdditionalsPath() <em>Additionals Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getAdditionalsPath()
 	 * @generated
 	 * @ordered
 	 */
-  protected String additionalsPath = ADDITIONALS_PATH_EDEFAULT;
+	protected String additionalsPath = ADDITIONALS_PATH_EDEFAULT;
 
-    /**
+	/**
 	 * The default value of the '{@link #getFontsize() <em>Fontsize</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getFontsize()
 	 * @generated
 	 * @ordered
 	 */
-  protected static final Integer FONTSIZE_EDEFAULT = null;
+	protected static final Integer FONTSIZE_EDEFAULT = null;
 
-    /**
+	/**
 	 * The cached value of the '{@link #getFontsize() <em>Fontsize</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getFontsize()
 	 * @generated
 	 * @ordered
 	 */
-  protected Integer fontsize = FONTSIZE_EDEFAULT;
+	protected Integer fontsize = FONTSIZE_EDEFAULT;
 
-    /**
+	/**
 	 * The default value of the '{@link #getMailtextSendSongbook() <em>Mailtext Send Songbook</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -163,7 +159,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 */
 	protected static final String MAILTEXT_SEND_SONGBOOK_EDEFAULT = null;
 
-				/**
+	/**
 	 * The cached value of the '{@link #getMailtextSendSongbook() <em>Mailtext Send Songbook</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -173,7 +169,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 */
 	protected String mailtextSendSongbook = MAILTEXT_SEND_SONGBOOK_EDEFAULT;
 
-				/**
+	/**
 	 * The default value of the '{@link #getMailserverUrl() <em>Mailserver Url</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -183,7 +179,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 */
 	protected static final String MAILSERVER_URL_EDEFAULT = "";
 
-				/**
+	/**
 	 * The cached value of the '{@link #getMailserverUrl() <em>Mailserver Url</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -193,7 +189,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 */
 	protected String mailserverUrl = MAILSERVER_URL_EDEFAULT;
 
-				/**
+	/**
 	 * The default value of the '{@link #getMailserverUser() <em>Mailserver User</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -203,7 +199,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 */
 	protected static final String MAILSERVER_USER_EDEFAULT = null;
 
-				/**
+	/**
 	 * The cached value of the '{@link #getMailserverUser() <em>Mailserver User</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -213,7 +209,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 */
 	protected String mailserverUser = MAILSERVER_USER_EDEFAULT;
 
-				/**
+	/**
 	 * The default value of the '{@link #getMailserverPassword() <em>Mailserver Password</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -223,7 +219,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 */
 	protected static final String MAILSERVER_PASSWORD_EDEFAULT = null;
 
-				/**
+	/**
 	 * The cached value of the '{@link #getMailserverPassword() <em>Mailserver Password</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -233,7 +229,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 */
 	protected String mailserverPassword = MAILSERVER_PASSWORD_EDEFAULT;
 
-				/**
+	/**
 	 * The default value of the '{@link #getMailsubjectSendSongbook() <em>Mailsubject Send Songbook</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -243,7 +239,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 */
 	protected static final String MAILSUBJECT_SEND_SONGBOOK_EDEFAULT = null;
 
-				/**
+	/**
 	 * The cached value of the '{@link #getMailsubjectSendSongbook() <em>Mailsubject Send Songbook</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -253,7 +249,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 */
 	protected String mailsubjectSendSongbook = MAILSUBJECT_SEND_SONGBOOK_EDEFAULT;
 
-				/**
+	/**
 	 * The default value of the '{@link #getMididevice() <em>Mididevice</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -263,7 +259,7 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 */
 	protected static final String MIDIDEVICE_EDEFAULT = "";
 
-				/**
+	/**
 	 * The cached value of the '{@link #getMididevice() <em>Mididevice</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -273,78 +269,73 @@ public class ConfigurationImpl extends EObjectImpl implements Configuration {
 	 */
 	protected String mididevice = MIDIDEVICE_EDEFAULT;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected ConfigurationImpl() {
+	protected ConfigurationImpl() {
 		super();
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
 		return MidiplayerPackage.Literals.CONFIGURATION;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getScreenIDPresentation() {
+	public String getScreenIDPresentation() {
 		return screenIDPresentation;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setScreenIDPresentation(String newScreenIDPresentation) {
+	public void setScreenIDPresentation(String newScreenIDPresentation) {
 		String oldScreenIDPresentation = screenIDPresentation;
 		screenIDPresentation = newScreenIDPresentation;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__SCREEN_ID_PRESENTATION, oldScreenIDPresentation, screenIDPresentation));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getScreenIDAdmin() {
+	public String getScreenIDAdmin() {
 		return screenIDAdmin;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setScreenIDAdmin(String newScreenIDAdmin) {
+	public void setScreenIDAdmin(String newScreenIDAdmin) {
 		String oldScreenIDAdmin = screenIDAdmin;
 		screenIDAdmin = newScreenIDAdmin;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__SCREEN_ID_ADMIN, oldScreenIDAdmin, screenIDAdmin));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public Session getLastSession() {
+	public Session getLastSession() {
 		if (lastSession != null && lastSession.eIsProxy()) {
 			InternalEObject oldLastSession = (InternalEObject)lastSession;
 			lastSession = (Session)eResolveProxy(oldLastSession);
@@ -356,44 +347,41 @@ public Session getLastSession() {
 		return lastSession;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Session basicGetLastSession() {
+	public Session basicGetLastSession() {
 		return lastSession;
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setLastSession(Session newLastSession) {
+	public void setLastSession(Session newLastSession) {
 		Session oldLastSession = lastSession;
 		lastSession = newLastSession;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__LAST_SESSION, oldLastSession, lastSession));
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getPdfExportPath() {
 		return pdfExportPath;
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setPdfExportPath(String newPdfExportPath) {
 		String oldPdfExportPath = pdfExportPath;
 		pdfExportPath = newPdfExportPath;
@@ -401,68 +389,62 @@ public void setLastSession(Session newLastSession) {
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__PDF_EXPORT_PATH, oldPdfExportPath, pdfExportPath));
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public String getAdditionalsPath() {
+	public String getAdditionalsPath() {
 		return additionalsPath;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setAdditionalsPath(String newAdditionalsPath) {
+	public void setAdditionalsPath(String newAdditionalsPath) {
 		String oldAdditionalsPath = additionalsPath;
 		additionalsPath = newAdditionalsPath;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__ADDITIONALS_PATH, oldAdditionalsPath, additionalsPath));
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public Integer getFontsize() {
+	public Integer getFontsize() {
 		return fontsize;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public void setFontsize(Integer newFontsize) {
+	public void setFontsize(Integer newFontsize) {
 		Integer oldFontsize = fontsize;
 		fontsize = newFontsize;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__FONTSIZE, oldFontsize, fontsize));
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getMailtextSendSongbook() {
 		return mailtextSendSongbook;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setMailtextSendSongbook(String newMailtextSendSongbook) {
 		String oldMailtextSendSongbook = mailtextSendSongbook;
 		mailtextSendSongbook = newMailtextSendSongbook;
@@ -470,22 +452,20 @@ public void setFontsize(Integer newFontsize) {
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__MAILTEXT_SEND_SONGBOOK, oldMailtextSendSongbook, mailtextSendSongbook));
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getMailserverUrl() {
 		return mailserverUrl;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setMailserverUrl(String newMailserverUrl) {
 		String oldMailserverUrl = mailserverUrl;
 		mailserverUrl = newMailserverUrl;
@@ -493,22 +473,20 @@ public void setFontsize(Integer newFontsize) {
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__MAILSERVER_URL, oldMailserverUrl, mailserverUrl));
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getMailserverUser() {
 		return mailserverUser;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setMailserverUser(String newMailserverUser) {
 		String oldMailserverUser = mailserverUser;
 		mailserverUser = newMailserverUser;
@@ -516,22 +494,20 @@ public void setFontsize(Integer newFontsize) {
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__MAILSERVER_USER, oldMailserverUser, mailserverUser));
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getMailserverPassword() {
 		return mailserverPassword;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setMailserverPassword(String newMailserverPassword) {
 		String oldMailserverPassword = mailserverPassword;
 		mailserverPassword = newMailserverPassword;
@@ -539,22 +515,20 @@ public void setFontsize(Integer newFontsize) {
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__MAILSERVER_PASSWORD, oldMailserverPassword, mailserverPassword));
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getMailsubjectSendSongbook() {
 		return mailsubjectSendSongbook;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setMailsubjectSendSongbook(String newMailsubjectSendSongbook) {
 		String oldMailsubjectSendSongbook = mailsubjectSendSongbook;
 		mailsubjectSendSongbook = newMailsubjectSendSongbook;
@@ -562,7 +536,7 @@ public void setFontsize(Integer newFontsize) {
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__MAILSUBJECT_SEND_SONGBOOK, oldMailsubjectSendSongbook, mailsubjectSendSongbook));
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -571,7 +545,7 @@ public void setFontsize(Integer newFontsize) {
 		return mididevice;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -583,13 +557,13 @@ public void setFontsize(Integer newFontsize) {
 			eNotify(new ENotificationImpl(this, Notification.SET, MidiplayerPackage.CONFIGURATION__MIDIDEVICE, oldMididevice, mididevice));
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MidiplayerPackage.CONFIGURATION__SCREEN_ID_PRESENTATION:
 				return getScreenIDPresentation();
@@ -620,13 +594,13 @@ public void setFontsize(Integer newFontsize) {
 		return super.eGet(featureID, resolve, coreType);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eSet(int featureID, Object newValue) {
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MidiplayerPackage.CONFIGURATION__SCREEN_ID_PRESENTATION:
 				setScreenIDPresentation((String)newValue);
@@ -668,13 +642,13 @@ public void setFontsize(Integer newFontsize) {
 		super.eSet(featureID, newValue);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MidiplayerPackage.CONFIGURATION__SCREEN_ID_PRESENTATION:
 				setScreenIDPresentation(SCREEN_ID_PRESENTATION_EDEFAULT);
@@ -716,13 +690,13 @@ public void setFontsize(Integer newFontsize) {
 		super.eUnset(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case MidiplayerPackage.CONFIGURATION__SCREEN_ID_PRESENTATION:
 				return SCREEN_ID_PRESENTATION_EDEFAULT == null ? screenIDPresentation != null : !SCREEN_ID_PRESENTATION_EDEFAULT.equals(screenIDPresentation);
@@ -752,13 +726,13 @@ public void setFontsize(Integer newFontsize) {
 		return super.eIsSet(featureID);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  public String toString() {
+	@Override
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

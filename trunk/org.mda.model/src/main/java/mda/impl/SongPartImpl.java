@@ -4,10 +4,10 @@ package mda.impl;
 
 import java.util.Collection;
 
-import mda.SongPartType;
-import mda.SongTextLine;
 import mda.MidiplayerPackage;
 import mda.SongPart;
+import mda.SongPartType;
+import mda.SongTextLine;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;

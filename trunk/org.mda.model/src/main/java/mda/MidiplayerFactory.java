@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda;
 
@@ -91,40 +87,49 @@ public interface MidiplayerFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Configuration</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Configuration</em>'.
 	 * @generated
 	 */
-  Configuration createConfiguration();
+	Configuration createConfiguration();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>User</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>User</em>'.
 	 * @generated
 	 */
-  User createUser();
+	User createUser();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Copyright</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Copyright</em>'.
 	 * @generated
 	 */
-  Copyright createCopyright();
+	Copyright createCopyright();
 
-  /**
+	/**
 	 * Returns a new object of class '<em>Presentation Scheme</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Presentation Scheme</em>'.
 	 * @generated
 	 */
-  PresentationScheme createPresentationScheme();
+	PresentationScheme createPresentationScheme();
 
-  /**
+	/**
+	 * Returns a new object of class '<em>Special Media</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Special Media</em>'.
+	 * @generated
+	 */
+	SpecialMedia createSpecialMedia();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda;
 
@@ -10,7 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Midi File Chord Part</b></em>'.
+ * A representation of the model object '<em><b>Song Chord Part</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -78,4 +74,4 @@ public interface SongChordPart extends EObject {
 	 */
 	void setChord(String value);
 
-} // MidiFileChordPart
+} // SongChordPart

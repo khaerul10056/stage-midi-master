@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda.impl;
 
@@ -11,16 +7,17 @@ import mda.AdditionalType;
 import mda.Configuration;
 import mda.Copyright;
 import mda.Gallery;
-import mda.SongChordPart;
-import mda.SongPart;
-import mda.SongPartType;
-import mda.SongTextLine;
 import mda.MidiPlayerRoot;
 import mda.MidiplayerFactory;
 import mda.MidiplayerPackage;
 import mda.PresentationScheme;
 import mda.Session;
 import mda.Song;
+import mda.SongChordPart;
+import mda.SongPart;
+import mda.SongPartType;
+import mda.SongTextLine;
+import mda.SpecialMedia;
 import mda.User;
 import mda.UserType;
 
@@ -29,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -96,54 +94,61 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass configurationEClass = null;
+	private EClass configurationEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass userEClass = null;
+	private EClass userEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass copyrightEClass = null;
+	private EClass copyrightEClass = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass presentationSchemeEClass = null;
+	private EClass presentationSchemeEClass = null;
 
-  /**
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass specialMediaEClass = null;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum songPartTypeEEnum = null;
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EEnum additionalTypeEEnum = null;
+	private EEnum additionalTypeEEnum = null;
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EEnum userTypeEEnum = null;
+	private EEnum userTypeEEnum = null;
 
-  /**
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -209,7 +214,6 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getSession() {
 		return sessionEClass;
 	}
@@ -219,7 +223,6 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getSession_Name() {
 		return (EAttribute)sessionEClass.getEStructuralFeatures().get(0);
 	}
@@ -229,7 +232,6 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getSession_Items() {
 		return (EReference)sessionEClass.getEStructuralFeatures().get(1);
 	}
@@ -239,7 +241,6 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getSession_Defaultpath() {
 		return (EAttribute)sessionEClass.getEStructuralFeatures().get(2);
 	}
@@ -249,7 +250,6 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getAbstractSessionItem() {
 		return abstractSessionItemEClass;
 	}
@@ -259,7 +259,6 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getAbstractSessionItem_Name() {
 		return (EAttribute)abstractSessionItemEClass.getEStructuralFeatures().get(0);
 	}
@@ -269,32 +268,29 @@ public class MidiplayerPackageImpl extends EPackageImpl implements MidiplayerPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getAbstractSessionItem_Path() {
 		return (EAttribute)abstractSessionItemEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public EAttribute getAbstractSessionItem_BackgroundColor() {
+	public EAttribute getAbstractSessionItem_BackgroundColor() {
 		return (EAttribute)abstractSessionItemEClass.getEStructuralFeatures().get(2);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public EAttribute getAbstractSessionItem_ForegroundColor() {
+	public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return (EAttribute)abstractSessionItemEClass.getEStructuralFeatures().get(3);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -303,7 +299,7 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return songEClass;
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -312,7 +308,7 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return (EReference)songEClass.getEStructuralFeatures().get(0);
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -321,7 +317,7 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return (EAttribute)songEClass.getEStructuralFeatures().get(1);
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -330,7 +326,7 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return (EAttribute)songEClass.getEStructuralFeatures().get(2);
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -339,7 +335,7 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return (EReference)songEClass.getEStructuralFeatures().get(3);
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -348,7 +344,7 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return (EAttribute)songEClass.getEStructuralFeatures().get(4);
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -357,7 +353,7 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return songPartEClass;
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -366,7 +362,7 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return (EReference)songPartEClass.getEStructuralFeatures().get(0);
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -375,7 +371,7 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return (EAttribute)songPartEClass.getEStructuralFeatures().get(1);
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -384,7 +380,7 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return (EAttribute)songPartEClass.getEStructuralFeatures().get(2);
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -393,7 +389,7 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return (EReference)songPartEClass.getEStructuralFeatures().get(3);
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -402,7 +398,7 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return (EAttribute)songPartEClass.getEStructuralFeatures().get(4);
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -411,7 +407,7 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return songTextLineEClass;
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -420,7 +416,7 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return (EReference)songTextLineEClass.getEStructuralFeatures().get(0);
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -429,12 +425,11 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 		return (EAttribute)songTextLineEClass.getEStructuralFeatures().get(1);
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getGallery() {
 		return galleryEClass;
 	}
@@ -444,7 +439,6 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getGallery_GalleryItems() {
 		return (EReference)galleryEClass.getEStructuralFeatures().get(0);
 	}
@@ -454,7 +448,6 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getMidiPlayerRoot() {
 		return midiPlayerRootEClass;
 	}
@@ -464,7 +457,6 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getMidiPlayerRoot_Gallery() {
 		return (EReference)midiPlayerRootEClass.getEStructuralFeatures().get(0);
 	}
@@ -474,42 +466,38 @@ public EAttribute getAbstractSessionItem_ForegroundColor() {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getMidiPlayerRoot_Sessions() {
 		return (EReference)midiPlayerRootEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public EReference getMidiPlayerRoot_Config() {
+	public EReference getMidiPlayerRoot_Config() {
 		return (EReference)midiPlayerRootEClass.getEStructuralFeatures().get(2);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public EReference getMidiPlayerRoot_Users() {
+	public EReference getMidiPlayerRoot_Users() {
 		return (EReference)midiPlayerRootEClass.getEStructuralFeatures().get(3);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-public EReference getMidiPlayerRoot_Presentationschemes() {
+	public EReference getMidiPlayerRoot_Presentationschemes() {
 		return (EReference)midiPlayerRootEClass.getEStructuralFeatures().get(4);
 	}
 
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -518,7 +506,7 @@ public EReference getMidiPlayerRoot_Presentationschemes() {
 		return songChordPartEClass;
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -527,7 +515,7 @@ public EReference getMidiPlayerRoot_Presentationschemes() {
 		return (EAttribute)songChordPartEClass.getEStructuralFeatures().get(0);
 	}
 
-		/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -536,127 +524,115 @@ public EReference getMidiPlayerRoot_Presentationschemes() {
 		return (EAttribute)songChordPartEClass.getEStructuralFeatures().get(1);
 	}
 
-		/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EClass getConfiguration() {
-		return configurationEClass;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getConfiguration_ScreenIDPresentation() {
-		return (EAttribute)configurationEClass.getEStructuralFeatures().get(0);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getConfiguration_ScreenIDAdmin() {
-		return (EAttribute)configurationEClass.getEStructuralFeatures().get(1);
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EReference getConfiguration_LastSession() {
-		return (EReference)configurationEClass.getEStructuralFeatures().get(2);
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	public EClass getConfiguration() {
+		return configurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConfiguration_ScreenIDPresentation() {
+		return (EAttribute)configurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConfiguration_ScreenIDAdmin() {
+		return (EAttribute)configurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConfiguration_LastSession() {
+		return (EReference)configurationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getConfiguration_PdfExportPath() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(3);
 	}
 
-		/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getConfiguration_AdditionalsPath() {
-		return (EAttribute)configurationEClass.getEStructuralFeatures().get(4);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getConfiguration_Fontsize() {
-		return (EAttribute)configurationEClass.getEStructuralFeatures().get(5);
-	}
-
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	public EAttribute getConfiguration_AdditionalsPath() {
+		return (EAttribute)configurationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConfiguration_Fontsize() {
+		return (EAttribute)configurationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getConfiguration_MailtextSendSongbook() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(6);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getConfiguration_MailserverUrl() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(7);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getConfiguration_MailserverUser() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(8);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getConfiguration_MailserverPassword() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(9);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getConfiguration_MailsubjectSendSongbook() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(10);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -665,347 +641,313 @@ public EAttribute getConfiguration_Fontsize() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(11);
 	}
 
-				/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EClass getUser() {
-		return userEClass;
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getUser_Mail() {
-		return (EAttribute)userEClass.getEStructuralFeatures().get(0);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getUser_Name() {
-		return (EAttribute)userEClass.getEStructuralFeatures().get(1);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getUser_Firstname() {
-		return (EAttribute)userEClass.getEStructuralFeatures().get(2);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getUser_Type() {
-		return (EAttribute)userEClass.getEStructuralFeatures().get(3);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getUser_SendSongbook() {
-		return (EAttribute)userEClass.getEStructuralFeatures().get(4);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EReference getUser_Presentationschemes() {
-		return (EReference)userEClass.getEStructuralFeatures().get(5);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getUser_DefaultPresentationType() {
-		return (EAttribute)userEClass.getEStructuralFeatures().get(6);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EClass getCopyright() {
-		return copyrightEClass;
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getCopyright_Originaltitle() {
-		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(0);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getCopyright_WriterMusic() {
-		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(1);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getCopyright_WriterText() {
-		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(2);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getCopyright_WriterInlandText() {
-		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(3);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getCopyright_Year() {
-		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(4);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getCopyright_Publisher() {
-		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(5);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getCopyright_PublisherInland() {
-		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(6);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EClass getPresentationScheme() {
-		return presentationSchemeEClass;
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_Name() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(0);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_ShowBackground() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(1);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_ShowBlockType() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(2);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_PagePerPart() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(3);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_NewPageRespected() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(4);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_ShowTitle() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(5);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_ShowCopyright() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(6);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_SkipEmptySlides() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(7);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_OptimizeLineFilling() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(8);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_OptimizeEqualParts() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(9);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_OptimizeEmptyTokens() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(10);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_Border() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(11);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_Type() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(12);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_BackgroundColor() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(13);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EAttribute getPresentationScheme_ForegroundColor() {
-		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(14);
-	}
-
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	public EClass getUser() {
+		return userEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUser_Mail() {
+		return (EAttribute)userEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUser_Name() {
+		return (EAttribute)userEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUser_Firstname() {
+		return (EAttribute)userEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUser_Type() {
+		return (EAttribute)userEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUser_SendSongbook() {
+		return (EAttribute)userEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUser_Presentationschemes() {
+		return (EReference)userEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUser_DefaultPresentationType() {
+		return (EAttribute)userEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCopyright() {
+		return copyrightEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCopyright_Originaltitle() {
+		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCopyright_WriterMusic() {
+		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCopyright_WriterText() {
+		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCopyright_WriterInlandText() {
+		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCopyright_Year() {
+		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCopyright_Publisher() {
+		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCopyright_PublisherInland() {
+		return (EAttribute)copyrightEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPresentationScheme() {
+		return presentationSchemeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_Name() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_ShowBackground() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_ShowBlockType() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_PagePerPart() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_NewPageRespected() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_ShowTitle() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_ShowCopyright() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_SkipEmptySlides() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_OptimizeLineFilling() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_OptimizeEqualParts() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_OptimizeEmptyTokens() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_Border() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_Type() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_BackgroundColor() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationScheme_ForegroundColor() {
+		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getPresentationScheme_ShowChords() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(15);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getPresentationScheme_AutoWrapToNewPage() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(16);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1014,7 +956,25 @@ public EAttribute getPresentationScheme_ForegroundColor() {
 		return (EAttribute)presentationSchemeEClass.getEStructuralFeatures().get(17);
 	}
 
-				/**
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSpecialMedia() {
+		return specialMediaEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSpecialMedia_Key() {
+		return (EAttribute)specialMediaEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1023,32 +983,29 @@ public EAttribute getPresentationScheme_ForegroundColor() {
 		return songPartTypeEEnum;
 	}
 
-				/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EEnum getAdditionalType() {
-		return additionalTypeEEnum;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-public EEnum getUserType() {
-		return userTypeEEnum;
-	}
-
-  /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	public EEnum getAdditionalType() {
+		return additionalTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getUserType() {
+		return userTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MidiplayerFactory getMidiplayerFactory() {
 		return (MidiplayerFactory)getEFactoryInstance();
 	}
@@ -1167,6 +1124,9 @@ public EEnum getUserType() {
 		createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__AUTO_WRAP_TO_NEW_PAGE);
 		createEAttribute(presentationSchemeEClass, PRESENTATION_SCHEME__AUTOSIZING_PERCENT);
 
+		specialMediaEClass = createEClass(SPECIAL_MEDIA);
+		createEAttribute(specialMediaEClass, SPECIAL_MEDIA__KEY);
+
 		// Create enums
 		songPartTypeEEnum = createEEnum(SONG_PART_TYPE);
 		additionalTypeEEnum = createEEnum(ADDITIONAL_TYPE);
@@ -1202,6 +1162,7 @@ public EEnum getUserType() {
 
 		// Add supertypes to classes
 		songEClass.getESuperTypes().add(this.getAbstractSessionItem());
+		specialMediaEClass.getESuperTypes().add(this.getAbstractSessionItem());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(sessionEClass, Session.class, "Session", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1298,6 +1259,9 @@ public EEnum getUserType() {
 		initEAttribute(getPresentationScheme_ShowChords(), ecorePackage.getEBooleanObject(), "showChords", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPresentationScheme_AutoWrapToNewPage(), ecorePackage.getEBooleanObject(), "autoWrapToNewPage", null, 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPresentationScheme_AutosizingPercent(), ecorePackage.getEIntegerObject(), "autosizingPercent", "100", 0, 1, PresentationScheme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(specialMediaEClass, SpecialMedia.class, "SpecialMedia", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSpecialMedia_Key(), ecorePackage.getEString(), "key", null, 0, 1, SpecialMedia.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(songPartTypeEEnum, SongPartType.class, "SongPartType");

@@ -2,7 +2,9 @@ package org.mda.plugins;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Properties;
 
 import org.mda.inject.InjectService;
@@ -14,6 +16,15 @@ import com.google.inject.Module;
 public class PluginManager {
 	
 	private static final Log LOGGER = LogFactory.getLogger(PluginManager.class);
+	
+	
+	
+	private List<PluginInfo> plugins = new ArrayList<PluginInfo>();
+	
+	
+	public List<PluginInfo> getLoadedPlugins () {
+		return plugins;
+	}
 
 	/**
 	 * loads all available things from plugins
@@ -24,12 +35,15 @@ public class PluginManager {
 	 * @throws ClassNotFoundException
 	 * @throws InstantiationException
 	 * @throws IllegalAccessException
+	 * @return List of all plugins as infoobject
 	 */
-	public void loadPlugins () throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public List<PluginInfo> loadPlugins () throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		ClassLoader cl = getClass().getClassLoader();
 		Enumeration<URL> resources = cl.getResources("plugin.definition");
 		while (resources.hasMoreElements()) {
 			URL nextURL = resources.nextElement();
+			
+			PluginInfo pluginInfo = new PluginInfo();
 			
 			Properties props = new Properties();
 			props.load(nextURL.openStream());
@@ -39,6 +53,7 @@ public class PluginManager {
 				
 				Class<?> loadClass = cl.loadClass(module);
 				Module loadedmodule = (Module) loadClass.newInstance();
+				pluginInfo.setModule(loadedmodule);
 				
 				InjectService.cachedModules.add(loadedmodule);
 				LOGGER.info("Found plugin " + nextURL.toString() + " with injection startup module " + module);
@@ -46,7 +61,27 @@ public class PluginManager {
 				
 			}
 			
+			String icons = props.getProperty("icons");
+			LOGGER.info("Configured icons <" + icons + "> in " + nextURL);
+			if (icons != null && ! icons.trim().isEmpty()) {
+				String [] iconArray = icons.split(",");
+				for (String next: iconArray) {
+					if (next.trim().isEmpty())
+						continue;
+					
+					String nextIconString = nextURL.toExternalForm().replace("plugin.definition", "icons/" + next.trim());
+					LOGGER.info("Add icon <" + next + "->" + nextIconString + ">");
+					URL nextIconUrl = new URL(nextIconString);
+					pluginInfo.getIcons().add(nextIconUrl);
+					
+				}
+			}
+			
+			plugins.add(pluginInfo);
+			
 		}
+		
+		return plugins;
 		
 		
 			

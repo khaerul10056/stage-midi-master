@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda;
 
@@ -36,85 +32,85 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Configuration extends EObject {
-  /**
+	/**
 	 * Returns the value of the '<em><b>Screen ID Presentation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Screen ID Presentation</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Screen ID Presentation</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Screen ID Presentation</em>' attribute.
 	 * @see #setScreenIDPresentation(String)
 	 * @see mda.MidiplayerPackage#getConfiguration_ScreenIDPresentation()
 	 * @model
 	 * @generated
 	 */
-  String getScreenIDPresentation();
+	String getScreenIDPresentation();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.Configuration#getScreenIDPresentation <em>Screen ID Presentation</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Screen ID Presentation</em>' attribute.
 	 * @see #getScreenIDPresentation()
 	 * @generated
 	 */
-  void setScreenIDPresentation(String value);
+	void setScreenIDPresentation(String value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Screen ID Admin</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Screen ID Admin</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Screen ID Admin</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Screen ID Admin</em>' attribute.
 	 * @see #setScreenIDAdmin(String)
 	 * @see mda.MidiplayerPackage#getConfiguration_ScreenIDAdmin()
 	 * @model
 	 * @generated
 	 */
-  String getScreenIDAdmin();
+	String getScreenIDAdmin();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.Configuration#getScreenIDAdmin <em>Screen ID Admin</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Screen ID Admin</em>' attribute.
 	 * @see #getScreenIDAdmin()
 	 * @generated
 	 */
-  void setScreenIDAdmin(String value);
+	void setScreenIDAdmin(String value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Last Session</b></em>' reference.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Last Session</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Last Session</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Last Session</em>' reference.
 	 * @see #setLastSession(Session)
 	 * @see mda.MidiplayerPackage#getConfiguration_LastSession()
 	 * @model
 	 * @generated
 	 */
-  Session getLastSession();
+	Session getLastSession();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.Configuration#getLastSession <em>Last Session</em>}' reference.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Last Session</em>' reference.
 	 * @see #getLastSession()
 	 * @generated
 	 */
-  void setLastSession(Session value);
+	void setLastSession(Session value);
 
-		/**
+	/**
 	 * Returns the value of the '<em><b>Pdf Export Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -130,7 +126,7 @@ public interface Configuration extends EObject {
 	 */
 	String getPdfExportPath();
 
-		/**
+	/**
 	 * Sets the value of the '{@link mda.Configuration#getPdfExportPath <em>Pdf Export Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -140,59 +136,59 @@ public interface Configuration extends EObject {
 	 */
 	void setPdfExportPath(String value);
 
-    /**
+	/**
 	 * Returns the value of the '<em><b>Additionals Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Additionals Path</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Additionals Path</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Additionals Path</em>' attribute.
 	 * @see #setAdditionalsPath(String)
 	 * @see mda.MidiplayerPackage#getConfiguration_AdditionalsPath()
 	 * @model
 	 * @generated
 	 */
-  String getAdditionalsPath();
+	String getAdditionalsPath();
 
-    /**
+	/**
 	 * Sets the value of the '{@link mda.Configuration#getAdditionalsPath <em>Additionals Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Additionals Path</em>' attribute.
 	 * @see #getAdditionalsPath()
 	 * @generated
 	 */
-  void setAdditionalsPath(String value);
+	void setAdditionalsPath(String value);
 
-    /**
+	/**
 	 * Returns the value of the '<em><b>Fontsize</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Fontsize</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Fontsize</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fontsize</em>' attribute.
 	 * @see #setFontsize(Integer)
 	 * @see mda.MidiplayerPackage#getConfiguration_Fontsize()
 	 * @model
 	 * @generated
 	 */
-  Integer getFontsize();
+	Integer getFontsize();
 
-    /**
+	/**
 	 * Sets the value of the '{@link mda.Configuration#getFontsize <em>Fontsize</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Fontsize</em>' attribute.
 	 * @see #getFontsize()
 	 * @generated
 	 */
-  void setFontsize(Integer value);
+	void setFontsize(Integer value);
 
-				/**
+	/**
 	 * Returns the value of the '<em><b>Mailtext Send Songbook</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -208,7 +204,7 @@ public interface Configuration extends EObject {
 	 */
 	String getMailtextSendSongbook();
 
-				/**
+	/**
 	 * Sets the value of the '{@link mda.Configuration#getMailtextSendSongbook <em>Mailtext Send Songbook</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -218,7 +214,7 @@ public interface Configuration extends EObject {
 	 */
 	void setMailtextSendSongbook(String value);
 
-				/**
+	/**
 	 * Returns the value of the '<em><b>Mailserver Url</b></em>' attribute.
 	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
@@ -235,7 +231,7 @@ public interface Configuration extends EObject {
 	 */
 	String getMailserverUrl();
 
-				/**
+	/**
 	 * Sets the value of the '{@link mda.Configuration#getMailserverUrl <em>Mailserver Url</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -245,7 +241,7 @@ public interface Configuration extends EObject {
 	 */
 	void setMailserverUrl(String value);
 
-				/**
+	/**
 	 * Returns the value of the '<em><b>Mailserver User</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -261,7 +257,7 @@ public interface Configuration extends EObject {
 	 */
 	String getMailserverUser();
 
-				/**
+	/**
 	 * Sets the value of the '{@link mda.Configuration#getMailserverUser <em>Mailserver User</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -271,7 +267,7 @@ public interface Configuration extends EObject {
 	 */
 	void setMailserverUser(String value);
 
-				/**
+	/**
 	 * Returns the value of the '<em><b>Mailserver Password</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -287,7 +283,7 @@ public interface Configuration extends EObject {
 	 */
 	String getMailserverPassword();
 
-				/**
+	/**
 	 * Sets the value of the '{@link mda.Configuration#getMailserverPassword <em>Mailserver Password</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -297,7 +293,7 @@ public interface Configuration extends EObject {
 	 */
 	void setMailserverPassword(String value);
 
-				/**
+	/**
 	 * Returns the value of the '<em><b>Mailsubject Send Songbook</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -313,7 +309,7 @@ public interface Configuration extends EObject {
 	 */
 	String getMailsubjectSendSongbook();
 
-				/**
+	/**
 	 * Sets the value of the '{@link mda.Configuration#getMailsubjectSendSongbook <em>Mailsubject Send Songbook</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -323,7 +319,7 @@ public interface Configuration extends EObject {
 	 */
 	void setMailsubjectSendSongbook(String value);
 
-				/**
+	/**
 	 * Returns the value of the '<em><b>Mididevice</b></em>' attribute.
 	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
@@ -340,7 +336,7 @@ public interface Configuration extends EObject {
 	 */
 	String getMididevice();
 
-				/**
+	/**
 	 * Sets the value of the '{@link mda.Configuration#getMididevice <em>Mididevice</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

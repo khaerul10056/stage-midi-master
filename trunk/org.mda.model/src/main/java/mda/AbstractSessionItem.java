@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda;
 
@@ -80,56 +76,56 @@ public interface AbstractSessionItem extends EObject {
 	 */
 	void setPath(String value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Background Color</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Background Color</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Background Color</em>' attribute.
 	 * @see #setBackgroundColor(String)
 	 * @see mda.MidiplayerPackage#getAbstractSessionItem_BackgroundColor()
 	 * @model
 	 * @generated
 	 */
-  String getBackgroundColor();
+	String getBackgroundColor();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.AbstractSessionItem#getBackgroundColor <em>Background Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Background Color</em>' attribute.
 	 * @see #getBackgroundColor()
 	 * @generated
 	 */
-  void setBackgroundColor(String value);
+	void setBackgroundColor(String value);
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Foreground Color</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Foreground Color</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Foreground Color</em>' attribute.
 	 * @see #setForegroundColor(String)
 	 * @see mda.MidiplayerPackage#getAbstractSessionItem_ForegroundColor()
 	 * @model
 	 * @generated
 	 */
-  String getForegroundColor();
+	String getForegroundColor();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.AbstractSessionItem#getForegroundColor <em>Foreground Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Foreground Color</em>' attribute.
 	 * @see #getForegroundColor()
 	 * @generated
 	 */
-  void setForegroundColor(String value);
+	void setForegroundColor(String value);
 
 } // AbstractSessionItem

@@ -107,20 +107,25 @@ public class PluginClassloader extends URLClassLoader {
 @Override
 public Enumeration<URL> getResources(String name) throws IOException {
 	Collection <URL> urls = new ArrayList<URL>();
-	
+	System.out.println ("getResources <" + name + ">");
 	for (URL next: getURLs()) {
+		
 		if (next.getPath().endsWith(".jar")) { 
 			URL jarUrl = new URL ("jar:" + new File (next.getPath()).toURI().toURL().toExternalForm() + "!/" + name);
-			System.out.println("Check Jar URL " + jarUrl.toString());
+			
 			final JarURLConnection connection = (JarURLConnection) jarUrl.openConnection();
-			if (connection.getContentLength() > 0)
+			if (connection.getContentLength() > 0) {
+				System.out.println("Check Jar URL " + jarUrl.toString());
 			    urls.add(jarUrl);
+			}
 		}
 		else {
 			File file = new File (next.getPath() + File.separator + name);
-			System.out.println("Check File URL " + file.getAbsolutePath());
-			if (file.exists())
+			
+			if (file.exists()) {
+				System.out.println("Check File URL " + file.getAbsolutePath());
 				urls.add(file.toURI().toURL());
+			}
 		}
 	}
 	

@@ -1,17 +1,14 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Midi File Text Line</b></em>'.
+ * A representation of the model object '<em><b>Song Text Line</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -32,7 +29,7 @@ public interface SongTextLine extends EObject {
 	 * The list contents are of type {@link mda.SongChordPart}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Chord Parts</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Chord Parts</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -43,30 +40,30 @@ public interface SongTextLine extends EObject {
 	 */
 	EList<SongChordPart> getChordParts();
 
-  /**
+	/**
 	 * Returns the value of the '<em><b>New Slide</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>New Slide</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>New Slide</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>New Slide</em>' attribute.
 	 * @see #setNewSlide(boolean)
 	 * @see mda.MidiplayerPackage#getSongTextLine_NewSlide()
 	 * @model
 	 * @generated
 	 */
-  boolean isNewSlide();
+	boolean isNewSlide();
 
-  /**
+	/**
 	 * Sets the value of the '{@link mda.SongTextLine#isNewSlide <em>New Slide</em>}' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>New Slide</em>' attribute.
 	 * @see #isNewSlide()
 	 * @generated
 	 */
-  void setNewSlide(boolean value);
+	void setNewSlide(boolean value);
 
-} // MidiFileTextLine
+} // SongTextLine

@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda.impl;
 
@@ -13,10 +9,14 @@ import mda.MidiplayerPackage;
 import mda.Session;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
@@ -109,7 +109,6 @@ public class SessionImpl extends EObjectImpl implements Session {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getName() {
 		return name;
 	}
@@ -119,7 +118,6 @@ public class SessionImpl extends EObjectImpl implements Session {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -132,7 +130,6 @@ public class SessionImpl extends EObjectImpl implements Session {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<AbstractSessionItem> getItems() {
 		if (items == null) {
 			items = new EObjectResolvingEList<AbstractSessionItem>(AbstractSessionItem.class, this, MidiplayerPackage.SESSION__ITEMS);
@@ -145,7 +142,6 @@ public class SessionImpl extends EObjectImpl implements Session {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getDefaultpath() {
 		return defaultpath;
 	}
@@ -155,7 +151,6 @@ public class SessionImpl extends EObjectImpl implements Session {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setDefaultpath(String newDefaultpath) {
 		String oldDefaultpath = defaultpath;
 		defaultpath = newDefaultpath;

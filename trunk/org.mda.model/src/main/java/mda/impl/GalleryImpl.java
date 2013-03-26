@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package mda.impl;
 
@@ -72,7 +68,6 @@ public class GalleryImpl extends EObjectImpl implements Gallery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<AbstractSessionItem> getGalleryItems() {
 		if (galleryItems == null) {
 			galleryItems = new EObjectContainmentEList<AbstractSessionItem>(AbstractSessionItem.class, this, MidiplayerPackage.GALLERY__GALLERY_ITEMS);
