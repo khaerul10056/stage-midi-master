@@ -1,7 +1,6 @@
 package org.mda.javafx.presenter;
 
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 import mda.Session;
 
 import org.mda.ApplicationSession;
@@ -37,12 +36,12 @@ public class StartPresentationAction implements ISessionViewAction {
 	private MonitorManager monitormanager;
 
 	@Override
-	public String getName() {
+	public String toString() {
 		return "Start";
 	}
 
 	@Override
-	public void execute(Pane parentPane) {
+	public void execute() {
 		
 		Session currentSession = appSession.getCurrentSession();
 		

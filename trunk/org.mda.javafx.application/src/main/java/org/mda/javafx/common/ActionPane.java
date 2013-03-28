@@ -30,7 +30,7 @@ public class ActionPane {
 	
 	public void addActions (Set<? extends IAction> actions) {
 		for (final IAction nextAction: actions) {
-		  Button btn = new Button(nextAction.getName());
+		  Button btn = new Button(nextAction.toString());
 		  
 		  if (nextAction.getIcon() != null) 
 			btn.setGraphic(new ImageView(nextAction.getIcon()));
@@ -39,7 +39,7 @@ public class ActionPane {
 		  btn.setOnAction(new EventHandler<ActionEvent>() {
 		        @Override
 		        public void handle(ActionEvent event) {
-		            nextAction.execute(actionpane);
+		            nextAction.execute();
 		        }
 		    });
 		  

@@ -7,17 +7,19 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 import mda.AbstractSessionItem;
 import mda.Gallery;
+import mda.MidiPlayerRoot;
+import mda.MidiplayerFactory;
+import mda.MidiplayerPackage;
+import mda.Session;
 import mda.Song;
 import mda.SongChordPart;
 import mda.SongPart;
 import mda.SongPartType;
 import mda.SongTextLine;
-import mda.MidiPlayerRoot;
-import mda.MidiplayerFactory;
-import mda.MidiplayerPackage;
-import mda.Session;
+
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -40,6 +42,8 @@ public class MidiPlayerService {
     defaultPaths.add("/home/oleym/privat/soundOfFaith/midi"); //todo konfigurierbar machen, pro Pfad Angabe von Filetypen (.mid, .txt...)
   }
 
+  
+  
   
   public static Session findSession (final MidiPlayerRoot root, final String sessionName) {
 		String sessionTrimmed = Utils.removeWhitespaces(sessionName);
@@ -502,6 +506,8 @@ public class MidiPlayerService {
     }
     return lines;
   }
+  
+  
 
   public static Session addSessionItem (Session session, AbstractSessionItem afterItem, AbstractSessionItem selectedSong) {
 	  

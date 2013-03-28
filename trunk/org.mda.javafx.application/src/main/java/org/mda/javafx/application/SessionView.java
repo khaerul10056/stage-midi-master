@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -17,6 +18,7 @@ import mda.AbstractSessionItem;
 import mda.Song;
 
 import org.mda.ApplicationSession;
+import org.mda.javafx.actions.SessionActionHover;
 import org.mda.javafx.api.ISessionViewAction;
 import org.mda.javafx.common.ActionPane;
 
@@ -33,6 +35,8 @@ public class SessionView  {
 	private Set<ISessionViewAction>  sessionActions;
 	
 	private ListView <AbstractSessionItem> lvSessionItems;
+	
+	private SessionActionHover hover = new SessionActionHover();
 	
 	public void build (final MdaJavaFXApp main) {
 	  BorderPane content = new BorderPane();
@@ -55,6 +59,23 @@ public class SessionView  {
               return new AbstractSessionItemListCell();
           }
       });
+	  
+	  lvSessionItems.setOnKeyPressed(new EventHandler<KeyEvent> () {
+
+		@Override
+		public void handle(KeyEvent arg0) {
+			System.out.println ("Key pressed: " + arg0.getText());
+			
+			
+			
+			if (arg0.getText().equals("+")) {
+				hover.create();
+			}
+			
+			
+		}
+		  
+	  });
 	  lvSessionItems.setOnMouseClicked(new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent mouseEvent) {
