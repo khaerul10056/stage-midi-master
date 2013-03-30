@@ -1,11 +1,17 @@
 package org.mda.javafx.application;
 
+import java.awt.event.FocusEvent;
 import java.io.IOException;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
@@ -13,6 +19,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.MenuItemBuilder;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Priority;
@@ -107,6 +114,8 @@ public class MdaJavaFXApp extends Application {
 		}).build();
 
     	menubar.prefWidthProperty().bind(stage.widthProperty());
+    	
+    	
 
 
     	mnuGlobal.getItems().add(mnuItem);
@@ -122,11 +131,16 @@ public class MdaJavaFXApp extends Application {
         VBox vbox = new VBox(0); // spacing = 8
         vbox.getChildren().addAll(//menubar, //toolbar, 
         							accordion);
+        
         accordion.getPanes().addAll(modelview.getPane(), sessionView.getPane(), songview.getPane());
         accordion.setExpandedPane(modelview.getPane());
+        
         VBox.setVgrow(accordion, Priority.ALWAYS);
  
         scene = new Scene(vbox, 1400, 800, Color.BLACK);
+        
+        
+        
         uiSession.setMainStage(stage);
 
         stage.setTitle("MDA");
@@ -134,7 +148,10 @@ public class MdaJavaFXApp extends Application {
         scene.getStylesheets().add(cssUrl);
         stage.setScene(scene);
         //stage.setFullScreen(true);
+        
         stage.show();
+        
+        modelview.activate();
         
         
             final EventHandler<KeyEvent> keyEventHandler =

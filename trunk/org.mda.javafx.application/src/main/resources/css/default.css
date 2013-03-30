@@ -1,11 +1,13 @@
 .titled-pane > .title {
-  -fx-background-color: -fx-box-border, -fx-inner-border, -fx-body-color;
+  -fx-box-border, -fx-inner-border, -fx-body-color;
   -fx-font: bold 22pt "Arial";
   -fx-background-insets: 0, 1, 2;
   -fx-background-radius: 0 0 0 0, 0 0 0 0, 0 0 0 0;
   -fx-padding: 2 14 3 0;
   -fx-label-padding: 5 5 5 5;
-  -fx-color: lightblue;
+  -fx-color: #BBBBBB;
+  -fx-background-color: #999999;
+  -fx-body-color: #777777;
 }
 
 .titled-pane > .title > .arrow-button .arrow {
@@ -33,6 +35,30 @@
 #presentationcontrol {
   -fx-background-color: #000000;
 }
+
+#hover-list-view {
+    -fx-font: 18pt "Arial" ;
+    -fx-text-fill: black;
+	-fx-background-radius: 0;    
+    -fx-padding: 10;
+    -fx-background-color: #FFFFEE;
+}
+
+#hover {
+    -fx-font: 18pt "Arial" ;
+    -fx-text-fill: black;
+	-fx-background-radius: 0;    
+    -fx-padding: 10;
+    -fx-background-color: #FFFFEE;
+}
+
+#hover-textfield {
+  -fx-background-radius: 0;
+  -fx-font: 18pt "Arial" ;
+  -fx-background-color: #FFFFCC;
+}
+
+
 
 
 

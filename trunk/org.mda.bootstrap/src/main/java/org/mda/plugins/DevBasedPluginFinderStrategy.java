@@ -27,9 +27,8 @@ public class DevBasedPluginFinderStrategy implements IPluginFinderStrategy {
 				
 				System.out.println("Find plugins in path " + next.getAbsolutePath());
 				if (next.isDirectory() && ! next.getName().startsWith(".")) {
-				  addPath(plugins, next, null);
+				  //addPath(plugins, next, null);
 				  addPath(plugins, next, "src/main/resources");
-				  addPath(plugins, next, "src/main/java");
 				  addPath(plugins, next, "bin");
 				  addDependencies(plugins, new File (next, ".classpath"));
 				}

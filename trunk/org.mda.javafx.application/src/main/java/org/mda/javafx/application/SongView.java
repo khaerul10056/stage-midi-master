@@ -7,6 +7,8 @@ import javafx.geometry.Insets;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -30,6 +32,16 @@ public class SongView {
 
 	private ListView<SongPart> lvSongParts;
 	
+	public void activate () {
+		System.out.println ("SongView activated");
+		pane.setExpanded(true);
+		refresh(true);
+		
+       	lvSongParts.requestFocus();
+       	lvSongParts.getSelectionModel().select(0);
+  	
+	}
+	
 	public void build (final MdaJavaFXApp main) {
 	  BorderPane content = new BorderPane(); 
       content.setCenter(new Text ("Song"));
@@ -48,6 +60,18 @@ public class SongView {
               return new SongPartListCell();
           }
       });
+	  
+	  lvSongParts.setOnKeyPressed(new EventHandler<KeyEvent> () {
+
+			@Override
+			public void handle(KeyEvent arg0) {
+				arg0.consume();
+				
+				if (lvSongParts.getSelectionModel().isSelected(0) && arg0.getCode().equals(KeyCode.UP)) 
+					main.getSessionView().activate();
+			}
+			  
+		  });
 	  
 	  lvSongParts.setOnMouseClicked(new EventHandler<MouseEvent>() {
 		    @Override
@@ -78,9 +102,7 @@ public class SongView {
 		  pane.setText("Song");
 		}
 		
-		//TODO
-//		if (withFocus)
-//			lvSessionItems.requestFocus();
+		
 		
 	}
 

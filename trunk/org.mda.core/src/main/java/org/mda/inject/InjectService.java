@@ -1,7 +1,8 @@
 package org.mda.inject;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -15,7 +16,7 @@ public class InjectService {
 
 	private static final Log LOGGER = LogFactory.getLogger(InjectService.class);
 
-	public static Collection<Module> cachedModules = new ArrayList<Module>();
+	public static Set<Module> cachedModules = new HashSet<Module>();
 	
 	private static Injector injector;
 
