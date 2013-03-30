@@ -11,12 +11,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 import org.mda.javafx.api.IAction;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
 
 
 
 public class ActionPane {
 
-	
+	private static final Log LOGGER = LogFactory.getLogger(ActionPane.class);
+
 	
 	
 	private HBox actionpane;
@@ -30,6 +33,7 @@ public class ActionPane {
 	
 	public void addActions (Set<? extends IAction> actions) {
 		for (final IAction nextAction: actions) {
+		  LOGGER.info("Add action " + nextAction.toString());
 		  Button btn = new Button(nextAction.toString());
 		  
 		  if (nextAction.getIcon() != null) 

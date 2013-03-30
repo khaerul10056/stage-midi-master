@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -36,10 +37,22 @@ public class SessionView  {
 	
 	private ListView <AbstractSessionItem> lvSessionItems;
 	
-	private SessionActionHover hover = new SessionActionHover();
+	@Inject
+	private SessionActionHover hover;
+	
+	private MdaJavaFXApp main;
+	
+	
+	public void activate () {
+		System.out.println ("SessionView activated");
+		pane.setExpanded(true);
+		lvSessionItems.requestFocus();
+        lvSessionItems.getSelectionModel().select(0);
+	}
 	
 	public void build (final MdaJavaFXApp main) {
-	  BorderPane content = new BorderPane();
+	  this.main = main;
+	BorderPane content = new BorderPane();
 	  
       lvSessionItems = new ListView<AbstractSessionItem>();
       lvSessionItems.setMinWidth(600);
@@ -65,30 +78,53 @@ public class SessionView  {
 		@Override
 		public void handle(KeyEvent arg0) {
 			System.out.println ("Key pressed: " + arg0.getText());
+			arg0.consume();
 			
 			
+			if (arg0.getCode().equals(KeyCode.ENTER)) {
+				stepToSong();
+			}
+			
+			if (lvSessionItems.getSelectionModel().isSelected(0) && arg0.getCode().equals(KeyCode.UP)) {
+				main.getModelView().activate();
+			}
 			
 			if (arg0.getText().equals("+")) {
-				hover.create();
+				hover.create(get());
 			}
 			
 			
 		}
 		  
 	  });
+	  
+	  
 	  lvSessionItems.setOnMouseClicked(new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent mouseEvent) {
 		    	if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
 		            if(mouseEvent.getClickCount() == 2){
-		                pane.setExpanded(false);
-		                appSession.setCurrentMidifile((Song) lvSessionItems.getSelectionModel().getSelectedItem());
-		                main.getSongView().refresh(true);
-		                main.getSongView().getPane().setExpanded(true);
+		                stepToSong();
 		            }
 		        }
 		    }
 		});
+	}
+	
+	private SessionView get () {
+		return this;
+	}
+	
+	public AbstractSessionItem getSelectedSessionItem () {
+		return lvSessionItems.getSelectionModel().getSelectedItem();
+	}
+	
+	
+	public void stepToSong () {
+		pane.setExpanded(false);
+        appSession.setCurrentMidifile((Song) lvSessionItems.getSelectionModel().getSelectedItem());
+        main.getSongView().activate();
+		
 	}
 	
 	public void refresh (final boolean withFocus) {

@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import org.mda.inject.InjectService;
 import org.mda.logging.Log;
@@ -40,6 +42,7 @@ public class PluginManager {
 	public List<PluginInfo> loadPlugins () throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		ClassLoader cl = getClass().getClassLoader();
 		Enumeration<URL> resources = cl.getResources("plugin.definition");
+		Set <String> loadedModules = new HashSet<String>();
 		while (resources.hasMoreElements()) {
 			URL nextURL = resources.nextElement();
 			
@@ -55,7 +58,11 @@ public class PluginManager {
 				Module loadedmodule = (Module) loadClass.newInstance();
 				pluginInfo.setModule(loadedmodule);
 				
-				InjectService.cachedModules.add(loadedmodule);
+				if (! loadedModules.contains(loadedmodule.getClass().getName())) {
+  				  InjectService.cachedModules.add(loadedmodule);
+  				  loadedModules.add(loadedmodule.getClass().getName());
+				}
+				
 				LOGGER.info("Found plugin " + nextURL.toString() + " with injection startup module " + module);
 				System.out.println("Found plugin " + nextURL.toString() + " with injection startup module " + module);
 				
