@@ -23,9 +23,9 @@ import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.measurement.ColorInfo;
 import org.mda.measurement.SizeInfo;
 import org.mda.presenter.CalculationParam;
-import org.mda.presenter.adapter.ColorInfo;
 import org.mda.presenter.config.IPresenterConfig;
 
 import com.google.inject.Inject;
@@ -58,7 +58,7 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
     CalculationParam param = new CalculationParam(new SizeInfo (640, 480));
 
     for (AbstractSessionItem nextItem : items) {
-      List<org.mda.presenter.Slide> calculate = getCalculator().calculate(nextItem, param, config).getSlides();
+      List<org.mda.presenter.Slide> calculate = getCalculator().calculate(nextItem, param, config).getSongSlides();
 
       for (org.mda.presenter.Slide nextInternSlide : calculate) {
         exportSlide(show, nextInternSlide);

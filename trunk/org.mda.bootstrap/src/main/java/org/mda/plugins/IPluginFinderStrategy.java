@@ -2,7 +2,6 @@ package org.mda.plugins;
 
 import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URL;
 
 public interface IPluginFinderStrategy {
 
@@ -12,7 +11,7 @@ public interface IPluginFinderStrategy {
 	 * @param path reference path 
 	 * @return urls
 	 */
-	public URL [] findPlugins (final File path) throws MalformedURLException;
+	public ClassLoader createClassloader (final File path) throws MalformedURLException;
 	
 	/**
 	 * returns if the current plugin finder strategy is used

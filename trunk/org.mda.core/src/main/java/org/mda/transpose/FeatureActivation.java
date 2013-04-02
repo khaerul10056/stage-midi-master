@@ -1,5 +1,9 @@
 package org.mda.transpose;
 
+import org.mda.ApplicationSession;
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
+
 import mda.Session;
 
 
@@ -10,6 +14,9 @@ import mda.Session;
  *
  */
 public class FeatureActivation {
+	
+  private static final Log LOGGER  = LogFactory.getLogger(FeatureActivation.class);
+
 
   private boolean showGridEnabled;
 
@@ -26,6 +33,7 @@ public class FeatureActivation {
   }
 
   public void setShowGridEnabled (boolean showGridEnabled) {
+    LOGGER.info("set showGridEnabled to " + showGridEnabled);	  
     this.showGridEnabled = showGridEnabled;
   }
 
@@ -34,6 +42,7 @@ public class FeatureActivation {
   }
 
   public void setShowWhitespaces (boolean showWhitespaces) {
+	LOGGER.info("set showWhitespaces to " + showGridEnabled);	  
     this.showWhitespaces = showWhitespaces;
   }
 
@@ -42,6 +51,7 @@ public class FeatureActivation {
   }
 
   public void setPresentationAlwaysOnTop (boolean presentationAlwaysOnTop) {
+	LOGGER.info("set presetnationAlwaysOnTop to " + showGridEnabled);	  
     this.presentationAlwaysOnTop = presentationAlwaysOnTop;
   }
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import mda.AbstractSessionItem;
@@ -15,12 +16,12 @@ import mda.AbstractSessionItem;
  */
 public class SlideContainer {
 	
-	private final HashMap<AbstractSessionItem, List<Slide>> slidesPerItem = new HashMap<AbstractSessionItem, List<Slide>>();
+	private final HashMap<AbstractSessionItem, List<ISlide>> slidesPerItem = new LinkedHashMap<AbstractSessionItem, List<ISlide>>();
 	
 	public void addContainer (final SlideContainer container) {
-		HashMap<AbstractSessionItem, List<Slide>> containerParam = container.getSlidesPerItem(); 
+		HashMap<AbstractSessionItem, List<ISlide>> containerParam = container.getSlidesPerItem(); 
 		for (AbstractSessionItem nextKey : containerParam.keySet()) {
-			List<Slide> slidesParam = containerParam.get(nextKey);
+			List<ISlide> slidesParam = containerParam.get(nextKey);
 			slidesPerItem.put(nextKey, slidesParam);	
 		}
 	}
@@ -47,8 +48,8 @@ public class SlideContainer {
 	   * @param currentEqualsSlide  slide which is equaled
 	   * @return  slide
 	   */
-	  public Slide getSlide (final Slide currentEqualsSlide) {
-		  for (Slide next: getSlides()) {
+	  public ISlide getSlide (final Slide currentEqualsSlide) {
+		  for (ISlide next: getSlides()) {
 			  if (next.getModelRef().equals(currentEqualsSlide.getModelRef()))
 				  return next;
 		  }
@@ -63,39 +64,39 @@ public class SlideContainer {
 	   */
 	  public List <SlideItem> getAllSlideItems () {
 		  List <SlideItem> allItems = new ArrayList<SlideItem>();
-		  for (Slide nextSlide: getSlides()) {
+		  for (ISlide nextSlide: getSlides()) {
 			  allItems.addAll(nextSlide.getItems());
 		  }
 		  
 		  return allItems;
 	  }
 	
-	public void addSlide (final AbstractSessionItem item, Slide slide) {
-		List<Slide> collection = slidesPerItem.get(item);
+	public void addSlide (final AbstractSessionItem item, ISlide slide) {
+		List<ISlide> collection = slidesPerItem.get(item);
 		if (collection == null)
-			collection = new ArrayList<Slide>();
+			collection = new ArrayList<ISlide>();
 		
 		collection.add(slide);
 		
 		slidesPerItem.put(item, collection);
 	}
 	
-	public void addSlides (final AbstractSessionItem item, Collection<Slide> slides) {
-		List<Slide> collection = slidesPerItem.get(item);
+	public void addSlides (final AbstractSessionItem item, Collection<? extends ISlide> slides) {
+		List<ISlide> collection = slidesPerItem.get(item);
 		if (collection == null)
-			collection = new ArrayList<Slide>();
+			collection = new ArrayList<ISlide>();
 		
 		collection.addAll(slides);
 		
 		slidesPerItem.put(item, collection);
 	}
 
-	public HashMap<AbstractSessionItem, List<Slide>> getSlidesPerItem() {
+	public HashMap<AbstractSessionItem, List<ISlide>> getSlidesPerItem() {
 		return slidesPerItem;
 	}
 	
-	public List <Slide> getSlides (final AbstractSessionItem sessionItem) {
-		List <Slide> slide = slidesPerItem.get(sessionItem);
+	public List <ISlide> getSlides (final AbstractSessionItem sessionItem) {
+		List <ISlide> slide = slidesPerItem.get(sessionItem);
 		if (slide == null)
 			return Collections.emptyList();
 		
@@ -104,18 +105,29 @@ public class SlideContainer {
 	
 	
 	public boolean isSlideAssignedToItem (Slide slide, AbstractSessionItem sessionitem) {
-		List <Slide> slides = slidesPerItem.get(sessionitem);
+		List <ISlide> slides = slidesPerItem.get(sessionitem);
 		return slides.contains(slide);
 	}
 	
 	
-	public List<Slide> getSlides () {
-		ArrayList<Slide> completeListe = new ArrayList<Slide>();
-		for (Collection <Slide> nextSlideList : slidesPerItem.values()) {
+	public List<? extends ISlide> getSlides () {
+		ArrayList<ISlide> completeListe = new ArrayList<ISlide>();
+		for (Collection <ISlide> nextSlideList : slidesPerItem.values()) {
 			completeListe.addAll(nextSlideList);
 		}
 		return completeListe;
 	}
+	
+	public List<Slide> getSongSlides () {
+		ArrayList<Slide> completeListe = new ArrayList<Slide>();
+		for (Collection <ISlide> nextSlideList : slidesPerItem.values()) {
+			for (ISlide nextSlide : nextSlideList)
+			  if (nextSlide instanceof Slide)
+			  completeListe.add((Slide) nextSlide);
+		}
+		return completeListe;
+	}
+
 
 	
 

@@ -1,23 +1,36 @@
-package org.mda.javafx.presenter;
+package org.mda.javafx.common;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 
+import org.mda.logging.Log;
+import org.mda.logging.LogFactory;
+import org.mda.measurement.AreaInfo;
 import org.mda.measurement.SizeInfo;
-import org.mda.presenter.adapter.AreaInfo;
 
 
 public class MonitorManager {
 	
+	private final static Log LOG = LogFactory.getLogger(MonitorManager.class);
+	
+	public void layoutToPrimaryMonitorBounds (final Stage stage){
+		AreaInfo primaryMonitorBounds = getPrimaryMonitorBounds();
+		stage.setX(primaryMonitorBounds.getX());
+		stage.setY(primaryMonitorBounds.getY());
+		stage.setWidth(primaryMonitorBounds.getWidth());
+		stage.setHeight(primaryMonitorBounds.getHeight());
+	}
     
 	public AreaInfo getPrimaryMonitorBounds () {
 		Screen primaryScreen = Screen.getPrimary(); 
 		Rectangle2D rect = primaryScreen.getBounds(); 
-		return createAreaInfo(rect);
+		return createAreaInfo(rect, "primary monitor bounds");
 	}
 	
-	private AreaInfo createAreaInfo (final Rectangle2D rect) {
+	private AreaInfo createAreaInfo (final Rectangle2D rect, String logmessage) {
+		LOG.info(logmessage + ":  x=" + rect.getMinX() + ", y=" + rect.getMinY() + ", width=" + rect.getWidth() + ", height=" + rect.getHeight());
 		return new AreaInfo((float)rect.getMinX(), (float)rect.getMinY(), new SizeInfo((float)rect.getWidth(), (float)rect.getHeight()));
 	}
 	
@@ -33,7 +46,7 @@ public class MonitorManager {
 				secondary = nextScreen; 
 		}
 		
-		return secondary == null ? null : createAreaInfo(secondary.getBounds()); 
+		return secondary == null ? null : createAreaInfo(secondary.getBounds(), "secondary monitor bounds"); 
 	}
 	
 	public boolean isDualMonitorAvailable () {

@@ -2,7 +2,6 @@ package org.mda.presenter;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import mda.AbstractSessionItem;
@@ -19,11 +18,9 @@ public class PresentationContext implements IPresentationContext {
 
   private static final Log LOGGER  = LogFactory.getLogger(PresentationContext.class);
 
-  //private ImageCache  imagecache = new ImageCache ();
-
   private Session currentViewingSession;
 
-  private LinkedHashMap<AbstractSessionItem, List <Slide>> slidesPerItem;
+  private SlideContainer slideContainer;
 
   private int currentSessionItemIndex = 0;
   private int currentSlideIndex = 0;
@@ -34,7 +31,7 @@ public class PresentationContext implements IPresentationContext {
   private SpecialSlide specialSlide = null;
   
   @Inject
-  SongSlideCalculator calculator;
+  SessionSlideCalculator calculator;
 
   /**
    * list of registered controllers to control the presentation 
@@ -65,8 +62,8 @@ public class PresentationContext implements IPresentationContext {
     currentViewingSession = null;
     registeredControllers.clear();
     registeredViews.clear();
-    if (slidesPerItem != null)
-      slidesPerItem.clear();
+    if (slideContainer != null)
+      slideContainer = null;
   }
 
   public void setCurrentSession (Session currentSession, final IPresenterConfig config, CalculationParam param) {
@@ -75,7 +72,7 @@ public class PresentationContext implements IPresentationContext {
     this.config = config;
     this.calcParam = param;
     //((DefaultMidiFileContentEditorConfig)this.config).setSkipEmptySlides(Boolean.FALSE); //TODO guggn, ob das OK ist
-    slidesPerItem = calculateSlides (currentSession);
+    slideContainer = calculateSlides (currentSession);
     LOGGER.info("set current session " + currentSession.getName() + " at presentationcontext calculation finished");
   }
 
@@ -90,7 +87,7 @@ public class PresentationContext implements IPresentationContext {
     this.currentViewingSession = null;
     this.config = null;
     calcParam = null;
-    slidesPerItem = null;
+    slideContainer = null;
     //imagecache.clear();
 
     for (IPresentationView nextView: getRegisteredViews()) {
@@ -175,11 +172,11 @@ public class PresentationContext implements IPresentationContext {
     return currentSessionItemIndex;
   }
   public AbstractSessionItem getCurrentSessionItem () {
-    return slidesPerItem.keySet().toArray(new AbstractSessionItem [slidesPerItem.keySet().size()]) [currentSessionItemIndex];
+    return slideContainer.getSlidesPerItem().keySet().toArray(new AbstractSessionItem [slideContainer.getSlidesPerItem().keySet().size()]) [currentSessionItemIndex];
   }
 
-  public Slide getCurrentSlide () {
-    return slidesPerItem.get(getCurrentSessionItem()).get(currentSlideIndex);
+  public ISlide getCurrentSlide () {
+    return slideContainer.getSlidesPerItem().get(getCurrentSessionItem()).get(currentSlideIndex);
   }
   
   public int getCurrentSlideIndex () {
@@ -187,24 +184,13 @@ public class PresentationContext implements IPresentationContext {
   }
   
   
-  public List <Slide> getSlides () {
-	  List <Slide> completeListe = new ArrayList<Slide>(); 
-	  for (List<Slide> nextLists : slidesPerItem.values()) {
-		  completeListe.addAll(nextLists);
-	  }
-	  return completeListe;
+  public List <? extends ISlide> getSlides () {
+	  return slideContainer.getSlides();
+	  
   }
 
-  private LinkedHashMap<AbstractSessionItem, List<Slide>> calculateSlides (Session session) {
-    LinkedHashMap<AbstractSessionItem, List<Slide>> slidesPerItem = new LinkedHashMap<AbstractSessionItem, List<Slide>>();
-    calculator.setConfig(config);
-
-    for (AbstractSessionItem nextItem: session.getItems()) {
-      List<Slide> calculate = calculator.calculate(nextItem, calcParam, config).getSlides();
-      slidesPerItem.put(nextItem, calculate);
-    }
-
-    return slidesPerItem;
+  private SlideContainer calculateSlides (Session session) {
+    return calculator.calculate(session, calcParam, config);
   }
   
   public IPresenterConfig getCurrentConfig () {
@@ -214,8 +200,8 @@ public class PresentationContext implements IPresentationContext {
   public NavigationRefreshAction nextSlide () {
     NavigationRefreshAction action = NavigationRefreshAction.REFRESH_VIEW;
     AbstractSessionItem currentSessionItem = getCurrentSessionItem();
-    if (currentSlideIndex >= slidesPerItem.get(currentSessionItem).size() - 1) { // last slide of current item reached
-      if (currentSessionItemIndex >= slidesPerItem.keySet().toArray().length - 1) { // last slide ever reached
+    if (currentSlideIndex >= slideContainer.getSlidesPerItem().get(currentSessionItem).size() - 1) { // last slide of current item reached
+      if (currentSessionItemIndex >= slideContainer.getSlidesPerItem().keySet().toArray().length - 1) { // last slide ever reached
         return NavigationRefreshAction.NONE;
       }
       else {
@@ -266,7 +252,7 @@ public class PresentationContext implements IPresentationContext {
       else {
         currentSessionItemIndex --;
         action = NavigationRefreshAction.DIFFERENT_ITEM_END;
-        currentSlideIndex = slidesPerItem.get(getCurrentSessionItem()).size() - 1;
+        currentSlideIndex = slideContainer.getSlidesPerItem().get(getCurrentSessionItem()).size() - 1;
       }
     }
     else
@@ -278,15 +264,15 @@ public class PresentationContext implements IPresentationContext {
   }
 
   public boolean toPart (final SongPart part) {
-    AbstractSessionItem[] array = slidesPerItem.keySet().toArray(new AbstractSessionItem [slidesPerItem.size()]);
+    AbstractSessionItem[] array = slideContainer.getSlidesPerItem().keySet().toArray(new AbstractSessionItem [slideContainer.getSlidesPerItem().size()]);
 
     boolean itemFound = false;
 
     for (int i = 0; i < array.length; i++) {
       AbstractSessionItem nextItem = array [i];
 
-      List<Slide> list = slidesPerItem.get(nextItem);
-      for (Slide nextSlide: list) {
+      List<ISlide> list = slideContainer.getSlidesPerItem().get(nextItem);
+      for (ISlide nextSlide: list) {
         if (nextSlide.getModelRef() == part) {
           currentSessionItemIndex = i;
           currentSlideIndex = list.indexOf(nextSlide);
@@ -309,13 +295,13 @@ public class PresentationContext implements IPresentationContext {
   }
 
   public boolean toItem (AbstractSessionItem item, boolean toEnd) {
-    AbstractSessionItem[] array = slidesPerItem.keySet().toArray(new AbstractSessionItem [slidesPerItem.size()]);
+    AbstractSessionItem[] array = slideContainer.getSlidesPerItem().keySet().toArray(new AbstractSessionItem [slideContainer.getSlidesPerItem().size()]);
     boolean itemFound = false;
 
     for (int i = 0; i < array.length; i++) {
       if (array [i].equals(item)) {
         currentSessionItemIndex = i;
-        int lastIndex = slidesPerItem.get(item).size() - 1;
+        int lastIndex = slideContainer.getSlidesPerItem().get(item).size() - 1;
         currentSlideIndex = toEnd ? lastIndex : 0;
         LOGGER.info("To item " + currentSessionItemIndex + ", " + currentSlideIndex);
         itemFound = true;

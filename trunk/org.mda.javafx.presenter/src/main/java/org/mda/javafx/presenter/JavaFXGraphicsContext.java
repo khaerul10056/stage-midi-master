@@ -2,8 +2,8 @@ package org.mda.javafx.presenter;
 
 import javafx.scene.text.FontWeight;
 
+import org.mda.measurement.FontInfo;
 import org.mda.measurement.SizeInfo;
-import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
 
 import com.sun.javafx.tk.FontLoader;

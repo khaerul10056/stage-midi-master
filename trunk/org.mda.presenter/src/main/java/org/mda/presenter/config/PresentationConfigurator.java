@@ -16,8 +16,8 @@ import org.mda.MidiPlayerService;
 import org.mda.inject.InjectService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.adapter.ColorInfo;
-import org.mda.presenter.utils.ColorNotFoundException;
+import org.mda.measurement.ColorInfo;
+import org.mda.measurement.ColorNotFoundException;
 
 
 public class PresentationConfigurator {

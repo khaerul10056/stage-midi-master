@@ -3,8 +3,8 @@ package org.mda.presenter.config;
 
 import mda.SongPartType;
 
-import org.mda.presenter.adapter.ColorInfo;
-import org.mda.presenter.adapter.FontInfo;
+import org.mda.measurement.ColorInfo;
+import org.mda.measurement.FontInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
 
 public interface IPresenterConfig {

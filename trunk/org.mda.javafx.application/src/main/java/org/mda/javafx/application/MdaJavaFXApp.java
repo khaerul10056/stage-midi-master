@@ -1,17 +1,11 @@
 package org.mda.javafx.application;
 
-import java.awt.event.FocusEvent;
 import java.io.IOException;
 import java.util.List;
 
 import javafx.application.Application;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
@@ -19,17 +13,18 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.MenuItemBuilder;
-import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import org.mda.ApplicationSession;
 import org.mda.inject.InjectService;
 import org.mda.javafx.autoconfig.AutomaticPluginConfigurator;
+import org.mda.javafx.common.MonitorManager;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.plugins.PluginInfo;
@@ -59,6 +54,9 @@ public class MdaJavaFXApp extends Application {
     
     @Inject
     private AutomaticPluginConfigurator configurator;
+    
+    @Inject
+	private MonitorManager monitormanager;
 
 	private Scene scene;
 	
@@ -144,11 +142,13 @@ public class MdaJavaFXApp extends Application {
         uiSession.setMainStage(stage);
 
         stage.setTitle("MDA");
+        stage.initStyle(StageStyle.UNDECORATED);
         String cssUrl = getClass().getClassLoader().getResource("css/default.css").toExternalForm();
         scene.getStylesheets().add(cssUrl);
         stage.setScene(scene);
-        //stage.setFullScreen(true);
-        
+    	stage.setFullScreen(appSession.getFeatureActivation().isPresentationAlwaysOnTop());
+   		//monitormanager.layoutToPrimaryMonitorBounds(stage);
+
         stage.show();
         
         modelview.activate();

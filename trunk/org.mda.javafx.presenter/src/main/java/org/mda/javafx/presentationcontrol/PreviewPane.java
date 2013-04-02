@@ -11,19 +11,20 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextBuilder;
 
 import org.mda.ApplicationSession;
-import org.mda.measurement.SizeInfo;
 import org.mda.javafx.imagecache.ImageCache;
 import org.mda.javafx.presenter.BackgroundImageResolver;
 import org.mda.javafx.presenter.ColorResolver;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.measurement.AreaInfo;
+import org.mda.measurement.SizeInfo;
 import org.mda.presenter.CalculationParam;
+import org.mda.presenter.ISlide;
 import org.mda.presenter.PresentationContext;
+import org.mda.presenter.SessionSlideCalculator;
 import org.mda.presenter.Slide;
 import org.mda.presenter.SlideContainer;
 import org.mda.presenter.SlideItem;
-import org.mda.presenter.SongSlideCalculator;
-import org.mda.presenter.adapter.AreaInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
 import org.mda.presenter.config.PresentationConfigurator;
 import org.mda.presenter.config.PresentationType;
@@ -41,7 +42,7 @@ public class PreviewPane {
 	private ApplicationSession appsession;
 	
 	@Inject
-	private SongSlideCalculator calculator;
+	private SessionSlideCalculator calculator;
 	
 	
 	@Inject
@@ -56,7 +57,7 @@ public class PreviewPane {
 	private ImageCache imageCache;
 	
 	
-	private void addStyle (final Pane pane, final Slide slide, AreaInfo beamerpresenterBounds) {
+	private void addStyle (final Pane pane, final ISlide slide, AreaInfo beamerpresenterBounds) {
 		if (slide.getBackgroundImageFile() != null) {
 			ImageView imageView = new ImageView(imageCache.getImage(slide.getBackgroundImageFile(), beamerpresenterBounds.getSize()));
 			imageView.setFitWidth(beamerpresenterBounds.getWidth());
@@ -66,12 +67,12 @@ public class PreviewPane {
 			imageView.setCache(true);
 			pane.getChildren().add(imageView);
 		}
-		else
-		  pane.setStyle(colorResolver.getBackground(slide.getBackgroundColor()));
+		else if (slide.getBackgroundColor() != null)
+		  pane.setStyle(colorResolver.getBackground (slide.getBackgroundColor()));
 		pane.setVisible(false);
 	}
 	
-	public HashMap<Slide, Pane> build (final Slide slide, final SizeInfo sizeinfo) {
+	public HashMap<ISlide, Pane> build (final Slide slide, final SizeInfo sizeinfo) {
 		
 		CalculationParam calcParam = new CalculationParam(new AreaInfo (0,0, sizeinfo));
 		
@@ -80,8 +81,8 @@ public class PreviewPane {
 	    
 	    setContainer(calculator.calculate(context.getCurrentSession(), calcParam, config));
 	    
-	    HashMap <Slide, Pane> allPanes = new HashMap<Slide, Pane>();
-	    for (Slide nextSlide : getContainer().getSlides()) {
+	    HashMap <ISlide, Pane> allPanes = new HashMap<ISlide, Pane>();
+	    for (ISlide nextSlide : getContainer().getSlides()) {
 	    	
 	    	Pane nextPane = PaneBuilder.create().build();
 			nextPane.setPrefSize(sizeinfo.getWidth(),  sizeinfo.getHeight());

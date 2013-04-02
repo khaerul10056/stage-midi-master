@@ -2,18 +2,18 @@ package org.mda.presenter;
 
 import java.math.BigDecimal;
 
-import org.mda.measurement.SizeInfo;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.adapter.FontInfo;
-import org.mda.presenter.adapter.LocationInfo;
+import org.mda.measurement.FontInfo;
+import org.mda.measurement.LocationInfo;
+import org.mda.measurement.SizeInfo;
 import org.mda.presenter.config.IPresenterConfig;
 
 
 
-public abstract class SlideCalculator implements ISlideCalculator {
+public abstract class AbstractSlideCalculator implements ISlideCalculator {
 
-  private static final Log LOGGER  = LogFactory.getLogger(SlideCalculator.class);
+  private static final Log LOGGER  = LogFactory.getLogger(AbstractSlideCalculator.class);
 
   private IPresenterConfig config;
 
@@ -29,6 +29,8 @@ public abstract class SlideCalculator implements ISlideCalculator {
   public IPresenterConfig getConfig () {
     return config;
   }
+  
+ 
   
 
   /**

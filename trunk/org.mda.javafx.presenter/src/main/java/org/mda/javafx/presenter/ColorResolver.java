@@ -2,7 +2,8 @@ package org.mda.javafx.presenter;
 
 import javafx.scene.paint.Color;
 
-import org.mda.presenter.adapter.ColorInfo;
+import org.mda.measurement.ColorInfo;
+
 
 public class ColorResolver {
 	

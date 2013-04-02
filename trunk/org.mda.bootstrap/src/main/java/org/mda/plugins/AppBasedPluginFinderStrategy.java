@@ -9,7 +9,7 @@ import java.util.Collection;
 public class AppBasedPluginFinderStrategy implements IPluginFinderStrategy {
 
 	@Override
-	public URL[] findPlugins(File path) throws MalformedURLException {
+	public ClassLoader createClassloader(File path) throws MalformedURLException {
 		
 		
 		System.out.println ("Find plugins from " + path.getAbsolutePath());
@@ -21,7 +21,9 @@ public class AppBasedPluginFinderStrategy implements IPluginFinderStrategy {
 			System.out.println ("Adding " + next.toURI().toURL() + " to urls");
 			urls.add(next.toURI().toURL());
 		}
-		return urls.toArray(new URL [urls.size()]);
+		
+		PluginClassloader pluginClassloader = new PluginClassloader(urls.toArray(new URL [urls.size()]), getClass().getClassLoader());
+		return pluginClassloader;
 	}
 
 	@Override

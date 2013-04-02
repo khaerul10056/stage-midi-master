@@ -2,8 +2,9 @@ package org.mda.presenter;
 
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.adapter.AreaInfo;
-import org.mda.presenter.adapter.FontInfo;
+import org.mda.measurement.AreaInfo;
+import org.mda.measurement.FontInfo;
+
 
 
 /**

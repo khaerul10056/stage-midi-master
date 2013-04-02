@@ -14,16 +14,16 @@ import mda.Song;
 import org.mda.ApplicationSession;
 import org.mda.export.AbstractExporter;
 import org.mda.export.ExportException;
-import org.mda.measurement.SizeInfo;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.measurement.FontInfo;
+import org.mda.measurement.SizeInfo;
 import org.mda.presenter.CalculationParam;
 import org.mda.presenter.Slide;
 import org.mda.presenter.SlideContainer;
 import org.mda.presenter.SlideItem;
 import org.mda.presenter.SlideType;
 import org.mda.presenter.SongSlideCalculator;
-import org.mda.presenter.adapter.FontInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
 import org.mda.presenter.config.IPresenterConfig;
 
@@ -97,7 +97,7 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
 
     setLastSlides(calculator.calculate(nextItem, calcParam, config));
 
-    for (Slide nextInternSlide : getLastSlides().getSlides()) {
+    for (Slide nextInternSlide : getLastSlides().getSongSlides()) {
 
       if (nextInternSlide.isForceNewPage())  {
       try {

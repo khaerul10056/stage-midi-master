@@ -8,7 +8,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import mda.AbstractSessionItem;
-import mda.Session;
 import mda.Song;
 import mda.SongChordPart;
 import mda.SongPart;
@@ -18,13 +17,13 @@ import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.additionals.Additional;
 import org.mda.copyright.CopyrightSerializer;
-import org.mda.measurement.SizeInfo;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.adapter.AreaInfo;
-import org.mda.presenter.adapter.FontInfo;
+import org.mda.measurement.AreaInfo;
+import org.mda.measurement.FontInfo;
+import org.mda.measurement.LocationInfo;
+import org.mda.measurement.SizeInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
-import org.mda.presenter.adapter.LocationInfo;
 import org.mda.presenter.config.DefaultPresenterConfig;
 import org.mda.presenter.config.IPresenterConfig;
 import org.mda.presenter.config.PresentationConfigurator;
@@ -32,7 +31,7 @@ import org.mda.struct.SongStruct;
 import org.mda.struct.SongStructItem;
 
 
-public class SongSlideCalculator extends SlideCalculator {
+public class SongSlideCalculator extends AbstractSlideCalculator {
 
   private static final Log LOGGER  = LogFactory.getLogger(SongSlideCalculator.class);
 
@@ -52,6 +51,7 @@ public class SongSlideCalculator extends SlideCalculator {
   private float height = -1;
 
   private float maxY = -1;
+  
   
   
   private int getOptimizedFontSize (final List <Slide> slides,  IPresenterConfig config) {
@@ -75,15 +75,7 @@ public class SongSlideCalculator extends SlideCalculator {
   }
   
   
-  public SlideContainer calculate (final Session session, final CalculationParam param, final IPresenterConfig config) {
-	  SlideContainer newContainer = new SlideContainer();
-	  for (AbstractSessionItem nextItem: session.getItems()) {
-		  newContainer.addContainer(calculate(nextItem, param, config));
-	  }
-	  
-	  return newContainer;
-  }
-  
+
   @Override
   public SlideContainer calculate (final AbstractSessionItem sessionitem, final CalculationParam param, final IPresenterConfig config) {
 	  
@@ -570,6 +562,9 @@ public class SongSlideCalculator extends SlideCalculator {
   public boolean isAssigned (AbstractSessionItem item) {
     return item instanceof Song;
   }
+
+
+
 
 
 
