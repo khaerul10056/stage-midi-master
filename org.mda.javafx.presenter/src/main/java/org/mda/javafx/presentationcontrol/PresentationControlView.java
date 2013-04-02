@@ -7,26 +7,25 @@ import java.util.List;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageBuilder;
+import javafx.stage.StageStyle;
 import mda.AbstractSessionItem;
 import mda.Session;
 
 import org.mda.javafx.application.UISession;
+import org.mda.javafx.common.MonitorManager;
 import org.mda.javafx.presenter.KeyPresentationController;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.measurement.SizeInfo;
 import org.mda.presenter.IPresentationView;
+import org.mda.presenter.ISlide;
 import org.mda.presenter.PresentationContext;
-import org.mda.presenter.Slide;
 import org.mda.presenter.controller.DefaultPresentationController;
 
 import com.google.inject.Inject;
@@ -61,15 +60,18 @@ public class PresentationControlView implements IPresentationView{
 
 	private BorderPane borderPane;
 	
-	private HashMap<Slide, Pane> mainpreviewPanes;
+	private HashMap<ISlide, Pane> mainpreviewPanes;
 
-	private HashMap<Slide, Pane> subpreviewPanes;
+	private HashMap<ISlide, Pane> subpreviewPanes;
 	
 	@Inject
-	KeyPresentationController keycontroller;
+	private KeyPresentationController keycontroller;
 	
 	@Inject
-	DefaultPresentationController defaultcontroller;
+	private DefaultPresentationController defaultcontroller;
+	
+	@Inject
+	private MonitorManager monitormanager;
 	
 	
 	
@@ -97,8 +99,10 @@ public class PresentationControlView implements IPresentationView{
 		  scene.getStylesheets().addAll(uiSession.getMainStage().getScene().getStylesheets());
 		  
 		  Stage stage = StageBuilder.create().build();
+	      stage.initStyle(StageStyle.UNDECORATED);
 		  stage.setScene(scene);
-		  stage.setFullScreen(true);
+		  monitormanager.layoutToPrimaryMonitorBounds(stage);
+		  //stage.setFullScreen(true);
 		  stage.requestFocus();
 		  
 		  //Main Previewpane
@@ -114,20 +118,19 @@ public class PresentationControlView implements IPresentationView{
 		  
 		  
 		  for (AbstractSessionItem nextSessionItem : session.getItems()) {
-			  List<Slide> slides = subPreviewPaneBuilder.getContainer().getSlides(nextSessionItem);
+			  List<ISlide> slides = subPreviewPaneBuilder.getContainer().getSlides(nextSessionItem);
 			  Collection <Pane> panes = new ArrayList<Pane>();
-			  for (Slide next: slides) {
+			  for (ISlide next: slides) {
 				Pane nextPane = subpreviewPanes.get(next);
 				nextPane.setVisible(true);
 			    panes.add(nextPane);
 			  }
 			  
-			  PictureGallery pictureGallery = new PictureGallery(uiSession.getMainStage(), panes, slides.get(0).getSize().getWidthAsInt());
-			  
-			  
-			  
-			  pictureGalleries.put(nextSessionItem, pictureGallery);
-			  pictureGalleryStackPane.getChildren().add(pictureGallery);
+			  if (slides.size() > 0) {
+			    PictureGallery pictureGallery = new PictureGallery(uiSession.getMainStage(), panes, slides.get(0).getSize().getWidthAsInt());
+			    pictureGalleries.put(nextSessionItem, pictureGallery);
+			    pictureGalleryStackPane.getChildren().add(pictureGallery);
+			  }
 			  
 		  }
 		  pictureGalleryStackPane.setVisible(true);
@@ -135,11 +138,8 @@ public class PresentationControlView implements IPresentationView{
 		  borderPane.setBottom(pictureGalleryStackPane);
 		  BorderPane.setAlignment(pictureGalleryStackPane, Pos.CENTER_LEFT);
 		  
-		  Scene mainScene = uiSession.getMainStage().getScene();
-		  stage.setX(mainScene.getX());
-		  stage.setY(mainScene.getY());
-		  stage.setWidth(mainScene.getWidth());
-		  stage.setHeight(mainScene.getHeight());
+		  
+
 		  
 		  context.registerController(keycontroller);
 		  stage.addEventHandler(KeyEvent.KEY_PRESSED, keycontroller );
@@ -167,12 +167,12 @@ public class PresentationControlView implements IPresentationView{
 	@Override
 	public void refresh() {
 		
-		Slide currentPresentationSlide = context.getCurrentSlide();
+		ISlide currentPresentationSlide = context.getCurrentSlide();
 		int indexOfCurrentSlide = context.getCurrentSlideIndex();
 		AbstractSessionItem currentSessionItem = context.getCurrentSessionItem();
 		
 		//set current mainpreview visible
-		for (Slide nextSlide: mainpreviewPanes.keySet()) {
+		for (ISlide nextSlide: mainpreviewPanes.keySet()) {
 			Pane pane = mainpreviewPanes.get(nextSlide);
 			boolean currentSlide = currentPresentationSlide.equals(nextSlide);
 			pane.setVisible(currentSlide);

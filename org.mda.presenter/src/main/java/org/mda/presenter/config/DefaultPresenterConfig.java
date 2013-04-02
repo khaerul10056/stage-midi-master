@@ -7,8 +7,8 @@ import mda.SongPartType;
 import mda.impl.PresentationSchemeImpl;
 
 import org.mda.ApplicationSession;
-import org.mda.presenter.adapter.ColorInfo;
-import org.mda.presenter.adapter.FontInfo;
+import org.mda.measurement.ColorInfo;
+import org.mda.measurement.FontInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
 
 import com.google.inject.Inject;

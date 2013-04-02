@@ -1,4 +1,4 @@
-package org.mda.presenter.adapter;
+package org.mda.measurement;
 
 public class FontInfo {
 	

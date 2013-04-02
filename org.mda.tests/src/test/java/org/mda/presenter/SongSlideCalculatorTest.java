@@ -100,12 +100,12 @@ public class SongSlideCalculatorTest {
     SongSlideCalculator calculator = getCalculator();
     
     SlideContainer container = calculator.calculate(song, getParam(), config);
-    Slide slide = container.getSlides().get(0);
+    Slide slide = container.getSongSlides().get(0);
     
 
     config.setFontsize(config.getFont().getFontsizeAsInt() * 2);
     SlideContainer container2 = calculator.calculate(song, getParam(), config);
-    Slide slide2 = container2.getSlides().get(0);
+    Slide slide2 = container2.getSongSlides().get(0);
     
     
     Assert.assertEquals (slide.getHighestScreenCoverage() * 2, slide2.getHighestScreenCoverage(), 0.1);
@@ -130,7 +130,7 @@ public class SongSlideCalculatorTest {
     SongSlideCalculator calculator = getCalculator();
     
     SlideContainer container = calculator.calculate(song, getParam(), config);
-    List<Slide> calculateWithoutBorder = container.getSlides();
+    List<Slide> calculateWithoutBorder = container.getSongSlides();
     Slide slide = calculateWithoutBorder.get(0);
     SlideItem mostRightFromSlide = slide.getMostRightItem();
     SlideItem mostRightFromContainer = container.getMostRightItem();
@@ -151,7 +151,7 @@ public class SongSlideCalculatorTest {
     DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setShowCopyright(false);
     SongSlideCalculator calculator = getCalculator();
-    List<Slide> calculateWithoutBorder = calculator.calculate(song, getParam(), config).getSlides();
+    List<Slide> calculateWithoutBorder = calculator.calculate(song, getParam(), config).getSongSlides();
     Slide slide = calculateWithoutBorder.get(0);
     Assert.assertEquals (0, findTokens(slide));
   }
@@ -166,7 +166,7 @@ public class SongSlideCalculatorTest {
     DefaultPresenterConfig config = InjectService.getInstance(DefaultPresenterConfig.class);
     config.setOptimizeLineFilling(false);
     config.setOptimizeEmptyTokens(true);
-    List<Slide> calculateWithoutBorder = getCalculator().calculate(song, getParam(), config).getSlides();
+    List<Slide> calculateWithoutBorder = getCalculator().calculate(song, getParam(), config).getSongSlides();
     Slide firstSlide = calculateWithoutBorder.get(0);
     LOGGER.info("->" + firstSlide.toString());
     Assert.assertEquals (2, firstSlide.getItems().size());
@@ -384,7 +384,7 @@ public class SongSlideCalculatorTest {
 
   private List<Slide> calculate (final Song part, DefaultPresenterConfig config) {
 	  SongSlideCalculator calculator = getCalculator();
-	  return calculator.calculate(part, getParam(), config).getSlides();
+	  return calculator.calculate(part, getParam(), config).getSongSlides();
   }
 
   @Test

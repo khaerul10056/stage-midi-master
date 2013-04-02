@@ -6,6 +6,7 @@ import mda.Session;
 import org.mda.ApplicationSession;
 import org.mda.javafx.api.ISessionViewAction;
 import org.mda.javafx.api.IconRegistry;
+import org.mda.javafx.common.MonitorManager;
 import org.mda.javafx.presentationcontrol.PresentationControlView;
 import org.mda.presenter.CalculationParam;
 import org.mda.presenter.PresentationContext;
@@ -50,16 +51,16 @@ public class StartPresentationAction implements ISessionViewAction {
  	    
 		CalculationParam param = new CalculationParam (monitormanager.getBeamerOrPreviewBounds());
 		presentationcontext.setCurrentSession(currentSession, config, param);
-		
+		controlview.build();
 		if (monitormanager.isDualMonitorAvailable())
-   		  beamerpresenter.build(currentSession,false, config, param);
+		  beamerpresenter.build(currentSession,false, config, param);
 		
 
 		//Controlview has to be registered and build AFTER beamerpresenter, 
 		//because beamerpresenter fills the current session and the current slide 
 		//into the presentationcontext
 		presentationcontext.registerView(controlview);
-		controlview.build();
+		
 	}
 
 	@Override

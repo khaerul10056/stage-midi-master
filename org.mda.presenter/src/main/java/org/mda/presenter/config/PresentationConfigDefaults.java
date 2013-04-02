@@ -6,7 +6,7 @@ import java.util.Collection;
 import mda.PresentationScheme;
 
 import org.mda.MidiPlayerService;
-import org.mda.presenter.adapter.ColorInfo;
+import org.mda.measurement.ColorInfo;
 /**
  * Default values for configuration
  * @author oleym

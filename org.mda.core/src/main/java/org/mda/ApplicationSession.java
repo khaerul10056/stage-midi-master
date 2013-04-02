@@ -76,11 +76,19 @@ public class ApplicationSession {
    * @return Configpath
    */
   public File getOrCreateConfigPath (File basepath) {
-	File basepathReal = basepath != null ? basepath : new File (System.getProperty("user.home"));
+	  
+	String propertyPathProp = System.getProperty("org.mda.properties");
+	
+	String defaultProps = propertyPathProp != null ? propertyPathProp : System.getProperty("user.home");
+	
+	
+	File basepathReal = basepath != null ? basepath : new File (defaultProps);
 
     File confPath = new File (basepathReal, ".mda");
     if (! confPath.exists())
       confPath.mkdirs();
+    
+    LOGGER.info("configure configpath " + confPath.getAbsolutePath());
     return confPath;
   }
   
@@ -101,13 +109,11 @@ public class ApplicationSession {
 
   public void load (String originpath) {
 
-    File path = new File (originpath != null ? originpath : System.getProperty("user.home"));
 
-    LOGGER.info("Setting current path to " + path + "(from " + originpath + ")");
 
     if (sessionProps.isEmpty()) {
 
-      File confPath = getOrCreateConfigPath(path);
+      File confPath = getOrCreateConfigPath(null);
 
       LOGGER.info("Create initial properties in " + confPath.getAbsolutePath());
 

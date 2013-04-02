@@ -8,14 +8,14 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.mda.Utils;
+import org.mda.measurement.ColorInfo;
+import org.mda.measurement.FontInfo;
 import org.mda.measurement.SizeInfo;
-import org.mda.presenter.adapter.ColorInfo;
-import org.mda.presenter.adapter.FontInfo;
 
 /** dataobject containing information created for a slide,
  * e.g. the text with all it's layoutdata
  * @author oleym */
-public class Slide {
+public class Slide implements ISlide {
 
   /** reference to the current modelelement (e.g. midifilepart) */
   private final EObject                                 modelRef;
@@ -36,8 +36,16 @@ public class Slide {
   private SizeInfo size;
 
   private final boolean forceNewPage;
+  
+ 
 
-
+  /**
+   * constructs slide for a song
+   * @param modelRef
+   * @param firstLineModelRef
+   * @param font
+   * @param forceNewPage
+   */
   public Slide (EObject modelRef, final EObject firstLineModelRef, final FontInfo font, final boolean forceNewPage) {
     this.modelRef = modelRef;
     this.firstLineModelRef = firstLineModelRef;

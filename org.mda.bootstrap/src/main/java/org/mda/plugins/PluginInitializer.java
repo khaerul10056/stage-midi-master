@@ -2,7 +2,6 @@ package org.mda.plugins;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -31,30 +30,24 @@ public class PluginInitializer {
 	 * @throws InstantiationException exception
 	 * @throws IllegalAccessException exception
 	 */
-	public PluginClassloader createPluginClassloader (final File file) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+	public ClassLoader createClassloader (final File file) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException{
 		
 		System.out.println ("Find plugins in path <" + file.getAbsolutePath() + ">");
 		
-		URL [] urls = null;
+		ClassLoader cl = null;
 
 		for (IPluginFinderStrategy nextStrategy : pluginFinderStrategies) {
 			if (nextStrategy.isUsed(file)) {
-				if (urls != null)
+				if (cl != null)
 					throw new IllegalStateException("Multiple pluginfinder strategies registered for path " + file.getAbsolutePath());
-				else {
-					urls = nextStrategy.findPlugins(file);
-					if (urls != null) {
-						for (URL next: urls) {
-							System.out.println ("Found plugin " + next.toString());
-						}
-					}
-				}
+				else 
+					cl = nextStrategy.createClassloader(file);
 			}
 			else
 				System.out.println ("PluginFinderStrategy " + nextStrategy.getClass().getName() + " not used");
 		}
 		
-		PluginClassloader pluginClassloader = new PluginClassloader(urls, getClass().getClassLoader());
-		return pluginClassloader;
+		
+		return cl;
 	}
 }

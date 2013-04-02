@@ -19,18 +19,19 @@ import javafx.stage.StageStyle;
 import mda.Session;
 
 import org.mda.ApplicationSession;
+import org.mda.javafx.common.MonitorManager;
 import org.mda.javafx.imagecache.ImageCache;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.measurement.AreaInfo;
+import org.mda.measurement.ColorInfo;
 import org.mda.measurement.SizeInfo;
 import org.mda.presenter.CalculationParam;
 import org.mda.presenter.IPresentationView;
+import org.mda.presenter.ISlide;
 import org.mda.presenter.PresentationContext;
-import org.mda.presenter.Slide;
 import org.mda.presenter.SlideItem;
 import org.mda.presenter.SpecialSlide;
-import org.mda.presenter.adapter.AreaInfo;
-import org.mda.presenter.adapter.ColorInfo;
 import org.mda.presenter.config.IPresenterConfig;
 
 import com.google.inject.Inject;
@@ -57,9 +58,9 @@ public class BeamerPresenter implements IPresentationView {
 	
 	
 	
-    private HashMap<Slide, Pane> panesPerSlide = new HashMap<Slide, Pane>();
+    private HashMap<ISlide, Pane> panesPerSlide = new HashMap<ISlide, Pane>();
     private HashMap<SpecialSlide, Pane> specialSlidesPerPane = new HashMap<SpecialSlide, Pane> ();
-    private HashMap<Slide, Pane> emptyPanesPerSlide = new HashMap<Slide, Pane>();
+    private HashMap<ISlide, Pane> emptyPanesPerSlide = new HashMap<ISlide, Pane>();
 	
 	private Stage presentationStage;
 	
@@ -85,7 +86,7 @@ public class BeamerPresenter implements IPresentationView {
 	public void refresh() {
 		LOGGER.info("refresh called");
 		Pane nextPane = null;
-		Slide nextSlide = presentationContext.getCurrentSlide(); 
+		ISlide nextSlide = presentationContext.getCurrentSlide(); 
 		
 		if (presentationContext.getSpecialSlide() == SpecialSlide.NONE) {
 			nextPane = panesPerSlide.get(nextSlide);
@@ -178,7 +179,7 @@ public class BeamerPresenter implements IPresentationView {
 		return nextPane;
 	}
 	
-	private void addStyle (final Pane pane, final Slide slide, AreaInfo beamerpresenterBounds) {
+	private void addStyle (final Pane pane, final ISlide slide, AreaInfo beamerpresenterBounds) {
 		if (slide.getBackgroundImageFile() != null) {
 			LOGGER.info("Load backgroundimage " + slide.getBackgroundColor());
 			ImageView imageView = new ImageView(imageCache.getImage(slide.getBackgroundImageFile(),beamerpresenterBounds.getSize()));
@@ -187,9 +188,9 @@ public class BeamerPresenter implements IPresentationView {
 			imageView.setSmooth(true);
 			imageView.setCache(true);
 			pane.getChildren().add(imageView);
-		} else
-			pane.setStyle(colorResolver.getBackground(slide
-					.getBackgroundColor()));
+		} else if (slide.getBackgroundColor() != null)
+			pane.setStyle(colorResolver.getBackground(slide.getBackgroundColor()));
+		
 		pane.setVisible(false);
 	}
 
@@ -201,6 +202,12 @@ public class BeamerPresenter implements IPresentationView {
 		StackPane stackpane = new StackPane();
 		presentationStage = new Stage();
 		presentationStage.initStyle(StageStyle.UNDECORATED);
+		presentationStage.toFront();
+		
+		
+		presentationStage.setFullScreen(applicationSession.getFeatureActivation().isPresentationAlwaysOnTop());
+		
+		
 		
 		AreaInfo beamerpresenterBounds = param.getPresentationBounds() != null ? param.getPresentationBounds() : monitormanager.getBeamerOrPreviewBounds();
 		if (beamerpresenterBounds.getX() >= 0)
@@ -210,6 +217,11 @@ public class BeamerPresenter implements IPresentationView {
 		presentationStage.setWidth(beamerpresenterBounds.getWidth()); 
 		presentationStage.setHeight(beamerpresenterBounds.getHeight());
 		presentationStage.setScene(new Scene (stackpane));
+		
+		LOGGER.info("PresentationBounds                   = " + param.getPresentationBounds());
+		LOGGER.info("Monitormanager-BeamerOrPreviewBounds = " + monitormanager.getBeamerOrPreviewBounds());
+		LOGGER.info("BeamerPresenterBounds                = " + beamerpresenterBounds);
+		
 		stackpane.prefHeightProperty().bind(presentationStage.heightProperty());
 		stackpane.prefWidthProperty().bind(presentationStage.widthProperty());
 		
@@ -218,7 +230,7 @@ public class BeamerPresenter implements IPresentationView {
 		
 		currentPane = null;
 		
-		for (Slide nextSlide: presentationContext.getSlides()) {
+		for (ISlide nextSlide: presentationContext.getSlides()) {
 			
 			Pane nextPane = createPaneInStage(presentationStage);
 			nextPane.setId("normal slide for " + nextSlide.toString());

@@ -1,7 +1,7 @@
 package org.mda.presenter;
 
+import org.mda.measurement.AreaInfo;
 import org.mda.measurement.SizeInfo;
-import org.mda.presenter.adapter.AreaInfo;
 
 public class CalculationParam {
 

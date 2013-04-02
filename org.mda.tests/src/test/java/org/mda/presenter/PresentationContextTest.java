@@ -47,12 +47,12 @@ public class PresentationContextTest {
     presentationContext.setCurrentSession(appsession.getCurrentModel().getSessions().get(0), config, param);
     presentationContext.setCurrentSessionItemIndex(0);
 
-    Slide slide = presentationContext.getCurrentSlide();
+    Slide slide = (Slide) presentationContext.getCurrentSlide();
     EObject modelRef = slide.getModelRef();
     Assert.assertEquals (part1, modelRef);
     presentationContext.toPart(part2);
 
-    slide = presentationContext.getCurrentSlide();
+    slide = (Slide) presentationContext.getCurrentSlide();
     modelRef = slide.getModelRef();
     Assert.assertEquals (part2, modelRef);
 

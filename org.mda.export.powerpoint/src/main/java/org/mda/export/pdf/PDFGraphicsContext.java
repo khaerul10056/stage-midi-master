@@ -1,9 +1,9 @@
 package org.mda.export.pdf;
 
-import org.mda.measurement.SizeInfo;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
-import org.mda.presenter.adapter.FontInfo;
+import org.mda.measurement.FontInfo;
+import org.mda.measurement.SizeInfo;
 import org.mda.presenter.adapter.IGraphicsContext;
 
 import com.lowagie.text.pdf.BaseFont;
