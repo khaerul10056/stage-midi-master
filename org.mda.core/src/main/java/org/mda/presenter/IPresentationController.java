@@ -42,4 +42,12 @@ public interface IPresentationController {
    * @return true if item was found in session, false elsewhere
    */
   public boolean toItem (final AbstractSessionItem sessionItem);
+  
+  /**
+   * plays media of current slide if not yet played and 
+   * stops playing media, if any media is currently playing
+   */
+  void toggleMediaPlaying ();
+  
+ 
 }

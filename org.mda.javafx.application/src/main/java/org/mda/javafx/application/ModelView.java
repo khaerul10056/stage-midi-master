@@ -97,6 +97,7 @@ public class ModelView {
 	}
 	
 	public void activate () {
+		
 		System.out.println ("ModelView activated");
 		pane.setExpanded(true);
 		lvFavourites.requestFocus(); 

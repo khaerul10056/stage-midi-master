@@ -51,9 +51,9 @@ public class StartPresentationAction implements ISessionViewAction {
  	    
 		CalculationParam param = new CalculationParam (monitormanager.getBeamerOrPreviewBounds());
 		presentationcontext.setCurrentSession(currentSession, config, param);
+		beamerpresenter.build(currentSession,false, config, param);
 		controlview.build();
-		if (monitormanager.isDualMonitorAvailable())
-		  beamerpresenter.build(currentSession,false, config, param);
+		
 		
 
 		//Controlview has to be registered and build AFTER beamerpresenter, 
