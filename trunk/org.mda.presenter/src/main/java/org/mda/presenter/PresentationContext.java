@@ -32,6 +32,8 @@ public class PresentationContext implements IPresentationContext {
   
   @Inject
   SessionSlideCalculator calculator;
+  
+  private boolean isMediaPlaying;
 
   /**
    * list of registered controllers to control the presentation 
@@ -325,6 +327,16 @@ public class PresentationContext implements IPresentationContext {
   public void setSpecialSlide (SpecialSlide specialSlide) {
     this.specialSlide = specialSlide;
   }
+
+
+public boolean isMediaPlaying() {
+	return isMediaPlaying;
+}
+
+
+public void setMediaPlaying(boolean isMediaPlaying) {
+	this.isMediaPlaying = isMediaPlaying;
+}
 
 
 

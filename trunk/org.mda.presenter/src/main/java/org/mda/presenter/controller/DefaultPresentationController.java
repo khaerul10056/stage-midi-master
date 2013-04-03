@@ -117,5 +117,12 @@ public boolean previousSlide () {
     refreshViews(NavigationRefreshAction.REFRESH_VIEW);
   }
 
+@Override
+public void toggleMediaPlaying() {
+	presentationContext.setMediaPlaying(! presentationContext.isMediaPlaying());
+	refreshViews(NavigationRefreshAction.REFRESH_VIEW);
+}
+
+
 
 }

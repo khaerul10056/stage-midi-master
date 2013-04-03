@@ -27,6 +27,12 @@
    -fx-font: 18pt "Arial" ;
 }
 
+#navigationbutton {
+   -fx-background-radius: 0;
+   -fx-background-color: #000000;
+   -fx-font: 18pt "Arial" ;
+}
+
 .textfield {
   -fx-background-radius: 20;
   -fx-font: 18pt "Arial" ;

@@ -23,6 +23,8 @@ public class KeyPresentationController extends DefaultPresentationController imp
 //			midiplayer.togglePause();
 //		}
     	
+		if (e.getCode().equals(KeyCode.SPACE))
+			toggleMediaPlaying();
         
         if (e.getCode().equals(KeyCode.F4) && e.isAltDown())
       	  end();

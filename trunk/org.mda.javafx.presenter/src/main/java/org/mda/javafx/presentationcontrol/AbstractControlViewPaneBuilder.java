@@ -22,6 +22,7 @@ public abstract class AbstractControlViewPaneBuilder {
 	}
 	protected Button createButton (final String name, final String idIcon) {
 		Button btn = ButtonBuilder.create().build();
+		btn.setId("navigationbutton");
 		btn.setFocusTraversable(false);
 		if (name != null)
 		  btn.setText(name);

@@ -1,6 +1,7 @@
 package org.mda.javafx.presenter;
 
 
+import java.net.MalformedURLException;
 import java.util.HashMap;
 
 import javafx.scene.Scene;
@@ -8,6 +9,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.PaneBuilder;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaPlayer.Status;
+import javafx.scene.media.MediaView;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.LineBuilder;
 import javafx.scene.text.Font;
@@ -31,6 +36,7 @@ import org.mda.presenter.IPresentationView;
 import org.mda.presenter.ISlide;
 import org.mda.presenter.PresentationContext;
 import org.mda.presenter.SlideItem;
+import org.mda.presenter.SpecialMediaSlide;
 import org.mda.presenter.SpecialSlide;
 import org.mda.presenter.config.IPresenterConfig;
 
@@ -61,6 +67,8 @@ public class BeamerPresenter implements IPresentationView {
     private HashMap<ISlide, Pane> panesPerSlide = new HashMap<ISlide, Pane>();
     private HashMap<SpecialSlide, Pane> specialSlidesPerPane = new HashMap<SpecialSlide, Pane> ();
     private HashMap<ISlide, Pane> emptyPanesPerSlide = new HashMap<ISlide, Pane>();
+    
+    private HashMap<Pane, MediaPlayer> mediaPlayerRegistry = new HashMap<Pane, MediaPlayer>();
 	
 	private Stage presentationStage;
 	
@@ -86,7 +94,9 @@ public class BeamerPresenter implements IPresentationView {
 	public void refresh() {
 		LOGGER.info("refresh called");
 		Pane nextPane = null;
-		ISlide nextSlide = presentationContext.getCurrentSlide(); 
+		ISlide nextSlide = presentationContext.getCurrentSlide();
+		
+		
 		
 		if (presentationContext.getSpecialSlide() == SpecialSlide.NONE) {
 			nextPane = panesPerSlide.get(nextSlide);
@@ -134,6 +144,20 @@ public class BeamerPresenter implements IPresentationView {
 			currentPane.setVisible(false);
 			currentPane = nextPane;
 			nextPane.setVisible(true);
+			
+			MediaPlayer mediaPlayer = mediaPlayerRegistry.get(nextPane);
+			if (mediaPlayer != null) {
+				LOGGER.info("Mediaplayer status  " + mediaPlayer.getStatus());
+				LOGGER.info("PresentationContext " + presentationContext.isMediaPlaying());
+				if ((mediaPlayer.getStatus() == Status.PAUSED || mediaPlayer.getStatus() == Status.PLAYING) && ! presentationContext.isMediaPlaying()) {
+					LOGGER.info("Stopping mediaplayer");
+					mediaPlayer.stop();
+				}
+				else if (mediaPlayer.getStatus() != Status.PLAYING && presentationContext.isMediaPlaying()) {
+					LOGGER.info("Starting mediaplayer");
+					mediaPlayer.play();
+				}
+			}
 		  
 		}
 		else
@@ -196,6 +220,8 @@ public class BeamerPresenter implements IPresentationView {
 
 	public void build(final Session currentSession, boolean onTop, final IPresenterConfig config, final CalculationParam param) {
 		
+		
+		
 		presentationContext.registerView(this);
 		presentationContext.setCurrentSession(currentSession, config, param);
 		
@@ -204,10 +230,9 @@ public class BeamerPresenter implements IPresentationView {
 		presentationStage.initStyle(StageStyle.UNDECORATED);
 		presentationStage.toFront();
 		
+		monitormanager.layout(presentationStage, monitormanager.getBeamerOrPreviewBounds());
 		
 		presentationStage.setFullScreen(applicationSession.getFeatureActivation().isPresentationAlwaysOnTop());
-		
-		
 		
 		AreaInfo beamerpresenterBounds = param.getPresentationBounds() != null ? param.getPresentationBounds() : monitormanager.getBeamerOrPreviewBounds();
 		if (beamerpresenterBounds.getX() >= 0)
@@ -252,12 +277,33 @@ public class BeamerPresenter implements IPresentationView {
 				text.setLayoutX(slideItem.getX());
 				text.setLayoutY(slideItem.getY() + slideItem.getHeight());
 				
+				
 				nextPane.getChildren().add(text);
 				LOGGER.info("Create text <" + text.getText() + " on " + text.getX() + "-" + text.getY() + "-Item " + slideItem + "-");
 			}
 			
-			
-			
+			if (nextSlide instanceof SpecialMediaSlide) {
+				
+				SpecialMediaSlide sms = (SpecialMediaSlide) nextSlide;
+				Media media;
+				try {
+					media = new Media(sms.getSpecialMediaFile().toURI().toURL().toExternalForm());
+					MediaPlayer player = new MediaPlayer (media);
+					player.setAutoPlay(false);
+					MediaView mview = new MediaView(player);
+					nextPane.getChildren().add(mview);
+					mview.setFitHeight(beamerpresenterBounds.getHeight());
+					mview.setFitWidth(beamerpresenterBounds.getWidth());
+					
+					mediaPlayerRegistry.put(nextPane, player);
+					
+				} catch (MalformedURLException e) {
+					LOGGER.error(e.toString(), e);
+				}
+				
+				
+				
+			}
 			
 			stackpane.getChildren().add(nextPane);
 			stackpane.getChildren().add(emptyPane);

@@ -96,9 +96,15 @@ public class MdaJavaFXApp extends Application {
     	InjectService.injectObject(this);
         
     	
+    	
     	configurator.configure(plugins);	//load icons in icon registry, i18n, css and so on
     	
     	appSession.load(null);
+    	
+    	
+    	LOGGER.info("Monitormanager Enviroment: "); 
+    	LOGGER.info(monitormanager.toString());
+    	
 
     	MenuBar menubar = new MenuBar();
     	Menu mnuGlobal = new Menu("Global");

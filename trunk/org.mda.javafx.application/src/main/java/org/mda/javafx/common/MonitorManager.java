@@ -15,8 +15,10 @@ public class MonitorManager {
 	
 	private final static Log LOG = LogFactory.getLogger(MonitorManager.class);
 	
-	public void layoutToPrimaryMonitorBounds (final Stage stage){
-		AreaInfo primaryMonitorBounds = getPrimaryMonitorBounds();
+	
+	
+	
+	public void layout (final Stage stage, final AreaInfo primaryMonitorBounds){
 		stage.setX(primaryMonitorBounds.getX());
 		stage.setY(primaryMonitorBounds.getY());
 		stage.setWidth(primaryMonitorBounds.getWidth());
@@ -68,13 +70,29 @@ public class MonitorManager {
 		
 	}
 	
+	public AreaInfo getMainBounds () {
+		if (isDualMonitorAvailable())
+			return getPrimaryMonitorBounds(); 
+		else {
+			AreaInfo previewBounds = getPrimaryMonitorBounds();
+			float x = 0;
+			float y = 0;
+			float width = previewBounds.getWidth() / 2;
+			float height = previewBounds.getHeight() / 2;
+			return new AreaInfo(x,  y,  new SizeInfo(width, height));
+		}
+		
+		
+	}
+	
 	@Override
 	public String toString () {
-		StringBuilder builder = new StringBuilder(); 
-		builder.append ("Primary monitor       : " + (getPrimaryMonitorBounds() != null ? getPrimaryMonitorBounds(): "<null>\n"));
-		builder.append ("Secondary monitor     : " + (getSecondaryMonitorBounds() != null ? getSecondaryMonitorBounds(): "<null>\n"));
-		builder.append ("Beamer/Preview-bounds : " + getBeamerOrPreviewBounds());;
-		builder.append ("Dual monitor available: " + isDualMonitorAvailable());
+		StringBuilder builder = new StringBuilder();
+		builder.append ("Monitormanager"); 
+		builder.append ("\n - Primary monitor       : " + (getPrimaryMonitorBounds() != null ? getPrimaryMonitorBounds(): "<null>"));
+		builder.append ("\n - Secondary monitor     : " + (getSecondaryMonitorBounds() != null ? getSecondaryMonitorBounds(): "<null>"));
+		builder.append ("\n - Beamer/Preview-bounds : " + getBeamerOrPreviewBounds());;
+		builder.append ("\n - Dual monitor available: " + isDualMonitorAvailable());
 		
 		for (Screen next: Screen.getScreens()) {
 			builder.append ("- " + next.getBounds());
