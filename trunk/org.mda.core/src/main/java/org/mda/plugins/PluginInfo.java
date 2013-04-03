@@ -8,7 +8,7 @@ import com.google.inject.Module;
 
 public class PluginInfo {
 	
-	private final List<URL> icons = new ArrayList<>();
+	private final List<URL> icons = new ArrayList<URL>();
 	
 	private Module module;
 	
