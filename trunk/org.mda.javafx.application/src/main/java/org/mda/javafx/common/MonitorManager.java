@@ -92,10 +92,11 @@ public class MonitorManager {
 		builder.append ("\n - Primary monitor       : " + (getPrimaryMonitorBounds() != null ? getPrimaryMonitorBounds(): "<null>"));
 		builder.append ("\n - Secondary monitor     : " + (getSecondaryMonitorBounds() != null ? getSecondaryMonitorBounds(): "<null>"));
 		builder.append ("\n - Beamer/Preview-bounds : " + getBeamerOrPreviewBounds());;
-		builder.append ("\n - Dual monitor available: " + isDualMonitorAvailable());
+		builder.append ("\n - Main bounds           : " + getMainBounds());
+		builder.append ("\n - Dual monitor available: " + isDualMonitorAvailable() + "\n");
 		
 		for (Screen next: Screen.getScreens()) {
-			builder.append ("- " + next.getBounds());
+			builder.append ("- " + next.getBounds() + "\n");
 		}
 		
 		return builder.toString();

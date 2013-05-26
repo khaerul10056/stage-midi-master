@@ -230,6 +230,7 @@ public class BeamerPresenter implements IPresentationView {
 		presentationStage.initStyle(StageStyle.UNDECORATED);
 		presentationStage.toFront();
 		
+		LOGGER.info("Layout beamerpresenter to " + monitormanager.getBeamerOrPreviewBounds());
 		monitormanager.layout(presentationStage, monitormanager.getBeamerOrPreviewBounds());
 		
 		presentationStage.setFullScreen(applicationSession.getFeatureActivation().isPresentationAlwaysOnTop());

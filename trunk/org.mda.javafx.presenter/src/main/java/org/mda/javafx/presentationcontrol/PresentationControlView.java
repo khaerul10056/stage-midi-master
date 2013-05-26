@@ -101,6 +101,7 @@ public class PresentationControlView implements IPresentationView{
 		  Stage stage = StageBuilder.create().build();
 	      stage.initStyle(StageStyle.UNDECORATED);
 		  stage.setScene(scene);
+		  LOGGER.info("Layout presentationcontrolview to " + monitormanager.getMainBounds());
 		  monitormanager.layout(stage, monitormanager.getMainBounds());
 		  //stage.setFullScreen(true);
 		  stage.requestFocus();

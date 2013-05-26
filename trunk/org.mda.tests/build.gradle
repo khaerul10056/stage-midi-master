@@ -7,4 +7,6 @@ dependencies {
     compile project(':org.mda.javafx.presenter')
     compile project(':org.mda.midi')
     compile project(':org.mda.presenter')
+    compile 'junit:junit:4.11'
+    compile 'org.mockito:mockito-all:1.8.4'
 }
