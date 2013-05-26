@@ -5,17 +5,17 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
 	<classpathentry kind="src" path="/org.mda.core" exported="true"/>
 	<classpathentry kind="src" path="/org.mda.presenter" exported="true"/>
-	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/smm.git/org.mda.export.powerpoint/lib/itext-1.4.jar" exported="true"/>
-	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/smm.git/org.mda.export.powerpoint/lib/mail.jar" exported="true"/>
-	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/smm.git/org.mda.export.powerpoint/lib/poi-3.7/poi-3.7-20101029.jar" exported="true"/>
-	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/smm.git/org.mda.export.powerpoint/lib/poi-3.7/poi-examples-3.7-20101029.jar" exported="true"/>
-	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/smm.git/org.mda.export.powerpoint/lib/poi-3.7/poi-ooxml-3.7-20101029.jar" exported="true"/>
-	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/smm.git/org.mda.export.powerpoint/lib/poi-3.7/poi-ooxml-schemas-3.7-20101029.jar" exported="true"/>
-	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/smm.git/org.mda.export.powerpoint/lib/poi-3.7/poi-scratchpad-3.7-20101029.jar" exported="true"/>
-	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/smm.git/org.mda.export.powerpoint/lib/poi-3.7/lib/commons-logging-1.1.jar" exported="true"/>
-	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/smm.git/org.mda.export.powerpoint/lib/poi-3.7/lib/junit-3.8.1.jar" exported="true"/>
-	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/smm.git/org.mda.export.powerpoint/lib/poi-3.7/lib/log4j-1.2.13.jar" exported="true"/>
-	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/smm.git/org.mda.export.powerpoint/lib/poi-3.7/ooxml-lib/dom4j-1.6.1.jar" exported="true"/>
-	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/smm.git/org.mda.export.powerpoint/lib/poi-3.7/ooxml-lib/geronimo-stax-api_1.0_spec-1.0.jar" exported="true"/>
-	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/smm.git/org.mda.export.powerpoint/lib/poi-3.7/ooxml-lib/xmlbeans-2.3.0.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/stage-midi-master/org.mda.export.powerpoint/lib/itext-1.4.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/stage-midi-master/org.mda.export.powerpoint/lib/mail.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/stage-midi-master/org.mda.export.powerpoint/lib/poi-3.7/poi-3.7-20101029.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/stage-midi-master/org.mda.export.powerpoint/lib/poi-3.7/poi-examples-3.7-20101029.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/stage-midi-master/org.mda.export.powerpoint/lib/poi-3.7/poi-ooxml-3.7-20101029.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/stage-midi-master/org.mda.export.powerpoint/lib/poi-3.7/poi-ooxml-schemas-3.7-20101029.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/stage-midi-master/org.mda.export.powerpoint/lib/poi-3.7/poi-scratchpad-3.7-20101029.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/stage-midi-master/org.mda.export.powerpoint/lib/poi-3.7/lib/commons-logging-1.1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/stage-midi-master/org.mda.export.powerpoint/lib/poi-3.7/lib/junit-3.8.1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/stage-midi-master/org.mda.export.powerpoint/lib/poi-3.7/lib/log4j-1.2.13.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/stage-midi-master/org.mda.export.powerpoint/lib/poi-3.7/ooxml-lib/dom4j-1.6.1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/stage-midi-master/org.mda.export.powerpoint/lib/poi-3.7/ooxml-lib/geronimo-stax-api_1.0_spec-1.0.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/OleyMa/privat/soundoffaith/stage-midi-master/org.mda.export.powerpoint/lib/poi-3.7/ooxml-lib/xmlbeans-2.3.0.jar" exported="true"/>
 </classpath>

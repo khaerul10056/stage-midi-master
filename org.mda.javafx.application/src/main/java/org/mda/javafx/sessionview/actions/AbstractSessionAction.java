@@ -1,4 +1,4 @@
-package org.mda.javafx.actions;
+package org.mda.javafx.sessionview.actions;
 
 import org.mda.javafx.api.ISessionHoverAction;
 import org.mda.javafx.sessionview.SessionView;
@@ -13,7 +13,7 @@ public abstract class AbstractSessionAction implements ISessionHoverAction {
 		return sessionView;
 	}
 
-	public void setSessionView(final SessionView sessionView) {
+	public void setSessionView(SessionView sessionView) {
 		this.sessionView = sessionView;
 	}
 	

@@ -1,7 +1,9 @@
-package org.mda.javafx.actions;
+package org.mda.javafx.sessionview;
 
 import java.util.Set;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -17,7 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import org.mda.javafx.api.ISessionHoverAction;
-import org.mda.javafx.sessionview.SessionView;
+import org.mda.javafx.api.ISessionHoverActionProvider;
 
 import com.google.inject.Inject;
 
@@ -26,7 +28,7 @@ public class SessionActionHover {
 	private TextField txtField;
 	
 	@Inject
-	private Set<ISessionHoverAction> sessionActions;
+	private Set<ISessionHoverActionProvider> sessionActionProviders;
 	
 	
 	private ListView<ISessionHoverAction> liActions;
@@ -34,7 +36,23 @@ public class SessionActionHover {
 	private Stage dialogStage;
 
 	private SessionView sessionView;
+
+	private ObservableList<ISessionHoverAction> allActions;
 	
+	
+	  public void search(String oldVal, String newVal) {
+		    if (oldVal != null && (newVal.length() < oldVal.length())) {
+		      liActions.setItems(allActions);
+		    }
+		    String value = newVal.toUpperCase();
+		    ObservableList<ISessionHoverAction> subentries = FXCollections.observableArrayList();
+		    for (ISessionHoverAction entry : liActions.getItems()) {
+		      String entryText = entry.toString();
+		      if (entryText.toUpperCase().contains(value)) 
+		    	subentries.add(entry);
+		    }
+		    liActions.setItems(subentries);
+		  }
 	
 	
 	public Stage create (SessionView sessionView) {
@@ -45,18 +63,30 @@ public class SessionActionHover {
 		
 		
 		VBox vbox = new VBox(10);
-		vbox.setMinSize(300, 400);
+		vbox.setMinSize(600, 400);
 		
 		
 		txtField = new TextField();
 		VBox.setVgrow(txtField, Priority.ALWAYS);
 		txtField.setId("hover-textfield");
 		
+		txtField.textProperty().addListener(new ChangeListener() {
+		      public void changed(ObservableValue observable, Object oldVal,
+		          Object newVal) {
+		        search((String) oldVal, (String) newVal);
+		      }
+		    });
+		
 		
 		liActions = new ListView<ISessionHoverAction>();
-		ObservableList<ISessionHoverAction> actions = FXCollections.observableArrayList();
-		actions.addAll(sessionActions);		
-		liActions.setItems(actions);
+		
+		//get all available actions
+		allActions = FXCollections.observableArrayList();
+		for (ISessionHoverActionProvider nextProvider: sessionActionProviders) 
+			allActions.addAll(nextProvider.get());	
+		
+				
+		liActions.setItems(allActions);
 		liActions.setId("hover-list-view");
 		
 		vbox.setId("hover");
@@ -64,9 +94,6 @@ public class SessionActionHover {
 		
 		vbox.getChildren().add(txtField);
 		vbox.getChildren().add(liActions);
-	
-		
-		
 		
 		Scene scene = new Scene(vbox);
 		
@@ -79,13 +106,17 @@ public class SessionActionHover {
 
 			@Override
 			public void handle(KeyEvent arg0) {
+				
+				
 				if (arg0.getCode().equals(KeyCode.ESCAPE)) {
 					dialogStage.close();
 				}
-				
-				if (arg0.getCode().equals(KeyCode.TAB) || arg0.getCode().equals(KeyCode.DOWN)) {
+				else if (arg0.getCode().equals(KeyCode.TAB) || arg0.getCode().equals(KeyCode.DOWN)) {
 					liActions.requestFocus();
 					liActions.getSelectionModel().select(0);
+				} 
+				else { //filter actions
+					
 				}
 			}
 			  
@@ -128,6 +159,7 @@ public class SessionActionHover {
 		liActions.getSelectionModel().getSelectedItem().setSessionView(sessionView);
 		liActions.getSelectionModel().getSelectedItem().execute();
 		dialogStage.close();
+		sessionView.refresh(true);
 	}
 
 }

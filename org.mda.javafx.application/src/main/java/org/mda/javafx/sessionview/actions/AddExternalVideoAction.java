@@ -1,4 +1,4 @@
-package org.mda.javafx.actions;
+package org.mda.javafx.sessionview.actions;
 
 import java.io.File;
 
@@ -10,7 +10,6 @@ import mda.SpecialMedia;
 import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.javafx.api.ISessionHoverAction;
-import org.mda.javafx.sessionview.SessionView;
 
 import com.google.inject.Inject;
 
@@ -54,7 +53,7 @@ public class AddExternalVideoAction extends AbstractSessionAction implements ISe
         	
         	appsession.getCurrentModel().getGallery().getGalleryItems().add(specialmedia);
         	MidiPlayerService.addSessionItem(appsession.getCurrentSession(), getSessionView().getSelectedSessionItem(), specialmedia);
-        	getSessionView().refresh(true);
+        	
         }
         
         
@@ -66,10 +65,5 @@ public class AddExternalVideoAction extends AbstractSessionAction implements ISe
 	public String toString () {
 		return "Add additional media " + additionalType.getName();
 	}
-
-
-
-
-	
 
 }

@@ -25,6 +25,7 @@ import org.mda.ApplicationSession;
 import org.mda.inject.InjectService;
 import org.mda.javafx.autoconfig.AutomaticPluginConfigurator;
 import org.mda.javafx.common.MonitorManager;
+import org.mda.javafx.sessionview.SessionView;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.plugins.PluginInfo;

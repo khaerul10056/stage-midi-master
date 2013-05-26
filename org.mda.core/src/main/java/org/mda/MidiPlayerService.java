@@ -461,6 +461,20 @@ public class MidiPlayerService {
     });
     }
   }
+  
+  public static List <Song> getAllSongs (Gallery gallery) {
+	  
+	  List<Song> songs = new ArrayList<Song>();
+	  for (AbstractSessionItem nextItem: gallery.getGalleryItems()) {
+		  if (nextItem instanceof Song)
+			  songs.add((Song) nextItem);
+	  }
+	  
+	  //TODO sort alphabetically
+	  
+	  return songs;
+	  
+  }
 
   public static String toString (Song midifile) {
     StringBuilder builder = new StringBuilder();
