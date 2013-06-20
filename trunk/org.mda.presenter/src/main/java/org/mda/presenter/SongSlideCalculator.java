@@ -59,7 +59,7 @@ public class SongSlideCalculator extends AbstractSlideCalculator {
 	  int fontSizeCurrent = slides.get(0).getFont().getFontsizeAsInt();
 	  float currentMaxX = 0.0f; 
 	  for (Slide next: slides) {
-		  if (next.getMostRightItem().getXMax() > currentMaxX)
+		  if (next.getMostRightItem() != null && next.getMostRightItem().getXMax() > currentMaxX)
 			  currentMaxX = next.getMostRightItem().getXMax();
 	  }
       float expectedMaxX = slides.get(0).getSize().getWidth() * config.getAutosizingPercent() / 100 ;

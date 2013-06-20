@@ -58,7 +58,7 @@ public class Utils {
    * reads textfile in an string list
    * @param file file
    * @return list of strings
-   * @throws IOException
+   * @throws IOException if occurs
    */
   public static List<String> readTextFile (final File file) throws IOException {
 	  BufferedReader br = new BufferedReader(new FileReader(file));
@@ -78,6 +78,12 @@ public class Utils {
 	    return content;
   }
   
+  /**
+   * writes textfile from an string list
+   * @param file  file to write to
+   * @param content  content to write
+   * @throws IOException  if occurs 
+   */
   public static void writeTextFile(final File file, final Collection<String> content) throws IOException {
 	     BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
           for (String nextLine: content)
@@ -86,13 +92,21 @@ public class Utils {
           bw.close();
   }
 
-  
+  /**
+   * remove whitespaces from string
+   * @param before	string with whitespaces
+   * @return string without whitespaces
+   */
   public static String removeWhitespaces (final String before) {
 	  return before.replaceAll("\\s","");
   }
 
-  
-
+  /**
+   * fills the string with whitespaces in the length
+   * @param text		text to fill
+   * @param length		length
+   * @return manipulated string
+   */
   public static String fillString (final String text, final int length) {
     int filler = length - text.length();
     StringBuilder builder = new StringBuilder(text);
@@ -101,10 +115,11 @@ public class Utils {
     return builder.toString();
   }
 
-  
-  
-  
-
+  /**
+   * creates an empty string
+   * @param length length of string
+   * @return string itself
+   */
   public static String createEmptyString (final int length) {
     StringBuilder builder = new StringBuilder();
     for (int i = 0; i < length; i++)
@@ -112,13 +127,6 @@ public class Utils {
     return builder.toString();
   }
   
-
-  
-
-  public static ImageDescriptor loadImageFromProject (final File file) {
-      return null; //TODO
-  }
-
   /**
    * deletes a directory recursively
    * @param path path
@@ -143,12 +151,10 @@ public class Utils {
   }
 
   /**
-   * Kopiert eine Datei
+   * Copies a file
    *
-   * @param to
-   *            Zieldatei
-   * @param from
-   *            Quelldatei
+   * @param to  target file
+   * @param from  sourcefile
    */
   public final static void copyFile(final File to, final File from) throws IOException {
     FileInputStream fis1 = null;
@@ -191,7 +197,12 @@ public class Utils {
   }
 
 
-
+  /**
+   * gets the chord at the given position
+   * @param chordline  chordline
+   * @param position position of chord
+   * @return chord
+   */
   public static String getChordFromPosition (String chordline, final int position) {
 
     if (position < 0)

@@ -14,6 +14,7 @@ import org.mda.javafx.sessionview.SessionView;
 
 import com.google.inject.Inject;
 
+@Deprecated
 public class AddExternalVideoAction extends AbstractSessionAction implements ISessionHoverAction {
 	
 	private AdditionalType additionalType;

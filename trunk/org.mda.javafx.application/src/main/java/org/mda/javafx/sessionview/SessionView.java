@@ -23,6 +23,7 @@ import org.mda.javafx.api.ISessionViewAction;
 import org.mda.javafx.application.AbstractSessionItemListCell;
 import org.mda.javafx.application.MdaJavaFXApp;
 import org.mda.javafx.common.ActionPane;
+import org.mda.model.SessionService;
 
 import com.google.inject.Inject;
 
@@ -80,7 +81,7 @@ public class SessionView  {
 		public void handle(KeyEvent arg0) {
 			System.out.println ("Key pressed: " + arg0.getText());
 			arg0.consume();
-			
+		
 			
 			if (arg0.getCode().equals(KeyCode.ENTER)) {
 				stepToSong();
@@ -92,6 +93,11 @@ public class SessionView  {
 			
 			if (arg0.getText().equals("+")) {
 				hover.create(get());
+			}
+			
+			if (arg0.getText().equals("-") || arg0.getCode().equals(KeyCode.DELETE)) {
+				SessionService sessionservice = new SessionService(); 
+				sessionservice.removeSessionItem(appSession.getCurrentSession(), appSession.getCurrentMidifile());
 			}
 			
 			

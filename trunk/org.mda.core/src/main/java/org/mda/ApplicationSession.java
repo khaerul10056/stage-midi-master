@@ -10,11 +10,13 @@ import mda.Configuration;
 import mda.MidiPlayerRoot;
 import mda.Session;
 import mda.Song;
+import mda.SongPart;
 
 import org.mda.additionals.AdditionalsHandler;
 import org.mda.listeners.ModelEvents;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
+import org.mda.model.SessionService;
 import org.mda.transpose.FeatureActivation;
 
 
@@ -145,7 +147,8 @@ public class ApplicationSession {
       
       String propLastSession = sessionProps.getProperty(PROP_LASTSESSION); 
       if (propLastSession != null) {
-    	  getFeatureActivation().setLastUsedSession(MidiPlayerService.findSession(getCurrentModel(), propLastSession));
+    	  SessionService sessionService = new SessionService(); 
+    	  getFeatureActivation().setLastUsedSession(sessionService.findSessionByName(getCurrentModel(), propLastSession));
     	  setCurrentSession(getFeatureActivation().getLastUsedSession());
       }
       
@@ -254,6 +257,14 @@ public class ApplicationSession {
 
 public Song getCurrentMidifile() {
 	return (Song) getModelEvents().getCurrentModelElement(Song.class);
+}
+
+public SongPart getCurrentSongPart () {
+	return (SongPart) getModelEvents().getCurrentModelElement(SongPart.class);
+}
+
+public void setCurrentSongPart (final SongPart currentSongPart) {
+	getModelEvents().setCurrentModelElement(SongPart.class,currentSongPart);
 }
 
 

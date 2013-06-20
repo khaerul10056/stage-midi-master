@@ -26,6 +26,7 @@ import org.mda.inject.InjectService;
 import org.mda.javafx.autoconfig.AutomaticPluginConfigurator;
 import org.mda.javafx.common.MonitorManager;
 import org.mda.javafx.sessionview.SessionView;
+import org.mda.javafx.songview.SongView;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.plugins.PluginInfo;
@@ -151,6 +152,7 @@ public class MdaJavaFXApp extends Application {
         stage.setTitle("MDA");
         stage.initStyle(StageStyle.UNDECORATED);
         String cssUrl = getClass().getClassLoader().getResource("css/default.css").toExternalForm();
+        LOGGER.info("Applying css " + cssUrl);
         scene.getStylesheets().add(cssUrl);
         stage.setScene(scene);
     	stage.setFullScreen(appSession.getFeatureActivation().isPresentationAlwaysOnTop());

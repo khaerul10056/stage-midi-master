@@ -9,7 +9,6 @@ import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
-
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -25,7 +24,6 @@ import mda.Configuration;
 import mda.MidiPlayerRoot;
 import mda.User;
 
-import org.mda.ApplicationSession;
 import org.mda.export.pdf.PdfExporter;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
@@ -38,23 +36,24 @@ import com.google.inject.Inject;
 
 public class ExportEngine {
 
-  @Inject
-  private ApplicationSession appSession;
   
   @Inject
   private PdfExporter pdfexporter; //TODO implement other formats
   
+  
   @Inject
   private MailingAdapter mailingAdapter;
-  
+
 
   private final static Log LOG = LogFactory.getLogger(ExportEngine.class);
 
   private IExport getExporter (final User user) {
     return pdfexporter;
   }
-
-  private File getFile (User nextUser, IExport export) {
+  
+  
+  
+  private File getFile (User nextUser, IExport export, final File exportpath) {
     StringBuilder builderName = new StringBuilder();
     builderName.append("songbook");
     if (nextUser.getName() != null && ! nextUser.getName().isEmpty())
@@ -64,17 +63,15 @@ public class ExportEngine {
 
     builderName.append(export.getSuffix());
 
-    return new File (appSession.getExportPath(), builderName.toString());
+    return new File (exportpath, builderName.toString());
   }
 
-  public List <ExportResult> exportSongbooks () {
-
+  public List <ExportResult> exportSongbooks (final MidiPlayerRoot model, final File exportpath) {
     ArrayList<ExportResult> results = new ArrayList<ExportResult>();
-
-    MidiPlayerRoot currentModel = appSession.getCurrentModel();
-    for (User nextUser: currentModel.getUsers()) {
+    
+    for (User nextUser: model.getUsers()) {
       IExport exporter = getExporter(nextUser);
-      File exportFile = getFile(nextUser, exporter);
+      File exportFile = getFile(nextUser, exporter, exportpath);
       
       ExportResult exportResult = new ExportResult();
       try {
@@ -83,8 +80,8 @@ public class ExportEngine {
           LOG.info("Exporting file " + exportFile.getAbsolutePath() + " for user " + nextUser.getName() + " " + nextUser.getFirstname());
           PresentationConfigurator configurator = new PresentationConfigurator();
           PresentationType type = nextUser.getDefaultPresentationType() != null ? PresentationType.valueOf(nextUser.getDefaultPresentationType()) : PresentationType.PDF;
-          IPresenterConfig config = configurator.configure(nextUser, appSession.getCurrentModel(), type);
-          exportFile = exporter.export(currentModel.getGallery().getGalleryItems(), exportFile, config);
+          IPresenterConfig config = configurator.configure(nextUser, model, type);
+          exportFile = exporter.export(model.getGallery().getGalleryItems(), exportFile, config);
           exportResult.setUser(nextUser);
           exportResult.setExportFile(exportFile);
           results.add(exportResult);
@@ -97,16 +94,12 @@ public class ExportEngine {
         exportResult.setException(e);
         LOG.error("Error exporting file " + exportFile.getAbsolutePath() + ":", e);
       }
-
-
-
-
     }
     return results;
   }
   
-  private Configuration getConfiguration () {
-	  return appSession.getCurrentModel().getConfig();
+  private Configuration getConfiguration (MidiPlayerRoot model) {
+	  return model.getConfig();
   }
 
   /**
@@ -114,9 +107,11 @@ public class ExportEngine {
    * @param results
  * @throws MessagingException 
    */
-  public void mailExportedSongbooks (Collection <ExportResult> results) throws MessagingException {
+  public void mailExportedSongbooks (final MidiPlayerRoot model, Collection <ExportResult> results) throws MessagingException {
 	  
-	if (getConfiguration().getMailserverUser() == null || getConfiguration().getMailserverUrl() == null || getConfiguration().getMailserverPassword() == null)
+	Configuration configuration = getConfiguration(model);
+	  
+	if (configuration.getMailserverUser() == null || configuration.getMailserverUrl() == null || configuration.getMailserverPassword() == null)
       throw new MessagingException("Please configure mailserver, user and password before trying to send mails");
 	  
 	Collection <Message> messages = new ArrayList<Message>();
@@ -124,11 +119,9 @@ public class ExportEngine {
     for (ExportResult nextResult: results) {
    // Get system properties
       Properties props = System.getProperties();
-      
-      
 
-      Authenticator authenticator = new Authenticator(getConfiguration().getMailserverUser(), getConfiguration().getMailserverPassword());
-      props.put("mail.smtp.host", getConfiguration().getMailserverUrl());
+      Authenticator authenticator = new Authenticator(configuration.getMailserverUser(), configuration.getMailserverPassword());
+      props.put("mail.smtp.host", configuration.getMailserverUrl());
       props.put("mail.smtp.auth", "true");
 
       Session session = Session.getDefaultInstance(props, authenticator);
@@ -139,7 +132,7 @@ public class ExportEngine {
       
       
       // Fill the message
-      messageBodyPart.setText(getConfiguration().getMailtextSendSongbook() != null ? getConfiguration().getMailtextSendSongbook() : "");
+      messageBodyPart.setText(configuration.getMailtextSendSongbook() != null ? configuration.getMailtextSendSongbook() : "");
       Multipart multipart = new MimeMultipart();
       multipart.addBodyPart(messageBodyPart);
 
@@ -153,9 +146,9 @@ public class ExportEngine {
       
 
       MimeMessage message = new MimeMessage(session);
-      message.setFrom(new InternetAddress(getConfiguration().getMailserverUser()));
+      message.setFrom(new InternetAddress(configuration.getMailserverUser()));
       message.addRecipient(Message.RecipientType.TO, new InternetAddress(nextResult.getUser().getMail()));
-      message.setSubject(getConfiguration().getMailsubjectSendSongbook() != null ? getConfiguration().getMailsubjectSendSongbook() : "");
+      message.setSubject(configuration.getMailsubjectSendSongbook() != null ? configuration.getMailsubjectSendSongbook() : "");
       message.setContent(multipart);
 
       // Send message

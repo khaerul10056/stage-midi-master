@@ -17,8 +17,8 @@ apply plugin: 'eclipse'
 
 task application( dependsOn: 'jar') << {
 
-  allprojects { nextProject-> 
 
+  for (Project nextProject: project.subprojects) {
 
    def toPath
    if (nextProject.name.equals("org.mda.bootstrap"))
@@ -51,4 +51,9 @@ task application( dependsOn: 'jar') << {
 
 
 
+}
+
+
+for (Project nextProject: project.subprojects) {
+ project.tasks.application.dependsOn "$nextProject.name:jar"
 }
