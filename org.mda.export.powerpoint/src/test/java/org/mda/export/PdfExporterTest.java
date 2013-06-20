@@ -16,6 +16,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mda.ApplicationSession;
 import org.mda.CoreModule;
+import org.mda.Utils;
 import org.mda.export.pdf.PdfExporter;
 import org.mda.inject.InjectService;
 import org.mda.logging.Log;
@@ -33,20 +34,21 @@ public class PdfExporterTest {
 	private final static Log LOG = LogFactory.getLogger(PdfExporterTest.class);
 
 	  private File tmpFile = new File ("tmp/export.pdf");
+	  private File tmpRoot = new File ("tmp");
 
 	  private static ApplicationSession appSession;
 
+
 	  @Before
-	  public void before () {
-	    if (tmpFile.exists())
-	      Assert.assertTrue (tmpFile.delete());
+	  public void before() {
+		Utils.deleteDirectory(tmpRoot);
 	  }
 
 	  @After
-	  public void after () {
-	    if (tmpFile.exists())
-	      Assert.assertTrue (tmpFile.delete());
+	  public void after() {
+		Utils.deleteDirectory(tmpRoot);
 	  }
+
 	  
 	  @AfterClass
       public static void afterClass () {

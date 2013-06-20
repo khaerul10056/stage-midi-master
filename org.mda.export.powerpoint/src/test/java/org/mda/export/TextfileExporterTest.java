@@ -24,17 +24,16 @@ import org.mda.test.SongCreator;
 public class TextfileExporterTest {
 
 	private File tmpFile = new File("tmp/export.txt");
+	private File tmpRoot = new File ("tmp");
 
 	@Before
 	public void before() {
-		if (tmpFile.exists())
-			Assert.assertTrue(tmpFile.delete());
+		Utils.deleteDirectory(tmpRoot);
 	}
 
 	@After
 	public void after() {
-		if (tmpFile.exists())
-			Assert.assertTrue(tmpFile.delete());
+		Utils.deleteDirectory(tmpRoot);
 	}
 	
 	@AfterClass
