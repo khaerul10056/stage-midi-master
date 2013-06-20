@@ -25,6 +25,7 @@ public class ExportEngineTest {
 
 	private static List<ExportResult> exportSongbooks;
 	
+	
 	final String USER1 = "USER1";
     final String MAIL1 = "markus.oley@t-online.de";
     final String NOTSONGBOOKUSER = "NOTSONGBOOKUSER";
@@ -51,6 +52,10 @@ public class ExportEngineTest {
 	public static void afterClass () {
 		InjectService.dispose();
 	}
+	
+
+	
+
 
 	@Test
 	public void exportSongbooks() throws MessagingException {

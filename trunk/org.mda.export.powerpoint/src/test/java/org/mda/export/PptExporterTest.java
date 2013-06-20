@@ -17,8 +17,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mda.ApplicationSession;
 import org.mda.CoreModule;
+import org.mda.Utils;
 import org.mda.export.powerpoint.PptExporter;
 import org.mda.inject.InjectService;
 import org.mda.measurement.ColorInfo;
@@ -29,6 +29,7 @@ import org.mda.test.SongCreator;
 
 public class PptExporterTest {
 	
+	private File tmpRoot = new File ("tmp");
 	private File tmpFile = new File ("tmp/export.ppt");
 
 	  private static DefaultPresenterConfig config;
@@ -43,17 +44,17 @@ public class PptExporterTest {
 		config = InjectService.getInstance(DefaultPresenterConfig.class);
 	  }
 
+
 	  @Before
-	  public void before () {
-	    if (tmpFile.exists())
-	      Assert.assertTrue (tmpFile.delete());
+	  public void before() {
+		Utils.deleteDirectory(tmpRoot);
 	  }
 
 	  @After
-	  public void after () {
-	    if (tmpFile.exists())
-	      Assert.assertTrue (tmpFile.delete());
+	  public void after() {
+		Utils.deleteDirectory(tmpRoot);
 	  }
+
 	  
 	  @AfterClass
 	  public static void afterClass () {

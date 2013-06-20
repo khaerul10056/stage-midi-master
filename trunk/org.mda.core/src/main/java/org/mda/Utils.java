@@ -85,11 +85,14 @@ public class Utils {
    * @throws IOException  if occurs 
    */
   public static void writeTextFile(final File file, final Collection<String> content) throws IOException {
-	     BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
-          for (String nextLine: content)
-            bw.write(nextLine + System.getProperty("line.separator"));
+	  if (! file.getParentFile().exists())
+		  file.getParentFile().mkdirs();
+	  
+	   BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
+       for (String nextLine: content)
+         bw.write(nextLine + System.getProperty("line.separator"));
           
-          bw.close();
+       bw.close();
   }
 
   /**
@@ -133,7 +136,9 @@ public class Utils {
    * @return true/false
    */
   public static boolean deleteDirectory(File path) {
-    if( path.exists() ) {
+    if( ! path.exists() )
+    	return false;
+    
       File[] files = path.listFiles();
       if (files != null) {
 
@@ -146,8 +151,8 @@ public class Utils {
          }
       }
       }
-    }
-    return( path.delete() );
+    
+    return path.delete();
   }
 
   /**
