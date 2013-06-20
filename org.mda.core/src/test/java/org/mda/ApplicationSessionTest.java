@@ -20,7 +20,7 @@ public class ApplicationSessionTest {
 
 			session.load(null);
 
-			File confFile = new File("../org.mda.tests/.mda/mda.properties");
+			File confFile = new File("../org.mda.javafx.application/.mda/mda.properties");
 			assertTrue(confFile.exists());
 
 			Properties props = new Properties();
