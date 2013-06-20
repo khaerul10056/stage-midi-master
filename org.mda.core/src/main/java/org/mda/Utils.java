@@ -64,7 +64,7 @@ public class Utils {
 	  BufferedReader br = new BufferedReader(new FileReader(file));
 	  final List <String> content = new ArrayList<String>();
 	    try {
-	        String line = br.readLine();
+	        String line = null;
 	        do {
 	        	line = br.readLine();
 	        	if (line != null) 
@@ -85,7 +85,7 @@ public class Utils {
    * @throws IOException  if occurs 
    */
   public static void writeTextFile(final File file, final Collection<String> content) throws IOException {
-	  if (! file.getParentFile().exists())
+	  if (! file.getAbsoluteFile().getParentFile().exists())
 		  file.getParentFile().mkdirs();
 	  
 	   BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));

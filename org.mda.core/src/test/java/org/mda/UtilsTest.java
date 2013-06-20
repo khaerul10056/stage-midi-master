@@ -2,6 +2,9 @@ package org.mda;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -19,6 +22,38 @@ import org.mda.logging.LogFactory;
  */
 public class UtilsTest {
 	private static final Log LOGGER = LogFactory.getLogger(UtilsTest.class);
+	
+	@Test
+	public void createEmptyString () {
+		
+		String emptyString = Utils.createEmptyString(80);
+		Assert.assertEquals (80, emptyString.length());
+		for (int i = 0; i < 80; i++) {
+			Assert.assertTrue ("on position " + i + " the character is no whitespace", Character.isWhitespace(emptyString.charAt(i)));
+		}
+		
+	}
+	
+	@Test
+	public void readAndWriteTextFile () throws IOException {
+		File tmpFile = new File("tmp");
+		try {
+		Collection<String> checker = new ArrayList<>();
+		checker.add("First line");
+		checker.add("2nd line");
+		
+		Utils.writeTextFile(tmpFile, checker);
+		
+		List<String> readContent = Utils.readTextFile(tmpFile);
+		Assert.assertEquals("Written and read content not equal", checker, readContent);
+		
+		} finally {
+		  if (tmpFile.exists())
+			Assert.assertTrue (tmpFile.delete());
+			
+		}
+		
+	}
 
 	@Test
 	public void trimRight() {
