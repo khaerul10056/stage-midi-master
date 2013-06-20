@@ -11,16 +11,14 @@ import org.mda.ApplicationSession;
 import org.mda.MidiPlayerService;
 import org.mda.javafx.api.ISessionHoverAction;
 
-import com.google.inject.Inject;
-
 public class AddExternalVideoAction extends AbstractSessionAction implements ISessionHoverAction {
 	
 	private AdditionalType additionalType;
 	
-	@Inject
 	private ApplicationSession appsession;
 	
-	public AddExternalVideoAction () {
+	public AddExternalVideoAction (final ApplicationSession appSession) {
+		this.appsession = appSession;
 		this.additionalType = AdditionalType.VIDEO;		
 	}
 	

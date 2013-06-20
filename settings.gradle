@@ -1,1 +1,1 @@
-include "org.mda.bootstrap", "org.mda.model", "org.mda.core", "org.mda.export.powerpoint", "org.mda.google", "org.mda.javafx.application", "org.mda.javafx.presenter", "org.mda.midi", "org.mda.presenter", "org.mda.tests"
+include "org.mda.bootstrap", "org.mda.model", "org.mda.core", "org.mda.export.powerpoint", "org.mda.google", "org.mda.javafx.application", "org.mda.javafx.presenter", "org.mda.midi", "org.mda.presenter"

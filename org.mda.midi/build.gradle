@@ -1,3 +1,4 @@
 dependencies {
     compile project(':org.mda.core')
+    testCompile 'junit:junit:4.11'
 }

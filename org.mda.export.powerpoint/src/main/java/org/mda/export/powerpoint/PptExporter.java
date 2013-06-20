@@ -135,7 +135,7 @@ public File export (final Collection<AbstractSessionItem> items, final File expo
 
   }
   
-  private static java.awt.Color toAwtColor (final ColorInfo color) {
+  public static java.awt.Color toAwtColor (final ColorInfo color) {
 	    return new java.awt.Color (color.getRed(), color.getGreen(), color.getBlue());
   }
 

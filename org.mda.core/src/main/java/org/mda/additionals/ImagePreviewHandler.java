@@ -3,7 +3,7 @@ package org.mda.additionals;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
-import org.mda.Utils;
+
 import org.mda.resources.ImageDescriptor;
 
 
@@ -11,7 +11,7 @@ public class ImagePreviewHandler implements IPreviewHandler {
 
   @Override
   public ImageDescriptor getImage (File file, final String key) {
-    return Utils.loadImageFromProject(file);
+    return null;
   }
 
   @Override

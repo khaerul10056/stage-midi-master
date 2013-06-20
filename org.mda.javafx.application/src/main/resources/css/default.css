@@ -14,6 +14,10 @@
   -fx-background-color: #000000;
 }
 
+#editor {
+  -fx-background-color: #FFFFFF;
+  -fx-font: 25pt "Andale Mono" ;
+}
 
 .list-view {
     -fx-font: 18pt "Arial" ;

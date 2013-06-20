@@ -45,27 +45,7 @@ public class MidiPlayerService {
   
   
   
-  public static Session findSession (final MidiPlayerRoot root, final String sessionName) {
-		String sessionTrimmed = Utils.removeWhitespaces(sessionName);
-		
-		String existingSessions = "";
-		
-		for (Session nextSession: root.getSessions()) {
-			String found = Utils.removeWhitespaces(nextSession.getName());
-			if (found.equalsIgnoreCase(sessionTrimmed)) {
-				LOGGER.info("Starting with session " + sessionTrimmed);
-				return nextSession;
-			}
-			else {
-				if (! existingSessions.isEmpty())
-					existingSessions+=",";
-				
-				existingSessions+=found;
-			}
-		}
-		
-		throw new IllegalArgumentException("Could not find session <" + sessionName + "> in current model. Existing session: <" + existingSessions + ">");
-  }
+  
 
   public static List <AbstractSessionItem> sortedSessionItemList (final List <AbstractSessionItem> unsorted) {
     List <AbstractSessionItem> cloned = new ArrayList <AbstractSessionItem> (); 
@@ -92,70 +72,11 @@ public class MidiPlayerService {
     return midifile.getName().endsWith(".mid") ? midifile.getName().substring(0, midifile.getName().length() - 4) : midifile.getName();
   }
 
-  /**
-   * removes a sessionitem itself and all references in any session, if it is referenced
-   * @param rootobject   rootobject
-   * @param sessionitem  sessionitem to be removed
-   */
-  public static void removeSongAndReferences (final MidiPlayerRoot rootobject, final AbstractSessionItem sessionitem) {
+  
 
-    for (Session session: rootobject.getSessions()) {
+  
 
-      Collection<AbstractSessionItem> deleted = new ArrayList<AbstractSessionItem>();
-
-      for (AbstractSessionItem nextSessionitem : session.getItems()) {
-        if (sessionitem == nextSessionitem)
-          deleted.add(nextSessionitem);
-      }
-
-      session.getItems().removeAll(deleted);
-    }
-
-    rootobject.getGallery().getGalleryItems().remove(sessionitem);
-  }
-
-  /**
-   * check if the session item is reverenced
-   * @param rootobject
-   * @return errormessage or <code>null</code> if object is not referenced anymore
-   */
-  public static String getReferenced (final MidiPlayerRoot rootobject, final AbstractSessionItem sessionitem) {
-    StringBuilder builder = new StringBuilder();
-    int numberOfSession = 0;
-
-    for (Session session: rootobject.getSessions()) {
-      for (AbstractSessionItem nextSessionitem : session.getItems()) {
-        if (sessionitem == nextSessionitem) {
-          numberOfSession ++;
-          builder.append("- " + session.getName() + "\n");
-        }
-      }
-    }
-
-    if (builder.length() == 0)
-      return null;
-
-    if (numberOfSession == 1)
-      builder.insert(0, sessionitem.getName() + " is referenced in the following session:\n");
-    else
-      builder.insert(0, sessionitem.getName() + " is referenced in the following " + numberOfSession + "sessions:\n");
-
-    builder.append("\nRemove it anyway?");
-
-    return builder.toString();
-
-  }
-
-  /**
-   * removes a complete line from a part
-   * @param part part
-   * @param line line
-   * @return part
-   */
-  public final static SongPart removeLine (final SongPart part, final int line) {
-    part.getTextlines().remove(line);
-    return part;
-  }
+  
 
   /**
    * clones a part and inserts it after the cloned part
@@ -366,101 +287,17 @@ public class MidiPlayerService {
 
 
 
-  /** adds a new part after the addAfter-parent
-   * @param currentMidiFile midifile
-   * @param addAfter after this part the new part is inserted, if null than it is added to end
-   * @param midiFilePartType type of the new part
-   * @param reference referenced part, if the new part should be a reference to another part, maybe <code>null</code>
-   * @return */
-  public static int addPartAfter (Song currentMidiFile, SongPart addAfter, SongPartType midiFilePartType, SongPart reference) {
-
-    if (reference != null && midiFilePartType != null && reference.getRefPart().getParttype() != midiFilePartType)
-      LOGGER.warn("addPartAfter was called with different types for direct parameter and reference, using the type " + reference.getParttype() + " from reference");
-
-    int index = addAfter != null ? currentMidiFile.getParts().indexOf(addAfter): (currentMidiFile.getParts().size() - 1);
-    SongPart newPart = mf.createSongPart();
-    newPart.getTextlines().add(mf.createSongTextLine());
-    newPart.setParttype(midiFilePartType);
-    if (reference != null) {
-      newPart.setParttype(reference.getParttype());
-      newPart.setRefPart(reference);
-    }
-    currentMidiFile.getParts().add(index + 1, newPart);
-    return index + 1;
-  }
+  
 
 
 
 
 
-  /**
-   * moves a part up in the list of parts of a file
-   * @param currentMidiFile file
-   * @param part part
-   * @return moved part
-   */
-  public static SongPart movePartUp (Song currentMidiFile, SongPart part) {
-    int i = currentMidiFile.getParts().indexOf(part);
-    if (i == 0) //if first do nothing
-      return part;
+  
 
-    currentMidiFile.getParts().remove(i);
-    currentMidiFile.getParts().add(i - 1, part);
-    return currentMidiFile.getParts().get(i - 1);
-  }
+  
 
-  /**
-   * move a part down in the list of parts of a file
-   * @param currentMidiFile file
-   * @param part part
-   * @return moved part
-   */
-  public static SongPart movePartDown (Song currentMidiFile, SongPart part) {
-    int i = currentMidiFile.getParts().indexOf(part);
-    if (i == currentMidiFile.getParts().size() - 1) //if last do nothing
-      return part;
-
-    currentMidiFile.getParts().remove(i);
-    currentMidiFile.getParts().add(i + 1, part);
-    return currentMidiFile.getParts().get(i + 1);
-  }
-
-  /** removes the given part from the file
-   * @param file midifile
-   * @param part part to remove
-   *          return index of removed part */
-  public static SongPart removePart (final Song file, SongPart part) {
-    int index = file.getParts().indexOf(part);
-    if (index >= 0)
-      file.getParts().remove(part);
-
-    index --;
-    if (index < 0)
-      index = 0;
-
-    if (file.getParts().size() > 0)
-      return file.getParts().get(index);
-    else
-      return null;
-  }
-
-  public static void removeSessions (Collection<Session> selectedItems) {
-    MidiPlayerRoot root = null;
-    for (Session next: selectedItems) {
-      root = (MidiPlayerRoot) next.eContainer();
-      root.getSessions().remove(next);
-    }
-    //todo in service and check, disable button if selected item that is still referenced
-    if (root != null) {
-    ECollections.sort(root.getSessions(), new Comparator<Session>() {
-
-      @Override
-      public int compare (Session o1, Session o2) {
-        return o1.getName().compareTo(o2.getName());
-      }
-    });
-    }
-  }
+  
   
   public static List <Song> getAllSongs (Gallery gallery) {
 	  
@@ -533,10 +370,7 @@ public class MidiPlayerService {
     return session;
   }
   
-  public static Session removeSessionItem (Session session, AbstractSessionItem selectedSong) {
-	  session.getItems().remove(selectedSong);
-	  return session;
-  }
+  
 
   public static SongPart splitPart (Song midiFile, SongPart midiFilePart, int caretOffsetOfCurrentTextField) {
     Collection <SongTextLine> movedTextlines = new ArrayList<SongTextLine>();

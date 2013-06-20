@@ -3,6 +3,7 @@ package org.mda.javafx.actions;
 import org.mda.javafx.api.ISessionHoverAction;
 import org.mda.javafx.sessionview.SessionView;
 
+@Deprecated
 public abstract class AbstractSessionAction implements ISessionHoverAction {
 	
 	

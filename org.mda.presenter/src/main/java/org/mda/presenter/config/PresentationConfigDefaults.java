@@ -29,6 +29,7 @@ public class PresentationConfigDefaults {
 	private PresentationScheme createScreenScheme () {
 		PresentationScheme scheme = MidiPlayerService.mf.createPresentationScheme();
 		
+		scheme.setAutosizingPercent(80);
 		scheme.setBackgroundColor(ColorInfo.BLACK.toString());
 		scheme.setBorder(new Integer (10));
 		scheme.setForegroundColor(ColorInfo.WHITE.toString());
@@ -49,7 +50,7 @@ public class PresentationConfigDefaults {
 	
 	private PresentationScheme createPdfScheme () {
 		PresentationScheme scheme = MidiPlayerService.mf.createPresentationScheme();
-		
+		scheme.setAutosizingPercent(null);
 		scheme.setBackgroundColor(ColorInfo.WHITE.toString());
 		scheme.setBorder(new Integer (35));
 		scheme.setForegroundColor(ColorInfo.BLACK.toString());
@@ -71,7 +72,7 @@ public class PresentationConfigDefaults {
 	
 	private PresentationScheme createPptScheme () {
 		PresentationScheme scheme = MidiPlayerService.mf.createPresentationScheme();
-		
+		scheme.setAutosizingPercent(null);
 		scheme.setBackgroundColor(ColorInfo.BLACK.toString());
 		scheme.setBorder(new Integer (10));
 		scheme.setForegroundColor(ColorInfo.WHITE.toString());
