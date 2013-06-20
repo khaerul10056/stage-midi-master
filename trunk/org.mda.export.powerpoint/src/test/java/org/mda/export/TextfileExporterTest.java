@@ -14,7 +14,6 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mda.ApplicationSession;
 import org.mda.Utils;
 import org.mda.export.textfile.TextfileExporter;
 import org.mda.inject.InjectService;

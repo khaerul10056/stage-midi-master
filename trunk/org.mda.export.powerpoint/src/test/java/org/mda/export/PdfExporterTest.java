@@ -22,7 +22,6 @@ import org.mda.inject.InjectService;
 import org.mda.logging.Log;
 import org.mda.logging.LogFactory;
 import org.mda.presenter.PresenterModule;
-import org.mda.presenter.PresenterTestModule;
 import org.mda.presenter.Slide;
 import org.mda.presenter.SlideItem;
 import org.mda.presenter.SlideType;
@@ -59,7 +58,7 @@ public class PdfExporterTest {
 	  public static void beforeClass () {
 		InjectService.cachedModules.add(new CoreModule());
 		InjectService.cachedModules.add(new PresenterModule());
-		InjectService.cachedModules.add(new PresenterTestModule());
+		InjectService.cachedModules.add(new ExportTestModule());
 		appSession = InjectService.getInstance(ApplicationSession.class);
 	    appSession.getGlobalConfs().setShowGrid(true);
 	    appSession.getGlobalConfs().setDefaultBorder(0);

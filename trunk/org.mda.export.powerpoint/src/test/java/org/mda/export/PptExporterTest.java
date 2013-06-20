@@ -23,7 +23,6 @@ import org.mda.export.powerpoint.PptExporter;
 import org.mda.inject.InjectService;
 import org.mda.measurement.ColorInfo;
 import org.mda.presenter.PresenterModule;
-import org.mda.presenter.PresenterTestModule;
 import org.mda.presenter.config.DefaultPresenterConfig;
 import org.mda.test.SongCreator;
 
@@ -39,7 +38,7 @@ public class PptExporterTest {
 	  public static void beforeClass () {
 		InjectService.cachedModules.add(new CoreModule());
 		InjectService.cachedModules.add(new PresenterModule());
-		InjectService.cachedModules.add(new PresenterTestModule());
+		InjectService.cachedModules.add(new ExportTestModule());
 
 		config = InjectService.getInstance(DefaultPresenterConfig.class);
 	  }
