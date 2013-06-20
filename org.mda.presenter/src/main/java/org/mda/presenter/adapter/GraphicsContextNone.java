@@ -1,4 +1,4 @@
-package org.mda.presenter;
+package org.mda.presenter.adapter;
 
 import org.mda.measurement.FontInfo;
 import org.mda.measurement.SizeInfo;

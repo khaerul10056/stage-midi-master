@@ -17,7 +17,6 @@ import org.mda.MidiPlayerService;
 import org.mda.Utils;
 import org.mda.inject.InjectService;
 import org.mda.presenter.PresenterModule;
-import org.mda.presenter.PresenterTestModule;
 import org.mda.test.ModelCreator;
 import org.mda.test.SongCreator;
 
@@ -62,7 +61,7 @@ public class ExportEngineTest {
 
 		InjectService.cachedModules.add(new CoreModule());
 		InjectService.cachedModules.add(new PresenterModule());
-		InjectService.cachedModules.add(new PresenterTestModule());
+		InjectService.cachedModules.add(new ExportTestModule());
 
 		MidiPlayerRoot model = createTestdata();
 		File exportpath = new File("tmp/export");
