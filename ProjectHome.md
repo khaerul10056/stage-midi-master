@@ -1,0 +1,5 @@
+- session handling
+- administrating and editing texts with chords
+- presentation-view for the beamer
+- export for powerpoint and pdf
+- rcp-application
